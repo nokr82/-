@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_marginTop="9.5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="6dp"
+        android:orientation="horizontal"
+        >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:orientation="vertical"
+            android:background="#ffffff"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="0.2">
+                <TextView
+                    android:id="@+id/phoneTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="21sp"
+                    android:textColor="#6c6c6c"
+                    android:lineSpacingExtra="14sp"
+                    android:text="010-9588-0891"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="7sp"
+                    android:textColor="#9a9a9a"
+                    android:letterSpacing="-0.03"
+                    android:lineSpacingExtra="3sp"
+                    android:gravity="center_horizontal"
+                    android:text="이용약관과 개인정보 취급방침에 동의하시면 휴대전화 번호 입력 후
+적립버튼을 터치하세요."
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.8"
+                android:orientation="vertical"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:onClick="onClick"
+                        android:id="@+id/oneLL"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-15sp"
+                            android:text="1"
+                            android:textColor="#666666"
+                            android:textSize="24sp" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:onClick="onClick"
+                        android:id="@+id/twoLL"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="24sp"
+                            android:textColor="#666666"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-15sp"
+                            android:text="2"
+                            />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:onClick="onClick"
+                        android:id="@+id/threeLL"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="24sp"
+                            android:textColor="#666666"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-15sp"
+                            android:text="3"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:onClick="onClick"
+                        android:id="@+id/fourLL"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-15sp"
+                            android:text="4"
+                            android:textColor="#666666"
+                            android:textSize="24sp" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:onClick="onClick"
+                        android:id="@+id/fiveLL"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="24sp"
+                            android:textColor="#666666"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-15sp"
+                            android:text="5"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:onClick="onClick"
+                        android:id="@+id/sixLL"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-15sp"
+                            android:text="6"
+                            android:textColor="#666666"
+                            android:textSize="24sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:onClick="onClick"
+                        android:id="@+id/sevenLL"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="24sp"
+                            android:textColor="#666666"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-15sp"
+                            android:text="7"
+                            />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:onClick="onClick"
+                        android:id="@+id/eightLL"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="24sp"
+                            android:textColor="#666666"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-15sp"
+                            android:text="8"
+                            />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:onClick="onClick"
+                        android:id="@+id/nineLL"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="24sp"
+                            android:textColor="#666666"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-15sp"
+                            android:text="9"
+                            />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:id="@+id/backLL"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/btn_del"
+                            />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:onClick="onClick"
+                        android:id="@+id/zeroLL"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="24sp"
+                            android:textColor="#666666"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-15sp"
+                            android:text="0"
+                            />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:onClick="onClick"
+                        android:id="@+id/useLL"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="#00d1ce"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="21sp"
+                            android:textColor="#ffffff"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-12sp"
+                            android:text="적립"
+                            />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="25dp"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:background="#ffff">
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="#0066b0"
+                    android:letterSpacing="-0.05"
+                    android:lineSpacingExtra="-11sp"
+                    android:text="100 P "
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="#666666"
+                    android:letterSpacing="-0.05"
+                    android:lineSpacingExtra="-11sp"
+                    android:text="적립"
+                    />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:background="#f3f3f3"
+                android:layout_height="60dp">
+
+                <ImageView
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/bubble_katalk"/>
+                <ImageView
+                    android:layout_marginTop="11.5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/t_kakao"/>
+
+                <TextView
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="9.5dp"
+                    android:layout_marginBottom="12dp"
+                    android:textSize="7sp"
+                    android:textColor="#2a2a2a"
+                    android:letterSpacing="-0.05"
+                    android:lineSpacingExtra="2sp"
+                    android:text="입력하신 휴대전화번호로 매장의
+카카오톡 알림톡이 전송됩니다."
+                    />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

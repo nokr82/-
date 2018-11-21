@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_marginTop="15.5dp"
+            android:layout_marginRight="45.5dp"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="30.5dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="#90000000">
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:lineSpacingExtra="25sp"
+                    android:textColorHint="#99ffffff"
+                    android:hint="시간 선택"
+                    android:textColor="#ffffff"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="~"
+                android:layout_marginLeft="7.5dp"
+                android:layout_marginRight="7.5dp"
+                android:textSize="10sp"
+                android:textColor="#ffff"/>
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="30.5dp"
+                android:orientation="horizontal"
+                android:background="#90000000">
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:lineSpacingExtra="25sp"
+                    android:textColorHint="#99ffffff"
+                    android:hint="시간 선택"
+                    android:textColor="#ffffff"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginLeft="5dp"
+                android:layout_width="25dp"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:background="#90000000">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_search"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="9.5dp"
+            android:layout_width="match_parent"
+            android:layout_marginRight="29dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="6dp"
+            android:orientation="horizontal"
+            android:background="#ffff"
+            >
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="0.35"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:textColor="#005a97"
+                    android:letterSpacing="-0.03"
+                    android:lineSpacingExtra="51sp"
+                    android:text="고객목록"
+                    />
+                <TextView
+                    android:layout_marginTop="6.5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="7sp"
+                    android:textColor="#d7d7d7"
+                    android:letterSpacing="-0.03"
+                    android:lineSpacingExtra="54sp"
+                    android:text="ALL"
+                    />
+
+
+                <ListView
+                    android:id="@+id/userLV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </ListView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:gravity="center_vertical"
+                    android:background="#e7e7e7">
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="10sp"
+                        android:textColor="#5e5e5e"
+                        android:lineSpacingExtra="51sp"
+                        android:text="2018.05.01 ~ 2018.10.28"
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="9.5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+
+                    >
+                    <LinearLayout
+                        android:layout_width="65dp"
+                        android:layout_height="25dp"
+                        android:gravity="center"
+                        android:background="#e7e7e7">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="7dp"
+                            android:textColor="#555555"
+                            android:lineSpacingExtra="51sp"
+                            android:text="총합"
+                            />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="7sp"
+                            android:textColor="#666666"
+                            android:lineSpacingExtra="54sp"
+                            android:text="12명 / 32회"
+                            />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_marginTop="9.5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+
+                    >
+                    <LinearLayout
+                        android:layout_width="65dp"
+                        android:layout_height="25dp"
+                        android:gravity="center"
+                        android:background="#e7e7e7">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="7dp"
+                            android:textColor="#555555"
+                            android:lineSpacingExtra="51sp"
+                            android:text="포인트 적립"
+                            />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="7sp"
+                            android:textColor="#666666"
+                            android:lineSpacingExtra="54sp"
+                            android:text="12명 / 27회 / 607P"
+                            />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp">
+                    <LinearLayout
+                        android:layout_width="65dp"
+                        android:layout_height="25dp"
+                        android:gravity="center"
+                        android:background="#e7e7e7">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="51sp"
+                            android:text="포인트 사용"
+                            android:textColor="#555555"
+                            android:textSize="7dp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="7sp"
+                            android:textColor="#666666"
+                            android:lineSpacingExtra="54sp"
+                            android:text="12명 / 27회 / 15P"
+                            />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp">
+                    <LinearLayout
+                        android:layout_width="65dp"
+                        android:layout_height="25dp"
+                        android:gravity="center"
+                        android:background="#e7e7e7">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="7dp"
+                            android:textColor="#555555"
+                            android:lineSpacingExtra="51sp"
+                            android:text="쿠폰 사용"
+                            />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="7sp"
+                            android:textColor="#666666"
+                            android:lineSpacingExtra="54sp"
+                            android:text="1명 / 2회"
+                            />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="9.5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp">
+                    <LinearLayout
+                        android:layout_width="65dp"
+                        android:layout_height="25dp"
+                        android:gravity="center"
+                        android:background="#e7e7e7">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="7sp"
+                            android:textColor="#555555"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="54sp"
+                            android:gravity="center_horizontal"
+                            android:text="포인트 기대 수익"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="7sp"
+                            android:textColor="#666666"
+                            android:lineSpacingExtra="54sp"
+                            android:text="(3 * 100.0) * 607 = \182,100"
+                            />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp">
+                    <LinearLayout
+                        android:layout_width="65dp"
+                        android:layout_height="25dp"
+                        android:gravity="center"
+                        android:background="#e7e7e7">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="7dp"
+                            android:textColor="#555555"
+                            android:lineSpacingExtra="51sp"
+                            android:text="포인트사용"
+                            />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="7sp"
+                            android:textColor="#666666"
+                            android:lineSpacingExtra="54sp"
+                            android:text="2000원"
+                            />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

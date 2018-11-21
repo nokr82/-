@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <declare-styleable name="app">
+        <attr name="ratio" format="string"/>
+        <attr name="adjustHeight" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="FancyCoverFlow">
+        <attr name="unselectedAlpha" format="float"/>
+        <attr name="unselectedSaturation" format="float"/>
+        <attr name="unselectedScale" format="float"/>
+        <attr name="maxRotation" format="integer"/>
+        <attr name="scaleDownGravity" format="float"/>
+        <attr name="actionDistance" format="integer">
+            <enum name="auto" value="2147483647" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="PageCurlView">
+        <!-- Enable/Disable debug mode -->
+        <attr name="enableDebugMode" format="boolean" />
+        <!-- Curl speed  the animation moves in px/frame -->
+        <attr name="curlSpeed" format="integer" />
+        <!-- FPS our animation will run -->
+        <attr name="updateRate" format="integer" />
+        <!-- Pixel offset the page will have from the curl edge -->
+        <attr name="initialEdgeOffset" format="integer" />
+        <!-- The curl mode to apply -->
+        <attr name="curlMode">
+            <enum name="Simple" value="0" />
+            <enum name="Dynamic" value="1" />
+        </attr>
+    </declare-styleable>
+</resources>
