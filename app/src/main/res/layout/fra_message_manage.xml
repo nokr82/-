@@ -259,6 +259,7 @@
                     android:textColor="#666666"
                     android:text="성별"/>
                 <LinearLayout
+                    android:id="@+id/genderLL"
                     android:layout_width="50dp"
                     android:layout_height="20dp"
                     android:layout_marginLeft="17.5dp"
@@ -266,10 +267,11 @@
 
                     android:gravity="center">
                     <TextView
+                        android:id="@+id/genderTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="8sp"
-                        android:textColor="#ffffff"
+                        android:textColor="#9a9a99"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="4sp"
                         android:gravity="center_horizontal"
@@ -280,41 +282,45 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="40dp"
+                    android:id="@+id/menLL"
+                    android:layout_width="39dp"
                     android:layout_height="20dp"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/background_strock_c1c1c1"
                     android:gravity="center">
+
                     <TextView
+                        android:id="@+id/menTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="8sp"
-                        android:textColor="#9a9a99"
+                        android:gravity="center_horizontal"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="4sp"
-                        android:gravity="center_horizontal"
                         android:text="남성"
-                        />
+                        android:textColor="#9a9a99"
+                        android:textSize="8sp" />
 
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/girlLL"
                     android:layout_width="40dp"
                     android:layout_height="20dp"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/background_strock_c1c1c1"
                     android:gravity="center">
+
                     <TextView
+                        android:id="@+id/girlTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="8sp"
-                        android:textColor="#9a9a99"
+                        android:gravity="center_horizontal"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="4sp"
-                        android:gravity="center_horizontal"
                         android:text="여성"
-                        />
+                        android:textColor="#9a9a99"
+                        android:textSize="8sp" />
 
 
                 </LinearLayout>
@@ -335,34 +341,39 @@
                     android:textSize="9sp"
                     android:textColor="#666666"
                     android:text="나이"/>
+
                 <LinearLayout
-                    android:layout_width="40dp"
+                    android:id="@+id/tenLL"
+                    android:layout_width="36dp"
                     android:layout_height="20dp"
                     android:layout_marginLeft="17.5dp"
                     android:background="@drawable/background_00d1ce"
 
                     android:gravity="center">
+
                     <TextView
+                        android:id="@+id/tenTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="8sp"
-                        android:textColor="#ffffff"
+                        android:gravity="center_horizontal"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="4sp"
-                        android:gravity="center_horizontal"
                         android:text="10대"
-                        />
+                        android:textColor="#9a9a99"
+                        android:textSize="8sp" />
 
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/twoLL"
                     android:layout_width="40dp"
                     android:layout_height="20dp"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/background_strock_c1c1c1"
                     android:gravity="center">
                     <TextView
+                        android:id="@+id/twoTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="8sp"
@@ -377,50 +388,56 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/threeLL"
                     android:layout_width="40dp"
                     android:layout_height="20dp"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/background_strock_c1c1c1"
                     android:gravity="center">
+
                     <TextView
+                        android:id="@+id/threeTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="8sp"
-                        android:textColor="#9a9a99"
+                        android:gravity="center_horizontal"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="4sp"
-                        android:gravity="center_horizontal"
                         android:text="30대"
-                        />
+                        android:textColor="#9a9a99"
+                        android:textSize="8sp" />
 
 
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/fourLL"
                     android:layout_width="40dp"
                     android:layout_height="20dp"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/background_strock_c1c1c1"
                     android:gravity="center">
+
                     <TextView
+                        android:id="@+id/fourTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="8sp"
-                        android:textColor="#9a9a99"
+                        android:gravity="center_horizontal"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="4sp"
-                        android:gravity="center_horizontal"
                         android:text="40대"
-                        />
+                        android:textColor="#9a9a99"
+                        android:textSize="8sp" />
 
 
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/fiveLL"
                     android:layout_width="40dp"
                     android:layout_height="20dp"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/background_strock_c1c1c1"
                     android:gravity="center">
                     <TextView
+                        android:id="@+id/fiveTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="8sp"
@@ -434,12 +451,14 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/sixLL"
                     android:layout_width="40dp"
                     android:layout_height="20dp"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/background_strock_c1c1c1"
                     android:gravity="center">
                     <TextView
+                        android:id="@+id/sixTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="8sp"
@@ -471,53 +490,59 @@
                     android:textColor="#666666"
                     android:text="유형"/>
                 <LinearLayout
+                    android:id="@+id/citizenLL"
                     android:layout_width="50dp"
                     android:layout_height="20dp"
                     android:layout_marginLeft="17.5dp"
                     android:background="@drawable/background_00d1ce"
 
                     android:gravity="center">
+
                     <TextView
+                        android:id="@+id/citizenTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="8sp"
-                        android:textColor="#ffffff"
+                        android:gravity="center_horizontal"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="4sp"
-                        android:gravity="center_horizontal"
                         android:text="동네주민"
-                        />
+                        android:textColor="#9a9a99"
+                        android:textSize="8sp" />
 
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="40dp"
+                    android:id="@+id/studentLL"
+                    android:layout_width="39dp"
                     android:layout_height="20dp"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/background_strock_c1c1c1"
                     android:gravity="center">
+
                     <TextView
+                        android:id="@+id/studentTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="8sp"
-                        android:textColor="#9a9a99"
+                        android:gravity="center_horizontal"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="4sp"
-                        android:gravity="center_horizontal"
                         android:text="대학생"
-                        />
+                        android:textColor="#9a9a99"
+                        android:textSize="8sp" />
 
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/workerLL"
                     android:layout_width="40dp"
                     android:layout_height="20dp"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/background_strock_c1c1c1"
                     android:gravity="center">
                     <TextView
+                        android:id="@+id/workerTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="8sp"
@@ -531,12 +556,14 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/cautionLL"
                     android:layout_width="50dp"
                     android:layout_height="20dp"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/background_strock_c1c1c1"
                     android:gravity="center">
                     <TextView
+                        android:id="@+id/cautionTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="8sp"

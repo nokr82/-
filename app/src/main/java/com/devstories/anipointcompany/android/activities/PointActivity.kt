@@ -21,46 +21,11 @@ class PointActivity : RootActivity() {
         this.context = this
         progressDialog = ProgressDialog(context)
 
-        oneLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 1)
-        }
-        twoLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 2)
-        }
-        threeLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 3)
-        }
-        fourLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 4)
-        }
-        fiveLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 5)
-        }
-        sixLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 6)
-        }
-        sevenLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 7)
-        }
-        eightLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 8)
-        }
-        nineLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 9)
-        }
-        zeroLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 0)
-        }
-        delLL.setOnClickListener {
-            val text = moneyTV.getText().toString()
-            if (text.length > 0){
-                moneyTV.setText(text.substring(0, text.length - 1))
-            }else{
-            }
-        }
+        titleTV.setOnClickListener {
+            val intent = Intent(this, UserListActivity::class.java)
+            startActivity(intent)
 
-
-
+        }
 
 
         }
