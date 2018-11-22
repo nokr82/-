@@ -4,15 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-<HorizontalScrollView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:scrollbars="none">
-<LinearLayout
-    android:id="@+id/userLL"
-    android:layout_marginLeft="10dp"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+
     <LinearLayout
 
         android:background="#ffff"
@@ -561,14 +553,6 @@
 
 
     </LinearLayout>
-
-</LinearLayout>
-
-
-</HorizontalScrollView>
-
-
-
 
 
 

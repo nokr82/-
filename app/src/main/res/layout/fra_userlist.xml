@@ -65,7 +65,19 @@
             android:orientation="horizontal"
             >
 
+            <com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView
+                android:id="@+id/userLV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@null"
+                android:listSelector="@null"
+                android:layout_marginTop="5dp">
+            </com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView>
+
+
+
             <HorizontalScrollView
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
