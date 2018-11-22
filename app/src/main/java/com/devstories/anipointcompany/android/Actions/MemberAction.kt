@@ -23,4 +23,9 @@ object MemberAction {
         HttpClient.post("/member/my_point.json", params, handler)
     }
 
+    //방문 이력
+    fun visit_list(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/member/visit_list.json", params, handler)
+    }
+
 }

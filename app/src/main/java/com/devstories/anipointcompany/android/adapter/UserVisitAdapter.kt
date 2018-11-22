@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.devstories.anipointcompany.android.R
-import com.devstories.anipointcompany.android.R.id.couponLL
 import com.devstories.anipointcompany.android.base.Utils
 import org.json.JSONObject
 import java.text.SimpleDateFormat
