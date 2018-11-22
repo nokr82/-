@@ -168,14 +168,14 @@ class Message_Manage_Fragment : Fragment() {
         }
         studentLL.setOnClickListener {
             setmenu3()
-            workerLL.setBackgroundResource(R.drawable.background_00d1ce)
-            workerTV.setTextColor(Color.parseColor("#ffffff"))
+            studentLL.setBackgroundResource(R.drawable.background_00d1ce)
+            studentTV.setTextColor(Color.parseColor("#ffffff"))
         }
 
         workerLL.setOnClickListener {
             setmenu3()
-            studentLL.setBackgroundResource(R.drawable.background_00d1ce)
-            studentTV.setTextColor(Color.parseColor("#ffffff"))
+            workerLL.setBackgroundResource(R.drawable.background_00d1ce)
+            workerTV.setTextColor(Color.parseColor("#ffffff"))
 
         }
 
