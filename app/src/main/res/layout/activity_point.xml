@@ -635,91 +635,83 @@
     </LinearLayout>
 
 
-
-
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="18.5dp"
-        android:orientation="vertical">
-
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-          android:src="@mipmap/coupon"
-            />
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_marginTop="9.5dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="18.5dp"
+            android:orientation="vertical">
+
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/coupon"
-                />
-        </LinearLayout>
+                android:src="@mipmap/coupon" />
 
 
-        <LinearLayout
-            android:layout_marginTop="9.5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/coupon"
-                />
-        </LinearLayout>
+                android:layout_marginTop="9.5dp">
 
-        <LinearLayout
-            android:layout_marginTop="9.5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/coupon" />
+            </LinearLayout>
 
-            <ImageView
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/coupon"
-                />
-        </LinearLayout>
+                android:layout_marginTop="9.5dp">
 
-        <LinearLayout
-            android:layout_marginTop="9.5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/coupon" />
+            </LinearLayout>
 
-            <ImageView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/coupon"
-                />
-        </LinearLayout>
+                android:layout_marginTop="9.5dp">
 
-        <LinearLayout
-            android:layout_marginTop="9.5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/coupon" />
+            </LinearLayout>
 
-            <ImageView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/coupon"
-                />
+                android:layout_marginTop="9.5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/coupon" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9.5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/coupon" />
+            </LinearLayout>
+
         </LinearLayout>
 
-    </LinearLayout>
-
-</ScrollView>
+    </ScrollView>
 
 
 </LinearLayout>
