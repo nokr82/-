@@ -2,6 +2,7 @@ package com.devstories.anipointcompany.android.activities
 
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
 import android.view.View
@@ -32,6 +33,13 @@ class UserListActivity : FragmentActivity() {
         userLL.setBackgroundResource(R.drawable.background_strock_707070)
         useroptionLL.visibility = View.VISIBLE
         supportFragmentManager.beginTransaction().replace(R.id.userFL, User_List_Fragment).commit()
+
+
+        accumulateLL.setOnClickListener {
+            val intent = Intent(this, PointActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
 
         userLL.setOnClickListener {
             setmenu()

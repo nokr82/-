@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient"
     android:orientation="horizontal">
-    
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -28,158 +28,159 @@
 
             <LinearLayout
                 android:id="@+id/useroptionLL"
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="17.5dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="1sp"
-                    android:text="전체"
-                    android:textColor="#ffffff"
-                    android:textSize="9sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.3dp"
-                    android:background="#ffff" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="17.5dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="1sp"
-                    android:text="신규"
-                    android:textColor="#80ffffff"
-                    android:textSize="9sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.3dp"
-                    android:background="#ffff" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="17.5dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="1sp"
-                    android:text="단골"
-                    android:textColor="#80ffffff"
-                    android:textSize="9sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.3dp"
-                    android:background="#ffff" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="17.5dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="1sp"
-                    android:text="생일"
-                    android:textColor="#80ffffff"
-                    android:textSize="9sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.3dp"
-                    android:background="#ffff" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="17.5dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="1sp"
-                    android:text="단골 or VIP"
-                    android:textColor="#80ffffff"
-                    android:textSize="9sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.3dp"
-                    android:background="#ffff" />
 
                 <LinearLayout
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="30dp"
-                    android:background="@drawable/background_strock_ffff"
-                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="17.5dp"
                     android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:src="@mipmap/icon_plus" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="6.5dp"
                         android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="3sp"
-                        android:text="고객추가"
+                        android:lineSpacingExtra="1sp"
+                        android:text="전체"
                         android:textColor="#ffffff"
-                        android:textSize="7sp" />
+                        android:textSize="9sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.3dp"
+                        android:background="#ffff" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="17.5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="1sp"
+                        android:text="신규"
+                        android:textColor="#80ffffff"
+                        android:textSize="9sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.3dp"
+                        android:background="#ffff" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="17.5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="1sp"
+                        android:text="단골"
+                        android:textColor="#80ffffff"
+                        android:textSize="9sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.3dp"
+                        android:background="#ffff" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="17.5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="1sp"
+                        android:text="생일"
+                        android:textColor="#80ffffff"
+                        android:textSize="9sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.3dp"
+                        android:background="#ffff" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="17.5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="1sp"
+                        android:text="단골 or VIP"
+                        android:textColor="#80ffffff"
+                        android:textSize="9sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.3dp"
+                        android:background="#ffff" />
+
+                    <LinearLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="30dp"
+                        android:background="@drawable/background_strock_ffff"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:src="@mipmap/icon_plus" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6.5dp"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="3sp"
+                            android:text="고객추가"
+                            android:textColor="#ffffff"
+                            android:textSize="7sp" />
+
+
+                    </LinearLayout>
 
 
                 </LinearLayout>
 
-
             </LinearLayout>
 
-            </LinearLayout>
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/message_op_LL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
+
                 <LinearLayout
-                    android:layout_marginTop="17.5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="17.5dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -190,42 +191,46 @@
                         android:text="메세지관리"
                         android:textColor="#ffffff"
                         android:textSize="9sp" />
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.3dp"
-                        android:background="#ffff"/>
+                        android:background="#ffff" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="17.5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="17.5dp"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="9sp"
-                        android:textColor="#80ffffff"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="1sp"
-                        android:text="쿠폰관리" />
+                        android:text="쿠폰관리"
+                        android:textColor="#80ffffff"
+                        android:textSize="9sp" />
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.3dp"
-                        android:background="#ffff"/>
+                        android:background="#ffff" />
                 </LinearLayout>
             </LinearLayout>
+
             <LinearLayout
-                android:visibility="gone"
+                android:id="@+id/point_op_LL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:id="@+id/point_op_LL">
+                android:visibility="gone">
 
                 <LinearLayout
-                    android:layout_marginTop="17.5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="17.5dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -236,85 +241,92 @@
                         android:text="전체보기"
                         android:textColor="#ffffff"
                         android:textSize="9sp" />
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.3dp"
-                        android:background="#ffff"/>
+                        android:background="#ffff" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="17.5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="17.5dp"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="9sp"
-                        android:textColor="#80ffffff"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="1sp"
-                        android:text="오늘" />
+                        android:text="오늘"
+                        android:textColor="#80ffffff"
+                        android:textSize="9sp" />
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.3dp"
-                        android:background="#ffff"/>
+                        android:background="#ffff" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="17.5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="17.5dp"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="9sp"
-                        android:textColor="#80ffffff"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="1sp"
-                        android:text="일주일" />
+                        android:text="일주일"
+                        android:textColor="#80ffffff"
+                        android:textSize="9sp" />
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.3dp"
-                        android:background="#ffff"/>
+                        android:background="#ffff" />
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_marginTop="17.5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="17.5dp"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="9sp"
-                        android:textColor="#80ffffff"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="1sp"
-                        android:text="한달" />
+                        android:text="한달"
+                        android:textColor="#80ffffff"
+                        android:textSize="9sp" />
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.3dp"
-                        android:background="#ffff"/>
-
-
+                        android:background="#ffff" />
 
 
                 </LinearLayout>
 
             </LinearLayout>
+
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/uservisit_op_LL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
 
                 <LinearLayout
-                    android:layout_marginTop="17.5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="17.5dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -325,72 +337,103 @@
                         android:text="방문현황"
                         android:textColor="#ffffff"
                         android:textSize="9sp" />
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.3dp"
-                        android:background="#ffff"/>
+                        android:background="#ffff" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="17.5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="17.5dp"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="9sp"
-                        android:textColor="#80ffffff"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="1sp"
-                        android:text="요일별" />
+                        android:text="요일별"
+                        android:textColor="#80ffffff"
+                        android:textSize="9sp" />
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.3dp"
-                        android:background="#ffff"/>
+                        android:background="#ffff" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="17.5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="17.5dp"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="9sp"
-                        android:textColor="#80ffffff"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="1sp"
-                        android:text="시간대별" />
+                        android:text="시간대별"
+                        android:textColor="#80ffffff"
+                        android:textSize="9sp" />
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.3dp"
-                        android:background="#ffff"/>
+                        android:background="#ffff" />
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_marginTop="17.5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="17.5dp"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="9sp"
-                        android:textColor="#80ffffff"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="1sp"
-                        android:text="인구통계별" />
+                        android:text="인구통계별"
+                        android:textColor="#80ffffff"
+                        android:textSize="9sp" />
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.3dp"
-                        android:background="#ffff"/>
-
-
+                        android:background="#ffff" />
 
 
                 </LinearLayout>
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:id="@+id/accumulateLL"
+                android:layout_width="40dp"
+                android:gravity="center"
+                android:layout_height="40dp"
+                android:background="#4ed0cd">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:textColor="#ffffff"
+                    android:letterSpacing="-0.03"
+                    android:lineSpacingExtra="-2sp"
+                    android:gravity="center_horizontal"
+                    android:text="적립"
+                    />
+
+
+            </LinearLayout>
+
+
+
+
         </LinearLayout>
 
 
