@@ -47,6 +47,7 @@
                 android:orientation="horizontal">
 
                 <RelativeLayout
+                    android:id="@+id/allRL"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
@@ -73,6 +74,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/acc_countRL"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content">
@@ -97,6 +99,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/novisitRL"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content">
@@ -121,6 +124,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/use_moneyRL"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1">
@@ -145,6 +149,7 @@
 
                 </RelativeLayout>
                 <RelativeLayout
+                    android:id="@+id/pointRL"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content">

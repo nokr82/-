@@ -52,6 +52,12 @@ class Message_Manage_Fragment : Fragment() {
     lateinit var studentTV: TextView
     lateinit var cautionTV: TextView
 
+    lateinit var allRL: RelativeLayout
+    lateinit var acc_countRL: RelativeLayout
+    lateinit var use_moneyRL: RelativeLayout
+    lateinit var novisitRL: RelativeLayout
+    lateinit var pointRL: RelativeLayout
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
 
@@ -91,6 +97,12 @@ class Message_Manage_Fragment : Fragment() {
         menTV = view.findViewById(R.id.menTV)
         girlTV = view.findViewById(R.id.girlTV)
         citizenTV = view.findViewById(R.id.citizenTV)
+        cautionTV = view.findViewById(R.id.cautionTV)
+        allRL = view.findViewById(R.id.allRL)
+        use_moneyRL =view.findViewById(R.id.use_moneyRL)
+        acc_countRL = view.findViewById(R.id.acc_countRL)
+        novisitRL = view.findViewById(R.id.novisitRL)
+        pointRL = view.findViewById(R.id.pointRL)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -102,6 +114,8 @@ class Message_Manage_Fragment : Fragment() {
         setmenu1()
         setmenu2()
         setmenu3()
+        setfilter()
+
         genderLL.setOnClickListener {
             setmenu1()
             genderLL.setBackgroundResource(R.drawable.background_00d1ce)
@@ -184,9 +198,37 @@ class Message_Manage_Fragment : Fragment() {
             cautionLL.setBackgroundResource(R.drawable.background_00d1ce)
             cautionTV.setTextColor(Color.parseColor("#ffffff"))
         }
+        allRL.setOnClickListener {
+            setfilter()
+            allRL.setBackgroundColor(Color.parseColor("#0068df"))
+        }
+        acc_countRL.setOnClickListener {
+            setfilter()
+            acc_countRL.setBackgroundColor(Color.parseColor("#0068df"))
+        }
+        novisitRL.setOnClickListener {
+            setfilter()
+            novisitRL.setBackgroundColor(Color.parseColor("#0068df"))
+        }
+        use_moneyRL.setOnClickListener {
+            setfilter()
+            use_moneyRL.setBackgroundColor(Color.parseColor("#0068df"))
+        }
+        pointRL.setOnClickListener {
+            setfilter()
+            pointRL.setBackgroundColor(Color.parseColor("#0068df"))
+        }
 
 
+    }
 
+
+    fun setfilter(){
+        allRL.setBackgroundResource(R.drawable.background_strock_null)
+        acc_countRL.setBackgroundResource(R.drawable.background_strock_null)
+        novisitRL.setBackgroundResource(R.drawable.background_strock_null)
+        use_moneyRL.setBackgroundResource(R.drawable.background_strock_null)
+        pointRL.setBackgroundResource(R.drawable.background_strock_null)
     }
 
     fun setmenu1(){
