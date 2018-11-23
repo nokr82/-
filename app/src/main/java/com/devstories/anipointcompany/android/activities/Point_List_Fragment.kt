@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListView
 import com.devstories.aninuriandroid.Actions.MemberAction
 import com.devstories.aninuriandroid.adapter.UserListAdapter
 import com.devstories.anipointcompany.android.R
@@ -17,6 +16,11 @@ import com.loopj.android.http.RequestParams
 import cz.msebera.android.httpclient.Header
 import org.json.JSONException
 import org.json.JSONObject
+import android.app.DatePickerDialog
+import android.content.Intent
+import android.widget.*
+import kotlinx.android.synthetic.main.item_user.*
+import java.util.*
 
 
 class Point_List_Fragment : Fragment() {
@@ -24,10 +28,18 @@ class Point_List_Fragment : Fragment() {
     private var progressDialog: ProgressDialog? = null
     internal lateinit var view: View
     lateinit var userLV: ListView
+    lateinit var first_dateLL: LinearLayout
+    lateinit var last_dateLL: LinearLayout
+    lateinit var first_dateTV: TextView
+    lateinit var last_dateTV: TextView
     var adapterData: ArrayList<JSONObject> = ArrayList<JSONObject>()
 
     lateinit var useradapter: UserListAdapter
     var data = arrayListOf<Int>()
+
+    var year: Int = 1
+    var month: Int = 1
+    var day: Int = 1
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
@@ -42,20 +54,37 @@ class Point_List_Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         userLV = view.findViewById(R.id.userLV)
+        first_dateLL = view.findViewById(R.id.first_dateLL)
+        last_dateLL = view.findViewById(R.id.last_dateLL)
+        first_dateTV = view.findViewById(R.id.first_dateTV)
+        last_dateTV = view.findViewById(R.id.last_dateTV)
+
 
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
+        //날짜갖고오기
+        var calendar = GregorianCalendar()
+        year = calendar.get(Calendar.YEAR)
+        month = calendar.get(Calendar.MONTH)
+        day = calendar.get(Calendar.DAY_OF_MONTH)
 
         useradapter = UserListAdapter(myContext,R.layout.item_user_point_list,adapterData)
         userLV.adapter = useradapter
 
-
-
+        first_dateLL.setOnClickListener {
+            datedlg()
+        }
+        last_dateLL.setOnClickListener {
+            datedlg2()
+        }
     }
 
+
+
+
+    //방문이력
     fun loadData(id: Int) {
         val params = RequestParams()
         params.put("member_id",id)
@@ -140,6 +169,35 @@ class Point_List_Fragment : Fragment() {
             }
         })
     }
+
+
+
+    fun datedlg(){
+        DatePickerDialog(myContext, dateSetListener, year, month, day).show()
+    }
+    fun datedlg2(){
+        DatePickerDialog(myContext, dateSetListener2, year, month, day).show()
+    }
+    private val dateSetListener2 = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+        // TODO Auto-generated method stub
+
+        val msg = String.format("%d / %d / %d", year, monthOfYear + 1, dayOfMonth)
+
+        last_dateTV.text = msg
+
+        Toast.makeText(myContext, msg, Toast.LENGTH_SHORT).show()
+    }
+    private val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+        // TODO Auto-generated method stub
+
+        val msg = String.format("%d / %d / %d", year, monthOfYear + 1, dayOfMonth)
+
+        first_dateTV.text = msg
+
+        Toast.makeText(myContext, msg, Toast.LENGTH_SHORT).show()
+    }
+
+
     override fun onDestroy() {
         super.onDestroy()
         if (progressDialog != null) {
