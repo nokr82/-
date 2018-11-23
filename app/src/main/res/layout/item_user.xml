@@ -6,7 +6,7 @@
 
 
     <LinearLayout
-
+        android:layout_marginLeft="10dp"
         android:background="#ffff"
         android:layout_width="175dp"
         android:layout_height="280dp"

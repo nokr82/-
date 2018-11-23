@@ -2,11 +2,13 @@ package com.devstories.aninuriandroid.adapter
 
 import android.content.Context
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.devstories.anipointcompany.android.R
+import com.devstories.anipointcompany.android.R.id.*
 import com.devstories.anipointcompany.android.base.Utils
 import org.json.JSONObject
 import java.text.SimpleDateFormat
@@ -40,8 +42,26 @@ open class UserVisitAdapter (context:Context, view:Int, data: ArrayList<JSONObje
 
         var json = data.get(position)
 
+        Log.d("데이터",data.toString())
 
         val member = json.getJSONObject("Member")
+
+        val userView = View.inflate(context, R.layout.item_user, null)
+        var dateTV :TextView = userView.findViewById(R.id.dateTV)
+        var nameTV :TextView= userView.findViewById(R.id.nameTV)
+        var pointTV :TextView= userView.findViewById(R.id.pointTV)
+        var acc_pointTV :TextView= userView.findViewById(R.id.acc_pointTV)
+        var visitTV :TextView= userView.findViewById(R.id.visitTV)
+        var name2TV :TextView= userView.findViewById(R.id.name2TV)
+        var genderTV :TextView= userView.findViewById(R.id.genderTV)
+        var ageTV :TextView= userView.findViewById(R.id.ageTV)
+        var birthTV :TextView= userView.findViewById(R.id.birthTV)
+        var use_pointTV :TextView= userView.findViewById(R.id.use_pointTV)
+        var couponTV:TextView= userView.findViewById(R.id.couponTV)
+        var visit_recordTV:TextView= userView.findViewById(R.id.visit_recordTV)
+        var memoTV:TextView= userView.findViewById(R.id.memoTV)
+        var phoneTV:TextView= userView.findViewById(R.id.phoneTV)
+
         var id = Utils.getString(member, "id")
         var age =   Utils.getString(member, "age")
         var name = Utils.getString(member, "name")
@@ -51,25 +71,27 @@ open class UserVisitAdapter (context:Context, view:Int, data: ArrayList<JSONObje
         var coupon = Utils.getString(member, "coupon")
         var point =   Utils.getString(member, "point")
         var use_point =   Utils.getString(member, "use_point")
-        var current_company_id = Utils.getString(member, "current_company_id")
+        var company_id = Utils.getString(member, "company_id")
         var birth =   Utils.getString(member, "birth")
         var created = Utils.getString(member, "created")
         var updated =   Utils.getString(member, "updated")
         var visit =   Utils.getString(member, "visit")
 
 
-        item.ageTV.text = age
-        item.nameTV.text = name
-        item.name2TV.text = name
-        item.genderTV.text = gender
-        item.memoTV.text = memo
-        item.couponTV.text = coupon
-        item.pointTV.text = point
-        item.use_pointTV.text = use_point
-        item.birthTV.text = birth
-        item.visitTV.text = visit
-        item.phoneTV.text = phone
+        ageTV.text = age
+        nameTV.text = name
+       name2TV.text = name
+        genderTV.text = gender
+        memoTV.text = memo
+        couponTV.text = coupon
+        pointTV.text = point
+        use_pointTV.text = use_point
+        birthTV.text = birth
+        visitTV.text = visit
+        phoneTV.text = phone
 
+
+        item.userLL.addView(userView)
 
 
 
@@ -89,36 +111,11 @@ open class UserVisitAdapter (context:Context, view:Int, data: ArrayList<JSONObje
         return data.count()
     }
     class ViewHolder(v: View) {
-        var dateTV :TextView
-        var nameTV :TextView
-        var pointTV :TextView
-        var acc_pointTV :TextView
-        var visitTV :TextView
-        var name2TV :TextView
-        var genderTV :TextView
-        var ageTV :TextView
-        var birthTV :TextView
-        var use_pointTV :TextView
-        var couponTV:TextView
-        var visit_recordTV:TextView
-        var memoTV:TextView
-        var phoneTV:TextView
+        var userLL :LinearLayout
+
 
         init {
-            dateTV = v.findViewById(R.id.dateTV)as TextView
-            nameTV = v.findViewById(R.id.nameTV) as TextView
-            pointTV = v.findViewById(R.id.pointTV) as TextView
-            acc_pointTV = v.findViewById(R.id.acc_pointTV) as TextView
-            visitTV = v.findViewById(R.id.visitTV) as TextView
-            name2TV = v.findViewById(R.id.name2TV) as TextView
-            genderTV = v.findViewById(R.id.genderTV) as TextView
-            ageTV = v.findViewById(R.id.ageTV) as TextView
-            birthTV = v.findViewById(R.id.birthTV) as TextView
-            use_pointTV = v.findViewById(R.id.use_pointTV) as TextView
-            couponTV = v.findViewById(R.id.couponTV) as TextView
-            phoneTV = v.findViewById(R.id.phoneTV) as TextView
-            visit_recordTV = v.findViewById(R.id.visit_recordTV) as TextView
-            memoTV = v.findViewById(R.id.memoTV) as TextView
+            userLL = v.findViewById(R.id.userLL)as LinearLayout
 
         }
     }

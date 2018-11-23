@@ -4,6 +4,7 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,6 +47,7 @@ class User_List_Fragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        mainData()
 
         adapterUser = UserVisitAdapter(myContext,R.layout.item_user_list,adapterData)
         userLV.isExpanded = true
@@ -56,9 +58,9 @@ class User_List_Fragment : Fragment() {
 
     fun mainData() {
         val params = RequestParams()
-        params.put("member_id", 1)
+        params.put("company_id", 1)
 
-        MemberAction.my_info(params, object : JsonHttpResponseHandler() {
+        MemberAction.user_list(params, object : JsonHttpResponseHandler() {
 
             override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
                 if (progressDialog != null) {
@@ -72,8 +74,9 @@ class User_List_Fragment : Fragment() {
                     val result = response!!.getString("result")
 
                     if ("ok" == result) {
-                        var data = response.getJSONArray("Member")
+                        var data = response.getJSONArray("member")
 
+                        Log.d("메인리스트",data.toString())
 
                         for (i in 0..(data.length() - 1)) {
                             adapterData.add(data[i] as JSONObject)

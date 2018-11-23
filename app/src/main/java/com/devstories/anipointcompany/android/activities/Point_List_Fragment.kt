@@ -85,7 +85,7 @@ class Point_List_Fragment : Fragment() {
     //방문이력
     fun loadData(company_id: Int) {
         val params = RequestParams()
-        params.put("member_id",company_id)
+        params.put("company_id",company_id)
 
 
 
