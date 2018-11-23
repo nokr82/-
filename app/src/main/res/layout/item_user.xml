@@ -504,7 +504,17 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
+                        android:orientation="vertical"
                         android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/stack_pointTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="6sp"
+                            android:textColor="#303030"
+                            android:letterSpacing="-0.01"
+                            android:text="누적 : P"
+                            />
                         <TextView
                             android:id="@+id/visit_recordTV"
                             android:layout_width="wrap_content"
@@ -512,8 +522,7 @@
                             android:textSize="6sp"
                             android:textColor="#303030"
                             android:letterSpacing="-0.01"
-                            android:text="누적 : 6,043, 389P
-방문이력방문이력방문이력방문이력방문
+                            android:text="방문이력방문이력방문이력방문이력방문
 방문이력방문이력방문이력"
                             />
 

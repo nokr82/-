@@ -97,6 +97,7 @@ class Point_List_Fragment : Fragment() {
                 }
 
                 try {
+                    adapterData.clear()
                     val result = response!!.getString("result")
 
 
