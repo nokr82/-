@@ -220,7 +220,7 @@
                             android:textColor="#666666"
                             android:letterSpacing="-0.03"
                             android:lineSpacingExtra="4sp"
-                            android:text="전체 고객(명)"
+                            android:text="산규 고객(명)"
                             />
 
                     </LinearLayout>
@@ -236,48 +236,7 @@
                             android:textColor="#666666"
                             android:letterSpacing="-0.03"
                             android:lineSpacingExtra="4sp"
-                            android:text="10"
-                            />
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:background="#e7e7e7"
-                        android:layout_width="match_parent"
-                        android:layout_height="20dp"
-                        android:gravity="center">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="8sp"
-                            android:textColor="#666666"
-                            android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="4sp"
-                            android:text="전체 고객(명)"
-                            />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="20dp"
-                        android:gravity="center">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="8sp"
-                            android:textColor="#666666"
-                            android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="4sp"
-                            android:text="10"
+                            android:text="3"
                             />
 
                     </LinearLayout>
@@ -302,7 +261,7 @@
                             android:textColor="#666666"
                             android:letterSpacing="-0.03"
                             android:lineSpacingExtra="4sp"
-                            android:text="전체 고객(명)"
+                            android:text="재방문 고객(명)"
                             />
 
                     </LinearLayout>
@@ -318,8 +277,49 @@
                             android:textColor="#666666"
                             android:letterSpacing="-0.03"
                             android:lineSpacingExtra="4sp"
-                            android:text="10"
+                            android:text="7"
                             />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:background="#e7e7e7"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="8sp"
+                            android:textColor="#666666"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="4sp"
+                            android:text="재방문율"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="4sp"
+                            android:text="70.50%"
+                            android:textColor="#666666"
+                            android:textSize="8sp" />
 
                     </LinearLayout>
 
