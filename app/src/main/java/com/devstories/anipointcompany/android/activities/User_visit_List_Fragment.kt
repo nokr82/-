@@ -8,8 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.devstories.aninuriandroid.Actions.MemberAction
 import com.devstories.aninuriandroid.adapter.VisitListAdapter
+import com.devstories.anipointcompany.android.Actions.MemberAction
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler

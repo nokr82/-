@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.devstories.aninuriandroid.Actions.MemberAction
 import com.devstories.aninuriandroid.adapter.UserListAdapter
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.Utils
@@ -17,9 +16,8 @@ import cz.msebera.android.httpclient.Header
 import org.json.JSONException
 import org.json.JSONObject
 import android.app.DatePickerDialog
-import android.content.Intent
 import android.widget.*
-import kotlinx.android.synthetic.main.item_user.*
+import com.devstories.anipointcompany.android.Actions.MemberAction
 import java.util.*
 
 
@@ -72,7 +70,7 @@ class Point_List_Fragment : Fragment() {
 
         useradapter = UserListAdapter(myContext,R.layout.item_user_point_list,adapterData)
         userLV.adapter = useradapter
-
+        loadData(1)
         first_dateLL.setOnClickListener {
             datedlg()
         }
@@ -85,9 +83,9 @@ class Point_List_Fragment : Fragment() {
 
 
     //방문이력
-    fun loadData(id: Int) {
+    fun loadData(company_id: Int) {
         val params = RequestParams()
-        params.put("member_id",id)
+        params.put("member_id",company_id)
 
 
 
@@ -104,8 +102,6 @@ class Point_List_Fragment : Fragment() {
 
                     if ("ok" == result) {
                         val data = response.getJSONArray("member")
-
-
 
                         for (i in 0..(data.length() - 1)) {
 

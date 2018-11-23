@@ -1,4 +1,4 @@
-package com.devstories.aninuriandroid.Actions
+package com.devstories.anipointcompany.android.Actions
 
 import com.devstories.anipointcompany.android.base.HttpClient
 import com.loopj.android.http.JsonHttpResponseHandler
