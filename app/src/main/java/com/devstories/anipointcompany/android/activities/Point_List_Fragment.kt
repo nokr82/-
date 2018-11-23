@@ -30,6 +30,8 @@ class Point_List_Fragment : Fragment() {
     lateinit var last_dateLL: LinearLayout
     lateinit var first_dateTV: TextView
     lateinit var last_dateTV: TextView
+    lateinit var startdateTV: TextView
+    lateinit var lastdateTV: TextView
     var adapterData: ArrayList<JSONObject> = ArrayList<JSONObject>()
 
     lateinit var useradapter: UserListAdapter
@@ -56,6 +58,8 @@ class Point_List_Fragment : Fragment() {
         last_dateLL = view.findViewById(R.id.last_dateLL)
         first_dateTV = view.findViewById(R.id.first_dateTV)
         last_dateTV = view.findViewById(R.id.last_dateTV)
+        startdateTV = view.findViewById(R.id.startdateTV)
+        lastdateTV = view.findViewById(R.id.lastdateTV)
 
 
     }
@@ -179,7 +183,7 @@ class Point_List_Fragment : Fragment() {
         // TODO Auto-generated method stub
 
         val msg = String.format("%d / %d / %d", year, monthOfYear + 1, dayOfMonth)
-
+        lastdateTV.text = msg
         last_dateTV.text = msg
 
         Toast.makeText(myContext, msg, Toast.LENGTH_SHORT).show()
@@ -190,6 +194,7 @@ class Point_List_Fragment : Fragment() {
         val msg = String.format("%d / %d / %d", year, monthOfYear + 1, dayOfMonth)
 
         first_dateTV.text = msg
+        startdateTV.text = msg
 
         Toast.makeText(myContext, msg, Toast.LENGTH_SHORT).show()
     }

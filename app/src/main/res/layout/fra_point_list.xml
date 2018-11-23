@@ -151,16 +151,32 @@
                     android:gravity="center_vertical"
                     android:background="#e7e7e7">
                     <TextView
+                        android:id="@+id/startdateTV"
                         android:layout_marginLeft="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="10sp"
                         android:textColor="#5e5e5e"
                         android:lineSpacingExtra="51sp"
-                        android:text="2018.05.01 ~ 2018.10.28"
+                        android:text="2018.05.01"
                         />
-
-
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="10sp"
+                        android:textColor="#5e5e5e"
+                        android:lineSpacingExtra="51sp"
+                        android:text=" ~ "
+                        />
+                    <TextView
+                        android:id="@+id/lastdateTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="10sp"
+                        android:textColor="#5e5e5e"
+                        android:lineSpacingExtra="51sp"
+                        android:text="2018.10.28"
+                        />
                 </LinearLayout>
 
                 <LinearLayout

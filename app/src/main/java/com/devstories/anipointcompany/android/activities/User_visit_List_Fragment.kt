@@ -34,7 +34,7 @@ class User_visit_List_Fragment : Fragment() {
     lateinit var amountSP: Spinner
     lateinit var visitLV: ListView
     lateinit var dateTV: TextView
-
+    lateinit var itemdateLL: LinearLayout
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
         progressDialog = ProgressDialog(myContext)
@@ -47,6 +47,7 @@ class User_visit_List_Fragment : Fragment() {
         amountSP = view.findViewById(R.id.amountSP)
         visitLV  = view.findViewById(R.id.visitLV)
         dateTV = view.findViewById(R.id.dateTV)
+        itemdateLL = view.findViewById(R.id.itemdateLL)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -87,17 +88,14 @@ class User_visit_List_Fragment : Fragment() {
 
 
                     if ("ok" == result) {
-                        val data = response.getJSONArray("visit_history")
+                        val visit_history = response.getJSONObject("visit_history")
+                        val visit_re = response.getJSONObject("visit_re")
 
-
-
-                        for (i in 0..(data.length() - 1)) {
-
-                            adapterData.add(data[i] as JSONObject)
-
-                        }
-
-                        visitAdapter.notifyDataSetChanged()
+                        val userView = View.inflate(myContext, R.layout.item_visit, null)
+                        var dateTV : TextView = userView.findViewById(R.id.dateTV)
+                        var new_userTV : TextView = userView.findViewById(R.id.new_userTV)
+                        var re_userTV : TextView = userView.findViewById(R.id.re_userTV)
+                        var all_userTV : TextView = userView.findViewById(R.id.all_userTV)
 
 
                     } else {

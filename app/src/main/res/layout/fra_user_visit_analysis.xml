@@ -521,13 +521,18 @@
 
 
                     </LinearLayout>
-                    <com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView
-                        android:id="@+id/visitLV"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:divider="@null">
 
-                    </com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView>
+
+                    <LinearLayout
+                        android:id="@+id/itemdateLL"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:orientation="horizontal">
+
+
+                    </LinearLayout>
+
+
 
                 </LinearLayout>
 
