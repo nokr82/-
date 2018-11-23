@@ -10,7 +10,7 @@ import com.loopj.android.http.RequestParams
  */
 object MemberAction {
 
-    // 회원 페이지
+    // 회원 정보뽑기
     fun my_info(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/member/my_info.json", params, handler)
     }

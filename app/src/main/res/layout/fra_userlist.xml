@@ -67,6 +67,7 @@
 
             <com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView
                 android:id="@+id/userLV"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:divider="@null"
@@ -77,7 +78,7 @@
 
 
             <HorizontalScrollView
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 

@@ -74,7 +74,7 @@ class Point_List_Fragment : Fragment() {
 
 
                     if ("ok" == result) {
-                        val data = response.getJSONArray("list")
+                        val data = response.getJSONArray("member")
 
 
 

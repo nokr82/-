@@ -397,15 +397,16 @@
 
             </LinearLayout>
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+
                 <LinearLayout
+                    android:layout_marginLeft="7.5dp"
+                    android:layout_marginRight="7.5dp"
+                    android:layout_marginTop="7.5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <LinearLayout
-                        android:layout_margin="7.5dp"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -422,63 +423,18 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="20dp"
                                 android:gravity="center">
+
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="8sp"
-                                    android:textColor="#666666"
                                     android:letterSpacing="-0.03"
                                     android:lineSpacingExtra="4sp"
                                     android:text="날짜"
-                                    />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="20dp"
-                                android:gravity="center">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="8sp"
                                     android:textColor="#666666"
-                                    android:letterSpacing="-0.03"
-                                    android:lineSpacingExtra="4sp"
-                                    android:text="2018.10.30"
-                                    />
+                                    android:textSize="8sp" />
 
                             </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="20dp"
-                                android:gravity="center">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="8sp"
-                                    android:textColor="#666666"
-                                    android:letterSpacing="-0.03"
-                                    android:lineSpacingExtra="4sp"
-                                    android:text="2018.10.30"
-                                    />
 
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="20dp"
-                                android:gravity="center">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="8sp"
-                                    android:textColor="#666666"
-                                    android:letterSpacing="-0.03"
-                                    android:lineSpacingExtra="4sp"
-                                    android:text="2018.10.30"
-                                    />
-
-                            </LinearLayout>
 
 
                         </LinearLayout>
@@ -505,51 +461,6 @@
 
                             </LinearLayout>
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="20dp"
-                                android:gravity="center">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="8sp"
-                                    android:textColor="#666666"
-                                    android:letterSpacing="-0.03"
-                                    android:lineSpacingExtra="4sp"
-                                    android:text="3"
-                                    />
-
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="20dp"
-                                android:gravity="center">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="8sp"
-                                    android:textColor="#666666"
-                                    android:letterSpacing="-0.03"
-                                    android:lineSpacingExtra="4sp"
-                                    android:text="3"
-                                    />
-
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="20dp"
-                                android:gravity="center">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="8sp"
-                                    android:textColor="#666666"
-                                    android:letterSpacing="-0.03"
-                                    android:lineSpacingExtra="4sp"
-                                    android:text="3"
-                                    />
-
-                            </LinearLayout>
 
                         </LinearLayout>
                         <LinearLayout
@@ -575,51 +486,7 @@
 
                             </LinearLayout>
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="20dp"
-                                android:gravity="center">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="8sp"
-                                    android:textColor="#666666"
-                                    android:letterSpacing="-0.03"
-                                    android:lineSpacingExtra="4sp"
-                                    android:text="7"
-                                    />
 
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="20dp"
-                                android:gravity="center">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="8sp"
-                                    android:textColor="#666666"
-                                    android:letterSpacing="-0.03"
-                                    android:lineSpacingExtra="4sp"
-                                    android:text="7"
-                                    />
-
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="20dp"
-                                android:gravity="center">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="8sp"
-                                    android:textColor="#666666"
-                                    android:letterSpacing="-0.03"
-                                    android:lineSpacingExtra="4sp"
-                                    android:text="7"
-                                    />
-
-                            </LinearLayout>
 
 
                         </LinearLayout>
@@ -646,60 +513,23 @@
                                     />
 
                             </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="20dp"
-                                android:gravity="center">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="8sp"
-                                    android:textColor="#666666"
-                                    android:letterSpacing="-0.03"
-                                    android:lineSpacingExtra="4sp"
-                                    android:text="10"
-                                    />
-
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="20dp"
-                                android:gravity="center">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="8sp"
-                                    android:textColor="#666666"
-                                    android:letterSpacing="-0.03"
-                                    android:lineSpacingExtra="4sp"
-                                    android:text="10"
-                                    />
-
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="20dp"
-                                android:gravity="center">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="8sp"
-                                    android:textColor="#666666"
-                                    android:letterSpacing="-0.03"
-                                    android:lineSpacingExtra="4sp"
-                                    android:text="10"
-                                    />
-
-                            </LinearLayout>
 
 
                         </LinearLayout>
 
-                    </LinearLayout>
 
+
+                    </LinearLayout>
+                    <com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView
+                        android:id="@+id/visitLV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:divider="@null">
+
+                    </com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView>
 
                 </LinearLayout>
-            </ScrollView>
+
 
             <LinearLayout
                 android:layout_marginTop="10dp"

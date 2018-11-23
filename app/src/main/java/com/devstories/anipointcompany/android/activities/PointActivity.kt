@@ -4,9 +4,17 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import com.devstories.aninuriandroid.Actions.MemberAction
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.RootActivity
+import com.devstories.anipointcompany.android.base.Utils
+import com.loopj.android.http.JsonHttpResponseHandler
+import com.loopj.android.http.RequestParams
+import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.activity_point.*
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
 
 class PointActivity : RootActivity() {
 
@@ -66,6 +74,121 @@ class PointActivity : RootActivity() {
 
 
         }
+
+    //고객정보뽑기
+    fun loaduserdata() {
+        val params = RequestParams()
+        params.put("member_id", 1)
+
+        MemberAction.my_info(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+
+
+                    val result = response!!.getString("result")
+
+                    if ("ok" == result) {
+
+                        var data = response.getJSONObject("member")
+                        var phone = Utils.getString(data,"phone")
+                        var gender = Utils.getString(data,"gender")
+                        var age  = Utils.getString(data,"age")
+                        var birth = Utils.getString(data,"birth")
+                        var coupon = Utils.getString(data," coupon")
+                        var memo = Utils.getString(data,"memo")
+
+                        genderTV.text = gender
+                        phoneTV.text = phone
+                        ageTV.text = age
+                        birthTV.text = birth
+                        couponTV.text = coupon
+                        memoTV.text = memo
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONArray?) {
+                super.onSuccess(statusCode, headers, response)
+            }
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(context, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    throwable: Throwable,
+                    errorResponse: JSONObject?
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+                throwable.printStackTrace()
+                error()
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    throwable: Throwable,
+                    errorResponse: JSONArray?
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+                throwable.printStackTrace()
+                error()
+            }
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
+
+
 
     override fun onDestroy() {
         super.onDestroy()
