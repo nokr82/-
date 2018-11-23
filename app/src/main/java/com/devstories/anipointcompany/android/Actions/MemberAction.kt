@@ -18,10 +18,6 @@ object MemberAction {
     fun user_list(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/member/user_list.json", params, handler)
     }
-    // 회원 포인트
-    fun my_point(params: RequestParams, handler: JsonHttpResponseHandler) {
-        HttpClient.post("/member/my_point.json", params, handler)
-    }
 
     //방문 이력
     fun visit_list(params: RequestParams, handler: JsonHttpResponseHandler) {

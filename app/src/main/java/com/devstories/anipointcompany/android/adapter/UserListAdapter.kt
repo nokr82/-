@@ -10,7 +10,8 @@ import com.devstories.anipointcompany.android.R.id.dateTV
 import com.devstories.anipointcompany.android.R.id.updateTV
 import com.devstories.anipointcompany.android.base.Utils
 import org.json.JSONObject
-import java.util.ArrayList
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 open class UserListAdapter (context:Context, view:Int, data: ArrayList<JSONObject>) : ArrayAdapter<JSONObject>(context, view, data) {
@@ -41,10 +42,15 @@ open class UserListAdapter (context:Context, view:Int, data: ArrayList<JSONObjec
         var json = data.get(position)
         val member = json.getJSONObject("Member")
         var name = Utils.getString(member, "name")
-        var updated =   Utils.getString(member, "updated")
+        var point = Utils.getString(member, "point")
 
-        item.updateTV.text = updated
+        val sdf = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
+        val created = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(Utils.getString(member, "created"))
+        val create_date = sdf.format(created)
+
+        item.updateTV.text = create_date
         item.nameTV.text = name
+        item.pointTV.text = point+"P"
 
 
         return retView
@@ -64,12 +70,11 @@ open class UserListAdapter (context:Context, view:Int, data: ArrayList<JSONObjec
     class ViewHolder(v: View) {
         var updateTV :TextView
         var nameTV :TextView
-
+        var pointTV :TextView
         init {
             updateTV = v.findViewById(R.id.updateTV)as TextView
             nameTV = v.findViewById(R.id.nameTV) as TextView
-
-
+            pointTV = v.findViewById(R.id.pointTV) as TextView
         }
     }
 }
