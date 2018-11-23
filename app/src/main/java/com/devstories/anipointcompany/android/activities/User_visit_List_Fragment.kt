@@ -1,5 +1,6 @@
 package com.devstories.anipointcompany.android.activities
 
+import android.app.DatePickerDialog
 import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
@@ -17,6 +18,8 @@ import com.loopj.android.http.RequestParams
 import cz.msebera.android.httpclient.Header
 import org.json.JSONException
 import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class User_visit_List_Fragment : Fragment() {
@@ -30,6 +33,7 @@ class User_visit_List_Fragment : Fragment() {
 
     lateinit var amountSP: Spinner
     lateinit var visitLV: ListView
+    lateinit var dateTV: TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
@@ -42,7 +46,7 @@ class User_visit_List_Fragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         amountSP = view.findViewById(R.id.amountSP)
         visitLV  = view.findViewById(R.id.visitLV)
-
+        dateTV = view.findViewById(R.id.dateTV)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -51,7 +55,13 @@ class User_visit_List_Fragment : Fragment() {
         adapter = ArrayAdapter(myContext,R.layout.spiner_item,option_amount)
         amountSP.adapter = adapter
 
+        //날짜구하기
+        val formatter = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
+        val date = Date()
+        val currentDate = formatter.format(date)
 
+
+        dateTV.text = currentDate+"~"+currentDate
         visitAdapter = VisitListAdapter(myContext,R.layout.item_visit, adapterData)
         visitLV.adapter = visitAdapter
         visitAdapter.notifyDataSetChanged()
@@ -143,6 +153,7 @@ class User_visit_List_Fragment : Fragment() {
             }
         })
     }
+
 
     override fun onDestroy() {
         super.onDestroy()

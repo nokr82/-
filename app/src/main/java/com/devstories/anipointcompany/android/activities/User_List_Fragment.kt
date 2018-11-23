@@ -123,18 +123,18 @@ class User_List_Fragment : Fragment() {
 
 
                             dateTV.text = updated_date+" 방문"
-                            ageTV.text = age
+                            ageTV.text = age+"세"
                             nameTV.text = name
                             name2TV.text = name
                             genderTV.text = gender
-                            acc_pointTV.text = point
+                            acc_pointTV.text = point+"P"
                             memoTV.text = memo
-                            couponTV.text = coupon
-                            pointTV.text = left_point
+                            couponTV.text = coupon+"장"
+                            pointTV.text = left_point+"P"
                             stack_pointTV.text = "누적:"+point+"P"
                             use_pointTV.text = use_point+"P"
                             birthTV.text = birth
-                            visitTV.text = visit
+                            visitTV.text = visit+"회"
                             phoneTV.text = phone
 
                             userLL.addView(userView)
