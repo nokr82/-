@@ -35,6 +35,19 @@ class UserListActivity : FragmentActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.userFL, User_List_Fragment).commit()
 
 
+
+
+
+        joinLL.setOnClickListener {
+            val intent = Intent(this, PointActivity::class.java)
+            //1이면 고객추가
+            var type = 1
+            intent.putExtra("type",type)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
+
+
         accumulateLL.setOnClickListener {
             val intent = Intent(this, PointActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

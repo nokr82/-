@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.MemberAction
 import com.devstories.anipointcompany.android.R
@@ -23,6 +24,7 @@ class PointActivity : RootActivity() {
     lateinit var context:Context
     private var progressDialog: ProgressDialog? = null
 
+    var type = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,11 +33,24 @@ class PointActivity : RootActivity() {
         this.context = this
         progressDialog = ProgressDialog(context)
 
+        intent = getIntent()
+        type = intent.getIntExtra("type",-1)
+
+        if (type == 1){
+            joinLL.visibility = View.VISIBLE
+            message_op_LL.visibility = View.GONE
+            checkLL.visibility = View.VISIBLE
+        }else{
+            message_op_LL.visibility = View.VISIBLE
+            joinLL.visibility = View.GONE
+            checkLL.visibility = View.GONE
+        }
+
 
         loaduserdata()
 
         checkLL.setOnClickListener {
-
+            member_join()
         }
         titleTV.setOnClickListener {
             val intent = Intent(this, UserListActivity::class.java)

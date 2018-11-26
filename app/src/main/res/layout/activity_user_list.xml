@@ -139,6 +139,7 @@
                         android:background="#ffff" />
 
                     <LinearLayout
+                        android:id="@+id/joinLL"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginTop="30dp"
