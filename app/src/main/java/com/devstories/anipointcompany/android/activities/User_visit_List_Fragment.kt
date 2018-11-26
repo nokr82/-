@@ -34,6 +34,8 @@ class User_visit_List_Fragment : Fragment() {
 
     lateinit var amountSP: Spinner
     lateinit var dateTV: TextView
+    lateinit var all_memberTV: TextView
+    lateinit var new_userTV: TextView
     lateinit var itemdateLL: LinearLayout
 
 
@@ -49,6 +51,9 @@ class User_visit_List_Fragment : Fragment() {
         amountSP = view.findViewById(R.id.amountSP)
         dateTV = view.findViewById(R.id.dateTV)
         itemdateLL = view.findViewById(R.id.itemdateLL)
+        all_memberTV = view.findViewById(R.id.all_memberTV)
+        new_userTV = view.findViewById(R.id.new_userTV)
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -57,18 +62,101 @@ class User_visit_List_Fragment : Fragment() {
         adapter = ArrayAdapter(myContext,R.layout.spiner_item,option_amount)
         amountSP.adapter = adapter
 
-        //날짜구하기
+        //오늘날짜구하기
         val formatter = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
         val date = Date()
         val currentDate = formatter.format(date)
-
-
         dateTV.text = currentDate+"~"+currentDate
 
         loadData(1)
+        //전체고객구하기
+        loadcntData()
+
 
 
     }
+
+    //방문자수구하기
+    fun loadcntData() {
+        val params = RequestParams()
+        params.put("company_id",1)
+
+
+
+        MemberAction.user_list(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    val result = response!!.getString("result")
+
+
+                    if ("ok" == result) {
+                        val member_cnt = response.getString("member_cnt")
+                        //오늘 가입한회원
+                        val member_new_cnt = response.getString("member_new_cnt")
+
+                        all_memberTV.text = member_cnt
+                        new_userTV.text = member_new_cnt
+
+                    } else {
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(myContext, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
+
+
 
     //방문이력 뽑기
     fun loadData(company_id: Int) {
