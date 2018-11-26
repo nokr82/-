@@ -84,6 +84,11 @@ class User_List_Fragment : Fragment() {
                             adapterData.add(data[i] as JSONObject)
                             var json=data[i] as JSONObject
                             val member = json.getJSONObject("Member")
+                            var point_o  = json.getJSONObject("Point")
+
+                            var point =   Utils.getString(point_o, "balance")
+
+
 
                             val userView = View.inflate(myContext, R.layout.item_user, null)
                             var dateTV : TextView = userView.findViewById(R.id.dateTV)
@@ -102,6 +107,8 @@ class User_List_Fragment : Fragment() {
                             var memoTV: TextView = userView.findViewById(R.id.memoTV)
                             var phoneTV: TextView = userView.findViewById(R.id.phoneTV)
 
+
+
                             var id = Utils.getString(member, "id")
                             var age =   Utils.getString(member, "age")
                             var name = Utils.getString(member, "name")
@@ -109,38 +116,33 @@ class User_List_Fragment : Fragment() {
                             var memo = Utils.getString(member, "memo")
                             var phone =   Utils.getString(member, "phone")
                             var coupon = Utils.getString(member, "coupon")
-                            var point =   Utils.getString(member, "point")
-                            var left_point =   Utils.getString(member, "left_point")
+                         var stack_point =   Utils.getString(member, "point")
                             var use_point =   Utils.getString(member, "use_point")
                             var company_id = Utils.getString(member, "company_id")
                             var birth =   Utils.getString(member, "birth")
                             var created = Utils.getString(member, "created")
-                            var visit =   Utils.getString(member, "visit")
+                            var visit =   Utils.getString(member, "visit_cnt")
                             val sdf = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
                             val updated = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(Utils.getString(member, "updated"))
                             val updated_date = sdf.format(updated)
 
-
-
+                            pointTV.text = point+"P"
+                            use_pointTV.text = use_point+"P"
+                            acc_pointTV.text = stack_point+"P"
+                            stack_pointTV.text = "누적:"+stack_point+"P"
                             dateTV.text = updated_date+" 방문"
                             ageTV.text = age+"세"
                             nameTV.text = name
                             name2TV.text = name
                             genderTV.text = gender
-                            acc_pointTV.text = point+"P"
                             memoTV.text = memo
                             couponTV.text = coupon+"장"
-                            pointTV.text = left_point+"P"
-                            stack_pointTV.text = "누적:"+point+"P"
-                            use_pointTV.text = use_point+"P"
                             birthTV.text = birth
                             visitTV.text = visit+"회"
                             phoneTV.text = phone
 
                             userLL.addView(userView)
                         }
-
-
 
                     }
 

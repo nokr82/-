@@ -5,6 +5,7 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,9 +33,10 @@ class User_visit_List_Fragment : Fragment() {
     lateinit var visitAdapter: VisitListAdapter
 
     lateinit var amountSP: Spinner
-    lateinit var visitLV: ListView
     lateinit var dateTV: TextView
     lateinit var itemdateLL: LinearLayout
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
         progressDialog = ProgressDialog(myContext)
@@ -45,7 +47,6 @@ class User_visit_List_Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         amountSP = view.findViewById(R.id.amountSP)
-        visitLV  = view.findViewById(R.id.visitLV)
         dateTV = view.findViewById(R.id.dateTV)
         itemdateLL = view.findViewById(R.id.itemdateLL)
     }
@@ -63,9 +64,9 @@ class User_visit_List_Fragment : Fragment() {
 
 
         dateTV.text = currentDate+"~"+currentDate
-        visitAdapter = VisitListAdapter(myContext,R.layout.item_visit, adapterData)
-        visitLV.adapter = visitAdapter
-        visitAdapter.notifyDataSetChanged()
+
+        loadData(1)
+
 
     }
 
@@ -88,8 +89,9 @@ class User_visit_List_Fragment : Fragment() {
 
 
                     if ("ok" == result) {
-                        val visit_history = response.getJSONObject("visit_history")
-                        val visit_re = response.getJSONObject("visit_re")
+
+                        val visit_history = response.getString("visit_history")
+                        val visit_re = response.getString("visit_re")
 
                         val userView = View.inflate(myContext, R.layout.item_visit, null)
                         var dateTV : TextView = userView.findViewById(R.id.dateTV)
@@ -97,7 +99,10 @@ class User_visit_List_Fragment : Fragment() {
                         var re_userTV : TextView = userView.findViewById(R.id.re_userTV)
                         var all_userTV : TextView = userView.findViewById(R.id.all_userTV)
 
+                        all_userTV.text = visit_history
+                        re_userTV.text = visit_re
 
+                        itemdateLL.addView(userView)
                     } else {
 
                     }
