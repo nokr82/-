@@ -22,7 +22,7 @@
         android:orientation="vertical">
         
         <LinearLayout
-            android:layout_marginLeft="35dp"
+            android:layout_marginLeft="149dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">

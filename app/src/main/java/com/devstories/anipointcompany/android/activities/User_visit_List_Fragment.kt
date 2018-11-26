@@ -64,6 +64,7 @@ class User_visit_List_Fragment : Fragment() {
         dateTV = view.findViewById(R.id.dateTV)
         itemdateLL = view.findViewById(R.id.itemdateLL)
         all_memberTV = view.findViewById(R.id.all_memberTV)
+        member_re_cntTV = view.findViewById(R.id.member_re_cntTV)
         new_userTV = view.findViewById(R.id.new_userTV)
         todayTV = view.findViewById(R.id.todayTV)
         monthTV = view.findViewById(R.id.monthTV)
