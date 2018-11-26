@@ -36,6 +36,7 @@ class PointActivity : RootActivity() {
         intent = getIntent()
         type = intent.getIntExtra("type",-1)
 
+        //type = 1이면 회원가입
         if (type == 1){
             joinLL.visibility = View.VISIBLE
             message_op_LL.visibility = View.GONE
