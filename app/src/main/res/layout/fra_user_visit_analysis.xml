@@ -2,7 +2,149 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="horizontal">
+
+
+
+    <LinearLayout
+        android:layout_width="149dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="8.5dp"
+        android:layout_marginTop="43.5dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/titleTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="고객목록"
+            android:textColor="#ffff"
+            android:textSize="24dp" />
+
+
+        <LinearLayout
+            android:id="@+id/uservisit_op_LL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17.5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:letterSpacing="-0.03"
+                    android:lineSpacingExtra="1sp"
+                    android:text="방문현황"
+                    android:textColor="#ffffff"
+                    android:textSize="9sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:background="#ffff" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17.5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:letterSpacing="-0.03"
+                    android:lineSpacingExtra="1sp"
+                    android:text="요일별"
+                    android:textColor="#80ffffff"
+                    android:textSize="9sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:background="#ffff" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17.5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:letterSpacing="-0.03"
+                    android:lineSpacingExtra="1sp"
+                    android:text="시간대별"
+                    android:textColor="#80ffffff"
+                    android:textSize="9sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:background="#ffff" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17.5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:letterSpacing="-0.03"
+                    android:lineSpacingExtra="1sp"
+                    android:text="인구통계별"
+                    android:textColor="#80ffffff"
+                    android:textSize="9sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:background="#ffff" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/accumulateLL"
+            android:layout_width="40dp"
+            android:gravity="center"
+            android:layout_height="40dp"
+            android:background="#4ed0cd">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:textColor="#ffffff"
+                android:letterSpacing="-0.03"
+                android:lineSpacingExtra="-2sp"
+                android:gravity="center_horizontal"
+                android:text="적립"
+                />
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+
 
     <LinearLayout
         android:layout_marginTop="9.5dp"
@@ -23,17 +165,19 @@
             android:orientation="horizontal">
 
             <RelativeLayout
+                android:id="@+id/todayRL"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content">
 
 
                 <TextView
+                    android:id="@+id/todayTV"
                     android:layout_centerInParent="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="9sp"
-                    android:textColor="#606060"
+                    android:textColor="#c5c5c5"
                     android:letterSpacing="-0.03"
                     android:lineSpacingExtra="3sp"
                     android:gravity="center_horizontal"
@@ -48,12 +192,14 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/weekRL"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content">
 
 
                 <TextView
+                    android:id="@+id/weekTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
@@ -72,12 +218,14 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/monthRL"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content">
 
 
                 <TextView
+                    android:id="@+id/monthTV"
                     android:layout_centerInParent="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -97,12 +245,14 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/three_mRL"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content">
 
 
                 <TextView
+                    android:id="@+id/three_mTV"
                     android:layout_centerInParent="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -274,6 +424,7 @@
                         android:layout_height="20dp"
                         android:gravity="center">
                         <TextView
+                            android:id="@+id/member_re_cntTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="8sp"

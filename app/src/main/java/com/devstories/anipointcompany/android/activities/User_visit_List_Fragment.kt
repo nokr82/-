@@ -3,6 +3,8 @@ package com.devstories.anipointcompany.android.activities
 import android.app.DatePickerDialog
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -17,6 +19,7 @@ import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
 import cz.msebera.android.httpclient.Header
+import kotlinx.android.synthetic.main.fra_user_visit_analysis.view.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.text.SimpleDateFormat
@@ -36,7 +39,16 @@ class User_visit_List_Fragment : Fragment() {
     lateinit var dateTV: TextView
     lateinit var all_memberTV: TextView
     lateinit var new_userTV: TextView
+    lateinit var member_re_cntTV: TextView
     lateinit var itemdateLL: LinearLayout
+    lateinit var todayRL: RelativeLayout
+    lateinit var weekRL: RelativeLayout
+    lateinit var monthRL: RelativeLayout
+    lateinit var three_mRL: RelativeLayout
+    lateinit var todayTV: TextView
+    lateinit var weekTV: TextView
+    lateinit var monthTV: TextView
+    lateinit var three_mTV: TextView
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -53,7 +65,14 @@ class User_visit_List_Fragment : Fragment() {
         itemdateLL = view.findViewById(R.id.itemdateLL)
         all_memberTV = view.findViewById(R.id.all_memberTV)
         new_userTV = view.findViewById(R.id.new_userTV)
-
+        todayTV = view.findViewById(R.id.todayTV)
+        monthTV = view.findViewById(R.id.monthTV)
+        weekTV = view.findViewById(R.id.weekTV)
+        three_mTV = view.findViewById(R.id.three_mTV)
+        todayRL = view.findViewById(R.id.todayRL)
+        weekRL = view.findViewById(R.id.weekRL)
+        monthRL = view.findViewById(R.id.monthRL)
+        three_mRL = view.findViewById(R.id.three_mRL)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -68,6 +87,30 @@ class User_visit_List_Fragment : Fragment() {
         val currentDate = formatter.format(date)
         dateTV.text = currentDate+"~"+currentDate
 
+
+
+        todayRL.setOnClickListener {
+            setmenu()
+            todayTV.setTextColor(Color.parseColor("#606060"))
+        }
+
+        todayRL.callOnClick()
+
+        weekRL.setOnClickListener {
+            setmenu()
+            monthTV.setTextColor(Color.parseColor("#606060"))
+        }
+        monthRL.setOnClickListener {
+            setmenu()
+            weekTV.setTextColor(Color.parseColor("#606060"))
+
+        }
+        three_mRL.setOnClickListener {
+            setmenu()
+            three_mTV .setTextColor(Color.parseColor("#606060"))
+        }
+
+
         loadData(1)
         //전체고객구하기
         loadcntData()
@@ -75,6 +118,14 @@ class User_visit_List_Fragment : Fragment() {
 
 
     }
+
+    fun  setmenu(){
+        todayTV.setTextColor(Color.parseColor("#c5c5c5"))
+        monthTV.setTextColor(Color.parseColor("#c5c5c5"))
+        weekTV.setTextColor(Color.parseColor("#c5c5c5"))
+        three_mTV .setTextColor(Color.parseColor("#c5c5c5"))
+    }
+
 
     //방문자수구하기
     fun loadcntData() {
@@ -98,10 +149,11 @@ class User_visit_List_Fragment : Fragment() {
                         val member_cnt = response.getString("member_cnt")
                         //오늘 가입한회원
                         val member_new_cnt = response.getString("member_new_cnt")
+                        val member_re_cnt = response.getString("member_re_cnt")
 
                         all_memberTV.text = member_cnt
                         new_userTV.text = member_new_cnt
-
+                        member_re_cntTV.text  = member_re_cnt
                     } else {
 
                     }
