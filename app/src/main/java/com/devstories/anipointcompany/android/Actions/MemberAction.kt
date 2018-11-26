@@ -24,4 +24,8 @@ object MemberAction {
         HttpClient.post("/member/visit_list.json", params, handler)
     }
 
+    //손님등록
+    fun member_join(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/member/member_join.json", params, handler)
+    }
 }

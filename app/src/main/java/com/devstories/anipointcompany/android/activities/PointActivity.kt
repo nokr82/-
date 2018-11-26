@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.MemberAction
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.RootActivity
@@ -13,6 +14,7 @@ import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
 import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.activity_point.*
+import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -153,6 +155,71 @@ class PointActivity : RootActivity() {
                 }
             }
         })
+    }
+
+    fun member_join(member_id:String) {
+        val params = RequestParams()
+        params.put("company_id",1)
+        params.put("age", 1)
+        params.put("point", use_point)
+        params.put("name", 2)
+        params.put("gender", 1)
+        params.put("memo", use_point)
+        params.put("phone", 2)
+        params.put("birth", 2)
+
+        MemberAction.member_join(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+                try {
+                    val result = response!!.getString("result")
+                    Log.d("적립", response.toString())
+
+                    if ("ok" == result) {
+                        Toast.makeText(context, "회원등록", Toast.LENGTH_SHORT).show()
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONArray?) {
+                super.onSuccess(statusCode, headers, response)
+            }
+
+            private fun error() {
+                Utils.alert(context, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(statusCode: Int, headers: Array<Header>?, throwable: Throwable, errorResponse: JSONArray?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+                throwable.printStackTrace()
+                error()
+            }
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+
     }
 
 

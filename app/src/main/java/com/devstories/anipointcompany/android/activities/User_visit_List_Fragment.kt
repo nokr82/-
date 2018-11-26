@@ -90,8 +90,8 @@ class User_visit_List_Fragment : Fragment() {
 
                     if ("ok" == result) {
 
-                        val visit_history = response.getString("visit_history")
-                        val visit_re = response.getString("visit_re")
+                        val visit_history = response.getString("point")
+                        val visit_re = response.getString("point")
 
                         val userView = View.inflate(myContext, R.layout.item_visit, null)
                         var dateTV : TextView = userView.findViewById(R.id.dateTV)
