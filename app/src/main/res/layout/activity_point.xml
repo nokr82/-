@@ -39,7 +39,7 @@
 
         <LinearLayout
             android:layout_marginTop="14dp"
-            android:visibility="visible"
+            android:visibility="gone"
             android:id="@+id/joinLL"
             android:background="#90424242"
             android:layout_width="127dp"
@@ -51,7 +51,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+                <LinearLayout
 
+                    android:layout_width="wrap_content"
+                    android:layout_height="16.5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/nameET"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="1sp"
+                        android:hint="이름"
+                        android:textColor="#ffffff"
+                        android:textSize="9sp" />
+
+                </LinearLayout>
+                <View
+                    android:layout_marginRight="6dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:background="#ffffff"/>
 
                 <LinearLayout
 
@@ -66,7 +88,7 @@
                         android:layout_height="wrap_content"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="1sp"
-                        android:text="010-***1-9767"
+                        android:hint="전화번호"
                         android:textColor="#ffffff"
                         android:textSize="9sp" />
 
@@ -86,10 +108,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="9sp"
+                        android:hint="성별"
                         android:textColor="#ffffff"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="1sp"
-                        android:text="여자" />
+                     />
 
                 </LinearLayout>
                 <View
@@ -102,15 +125,16 @@
                     android:layout_height="16.5dp"
                     android:gravity="center_vertical"
                     android:orientation="vertical">
+
                     <EditText
                         android:id="@+id/ageET"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="9sp"
-                        android:textColor="#ffffff"
+                        android:layout_height="match_parent"
                         android:letterSpacing="-0.03"
+                        android:hint="나이"
                         android:lineSpacingExtra="1sp"
-                        android:text="22세" />
+                        android:textColor="#ffffff"
+                        android:textSize="9sp" />
 
                 </LinearLayout>
                 <View
@@ -128,10 +152,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="9sp"
+                        android:hint="새일"
                         android:textColor="#ffffff"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="1sp"
-                        android:text="1996-04-02" />
+                    />
 
                 </LinearLayout>
                 <View
@@ -144,23 +169,25 @@
                     android:layout_height="16.5dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="9sp"
-                        android:textColor="#ffffff"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="1sp"
-                        android:text="누적사용:" />
+                        android:text="누적사용:"
+                        android:textColor="#ffffff"
+                        android:textSize="9sp" />
                     <EditText
                         android:id="@+id/stack_pointET"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="9sp"
+                        android:hint="포인트"
                         android:textColor="#ffffff"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="1sp"
-                        android:text="6840P" />
+                        />
 
                 </LinearLayout>
                 <View
@@ -187,10 +214,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="9sp"
+                        android:hint="쿠폰"
                         android:textColor="#ffffff"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="1sp"
-                        android:text="4장" />
+                      />
 
                 </LinearLayout>
                 <View
@@ -204,17 +232,15 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/EditText"
+                    <EditText
+                        android:id="@+id/memoET"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="8sp"
+                        android:hint="메모"
                         android:textColor="#ffffff"
                         android:letterSpacing="-0.01"
-                        android:text="소형견, 말티스, 강아지 이름
-우측 최상단 톱니바퀴
-모양을 누르면
-설정으로 이동합니다."
+
                         />
 
 
@@ -392,7 +418,7 @@
                 <LinearLayout
 
                     android:layout_width="wrap_content"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
                     <TextView
@@ -424,6 +450,7 @@
             android:gravity="center">
 
             <LinearLayout
+                android:id="@+id/checkLL"
                 android:layout_width="115dp"
                 android:layout_height="25dp"
                 android:gravity="center"

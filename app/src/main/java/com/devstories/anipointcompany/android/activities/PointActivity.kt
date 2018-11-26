@@ -34,7 +34,9 @@ class PointActivity : RootActivity() {
 
         loaduserdata()
 
+        checkLL.setOnClickListener {
 
+        }
         titleTV.setOnClickListener {
             val intent = Intent(this, UserListActivity::class.java)
             startActivity(intent)
@@ -157,16 +159,26 @@ class PointActivity : RootActivity() {
         })
     }
 
-    fun member_join(member_id:String) {
+    fun member_join() {
+
+        var getPhone = Utils.getString(phoneET)
+        var getGender = Utils.getString(genderET)
+        var getAge = Utils.getString(ageET)
+        var getBirth = Utils.getString(birthET)
+        var getPoint = Utils.getString(stack_pointET)
+        var getCoupon = Utils.getString(couponET)
+        var getMemo = Utils.getString(memoET)
+        var getName = Utils.getString(nameET)
+
         val params = RequestParams()
         params.put("company_id",1)
-        params.put("age", 1)
-        params.put("point", use_point)
-        params.put("name", 2)
-        params.put("gender", 1)
-        params.put("memo", use_point)
-        params.put("phone", 2)
-        params.put("birth", 2)
+        params.put("age",getAge )
+        params.put("point", getPoint)
+        params.put("name", getName)
+        params.put("gender", getGender)
+        params.put("memo", getMemo)
+        params.put("phone", getPhone)
+        params.put("birth", getBirth)
 
         MemberAction.member_join(params, object : JsonHttpResponseHandler() {
 
@@ -176,10 +188,10 @@ class PointActivity : RootActivity() {
                 }
                 try {
                     val result = response!!.getString("result")
-                    Log.d("적립", response.toString())
+
 
                     if ("ok" == result) {
-                        Toast.makeText(context, "회원등록", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "회원등록완료", Toast.LENGTH_SHORT).show()
 
                     }
 
