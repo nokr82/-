@@ -40,6 +40,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/pointList_allTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:letterSpacing="-0.03"
@@ -61,6 +62,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/pointList_todayTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:letterSpacing="-0.03"
@@ -82,6 +84,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/pointList_weekTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:letterSpacing="-0.03"
@@ -103,6 +106,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/pointList_monthTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:letterSpacing="-0.03"
@@ -215,6 +219,7 @@
 
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/btn_term_search"
                 android:layout_marginLeft="5dp"
                 android:layout_width="25dp"
                 android:gravity="center"

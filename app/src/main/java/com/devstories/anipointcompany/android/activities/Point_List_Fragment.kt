@@ -16,6 +16,7 @@ import cz.msebera.android.httpclient.Header
 import org.json.JSONException
 import org.json.JSONObject
 import android.app.DatePickerDialog
+import android.util.Log
 import android.widget.*
 import com.devstories.anipointcompany.android.Actions.MemberAction
 import java.util.*
@@ -45,14 +46,14 @@ class Point_List_Fragment : Fragment() {
         this.myContext = container!!.context
 
         progressDialog = ProgressDialog(myContext)
-            return inflater.inflate(R.layout.fra_point_list,container,false)
 
-
+        return inflater.inflate(R.layout.fra_point_list, container,false)
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         userLV = view.findViewById(R.id.userLV)
         first_dateLL = view.findViewById(R.id.first_dateLL)
         last_dateLL = view.findViewById(R.id.last_dateLL)
@@ -60,7 +61,6 @@ class Point_List_Fragment : Fragment() {
         last_dateTV = view.findViewById(R.id.last_dateTV)
         startdateTV = view.findViewById(R.id.startdateTV)
         lastdateTV = view.findViewById(R.id.lastdateTV)
-
 
     }
 
@@ -74,24 +74,26 @@ class Point_List_Fragment : Fragment() {
 
         useradapter = UserListAdapter(myContext,R.layout.item_user_point_list,adapterData)
         userLV.adapter = useradapter
-        loadData(1)
+        loadData(1, 6)
+
         first_dateLL.setOnClickListener {
             datedlg()
         }
         last_dateLL.setOnClickListener {
             datedlg2()
         }
+
+
     }
 
 
 
 
     //방문이력
-    fun loadData(company_id: Int) {
+    fun loadData(company_id: Int, type : Int) {
         val params = RequestParams()
         params.put("company_id",company_id)
-
-
+        params.put("type", type)
 
         MemberAction.user_list(params, object : JsonHttpResponseHandler() {
 
@@ -107,6 +109,7 @@ class Point_List_Fragment : Fragment() {
 
                     if ("ok" == result) {
                         val data = response.getJSONArray("member")
+
 
                         for (i in 0..(data.length() - 1)) {
 

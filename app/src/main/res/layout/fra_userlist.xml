@@ -39,6 +39,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/entire_viewTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:letterSpacing="-0.03"
@@ -54,13 +55,14 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/main_new_userLL"
+                android:id="@+id/userList_new_userLL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="17.5dp"
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/new_userTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:letterSpacing="-0.03"
@@ -76,13 +78,14 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/main_most_freq_userLL"
+                android:id="@+id/userList_most_freq_userLL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="17.5dp"
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/most_freqTV"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:letterSpacing="-0.03"
@@ -98,13 +101,14 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/main_birth_userLL"
+                android:id="@+id/userList_birth_userLL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="17.5dp"
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/birthTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:letterSpacing="-0.03"
@@ -120,13 +124,14 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/main_mvpLL"
+                android:id="@+id/userList_mvpLL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="17.5dp"
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/mvpTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:letterSpacing="-0.03"

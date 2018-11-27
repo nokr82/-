@@ -63,6 +63,7 @@
                     />
 
                 <ImageView
+                    android:visibility="gone"
                     android:layout_marginLeft="8.5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -72,6 +73,7 @@
 
             <TextView
                 android:id="@+id/phoneTV"
+                android:visibility="invisible"
                 android:layout_marginTop="7dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
