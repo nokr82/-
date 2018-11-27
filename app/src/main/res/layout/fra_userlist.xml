@@ -194,6 +194,7 @@
                 android:background="#90000000">
 
                 <EditText
+                    android:id="@+id/keywordET"
                     android:layout_width="0dp"
                     android:background="@null"
                     android:layout_height="wrap_content"
@@ -209,6 +210,7 @@
 
 
             <LinearLayout
+                android:id="@+id/btn_search"
                 android:layout_marginLeft="5dp"
                 android:layout_width="25dp"
                 android:gravity="center"

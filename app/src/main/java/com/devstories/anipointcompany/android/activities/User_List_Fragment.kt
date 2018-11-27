@@ -39,6 +39,7 @@ class User_List_Fragment : Fragment() {
     lateinit var main_birth_userLL : LinearLayout
     lateinit var main_mvpLL : LinearLayout
     lateinit var joinLL : LinearLayout
+    lateinit var btn_search : LinearLayout
 
     var adapterData: ArrayList<JSONObject> = ArrayList<JSONObject>()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -58,7 +59,7 @@ class User_List_Fragment : Fragment() {
         main_birth_userLL = view.findViewById(R.id.main_birth_userLL)
         main_mvpLL = view.findViewById(R.id.main_mvpLL)
         joinLL = view.findViewById(R.id.joinLL)
-
+        btn_search = view.findViewById(R.id.btn_search)
 
     }
 
@@ -66,10 +67,21 @@ class User_List_Fragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         mainData()
 
-        main_new_userLL.setOnClickListener {
+        main_birth_userLL.setOnClickListener {
             birthData()
         }
 
+        btn_search.setOnClickListener {
+            var key = keywordET.text.toString()
+            if (key.isEmpty()){
+                Utils.alert(context, "검색할 키워드를 입력하세요")
+            }
+            keyWordData(key)
+        }
+
+        main_new_userLL.setOnClickListener {
+            newbieData()
+        }
 
     }
 
@@ -253,6 +265,7 @@ class User_List_Fragment : Fragment() {
 
                 try {
 
+                    userLL.removeAllViews()
                     adapterData.clear()
 
                     val result = response!!.getString("result")
@@ -271,6 +284,341 @@ class User_List_Fragment : Fragment() {
 
                             var point =   Utils.getString(point_o, "balance")
 
+
+
+                            val userView = View.inflate(myContext, R.layout.item_user, null)
+                            var dateTV : TextView = userView.findViewById(R.id.dateTV)
+                            var nameTV : TextView = userView.findViewById(R.id.nameTV)
+                            var pointTV : TextView = userView.findViewById(R.id.pointTV)
+                            var acc_pointTV : TextView = userView.findViewById(R.id.acc_pointTV)
+                            var visitTV : TextView = userView.findViewById(R.id.visitTV)
+                            var name2TV : TextView = userView.findViewById(R.id.name2TV)
+                            var genderTV : TextView = userView.findViewById(R.id.genderTV)
+                            var ageTV : TextView = userView.findViewById(R.id.ageTV)
+                            var birthTV : TextView = userView.findViewById(R.id.birthTV)
+                            var use_pointTV : TextView = userView.findViewById(R.id.use_pointTV)
+                            var couponTV: TextView = userView.findViewById(R.id.couponTV)
+                            var visit_recordTV: TextView = userView.findViewById(R.id.visit_recordTV)
+                            var stack_pointTV: TextView = userView.findViewById(R.id.stack_pointTV)
+                            var memoTV: TextView = userView.findViewById(R.id.memoTV)
+                            var phoneTV: TextView = userView.findViewById(R.id.phoneTV)
+
+
+
+                            var id = Utils.getString(member, "id")
+                            var age =   Utils.getString(member, "age")
+                            var name = Utils.getString(member, "name")
+                            var gender =   Utils.getString(member, "gender")
+                            var memo = Utils.getString(member, "memo")
+                            var phone =   Utils.getString(member, "phone")
+                            var coupon = Utils.getString(member, "coupon")
+                            var stack_point =   Utils.getString(member, "point")
+                            var use_point =   Utils.getString(member, "use_point")
+                            var company_id = Utils.getString(member, "company_id")
+                            var birth =   Utils.getString(member, "birth")
+                            var created = Utils.getString(member, "created")
+                            var visit =   Utils.getString(member, "visit_cnt")
+                            val sdf = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
+                            val updated = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(Utils.getString(member, "updated"))
+                            val updated_date = sdf.format(updated)
+
+                            pointTV.text = point+"P"
+                            use_pointTV.text = use_point+"P"
+                            acc_pointTV.text = stack_point+"P"
+                            stack_pointTV.text = "누적:"+stack_point+"P"
+                            dateTV.text = updated_date+" 방문"
+                            ageTV.text = age+"세"
+                            nameTV.text = name
+                            name2TV.text = name
+                            genderTV.text = gender
+                            memoTV.text = memo
+                            couponTV.text = coupon+"장"
+                            birthTV.text = birth
+                            visitTV.text = visit+"회"
+                            phoneTV.text = phone
+
+                            userLL.addView(userView)
+                        }
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONArray?) {
+                super.onSuccess(statusCode, headers, response)
+            }
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(myContext, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    throwable: Throwable,
+                    errorResponse: JSONObject?
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+                throwable.printStackTrace()
+                error()
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    throwable: Throwable,
+                    errorResponse: JSONArray?
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+                throwable.printStackTrace()
+                error()
+            }
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
+
+    //키워드
+    fun keyWordData(keyword:String) {
+        val params = RequestParams()
+        params.put("company_id", 1)
+        params.put("keyword", "$keyword")
+
+        MemberAction.keyword(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+
+                    userLL.removeAllViews()
+                    adapterData.clear()
+
+                    val result = response!!.getString("result")
+
+                    if ("ok" == result) {
+                        var data = response.getJSONArray("member")
+
+                        Log.d("키워드로 찾은 유저 리스트",data.toString())
+
+                        for (i in 0..(data.length() - 1)) {
+                            Log.d("갯수", i.toString())
+                            adapterData.add(data[i] as JSONObject)
+                            var json=data[i] as JSONObject
+                            val member = json.getJSONObject("Member")
+                            var point_o  = json.getJSONObject("Point")
+
+                            var point =   Utils.getString(point_o, "balance")
+
+
+                            val userView = View.inflate(myContext, R.layout.item_user, null)
+                            var dateTV : TextView = userView.findViewById(R.id.dateTV)
+                            var nameTV : TextView = userView.findViewById(R.id.nameTV)
+                            var pointTV : TextView = userView.findViewById(R.id.pointTV)
+                            var acc_pointTV : TextView = userView.findViewById(R.id.acc_pointTV)
+                            var visitTV : TextView = userView.findViewById(R.id.visitTV)
+                            var name2TV : TextView = userView.findViewById(R.id.name2TV)
+                            var genderTV : TextView = userView.findViewById(R.id.genderTV)
+                            var ageTV : TextView = userView.findViewById(R.id.ageTV)
+                            var birthTV : TextView = userView.findViewById(R.id.birthTV)
+                            var use_pointTV : TextView = userView.findViewById(R.id.use_pointTV)
+                            var couponTV: TextView = userView.findViewById(R.id.couponTV)
+                            var visit_recordTV: TextView = userView.findViewById(R.id.visit_recordTV)
+                            var stack_pointTV: TextView = userView.findViewById(R.id.stack_pointTV)
+                            var memoTV: TextView = userView.findViewById(R.id.memoTV)
+                            var phoneTV: TextView = userView.findViewById(R.id.phoneTV)
+
+
+
+                            var id = Utils.getString(member, "id")
+                            var age =   Utils.getString(member, "age")
+                            var name = Utils.getString(member, "name")
+                            var gender =   Utils.getString(member, "gender")
+                            var memo = Utils.getString(member, "memo")
+                            var phone =   Utils.getString(member, "phone")
+                            var coupon = Utils.getString(member, "coupon")
+                            var stack_point =   Utils.getString(member, "point")
+                            var use_point =   Utils.getString(member, "use_point")
+                            var company_id = Utils.getString(member, "company_id")
+                            var birth =   Utils.getString(member, "birth")
+                            var created = Utils.getString(member, "created")
+                            var visit =   Utils.getString(member, "visit_cnt")
+                            val sdf = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
+                            val updated = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(Utils.getString(member, "updated"))
+                            val updated_date = sdf.format(updated)
+
+                            pointTV.text = point+"P"
+                            use_pointTV.text = use_point+"P"
+                            acc_pointTV.text = stack_point+"P"
+                            stack_pointTV.text = "누적:"+stack_point+"P"
+                            dateTV.text = updated_date+" 방문"
+                            ageTV.text = age+"세"
+                            nameTV.text = name
+                            name2TV.text = name
+                            genderTV.text = gender
+                            memoTV.text = memo
+                            couponTV.text = coupon+"장"
+                            birthTV.text = birth
+                            visitTV.text = visit+"회"
+                            phoneTV.text = phone
+
+                            userLL.addView(userView)
+                        }
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONArray?) {
+                super.onSuccess(statusCode, headers, response)
+            }
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(myContext, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    throwable: Throwable,
+                    errorResponse: JSONObject?
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+                throwable.printStackTrace()
+                error()
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    throwable: Throwable,
+                    errorResponse: JSONArray?
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+                throwable.printStackTrace()
+                error()
+            }
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
+
+    //뉴비
+    fun newbieData() {
+        val params = RequestParams()
+        params.put("company_id", 1)
+
+        MemberAction.newbie(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+
+                    userLL.removeAllViews()
+                    adapterData.clear()
+
+                    val result = response!!.getString("result")
+
+                    if ("ok" == result) {
+                        var data = response.getJSONArray("member")
+
+                        Log.d("뉴비들",data.toString())
+
+                        for (i in 0..(data.length() - 1)) {
+                            Log.d("갯수", i.toString())
+                            adapterData.add(data[i] as JSONObject)
+                            var json=data[i] as JSONObject
+                            val member = json.getJSONObject("Member")
+                            var point_o  = json.getJSONObject("Point")
+
+                            var point =   Utils.getString(point_o, "balance")
 
 
                             val userView = View.inflate(myContext, R.layout.item_user, null)

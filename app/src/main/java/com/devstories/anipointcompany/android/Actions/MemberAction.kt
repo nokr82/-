@@ -31,6 +31,16 @@ object MemberAction {
 
     //생일인 유저
     fun today_birth_user(params: RequestParams, handler: JsonHttpResponseHandler) {
-        HttpClient.post("/member/user_birth.json", params, handler)
+        HttpClient.post("/member/birth_user.json", params, handler)
+    }
+
+    //키워드
+    fun keyword(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/member/user_keyword.json", params, handler)
+    }
+
+    //뉴비
+    fun newbie(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/member/newbie_list.json", params, handler)
     }
 }
