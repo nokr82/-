@@ -22,7 +22,12 @@ object PointAction {
     fun index(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/point/index.json", params, handler)
     }
+    //방문분석
     fun user_visited(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/point/user_visited.json", params, handler)
+    }
+    //포인트분석
+    fun user_points(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/point/user_points.json", params, handler)
     }
 }

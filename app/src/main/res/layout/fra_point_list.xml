@@ -34,12 +34,14 @@
                 android:visibility="visible">
 
                 <LinearLayout
+                    android:id="@+id/allLL"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="17.5dp"
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/allTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:letterSpacing="-0.03"
@@ -55,12 +57,14 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/todayLL"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="17.5dp"
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/todayTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:letterSpacing="-0.03"
@@ -76,12 +80,14 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/weekLL"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="17.5dp"
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/weekTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:letterSpacing="-0.03"
@@ -97,12 +103,14 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/monthLL"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="17.5dp"
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/monthTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:letterSpacing="-0.03"

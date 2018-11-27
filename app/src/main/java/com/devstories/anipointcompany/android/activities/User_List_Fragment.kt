@@ -18,6 +18,7 @@ import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
 import cz.msebera.android.httpclient.Header
+import kotlinx.android.synthetic.main.fra_userlist.*
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
