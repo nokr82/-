@@ -28,4 +28,9 @@ object MemberAction {
     fun member_join(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/member/member_join.json", params, handler)
     }
+
+    //생일인 유저
+    fun today_birth_user(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/member/user_birth.json", params, handler)
+    }
 }

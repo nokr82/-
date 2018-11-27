@@ -44,7 +44,6 @@ class UserListActivity : FragmentActivity() {
             supportFragmentManager.beginTransaction().replace(R.id.userFL, User_List_Fragment).commit()
         }
         pointLL.setOnClickListener {
-
             setmenu()
             pointLL.setBackgroundResource(R.drawable.background_strock_707070)
             supportFragmentManager.beginTransaction().replace(R.id.userFL, Point_List_Fragment).commit()
