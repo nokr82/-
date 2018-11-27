@@ -53,6 +53,7 @@ class User_List_Fragment : Fragment() {
         this.myContext = container!!.context
         progressDialog = ProgressDialog(myContext)
 
+
         return inflater.inflate(R.layout.fra_userlist,container,false)
     }
 

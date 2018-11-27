@@ -34,13 +34,14 @@
                 android:visibility="visible">
 
                 <LinearLayout
+                    android:id="@+id/allLL"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="17.5dp"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/pointList_allTV"
+                        android:id="@+id/allTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:letterSpacing="-0.03"
@@ -56,13 +57,14 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/todayLL"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="17.5dp"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/pointList_todayTV"
+                        android:id="@+id/todayTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:letterSpacing="-0.03"
@@ -78,13 +80,14 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/weekLL"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="17.5dp"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/pointList_weekTV"
+                        android:id="@+id/weekTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:letterSpacing="-0.03"
@@ -100,13 +103,14 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/monthLL"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="17.5dp"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/pointList_monthTV"
+                        android:id="@+id/monthTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:letterSpacing="-0.03"
@@ -219,7 +223,6 @@
 
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/btn_term_search"
                 android:layout_marginLeft="5dp"
                 android:layout_width="25dp"
                 android:gravity="center"
@@ -308,6 +311,7 @@
                             android:text="2018.05.01"
                             />
                         <TextView
+                            android:id="@+id/nonameTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="10sp"
@@ -355,6 +359,7 @@
                             android:gravity="center_vertical">
 
                             <TextView
+                                android:id="@+id/all_cntTV"
                                 android:layout_marginLeft="10dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -399,6 +404,7 @@
                             android:gravity="center_vertical">
 
                             <TextView
+                                android:id="@+id/all_stackTV"
                                 android:layout_marginLeft="10dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -439,6 +445,7 @@
                             android:gravity="center_vertical">
 
                             <TextView
+                                android:id="@+id/all_useTV"
                                 android:layout_marginLeft="10dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -479,6 +486,7 @@
                             android:gravity="center_vertical">
 
                             <TextView
+                                android:id="@+id/all_couponTV"
                                 android:layout_marginLeft="10dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"

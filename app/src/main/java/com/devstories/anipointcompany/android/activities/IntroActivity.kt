@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import com.devstories.anipointcompany.android.R
+import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.RootActivity
 
 
@@ -73,7 +74,7 @@ class IntroActivity : RootActivity() {
     internal var handler: Handler = object : Handler() {
         override fun handleMessage(msg: Message) {
             //versionInfo();
-
+            PrefUtils.setPreference(context, "company_id", 1);
         }
     }
 
