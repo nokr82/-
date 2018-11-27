@@ -24,10 +24,8 @@ import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import android.widget.Toast
-
-
-
-
+import com.devstories.anipointcompany.android.Actions.MemberAction
+import com.devstories.anipointcompany.android.R.id.*
 
 
 class User_visit_List_Fragment : Fragment() {
@@ -70,6 +68,7 @@ class User_visit_List_Fragment : Fragment() {
         amountSP = view.findViewById(R.id.amountSP)
         dateTV = view.findViewById(R.id.dateTV)
         itemdateLL = view.findViewById(R.id.itemdateLL)
+        accumulateLL = view.findViewById(R.id.accumulateLL)
         all_memberTV = view.findViewById(R.id.all_memberTV)
         member_re_cntTV = view.findViewById(R.id.member_re_cntTV)
         new_userTV = view.findViewById(R.id.new_userTV)
@@ -81,7 +80,6 @@ class User_visit_List_Fragment : Fragment() {
         weekRL = view.findViewById(R.id.weekRL)
         monthRL = view.findViewById(R.id.monthRL)
         three_mRL = view.findViewById(R.id.three_mRL)
-        accumulateLL = view.findViewById(R.id.accumulateLL)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -164,7 +162,11 @@ class User_visit_List_Fragment : Fragment() {
             dateTV.text = currentDate+" ~ "+lastmonth
         }
 
-
+        accumulateLL.setOnClickListener {
+            var intent = Intent(myContext, PointActivity::class.java)
+            intent.putExtra("step", 1)
+            startActivity(intent)
+        }
 
         //전체고객구하기
         loadcntData()
