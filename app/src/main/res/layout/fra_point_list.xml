@@ -19,8 +19,9 @@
                 android:id="@+id/titleTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="포인트\n내역"
-                android:layout_marginBottom="43.5dp"
+                android:text="포인트 내역"
+                android:layout_marginTop="15.5dp"
+                android:layout_marginBottom="23.5dp"
                 android:textColor="#ffff"
                 android:textSize="24dp" />
 
