@@ -3,6 +3,7 @@ package com.devstories.anipointcompany.android.activities
 import android.app.DatePickerDialog
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
@@ -41,6 +42,7 @@ class User_visit_List_Fragment : Fragment() {
     lateinit var new_userTV: TextView
     lateinit var member_re_cntTV: TextView
     lateinit var itemdateLL: LinearLayout
+    lateinit var accumulateLL: LinearLayout
     lateinit var todayRL: RelativeLayout
     lateinit var weekRL: RelativeLayout
     lateinit var monthRL: RelativeLayout
@@ -63,6 +65,7 @@ class User_visit_List_Fragment : Fragment() {
         amountSP = view.findViewById(R.id.amountSP)
         dateTV = view.findViewById(R.id.dateTV)
         itemdateLL = view.findViewById(R.id.itemdateLL)
+        accumulateLL = view.findViewById(R.id.accumulateLL)
         all_memberTV = view.findViewById(R.id.all_memberTV)
         member_re_cntTV = view.findViewById(R.id.member_re_cntTV)
         new_userTV = view.findViewById(R.id.new_userTV)
@@ -109,6 +112,11 @@ class User_visit_List_Fragment : Fragment() {
         three_mRL.setOnClickListener {
             setmenu()
             three_mTV .setTextColor(Color.parseColor("#606060"))
+        }
+        accumulateLL.setOnClickListener {
+            var intent = Intent(myContext, PointActivity::class.java)
+            intent.putExtra("step", 1)
+            startActivity(intent)
         }
 
 
