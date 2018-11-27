@@ -1,9 +1,8 @@
 package com.devstories.anipointcompany.android.activities
 
-import android.app.DatePickerDialog
 import android.app.ProgressDialog
 import android.content.Context
-import android.content.res.ColorStateList
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -13,17 +12,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.devstories.aninuriandroid.adapter.VisitListAdapter
-import com.devstories.anipointcompany.android.Actions.MemberAction
+import com.devstories.anipointcompany.android.Actions.PointAction
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
 import cz.msebera.android.httpclient.Header
-import kotlinx.android.synthetic.main.fra_user_visit_analysis.view.*
 import org.json.JSONException
 import org.json.JSONObject
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
+import android.widget.Toast
+
+
+
+
 
 
 class User_visit_List_Fragment : Fragment() {
@@ -49,7 +53,10 @@ class User_visit_List_Fragment : Fragment() {
     lateinit var weekTV: TextView
     lateinit var monthTV: TextView
     lateinit var three_mTV: TextView
+    lateinit var accumulateLL: LinearLayout
 
+
+  var day_type = -1
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
@@ -74,6 +81,7 @@ class User_visit_List_Fragment : Fragment() {
         weekRL = view.findViewById(R.id.weekRL)
         monthRL = view.findViewById(R.id.monthRL)
         three_mRL = view.findViewById(R.id.three_mRL)
+        accumulateLL = view.findViewById(R.id.accumulateLL)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -86,36 +94,81 @@ class User_visit_List_Fragment : Fragment() {
         val formatter = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
         val date = Date()
         val currentDate = formatter.format(date)
-        dateTV.text = currentDate+"~"+currentDate
 
+        accumulateLL.setOnClickListener {
+            val intent = Intent(myContext, PointActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
 
 
         todayRL.setOnClickListener {
             setmenu()
+            day_type = 1
+            loadcntData()
+            loadData(1)
             todayTV.setTextColor(Color.parseColor("#606060"))
+            dateTV.text = currentDate+"~"+currentDate
         }
 
         todayRL.callOnClick()
 
         weekRL.setOnClickListener {
             setmenu()
-            monthTV.setTextColor(Color.parseColor("#606060"))
+            day_type = 2
+            loadcntData()
+            loadData(1)
+            weekTV.setTextColor(Color.parseColor("#606060"))
+            val calendar = Calendar.getInstance()
+            calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
+            val df = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
+            var startDate = df.format(calendar.getTime())
+            calendar.add(Calendar.DATE, 6)
+            var   endDate = df.format(calendar.getTime())
+            Log.d("현재",startDate)
+            Log.d("미래",endDate)
+            dateTV.text = startDate+" ~ "+endDate
         }
         monthRL.setOnClickListener {
             setmenu()
-            weekTV.setTextColor(Color.parseColor("#606060"))
+            day_type = 3
+            loadcntData()
+            loadData(1)
+            monthTV.setTextColor(Color.parseColor("#606060"))
+            val beforemonth = SimpleDateFormat("yyyy.MM.01", Locale.KOREA)
+            val aftermonth = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
+            val cal = Calendar.getInstance()
+            //그달의 마지막일 구하기
+            val endDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH)
+            val date = Date()
+            val currentDate = beforemonth.format(date)
+            val lastmonth = aftermonth.format(date).toString().substring(0,8)+endDay
 
+            dateTV.text = currentDate+" ~ "+lastmonth
         }
         three_mRL.setOnClickListener {
             setmenu()
+            day_type = 4
+            loadcntData()
+            loadData(1)
             three_mTV .setTextColor(Color.parseColor("#606060"))
+            val aftermonth = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
+            val cal = Calendar.getInstance()
+            //그달의 마지막일 구하기
+            val startday = cal.getActualMaximum(Calendar.MONTH)-3
+            val beforemonth = SimpleDateFormat("yyyy."+startday+".dd", Locale.KOREA)
+            val date = Date()
+            val currentDate = beforemonth.format(date).toString()
+            val lastmonth = aftermonth.format(date).toString()
+
+            dateTV.text = currentDate+" ~ "+lastmonth
         }
 
 
-        loadData(1)
+
         //전체고객구하기
         loadcntData()
-
+        loadData(1)
 
 
     }
@@ -132,10 +185,10 @@ class User_visit_List_Fragment : Fragment() {
     fun loadcntData() {
         val params = RequestParams()
         params.put("company_id",1)
+        params.put("day_type",day_type)
 
 
-
-        MemberAction.user_list(params, object : JsonHttpResponseHandler() {
+        PointAction.user_visited(params, object : JsonHttpResponseHandler() {
 
             override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
                 if (progressDialog != null) {
@@ -147,14 +200,15 @@ class User_visit_List_Fragment : Fragment() {
 
 
                     if ("ok" == result) {
-                        val member_cnt = response.getString("member_cnt")
-                        //오늘 가입한회원
-                        val member_new_cnt = response.getString("member_new_cnt")
-                        val member_re_cnt = response.getString("member_re_cnt")
+                         //오늘 가입한회원
+                        val member_new_cnt:Int = response.getInt("newMemberCount")
+                        val member_re_cnt = response.getInt("reMemberCount")
+                        val allmember = member_new_cnt+member_re_cnt
 
-                        all_memberTV.text = member_cnt
-                        new_userTV.text = member_new_cnt
-                        member_re_cntTV.text  = member_re_cnt
+
+                        all_memberTV.text = allmember.toString()
+                        new_userTV.text = member_new_cnt.toString()
+                        member_re_cntTV.text  = member_re_cnt.toString()
                     } else {
 
                     }
@@ -215,10 +269,9 @@ class User_visit_List_Fragment : Fragment() {
     fun loadData(company_id: Int) {
         val params = RequestParams()
         params.put("company_id",company_id)
-
-
-
-        MemberAction.visit_list(params, object : JsonHttpResponseHandler() {
+        params.put("day_type",day_type)
+        Log.d("day_type",day_type.toString())
+        PointAction.user_visited(params, object : JsonHttpResponseHandler() {
 
             override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
                 if (progressDialog != null) {
@@ -227,23 +280,38 @@ class User_visit_List_Fragment : Fragment() {
 
                 try {
                     val result = response!!.getString("result")
-
-
                     if ("ok" == result) {
+                        itemdateLL.removeAllViews()
+                        val points = response.getJSONArray("points")
+                        Log.d("데이트",points.toString())
+                        for (i in 0..points.length()-1){
+                            Log.d("갯수",i.toString())
+                            var json=points[i] as JSONObject
+                            val date = Utils.getString(json,"date")
+                            val new_member = Utils.getInt(json,"new_member")
+                            val re_member =Utils.getInt(json,"re_member")
+                            Log.d("데이트",re_member.toString())
 
-                        val visit_history = response.getString("point")
-                        val visit_re = response.getString("point")
 
-                        val userView = View.inflate(myContext, R.layout.item_visit, null)
-                        var dateTV : TextView = userView.findViewById(R.id.dateTV)
-                        var new_userTV : TextView = userView.findViewById(R.id.new_userTV)
-                        var re_userTV : TextView = userView.findViewById(R.id.re_userTV)
-                        var all_userTV : TextView = userView.findViewById(R.id.all_userTV)
+                            val userView = View.inflate(myContext, R.layout.item_visit, null)
+                            var dateTV : TextView = userView.findViewById(R.id.dateTV)
+                            var new_userTV : TextView = userView.findViewById(R.id.new_userTV)
+                            var re_userTV : TextView = userView.findViewById(R.id.re_userTV)
+                            var all_userTV : TextView = userView.findViewById(R.id.all_userTV)
+                            val alluser = re_member+new_member
+                              Log.d("총",alluser.toString())
+                            dateTV.text = date.toString()
+                            all_userTV.text = alluser.toString()
+                            re_userTV.text = re_member.toString()
+                            new_userTV.text = new_member.toString()
+                            itemdateLL.addView(userView)
 
-                        all_userTV.text = visit_history
-                        re_userTV.text = visit_re
 
-                        itemdateLL.addView(userView)
+
+                        }
+
+
+
                     } else {
 
                     }

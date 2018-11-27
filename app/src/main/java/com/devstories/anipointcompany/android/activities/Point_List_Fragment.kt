@@ -16,9 +16,14 @@ import cz.msebera.android.httpclient.Header
 import org.json.JSONException
 import org.json.JSONObject
 import android.app.DatePickerDialog
+import android.content.Intent
+import android.util.Log
 import android.widget.*
 import com.devstories.anipointcompany.android.Actions.MemberAction
+import com.devstories.anipointcompany.android.Actions.PointAction
+import com.devstories.anipointcompany.android.base.PrefUtils
 import java.util.*
+import java.util.prefs.Preferences
 
 
 class Point_List_Fragment : Fragment() {
@@ -32,6 +37,13 @@ class Point_List_Fragment : Fragment() {
     lateinit var last_dateTV: TextView
     lateinit var startdateTV: TextView
     lateinit var lastdateTV: TextView
+    lateinit var all_cntTV: TextView
+    lateinit var all_stackTV: TextView
+    lateinit var all_useTV: TextView
+    lateinit var all_couponTV: TextView
+    lateinit var nonameTV: TextView
+    lateinit var accumulateLL: LinearLayout
+
     var adapterData: ArrayList<JSONObject> = ArrayList<JSONObject>()
 
     lateinit var useradapter: UserListAdapter
@@ -40,6 +52,9 @@ class Point_List_Fragment : Fragment() {
     var year: Int = 1
     var month: Int = 1
     var day: Int = 1
+
+    var start_date:String?=null
+    var end_date :String?=null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
@@ -60,8 +75,12 @@ class Point_List_Fragment : Fragment() {
         last_dateTV = view.findViewById(R.id.last_dateTV)
         startdateTV = view.findViewById(R.id.startdateTV)
         lastdateTV = view.findViewById(R.id.lastdateTV)
-
-
+        all_cntTV= view.findViewById(R.id.all_cntTV)
+        all_stackTV= view.findViewById(R.id.all_stackTV)
+        all_useTV= view.findViewById(R.id.all_useTV)
+        all_couponTV= view.findViewById(R.id.all_couponTV)
+        nonameTV= view.findViewById(R.id.nonameTV)
+        accumulateLL = view.findViewById(R.id.accumulateLL)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -72,6 +91,11 @@ class Point_List_Fragment : Fragment() {
         month = calendar.get(Calendar.MONTH)
         day = calendar.get(Calendar.DAY_OF_MONTH)
 
+        accumulateLL.setOnClickListener {
+            val intent = Intent(myContext, PointActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
         useradapter = UserListAdapter(myContext,R.layout.item_user_point_list,adapterData)
         userLV.adapter = useradapter
         loadData(1)
@@ -81,6 +105,15 @@ class Point_List_Fragment : Fragment() {
         last_dateLL.setOnClickListener {
             datedlg2()
         }
+        startdateTV.text = "총합"
+        nonameTV.visibility = View.GONE
+        lastdateTV.text = ""
+
+
+        loadmainData(1)
+
+
+
     }
 
 
@@ -181,23 +214,132 @@ class Point_List_Fragment : Fragment() {
     }
     private val dateSetListener2 = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
         // TODO Auto-generated method stub
-
-        val msg = String.format("%d / %d / %d", year, monthOfYear + 1, dayOfMonth)
+        val msg = String.format("%d.%d.%d", year, monthOfYear + 1, dayOfMonth)
+        val end_msg = String.format("%d-%d-%d", year, monthOfYear + 1, dayOfMonth)
+        end_date = end_msg
         lastdateTV.text = msg
         last_dateTV.text = msg
-
+        nonameTV.visibility = View.VISIBLE
         Toast.makeText(myContext, msg, Toast.LENGTH_SHORT).show()
+        loadmainData(1)
     }
     private val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
         // TODO Auto-generated method stub
 
-        val msg = String.format("%d / %d / %d", year, monthOfYear + 1, dayOfMonth)
+        val msg = String.format("%d.%d.%d", year, monthOfYear + 1, dayOfMonth)
 
         first_dateTV.text = msg
         startdateTV.text = msg
-
-        Toast.makeText(myContext, msg, Toast.LENGTH_SHORT).show()
+        nonameTV.visibility = View.VISIBLE
+          Toast.makeText(myContext, msg, Toast.LENGTH_SHORT).show()
+        loadmainData(1)
     }
+
+    //총포인트내역
+    fun loadmainData(company_id: Int) {
+        val params = RequestParams()
+        start_date = Utils.getString(startdateTV)
+        if (start_date.equals("총합")){
+            start_date = null
+        }
+
+
+        params.put("company_id",company_id)
+        params.put("start_date",start_date)
+        System.out.print("시작"+start_date)
+        params.put("end_date",end_date)
+        System.out.print("끝"+end_date)
+
+
+
+
+        PointAction.index(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    val result = response!!.getString("result")
+                    if ("ok" == result) {
+                        val data = response.getJSONObject("pointData")
+                        val allCount = Utils.getInt(data,"allCount")
+                        val addPointCount = Utils.getInt(data,"addPointCount")
+                        val addPoint = Utils.getInt(data,"addPoint")
+                        val addPointMember = Utils.getInt(data,"addPointMember")
+                        val usePointCount = Utils.getInt(data,"usePointCount")
+                        val usePoint = Utils.getInt(data,"usePoint")
+                        val usePointMember = Utils.getInt(data,"usePointMember")
+                        val allcnt =   addPointMember+usePointMember
+                        val total_point_cnt = addPointCount+usePointCount
+
+
+                        all_cntTV.text = allcnt.toString()+"명/"+total_point_cnt.toString()+"회"
+                        all_stackTV.text = addPointMember.toString() +"명/"+addPointCount+"회/"+addPoint.toString()+"P"
+                        all_useTV.text =usePointMember.toString() +"명/"+usePointCount+"회/"+usePoint.toString()+"P"
+
+
+
+
+
+
+
+
+                    } else {
+                    Toast.makeText(myContext,"조회실패",Toast.LENGTH_SHORT).show()
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(myContext, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
+
 
 
     override fun onDestroy() {

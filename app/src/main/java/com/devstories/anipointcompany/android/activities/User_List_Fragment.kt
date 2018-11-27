@@ -2,6 +2,7 @@ package com.devstories.anipointcompany.android.activities
 
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -32,7 +33,7 @@ class User_List_Fragment : Fragment() {
 
     private var progressDialog: ProgressDialog? = null
     lateinit var userLL: LinearLayout
-
+    lateinit var accumulateLL: LinearLayout
     var adapterData: ArrayList<JSONObject> = ArrayList<JSONObject>()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
@@ -46,13 +47,18 @@ class User_List_Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         userLL = view.findViewById(R.id.userLL)
+        accumulateLL = view.findViewById(R.id.accumulateLL)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         mainData()
 
-
+        accumulateLL.setOnClickListener {
+            val intent = Intent(myContext, PointActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
 
 
     }

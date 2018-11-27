@@ -1,6 +1,7 @@
 package com.devstories.anipointcompany.android.activities
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -57,6 +58,7 @@ class Message_Manage_Fragment : Fragment() {
     lateinit var use_moneyRL: RelativeLayout
     lateinit var novisitRL: RelativeLayout
     lateinit var pointRL: RelativeLayout
+    lateinit var accumulateLL: LinearLayout
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
@@ -103,6 +105,8 @@ class Message_Manage_Fragment : Fragment() {
         acc_countRL = view.findViewById(R.id.acc_countRL)
         novisitRL = view.findViewById(R.id.novisitRL)
         pointRL = view.findViewById(R.id.pointRL)
+        accumulateLL = view.findViewById(R.id.accumulateLL)
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -219,6 +223,11 @@ class Message_Manage_Fragment : Fragment() {
             pointRL.setBackgroundColor(Color.parseColor("#0068df"))
         }
 
+        accumulateLL.setOnClickListener {
+            val intent = Intent(myContext, PointActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
 
     }
 
