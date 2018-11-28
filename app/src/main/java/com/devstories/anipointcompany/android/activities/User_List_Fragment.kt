@@ -2,6 +2,7 @@ package com.devstories.anipointcompany.android.activities
 
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -40,9 +41,10 @@ class User_List_Fragment : Fragment() {
     lateinit var userList_birth_userLL : LinearLayout
     lateinit var userList_mvpLL : LinearLayout
     lateinit var joinLL : LinearLayout
+    lateinit var accumulateLL : LinearLayout
     lateinit var btn_search : LinearLayout
     lateinit var entire_viewTV : TextView
-
+    lateinit var useLL : LinearLayout
     var isBirthTab = false
 
     var adapterData: ArrayList<JSONObject> = ArrayList<JSONObject>()
@@ -67,14 +69,30 @@ class User_List_Fragment : Fragment() {
         userList_birth_userLL = view.findViewById(R.id.userList_birth_userLL)
         userList_mvpLL = view.findViewById(R.id.userList_mvpLL)
         joinLL = view.findViewById(R.id.joinLL)
+        accumulateLL = view.findViewById(R.id.accumulateLL)
+        useLL = view.findViewById(R.id.useLL)
         btn_search = view.findViewById(R.id.btn_search)
         entire_viewTV = view.findViewById(R.id.entire_viewTV)
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         mainData(1)
+
+
+        useLL.setOnClickListener {
+            val intent = Intent(myContext, PointActivity::class.java)
+            intent.putExtra("step",4)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
+        accumulateLL.setOnClickListener {
+            val intent = Intent(myContext, PointActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
 
         entire_viewTV.setOnClickListener {
             setLeftMenu()

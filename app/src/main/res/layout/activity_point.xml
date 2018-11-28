@@ -312,6 +312,7 @@
                         android:id="@+id/genderTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="#ffffff"
                         android:textSize="9sp"
                         android:textColorHint="#ffffff"
                         android:letterSpacing="-0.03"
@@ -378,7 +379,7 @@
                         android:textColor="#ffffff"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="1sp"
-                        android:text="누적사용:" />
+                        android:text="사용가능:" />
                     <TextView
                         android:id="@+id/stack_pointTV"
                         android:layout_width="wrap_content"
@@ -387,7 +388,15 @@
                         android:textColor="#ffffff"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="1sp"
-                        android:text="6840P" />
+                        android:text="0" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="9sp"
+                        android:textColor="#ffffff"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="1sp"
+                        android:text="P" />
 
                 </LinearLayout>
                 <View
@@ -460,6 +469,7 @@
             android:gravity="center">
 
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/checkLL"
                 android:layout_width="115dp"
                 android:layout_height="25dp"
@@ -471,7 +481,7 @@
                     android:textSize="12sp"
                     android:textColor="#ffffff"
                     android:letterSpacing="-0.03"
-                    android:text="확인"
+                    android:text="신규가입"
                     />
             </LinearLayout>
 
@@ -543,16 +553,6 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="27sp"
-                        android:textColor="#0066b0"
-                        android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="8sp"
-                        android:gravity="end"
-                        android:text="\ "
-                        />
-                    <TextView
                         android:id="@+id/moneyTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -561,8 +561,19 @@
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="8sp"
                         android:gravity="end"
-                        android:text="15,000"
                         />
+                    <TextView
+                        android:id="@+id/m_opTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="27sp"
+                        android:textColor="#0066b0"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="8sp"
+                        android:gravity="end"
+                        android:text="￦"
+                        />
+
 
                 </LinearLayout>
             </LinearLayout>
@@ -808,13 +819,14 @@
                         android:background="#b894ff"
                         android:layout_height="match_parent">
                         <TextView
+                            android:id="@+id/opTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="21sp"
                             android:textColor="#ffffff"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-12sp"
-                            android:text="사용"
+                            android:text="적립"
                             />
 
                     </LinearLayout>
@@ -830,7 +842,7 @@
 
 
                     <LinearLayout
-                        android:onClick="onClick"
+                        android:id="@+id/stackLL"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:gravity="center"
@@ -875,12 +887,12 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
+                            android:textSize="24dp"
                             android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
                             android:gravity="center_horizontal"
-                            android:text="9"
+                            android:text="포인트"
                             />
 
                     </LinearLayout>
