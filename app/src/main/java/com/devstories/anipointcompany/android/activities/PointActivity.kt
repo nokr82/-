@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.MemberAction
+import com.devstories.anipointcompany.android.Actions.MemberAction.member_join
 import com.devstories.anipointcompany.android.Actions.RequestStepAction
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.PrefUtils
@@ -31,6 +32,7 @@ class PointActivity : RootActivity() {
     var type = -1
     var step = -1
     var member_id = -1
+    var p_type = -1
 
     var stackpoint = -1
 
@@ -53,15 +55,21 @@ class PointActivity : RootActivity() {
         intent = getIntent()
         type = intent.getIntExtra("type", -1)
         step = intent.getIntExtra("step", 1)
-        member_id = 1
+
+        if (step ==4){
+            opTV.text = "사용"
+            m_opTV.text = "P"
+        }
+
+
         stackLL.setOnClickListener {
             val totalpoint =Integer.parseInt(moneyTV.text.toString())
             Log.d("포인트", totalpoint.toString())
             stackpoint = totalpoint*3/100
             step = 3
-
             changeStep()
-            Toast.makeText(context,stackpoint.toString()+"적립됩니다",Toast.LENGTH_SHORT).show()
+            p_type=1
+            stack_point(member_id.toString())
 
         }
 
@@ -109,8 +117,21 @@ class PointActivity : RootActivity() {
             } else {
             }
         }
-
-
+        useLL.setOnClickListener {
+            if (opTV.text.equals("사용")){
+            val totalpoint =Integer.parseInt(moneyTV.text.toString())
+            val use_point =Integer.parseInt(stack_pointTV.text.toString())
+            stackpoint = totalpoint
+            Log.d("사용포인트", totalpoint.toString())
+            if(stackpoint>use_point){
+                Toast.makeText(context,"포인트가 부족합니다",Toast.LENGTH_SHORT).show()
+            }else{
+                step = 6
+                p_type=2
+                stack_point(member_id.toString())
+            }
+            }
+        }
 
         changeStep()
 
@@ -207,6 +228,8 @@ class PointActivity : RootActivity() {
                     if ("ok" == result) {
                         var requestStep = response.getJSONObject("RequestStep")
                         var member = response.getJSONObject("Member")
+                        var point  = response.getJSONObject("Point")
+
 //                        step = Utils.getInt(requestStep, "step")
                         member_id = Utils.getInt(requestStep, "member_id")
                         val result_step = Utils.getInt(requestStep, "step")
@@ -223,6 +246,8 @@ class PointActivity : RootActivity() {
                             if(step == 2) {
                                 // 적립 -> 회원 정보
 
+                                opTV.text = "적립"
+                                //신규회원이 아닐경우
                                 if(new_member_yn == "Y") {
                                     joinLL.visibility = View.VISIBLE
                                     message_op_LL.visibility = View.GONE
@@ -240,7 +265,9 @@ class PointActivity : RootActivity() {
                                 var coupon = Utils.getString(member, "coupon")
                                 var memo = Utils.getString(member, "memo")
                                 var name = Utils.getString(member, "name")
+                                var left_point = Utils.getString(point, "balance")
 
+                                stack_pointTV.text = left_point
                                 titleTV.text = name
                                 genderTV.text = gender
                                 phoneTV.text = phone
@@ -249,6 +276,24 @@ class PointActivity : RootActivity() {
                                 couponTV.text = coupon
                                 memoTV.text = memo
 
+                            }else if(step == 5){
+                                var phone = Utils.getString(member, "phone")
+                                var gender = Utils.getString(member, "gender")
+                                var age = Utils.getString(member, "age")
+                                var birth = Utils.getString(member, "birth")
+                                var coupon = Utils.getString(member, "coupon")
+                                var memo = Utils.getString(member, "memo")
+                                var name = Utils.getString(member, "name")
+                                var left_point = Utils.getString(point, "balance")
+
+                                stack_pointTV.text = left_point
+                                titleTV.text = name
+                                genderTV.text = gender
+                                phoneTV.text = phone
+                                ageTV.text = age
+                                birthTV.text = birth
+                                couponTV.text = coupon
+                                memoTV.text = memo
                             }
 
                         }
@@ -306,40 +351,32 @@ class PointActivity : RootActivity() {
         timer!!.schedule(task, 0, 2000)
     }
 
-    //고객정보뽑기
-    fun loaduserdata() {
+    //포인트적립/사용
+    fun stack_point(member_id:String) {
         val params = RequestParams()
-        params.put("member_id", 1)
-
-        MemberAction.my_info(params, object : JsonHttpResponseHandler() {
+        params.put("member_id",member_id)
+        params.put("company_id", 1)
+        params.put("point", stackpoint)
+        params.put("type", p_type)
+        MemberAction.point_stack(params, object : JsonHttpResponseHandler() {
 
             override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
                 if (progressDialog != null) {
                     progressDialog!!.dismiss()
                 }
-
                 try {
-
-                    Log.d("리스폰", response.toString())
                     val result = response!!.getString("result")
+                    Log.d("적립",response.toString())
+
                     if ("ok" == result) {
-                        var data = response.getJSONObject("member")
-                        var phone = Utils.getString(data, "phone")
-                        var gender = Utils.getString(data, "gender")
-                        var age = Utils.getString(data, "age")
-                        var birth = Utils.getString(data, "birth")
-                        var coupon = Utils.getString(data, "coupon")
-                        var memo = Utils.getString(data, "memo")
-                        var name = Utils.getString(data, "name")
-
-                        titleTV.text = name
-                        genderTV.text = gender
-                        phoneTV.text = phone
-                        ageTV.text = age
-                        birthTV.text = birth
-                        couponTV.text = coupon
-                        memoTV.text = memo
-
+                        val intent = Intent(context, UserListActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
+                        if (p_type==1){
+                            Toast.makeText(context,stackpoint.toString()+"적립됩니다",Toast.LENGTH_SHORT).show()
+                        }else if (p_type==2){
+                            Toast.makeText(context,stackpoint.toString()+"사용됩니다",Toast.LENGTH_SHORT).show()
+                        }
                     }
 
                 } catch (e: JSONException) {
@@ -348,18 +385,15 @@ class PointActivity : RootActivity() {
 
             }
 
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONArray?) {
+                super.onSuccess(statusCode, headers, response)
+            }
 
             private fun error() {
                 Utils.alert(context, "조회중 장애가 발생하였습니다.")
             }
 
-
-            override fun onFailure(
-                    statusCode: Int,
-                    headers: Array<Header>?,
-                    throwable: Throwable,
-                    errorResponse: JSONObject?
-            ) {
+            override fun onFailure(statusCode: Int, headers: Array<Header>?, throwable: Throwable, errorResponse: JSONArray?) {
                 if (progressDialog != null) {
                     progressDialog!!.dismiss()
                 }
@@ -382,6 +416,10 @@ class PointActivity : RootActivity() {
             }
         })
     }
+
+
+
+
 
     fun member_join() {
 
@@ -457,6 +495,9 @@ class PointActivity : RootActivity() {
         })
 
     }
+
+
+
 
     override fun onDestroy() {
         super.onDestroy()
