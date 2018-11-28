@@ -26,6 +26,7 @@ import java.util.*
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.MemberAction
 import com.devstories.anipointcompany.android.R.id.*
+import kotlinx.android.synthetic.main.fra_user_visit_analysis.*
 
 
 class User_visit_List_Fragment : Fragment() {
@@ -55,6 +56,7 @@ class User_visit_List_Fragment : Fragment() {
 
 
   var day_type = -1
+    var showCnt = 5;
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
@@ -65,6 +67,7 @@ class User_visit_List_Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         amountSP = view.findViewById(R.id.amountSP)
         dateTV = view.findViewById(R.id.dateTV)
         itemdateLL = view.findViewById(R.id.itemdateLL)
@@ -99,6 +102,17 @@ class User_visit_List_Fragment : Fragment() {
             startActivity(intent)
         }
 
+        amountSP.setOnItemClickListener { parent, view, position, id ->
+            
+        }
+
+        btn_pre.setOnClickListener {
+
+        }
+
+        btn_next.setOnClickListener {
+
+        }
 
         todayRL.setOnClickListener {
             setmenu()
