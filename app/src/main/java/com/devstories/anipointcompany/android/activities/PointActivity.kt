@@ -129,6 +129,7 @@ class PointActivity : RootActivity() {
                 step = 6
                 p_type=2
                 stack_point(member_id.toString())
+                changeStep()
             }
             }
         }
