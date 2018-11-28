@@ -32,6 +32,9 @@ class PointActivity : RootActivity() {
     var step = -1
     var member_id = -1
 
+    var stackpoint = -1
+
+
     internal var checkHandler: Handler = object : Handler() {
         override fun handleMessage(msg: android.os.Message) {
             checkStep()
@@ -50,16 +53,17 @@ class PointActivity : RootActivity() {
         intent = getIntent()
         type = intent.getIntExtra("type", -1)
         step = intent.getIntExtra("step", 1)
+        member_id = 1
+        stackLL.setOnClickListener {
+            val totalpoint =Integer.parseInt(moneyTV.text.toString())
+            Log.d("포인트", totalpoint.toString())
+            stackpoint = totalpoint*3/100
+            step = 3
 
-//        if (type == 1) {
-//            joinLL.visibility = View.VISIBLE
-//            message_op_LL.visibility = View.GONE
-//            checkLL.visibility = View.VISIBLE
-//        } else {
-//            message_op_LL.visibility = View.VISIBLE
-//            joinLL.visibility = View.GONE
-//            checkLL.visibility = View.GONE
-//        }
+            changeStep()
+            Toast.makeText(context,stackpoint.toString()+"적립됩니다",Toast.LENGTH_SHORT).show()
+
+        }
 
         checkLL.setOnClickListener {
             member_join()
@@ -106,6 +110,8 @@ class PointActivity : RootActivity() {
             }
         }
 
+
+
         changeStep()
 
     }
@@ -129,7 +135,14 @@ class PointActivity : RootActivity() {
                     val result = response!!.getString("result")
                     if ("ok" == result) {
                         var requestStep = response.getJSONObject("RequestStep")
+                        var step = Utils.getInt(requestStep,"step")
+                        if (step ==3){
+                        timer!!.cancel()
+                        }
+
 //                        step = Utils.getInt(requestStep, "step")
+
+
 
                         timerStart()
 
@@ -451,6 +464,9 @@ class PointActivity : RootActivity() {
             progressDialog!!.dismiss()
         }
 
+        if (timer != null) {
+            timer!!.cancel()
+        }
 
     }
 

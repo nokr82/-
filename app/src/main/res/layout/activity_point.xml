@@ -549,7 +549,7 @@
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="8sp"
                         android:gravity="end"
-                        android:text="\ "
+                        android:text="￦"
                         />
                     <TextView
                         android:id="@+id/moneyTV"
@@ -560,7 +560,6 @@
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="8sp"
                         android:gravity="end"
-                        android:text="15,000"
                         />
 
                 </LinearLayout>
@@ -829,7 +828,7 @@
 
 
                     <LinearLayout
-                        android:onClick="onClick"
+                        android:id="@+id/stackLL"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:gravity="center"
