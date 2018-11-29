@@ -98,6 +98,7 @@
                             android:textColor="#666666"
                             android:text="코인"/>
                         <TextView
+                            android:id="@+id/accountTV"
                             android:layout_width="wrap_content"
                             android:layout_height="15dp"
                             android:gravity="bottom"
@@ -170,7 +171,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
                             <TextView
-                                android:id="@+id/minimumUsingPointTV"
+                                android:id="@+id/min_pointTV"
                                 android:layout_width="50dp"
                                 android:layout_height="15dp"
                                 android:textSize="8sp"
@@ -301,6 +302,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp">
                         <ImageView
+                            android:id="@+id/vsitIV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="3dp"
@@ -313,6 +315,7 @@
                             android:text="방문기준"/>
 
                         <ImageView
+                            android:id="@+id/costIV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="9.5dp"
@@ -355,14 +358,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
-                                <TextView
-                                    android:id="@+id/visitCnt"
+                                <EditText
+                                    android:id="@+id/visitcntTV"
                                     android:layout_width="50dp"
                                     android:layout_height="15dp"
                                     android:textSize="8sp"
                                     android:gravity="right|bottom"
                                     android:textColor="#666666"
-                                    android:text="12,500"/>
+                                    android:text="0"/>
                                 <View
                                     android:layout_width="50dp"
                                     android:layout_height="0.5dp"
@@ -409,14 +412,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
-                                <TextView
+                                <EditText
                                     android:id="@+id/costTV"
                                     android:layout_width="50dp"
                                     android:layout_height="15dp"
                                     android:textSize="8sp"
                                     android:gravity="right|bottom"
                                     android:textColor="#666666"
-                                    android:text="12,500"/>
+                                    android:text="0"/>
                                 <View
                                     android:layout_width="50dp"
                                     android:layout_height="0.5dp"
