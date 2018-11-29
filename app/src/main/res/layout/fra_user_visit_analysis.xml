@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="visible">
+            android:visibility="invisible">
 
 
             <LinearLayout
@@ -119,6 +119,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:visibility="invisible"
             android:layout_marginTop="10dp"
             android:id="@+id/accumulateLL"
             android:layout_width="40dp"
@@ -579,13 +580,11 @@
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
-
                             <LinearLayout
                                 android:background="#e7e7e7"
                                 android:layout_width="match_parent"
                                 android:layout_height="20dp"
                                 android:gravity="center">
-
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -594,12 +593,10 @@
                                     android:text="날짜"
                                     android:textColor="#666666"
                                     android:textSize="8sp" />
-
                             </LinearLayout>
-
-
-
                         </LinearLayout>
+
+
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_weight="1"
@@ -699,6 +696,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/btn_pre"
                     android:layout_marginRight="2.5dp"
                     android:layout_width="50dp"
                     android:layout_height="18dp"
@@ -717,6 +715,7 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/btn_next"
                     android:layout_marginLeft="2.5dp"
                     android:layout_width="50dp"
                     android:layout_height="18dp"
