@@ -357,9 +357,16 @@ class PointActivity : RootActivity() {
         val params = RequestParams()
         params.put("member_id",member_id)
         params.put("company_id", 1)
-        params.put("point", stackpoint)
-        params.put("type", p_type)
-        MemberAction.point_stack(params, object : JsonHttpResponseHandler() {
+        params.put("point", stackpoint)//사용및적립포인트
+        params.put("type", p_type)//1적립 2사용
+    //    params.put("use_point", p_type)//사용 포인트
+        params.put("price", p_type)//상품가격
+       params.put("payment_type", p_type)//결제방법
+       params.put("use_type", p_type)//1적립 2사용 3 적립/사용
+        params.put("category_id", p_type)//카테고리 일련번호
+
+
+        MemberAction.point(params, object : JsonHttpResponseHandler() {
 
             override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
                 if (progressDialog != null) {
