@@ -426,10 +426,11 @@
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="1sp"
                         android:text="4장" />
-
                 </LinearLayout>
+
                 <View
                     android:layout_marginRight="6dp"
+                    android:layout_marginBottom="2dp"
                     android:layout_width="match_parent"
                     android:layout_height="0.3dp"
                     android:background="#ffffff"/>
@@ -456,6 +457,7 @@
                 </LinearLayout>
                 <View
                     android:layout_marginRight="6dp"
+                    android:layout_marginTop="2dp"
                     android:layout_width="match_parent"
                     android:layout_height="0.3dp"
                     android:background="#ffffff"/>
@@ -476,6 +478,7 @@
                 android:orientation="vertical"
                 android:gravity="center_horizontal">
                 <TextView
+                    android:id="@+id/okTV"
                     android:layout_width="115dp"
                     android:layout_height="25dp"
                     android:layout_marginTop="12.5dp"
@@ -493,6 +496,7 @@
                     android:background="#ffffff">
 
                     <Spinner
+                        android:id="@+id/spn"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:background="@null"
