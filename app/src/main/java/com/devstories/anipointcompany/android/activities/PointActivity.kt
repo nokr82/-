@@ -229,31 +229,34 @@ class PointActivity : RootActivity() {
                     if ("ok" == result) {
                         var requestStep = response.getJSONObject("RequestStep")
                         var member = response.getJSONObject("Member")
-                        var point  = response.getJSONObject("Point")
+
 
 //                        step = Utils.getInt(requestStep, "step")
                         member_id = Utils.getInt(requestStep, "member_id")
                         val result_step = Utils.getInt(requestStep, "step")
                         val new_member_yn = Utils.getString(requestStep, "new_member_yn")
+                        var point:JSONObject? = null
+
+
 
                         if(step != result_step) {
 
-                            if (timer != null) {
-                                timer!!.cancel()
-                            }
-
                             step = result_step
-
+        Log.d("스텝",step.toString())
+                            //포인트적립
                             if(step == 2) {
                                 // 적립 -> 회원 정보
-
                                 opTV.text = "적립"
                                 //신규회원이 아닐경우
-                                if(new_member_yn == "Y") {
+                               Log.d("스텝",new_member_yn)
+                                if(new_member_yn.equals("Y")) {
+                                    timer!!.cancel()
                                     joinLL.visibility = View.VISIBLE
                                     message_op_LL.visibility = View.GONE
                                     checkLL.visibility = View.VISIBLE
                                 } else {
+                                    timer!!.cancel()
+                                    point= response.getJSONObject("Point")
                                     message_op_LL.visibility = View.VISIBLE
                                     joinLL.visibility = View.GONE
                                     checkLL.visibility = View.GONE
@@ -266,7 +269,10 @@ class PointActivity : RootActivity() {
                                 var coupon = Utils.getString(member, "coupon")
                                 var memo = Utils.getString(member, "memo")
                                 var name = Utils.getString(member, "name")
-                                var left_point = Utils.getString(point, "balance")
+                                var left_point:String? = null
+                                if (new_member_yn.equals("N")){
+                                    left_point = Utils.getString(point, "balance")
+                                }
 
                                 stack_pointTV.text = left_point
                                 titleTV.text = name
@@ -276,8 +282,21 @@ class PointActivity : RootActivity() {
                                 birthTV.text = birth
                                 couponTV.text = coupon
                                 memoTV.text = memo
+                            }//포인트사용
+                            else if(step == 5){
+                                if(new_member_yn.equals("Y")) {
+                                    timer!!.cancel()
+                                    joinLL.visibility = View.VISIBLE
+                                    message_op_LL.visibility = View.GONE
+                                    checkLL.visibility = View.VISIBLE
+                                } else {
+                                    timer!!.cancel()
+                                    point= response.getJSONObject("Point")
+                                    message_op_LL.visibility = View.VISIBLE
+                                    joinLL.visibility = View.GONE
+                                    checkLL.visibility = View.GONE
+                                }
 
-                            }else if(step == 5){
                                 var phone = Utils.getString(member, "phone")
                                 var gender = Utils.getString(member, "gender")
                                 var age = Utils.getString(member, "age")
@@ -285,7 +304,10 @@ class PointActivity : RootActivity() {
                                 var coupon = Utils.getString(member, "coupon")
                                 var memo = Utils.getString(member, "memo")
                                 var name = Utils.getString(member, "name")
-                                var left_point = Utils.getString(point, "balance")
+                                var left_point:String? = null
+                                if (new_member_yn.equals("N")){
+                                    left_point = Utils.getString(point, "balance")
+                                }
 
                                 stack_pointTV.text = left_point
                                 titleTV.text = name
