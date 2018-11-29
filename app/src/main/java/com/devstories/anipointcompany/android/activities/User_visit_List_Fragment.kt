@@ -20,12 +20,8 @@ import com.loopj.android.http.RequestParams
 import cz.msebera.android.httpclient.Header
 import org.json.JSONException
 import org.json.JSONObject
-import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
-import android.widget.Toast
-import com.devstories.anipointcompany.android.Actions.MemberAction
-import com.devstories.anipointcompany.android.R.id.*
 import kotlinx.android.synthetic.main.fra_user_visit_analysis.*
 
 
@@ -55,8 +51,13 @@ class User_visit_List_Fragment : Fragment() {
     lateinit var accumulateLL: LinearLayout
 
 
-  var day_type = -1
-    var showCnt = 5;
+    var day_type = -1 //오늘, 이번주, 이번달, 3개월
+    var showCnt = 5//5개/10개씩 보기
+    var start = 0
+    var end = start + (showCnt - 1)
+    var gl_totalPage = 0
+    var gl_tempPage = 0
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
@@ -102,8 +103,24 @@ class User_visit_List_Fragment : Fragment() {
             startActivity(intent)
         }
 
-        amountSP.setOnItemClickListener { parent, view, position, id ->
-            
+        amountSP.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                showCnt = 5
+                println("showCnt in onNothingSelected :: $showCnt")
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+                if (position == 0){
+                    showCnt = 5
+                }
+                else if (position == 1){
+                    showCnt = 10
+                }
+
+                println("showCnt ::::: $showCnt")
+
+            }
         }
 
         btn_pre.setOnClickListener {
@@ -111,7 +128,9 @@ class User_visit_List_Fragment : Fragment() {
         }
 
         btn_next.setOnClickListener {
+            if (gl_totalPage < gl_tempPage){
 
+            }
         }
 
         todayRL.setOnClickListener {
@@ -225,6 +244,7 @@ class User_visit_List_Fragment : Fragment() {
                         all_memberTV.text = allmember.toString()
                         new_userTV.text = member_new_cnt.toString()
                         member_re_cntTV.text  = member_re_cnt.toString()
+
                     } else {
 
                     }
@@ -287,6 +307,7 @@ class User_visit_List_Fragment : Fragment() {
         params.put("company_id",company_id)
         params.put("day_type",day_type)
         Log.d("day_type",day_type.toString())
+
         PointAction.user_visited(params, object : JsonHttpResponseHandler() {
 
             override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
@@ -299,15 +320,20 @@ class User_visit_List_Fragment : Fragment() {
                     if ("ok" == result) {
                         itemdateLL.removeAllViews()
                         val points = response.getJSONArray("points")
+
                         Log.d("데이트",points.toString())
+
+                        //for(i in start..end){
                         for (i in 0..points.length()-1){
+
                             Log.d("갯수",i.toString())
+
                             var json=points[i] as JSONObject
                             val date = Utils.getString(json,"date")
                             val new_member = Utils.getInt(json,"new_member")
                             val re_member =Utils.getInt(json,"re_member")
-                            Log.d("데이트",re_member.toString())
 
+                            Log.d("데이트",re_member.toString())
 
                             val userView = View.inflate(myContext, R.layout.item_visit, null)
                             var dateTV : TextView = userView.findViewById(R.id.dateTV)
@@ -315,18 +341,24 @@ class User_visit_List_Fragment : Fragment() {
                             var re_userTV : TextView = userView.findViewById(R.id.re_userTV)
                             var all_userTV : TextView = userView.findViewById(R.id.all_userTV)
                             val alluser = re_member+new_member
-                              Log.d("총",alluser.toString())
+
+                            Log.d("총",alluser.toString())
+
                             dateTV.text = date.toString()
                             all_userTV.text = alluser.toString()
                             re_userTV.text = re_member.toString()
                             new_userTV.text = new_member.toString()
+
                             itemdateLL.addView(userView)
 
+                            /*start = end + 1
+                            end += showCnt - 1
 
+                            if (end - (points.length() - 1) > 0){
+                                end = points.length() - 1
+                            }*/
 
                         }
-
-
 
                     } else {
 

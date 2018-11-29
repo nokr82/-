@@ -197,8 +197,6 @@ class Point_List_Fragment : Fragment() {
 
         loadmainData(1)
 
-
-
     }
 
 
@@ -372,12 +370,6 @@ class Point_List_Fragment : Fragment() {
                         all_useTV.text =usePointMember.toString() +"명/"+usePointCount+"회/"+usePoint.toString()+"P"
 
 
-
-
-
-
-
-
                     } else {
                     Toast.makeText(myContext,"조회실패",Toast.LENGTH_SHORT).show()
                     }
@@ -476,12 +468,6 @@ class Point_List_Fragment : Fragment() {
                         all_cntTV.text = visit_cnt+"회"
                         all_stackTV.text =stack_point_cnt+"회/"+point+"P"
                         all_useTV.text =use_point_cnt+"회/"+use_point+"P"
-
-
-
-
-
-
 
 
                     } else {

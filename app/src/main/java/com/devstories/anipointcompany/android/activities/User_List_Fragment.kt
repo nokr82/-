@@ -210,7 +210,7 @@ class User_List_Fragment : Fragment() {
                             stack_pointTV.text = "누적:"+stack_point+"P"
                             dateTV.text = updated_date+" 방문"
                             ageTV.text = age+"세"
-                            nameTV.text = name
+                            nameTV.text = phone
                             name2TV.text = name
                             genderTV.text = gender
                             memoTV.text = memo
@@ -219,13 +219,13 @@ class User_List_Fragment : Fragment() {
                             visitTV.text = visit+"회"
                             phoneTV.text = phone
 
-                            if (isBirthTab) {
+                            /*if (isBirthTab) {
                                 nameTV.text = phone
                                 phoneTV.visibility = View.GONE
 
                             } else {
                                 phoneTV.visibility = View.VISIBLE
-                            }
+                            }*/
 
                             userLL.addView(userView)
                         }
