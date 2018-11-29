@@ -33,6 +33,7 @@ class PointActivity : RootActivity() {
     var step = -1
     var member_id = -1
     var p_type = -1
+    var phone = ""
 
     var stackpoint = -1
 
@@ -229,44 +230,49 @@ class PointActivity : RootActivity() {
                     if ("ok" == result) {
                         var requestStep = response.getJSONObject("RequestStep")
                         var member = response.getJSONObject("Member")
-                        var point  = response.getJSONObject("Point")
+
 
 //                        step = Utils.getInt(requestStep, "step")
                         member_id = Utils.getInt(requestStep, "member_id")
+                        phone = Utils.getString(member, "phone")
+                        Log.d("폰",phone)
                         val result_step = Utils.getInt(requestStep, "step")
                         val new_member_yn = Utils.getString(requestStep, "new_member_yn")
+                        var point:JSONObject? = null
 
                         if(step != result_step) {
-
-                            if (timer != null) {
-                                timer!!.cancel()
-                            }
-
                             step = result_step
-
+        Log.d("스텝",step.toString())
+                            //포인트적립
                             if(step == 2) {
                                 // 적립 -> 회원 정보
-
                                 opTV.text = "적립"
                                 //신규회원이 아닐경우
-                                if(new_member_yn == "Y") {
+                               Log.d("스텝",new_member_yn)
+                                if(new_member_yn.equals("Y")) {
+                                    timer!!.cancel()
+                                    new_phoneTV.text =phone
                                     joinLL.visibility = View.VISIBLE
                                     message_op_LL.visibility = View.GONE
                                     checkLL.visibility = View.VISIBLE
                                 } else {
+                                    timer!!.cancel()
+                                    point= response.getJSONObject("Point")
                                     message_op_LL.visibility = View.VISIBLE
                                     joinLL.visibility = View.GONE
                                     checkLL.visibility = View.GONE
                                 }
 
-                                var phone = Utils.getString(member, "phone")
                                 var gender = Utils.getString(member, "gender")
                                 var age = Utils.getString(member, "age")
                                 var birth = Utils.getString(member, "birth")
                                 var coupon = Utils.getString(member, "coupon")
                                 var memo = Utils.getString(member, "memo")
                                 var name = Utils.getString(member, "name")
-                                var left_point = Utils.getString(point, "balance")
+                                var left_point:String? = null
+                                if (new_member_yn.equals("N")){
+                                    left_point = Utils.getString(point, "balance")
+                                }
 
                                 stack_pointTV.text = left_point
                                 titleTV.text = name
@@ -276,16 +282,32 @@ class PointActivity : RootActivity() {
                                 birthTV.text = birth
                                 couponTV.text = coupon
                                 memoTV.text = memo
+                            }//포인트사용
+                            else if(step == 5){
+                                if(new_member_yn.equals("Y")) {
+                                    timer!!.cancel()
+                                    new_phoneTV.text =phone
+                                    joinLL.visibility = View.VISIBLE
+                                    message_op_LL.visibility = View.GONE
+                                    checkLL.visibility = View.VISIBLE
+                                } else {
+                                    timer!!.cancel()
+                                    point= response.getJSONObject("Point")
+                                    message_op_LL.visibility = View.VISIBLE
+                                    joinLL.visibility = View.GONE
+                                    checkLL.visibility = View.GONE
+                                }
 
-                            }else if(step == 5){
-                                var phone = Utils.getString(member, "phone")
                                 var gender = Utils.getString(member, "gender")
                                 var age = Utils.getString(member, "age")
                                 var birth = Utils.getString(member, "birth")
                                 var coupon = Utils.getString(member, "coupon")
                                 var memo = Utils.getString(member, "memo")
                                 var name = Utils.getString(member, "name")
-                                var left_point = Utils.getString(point, "balance")
+                                var left_point:String? = null
+                                if (new_member_yn.equals("N")){
+                                    left_point = Utils.getString(point, "balance")
+                                }
 
                                 stack_pointTV.text = left_point
                                 titleTV.text = name
@@ -357,9 +379,16 @@ class PointActivity : RootActivity() {
         val params = RequestParams()
         params.put("member_id",member_id)
         params.put("company_id", 1)
-        params.put("point", stackpoint)
-        params.put("type", p_type)
-        MemberAction.point_stack(params, object : JsonHttpResponseHandler() {
+        params.put("point", stackpoint)//사용및적립포인트
+        params.put("type", p_type)//1적립 2사용
+    //    params.put("use_point", p_type)//사용 포인트
+        params.put("price", p_type)//상품가격
+       params.put("payment_type", p_type)//결제방법
+       params.put("use_type", p_type)//1적립 2사용 3 적립/사용
+        params.put("category_id", p_type)//카테고리 일련번호
+
+
+        MemberAction.point(params, object : JsonHttpResponseHandler() {
 
             override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
                 if (progressDialog != null) {
@@ -423,8 +452,8 @@ class PointActivity : RootActivity() {
 
 
     fun member_join() {
-
-        var getPhone = Utils.getString(phoneET)
+        var getid = member_id
+        var getPhone = Utils.getString(phoneTV)
         var getGender = Utils.getString(genderET)
         var getAge = Utils.getString(ageET)
         var getBirth = Utils.getString(birthET)
@@ -435,6 +464,7 @@ class PointActivity : RootActivity() {
 
         val params = RequestParams()
         params.put("company_id", 1)
+        params.put("member_id", getid)
         params.put("age", getAge)
         params.put("point", getPoint)
         params.put("name", getName)

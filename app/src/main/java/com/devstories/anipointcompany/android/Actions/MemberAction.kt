@@ -29,9 +29,10 @@ object MemberAction {
     fun member_join(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/member/member_join.json", params, handler)
     }
-    //포인트적립
-    fun point_stack(params: RequestParams, handler: JsonHttpResponseHandler) {
-        HttpClient.post("/member/point_stack.json", params, handler)
+
+    //포인트적립/사용 새거
+    fun point(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/member/point.json", params, handler)
     }
 
 }
