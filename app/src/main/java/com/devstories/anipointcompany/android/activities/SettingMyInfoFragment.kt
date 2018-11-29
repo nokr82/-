@@ -25,8 +25,10 @@ class SettingMyInfoFragment : Fragment() {
     lateinit var myContext: Context
     private var progressDialog: ProgressDialog? = null
 
-    lateinit var compNameTV: TextView
+    lateinit var compNameET: EditText
     lateinit var phoneNum1ET: EditText
+    lateinit var phoneNum2ET: EditText
+    lateinit var phoneNum3ET: EditText
     lateinit var termET: EditText
     lateinit var compIdET: EditText
     lateinit var addImage1RL: RelativeLayout
@@ -36,7 +38,10 @@ class SettingMyInfoFragment : Fragment() {
     lateinit var newPasswordET: EditText
     lateinit var newPassCheckET: EditText
     lateinit var checkTV: TextView
- 
+    lateinit var infocheckTV: TextView
+    lateinit var imgcheckTV: TextView
+
+
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
@@ -48,8 +53,10 @@ class SettingMyInfoFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        compNameTV = view.findViewById(R.id.compNameTV)
+        compNameET = view.findViewById(R.id.compNameET)
         phoneNum1ET = view.findViewById(R.id.phoneNum1ET)
+        phoneNum2ET = view.findViewById(R.id.phoneNum2ET)
+        phoneNum3ET = view.findViewById(R.id.phoneNum3ET)
         compIdET = view.findViewById(R.id.compIdET)
         addImage1RL = view.findViewById(R.id.addImage1RL)
         addImage2RL = view.findViewById(R.id.addImage2RL)
@@ -61,6 +68,9 @@ class SettingMyInfoFragment : Fragment() {
         newPasswordET = view.findViewById(R.id.newPasswordET)
         newPassCheckET = view.findViewById(R.id.newPassCheckET)
         checkTV = view.findViewById(R.id.checkTV)
+        infocheckTV= view.findViewById(R.id.infocheckTV)
+        imgcheckTV= view.findViewById(R.id.imgcheckTV)
+
 
 
     }
@@ -88,11 +98,16 @@ class SettingMyInfoFragment : Fragment() {
                     val result = response!!.getString("result")
                     if ("ok" == result) {
                         val company = response.getJSONObject("company")
-
                         val company_name = Utils.getString(company,"company_name")
+                        val phone1 = Utils.getString(company,"phone1")
+                        val phone2 = Utils.getString(company,"phone2")
+                        val phone3 = Utils.getString(company,"phone3")
 
-                        compNameTV.text = company_name
 
+                        compNameET.setText(company_name)
+                        phoneNum1ET.setText(phone1)
+                        phoneNum2ET.setText(phone2)
+                        phoneNum3ET.setText(phone3)
 
 
 

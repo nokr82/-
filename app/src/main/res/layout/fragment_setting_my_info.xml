@@ -35,7 +35,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_width="345dp"
-                android:layout_height="99dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center"
                 android:background="@drawable/background_strock_e7e7e7">
@@ -68,8 +68,8 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:paddingLeft="9.5dp">
-                        <TextView
-                            android:id="@+id/compNameTV"
+                        <EditText
+                            android:id="@+id/compNameET"
                             android:layout_width="150dp"
                             android:layout_height="16dp"
                             android:textSize="8sp"
@@ -112,23 +112,69 @@
                         android:orientation="horizontal"
                         android:paddingLeft="9.5dp">
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
-
                             <EditText
                                 android:id="@+id/phoneNum1ET"
-                                android:layout_width="match_parent"
+                                android:layout_width="35dp"
                                 android:layout_height="16dp"
-                                android:background="@null"
                                 android:maxLength="3"
-                                android:textSize="8sp" />
+                                android:textSize="8sp"
+                                android:background="@null" />
                             <View
                                 android:layout_width="35dp"
                                 android:layout_height="0.5dp"
                                 android:background="#e7e7e7"/>
                         </LinearLayout>
-
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textSize="8sp"
+                            android:gravity="center"
+                            android:layout_marginLeft="2.5dp"
+                            android:layout_marginRight="2.5dp"
+                            android:text="-"/>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <EditText
+                                android:id="@+id/phoneNum2ET"
+                                android:layout_width="35dp"
+                                android:layout_height="16dp"
+                                android:maxLength="4"
+                                android:textSize="8sp"
+                                android:background="@null" />
+                            <View
+                                android:layout_width="35dp"
+                                android:layout_height="0.5dp"
+                                android:background="#e7e7e7"/>
+                        </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textSize="8sp"
+                            android:gravity="center"
+                            android:layout_marginLeft="2.5dp"
+                            android:layout_marginRight="2.5dp"
+                            android:text="-"/>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <EditText
+                                android:id="@+id/phoneNum3ET"
+                                android:layout_width="35dp"
+                                android:layout_height="16dp"
+                                android:maxLength="4"
+                                android:textSize="8sp"
+                                android:background="@null" />
+                            <View
+                                android:layout_width="35dp"
+                                android:layout_height="0.5dp"
+                                android:background="#e7e7e7"/>
+                        </LinearLayout>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -220,6 +266,22 @@
                     android:layout_width="330dp"
                     android:layout_height="0.5dp"
                     android:background="#e7e7e7"/>
+
+
+                <TextView
+                    android:id="@+id/infocheckTV"
+                    android:layout_width="75dp"
+                    android:layout_height="25.5dp"
+                    android:layout_marginTop="14.5dp"
+                    android:layout_marginBottom="9.5dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:background="#0871bf"
+                    android:textSize="10sp"
+                    android:textColor="#ffffff"
+                    android:text="수정"/>
+
+
             </LinearLayout>
 
             <TextView
@@ -236,140 +298,160 @@
                 android:textStyle="bold"/>
 
             <LinearLayout
-                android:layout_width="345dp"
-                android:layout_height="65.5dp"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/background_strock_e7e7e7"
-                android:gravity="center_vertical"
-                android:paddingLeft="7.5dp">
+                android:layout_width="348dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <RelativeLayout
-                    android:id="@+id/addImage1RL"
-                    android:layout_width="45dp"
-                    android:layout_height="45.5dp"
-                    android:layout_marginRight="10dp">
+                <LinearLayout
+                    android:layout_width="345dp"
+                    android:layout_height="65.5dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/background_strock_e7e7e7"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="7.5dp">
 
-                    <View
+                    <RelativeLayout
+                        android:id="@+id/addImage1RL"
                         android:layout_width="45dp"
-                        android:layout_height="0.5dp"
-                        android:background="#e7e7e7" />
+                        android:layout_height="45.5dp"
+                        android:layout_marginRight="10dp">
 
-                    <View
+                        <View
+                            android:layout_width="45dp"
+                            android:layout_height="0.5dp"
+                            android:background="#e7e7e7" />
+
+                        <View
+                            android:layout_width="45dp"
+                            android:layout_height="0.5dp"
+                            android:layout_alignParentBottom="true"
+                            android:background="#e7e7e7" />
+
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="45.5dp"
+                            android:layout_alignParentRight="true"
+                            android:background="#e7e7e7" />
+
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="45.5dp"
+                            android:layout_alignParentLeft="true"
+                            android:background="#e7e7e7" />
+
+                        <View
+                            android:layout_width="30dp"
+                            android:layout_height="1dp"
+                            android:layout_centerInParent="true"
+                            android:background="#e7e7e7" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="30dp"
+                            android:layout_centerInParent="true"
+                            android:background="#e7e7e7" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/addImage2RL"
                         android:layout_width="45dp"
-                        android:layout_height="0.5dp"
-                        android:layout_alignParentBottom="true"
-                        android:background="#e7e7e7" />
-
-                    <View
-                        android:layout_width="0.5dp"
                         android:layout_height="45.5dp"
-                        android:layout_alignParentRight="true"
-                        android:background="#e7e7e7" />
+                        android:layout_marginRight="10dp">
 
-                    <View
-                        android:layout_width="0.5dp"
-                        android:layout_height="45.5dp"
-                        android:layout_alignParentLeft="true"
-                        android:background="#e7e7e7" />
+                        <View
+                            android:layout_width="45dp"
+                            android:layout_height="0.5dp"
+                            android:background="#e7e7e7" />
 
-                    <View
-                        android:layout_width="30dp"
-                        android:layout_height="1dp"
-                        android:layout_centerInParent="true"
-                        android:background="#e7e7e7" />
+                        <View
+                            android:layout_width="45dp"
+                            android:layout_height="0.5dp"
+                            android:layout_alignParentBottom="true"
+                            android:background="#e7e7e7" />
 
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="30dp"
-                        android:layout_centerInParent="true"
-                        android:background="#e7e7e7" />
-                </RelativeLayout>
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="45.5dp"
+                            android:layout_alignParentRight="true"
+                            android:background="#e7e7e7" />
 
-                <RelativeLayout
-                    android:id="@+id/addImage2RL"
-                    android:layout_width="45dp"
-                    android:layout_height="45.5dp"
-                    android:layout_marginRight="10dp">
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="45.5dp"
+                            android:layout_alignParentLeft="true"
+                            android:background="#e7e7e7" />
 
-                    <View
+                        <View
+                            android:layout_width="30dp"
+                            android:layout_height="1dp"
+                            android:layout_centerInParent="true"
+                            android:background="#e7e7e7" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="30dp"
+                            android:layout_centerInParent="true"
+                            android:background="#e7e7e7" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/addImage3RL"
                         android:layout_width="45dp"
-                        android:layout_height="0.5dp"
-                        android:background="#e7e7e7" />
-
-                    <View
-                        android:layout_width="45dp"
-                        android:layout_height="0.5dp"
-                        android:layout_alignParentBottom="true"
-                        android:background="#e7e7e7" />
-
-                    <View
-                        android:layout_width="0.5dp"
                         android:layout_height="45.5dp"
-                        android:layout_alignParentRight="true"
-                        android:background="#e7e7e7" />
+                        android:layout_marginRight="10dp">
 
-                    <View
-                        android:layout_width="0.5dp"
-                        android:layout_height="45.5dp"
-                        android:layout_alignParentLeft="true"
-                        android:background="#e7e7e7" />
+                        <View
+                            android:layout_width="45dp"
+                            android:layout_height="0.5dp"
+                            android:background="#e7e7e7" />
 
-                    <View
-                        android:layout_width="30dp"
-                        android:layout_height="1dp"
-                        android:layout_centerInParent="true"
-                        android:background="#e7e7e7" />
+                        <View
+                            android:layout_width="45dp"
+                            android:layout_height="0.5dp"
+                            android:layout_alignParentBottom="true"
+                            android:background="#e7e7e7" />
 
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="30dp"
-                        android:layout_centerInParent="true"
-                        android:background="#e7e7e7" />
-                </RelativeLayout>
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="45.5dp"
+                            android:layout_alignParentRight="true"
+                            android:background="#e7e7e7" />
 
-                <RelativeLayout
-                    android:id="@+id/addImage3RL"
-                    android:layout_width="45dp"
-                    android:layout_height="45.5dp"
-                    android:layout_marginRight="10dp">
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="45.5dp"
+                            android:layout_alignParentLeft="true"
+                            android:background="#e7e7e7" />
 
-                    <View
-                        android:layout_width="45dp"
-                        android:layout_height="0.5dp"
-                        android:background="#e7e7e7" />
+                        <View
+                            android:layout_width="30dp"
+                            android:layout_height="1dp"
+                            android:layout_centerInParent="true"
+                            android:background="#e7e7e7" />
 
-                    <View
-                        android:layout_width="45dp"
-                        android:layout_height="0.5dp"
-                        android:layout_alignParentBottom="true"
-                        android:background="#e7e7e7" />
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="30dp"
+                            android:layout_centerInParent="true"
+                            android:background="#e7e7e7" />
+                    </RelativeLayout>
 
-                    <View
-                        android:layout_width="0.5dp"
-                        android:layout_height="45.5dp"
-                        android:layout_alignParentRight="true"
-                        android:background="#e7e7e7" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/imgcheckTV"
+                    android:layout_width="75dp"
+                    android:layout_height="25.5dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="9.5dp"
+                    android:layout_marginTop="14.5dp"
+                    android:background="#0871bf"
+                    android:gravity="center"
+                    android:text="저장"
+                    android:textColor="#ffffff"
+                    android:textSize="10sp" />
 
-                    <View
-                        android:layout_width="0.5dp"
-                        android:layout_height="45.5dp"
-                        android:layout_alignParentLeft="true"
-                        android:background="#e7e7e7" />
-
-                    <View
-                        android:layout_width="30dp"
-                        android:layout_height="1dp"
-                        android:layout_centerInParent="true"
-                        android:background="#e7e7e7" />
-
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="30dp"
-                        android:layout_centerInParent="true"
-                        android:background="#e7e7e7" />
-                </RelativeLayout>
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="345dp"
                 android:layout_height="118.5dp"
