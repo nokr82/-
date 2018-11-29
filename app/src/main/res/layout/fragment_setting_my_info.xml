@@ -68,8 +68,8 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:paddingLeft="9.5dp">
-                        <EditText
-                            android:id="@+id/compNameET"
+                        <TextView
+                            android:id="@+id/compNameTV"
                             android:layout_width="150dp"
                             android:layout_height="16dp"
                             android:textSize="8sp"
