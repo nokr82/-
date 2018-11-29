@@ -56,9 +56,7 @@ class User_visit_List_Fragment : Fragment() {
     lateinit var three_mTV: TextView
     lateinit var accumulateLL: LinearLayout
 
-
-
-  var day_type = -1
+     var day_type = -1 //1-오늘 2-이번주 3-이번달 4-3개월
     var page = 1    //페이지
     var limit = 5 //보여지는갯수
     var totalPage =1 //총페이지
