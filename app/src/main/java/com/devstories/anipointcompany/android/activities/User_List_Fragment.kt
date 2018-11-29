@@ -85,12 +85,10 @@ class User_List_Fragment : Fragment() {
         useLL.setOnClickListener {
             val intent = Intent(myContext, PointActivity::class.java)
             intent.putExtra("step",4)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
         accumulateLL.setOnClickListener {
             val intent = Intent(myContext, PointActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
 

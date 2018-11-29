@@ -33,6 +33,7 @@ class PointActivity : RootActivity() {
     var step = -1
     var member_id = -1
     var p_type = -1
+    var phone = ""
 
     var stackpoint = -1
 
@@ -233,14 +234,13 @@ class PointActivity : RootActivity() {
 
 //                        step = Utils.getInt(requestStep, "step")
                         member_id = Utils.getInt(requestStep, "member_id")
+                        phone = Utils.getString(member, "phone")
+                        Log.d("폰",phone)
                         val result_step = Utils.getInt(requestStep, "step")
                         val new_member_yn = Utils.getString(requestStep, "new_member_yn")
                         var point:JSONObject? = null
 
-
-
                         if(step != result_step) {
-
                             step = result_step
         Log.d("스텝",step.toString())
                             //포인트적립
@@ -251,6 +251,7 @@ class PointActivity : RootActivity() {
                                Log.d("스텝",new_member_yn)
                                 if(new_member_yn.equals("Y")) {
                                     timer!!.cancel()
+                                    new_phoneTV.text =phone
                                     joinLL.visibility = View.VISIBLE
                                     message_op_LL.visibility = View.GONE
                                     checkLL.visibility = View.VISIBLE
@@ -262,7 +263,6 @@ class PointActivity : RootActivity() {
                                     checkLL.visibility = View.GONE
                                 }
 
-                                var phone = Utils.getString(member, "phone")
                                 var gender = Utils.getString(member, "gender")
                                 var age = Utils.getString(member, "age")
                                 var birth = Utils.getString(member, "birth")
@@ -286,6 +286,7 @@ class PointActivity : RootActivity() {
                             else if(step == 5){
                                 if(new_member_yn.equals("Y")) {
                                     timer!!.cancel()
+                                    new_phoneTV.text =phone
                                     joinLL.visibility = View.VISIBLE
                                     message_op_LL.visibility = View.GONE
                                     checkLL.visibility = View.VISIBLE
@@ -297,7 +298,6 @@ class PointActivity : RootActivity() {
                                     checkLL.visibility = View.GONE
                                 }
 
-                                var phone = Utils.getString(member, "phone")
                                 var gender = Utils.getString(member, "gender")
                                 var age = Utils.getString(member, "age")
                                 var birth = Utils.getString(member, "birth")
@@ -452,8 +452,8 @@ class PointActivity : RootActivity() {
 
 
     fun member_join() {
-
-        var getPhone = Utils.getString(phoneET)
+        var getid = member_id
+        var getPhone = Utils.getString(phoneTV)
         var getGender = Utils.getString(genderET)
         var getAge = Utils.getString(ageET)
         var getBirth = Utils.getString(birthET)
@@ -464,6 +464,7 @@ class PointActivity : RootActivity() {
 
         val params = RequestParams()
         params.put("company_id", 1)
+        params.put("member_id", getid)
         params.put("age", getAge)
         params.put("point", getPoint)
         params.put("name", getName)

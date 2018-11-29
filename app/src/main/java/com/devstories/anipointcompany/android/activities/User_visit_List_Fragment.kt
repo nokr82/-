@@ -102,10 +102,6 @@ class User_visit_List_Fragment : Fragment() {
             startActivity(intent)
         }
 
-        amountSP.setOnItemClickListener { parent, view, position, id ->
-            
-        }
-
         btn_pre.setOnClickListener {
 
         }
