@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@mipmap/layer_2"
+    android:background="@mipmap/login_bg"
     tools:context=".activities.LoginActivity">
 
     <LinearLayout

@@ -2,10 +2,8 @@ package com.devstories.anipointcompany.android.activities
 
 import android.app.ProgressDialog
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
-import android.view.View
 import com.devstories.aninuriandroid.adapter.UserVisitAdapter
 import com.devstories.anipointcompany.android.R
 import kotlinx.android.synthetic.main.activity_user_list.*

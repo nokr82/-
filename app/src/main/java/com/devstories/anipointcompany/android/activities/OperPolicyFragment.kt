@@ -12,8 +12,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.devstories.anipointcompany.android.Actions.CompanyAction
-import com.devstories.anipointcompany.android.Actions.CompanyAction.company_info
-
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
