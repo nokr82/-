@@ -44,6 +44,8 @@ class User_visit_List_Fragment : Fragment() {
     lateinit var new_userTV: TextView
     lateinit var member_re_cntTV: TextView
     lateinit var itemdateLL: LinearLayout
+    lateinit var nextLL: LinearLayout
+    lateinit var preLL: LinearLayout
     lateinit var todayRL: RelativeLayout
     lateinit var weekRL: RelativeLayout
     lateinit var monthRL: RelativeLayout
@@ -53,6 +55,7 @@ class User_visit_List_Fragment : Fragment() {
     lateinit var monthTV: TextView
     lateinit var three_mTV: TextView
     lateinit var accumulateLL: LinearLayout
+
 
 
   var day_type = -1
@@ -83,6 +86,8 @@ class User_visit_List_Fragment : Fragment() {
         weekRL = view.findViewById(R.id.weekRL)
         monthRL = view.findViewById(R.id.monthRL)
         three_mRL = view.findViewById(R.id.three_mRL)
+        nextLL = view.findViewById(R.id.nextLL)
+        preLL = view.findViewById(R.id.preLL)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -102,11 +107,10 @@ class User_visit_List_Fragment : Fragment() {
             startActivity(intent)
         }
 
-        btn_pre.setOnClickListener {
+        nextLL.setOnClickListener {
 
         }
-
-        btn_next.setOnClickListener {
+        preLL.setOnClickListener {
 
         }
 
