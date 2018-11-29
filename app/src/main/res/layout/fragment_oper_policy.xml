@@ -76,6 +76,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
                             <TextView
+                                android:id="@+id/left_pointTV"
                                 android:layout_width="50dp"
                                 android:layout_height="15dp"
                                 android:textSize="8sp"
@@ -169,6 +170,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
                             <TextView
+                                android:id="@+id/use_pointTV"
                                 android:layout_width="50dp"
                                 android:layout_height="15dp"
                                 android:textSize="8sp"
