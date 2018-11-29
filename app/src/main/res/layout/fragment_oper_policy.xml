@@ -169,6 +169,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
                             <TextView
+                                android:id="@+id/minimumUsingPointTV"
                                 android:layout_width="50dp"
                                 android:layout_height="15dp"
                                 android:textSize="8sp"
@@ -220,23 +221,70 @@
                         android:gravity="center_vertical"
                         android:padding="3.5dp">
                         <ImageView
+                            android:id="@+id/rdo1000wonIV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="3dp"
-                            />
+                            android:src="@drawable/radio_on"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5.5dp"
+                            android:textSize="8sp"
+                            android:text="1000원"/>
+
+                        <ImageView
+                            android:id="@+id/rdo500wonIV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/radio_off"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5.5dp"
+                            android:textSize="8sp"
+                            android:text="500원"/>
+
+                        <ImageView
+                            android:id="@+id/rdo100wonIV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/radio_off"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5.5dp"
+                            android:textSize="8sp"
+                            android:text="100원"/>
                     </LinearLayout>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:background="#e7e7e7"/>
+
                 </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#e7e7e7"/>
             </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="9sp"
+                android:textColor="#666666"
+                android:letterSpacing="-0.03"
+                android:lineSpacingExtra="3sp"
+                android:text="단골 기준"
+                android:textStyle="bold"/>
 
             <LinearLayout
                 android:layout_width="345dp"
-                android:layout_height="118.5dp"
+                android:layout_height="80dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="14.5dp"
+                android:layout_marginTop="6.5dp"
                 android:layout_marginBottom="26.5dp"
                 android:padding="7.5dp"
                 android:background="@drawable/background_strock_e7e7e7"
@@ -246,43 +294,34 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_marginTop="2.5dp">
-                    <View
-                        android:layout_width="330dp"
-                        android:layout_height="0.5dp"
-                        android:background="#e7e7e7"/>
+
                     <LinearLayout
-                        android:layout_width="330dp"
-                        android:layout_height="20dp">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:src="@drawable/radio_off"/>
                         <TextView
-                            android:layout_width="82.5dp"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:background="#efefef"
-                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5.5dp"
                             android:textSize="8sp"
-                            android:text="현재 비밀번호" />
-                        <View
-                            android:layout_width="0.5dp"
-                            android:layout_height="match_parent"
-                            android:background="#e7e7e7"/>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:paddingLeft="9.5dp"
-                            android:gravity="center_vertical"
-                            android:orientation="vertical">
-                            <EditText
-                                android:id="@+id/tempPasswordET"
-                                android:layout_width="150dp"
-                                android:layout_height="16dp"
-                                android:textSize="8sp"
-                                android:inputType="textPassword"
-                                android:background="@null"/>
-                            <View
-                                android:layout_width="150dp"
-                                android:layout_height="0.5dp"
-                                android:background="#e7e7e7"/>
-                        </LinearLayout>
+                            android:text="방문기준"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="9.5dp"
+                            android:src="@drawable/radio_off"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5.5dp"
+                            android:textSize="8sp"
+                            android:text="금액기준"/>
                     </LinearLayout>
 
                     <View
@@ -300,7 +339,7 @@
                             android:background="#efefef"
                             android:textStyle="bold"
                             android:textSize="8sp"
-                            android:text="새 비밀번호" />
+                            android:text="방문" />
                         <View
                             android:layout_width="0.5dp"
                             android:layout_height="match_parent"
@@ -308,20 +347,35 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:paddingLeft="9.5dp"
+                            android:orientation="horizontal"
                             android:gravity="center_vertical"
-                            android:orientation="vertical">
-                            <EditText
-                                android:id="@+id/newPasswordET"
-                                android:layout_width="150dp"
-                                android:layout_height="16dp"
+                            android:paddingLeft="9.5dp">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:id="@+id/visitCnt"
+                                    android:layout_width="50dp"
+                                    android:layout_height="15dp"
+                                    android:textSize="8sp"
+                                    android:gravity="right|bottom"
+                                    android:textColor="#666666"
+                                    android:text="12,500"/>
+                                <View
+                                    android:layout_width="50dp"
+                                    android:layout_height="0.5dp"
+                                    android:background="#e7e7e7"/>
+                            </LinearLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="15dp"
+                                android:layout_marginLeft="6.5dp"
+                                android:layout_marginRight="5dp"
                                 android:textSize="8sp"
-                                android:inputType="textPassword"
-                                android:background="@null"/>
-                            <View
-                                android:layout_width="150dp"
-                                android:layout_height="0.5dp"
-                                android:background="#e7e7e7"/>
+                                android:gravity="bottom"
+                                android:textColor="#666666"
+                                android:text="회"/>
                         </LinearLayout>
                     </LinearLayout>
                     <View
@@ -339,7 +393,7 @@
                             android:background="#efefef"
                             android:textStyle="bold"
                             android:textSize="8sp"
-                            android:text="새 비밀번호 확인" />
+                            android:text="금액" />
                         <View
                             android:layout_width="0.5dp"
                             android:layout_height="match_parent"
@@ -347,20 +401,35 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:paddingLeft="9.5dp"
+                            android:orientation="horizontal"
                             android:gravity="center_vertical"
-                            android:orientation="vertical">
-                            <EditText
-                                android:id="@+id/newPassCheckET"
-                                android:layout_width="150dp"
-                                android:layout_height="16dp"
+                            android:paddingLeft="9.5dp">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:id="@+id/costTV"
+                                    android:layout_width="50dp"
+                                    android:layout_height="15dp"
+                                    android:textSize="8sp"
+                                    android:gravity="right|bottom"
+                                    android:textColor="#666666"
+                                    android:text="12,500"/>
+                                <View
+                                    android:layout_width="50dp"
+                                    android:layout_height="0.5dp"
+                                    android:background="#e7e7e7"/>
+                            </LinearLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="15dp"
+                                android:layout_marginLeft="6.5dp"
+                                android:layout_marginRight="5dp"
                                 android:textSize="8sp"
-                                android:inputType="textPassword"
-                                android:background="@null"/>
-                            <View
-                                android:layout_width="150dp"
-                                android:layout_height="0.5dp"
-                                android:background="#e7e7e7"/>
+                                android:gravity="bottom"
+                                android:textColor="#666666"
+                                android:text="원"/>
                         </LinearLayout>
                     </LinearLayout>
                     <View
@@ -369,18 +438,7 @@
                         android:background="#e7e7e7"/>
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/btnOK"
-                    android:layout_width="75dp"
-                    android:layout_height="25.5dp"
-                    android:layout_marginTop="14.5dp"
-                    android:layout_marginBottom="9.5dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:background="#0871bf"
-                    android:textSize="10sp"
-                    android:textColor="#ffffff"
-                    android:text="확인"/>
+
             </LinearLayout>
 
         </LinearLayout><!---->
