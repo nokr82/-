@@ -22,5 +22,9 @@ object CompanyAction {
     fun edit_image(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/company/edit_images.json", params, handler)
     }
+    fun company_login(params: RequestParams, handler: JsonHttpResponseHandler) {
+        //HttpClient.post("/login/admin_login.json", params, handler)
+        HttpClient.post("/login/index.json", params, handler)
+    }
 
 }
