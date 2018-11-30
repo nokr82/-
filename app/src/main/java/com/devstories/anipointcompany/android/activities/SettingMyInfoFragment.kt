@@ -181,8 +181,6 @@ class SettingMyInfoFragment : Fragment() {
     }
 
 
-
-
     //사업체 정보뽑기
     fun company_info(company_id: Int) {
         val params = RequestParams()
