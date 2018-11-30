@@ -97,6 +97,12 @@ class User_List_Fragment : Fragment() {
             entire_viewTV.setTextColor(Color.parseColor("#ffffff"))
             mainData(1)
         }
+        //단골
+        userList_most_freq_userLL.setOnClickListener {
+            setLeftMenu()
+            most_freqTV.setTextColor(Color.parseColor("#ffffff"))
+
+        }
 
         userList_birth_userLL.setOnClickListener {
             setLeftMenu()
@@ -131,7 +137,7 @@ class User_List_Fragment : Fragment() {
         mvpTV.setTextColor(Color.parseColor("#80ffffff"))
     }
 
-
+//고객목롭뽑기
     fun mainData(type : Int) {
         val params = RequestParams()
         params.put("company_id", 1)
