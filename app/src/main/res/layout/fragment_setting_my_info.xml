@@ -309,9 +309,16 @@
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/background_strock_e7e7e7"
                     android:paddingLeft="7.5dp">
+                    <LinearLayout
+                        android:id="@+id/userLL"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="visible">
+
 
                     <RelativeLayout
-                        android:layout_gravity="center_vertical"
                         android:id="@+id/addImage1RL"
                         android:layout_width="45dp"
                         android:layout_height="45.5dp"
@@ -353,6 +360,7 @@
                             android:background="#e7e7e7" />
                     </RelativeLayout>
 
+                    </LinearLayout>
 
 
                 </HorizontalScrollView>

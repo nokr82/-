@@ -19,6 +19,7 @@ import android.location.LocationManager;
 import android.media.ExifInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore.Images;
@@ -234,6 +235,48 @@ public class Utils {
                 e.printStackTrace();
             }
         }
+        return bitmap;
+    }
+    private static Bitmap rotateImage(Bitmap img, int degree) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(degree);
+        Bitmap rotatedImg = Bitmap.createBitmap(img, 0, 0, img.getWidth(), img.getHeight(), matrix, true);
+        img.recycle();
+        return rotatedImg;
+    }
+    public static Bitmap rotate(ContentResolver resolver, Bitmap bitmap,  Uri imageUri) throws FileNotFoundException {
+
+        ExifInterface ei;
+
+        try {
+
+            InputStream input = resolver.openInputStream(imageUri);
+
+            if (Build.VERSION.SDK_INT > 23) {
+                ei = new ExifInterface(input);
+            } else {
+                ei = new ExifInterface(imageUri.getPath());
+            }
+
+            int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+
+            switch (orientation) {
+                case ExifInterface.ORIENTATION_ROTATE_90:
+                    return rotateImage(bitmap, 90);
+                case ExifInterface.ORIENTATION_ROTATE_180:
+                    return rotateImage(bitmap, 180);
+                case ExifInterface.ORIENTATION_ROTATE_270:
+                    return rotateImage(bitmap, 270);
+                default:
+                    return bitmap;
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         return bitmap;
     }
 
