@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -75,9 +77,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/tempCoinTV"
+                            <EditText
+                                android:id="@+id/left_pointTV"
                                 android:layout_width="50dp"
+                                android:background="@null"
                                 android:layout_height="15dp"
                                 android:textSize="8sp"
                                 android:gravity="right|bottom"
@@ -170,11 +173,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/minUsePointTV"
+                            <EditText
+                                android:id="@+id/min_pointTV"
                                 android:layout_width="50dp"
                                 android:layout_height="15dp"
                                 android:textSize="8sp"
+                                android:background="@null"
                                 android:gravity="right|bottom"
                                 android:textColor="#666666"
                                 android:text="12,500"/>
@@ -222,12 +226,13 @@
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
                         android:padding="3.5dp">
+
                         <ImageView
                             android:id="@+id/rdo1000wonIV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="3dp"
-                            android:src="@drawable/radio_on"/>
+                            android:src="@drawable/radio_on" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -284,7 +289,7 @@
 
             <LinearLayout
                 android:layout_width="345dp"
-                android:layout_height="80dp"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="6.5dp"
                 android:layout_marginBottom="26.5dp"
@@ -302,7 +307,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp">
                         <ImageView
-                            android:id="@+id/obVisitIV"
+                            android:id="@+id/vsitIV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="3dp"
@@ -315,7 +320,7 @@
                             android:text="방문기준"/>
 
                         <ImageView
-                            android:id="@+id/obCostIV"
+                            android:id="@+id/costIV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="9.5dp"
@@ -334,6 +339,8 @@
                         android:background="#e7e7e7"/>
 
                     <LinearLayout
+                        android:id="@+id/visitLL"
+                        android:visibility="gone"
                         android:layout_width="330dp"
                         android:layout_height="20dp">
                         <TextView
@@ -358,14 +365,15 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
-                                <TextView
-                                    android:id="@+id/visitCntTV"
+                                <EditText
+                                    android:id="@+id/visitcntTV"
                                     android:layout_width="50dp"
                                     android:layout_height="15dp"
                                     android:textSize="8sp"
+                                    android:background="@null"
                                     android:gravity="right|bottom"
                                     android:textColor="#666666"
-                                    android:text="12,500"/>
+                                    android:text="0"/>
                                 <View
                                     android:layout_width="50dp"
                                     android:layout_height="0.5dp"
@@ -388,6 +396,8 @@
                         android:background="#e7e7e7"/>
 
                     <LinearLayout
+                        android:id="@+id/accountLL"
+                        android:visibility="gone"
                         android:layout_width="330dp"
                         android:layout_height="20dp">
                         <TextView
@@ -412,15 +422,15 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
-
-                                <TextView
+                                <EditText
                                     android:id="@+id/costTV"
                                     android:layout_width="50dp"
                                     android:layout_height="15dp"
+                                    android:background="@null"
+                                    android:textSize="8sp"
                                     android:gravity="right|bottom"
-                                    android:text="12,500"
                                     android:textColor="#666666"
-                                    android:textSize="8sp" />
+                                    android:text="0"/>
                                 <View
                                     android:layout_width="50dp"
                                     android:layout_height="0.5dp"
@@ -437,6 +447,19 @@
                                 android:text="원"/>
                         </LinearLayout>
                     </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/saveTV"
+                        android:layout_width="75dp"
+                        android:layout_height="25.5dp"
+                        android:layout_marginTop="14.5dp"
+                        android:layout_marginBottom="9.5dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:background="#0871bf"
+                        android:textSize="10sp"
+                        android:textColor="#ffffff"
+                        android:text="저장"/>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
@@ -448,5 +471,5 @@
 
         </LinearLayout><!---->
     </LinearLayout>
-
+</ScrollView>
 </LinearLayout>
