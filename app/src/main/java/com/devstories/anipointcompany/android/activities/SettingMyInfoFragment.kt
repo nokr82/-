@@ -4,6 +4,7 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v4.app.Fragment
@@ -154,11 +155,16 @@ class SettingMyInfoFragment : Fragment() {
                     userLL.addView(userView)
                     //배열사이즈값 -해줘서
                     userView.tag = addImages.size -1
-                    Log.d("태그",userView.tag.toString())
 
                     delIV.setOnClickListener {
                         //그사이즈값으로 인덱스를 구해서 삭제!!!
-                          addImages.removeAt(userView.tag as Int)
+//                        if (addImages.size==0){
+//                            addImages.removeAt(0)
+//                            addImages.clear()
+//                        }else{
+//                            addImages.removeAt(userView.tag as Int)
+//                        }
+                        Log.d("태그",userView.tag.toString())
                             userLL.removeView(userView)
                     }
 
@@ -224,7 +230,7 @@ class SettingMyInfoFragment : Fragment() {
                             Log.d("이미지1",image)
                             userView.tag = Utils.getInt(CompanyImage, "id")
                             delIV.setOnClickListener {
-                                userView.visibility = View.GONE
+                                userLL.removeView(userView)
                                 Toast.makeText(myContext,userView.tag.toString(),Toast.LENGTH_SHORT).show()
                                 delids.add(userView.tag as Int)
                                 Log.d("아이디값",delids.toString())
@@ -394,13 +400,26 @@ class SettingMyInfoFragment : Fragment() {
 
 
             //비트맵배열의 크기만큼
-        if (addImages.size > 0){
-            for(i in 0..(addImages.size - 1)) {
-                val byteArrayInputStream = ByteArrayInputStream(Utils.getByteArray(addImages[i]))
-                params.put("upload[" + i + "]", byteArrayInputStream)
-                Log.d("바이트썸네",byteArrayInputStream.toString())
+//        if (addImages.size > 0){
+//            for(i in 0..(addImages.size - 1)) {
+//                val byteArrayInputStream = ByteArrayInputStream(Utils.getByteArray(addImages[i]))
+//                params.put("upload[" + i + "]", byteArrayInputStream)
+//                Log.d("바이트썸네",byteArrayInputStream.toString())
+//            }
+//        }
+
+        var seq = 0;
+
+        for (i in 0 until userLL.childCount) {
+            val v = userLL.getChildAt(i)
+            val imagV = v.findViewById<ImageView>(R.id.c_imgIV)
+            if (imagV is ImageView) {
+                val bitmap = imagV.drawable as BitmapDrawable
+                params.put("upload[$seq]", ByteArrayInputStream(Utils.getByteArray(bitmap.bitmap)))
+                seq++
             }
         }
+
 
         CompanyAction.edit_image(params, object : JsonHttpResponseHandler() {
 

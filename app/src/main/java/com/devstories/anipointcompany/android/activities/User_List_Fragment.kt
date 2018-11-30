@@ -12,15 +12,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.devstories.aninuriandroid.adapter.UserVisitAdapter
 import com.devstories.anipointcompany.android.Actions.MemberAction
 import com.devstories.anipointcompany.android.R
-import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.Utils
-import com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView
 import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
-import com.nostra13.universalimageloader.core.ImageLoader
 import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.fra_userlist.*
 import org.json.JSONArray
@@ -165,17 +161,21 @@ class User_List_Fragment : Fragment() {
                         Log.d("메인리스트",data.toString())
 
                         for (i in 0..(data.length() - 1)) {
-                            Log.d("갯수", i.toString())
+
                             adapterData.add(data[i] as JSONObject)
+
                             var json=data[i] as JSONObject
                             val member = json.getJSONObject("Member")
                             var point_o  = json.getJSONObject("Point")
+                            var visitedList  = json.getJSONArray("VisitedList")
 
                             var point =   Utils.getString(point_o, "balance")
-
+                            var member_id =   Utils.getString(member, "id")
 
 
                             val userView = View.inflate(myContext, R.layout.item_user, null)
+
+
                             var dateTV : TextView = userView.findViewById(R.id.dateTV)
                             var nameTV : TextView = userView.findViewById(R.id.nameTV)
                             var pointTV : TextView = userView.findViewById(R.id.pointTV)
@@ -191,6 +191,7 @@ class User_List_Fragment : Fragment() {
                             var stack_pointTV: TextView = userView.findViewById(R.id.stack_pointTV)
                             var memoTV: TextView = userView.findViewById(R.id.memoTV)
                             var phoneTV: TextView = userView.findViewById(R.id.phoneTV)
+                            var modiLL: LinearLayout = userView.findViewById(R.id.modiLL)
 
 
 
@@ -226,13 +227,33 @@ class User_List_Fragment : Fragment() {
                             visitTV.text = visit+"회"
                             phoneTV.text = phone
 
-                            /*if (isBirthTab) {
-                                nameTV.text = phone
-                                phoneTV.visibility = View.GONE
+                            var str = ""
 
-                            } else {
-                                phoneTV.visibility = View.VISIBLE
-                            }*/
+                            for(i in 0 until visitedList.length()) {
+                                val json: JSONObject = visitedList[i] as JSONObject
+                                val companySale = json.getJSONObject("CompanySale")
+                                val category = json.getJSONObject("Category")
+
+                                val created = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(Utils.getString(companySale, "created"))
+                                val created_str = SimpleDateFormat("yyyy-MM-dd").format(created)
+
+                                if(str.length > 0) {
+                                    str += "\n";
+                                }
+
+                                str = str + created_str + " / " + Utils.getString(category, "name") + " / " + Utils.comma(Utils.getString(companySale, "price"))
+
+                            }
+
+                            visit_recordTV.text = str
+
+
+                            modiLL.setOnClickListener {
+                                var intent = Intent(context, DlgEditMemberInfoActivity::class.java)
+                                intent.putExtra("member_id", member_id)
+                                startActivity(intent)
+                            }
+
 
                             userLL.addView(userView)
                         }
