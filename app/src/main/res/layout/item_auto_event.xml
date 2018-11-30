@@ -21,6 +21,7 @@
             android:layout_marginLeft="13dp"
             android:orientation="vertical">
             <TextView
+                android:id="@+id/itemEventTitleTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#333333"
@@ -29,6 +30,7 @@
                 android:letterSpacing="-0.2"
                 android:text="첫 적립 고객 환영하기"/>
             <TextView
+                android:id="@+id/itemEventContTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3.5dp"
