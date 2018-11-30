@@ -43,6 +43,11 @@
             android:screenOrientation="landscape"
             android:theme="@style/NoTitleDialog"
             android:windowSoftInputMode="adjustResize|stateHidden"/>
+
+        <activity
+            android:name=".activities.DlgEditMemberInfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/full_screen_dialog1"/>
     </application>
 
 </manifest>
