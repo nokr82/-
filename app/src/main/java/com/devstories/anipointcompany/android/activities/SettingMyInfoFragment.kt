@@ -4,7 +4,6 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v4.app.Fragment
@@ -14,13 +13,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.devstories.anipointcompany.android.Actions.CompanyAction
-import com.devstories.anipointcompany.android.Actions.CompanyAction.company_info
-import com.devstories.anipointcompany.android.Actions.CompanyAction.edit_info
 import com.devstories.anipointcompany.android.R
+import com.devstories.anipointcompany.android.base.Config
 import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
 import com.nostra13.universalimageloader.core.ImageLoader
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
 import cz.msebera.android.httpclient.Header
 import org.json.JSONException
 import org.json.JSONObject
@@ -117,16 +116,17 @@ class SettingMyInfoFragment : Fragment() {
                 {
                     thumbnail = MediaStore.Images.Media.getBitmap(myContext.contentResolver, contentURI)
                     thumbnail = Utils.rotate(myContext.contentResolver, thumbnail, contentURI)
-                    Toast.makeText(myContext,"업데이트완료", Toast.LENGTH_SHORT).show()
                     val userView = View.inflate(myContext, R.layout.item_company_img, null)
                     val c_imgIV :ImageView = userView.findViewById(R.id.c_imgIV)
                     c_imgIV.setImageBitmap(thumbnail)
                     if (userLL.getChildCount() > 9) {
                         Toast.makeText(myContext, "사진은 10개까지 등록가능합니다.", Toast.LENGTH_LONG).show()
                         return
+                    }else{
+                        userLL.addView(userView)
                     }
 
-                    userLL.addView(userView)
+
                     edit_image()
                 }
                 catch (e: IOException) {
@@ -147,7 +147,6 @@ class SettingMyInfoFragment : Fragment() {
     fun company_info(company_id: Int) {
         val params = RequestParams()
         params.put("company_id",company_id)
-
 
         CompanyAction.company_info(params, object : JsonHttpResponseHandler() {
 
@@ -172,12 +171,27 @@ class SettingMyInfoFragment : Fragment() {
                         phoneNum3ET.setText(phone3)
                         compIdET.setText(login_id)
 
+                        val images = response.getJSONArray("images")
+                        Log.d("이미지",images.toString())
 
-                        val points = response.getJSONArray("categories")
-                        Log.d("데이트",points.toString())
-                        for (i in 0..points.length()-1){
+                        userLL.removeAllViews()
+
+                        for (i in 0..images.length()-1){
+                            val userView = View.inflate(myContext, R.layout.item_company_img, null)
+                            var json=images[i] as JSONObject
+                            Log.d("제이슨",json.toString())
+                            val CompanyImage = json.getJSONObject("CompanyImage")
+                            Log.d("제이슨이미지",json.toString())
+                            val image_uri = Utils.getString(CompanyImage,"image_uri")
+                            val c_imgIV :ImageView = userView.findViewById(R.id.c_imgIV)
+                            var image = Config.url + image_uri
+                            Log.d("이미지1",image)
+                            ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(getActivity()));
+                            ImageLoader.getInstance().displayImage(image,c_imgIV, Utils.UILoptionsUserProfile)
+                            userLL.addView(userView)
 
                         }
+
 
                     } else {
 
@@ -322,6 +336,7 @@ class SettingMyInfoFragment : Fragment() {
     fun edit_image() {
         val params = RequestParams()
         params.put("company_id",1)
+
         if (thumbnail != null){
             val byteArrayInputStream = ByteArrayInputStream(Utils.getByteArray(thumbnail))
             params.put("upload", byteArrayInputStream)

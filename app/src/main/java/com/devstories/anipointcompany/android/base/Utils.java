@@ -1026,6 +1026,9 @@ public class Utils {
 //        .showImageOnFail(R.mipmap.myimg).delayBeforeLoading(100)
         .cacheInMemory(true).cacheOnDisk(true).considerExifParams(true).imageScaleType(ImageScaleType.EXACTLY).bitmapConfig(Bitmap.Config.RGB_565).build();
 
+
+
+
     public static DisplayImageOptions UILoptionsAder = new DisplayImageOptions.Builder()
 //         .displayer(new RoundedBitmapDisplayer(2))
 //         .showImageOnLoading(R.drawable.no_image_box)
