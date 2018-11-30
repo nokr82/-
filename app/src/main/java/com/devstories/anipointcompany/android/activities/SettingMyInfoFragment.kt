@@ -177,6 +177,7 @@ class SettingMyInfoFragment : Fragment() {
                         userLL.removeAllViews()
 
                         for (i in 0..images.length()-1){
+                            //새로운뷰를 이미지의 길이만큼생성
                             val userView = View.inflate(myContext, R.layout.item_company_img, null)
                             var json=images[i] as JSONObject
                             Log.d("제이슨",json.toString())
