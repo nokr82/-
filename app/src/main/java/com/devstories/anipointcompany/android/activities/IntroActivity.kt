@@ -103,6 +103,7 @@ class IntroActivity : RootActivity() {
 
     private fun login() {
 
+
         val params = RequestParams()
         params.put("login_id", PrefUtils.getStringPreference(context,"login_id"))
         params.put("passwd", PrefUtils.getStringPreference(context,"passwd"))
