@@ -216,7 +216,6 @@ class SettingMyInfoFragment : Fragment() {
                                 Log.d("아이디값",delids.toString())
 
                             }
-                            ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(getActivity()));
                             ImageLoader.getInstance().displayImage(image,c_imgIV, Utils.UILoptionsUserProfile)
                             userLL.addView(userView)
 

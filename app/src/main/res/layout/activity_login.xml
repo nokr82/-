@@ -41,7 +41,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="15dp"
                 android:textSize="9sp"
-                android:background="@null"/>
+                android:background="@null"
+                android:singleLine="true"/>
         </LinearLayout>
         <View
             android:layout_width="180dp"
@@ -76,7 +77,8 @@
                 android:layout_marginLeft="8dp"
                 android:textSize="9sp"
                 android:inputType="textPassword"
-                android:background="@null"/>
+                android:background="@null"
+                android:singleLine="true"/>
         </LinearLayout>
         <View
             android:layout_width="180dp"

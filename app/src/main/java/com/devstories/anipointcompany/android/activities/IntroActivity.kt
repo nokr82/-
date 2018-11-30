@@ -128,7 +128,7 @@ class IntroActivity : RootActivity() {
                         val company_id = Utils.getInt(company, "id")
 
                         PrefUtils.setPreference(context, "company_id", company_id)
-                        PrefUtils.setPreference(context, "login_id", Utils.getInt(company, "login_id"))
+                        PrefUtils.setPreference(context, "login_id", Utils.getString(company, "login_id"))
                         PrefUtils.setPreference(context, "passwd", Utils.getString(company, "passwd"))
                         PrefUtils.setPreference(context, "company_name", Utils.getString(company, "company_name"))
                         /*PrefUtils.setPreference(context, "phone1", Utils.getString(company, "phone1"))
