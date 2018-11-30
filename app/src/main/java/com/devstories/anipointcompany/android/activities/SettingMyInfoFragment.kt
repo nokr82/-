@@ -13,6 +13,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.devstories.anipointcompany.android.Actions.CompanyAction
+import com.devstories.anipointcompany.android.Actions.CompanyAction.company_info
+import com.devstories.anipointcompany.android.Actions.CompanyAction.edit_image
+import com.devstories.anipointcompany.android.Actions.CompanyAction.edit_info
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.Config
 import com.devstories.anipointcompany.android.base.Utils
@@ -46,9 +49,11 @@ class SettingMyInfoFragment : Fragment() {
     lateinit var imgcheckTV: TextView
     lateinit var userLL: LinearLayout
 
-    var thumbnail: Bitmap? = null
+    private var images_url: MutableList<String>? = null
+
     private val GALLERY = 1
 
+    var addImages = ArrayList<Bitmap>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -89,7 +94,23 @@ class SettingMyInfoFragment : Fragment() {
             company_info(1)
         }
         addImage1RL.setOnClickListener {
+
+            if (userLL.getChildCount() > 9) {
+                Toast.makeText(myContext, "10개만등록불가.", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
             choosePhotoFromGallary()
+        }
+
+        imgcheckTV.setOnClickListener {
+
+            if (userLL.getChildCount() > 9) {
+                Toast.makeText(myContext, "10개만등록불가.", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
+            edit_image()
         }
 
     }
@@ -114,20 +135,21 @@ class SettingMyInfoFragment : Fragment() {
                 Log.d("uri",contentURI.toString())
                 try
                 {
-                    thumbnail = MediaStore.Images.Media.getBitmap(myContext.contentResolver, contentURI)
+                    var thumbnail = MediaStore.Images.Media.getBitmap(myContext.contentResolver, contentURI)
+
+                    addImages.add(thumbnail)
+
                     thumbnail = Utils.rotate(myContext.contentResolver, thumbnail, contentURI)
                     val userView = View.inflate(myContext, R.layout.item_company_img, null)
                     val c_imgIV :ImageView = userView.findViewById(R.id.c_imgIV)
                     c_imgIV.setImageBitmap(thumbnail)
+
                     if (userLL.getChildCount() > 9) {
                         Toast.makeText(myContext, "사진은 10개까지 등록가능합니다.", Toast.LENGTH_LONG).show()
                         return
                     }else{
                         userLL.addView(userView)
                     }
-
-
-                    edit_image()
                 }
                 catch (e: IOException) {
                     e.printStackTrace()
@@ -187,6 +209,8 @@ class SettingMyInfoFragment : Fragment() {
                             val c_imgIV :ImageView = userView.findViewById(R.id.c_imgIV)
                             var image = Config.url + image_uri
                             Log.d("이미지1",image)
+
+
                             ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(getActivity()));
                             ImageLoader.getInstance().displayImage(image,c_imgIV, Utils.UILoptionsUserProfile)
                             userLL.addView(userView)
@@ -335,13 +359,16 @@ class SettingMyInfoFragment : Fragment() {
 
     //사업체 이미지 업데이트
     fun edit_image() {
+
         val params = RequestParams()
         params.put("company_id",1)
 
-        if (thumbnail != null){
-            val byteArrayInputStream = ByteArrayInputStream(Utils.getByteArray(thumbnail))
-            params.put("upload", byteArrayInputStream)
-            Log.d("바이트썸네",byteArrayInputStream.toString())
+        if (addImages.size > 0){
+            for(i in 0..(addImages.size - 1)) {
+                val byteArrayInputStream = ByteArrayInputStream(Utils.getByteArray(addImages[i]))
+                params.put("upload[" + i + "]", byteArrayInputStream)
+                Log.d("바이트썸네",byteArrayInputStream.toString())
+            }
         }
 
         CompanyAction.edit_image(params, object : JsonHttpResponseHandler() {
