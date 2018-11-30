@@ -2,7 +2,11 @@ package com.devstories.anipointcompany.android.activities
 
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,7 +15,10 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.CompanyAction
+import com.devstories.anipointcompany.android.Actions.CompanyAction.company_info
+import com.devstories.anipointcompany.android.Actions.CompanyAction.edit_info
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
@@ -19,6 +26,8 @@ import com.loopj.android.http.RequestParams
 import cz.msebera.android.httpclient.Header
 import org.json.JSONException
 import org.json.JSONObject
+import java.io.ByteArrayInputStream
+import java.io.IOException
 
 class SettingMyInfoFragment : Fragment() {
 
@@ -32,8 +41,6 @@ class SettingMyInfoFragment : Fragment() {
     lateinit var termET: EditText
     lateinit var compIdET: EditText
     lateinit var addImage1RL: RelativeLayout
-    lateinit var addImage2RL: RelativeLayout
-    lateinit var addImage3RL: RelativeLayout
     lateinit var tempPasswordET: EditText
     lateinit var newPasswordET: EditText
     lateinit var newPassCheckET: EditText
@@ -41,7 +48,10 @@ class SettingMyInfoFragment : Fragment() {
     lateinit var infocheckTV: TextView
     lateinit var imgcheckTV: TextView
 
-
+    var imageUri: Uri? = null
+    var thumbnail: Bitmap? = null
+    private val GALLERY = 1
+    private val CAMERA = 2
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
@@ -59,11 +69,7 @@ class SettingMyInfoFragment : Fragment() {
         phoneNum3ET = view.findViewById(R.id.phoneNum3ET)
         compIdET = view.findViewById(R.id.compIdET)
         addImage1RL = view.findViewById(R.id.addImage1RL)
-        addImage2RL = view.findViewById(R.id.addImage2RL)
         termET = view.findViewById(R.id.termET)
-        addImage1RL = view.findViewById(R.id.addImage1RL)
-        addImage2RL = view.findViewById(R.id.addImage2RL)
-        addImage3RL = view.findViewById(R.id.addImage3RL)
         tempPasswordET = view.findViewById(R.id.tempPasswordET)
         newPasswordET = view.findViewById(R.id.newPasswordET)
         newPassCheckET = view.findViewById(R.id.newPassCheckET)
@@ -79,7 +85,57 @@ class SettingMyInfoFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         company_info(1)
+
+        //정보수정
+        infocheckTV.setOnClickListener {
+            edit_info()
+            company_info(1)
+        }
+        addImage1RL.setOnClickListener {
+            choosePhotoFromGallary()
+        }
+
     }
+
+    private fun choosePhotoFromGallary() {
+        val galleryIntent = Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+
+        startActivityForResult(galleryIntent, GALLERY)
+
+    }
+
+
+    override fun onActivityResult(requestCode:Int, resultCode:Int, data: Intent?) {
+
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == GALLERY)
+        {
+            if (data != null)
+            {
+                val contentURI = data!!.data
+                Log.d("사진",contentURI.toString())
+                try
+                {
+                    thumbnail = MediaStore.Images.Media.getBitmap(myContext.contentResolver, contentURI)
+                    Log.d("썸네",thumbnail.toString())
+                    if (thumbnail != null){
+                        val byteArrayInputStream = ByteArrayInputStream(Utils.getByteArray(thumbnail))
+                        Log.d("바이트썸네",byteArrayInputStream.toString())
+                    }
+                }
+                catch (e: IOException) {
+                    e.printStackTrace()
+                    Toast.makeText(myContext, "바꾸기실패", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+
+    }
+
+
+
 
     //사업체 정보뽑기
     fun company_info(company_id: Int) {
@@ -102,13 +158,13 @@ class SettingMyInfoFragment : Fragment() {
                         val phone1 = Utils.getString(company,"phone1")
                         val phone2 = Utils.getString(company,"phone2")
                         val phone3 = Utils.getString(company,"phone3")
-
+                        val login_id = Utils.getString(company,"login_id")
 
                         compNameET.setText(company_name)
                         phoneNum1ET.setText(phone1)
                         phoneNum2ET.setText(phone2)
                         phoneNum3ET.setText(phone3)
-
+                        compIdET.setText(login_id)
 
 
                         val points = response.getJSONArray("categories")
@@ -118,6 +174,179 @@ class SettingMyInfoFragment : Fragment() {
                         }
 
                     } else {
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(myContext, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
+
+
+    //사업체 정보수정
+    fun edit_info() {
+        val company_name = Utils.getString(compNameET)
+        var phone1:String =  Utils.getString(phoneNum1ET)
+        var phone2:String =  Utils.getString(phoneNum2ET)
+        var phone3:String =  Utils.getString(phoneNum3ET)
+        var login_id:String =  Utils.getString(compIdET)
+
+        val params = RequestParams()
+        params.put("company_id",1)
+        params.put("company_name",company_name)
+        params.put("phone1",phone1)
+        params.put("phone2",phone2)
+        params.put("phone3",phone3)
+        params.put("login_id",login_id)
+
+
+        CompanyAction.edit_info(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    val result = response!!.getString("result")
+                    if ("ok" == result) {
+                        Toast.makeText(myContext,"수정완료", Toast.LENGTH_SHORT).show()
+
+                    }else{
+                        Toast.makeText(myContext,"수정실패", Toast.LENGTH_SHORT).show()
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(myContext, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
+
+
+
+
+
+    //사업체 이미지 업데이트
+    fun edit_image() {
+        val company_name = Utils.getString(compNameET)
+        var phone1:String =  Utils.getString(phoneNum1ET)
+        var phone2:String =  Utils.getString(phoneNum2ET)
+        var phone3:String =  Utils.getString(phoneNum3ET)
+        var login_id:String =  Utils.getString(compIdET)
+
+        val params = RequestParams()
+        params.put("company_id",1)
+        params.put("company_name",company_name)
+        params.put("phone1",phone1)
+        params.put("phone2",phone2)
+        params.put("phone3",phone3)
+        params.put("login_id",login_id)
+
+
+        CompanyAction.edit_image(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    val result = response!!.getString("result")
+                    if ("ok" == result) {
+                        Toast.makeText(myContext,"수정완료", Toast.LENGTH_SHORT).show()
+
+                    }else{
+                        Toast.makeText(myContext,"수정실패", Toast.LENGTH_SHORT).show()
 
                     }
 
