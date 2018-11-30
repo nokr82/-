@@ -303,141 +303,146 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="345dp"
-                    android:layout_height="65.5dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/background_strock_e7e7e7"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="7.5dp">
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_width="345dp"
+                        android:layout_height="65.5dp"
+                        android:background="@drawable/background_strock_e7e7e7"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="7.5dp">
 
-                    <RelativeLayout
-                        android:id="@+id/addImage1RL"
-                        android:layout_width="45dp"
-                        android:layout_height="45.5dp"
-                        android:layout_marginRight="10dp">
-
-                        <View
+                        <RelativeLayout
+                            android:id="@+id/addImage1RL"
                             android:layout_width="45dp"
-                            android:layout_height="0.5dp"
-                            android:background="#e7e7e7" />
+                            android:layout_height="45.5dp"
+                            android:layout_marginRight="10dp">
 
-                        <View
+                            <View
+                                android:layout_width="45dp"
+                                android:layout_height="0.5dp"
+                                android:background="#e7e7e7" />
+
+                            <View
+                                android:layout_width="45dp"
+                                android:layout_height="0.5dp"
+                                android:layout_alignParentBottom="true"
+                                android:background="#e7e7e7" />
+
+                            <View
+                                android:layout_width="0.5dp"
+                                android:layout_height="45.5dp"
+                                android:layout_alignParentRight="true"
+                                android:background="#e7e7e7" />
+
+                            <View
+                                android:layout_width="0.5dp"
+                                android:layout_height="45.5dp"
+                                android:layout_alignParentLeft="true"
+                                android:background="#e7e7e7" />
+
+                            <View
+                                android:layout_width="30dp"
+                                android:layout_height="1dp"
+                                android:layout_centerInParent="true"
+                                android:background="#e7e7e7" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="30dp"
+                                android:layout_centerInParent="true"
+                                android:background="#e7e7e7" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/addImage2RL"
                             android:layout_width="45dp"
-                            android:layout_height="0.5dp"
-                            android:layout_alignParentBottom="true"
-                            android:background="#e7e7e7" />
-
-                        <View
-                            android:layout_width="0.5dp"
                             android:layout_height="45.5dp"
-                            android:layout_alignParentRight="true"
-                            android:background="#e7e7e7" />
+                            android:layout_marginRight="10dp">
 
-                        <View
-                            android:layout_width="0.5dp"
-                            android:layout_height="45.5dp"
-                            android:layout_alignParentLeft="true"
-                            android:background="#e7e7e7" />
+                            <View
+                                android:layout_width="45dp"
+                                android:layout_height="0.5dp"
+                                android:background="#e7e7e7" />
 
-                        <View
-                            android:layout_width="30dp"
-                            android:layout_height="1dp"
-                            android:layout_centerInParent="true"
-                            android:background="#e7e7e7" />
+                            <View
+                                android:layout_width="45dp"
+                                android:layout_height="0.5dp"
+                                android:layout_alignParentBottom="true"
+                                android:background="#e7e7e7" />
 
-                        <View
-                            android:layout_width="1dp"
-                            android:layout_height="30dp"
-                            android:layout_centerInParent="true"
-                            android:background="#e7e7e7" />
-                    </RelativeLayout>
+                            <View
+                                android:layout_width="0.5dp"
+                                android:layout_height="45.5dp"
+                                android:layout_alignParentRight="true"
+                                android:background="#e7e7e7" />
 
-                    <RelativeLayout
-                        android:id="@+id/addImage2RL"
-                        android:layout_width="45dp"
-                        android:layout_height="45.5dp"
-                        android:layout_marginRight="10dp">
+                            <View
+                                android:layout_width="0.5dp"
+                                android:layout_height="45.5dp"
+                                android:layout_alignParentLeft="true"
+                                android:background="#e7e7e7" />
 
-                        <View
+                            <View
+                                android:layout_width="30dp"
+                                android:layout_height="1dp"
+                                android:layout_centerInParent="true"
+                                android:background="#e7e7e7" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="30dp"
+                                android:layout_centerInParent="true"
+                                android:background="#e7e7e7" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/addImage3RL"
                             android:layout_width="45dp"
-                            android:layout_height="0.5dp"
-                            android:background="#e7e7e7" />
-
-                        <View
-                            android:layout_width="45dp"
-                            android:layout_height="0.5dp"
-                            android:layout_alignParentBottom="true"
-                            android:background="#e7e7e7" />
-
-                        <View
-                            android:layout_width="0.5dp"
                             android:layout_height="45.5dp"
-                            android:layout_alignParentRight="true"
-                            android:background="#e7e7e7" />
+                            android:layout_marginRight="10dp">
 
-                        <View
-                            android:layout_width="0.5dp"
-                            android:layout_height="45.5dp"
-                            android:layout_alignParentLeft="true"
-                            android:background="#e7e7e7" />
+                            <View
+                                android:layout_width="45dp"
+                                android:layout_height="0.5dp"
+                                android:background="#e7e7e7" />
 
-                        <View
-                            android:layout_width="30dp"
-                            android:layout_height="1dp"
-                            android:layout_centerInParent="true"
-                            android:background="#e7e7e7" />
+                            <View
+                                android:layout_width="45dp"
+                                android:layout_height="0.5dp"
+                                android:layout_alignParentBottom="true"
+                                android:background="#e7e7e7" />
 
-                        <View
-                            android:layout_width="1dp"
-                            android:layout_height="30dp"
-                            android:layout_centerInParent="true"
-                            android:background="#e7e7e7" />
-                    </RelativeLayout>
+                            <View
+                                android:layout_width="0.5dp"
+                                android:layout_height="45.5dp"
+                                android:layout_alignParentRight="true"
+                                android:background="#e7e7e7" />
 
-                    <RelativeLayout
-                        android:id="@+id/addImage3RL"
-                        android:layout_width="45dp"
-                        android:layout_height="45.5dp"
-                        android:layout_marginRight="10dp">
+                            <View
+                                android:layout_width="0.5dp"
+                                android:layout_height="45.5dp"
+                                android:layout_alignParentLeft="true"
+                                android:background="#e7e7e7" />
 
-                        <View
-                            android:layout_width="45dp"
-                            android:layout_height="0.5dp"
-                            android:background="#e7e7e7" />
+                            <View
+                                android:layout_width="30dp"
+                                android:layout_height="1dp"
+                                android:layout_centerInParent="true"
+                                android:background="#e7e7e7" />
 
-                        <View
-                            android:layout_width="45dp"
-                            android:layout_height="0.5dp"
-                            android:layout_alignParentBottom="true"
-                            android:background="#e7e7e7" />
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="30dp"
+                                android:layout_centerInParent="true"
+                                android:background="#e7e7e7" />
+                        </RelativeLayout>
 
-                        <View
-                            android:layout_width="0.5dp"
-                            android:layout_height="45.5dp"
-                            android:layout_alignParentRight="true"
-                            android:background="#e7e7e7" />
+                    </LinearLayout>
+                </HorizontalScrollView>
 
-                        <View
-                            android:layout_width="0.5dp"
-                            android:layout_height="45.5dp"
-                            android:layout_alignParentLeft="true"
-                            android:background="#e7e7e7" />
 
-                        <View
-                            android:layout_width="30dp"
-                            android:layout_height="1dp"
-                            android:layout_centerInParent="true"
-                            android:background="#e7e7e7" />
-
-                        <View
-                            android:layout_width="1dp"
-                            android:layout_height="30dp"
-                            android:layout_centerInParent="true"
-                            android:background="#e7e7e7" />
-                    </RelativeLayout>
-
-                </LinearLayout>
                 <TextView
                     android:id="@+id/imgcheckTV"
                     android:layout_width="75dp"
@@ -452,15 +457,26 @@
                     android:textSize="10sp" />
 
             </LinearLayout>
+
+
             <LinearLayout
                 android:layout_width="345dp"
-                android:layout_height="118.5dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="14.5dp"
                 android:layout_marginBottom="26.5dp"
                 android:padding="7.5dp"
                 android:background="@drawable/background_strock_e7e7e7"
                 android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:textSize="9sp"
+                    android:letterSpacing="-0.23"
+                    android:textColor="#666666"
+                    android:textStyle="bold"
+                    android:text="내 정보(매장 정보)"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
