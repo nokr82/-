@@ -1,5 +1,6 @@
 package com.devstories.anipointcompany.android.activities
 
+import android.app.Activity.RESULT_OK
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
@@ -44,6 +45,7 @@ class User_List_Fragment : Fragment() {
 
     var adapterData: ArrayList<JSONObject> = ArrayList<JSONObject>()
 
+    var EDIT_MEMBER_INFO = 101
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -251,7 +253,7 @@ class User_List_Fragment : Fragment() {
                             modiLL.setOnClickListener {
                                 var intent = Intent(context, DlgEditMemberInfoActivity::class.java)
                                 intent.putExtra("member_id", member_id)
-                                startActivity(intent)
+                                startActivityForResult(intent, EDIT_MEMBER_INFO)
                             }
 
 
@@ -503,6 +505,26 @@ class User_List_Fragment : Fragment() {
                 }
             }
         })
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        when (requestCode) {
+            EDIT_MEMBER_INFO -> {
+                if (resultCode == RESULT_OK) {
+
+                    if (data != null) {
+                        var member_id = data.getIntExtra("member_id", -1)
+
+
+
+                    }
+
+                }
+            }
+        }
+
     }
 
     override fun onDestroy() {
