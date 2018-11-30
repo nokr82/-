@@ -32,119 +32,138 @@
                 android:orientation="vertical"
                 android:visibility="visible">
 
-
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
                     android:layout_marginTop="17.5dp"
+                    android:gravity="center_vertical"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/entire_viewTV"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="1sp"
-                        android:text="전체"
-                        android:textColor="#ffffff"
-                        android:textSize="9sp" />
+                        android:orientation="vertical">
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.3dp"
-                        android:background="#ffff" />
+                        <TextView
+                            android:id="@+id/entire_viewTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="1sp"
+                            android:text="전체"
+                            android:textColor="#ffffff"
+                            android:textSize="9sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.3dp"
+                            android:background="#ffff" />
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/userList_new_userLL"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="17.5dp"
-                    android:orientation="vertical">
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="17.5dp">
 
-                    <TextView
-                        android:id="@+id/new_userTV"
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="1sp"
-                        android:text="신규"
-                        android:textColor="#80ffffff"
-                        android:textSize="9sp" />
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.3dp"
-                        android:background="#ffff" />
+                        <TextView
+                            android:id="@+id/new_userTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="1sp"
+                            android:text="신규"
+                            android:textColor="#80ffffff"
+                            android:textSize="9sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.3dp"
+                            android:background="#ffff" />
+
+                    </LinearLayout>
+
+
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/userList_most_freq_userLL"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:gravity="center_vertical"
                     android:layout_marginTop="17.5dp"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/most_freqTV"
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="1sp"
-                        android:text="단골"
-                        android:textColor="#80ffffff"
-                        android:textSize="9sp" />
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.3dp"
-                        android:background="#ffff" />
+                        <TextView
+                            android:id="@+id/most_freqTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="1sp"
+                            android:text="단골"
+                            android:textColor="#80ffffff"
+                            android:textSize="9sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.3dp"
+                            android:background="#ffff" />
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/userList_birth_userLL"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:gravity="center_vertical"
                     android:layout_marginTop="17.5dp"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/birthTV"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="1sp"
-                        android:text="생일"
-                        android:textColor="#80ffffff"
-                        android:textSize="9sp" />
+                        android:orientation="vertical">
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.3dp"
-                        android:background="#ffff" />
+                        <TextView
+                            android:id="@+id/birthTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="1sp"
+                            android:text="생일"
+                            android:textColor="#80ffffff"
+                            android:textSize="9sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.3dp"
+                            android:background="#ffff" />
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/userList_mvpLL"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="17.5dp"
                     android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/mvpTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="1sp"
-                        android:text="단골 or VIP"
-                        android:textColor="#80ffffff"
-                        android:textSize="9sp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.3dp"
-                        android:background="#ffff" />
 
                     <LinearLayout
                         android:id="@+id/joinLL"
