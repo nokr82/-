@@ -13,9 +13,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.devstories.anipointcompany.android.Actions.CompanyAction
-import com.devstories.anipointcompany.android.Actions.CompanyAction.company_info
-import com.devstories.anipointcompany.android.Actions.CompanyAction.edit_image
-import com.devstories.anipointcompany.android.Actions.CompanyAction.edit_info
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.Config
 import com.devstories.anipointcompany.android.base.Utils
@@ -49,11 +46,13 @@ class SettingMyInfoFragment : Fragment() {
     lateinit var imgcheckTV: TextView
     lateinit var userLL: LinearLayout
 
-    private var images_url: MutableList<String>? = null
 
     private val GALLERY = 1
 
+    //비트맵 이미지 배열
+    //이걸로 api배열에 이미지를 넣는다.
     var addImages = ArrayList<Bitmap>()
+    var delids = ArrayList<Int>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -113,6 +112,7 @@ class SettingMyInfoFragment : Fragment() {
             edit_image()
         }
 
+
     }
 
     private fun choosePhotoFromGallary() {
@@ -137,19 +137,18 @@ class SettingMyInfoFragment : Fragment() {
                 {
                     var thumbnail = MediaStore.Images.Media.getBitmap(myContext.contentResolver, contentURI)
 
-                    addImages.add(thumbnail)
-
                     thumbnail = Utils.rotate(myContext.contentResolver, thumbnail, contentURI)
+                    //비트맵배열에 비트맵추가
+                    addImages.add(thumbnail)
                     val userView = View.inflate(myContext, R.layout.item_company_img, null)
                     val c_imgIV :ImageView = userView.findViewById(R.id.c_imgIV)
+
                     c_imgIV.setImageBitmap(thumbnail)
 
-                    if (userLL.getChildCount() > 9) {
-                        Toast.makeText(myContext, "사진은 10개까지 등록가능합니다.", Toast.LENGTH_LONG).show()
-                        return
-                    }else{
-                        userLL.addView(userView)
-                    }
+                    userView.tag = -1
+
+                    userLL.addView(userView)
+
                 }
                 catch (e: IOException) {
                     e.printStackTrace()
@@ -207,11 +206,16 @@ class SettingMyInfoFragment : Fragment() {
                             Log.d("제이슨이미지",json.toString())
                             val image_uri = Utils.getString(CompanyImage,"image_uri")
                             val c_imgIV :ImageView = userView.findViewById(R.id.c_imgIV)
+                            val delIV :ImageView = userView.findViewById(R.id.delIV)
                             var image = Config.url + image_uri
                             Log.d("이미지1",image)
+                            userView.tag = Utils.getInt(CompanyImage, "id")
+                            delIV.setOnClickListener {
+                                Toast.makeText(myContext,userView.tag.toString(),Toast.LENGTH_SHORT).show()
+                                delids.add(userView.tag as Int)
+                                Log.d("아이디값",delids.toString())
 
-
-                            ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(getActivity()));
+                            }
                             ImageLoader.getInstance().displayImage(image,c_imgIV, Utils.UILoptionsUserProfile)
                             userLL.addView(userView)
 
@@ -362,7 +366,20 @@ class SettingMyInfoFragment : Fragment() {
 
         val params = RequestParams()
         params.put("company_id",1)
+        if (delids.size>0){
 
+            for (i in 0..(delids.size -1)){
+                val delimg = delids[i]
+                //배열로 입력저장은 [] 이걸 넣어준다
+                params.put("del_ids["+i+"]",delimg)
+                Log.d("삭제번호",delimg.toString())
+
+            }
+
+        }
+
+
+            //비트맵배열의 크기만큼
         if (addImages.size > 0){
             for(i in 0..(addImages.size - 1)) {
                 val byteArrayInputStream = ByteArrayInputStream(Utils.getByteArray(addImages[i]))
@@ -381,6 +398,7 @@ class SettingMyInfoFragment : Fragment() {
                 try {
                     val result = response!!.getString("result")
                     if ("ok" == result) {
+                        company_info(1)
 
                     }else{
                         Toast.makeText(myContext,"업데이트실패", Toast.LENGTH_SHORT).show()

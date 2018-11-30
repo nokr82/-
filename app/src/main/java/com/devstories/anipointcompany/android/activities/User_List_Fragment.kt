@@ -39,7 +39,6 @@ class User_List_Fragment : Fragment() {
     lateinit var userList_new_userLL : LinearLayout
     lateinit var userList_most_freq_userLL : LinearLayout
     lateinit var userList_birth_userLL : LinearLayout
-    lateinit var userList_mvpLL : LinearLayout
     lateinit var joinLL : LinearLayout
     lateinit var accumulateLL : LinearLayout
     lateinit var btn_search : LinearLayout
@@ -67,7 +66,6 @@ class User_List_Fragment : Fragment() {
         userList_new_userLL = view.findViewById(R.id.userList_new_userLL)
         userList_most_freq_userLL = view.findViewById(R.id.userList_most_freq_userLL)
         userList_birth_userLL = view.findViewById(R.id.userList_birth_userLL)
-        userList_mvpLL = view.findViewById(R.id.userList_mvpLL)
         joinLL = view.findViewById(R.id.joinLL)
         accumulateLL = view.findViewById(R.id.accumulateLL)
         useLL = view.findViewById(R.id.useLL)
@@ -97,6 +95,12 @@ class User_List_Fragment : Fragment() {
             entire_viewTV.setTextColor(Color.parseColor("#ffffff"))
             mainData(1)
         }
+        //단골
+        userList_most_freq_userLL.setOnClickListener {
+            setLeftMenu()
+            most_freqTV.setTextColor(Color.parseColor("#ffffff"))
+
+        }
 
         userList_birth_userLL.setOnClickListener {
             setLeftMenu()
@@ -121,6 +125,12 @@ class User_List_Fragment : Fragment() {
             mainData(3)
         }
 
+        userList_most_freq_userLL.setOnClickListener {
+            setLeftMenu()
+            most_freqTV.setTextColor(Color.parseColor("#ffffff"))
+            mainData(4)
+        }
+
     }
 
     fun setLeftMenu(){
@@ -128,10 +138,9 @@ class User_List_Fragment : Fragment() {
         new_userTV.setTextColor(Color.parseColor("#80ffffff"))
         most_freqTV.setTextColor(Color.parseColor("#80ffffff"))
         birthTV.setTextColor(Color.parseColor("#80ffffff"))
-        mvpTV.setTextColor(Color.parseColor("#80ffffff"))
     }
 
-
+//고객목롭뽑기
     fun mainData(type : Int) {
         val params = RequestParams()
         params.put("company_id", 1)
