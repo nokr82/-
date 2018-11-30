@@ -73,7 +73,10 @@ class DlgEditMemberInfoActivity : RootActivity() {
         loadData()
 
     }
-
+    fun setmenu(){
+        maleIV.setImageResource(R.drawable.radio_off)
+        femaleIV.setImageResource(R.drawable.radio_off)
+    }
     fun loadData(){
 
         val params = RequestParams()
@@ -88,9 +91,20 @@ class DlgEditMemberInfoActivity : RootActivity() {
 
                 try {
                     val result = response!!.getString("result")
+                    maleIV
+                    femaleIV
 
                     if ("ok" == result) {
                         val member = response.getJSONObject("member")
+                        val gender = Utils.getString(member,"gender")
+                        if (gender.equals("M")){
+                            setmenu()
+                            maleIV.setImageResource(R.drawable.radio_on)
+                        }else if (gender.equals("F")){
+                            setmenu()
+                            femaleIV.setImageResource(R.drawable.radio_on)
+                        }
+
 
                         phoneET.setText(Utils.getString(member, "phone"))
                         nameET.setText(Utils.getString(member, "name"))

@@ -303,20 +303,68 @@
                     android:layout_height="0.3dp"
                     android:background="#ffffff"/>
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="16.5dp"
                     android:gravity="center_vertical"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/genderTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#ffffff"
-                        android:textSize="9sp"
-                        android:textColorHint="#ffffff"
-                        android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="1sp"
-                        android:text="여자" />
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:id="@+id/maleIV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="3dp"
+                                android:src="@drawable/radio_on" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="1dp"
+                                android:textSize="9sp"
+                                android:textColor="#ffffff"
+                                android:letterSpacing="-0.01"
+                                android:gravity="center_horizontal"
+                                android:text="남" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:id="@+id/femaleIV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="3dp"
+                                android:src="@drawable/radio_on" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="1dp"
+                                android:textSize="9sp"
+                                android:textColor="#ffffff"
+                                android:letterSpacing="-0.01"
+                                android:gravity="center_horizontal"
+                                android:text="여" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                 </LinearLayout>
                 <View

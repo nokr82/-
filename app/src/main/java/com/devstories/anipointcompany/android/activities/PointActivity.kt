@@ -62,7 +62,7 @@ class PointActivity : RootActivity() {
             m_opTV.text = "P"
         }
 
-
+        setmenu()
         stackLL.setOnClickListener {
             val totalpoint =Integer.parseInt(moneyTV.text.toString())
             Log.d("포인트", totalpoint.toString())
@@ -137,6 +137,11 @@ class PointActivity : RootActivity() {
 
         changeStep()
 
+    }
+
+    fun setmenu(){
+        maleIV.setImageResource(R.drawable.radio_off)
+        femaleIV.setImageResource(R.drawable.radio_off)
     }
 
     // 프로세스
@@ -276,7 +281,13 @@ class PointActivity : RootActivity() {
 
                                 stack_pointTV.text = left_point
                                 titleTV.text = name
-                                genderTV.text = gender
+                                if (gender.equals("M")){
+                                    setmenu()
+                                    maleIV.setImageResource(R.drawable.radio_on)
+                                }else if (gender.equals("F")){
+                                    setmenu()
+                                    femaleIV.setImageResource(R.drawable.radio_on)
+                                }
                                 phoneTV.text = phone
                                 ageTV.text = age
                                 birthTV.text = birth
@@ -311,7 +322,13 @@ class PointActivity : RootActivity() {
 
                                 stack_pointTV.text = left_point
                                 titleTV.text = name
-                                genderTV.text = gender
+                                if (gender.equals("M")){
+                                    setmenu()
+                                    maleIV.setImageResource(R.drawable.radio_on)
+                                }else if (gender.equals("F")){
+                                    setmenu()
+                                    femaleIV.setImageResource(R.drawable.radio_on)
+                                }
                                 phoneTV.text = phone
                                 ageTV.text = age
                                 birthTV.text = birth
