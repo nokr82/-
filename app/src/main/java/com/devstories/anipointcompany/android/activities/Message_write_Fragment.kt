@@ -47,6 +47,8 @@ class Message_write_Fragment : Fragment() {
 
         val MessageUserFragment : MessageUserFragment = MessageUserFragment()
 
+        childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, MessageUserFragment).commit()
+
         userRL.setOnClickListener {
             childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, MessageUserFragment).commit()
         }
