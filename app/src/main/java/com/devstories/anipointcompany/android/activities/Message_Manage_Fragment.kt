@@ -2,8 +2,6 @@ package com.devstories.anipointcompany.android.activities
 
 import android.app.ProgressDialog
 import android.content.Context
-import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -50,11 +48,13 @@ class Message_Manage_Fragment : Fragment() {
         val MessageUserFragment : MessageUserFragment = MessageUserFragment()
         val Message_write_Fragment : Message_write_Fragment = Message_write_Fragment()
 
+        childFragmentManager.beginTransaction().replace(R.id.messageFL, Message_write_Fragment).commit()
+
         //고객선텍
         selCustomTV.setOnClickListener {
             childFragmentManager.beginTransaction().replace(R.id.messageFL, Message_write_Fragment).commit()
         }
-        selCustomTV.callOnClick()
+
         //쿠폰설정
         setCouponTV .setOnClickListener {
 

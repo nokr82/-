@@ -17,13 +17,9 @@ class MessageUserFragment : Fragment() {
     lateinit var myContext: Context
     private var progressDialog: ProgressDialog? = null
     lateinit var adapter: ArrayAdapter<String>
-    var option_visitday = arrayOf("전체", "5일", "2×4", "4×1", "4×2")
-
-
-
+    var option_visitday = arrayOf("전체", "15일", "30일", "60일", "90일")
 
     lateinit var visitdaySP: Spinner
-
 
     lateinit var tenLL: LinearLayout
     lateinit var twoLL: LinearLayout
@@ -32,9 +28,9 @@ class MessageUserFragment : Fragment() {
     lateinit var fiveLL: LinearLayout
     lateinit var sixLL: LinearLayout
 
-    lateinit var girlLL: LinearLayout
-    lateinit var menLL: LinearLayout
-    lateinit var genderLL: LinearLayout
+    lateinit var genderMLL: LinearLayout
+    lateinit var genderFLL: LinearLayout
+    lateinit var genderNLL: LinearLayout
 
     lateinit var citizenLL: LinearLayout
     lateinit var workerLL: LinearLayout
@@ -62,6 +58,7 @@ class MessageUserFragment : Fragment() {
     lateinit var use_moneyRL: RelativeLayout
     lateinit var novisitRL: RelativeLayout
     lateinit var pointRL: RelativeLayout
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -70,6 +67,7 @@ class MessageUserFragment : Fragment() {
 
         return inflater.inflate(R.layout.fra_message_wirte_step1, container, false)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         visitdaySP = view.findViewById(R.id.visitdaySP)
@@ -82,9 +80,9 @@ class MessageUserFragment : Fragment() {
         studentLL = view.findViewById(R.id.studentLL)
         workerLL = view.findViewById(R.id.workerLL)
         cautionLL = view.findViewById(R.id.cautionLL)
-        genderLL = view.findViewById(R.id.genderLL)
-        menLL = view.findViewById(R.id.menLL)
-        girlLL = view.findViewById(R.id.girlLL)
+        genderNLL = view.findViewById(R.id.genderNLL)
+        genderMLL = view.findViewById(R.id.genderMLL)
+        genderFLL = view.findViewById(R.id.genderFLL)
         citizenLL = view.findViewById(R.id.citizenLL)
         tenTV = view.findViewById(R.id.tenTV)
         twoTV = view.findViewById(R.id.twoTV)
@@ -106,78 +104,124 @@ class MessageUserFragment : Fragment() {
         novisitRL = view.findViewById(R.id.novisitRL)
         pointRL = view.findViewById(R.id.pointRL)
 
-
-
     }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
 
         adapter = ArrayAdapter(myContext,R.layout.spiner_item,option_visitday)
         visitdaySP.adapter = adapter
-        setmenu1()
-        setmenu2()
         setmenu3()
         setfilter()
 
-        genderLL.setOnClickListener {
-            setmenu1()
-            genderLL.setBackgroundResource(R.drawable.background_00d1ce)
-            genderTV.setTextColor(Color.parseColor("#ffffff"))
-        }
-        menLL.setOnClickListener {
-            setmenu1()
-            menLL.setBackgroundResource(R.drawable.background_00d1ce)
-            menTV.setTextColor(Color.parseColor("#ffffff"))
-        }
-        girlLL.setOnClickListener {
-            setmenu1()
-            girlLL.setBackgroundResource(R.drawable.background_00d1ce)
-            girlTV.setTextColor(Color.parseColor("#ffffff"))
-        }
+        genderNLL.setOnClickListener {
+            it.isSelected = !it.isSelected
 
+            if(it.isSelected) {
+                genderNLL.setBackgroundResource(R.drawable.background_00d1ce)
+                genderTV.setTextColor(Color.parseColor("#ffffff"))
+            } else {
+                genderNLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
+                genderTV.setTextColor(Color.parseColor("#9a9a99"))
+            }
 
+        }
+        genderMLL.setOnClickListener {
+            it.isSelected = !it.isSelected
+
+            if(it.isSelected) {
+                genderMLL.setBackgroundResource(R.drawable.background_00d1ce)
+                menTV.setTextColor(Color.parseColor("#ffffff"))
+            } else {
+                genderMLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
+                menTV.setTextColor(Color.parseColor("#9a9a99"))
+            }
+
+        }
+        genderFLL.setOnClickListener {
+            it.isSelected = !it.isSelected
+
+            if(it.isSelected) {
+                genderFLL.setBackgroundResource(R.drawable.background_00d1ce)
+                girlTV.setTextColor(Color.parseColor("#ffffff"))
+            } else {
+                genderFLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
+                girlTV.setTextColor(Color.parseColor("#9a9a99"))
+            }
+        }
 
         tenLL.setOnClickListener {
-            setmenu2()
-            tenLL.setBackgroundResource(R.drawable.background_00d1ce)
-            tenTV.setTextColor(Color.parseColor("#ffffff"))
+            it.isSelected = !it.isSelected
+
+            if(it.isSelected) {
+                tenLL.setBackgroundResource(R.drawable.background_00d1ce)
+                tenTV.setTextColor(Color.parseColor("#ffffff"))
+            } else {
+                tenLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
+                tenTV.setTextColor(Color.parseColor("#9a9a99"))
+            }
         }
+
         twoLL.setOnClickListener {
-            setmenu2()
-            twoLL.setBackgroundResource(R.drawable.background_00d1ce)
-            twoTV.setTextColor(Color.parseColor("#ffffff"))
+            it.isSelected = !it.isSelected
 
-
+            if(it.isSelected) {
+                twoLL.setBackgroundResource(R.drawable.background_00d1ce)
+                twoTV.setTextColor(Color.parseColor("#ffffff"))
+            } else {
+                twoLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
+                twoTV.setTextColor(Color.parseColor("#9a9a99"))
+            }
         }
+
         threeLL.setOnClickListener {
-            setmenu2()
-            threeLL.setBackgroundResource(R.drawable.background_00d1ce)
-            threeTV.setTextColor(Color.parseColor("#ffffff"))
+            it.isSelected = !it.isSelected
 
-
+            if(it.isSelected) {
+                threeLL.setBackgroundResource(R.drawable.background_00d1ce)
+                threeTV.setTextColor(Color.parseColor("#ffffff"))
+            } else {
+                threeLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
+                threeTV.setTextColor(Color.parseColor("#9a9a99"))
+            }
         }
+
         fourLL.setOnClickListener {
-            setmenu2()
-            fourLL.setBackgroundResource(R.drawable.background_00d1ce)
-            fourTV.setTextColor(Color.parseColor("#ffffff"))
+            it.isSelected = !it.isSelected
 
-
+            if(it.isSelected) {
+                fourLL.setBackgroundResource(R.drawable.background_00d1ce)
+                fourTV.setTextColor(Color.parseColor("#ffffff"))
+            } else {
+                fourLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
+                fourTV.setTextColor(Color.parseColor("#9a9a99"))
+            }
         }
+
         fiveLL.setOnClickListener {
-            setmenu2()
-            fiveLL.setBackgroundResource(R.drawable.background_00d1ce)
-            fiveTV.setTextColor(Color.parseColor("#ffffff"))
+            it.isSelected = !it.isSelected
 
-
+            if(it.isSelected) {
+                fiveLL.setBackgroundResource(R.drawable.background_00d1ce)
+                fiveTV.setTextColor(Color.parseColor("#ffffff"))
+            } else {
+                fiveLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
+                fiveTV.setTextColor(Color.parseColor("#9a9a99"))
+            }
         }
+
         sixLL.setOnClickListener {
-            setmenu2()
-            sixLL.setBackgroundResource(R.drawable.background_00d1ce)
-            sixTV.setTextColor(Color.parseColor("#ffffff"))
+            it.isSelected = !it.isSelected
 
+            if(it.isSelected) {
+                sixLL.setBackgroundResource(R.drawable.background_00d1ce)
+                sixTV.setTextColor(Color.parseColor("#ffffff"))
+            } else {
+                sixLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
+                sixTV.setTextColor(Color.parseColor("#9a9a99"))
+            }
         }
-
 
         citizenLL.setOnClickListener {
             setmenu3()
@@ -235,9 +279,9 @@ class MessageUserFragment : Fragment() {
     }
 
     fun setmenu1(){
-        genderLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
-        menLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
-        girlLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
+        genderNLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
+        genderMLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
+        genderFLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
 
         genderTV.setTextColor(Color.parseColor("#9a9a99"))
         menTV.setTextColor(Color.parseColor("#9a9a99"))
