@@ -19,11 +19,12 @@
             />
         <ImageView
             android:id="@+id/delIV"
-            android:padding="1dp"
+            android:paddingLeft="10dp"
+            android:paddingBottom="10dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:src="@mipmap/del_it"/>
 
 

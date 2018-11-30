@@ -13,7 +13,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.devstories.anipointcompany.android.Actions.CompanyAction
+import com.devstories.anipointcompany.android.Actions.CompanyAction.company_info
+import com.devstories.anipointcompany.android.Actions.CompanyAction.edit_image
+import com.devstories.anipointcompany.android.Actions.CompanyAction.edit_info
 import com.devstories.anipointcompany.android.R
+import com.devstories.anipointcompany.android.R.id.*
 import com.devstories.anipointcompany.android.base.Config
 import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
@@ -136,18 +140,27 @@ class SettingMyInfoFragment : Fragment() {
                 try
                 {
                     var thumbnail = MediaStore.Images.Media.getBitmap(myContext.contentResolver, contentURI)
-
                     thumbnail = Utils.rotate(myContext.contentResolver, thumbnail, contentURI)
+
                     //비트맵배열에 비트맵추가
                     addImages.add(thumbnail)
+
+
+                    Log.d("이미지 추가",addImages.toString())
                     val userView = View.inflate(myContext, R.layout.item_company_img, null)
                     val c_imgIV :ImageView = userView.findViewById(R.id.c_imgIV)
-
+                    val delIV :ImageView = userView.findViewById(R.id.delIV)
                     c_imgIV.setImageBitmap(thumbnail)
-
-                    userView.tag = -1
-
                     userLL.addView(userView)
+                    //배열사이즈값 -해줘서
+                    userView.tag = addImages.size -1
+                    Log.d("태그",userView.tag.toString())
+
+                    delIV.setOnClickListener {
+                        //그사이즈값으로 인덱스를 구해서 삭제!!!
+                          addImages.removeAt(userView.tag as Int)
+                            userLL.removeView(userView)
+                    }
 
                 }
                 catch (e: IOException) {
@@ -211,6 +224,7 @@ class SettingMyInfoFragment : Fragment() {
                             Log.d("이미지1",image)
                             userView.tag = Utils.getInt(CompanyImage, "id")
                             delIV.setOnClickListener {
+                                userView.visibility = View.GONE
                                 Toast.makeText(myContext,userView.tag.toString(),Toast.LENGTH_SHORT).show()
                                 delids.add(userView.tag as Int)
                                 Log.d("아이디값",delids.toString())
@@ -361,7 +375,7 @@ class SettingMyInfoFragment : Fragment() {
         })
     }
 
-    //사업체 이미지 업데이트
+    //사업체 이미지 업데이트및 삭제
     fun edit_image() {
 
         val params = RequestParams()
@@ -398,6 +412,7 @@ class SettingMyInfoFragment : Fragment() {
                 try {
                     val result = response!!.getString("result")
                     if ("ok" == result) {
+                        addImages.clear()
                         company_info(1)
 
                     }else{
