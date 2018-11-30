@@ -9,9 +9,14 @@ import com.loopj.android.http.RequestParams
  */
 object CompanyAction {
 
-    // 스텝 체크
+    // 사업자정보
     fun company_info(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/company/info.json", params, handler)
+    }
+
+    // 사업자정보
+    fun edit_info(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/company/edit_info.json", params, handler)
     }
 
 
