@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="9.5dp"
+    android:background="@drawable/background_gradient">
+
+    <LinearLayout
+        android:layout_width="149dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8.5dp"
+            android:textColor="#ffffff"
+            android:textSize="24sp"
+            android:letterSpacing="-1.2"
+            android:text="메세지/\n쿠폰관리"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="23.5dp"
+            android:paddingLeft="8.5dp">
+            <TextView
+                android:id="@+id/selCustomTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="9sp"
+                android:textColor="#ffffff"
+                android:letterSpacing="-0.23"
+                android:text="메세지 통계"/>
+            <View
+                android:id="@+id/view1"
+                android:layout_width="45dp"
+                android:layout_height="0.5dp"
+                android:background="#ffffff"/>
+
+            <TextView
+                android:id="@+id/setCouponTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="19.5dp"
+                android:letterSpacing="-0.23"
+                android:textColor="#80ffffff"
+                android:textSize="9sp"
+                android:text="메세지 작성"/>
+            <View
+                android:id="@+id/view2"
+                android:layout_width="45dp"
+                android:layout_height="0.5dp"/>
+
+            <TextView
+                android:id="@+id/wrMsgTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="19.5dp"
+                android:letterSpacing="-0.23"
+                android:textColor="#80ffffff"
+                android:textSize="9sp"
+                android:text="자동쿠폰관리"/>
+            <View
+                android:id="@+id/view3"
+                android:layout_width="50dp"
+                android:layout_height="0.5dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/msgCouponFL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
