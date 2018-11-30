@@ -40,6 +40,8 @@ class DlgEditMemberInfoActivity : RootActivity() {
             val memo = Utils.getString(memoET)
             val phone = Utils.getString(phoneET)
 
+            println("birth.length : " + birth.length)
+
             if(phone == "") {
                 Toast.makeText(context, "핸드폰 번호를 입력해주세요", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
@@ -50,8 +52,8 @@ class DlgEditMemberInfoActivity : RootActivity() {
                 return@setOnClickListener
             }
 
-            if(birth.length != 6) {
-                Toast.makeText(context, "생년월일은 여섯자로 입력해주세요", Toast.LENGTH_LONG).show()
+            if(birth.length != 8) {
+                Toast.makeText(context, "생년월일은 여덟자리로 입력해주세요", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
 

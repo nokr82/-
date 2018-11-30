@@ -160,8 +160,6 @@ class User_List_Fragment : Fragment() {
                     if ("ok" == result) {
                         var data = response.getJSONArray("member")
 
-                        Log.d("메인리스트",data.toString())
-
                         for (i in 0..(data.length() - 1)) {
 
                             adapterData.add(data[i] as JSONObject)
@@ -172,7 +170,7 @@ class User_List_Fragment : Fragment() {
                             var visitedList  = json.getJSONArray("VisitedList")
 
                             var point =   Utils.getString(point_o, "balance")
-                            var member_id =   Utils.getString(member, "id")
+                            var member_id =   Utils.getInt(member, "id")
 
 
                             val userView = View.inflate(myContext, R.layout.item_user, null)
@@ -222,6 +220,15 @@ class User_List_Fragment : Fragment() {
                             ageTV.text = age+"세"
                             nameTV.text = phone
                             name2TV.text = name
+
+                            if(gender == "F") {
+                                gender = "여"
+                            } else if(gender == "M"){
+                                gender = "남"
+                            } else {
+                                gender = "모름"
+                            }
+
                             genderTV.text = gender
                             memoTV.text = memo
                             couponTV.text = coupon+"장"
@@ -361,8 +368,6 @@ class User_List_Fragment : Fragment() {
 
                     if ("ok" == result) {
                         var data = response.getJSONArray("member")
-
-                        Log.d("키워드로 찾은 유저 리스트",data.toString())
 
                         for (i in 0..(data.length() - 1)) {
                             Log.d("갯수", i.toString())
