@@ -339,4 +339,12 @@ class MessageUserFragment : Fragment() {
         studentTV.setTextColor(Color.parseColor("#9a9a99"))
         cautionTV.setTextColor(Color.parseColor("#9a9a99"))
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (progressDialog != null) {
+            progressDialog!!.dismiss()
+        }
+    }
+
 }
