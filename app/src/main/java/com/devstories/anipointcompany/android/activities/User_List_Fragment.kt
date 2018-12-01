@@ -79,12 +79,12 @@ class User_List_Fragment : Fragment() {
 
 
         useLL.setOnClickListener {
-            val intent = Intent(myContext, PointActivity::class.java)
+            val intent = Intent(myContext, CalActivity::class.java)
             intent.putExtra("step",4)
             startActivity(intent)
         }
         accumulateLL.setOnClickListener {
-            val intent = Intent(myContext, PointActivity::class.java)
+            val intent = Intent(myContext, CalActivity::class.java)
             startActivity(intent)
         }
 

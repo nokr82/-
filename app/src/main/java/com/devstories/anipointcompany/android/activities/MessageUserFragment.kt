@@ -12,6 +12,8 @@ import android.widget.*
 
 import com.devstories.anipointcompany.android.R
 
+//메세지관리(고객선택화면)
+
 class MessageUserFragment : Fragment() {
 
     lateinit var myContext: Context

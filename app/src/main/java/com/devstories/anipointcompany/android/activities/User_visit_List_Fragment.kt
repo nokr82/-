@@ -20,13 +20,9 @@ import com.loopj.android.http.RequestParams
 import cz.msebera.android.httpclient.Header
 import org.json.JSONException
 import org.json.JSONObject
-import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import android.widget.Toast
-import com.devstories.anipointcompany.android.Actions.MemberAction
-import com.devstories.anipointcompany.android.R.id.*
-import kotlinx.android.synthetic.main.fra_user_visit_analysis.*
 
 
 class User_visit_List_Fragment : Fragment() {
@@ -118,7 +114,7 @@ class User_visit_List_Fragment : Fragment() {
         val currentDate = formatter.format(date)
 
         accumulateLL.setOnClickListener {
-            val intent = Intent(myContext, PointActivity::class.java)
+            val intent = Intent(myContext, CalActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
@@ -209,7 +205,7 @@ class User_visit_List_Fragment : Fragment() {
         }
 
         accumulateLL.setOnClickListener {
-            var intent = Intent(myContext, PointActivity::class.java)
+            var intent = Intent(myContext, CalActivity::class.java)
             intent.putExtra("step", 1)
             startActivity(intent)
         }

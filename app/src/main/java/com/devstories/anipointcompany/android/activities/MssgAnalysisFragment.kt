@@ -1,7 +1,5 @@
 package com.devstories.anipointcompany.android.activities
 
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.devstories.anipointcompany.android.R
+//메세지관리(메시지작성화면)
 
 class MssgAnalysisFragment : Fragment() {
 

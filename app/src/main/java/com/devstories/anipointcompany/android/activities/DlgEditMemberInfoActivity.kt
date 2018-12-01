@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.dlg_edit_member_info.*
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-
+//회원수정 다이얼로그
 class DlgEditMemberInfoActivity : RootActivity() {
 
     lateinit var context: Context

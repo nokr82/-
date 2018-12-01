@@ -20,12 +20,9 @@ import android.content.Intent
 import android.graphics.Color
 import android.util.Log
 import android.widget.*
-import com.devstories.anipointcompany.android.Actions.MemberAction
 import com.devstories.anipointcompany.android.Actions.PointAction
-import com.devstories.anipointcompany.android.base.PrefUtils
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.prefs.Preferences
 
 
 class Point_List_Fragment : Fragment() {
@@ -168,7 +165,7 @@ class Point_List_Fragment : Fragment() {
 
 
         accumulateLL.setOnClickListener {
-            val intent = Intent(myContext, PointActivity::class.java)
+            val intent = Intent(myContext, CalActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }

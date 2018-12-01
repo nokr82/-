@@ -23,8 +23,8 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
-
-class PointActivity : RootActivity() {
+//계산및 적립화면
+class CalActivity : RootActivity() {
 
     lateinit var context: Context
     private var progressDialog: ProgressDialog? = null

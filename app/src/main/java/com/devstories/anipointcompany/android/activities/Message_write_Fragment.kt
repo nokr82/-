@@ -13,7 +13,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 
 import com.devstories.anipointcompany.android.R
-
+//메인메시지관리
 class Message_write_Fragment : Fragment() {
     lateinit var myContext: Context
     private var progressDialog: ProgressDialog? = null
@@ -47,7 +47,6 @@ class Message_write_Fragment : Fragment() {
 
         val MessageUserFragment : MessageUserFragment = MessageUserFragment()
 
-        childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, MessageUserFragment).commit()
 
         userRL.setOnClickListener {
             childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, MessageUserFragment).commit()

@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.*
 import com.devstories.anipointcompany.android.R
 
-
+//메시지관리  - 고객선택
 class Message_Manage_Fragment : Fragment() {
     lateinit var myContext: Context
     private var progressDialog: ProgressDialog? = null
