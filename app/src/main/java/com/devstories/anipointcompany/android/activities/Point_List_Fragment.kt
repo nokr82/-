@@ -166,7 +166,6 @@ class Point_List_Fragment : Fragment() {
 
         accumulateLL.setOnClickListener {
             val intent = Intent(myContext, CalActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
         useradapter = UserListAdapter(myContext,R.layout.item_user_point_list,adapterData)
