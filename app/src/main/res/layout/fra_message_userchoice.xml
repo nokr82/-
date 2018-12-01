@@ -21,6 +21,7 @@
             android:background="#0068df">
 
             <TextView
+                android:id="@+id/userTV"
                 android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -46,6 +47,7 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/couponTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -70,8 +72,9 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/writeTV"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="16dp"
                 android:layout_centerInParent="true"
                 android:gravity="center_horizontal"
                 android:letterSpacing="-0.03"
@@ -94,6 +97,7 @@
             android:layout_weight="1">
 
             <TextView
+                android:id="@+id/finalTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"

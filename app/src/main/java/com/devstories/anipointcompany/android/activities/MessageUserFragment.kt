@@ -61,6 +61,12 @@ class MessageUserFragment : Fragment() {
     lateinit var novisitRL: RelativeLayout
     lateinit var pointRL: RelativeLayout
 
+    lateinit var allTV: TextView
+    lateinit var acc_countTV: TextView
+    lateinit var use_moneyTV: TextView
+    lateinit var novisitTV: TextView
+    lateinit var pointTV: TextView
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -105,6 +111,12 @@ class MessageUserFragment : Fragment() {
         acc_countRL = view.findViewById(R.id.acc_countRL)
         novisitRL = view.findViewById(R.id.novisitRL)
         pointRL = view.findViewById(R.id.pointRL)
+        allTV = view.findViewById(R.id.allTV)
+        use_moneyTV =view.findViewById(R.id.use_moneyTV)
+        acc_countTV = view.findViewById(R.id.acc_countTV)
+        novisitTV = view.findViewById(R.id.novisitTV)
+        pointTV = view.findViewById(R.id.pointTV)
+
 
     }
 
@@ -251,22 +263,27 @@ class MessageUserFragment : Fragment() {
         allRL.setOnClickListener {
             setfilter()
             allRL.setBackgroundColor(Color.parseColor("#0068df"))
+            allTV.setTextColor(Color.parseColor("#ffffff"))
         }
         acc_countRL.setOnClickListener {
             setfilter()
             acc_countRL.setBackgroundColor(Color.parseColor("#0068df"))
+            acc_countTV.setTextColor(Color.parseColor("#ffffff"))
         }
         novisitRL.setOnClickListener {
             setfilter()
             novisitRL.setBackgroundColor(Color.parseColor("#0068df"))
+            novisitTV.setTextColor(Color.parseColor("#ffffff"))
         }
         use_moneyRL.setOnClickListener {
             setfilter()
             use_moneyRL.setBackgroundColor(Color.parseColor("#0068df"))
+            use_moneyTV.setTextColor(Color.parseColor("#ffffff"))
         }
         pointRL.setOnClickListener {
             setfilter()
             pointRL.setBackgroundColor(Color.parseColor("#0068df"))
+            pointTV.setTextColor(Color.parseColor("#ffffff"))
         }
 
 
@@ -278,6 +295,13 @@ class MessageUserFragment : Fragment() {
         novisitRL.setBackgroundResource(R.drawable.background_strock_null)
         use_moneyRL.setBackgroundResource(R.drawable.background_strock_null)
         pointRL.setBackgroundResource(R.drawable.background_strock_null)
+
+        allTV.setTextColor(Color.parseColor("#c5c5c5"))
+        use_moneyTV.setTextColor(Color.parseColor("#c5c5c5"))
+        acc_countTV.setTextColor(Color.parseColor("#c5c5c5"))
+        novisitTV.setTextColor(Color.parseColor("#c5c5c5"))
+        pointTV.setTextColor(Color.parseColor("#c5c5c5"))
+
     }
 
     fun setmenu1(){
