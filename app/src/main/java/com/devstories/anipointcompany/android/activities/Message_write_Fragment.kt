@@ -59,6 +59,8 @@ class Message_write_Fragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val MessageUserFragment : MessageUserFragment = MessageUserFragment()
+        val SetCouponFragment : SetCouponFragment = SetCouponFragment()
+        val MssgAnalysisFragment : MssgAnalysisFragment = MssgAnalysisFragment()
 
 
         setfilter()
@@ -73,13 +75,13 @@ class Message_write_Fragment : Fragment() {
             setfilter()
             couponRL.setBackgroundColor(Color.parseColor("#0068df"))
             couponTV.setTextColor(Color.parseColor("#ffffff"))
-            childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, MessageUserFragment).commit()
+            childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, SetCouponFragment).commit()
         }
         writeRL.setOnClickListener {
             setfilter()
             writeRL.setBackgroundColor(Color.parseColor("#0068df"))
             writeTV.setTextColor(Color.parseColor("#ffffff"))
-            childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, MessageUserFragment).commit()
+            childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, MssgAnalysisFragment).commit()
         }
         finalRL.setOnClickListener {
             setfilter()
