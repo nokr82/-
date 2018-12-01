@@ -10,7 +10,7 @@ import android.view.ViewGroup
 
 import com.devstories.anipointcompany.android.R
 
-
+//메시지쿠폰관리 - 쿠폰작성
 class SetCouponFragment : Fragment() {
 
 

@@ -30,7 +30,7 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.io.ByteArrayInputStream
 import java.io.IOException
-
+//설정 -내정보
 class SettingMyInfoFragment : Fragment() {
 
     lateinit var myContext: Context

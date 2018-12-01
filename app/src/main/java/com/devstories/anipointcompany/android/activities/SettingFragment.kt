@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.devstories.anipointcompany.android.R
 import kotlinx.android.synthetic.main.fragment_setting.*
-
+//메인설정
 class SettingFragment : android.support.v4.app.Fragment() {
 
     lateinit var myContext: Context

@@ -24,7 +24,7 @@ import com.devstories.anipointcompany.android.Actions.PointAction
 import java.text.SimpleDateFormat
 import java.util.*
 
-
+//포인트내역
 class Point_List_Fragment : Fragment() {
     lateinit var myContext: Context
     private var progressDialog: ProgressDialog? = null

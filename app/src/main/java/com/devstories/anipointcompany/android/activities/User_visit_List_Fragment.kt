@@ -24,7 +24,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import android.widget.Toast
 
-
+//고객방문분석메인
 class User_visit_List_Fragment : Fragment() {
     lateinit var myContext: Context
     private var progressDialog: ProgressDialog? = null

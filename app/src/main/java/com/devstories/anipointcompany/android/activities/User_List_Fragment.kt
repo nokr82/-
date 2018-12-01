@@ -26,7 +26,7 @@ import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 
-
+//고객목록메인
 class User_List_Fragment : Fragment() {
     lateinit var myContext: Context
 
