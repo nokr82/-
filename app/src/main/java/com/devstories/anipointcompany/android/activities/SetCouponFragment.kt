@@ -32,6 +32,9 @@ class SetCouponFragment : Fragment() {
     lateinit var validityIV: ImageView
     lateinit var helpTV: TextView
 
+    lateinit var adapter: ArrayAdapter<String>
+    var op_coupon = arrayOf("상품증정","상품할인")
+    var op_expiration = arrayOf("7일","30일","60일","90일")
 
 
 
@@ -70,24 +73,86 @@ class SetCouponFragment : Fragment() {
 
         setmenu2()
         setmenu()
+
+        adapter = ArrayAdapter(myContext,R.layout.spiner_item,op_coupon)
+        coupon_opSP.adapter = adapter
+        //스피너 선택이벤트
+        coupon_opSP.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+                if (position==0){
+
+                }else if (position==1){
+
+                }
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+        }
+
+        adapter = ArrayAdapter(myContext,R.layout.spiner_item,op_expiration)
+        coupon_exSP.adapter = adapter
+        //스피너 선택이벤트
+        coupon_exSP.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+                if (position==0){
+
+                }else if (position==1){
+
+                }
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+        }
+
+
+
+
         expirationLL.setOnClickListener {
-            expirationIV.setImageResource(R.mipmap.box_check_on)
+            it.isSelected = !it.isSelected
+
+            if(it.isSelected) {
+                expirationIV.setImageResource(R.mipmap.box_check_on)
+            } else {
+                expirationIV.setImageResource(R.mipmap.box_check_off)
+            }
+
         }
 
         weekdayLL.setOnClickListener {
-            setmenu2()
-            weekdayIV.setImageResource(R.mipmap.box_check_on)
+            it.isSelected = !it.isSelected
+            if(it.isSelected) {
+                weekdayIV.setImageResource(R.mipmap.box_check_on)
+            } else {
+                weekdayIV.setImageResource(R.mipmap.box_check_off)
+            }
+
         }
         saturdayLL.setOnClickListener {
-            setmenu2()
-            saturdayIV.setImageResource(R.mipmap.box_check_on)
+            it.isSelected = !it.isSelected
+            if(it.isSelected) {
+                saturdayIV.setImageResource(R.mipmap.box_check_on)
+            } else {
+                saturdayIV.setImageResource(R.mipmap.box_check_off)
+            }
+
         }
         sundayLL.setOnClickListener {
-            setmenu2()
-            sundayIV.setImageResource(R.mipmap.box_check_on)
+            it.isSelected = !it.isSelected
+            if(it.isSelected) {
+                sundayIV.setImageResource(R.mipmap.box_check_on)
+            } else {
+                sundayIV.setImageResource(R.mipmap.box_check_off)
+            }
         }
         validityIV.setOnClickListener {
-            validityIV.setImageResource(R.mipmap.switch_off)
+            it.isSelected = !it.isSelected
+            if(it.isSelected) {
+                validityIV.setImageResource(R.mipmap.switch_off)
+            } else {
+                validityIV.setImageResource(R.mipmap.switch_on)
+            }
         }
 
     }

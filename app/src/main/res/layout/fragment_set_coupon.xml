@@ -120,8 +120,8 @@
                             android:orientation="horizontal">
                         <ImageView
                             android:id="@+id/expirationIV"
-                            android:layout_width="11dp"
-                            android:layout_height="11dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:src="@mipmap/box_check_on"/>
                         <TextView
                             android:layout_width="wrap_content"
@@ -194,6 +194,7 @@
                             android:gravity="center_vertical"
                             android:background="@drawable/background_strock_e7e7e7">
                             <Spinner
+                                android:paddingLeft="10dp"
                                 android:id="@+id/coupon_opSP"
                                 android:layout_width="104dp"
                                 android:layout_height="18dp"
@@ -228,6 +229,7 @@
                         android:gravity="center_vertical"
                         android:background="@drawable/background_strock_e7e7e7">
                         <Spinner
+                            android:paddingLeft="10dp"
                             android:id="@+id/coupon_exSP"
                             android:layout_width="104dp"
                             android:layout_height="18dp"
