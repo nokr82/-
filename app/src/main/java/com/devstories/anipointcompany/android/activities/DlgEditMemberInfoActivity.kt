@@ -197,7 +197,6 @@ class DlgEditMemberInfoActivity : RootActivity() {
         params.put("birth", Utils.getString(birthET))
         params.put("age", Utils.getString(ageET))
         params.put("gender",gender)
-        Log.d("성별",gender)
         params.put("name", Utils.getString(nameET))
         params.put("memo", Utils.getString(memoET))
         params.put("phone", Utils.getString(phoneET))
