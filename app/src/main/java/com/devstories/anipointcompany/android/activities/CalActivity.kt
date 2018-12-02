@@ -86,9 +86,10 @@ class CalActivity : RootActivity() {
                 }
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
-
             }
         }
+
+
         cardPayLL.setOnClickListener {
             setmenu2()
             cardPayIV.setImageResource(R.drawable.radio_on)

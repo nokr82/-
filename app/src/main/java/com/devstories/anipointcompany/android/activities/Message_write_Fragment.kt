@@ -71,6 +71,8 @@ class Message_write_Fragment : Fragment() {
             userTV.setTextColor(Color.parseColor("#ffffff"))
             childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, MessageUserFragment).commit()
         }
+        userRL.callOnClick()
+
         couponRL.setOnClickListener {
             setfilter()
             couponRL.setBackgroundColor(Color.parseColor("#0068df"))
@@ -83,6 +85,7 @@ class Message_write_Fragment : Fragment() {
             writeTV.setTextColor(Color.parseColor("#ffffff"))
             childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, MssgAnalysisFragment).commit()
         }
+
         finalRL.setOnClickListener {
             setfilter()
             finalRL.setBackgroundColor(Color.parseColor("#0068df"))
