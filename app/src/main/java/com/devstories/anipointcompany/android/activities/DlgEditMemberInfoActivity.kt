@@ -23,7 +23,7 @@ class DlgEditMemberInfoActivity : RootActivity() {
     private var progressDialog: ProgressDialog? = null
 
     var member_id = -1
-
+    var gender = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dlg_edit_member_info)
@@ -32,6 +32,18 @@ class DlgEditMemberInfoActivity : RootActivity() {
         progressDialog = ProgressDialog(context)
 
         member_id = intent.getIntExtra("member_id", -1)
+
+
+        maleLL.setOnClickListener {
+            setmenu()
+            maleIV.setImageResource(R.drawable.radio_on)
+            gender = "M"
+        }
+        famaleLL.setOnClickListener {
+            setmenu()
+            femaleIV.setImageResource(R.drawable.radio_on)
+            gender = "F"
+        }
 
         saveLL.setOnClickListener {
 
@@ -184,6 +196,8 @@ class DlgEditMemberInfoActivity : RootActivity() {
         params.put("member_id", member_id)
         params.put("birth", Utils.getString(birthET))
         params.put("age", Utils.getString(ageET))
+        params.put("gender",gender)
+        Log.d("성별",gender)
         params.put("name", Utils.getString(nameET))
         params.put("memo", Utils.getString(memoET))
         params.put("phone", Utils.getString(phoneET))
