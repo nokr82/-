@@ -518,17 +518,16 @@ class User_List_Fragment : Fragment() {
         when (requestCode) {
             EDIT_MEMBER_INFO -> {
                 if (resultCode == RESULT_OK) {
-
-                    if (data != null) {
-                        var member_id = data.getIntExtra("member_id", -1)
-
-
-
-                    }
+                    mainData(1)
+                    val member_id =data!!.getIntExtra("member_id",-1)
+                    Log.d("받아오는 값",member_id.toString())
 
                 }
             }
+
+
         }
+
 
     }
 

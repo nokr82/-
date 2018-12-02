@@ -16,6 +16,9 @@ import kotlinx.android.synthetic.main.dlg_edit_member_info.*
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import android.content.Intent
+
+
 //회원수정 다이얼로그
 class DlgEditMemberInfoActivity : RootActivity() {
 
@@ -212,7 +215,9 @@ class DlgEditMemberInfoActivity : RootActivity() {
                     val result = response!!.getString("result")
 
                     if ("ok" == result) {
-
+                        val resultIntent = Intent()
+                        resultIntent.putExtra("member_id",member_id)
+                        setResult(RESULT_OK, resultIntent)
                         finish()
 
                     }
