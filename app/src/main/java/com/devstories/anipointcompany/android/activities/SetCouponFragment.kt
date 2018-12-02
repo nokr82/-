@@ -111,13 +111,11 @@ class SetCouponFragment : Fragment() {
 
         expirationLL.setOnClickListener {
             it.isSelected = !it.isSelected
-
             if(it.isSelected) {
                 expirationIV.setImageResource(R.mipmap.box_check_on)
             } else {
                 expirationIV.setImageResource(R.mipmap.box_check_off)
             }
-
         }
 
         weekdayLL.setOnClickListener {
@@ -127,16 +125,14 @@ class SetCouponFragment : Fragment() {
             } else {
                 weekdayIV.setImageResource(R.mipmap.box_check_off)
             }
-
         }
         saturdayLL.setOnClickListener {
             it.isSelected = !it.isSelected
-            if(it.isSelected) {
+            if (it.isSelected) {
                 saturdayIV.setImageResource(R.mipmap.box_check_on)
             } else {
                 saturdayIV.setImageResource(R.mipmap.box_check_off)
             }
-
         }
         sundayLL.setOnClickListener {
             it.isSelected = !it.isSelected
