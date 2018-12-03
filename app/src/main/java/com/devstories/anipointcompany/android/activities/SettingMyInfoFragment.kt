@@ -14,17 +14,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.devstories.anipointcompany.android.Actions.CompanyAction
-import com.devstories.anipointcompany.android.Actions.CompanyAction.company_info
-import com.devstories.anipointcompany.android.Actions.CompanyAction.edit_image
-import com.devstories.anipointcompany.android.Actions.CompanyAction.edit_info
 import com.devstories.anipointcompany.android.R
-import com.devstories.anipointcompany.android.R.id.*
 import com.devstories.anipointcompany.android.base.Config
 import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
 import com.nostra13.universalimageloader.core.ImageLoader
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
 import cz.msebera.android.httpclient.Header
 import org.json.JSONException
 import org.json.JSONObject

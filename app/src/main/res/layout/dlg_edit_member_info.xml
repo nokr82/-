@@ -25,12 +25,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/icon_clock"/>
                     <TextView
-                        android:id="@+id/dateTV"
+                        android:id="@+id/createdTV"
                         android:layout_marginLeft="4dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -38,7 +34,7 @@
                         android:textColor="#8d8d8d"
                         android:letterSpacing="-0.05"
                         android:lineSpacingExtra="2sp"
-                        android:text="2018.10.15 방문"
+                        android:text="2018.10.15 17:20:00"
                         />
 
                 </LinearLayout>
@@ -58,7 +54,7 @@
 
                         <EditText
                             android:id="@+id/phoneET"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="16sp"
                             android:textColor="#005492"
@@ -127,15 +123,14 @@
 
                                 <EditText
                                     android:id="@+id/nameET"
-                                    android:layout_marginLeft="5.5dp"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:textSize="6sp"
-                                    android:textColor="#303030"
-                                    android:letterSpacing="-0.01"
+                                    android:layout_marginLeft="5.5dp"
                                     android:background="@null"
+                                    android:letterSpacing="-0.01"
                                     android:text="박소윤"
-                                    />
+                                    android:textColor="#303030"
+                                    android:textSize="6sp" />
 
                             </LinearLayout>
 
@@ -179,6 +174,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginLeft="1dp"
                                         android:textSize="6sp"
                                         android:textColor="#303030"
                                         android:letterSpacing="-0.01"
@@ -203,6 +199,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginLeft="1dp"
                                         android:textSize="6sp"
                                         android:textColor="#303030"
                                         android:letterSpacing="-0.01"
@@ -282,8 +279,8 @@
                                 <EditText
                                     android:id="@+id/birthET"
                                     android:layout_marginLeft="5.5dp"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
                                     android:textSize="6sp"
                                     android:textColor="#303030"
                                     android:letterSpacing="-0.01"
@@ -297,7 +294,8 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="27.5dp">
+                            android:layout_height="wrap_content"
+                            android:minHeight="27.5dp">
 
                             <LinearLayout
                                 android:layout_width="35dp"
@@ -322,94 +320,31 @@
                                 android:layout_weight="1"
                                 android:gravity="center_vertical"
                                 android:layout_height="match_parent">
-                                <TextView
-                                    android:id="@+id/memoTV"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="6sp"
-                                    android:textColor="#303030"
-                                    android:letterSpacing="-0.01"
-                                    android:text="소형견, 말티스, 강아지 이름
-우측 최상단 톱니바퀴 모양을 누르면
-설정으로 이동합니다."
-                                    />
 
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="27.5dp">
-
-                            <LinearLayout
-                                android:layout_width="35dp"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:background="#f7f7f7">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center_horizontal"
-                                    android:letterSpacing="-0.01"
-                                    android:text="방문이력"
-                                    android:textColor="#666666"
-                                    android:textSize="6sp" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:gravity="center_vertical"
-                                android:orientation="vertical"
-                                android:layout_height="match_parent">
-
-                                <TextView
-                                    android:id="@+id/stack_pointTV"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="6sp"
-                                    android:textColor="#303030"
-                                    android:letterSpacing="-0.01"
-                                    android:text="누적 : P"/>
-
-                                <ScrollView
+                                <EditText
+                                    android:id="@+id/memoET"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:fillViewport="true">
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:gravity="center_vertical">
-
-                                        <TextView
-                                            android:id="@+id/visit_recordTV"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:textSize="6sp"
-                                            android:textColor="#303030"
-                                            android:letterSpacing="-0.01"
-                                            android:text="방문이력방문이력방문이력방문이력방문방문이력방문이력방문이력"/>
-
-                                    </LinearLayout>
-
-                                </ScrollView>
+                                    android:layout_marginLeft="5.5dp"
+                                    android:textSize="6sp"
+                                    android:textColor="#303030"
+                                    android:letterSpacing="-0.01"
+                                    android:text="소형견, 말티스, 강아지 이름우측 최상단 톱니바퀴 모양을 누르면설정으로 이동합니다."
+                                    android:background="@null"/>
 
                             </LinearLayout>
 
-
                         </LinearLayout>
+
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="0.5dp"
                             android:background="#489cca"/>
+
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/saveLL"
                         android:layout_marginTop="12.5dp"
                         android:layout_width="match_parent"
                         android:layout_height="25dp"
@@ -423,8 +358,7 @@
                             android:textColor="#ffffff"
                             android:letterSpacing="-0.01"
                             android:lineSpacingExtra="0sp"
-                            android:text="저장"
-                            />
+                            android:text="저장" />
 
                     </LinearLayout>
 
