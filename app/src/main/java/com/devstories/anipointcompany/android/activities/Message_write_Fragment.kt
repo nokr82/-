@@ -56,9 +56,23 @@ class Message_write_Fragment : Fragment() {
             if (intent != null) {
                 println("intent")
                 setfilter()
-                couponRL.setBackgroundColor(Color.parseColor("#0068df"))
-                couponTV.setTextColor(Color.parseColor("#ffffff"))
-                childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, SetCouponFragment).commit()
+                writeRL.setBackgroundColor(Color.parseColor("#0068df"))
+                writeTV.setTextColor(Color.parseColor("#ffffff"))
+                childFragmentManager.beginTransaction().replace(R.id.userchoiceFL,MssgAnalysisFragment).commit()
+
+            }
+        }
+    }
+    //메시지작성
+    internal var step3NextReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent?) {
+            if (intent != null) {
+                println("intent")
+                setfilter()
+                finalRL.setBackgroundColor(Color.parseColor("#0068df"))
+                finalTV.setTextColor(Color.parseColor("#ffffff"))
+                childFragmentManager.beginTransaction().replace(R.id.userchoiceFL,MessageUserFragment).commit()
+
             }
         }
     }
@@ -90,43 +104,23 @@ class Message_write_Fragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
 
-
+        //고객선택
         var filter1 = IntentFilter("STEP1_NEXT")
         myContext.registerReceiver(step1NextReceiver, filter1)
-
+        //쿠폰설정
         var filter2 = IntentFilter("STEP2_NEXT")
         myContext.registerReceiver(step2NextReceiver, filter2)
+        //메시지작성
+        var filter3 = IntentFilter("STEP3_NEXT")
+        myContext.registerReceiver(step3NextReceiver, filter3)
 
 
         setfilter()
 
-        userRL.setOnClickListener {
-            setfilter()
-            userRL.setBackgroundColor(Color.parseColor("#0068df"))
-            userTV.setTextColor(Color.parseColor("#ffffff"))
-            childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, MessageUserFragment).commit()
-        }
-        userRL.callOnClick()
+        userRL.setBackgroundColor(Color.parseColor("#0068df"))
+        userTV.setTextColor(Color.parseColor("#ffffff"))
+        childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, MessageUserFragment).commit()
 
-        couponRL.setOnClickListener {
-            setfilter()
-            couponRL.setBackgroundColor(Color.parseColor("#0068df"))
-            couponTV.setTextColor(Color.parseColor("#ffffff"))
-            childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, SetCouponFragment).commit()
-        }
-        writeRL.setOnClickListener {
-            setfilter()
-            writeRL.setBackgroundColor(Color.parseColor("#0068df"))
-            writeTV.setTextColor(Color.parseColor("#ffffff"))
-            childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, MssgAnalysisFragment).commit()
-        }
-
-        finalRL.setOnClickListener {
-            setfilter()
-            finalRL.setBackgroundColor(Color.parseColor("#0068df"))
-            finalTV.setTextColor(Color.parseColor("#ffffff"))
-            childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, MessageUserFragment).commit()
-        }
 
     }
     fun setfilter(){
