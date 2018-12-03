@@ -426,9 +426,7 @@ class Point_List_Fragment : Fragment() {
         params.put("company_id",company_id)
         params.put("member_id",member_id)
         params.put("start_date",start_date)
-        System.out.print("시작"+start_date)
         params.put("end_date",end_date)
-        System.out.print("끝"+end_date)
 
         PointAction.user_points(params, object : JsonHttpResponseHandler() {
 
