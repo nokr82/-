@@ -25,7 +25,8 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.io.ByteArrayInputStream
 import java.io.IOException
-
+//설정 -내정보
+//이미지 용량줄일 필요 !!
 class SettingMyInfoFragment : Fragment() {
 
     lateinit var myContext: Context
@@ -48,6 +49,7 @@ class SettingMyInfoFragment : Fragment() {
 
 
     private val GALLERY = 1
+
 
     //비트맵 이미지 배열
     //이걸로 api배열에 이미지를 넣는다.
@@ -85,7 +87,13 @@ class SettingMyInfoFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+
+
+
+
+
         company_info(1)
+
 
         //정보수정
         infocheckTV.setOnClickListener {
@@ -133,11 +141,13 @@ class SettingMyInfoFragment : Fragment() {
             {
                 val contentURI = data!!.data
                 Log.d("uri",contentURI.toString())
+                //content://media/external/images/media/1200
+
                 try
                 {
                     var thumbnail = MediaStore.Images.Media.getBitmap(myContext.contentResolver, contentURI)
                     thumbnail = Utils.rotate(myContext.contentResolver, thumbnail, contentURI)
-
+                    Log.d("thumbnail",thumbnail.toString())
                     //비트맵배열에 비트맵추가
                     addImages.add(thumbnail)
 
@@ -174,8 +184,6 @@ class SettingMyInfoFragment : Fragment() {
 
 
     }
-
-
 
 
     //사업체 정보뽑기

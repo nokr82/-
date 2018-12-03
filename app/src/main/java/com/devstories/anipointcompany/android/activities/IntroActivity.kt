@@ -19,7 +19,7 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
-
+//인트로
 class IntroActivity : RootActivity() {
 
     protected var _splashTime = 2000 // time to display the splash screen in ms
@@ -102,6 +102,7 @@ class IntroActivity : RootActivity() {
     }
 
     private fun login() {
+
 
         val params = RequestParams()
         params.put("login_id", PrefUtils.getStringPreference(context,"login_id"))

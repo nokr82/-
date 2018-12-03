@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentActivity
 import com.devstories.aninuriandroid.adapter.UserVisitAdapter
 import com.devstories.anipointcompany.android.R
 import kotlinx.android.synthetic.main.activity_user_list.*
-
+//업체 메인화면 액티비티
 class UserListActivity : FragmentActivity() {
 
     lateinit var context:Context

@@ -3,6 +3,7 @@ package com.devstories.anipointcompany.android.activities
 import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.MemberAction
 import com.devstories.anipointcompany.android.R
@@ -15,14 +16,17 @@ import kotlinx.android.synthetic.main.dlg_edit_member_info.*
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import android.content.Intent
 
+
+//회원수정 다이얼로그
 class DlgEditMemberInfoActivity : RootActivity() {
 
     lateinit var context: Context
     private var progressDialog: ProgressDialog? = null
 
     var member_id = -1
-
+    var gender = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dlg_edit_member_info)
@@ -31,6 +35,18 @@ class DlgEditMemberInfoActivity : RootActivity() {
         progressDialog = ProgressDialog(context)
 
         member_id = intent.getIntExtra("member_id", -1)
+
+
+        maleLL.setOnClickListener {
+            setmenu()
+            maleIV.setImageResource(R.drawable.radio_on)
+            gender = "M"
+        }
+        famaleLL.setOnClickListener {
+            setmenu()
+            femaleIV.setImageResource(R.drawable.radio_on)
+            gender = "F"
+        }
 
         saveLL.setOnClickListener {
 
@@ -74,6 +90,12 @@ class DlgEditMemberInfoActivity : RootActivity() {
 
     }
 
+
+    fun setmenu(){
+        maleIV.setImageResource(R.drawable.radio_off)
+        femaleIV.setImageResource(R.drawable.radio_off)
+    }
+
     fun loadData(){
 
         val params = RequestParams()
@@ -91,6 +113,15 @@ class DlgEditMemberInfoActivity : RootActivity() {
 
                     if ("ok" == result) {
                         val member = response.getJSONObject("member")
+                        val gender = Utils.getString(member, "gender")
+                        Log.d("성별",gender)
+                        if (gender.equals("M")){
+                            setmenu()
+                            maleIV.setImageResource(R.drawable.radio_on)
+                        }else if (gender.equals("F")){
+                            setmenu()
+                            femaleIV.setImageResource(R.drawable.radio_on)
+                        }
 
                         phoneET.setText(Utils.getString(member, "phone"))
                         nameET.setText(Utils.getString(member, "name"))
@@ -168,6 +199,7 @@ class DlgEditMemberInfoActivity : RootActivity() {
         params.put("member_id", member_id)
         params.put("birth", Utils.getString(birthET))
         params.put("age", Utils.getString(ageET))
+        params.put("gender",gender)
         params.put("name", Utils.getString(nameET))
         params.put("memo", Utils.getString(memoET))
         params.put("phone", Utils.getString(phoneET))
@@ -183,7 +215,9 @@ class DlgEditMemberInfoActivity : RootActivity() {
                     val result = response!!.getString("result")
 
                     if ("ok" == result) {
-
+                        val resultIntent = Intent()
+                        resultIntent.putExtra("member_id",member_id)
+                        setResult(RESULT_OK, resultIntent)
                         finish()
 
                     }

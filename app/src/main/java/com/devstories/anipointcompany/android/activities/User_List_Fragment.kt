@@ -26,7 +26,7 @@ import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 
-
+//고객목록메인
 class User_List_Fragment : Fragment() {
     lateinit var myContext: Context
 
@@ -79,12 +79,12 @@ class User_List_Fragment : Fragment() {
 
 
         useLL.setOnClickListener {
-            val intent = Intent(myContext, PointActivity::class.java)
+            val intent = Intent(myContext, CalActivity::class.java)
             intent.putExtra("step",4)
             startActivity(intent)
         }
         accumulateLL.setOnClickListener {
-            val intent = Intent(myContext, PointActivity::class.java)
+            val intent = Intent(myContext, CalActivity::class.java)
             startActivity(intent)
         }
 
@@ -518,17 +518,16 @@ class User_List_Fragment : Fragment() {
         when (requestCode) {
             EDIT_MEMBER_INFO -> {
                 if (resultCode == RESULT_OK) {
-
-                    if (data != null) {
-                        var member_id = data.getIntExtra("member_id", -1)
-
-
-
-                    }
+                    mainData(1)
+                    val member_id =data!!.getIntExtra("member_id",-1)
+                    Log.d("받아오는 값",member_id.toString())
 
                 }
             }
+
+
         }
+
 
     }
 

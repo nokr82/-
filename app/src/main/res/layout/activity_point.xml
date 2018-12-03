@@ -303,20 +303,68 @@
                     android:layout_height="0.3dp"
                     android:background="#ffffff"/>
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="16.5dp"
                     android:gravity="center_vertical"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/genderTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#ffffff"
-                        android:textSize="9sp"
-                        android:textColorHint="#ffffff"
-                        android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="1sp"
-                        android:text="여자" />
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:id="@+id/maleIV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="3dp"
+                                android:src="@drawable/radio_on" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="1dp"
+                                android:textSize="9sp"
+                                android:textColor="#ffffff"
+                                android:letterSpacing="-0.01"
+                                android:gravity="center_horizontal"
+                                android:text="남" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:id="@+id/femaleIV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="3dp"
+                                android:src="@drawable/radio_on" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="1dp"
+                                android:textSize="9sp"
+                                android:textColor="#ffffff"
+                                android:letterSpacing="-0.01"
+                                android:gravity="center_horizontal"
+                                android:text="여" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                 </LinearLayout>
                 <View
@@ -487,16 +535,25 @@
                     android:text="확인"
                     android:textSize="12sp"
                     android:textColor="#ffffff"/>
+
+                <LinearLayout
+                    android:id="@+id/use_payLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
                 <LinearLayout
                     android:id="@+id/spinnerIV"
                     android:layout_width="114.5dp"
                     android:layout_height="18dp"
+
                     android:orientation="horizontal"
                     android:layout_marginTop="10dp"
                     android:background="#ffffff">
 
                     <Spinner
-                        android:id="@+id/spn"
+                        android:paddingLeft="10dp"
+                        android:id="@+id/cate_SP"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:background="@null"
@@ -521,6 +578,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
                         <ImageView
+                            android:id="@+id/cardPayIV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/radio_off"/>
@@ -538,6 +596,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="9.5dp">
                         <ImageView
+                            android:id="@+id/cashPayIV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/radio_off"/>
@@ -547,7 +606,7 @@
                             android:layout_marginLeft="5.5dp"
                             android:textSize="8sp"
                             android:textColor="#ffffff"
-                            android:text="카드결제"/>
+                            android:text="현금결제"/>
                     </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
@@ -557,6 +616,7 @@
                     android:layout_marginTop="5.5dp"
                     android:layout_height="wrap_content">
                     <ImageView
+                        android:id="@+id/depositlessIV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/radio_off"/>
@@ -568,6 +628,8 @@
                         android:textColor="#ffffff"
                         android:text="무통장입금"/>
                 </LinearLayout>
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout

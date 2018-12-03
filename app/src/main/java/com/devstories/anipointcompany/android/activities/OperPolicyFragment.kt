@@ -22,6 +22,7 @@ import kotlinx.android.synthetic.main.fragment_oper_policy.*
 import org.json.JSONException
 import org.json.JSONObject
 
+//설정 -운영정책
 class OperPolicyFragment : Fragment() {
 
 
