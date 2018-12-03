@@ -2,6 +2,7 @@ package com.devstories.anipointcompany.android.activities
 
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -218,8 +219,9 @@ class SetCouponFragment : Fragment() {
                 try {
                     val result = response!!.getString("result")
                     if ("ok" == result) {
-
-
+                        var intent = Intent()
+                        intent.action = "STEP2_NEXT"
+                        myContext.sendBroadcast(intent)
                     }else{
                         Toast.makeText(myContext,"업데이트실패", Toast.LENGTH_SHORT).show()
                     }

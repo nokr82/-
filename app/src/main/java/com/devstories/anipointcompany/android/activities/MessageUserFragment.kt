@@ -349,13 +349,6 @@ class MessageUserFragment : Fragment() {
         }
         nextTV.setOnClickListener {
             member_filter()
-            val SetCouponFragment : SetCouponFragment = SetCouponFragment()
-
-            var intent = Intent()
-            intent.putExtra("gender", "F")
-            intent.putExtra("age", "20")
-            intent.action = "STEP1_NEXT"
-            myContext.sendBroadcast(intent)
 
 
         }
@@ -437,7 +430,12 @@ class MessageUserFragment : Fragment() {
 
                         countTV.text = memberCnt
                         Toast.makeText(myContext,"고객선택완료",Toast.LENGTH_SHORT).show()
-
+                        //브로드캐스트로 프래그먼트이동
+                        var intent = Intent()
+                        intent.putExtra("gender", "F")
+                        intent.putExtra("age", "20")
+                        intent.action = "STEP1_NEXT"
+                        myContext.sendBroadcast(intent)
                     }else{
                         Toast.makeText(myContext,"업데이트실패", Toast.LENGTH_SHORT).show()
 

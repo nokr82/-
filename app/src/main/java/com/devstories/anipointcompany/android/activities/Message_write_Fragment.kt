@@ -35,12 +35,26 @@ class Message_write_Fragment : Fragment() {
     val MessageUserFragment : MessageUserFragment = MessageUserFragment()
     val SetCouponFragment : SetCouponFragment = SetCouponFragment()
     val MssgAnalysisFragment : MssgAnalysisFragment = MssgAnalysisFragment()
+    //고객선택
     internal var step1NextReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent?) {
             if (intent != null) {
+                //브로드캐스트로 프래그먼트이동리시버
                 println("intent")
                 println("intent" + intent.getStringExtra("gender"))
                 println("intent" + intent.getStringExtra("age"))
+                setfilter()
+                couponRL.setBackgroundColor(Color.parseColor("#0068df"))
+                couponTV.setTextColor(Color.parseColor("#ffffff"))
+                childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, SetCouponFragment).commit()
+            }
+        }
+    }
+    //쿠폰설정
+    internal var step2NextReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent?) {
+            if (intent != null) {
+                println("intent")
                 setfilter()
                 couponRL.setBackgroundColor(Color.parseColor("#0068df"))
                 couponTV.setTextColor(Color.parseColor("#ffffff"))
@@ -79,6 +93,10 @@ class Message_write_Fragment : Fragment() {
 
         var filter1 = IntentFilter("STEP1_NEXT")
         myContext.registerReceiver(step1NextReceiver, filter1)
+
+        var filter2 = IntentFilter("STEP2_NEXT")
+        myContext.registerReceiver(step2NextReceiver, filter2)
+
 
         setfilter()
 
