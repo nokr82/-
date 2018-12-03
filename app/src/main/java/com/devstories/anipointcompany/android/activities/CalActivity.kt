@@ -15,6 +15,7 @@ import com.devstories.anipointcompany.android.Actions.MemberAction
 import com.devstories.anipointcompany.android.Actions.MemberAction.member_join
 import com.devstories.anipointcompany.android.Actions.RequestStepAction
 import com.devstories.anipointcompany.android.R
+import com.devstories.anipointcompany.android.R.id.*
 import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.RootActivity
 import com.devstories.anipointcompany.android.base.Utils
@@ -136,23 +137,29 @@ class CalActivity : RootActivity() {
     //계산클릭이벤트
     fun cal(){
         stackLL.setOnClickListener {
-            val totalpoint =Integer.parseInt(moneyTV.text.toString())
-            Log.d("포인트", totalpoint.toString())
-            stackpoint = totalpoint*Integer.parseInt(stackTV.text.toString())/100
-            step = 3
-            changeStep()
-            p_type=1
-            stack_point(member_id.toString())
-
+            per_type = 1
         }
         stack2LL.setOnClickListener {
-            val totalpoint =Integer.parseInt(moneyTV.text.toString())
-            Log.d("포인트", totalpoint.toString())
-            stackpoint = totalpoint*Integer.parseInt(stack2TV.text.toString())/100
-            step = 3
-            changeStep()
-            p_type=1
-            stack_point(member_id.toString())
+
+            val managerpercent = stack2TV.text.toString()
+            val money = moneyTV.text.toString()
+            per_type = 2
+            if (managerpercent == null) {
+                Toast.makeText(context, "퍼센트를 먼저 입력해주세요.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (money == null) {
+                Toast.makeText(context, "가격을 먼저 입력해주세요.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val percent = managerpercent.toFloat() / 100
+            val floatPoint = (money.toFloat() * percent)
+            val stringPoint = floatPoint.toString()
+            var splitPoint =  stringPoint.split(".")
+            val point = splitPoint.get(0)
+            pointTV.setText(point)
 
         }
 
@@ -206,7 +213,7 @@ class CalActivity : RootActivity() {
 
         delLL.setOnClickListener {
             val text = moneyTV.getText().toString()
-            val defaultpercent = defaultpercentTV.text.toString()
+            val defaultpercent =stackTV.text.toString()
             if (text.length > 0) {
                 moneyTV.setText(text.substring(0, text.length - 1))
                 val money = moneyTV.text.toString()
@@ -222,6 +229,29 @@ class CalActivity : RootActivity() {
             }
         }
         useLL.setOnClickListener {
+            if(opTV.text.equals("적립")){
+                if (per_type==1){
+                    val totalpoint =Integer.parseInt(moneyTV.text.toString())
+                    Log.d("포인트", totalpoint.toString())
+                    stackpoint = totalpoint*Integer.parseInt(stackTV.text.toString())/100
+                    step = 3
+                    changeStep()
+                    p_type=1
+                    stack_point(member_id.toString())
+                }else if (per_type ==2){
+                    val totalpoint =Integer.parseInt(moneyTV.text.toString())
+                    Log.d("포인트", totalpoint.toString())
+                    stackpoint = totalpoint*Integer.parseInt(stack2TV.text.toString())/100
+                    step = 3
+                    changeStep()
+                    p_type=1
+                    stack_point(member_id.toString())
+                }else{
+                    Toast.makeText(context,"적립퍼센트를 선택해주세요",Toast.LENGTH_SHORT).show()
+                }
+
+            }
+
             if (opTV.text.equals("사용")){
             val totalpoint =Integer.parseInt(moneyTV.text.toString())
             val use_point =Integer.parseInt(stack_pointTV.text.toString())
@@ -238,29 +268,7 @@ class CalActivity : RootActivity() {
             }
         }
 
-        managerpercentLL.setOnClickListener {
 
-            val managerpercent = managerpercentTV.text.toString()
-            val money = moneyTV.text.toString()
-
-            if (managerpercent == null) {
-                Toast.makeText(context, "퍼센트를 먼저 입력해주세요.", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-            if (money == null) {
-                Toast.makeText(context, "가격을 먼저 입력해주세요.", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-            val percent = managerpercent.toFloat() / 100
-            val floatPoint = (money.toFloat() * percent)
-            val stringPoint = floatPoint.toString()
-            var splitPoint =  stringPoint.split(".")
-            val point = splitPoint.get(0)
-            pointTV.setText(point)
-
-        }
 
         changeStep()
 
@@ -268,7 +276,7 @@ class CalActivity : RootActivity() {
 
     fun setPoint(){
 
-        val defaultpercent = defaultpercentTV.text.toString()
+        val defaultpercent = stackTV.text.toString()
         val money = moneyTV.text.toString()
 
         if (defaultpercent == null) {
@@ -434,11 +442,21 @@ class CalActivity : RootActivity() {
                                 var coupon = Utils.getString(member, "coupon")
                                 var memo = Utils.getString(member, "memo")
                                 var name = Utils.getString(member, "name")
-                                var left_point = Utils.getString(point, "balance")
+                                var left_point:String? = null
+                                if (new_member_yn.equals("N")){
+                                    left_point = Utils.getString(point, "balance")
+                                }
+
 
                                 stack_pointTV.text = left_point
                                 titleTV.text = name
-                                genderTV.text = gender
+                                if (gender.equals("M")){
+                                    setmenu()
+                                    maleIV.setImageResource(R.drawable.radio_on)
+                                }else if (gender.equals("F")){
+                                    setmenu()
+                                    femaleIV.setImageResource(R.drawable.radio_on)
+                                }
                                 phoneTV.text = phone
                                 ageTV.text = age
                                 birthTV.text = birth
@@ -453,11 +471,21 @@ class CalActivity : RootActivity() {
                                 var coupon = Utils.getString(member, "coupon")
                                 var memo = Utils.getString(member, "memo")
                                 var name = Utils.getString(member, "name")
-                                var left_point = Utils.getString(point, "balance")
+                                var left_point:String? = null
+                                if (new_member_yn.equals("N")){
+                                    left_point = Utils.getString(point, "balance")
+                                }
 
+                                titleTV.text = name
                                 stack_pointTV.text = left_point
                                 titleTV.text = name
-                                genderTV.text = gender
+                                if (gender.equals("M")){
+                                    setmenu()
+                                    maleIV.setImageResource(R.drawable.radio_on)
+                                }else if (gender.equals("F")){
+                                    setmenu()
+                                    femaleIV.setImageResource(R.drawable.radio_on)
+                                }
                                 phoneTV.text = phone
                                 ageTV.text = age
                                 birthTV.text = birth
@@ -519,15 +547,26 @@ class CalActivity : RootActivity() {
         timer = Timer()
         timer!!.schedule(task, 0, 2000)
     }
-
     //포인트적립/사용
     fun stack_point(member_id:String) {
         val params = RequestParams()
         params.put("member_id",member_id)
         params.put("company_id", 1)
-        params.put("point", stackpoint)
-        params.put("type", p_type)
-        MemberAction.point_stack(params, object : JsonHttpResponseHandler() {
+        params.put("point", stackpoint)//사용및적립포인트
+        params.put("type", p_type)//1적립 2사용
+        //    params.put("use_point", p_type)//사용 포인트
+        params.put("price", p_type)//상품가격
+        params.put("payment_type", payment_type)//결제방법
+        params.put("use_type", p_type)//1적립 2사용 3 적립/사용
+        params.put("category_id",category_id)//카테고리 일련번호
+
+        if (payment_type==-1){
+            Toast.makeText(context,"결제방식을 선택해주세요",Toast.LENGTH_SHORT).show()
+            return
+        }
+
+
+        MemberAction.point(params, object : JsonHttpResponseHandler() {
 
             override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
                 if (progressDialog != null) {
@@ -589,10 +628,10 @@ class CalActivity : RootActivity() {
 
 
 
-
+    //가입
     fun member_join() {
-
-        var getPhone = Utils.getString(phoneET)
+        var getid = member_id
+        var getPhone = Utils.getString(phoneTV)
         var getGender = Utils.getString(genderET)
         var getAge = Utils.getString(ageET)
         var getBirth = Utils.getString(birthET)
@@ -603,6 +642,7 @@ class CalActivity : RootActivity() {
 
         val params = RequestParams()
         params.put("company_id", 1)
+        params.put("member_id", getid)
         params.put("age", getAge)
         params.put("point", getPoint)
         params.put("name", getName)
