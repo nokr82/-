@@ -23,6 +23,7 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
+import kotlin.collections.ArrayList
 
 class PointActivity : RootActivity() {
 
@@ -70,7 +71,6 @@ class PointActivity : RootActivity() {
             changeStep()
             p_type=1
             stack_point(member_id.toString())
-
         }
 
         checkLL.setOnClickListener {
@@ -82,41 +82,64 @@ class PointActivity : RootActivity() {
         }
         oneLL.setOnClickListener {
             moneyTV.setText(moneyTV.getText().toString() + 1)
+            setPoint()
         }
         twoLL.setOnClickListener {
             moneyTV.setText(moneyTV.getText().toString() + 2)
+            setPoint()
         }
         threeLL.setOnClickListener {
             moneyTV.setText(moneyTV.getText().toString() + 3)
+            setPoint()
         }
         fourLL.setOnClickListener {
             moneyTV.setText(moneyTV.getText().toString() + 4)
+            setPoint()
         }
         fiveLL.setOnClickListener {
             moneyTV.setText(moneyTV.getText().toString() + 5)
+            setPoint()
         }
         sixLL.setOnClickListener {
             moneyTV.setText(moneyTV.getText().toString() + 6)
+            setPoint()
         }
         sevenLL.setOnClickListener {
             moneyTV.setText(moneyTV.getText().toString() + 7)
+            setPoint()
         }
         eightLL.setOnClickListener {
             moneyTV.setText(moneyTV.getText().toString() + 8)
+            setPoint()
         }
         nineLL.setOnClickListener {
             moneyTV.setText(moneyTV.getText().toString() + 9)
+            setPoint()
         }
         zeroLL.setOnClickListener {
             moneyTV.setText(moneyTV.getText().toString() + 0)
+            setPoint()
         }
+
         delLL.setOnClickListener {
             val text = moneyTV.getText().toString()
+            val defaultpercent = defaultpercentTV.text.toString()
             if (text.length > 0) {
                 moneyTV.setText(text.substring(0, text.length - 1))
+                val money = moneyTV.text.toString()
+                if(money != null && money != "") {
+                    val percent = defaultpercent.toFloat() / 100
+                    val floatPoint = (money.toFloat() * percent)
+                    val stringPoint = floatPoint.toString()
+                    var splitPoint = stringPoint.split(".")
+                    val point = splitPoint.get(0)
+                    pointTV.setText(point)
+                }
             } else {
+
             }
         }
+
         useLL.setOnClickListener {
             if (opTV.text.equals("사용")){
             val totalpoint =Integer.parseInt(moneyTV.text.toString())
@@ -134,7 +157,55 @@ class PointActivity : RootActivity() {
             }
         }
 
+        managerpercentLL.setOnClickListener {
+
+            val managerpercent = managerpercentTV.text.toString()
+            val money = moneyTV.text.toString()
+
+            if (managerpercent == null) {
+                Toast.makeText(context, "퍼센트를 먼저 입력해주세요.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (money == null) {
+                Toast.makeText(context, "가격을 먼저 입력해주세요.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val percent = managerpercent.toFloat() / 100
+            val floatPoint = (money.toFloat() * percent)
+            val stringPoint = floatPoint.toString()
+            var splitPoint =  stringPoint.split(".")
+            val point = splitPoint.get(0)
+            pointTV.setText(point)
+
+        }
+
         changeStep()
+
+    }
+
+    fun setPoint(){
+
+        val defaultpercent = defaultpercentTV.text.toString()
+        val money = moneyTV.text.toString()
+
+        if (defaultpercent == null) {
+            Toast.makeText(context, "퍼센트를 먼저 입력해주세요.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (money == null) {
+            Toast.makeText(context, "가격을 먼저 입력해주세요.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val percent = defaultpercent.toFloat() / 100
+        val floatPoint = (money.toFloat() * percent)
+        val stringPoint = floatPoint.toString()
+        var splitPoint =  stringPoint.split(".")
+        val point = splitPoint.get(0)
+        pointTV.setText(point)
 
     }
 
