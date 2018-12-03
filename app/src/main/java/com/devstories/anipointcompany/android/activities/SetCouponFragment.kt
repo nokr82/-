@@ -1,8 +1,11 @@
 package com.devstories.anipointcompany.android.activities
 
 import android.app.ProgressDialog
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -49,7 +52,18 @@ class SetCouponFragment : Fragment() {
     //쿠폰종류 스피너
     var type = -1
     var use_day = -1
+    //브로드캐스트로 고객정보전달
+    internal var step1NextReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent?) {
+            if (intent != null) {
+                //브로드캐스트로 프래그먼트이동리시버
+                println("intent")
+                println("intent" + intent.getStringExtra("gender"))
+                println("intent" + intent.getStringExtra("age"))
 
+            }
+        }
+    }
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -84,7 +98,9 @@ class SetCouponFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
+        //고객선택
+        var filter1 = IntentFilter("STEP1_NEXT")
+        myContext.registerReceiver(step1NextReceiver, filter1)
         setmenu2()
         setmenu()
 
