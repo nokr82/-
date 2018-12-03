@@ -1013,6 +1013,7 @@
                         android:background="#906e8a32"
                         android:layout_height="match_parent">
                         <TextView
+                            android:id="@+id/stackTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="24sp"
@@ -1025,12 +1026,14 @@
 
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/stack2LL"
                         android:onClick="onClick"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:layout_height="match_parent">
                         <TextView
+                            android:id="@+id/stack2TV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="24sp"
@@ -1043,12 +1046,14 @@
 
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/op_accLL"
                         android:onClick="onClick"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:layout_height="match_parent">
                         <TextView
+                            android:id="@+id/op_accTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="24dp"
