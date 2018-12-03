@@ -137,10 +137,12 @@ class CalActivity : RootActivity() {
     //계산클릭이벤트
     fun cal(){
         stackLL.setOnClickListener {
+            //기본퍼센트
             per_type = 1
+
         }
         stack2LL.setOnClickListener {
-
+            //임의 퍼센트
             val managerpercent = stack2TV.text.toString()
             val money = moneyTV.text.toString()
             per_type = 2

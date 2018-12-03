@@ -68,7 +68,7 @@ class Point_List_Fragment : Fragment() {
         this.myContext = container!!.context
 
         progressDialog = ProgressDialog(myContext)
-            return inflater.inflate(R.layout.fra_point_list,container,false)
+        return inflater.inflate(R.layout.fra_point_list,container,false)
 
 
     }
@@ -227,7 +227,7 @@ class Point_List_Fragment : Fragment() {
         first_dateTV.text = msg
         startdateTV.text = msg
         nonameTV.visibility = View.VISIBLE
-          Toast.makeText(myContext, msg, Toast.LENGTH_SHORT).show()
+        Toast.makeText(myContext, msg, Toast.LENGTH_SHORT).show()
         loadmainData(1)
     }
 
@@ -288,7 +288,7 @@ class Point_List_Fragment : Fragment() {
 
 
                     } else {
-                    Toast.makeText(myContext,"조회실패",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(myContext,"조회실패",Toast.LENGTH_SHORT).show()
                     }
 
                 } catch (e: JSONException) {
@@ -368,14 +368,14 @@ class Point_List_Fragment : Fragment() {
 
 
                         //총방문횟수
-                      val visit_cnt = response.getString("point")
+                        val visit_cnt = response.getString("point")
                         //포인트사용횟수
                         val use_point_cnt = response.getString("use_point_cnt")
                         //포인트적립횟수
                         val stack_point_cnt = response.getString("stack_point_cnt")
 
                         if(use_point.equals(null)){
-                        use_point = "0"
+                            use_point = "0"
                         }
                         if (point.equals(null)){
                             point = "0"
