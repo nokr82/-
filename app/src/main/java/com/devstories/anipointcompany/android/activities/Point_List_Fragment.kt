@@ -20,14 +20,11 @@ import android.content.Intent
 import android.graphics.Color
 import android.util.Log
 import android.widget.*
-import com.devstories.anipointcompany.android.Actions.MemberAction
 import com.devstories.anipointcompany.android.Actions.PointAction
-import com.devstories.anipointcompany.android.base.PrefUtils
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.prefs.Preferences
 
-
+//포인트내역
 class Point_List_Fragment : Fragment() {
     lateinit var myContext: Context
     private var progressDialog: ProgressDialog? = null
@@ -168,8 +165,7 @@ class Point_List_Fragment : Fragment() {
 
 
         accumulateLL.setOnClickListener {
-            val intent = Intent(myContext, PointActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            val intent = Intent(myContext, CalActivity::class.java)
             startActivity(intent)
         }
         useradapter = UserListAdapter(myContext,R.layout.item_user_point_list,adapterData)

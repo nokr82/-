@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-
+//로그인
 class LoginActivity : RootActivity() {
 
     lateinit var context: Context
