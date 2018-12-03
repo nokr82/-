@@ -1012,6 +1012,9 @@
                         android:gravity="center"
                         android:background="#906e8a32"
                         android:layout_height="match_parent">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
                         <TextView
                             android:id="@+id/stackTV"
                             android:layout_width="wrap_content"
@@ -1021,29 +1024,52 @@
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
                             android:gravity="center_horizontal"
-                            android:text="3%"
+                            android:text="100"
                             />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="24sp"
+                                android:textColor="#6e8a32"
+                                android:letterSpacing="-0.05"
+                                android:lineSpacingExtra="-15sp"
+                                android:gravity="center_horizontal"
+                                android:text="%"
+                                />
+                        </LinearLayout>
 
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/stack2LL"
-                        android:onClick="onClick"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:layout_height="match_parent">
-                        <TextView
-                            android:id="@+id/stack2TV"
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="24sp"
-                            android:textColor="#666666"
-                            android:letterSpacing="-0.05"
-                            android:lineSpacingExtra="-15sp"
-                            android:gravity="center_horizontal"
-                            android:text="100%"
-                            />
-
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/stack2TV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="24sp"
+                                android:textColor="#6e8a32"
+                                android:letterSpacing="-0.05"
+                                android:lineSpacingExtra="-15sp"
+                                android:gravity="center_horizontal"
+                                android:text="3"
+                                />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="24sp"
+                                android:textColor="#6e8a32"
+                                android:letterSpacing="-0.05"
+                                android:lineSpacingExtra="-15sp"
+                                android:gravity="center_horizontal"
+                                android:text="%"
+                                />
+                        </LinearLayout>
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/op_accLL"

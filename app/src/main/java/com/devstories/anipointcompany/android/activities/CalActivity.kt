@@ -37,14 +37,14 @@ class CalActivity : RootActivity() {
     var member_id = -1
     var p_type = -1
     var phone = ""
-    var pay_type  =""
-
+    var payment_type  =-1
+   var category_id = -1
     var per_type = -1
 
 
     var stackpoint = -1
     lateinit var adapter: ArrayAdapter<String>
-    var option_cate = arrayOf("애견호텔","애견미용","간식","진료")
+    var option_cate = ArrayList<String>()
 
     internal var checkHandler: Handler = object : Handler() {
         override fun handleMessage(msg: android.os.Message) {
@@ -70,23 +70,25 @@ class CalActivity : RootActivity() {
             opTV.text = "사용"
             m_opTV.text = "P"
         }
-
+        company_info()
         //계산기
         cal()
 
-        adapter = ArrayAdapter(context,R.layout.spiner_cal_item,option_cate)
-        cate_SP.adapter = adapter
+
         //결제내용스피너
         cate_SP.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-                if (position==0){//애견호텔
-
-                }else if (position==1){//애견미용
-
-                }else if (position==2){//간식
-
-                }else if (position==3){//진료
-
+                if (position==0){
+                    category_id =1
+                    Log.d("포지션",category_id.toString())
+                }else if (position==1){
+                    category_id =2
+                }else if (position==2){
+                    category_id =3
+                }else if (position==3){
+                    category_id =4
+                }else if (position==4){
+                    category_id =5
                 }
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -96,24 +98,22 @@ class CalActivity : RootActivity() {
         op_accLL.setOnClickListener {
 
         }
-        stack2LL.setOnClickListener {
-
-        }
 
         cardPayLL.setOnClickListener {
             setmenu2()
             cardPayIV.setImageResource(R.drawable.radio_on)
-            pay_type = ""
+            payment_type = 1
         }
         cashPayLL.setOnClickListener {
             setmenu2()
             cashPayIV.setImageResource(R.drawable.radio_on)
-            pay_type = ""
+            payment_type = 2
         }
+        //무통장입금
         depositlessLL.setOnClickListener {
             setmenu2()
             depositlessIV.setImageResource(R.drawable.radio_on)
-            pay_type = ""
+            payment_type = 3
         }
         changeStep()
 
@@ -137,12 +137,21 @@ class CalActivity : RootActivity() {
         stackLL.setOnClickListener {
             val totalpoint =Integer.parseInt(moneyTV.text.toString())
             Log.d("포인트", totalpoint.toString())
-            stackpoint = totalpoint*3/100
+            stackpoint = totalpoint*Integer.parseInt(stackTV.text.toString())/100
             step = 3
             changeStep()
             p_type=1
             stack_point(member_id.toString())
 
+        }
+        stack2LL.setOnClickListener {
+            val totalpoint =Integer.parseInt(moneyTV.text.toString())
+            Log.d("포인트", totalpoint.toString())
+            stackpoint = totalpoint*Integer.parseInt(stack2TV.text.toString())/100
+            step = 3
+            changeStep()
+            p_type=1
+            stack_point(member_id.toString())
         }
 
         checkLL.setOnClickListener {
@@ -216,9 +225,14 @@ class CalActivity : RootActivity() {
         params.put("type", p_type)//1적립 2사용
         //    params.put("use_point", p_type)//사용 포인트
         params.put("price", p_type)//상품가격
-        params.put("payment_type", p_type)//결제방법
+        params.put("payment_type", payment_type)//결제방법
         params.put("use_type", p_type)//1적립 2사용 3 적립/사용
-        params.put("category_id", p_type)//카테고리 일련번호
+        params.put("category_id",category_id)//카테고리 일련번호
+
+        if (payment_type==-1){
+            Toast.makeText(context,"결제방식을 선택해주세요",Toast.LENGTH_SHORT).show()
+            return
+        }
 
 
         MemberAction.point(params, object : JsonHttpResponseHandler() {
@@ -625,15 +639,21 @@ class CalActivity : RootActivity() {
                         val basic_per = Utils.getString(company,"basic_per")
                         //임의적립
                         val option_per = Utils.getInt(company,"option_per")
+                        val data = response.getJSONArray("categories")
+                        Log.d("카테",data.toString())
+                        for (i in 0..data.length()-1){
+                            val json = data[i]as JSONObject
+                            val Category  = json.getJSONObject("Category")
+                            val name = Utils.getString(Category,"name")
+                            option_cate.add(name)
 
+                        }
+                        adapter = ArrayAdapter(context,R.layout.spiner_cal_item,option_cate)
+                        cate_SP.adapter = adapter
 
 
                         stackTV.text = basic_per.toString()
-
                         stack2TV.text = option_per.toString()
-
-
-
 
                     } else {
 
