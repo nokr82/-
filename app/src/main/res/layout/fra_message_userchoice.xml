@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_marginTop="9.5dp"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/background_strock_e7e7e7"
+        android:layout_height="20dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/userRL"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="#0068df">
+
+            <TextView
+                android:id="@+id/userTV"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="9sp"
+                android:textColor="#ffff"
+                android:letterSpacing="-0.03"
+                android:lineSpacingExtra="3sp"
+                android:gravity="center_horizontal"
+                android:text="고객선택"
+                />
+            <View
+                android:layout_alignParentBottom="true"
+                android:background="#606060"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/couponRL"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/couponTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center_horizontal"
+                android:letterSpacing="-0.03"
+                android:lineSpacingExtra="3sp"
+                android:text="쿠폰설정"
+                android:textColor="#c5c5c5"
+                android:textSize="9sp" />
+            <View
+                android:layout_alignParentBottom="true"
+                android:background="#606060"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/writeRL"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/writeTV"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_centerInParent="true"
+                android:gravity="center_horizontal"
+                android:letterSpacing="-0.03"
+                android:lineSpacingExtra="3sp"
+                android:text="메세지 작성"
+                android:textColor="#c5c5c5"
+                android:textSize="9sp" />
+            <View
+                android:layout_alignParentBottom="true"
+                android:background="#606060"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/finalRL"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/finalTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center_horizontal"
+                android:letterSpacing="-0.03"
+                android:lineSpacingExtra="3sp"
+                android:text="최종확인"
+                android:textColor="#c5c5c5"
+                android:textSize="9sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:background="#606060" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/userchoiceFL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+</LinearLayout>

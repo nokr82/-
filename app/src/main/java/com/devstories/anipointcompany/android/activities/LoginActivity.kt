@@ -1,12 +1,10 @@
 package com.devstories.anipointcompany.android.activities
 
-import android.app.NotificationManager
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Message
+import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.CompanyAction
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.PrefUtils
@@ -15,99 +13,50 @@ import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
 import cz.msebera.android.httpclient.Header
+import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+//로그인
+class LoginActivity : RootActivity() {
 
-//인트로
-class IntroActivity : RootActivity() {
-
-    protected var _splashTime = 2000 // time to display the splash screen in ms
-    private val _active = true
-    private var splashThread: Thread? = null
-
+    lateinit var context: Context
     private var progressDialog: ProgressDialog? = null
-
-    private var context: Context? = null
-
-    private var is_push:Boolean = false
-
-    val SHOW_DLG = 301
+    var autoLogin = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_intro)
-
-        println("IntroActivity()")
+        setContentView(R.layout.activity_login)
 
         this.context = this
         progressDialog = ProgressDialog(context)
 
-        // clear all notification
-        val nm = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        nm.cancelAll()
+        loginLL.setOnClickListener {
+            var getName = Utils.getString(loginIdET)
+            var getPW = Utils.getString(loginPassTV)
 
-        val buldle = intent.extras
-        if (buldle != null) {
-            try {
-                is_push = buldle.getBoolean("FROM_PUSH")
-            } catch (e: Exception) {
-                e.printStackTrace()
+
+            if (getName == "" || getName == null || getName.isEmpty()) {
+                Toast.makeText(context, "이메일을 입력해주세요", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
 
-        }
-
-        splashThread = object : Thread() {
-            override fun run() {
-                try {
-                    var waited = 0
-                    while (waited < _splashTime && _active) {
-                        Thread.sleep(100)
-                        waited += 100
-                    }
-                } catch (e: InterruptedException) {
-
-                } finally {
-                    stopIntro()
-                }
+            if (getPW == "" || getPW == null || getPW.isEmpty()) {
+                Toast.makeText(context, "패스워드를 입력해주세요", Toast.LENGTH_SHORT).show()
+                loginPassTV.requestFocus()
+                return@setOnClickListener
             }
-        }
-        (splashThread as Thread).start()
 
-    }
-
-    private fun stopIntro() {
-
-            //handler.sendEmptyMessage(0)
-        val autoLogin = PrefUtils.getBooleanPreference(context, "autoLogin")
-
-        if (!autoLogin) {
-            PrefUtils.clear(context)
-            val intent = Intent(context, LoginActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-
-        } else {
-            handler.sendEmptyMessage(0)
+            login(getName, getPW)
         }
 
     }
 
-    internal var handler: Handler = object : Handler() {
-        override fun handleMessage(msg: Message) {
-            //versionInfo();
-            //PrefUtils.setPreference(context, "company_id", 1)
-            login()
-        }
-    }
-
-    private fun login() {
-
+    fun login(email:String, passwd:String){
 
         val params = RequestParams()
-        params.put("login_id", PrefUtils.getStringPreference(context,"login_id"))
-        params.put("passwd", PrefUtils.getStringPreference(context,"passwd"))
-        //val member_type = PrefUtils.getStringPreference(context,"member_type")
+        params.put("login_id", email)
+        params.put("passwd", passwd)
 
         CompanyAction.company_login(params, object : JsonHttpResponseHandler() {
 
@@ -118,12 +67,11 @@ class IntroActivity : RootActivity() {
 
                 try {
                     val result = response!!.getString("result")
-
-                    print(response)
+                    println("LoginActivity result ::: $result")
 
                     if ("ok" == result) {
-
                         val company = response.getJSONObject("company")
+                        println(company)
                         //val images = response.getJSONArray("images")//[]
 
                         val company_id = Utils.getInt(company, "id")
@@ -152,11 +100,7 @@ class IntroActivity : RootActivity() {
                         startActivity(intent)
 
                     } else {
-
-                        val intent = Intent(context, LoginActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        startActivity(intent)
-
+                        Toast.makeText(context, "일치하는 회원이 존재하지 않습니다.", Toast.LENGTH_LONG).show()
                     }
 
                 } catch (e: JSONException) {
@@ -175,8 +119,7 @@ class IntroActivity : RootActivity() {
             }
 
             private fun error() {
-                //Utils.alert(context, "조회중 장애가 발생하였습니다.")
-                Utils.alert(context, "조회중 장애가 발생했습니다.")
+                Utils.alert(context, "조회중 장애가 발생하였습니다.")
             }
 
             override fun onFailure(statusCode: Int, headers: Array<Header>?, responseString: String?, throwable: Throwable) {
@@ -194,9 +137,6 @@ class IntroActivity : RootActivity() {
                 if (progressDialog != null) {
                     progressDialog!!.dismiss()
                 }
-
-                // print(errorResponse)
-
                 throwable.printStackTrace()
                 error()
             }
@@ -205,9 +145,6 @@ class IntroActivity : RootActivity() {
                 if (progressDialog != null) {
                     progressDialog!!.dismiss()
                 }
-
-                // print(errorResponse)
-
                 throwable.printStackTrace()
                 error()
             }
@@ -226,10 +163,14 @@ class IntroActivity : RootActivity() {
                 }
             }
         })
-
-
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+
+        progressDialog = null
+
+    }
 
 
 }

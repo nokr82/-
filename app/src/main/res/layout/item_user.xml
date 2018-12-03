@@ -68,7 +68,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/arrow"/>
-
             </LinearLayout>
 
             <TextView
@@ -509,6 +508,7 @@
                         android:gravity="center_vertical"
                         android:orientation="vertical"
                         android:layout_height="match_parent">
+
                         <TextView
                             android:id="@+id/stack_pointTV"
                             android:layout_width="wrap_content"
@@ -516,18 +516,30 @@
                             android:textSize="6sp"
                             android:textColor="#303030"
                             android:letterSpacing="-0.01"
-                            android:text="누적 : P"
-                            />
-                        <TextView
-                            android:id="@+id/visit_recordTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="6sp"
-                            android:textColor="#303030"
-                            android:letterSpacing="-0.01"
-                            android:text="방문이력방문이력방문이력방문이력방문
-방문이력방문이력방문이력"
-                            />
+                            android:text="누적 : P"/>
+
+                        <ScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fillViewport="true">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical">
+
+                                <TextView
+                                    android:id="@+id/visit_recordTV"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="6sp"
+                                    android:textColor="#303030"
+                                    android:letterSpacing="-0.01"
+                                    android:text="방문이력방문이력방문이력방문이력방문방문이력방문이력방문이력"/>
+
+                            </LinearLayout>
+
+                        </ScrollView>
 
                     </LinearLayout>
 

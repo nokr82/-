@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
@@ -9,273 +9,297 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="149dp"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="8.5dp"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/titleTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="고객목록"
-            android:layout_marginTop="15.5dp"
-            android:layout_marginBottom="23.5dp"
-            android:textColor="#ffff"
-            android:textSize="24dp" />
-
         <LinearLayout
-            android:id="@+id/useroptionLL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="visible">
+            android:layout_width="149dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8.5dp"
+            android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/titleTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15.5dp"
+                android:layout_marginBottom="23.5dp"
+                android:text="고객목록"
+                android:textColor="#ffff"
+                android:textSize="24dp" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/useroptionLL"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="17.5dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/entire_viewTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="1sp"
-                    android:text="전체"
-                    android:textColor="#ffffff"
-                    android:textSize="9sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.3dp"
-                    android:background="#ffff" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/userList_new_userLL"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="17.5dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/new_userTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="1sp"
-                    android:text="신규"
-                    android:textColor="#80ffffff"
-                    android:textSize="9sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.3dp"
-                    android:background="#ffff" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/userList_most_freq_userLL"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="17.5dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/most_freqTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="1sp"
-                    android:text="단골"
-                    android:textColor="#80ffffff"
-                    android:textSize="9sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.3dp"
-                    android:background="#ffff" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/userList_birth_userLL"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="17.5dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/birthTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="1sp"
-                    android:text="생일"
-                    android:textColor="#80ffffff"
-                    android:textSize="9sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.3dp"
-                    android:background="#ffff" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/userList_mvpLL"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="17.5dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/mvpTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="1sp"
-                    android:text="단골 or VIP"
-                    android:textColor="#80ffffff"
-                    android:textSize="9sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.3dp"
-                    android:background="#ffff" />
+                android:orientation="vertical"
+                android:visibility="visible">
 
                 <LinearLayout
-                    android:id="@+id/joinLL"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="30dp"
-                    android:background="@drawable/background_strock_ffff"
-                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="17.5dp"
+                    android:gravity="center_vertical"
                     android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/entire_viewTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="1sp"
+                            android:text="전체"
+                            android:textColor="#ffffff"
+                            android:textSize="9sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.3dp"
+                            android:background="#ffff" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/userList_new_userLL"
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="17.5dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/new_userTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="1sp"
+                            android:text="신규"
+                            android:textColor="#80ffffff"
+                            android:textSize="9sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.3dp"
+                            android:background="#ffff" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/userList_most_freq_userLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="17.5dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/most_freqTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="1sp"
+                            android:text="단골"
+                            android:textColor="#80ffffff"
+                            android:textSize="9sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.3dp"
+                            android:background="#ffff" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/userList_birth_userLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="17.5dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/birthTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="1sp"
+                            android:text="생일"
+                            android:textColor="#80ffffff"
+                            android:textSize="9sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.3dp"
+                            android:background="#ffff" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="17.5dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/joinLL"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="30dp"
+                        android:background="@drawable/background_strock_ffff"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:src="@mipmap/icon_plus" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6.5dp"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="3sp"
+                            android:text="고객추가"
+                            android:textColor="#ffffff"
+                            android:textSize="7sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/accumulateLL"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="10dp"
+                            android:background="#997afb"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal"
+                                android:letterSpacing="-0.03"
+                                android:lineSpacingExtra="-2sp"
+                                android:text="적립"
+                                android:textColor="#ffffff"
+                                android:textSize="12dp" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/useLL"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="10dp"
+                            android:background="#ff8e1b"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal"
+                                android:letterSpacing="-0.03"
+                                android:lineSpacingExtra="-2sp"
+                                android:text="사용"
+                                android:textColor="#ffffff"
+                                android:textSize="12dp" />
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15.5dp"
+                android:layout_marginRight="45.5dp"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="30.5dp"
+                    android:layout_weight="1"
+                    android:background="#90000000"
+                    android:gravity="center_vertical"
+
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/keywordET"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="키워드를 입력하세요."
+                        android:lineSpacingExtra="25sp"
+                        android:textColor="#ffffff"
+                        android:textColorHint="#ffffff"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/btn_search"
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:background="#90000000"
+                    android:gravity="center">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:src="@mipmap/icon_plus" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6.5dp"
-                        android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="3sp"
-                        android:text="고객추가"
-                        android:textColor="#ffffff"
-                        android:textSize="7sp" />
+                        android:src="@mipmap/icon_search" />
 
 
                 </LinearLayout>
 
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/accumulateLL"
-                    android:layout_width="40dp"
-                    android:gravity="center"
-                    android:layout_height="40dp"
-                    android:background="#4ed0cd">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12dp"
-                        android:textColor="#ffffff"
-                        android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="-2sp"
-                        android:gravity="center_horizontal"
-                        android:text="적립"
-                        />
-
-
-                </LinearLayout>
-    <LinearLayout
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:id="@+id/useLL"
-        android:layout_width="40dp"
-        android:gravity="center"
-        android:layout_height="40dp"
-        android:background="#000000">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12dp"
-            android:textColor="#ffffff"
-            android:letterSpacing="-0.03"
-            android:lineSpacingExtra="-2sp"
-            android:gravity="center_horizontal"
-            android:text="포인트 사용"
-            />
-
-
-    </LinearLayout>
-</LinearLayout>
             </LinearLayout>
-
-        </LinearLayout>
-    </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
-
-        <LinearLayout
-            android:layout_marginTop="15.5dp"
-            android:layout_marginRight="45.5dp"
-            android:layout_width="match_parent"
-            android:gravity="center_vertical"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:gravity="center_vertical"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="30.5dp"
-                android:orientation="horizontal"
-
-                android:background="#90000000">
-
-                <EditText
-                    android:id="@+id/keywordET"
-                    android:layout_width="0dp"
-                    android:background="@null"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:layout_weight="1"
-                    android:lineSpacingExtra="25sp"
-                    android:textColorHint="#ffffff"
-                    android:hint="키워드를 입력하세요."
-                    android:textColor="#ffffff"
-                    android:textSize="10sp" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/btn_search"
-                android:layout_marginLeft="5dp"
-                android:layout_width="25dp"
-                android:gravity="center"
-                android:layout_height="match_parent"
-                android:background="#90000000">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_search"/>
-
-
-            </LinearLayout>
-
-        </LinearLayout>
-
 
 
             <HorizontalScrollView
@@ -284,12 +308,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none">
+
                 <LinearLayout
                     android:id="@+id/userLL"
-                    android:visibility="visible"
-                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
 
 
                 </LinearLayout>
@@ -299,11 +324,9 @@
 
 
             <HorizontalScrollView
-                android:visibility="gone"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-
+                android:layout_height="match_parent"
+                android:visibility="gone">
 
 
                 <LinearLayout
@@ -312,32 +335,32 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:background="#ffff"
                         android:layout_width="175dp"
                         android:layout_height="280dp"
-                        android:orientation="vertical"
-                        >
+                        android:background="#ffff"
+                        android:orientation="vertical">
 
                         <LinearLayout
-                            android:layout_marginTop="5dp"
-                            android:layout_marginLeft="10dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="5dp"
                             android:orientation="horizontal">
+
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@mipmap/icon_clock"/>
+                                android:src="@mipmap/icon_clock" />
+
                             <TextView
-                                android:layout_marginLeft="4dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="8sp"
-                                android:textColor="#8d8d8d"
+                                android:layout_marginLeft="4dp"
                                 android:letterSpacing="-0.05"
                                 android:lineSpacingExtra="2sp"
                                 android:text="2018.10.15 방문"
-                                />
+                                android:textColor="#8d8d8d"
+                                android:textSize="8sp" />
 
                         </LinearLayout>
 
@@ -375,8 +398,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="5.5dp"
                                 android:layout_marginTop="7dp"
+                                android:layout_marginBottom="5.5dp"
                                 android:gravity="center_horizontal"
                                 android:letterSpacing="-0.01"
                                 android:lineSpacingExtra="2sp"
@@ -403,9 +426,9 @@
 
 
                             <LinearLayout
-                                android:layout_marginTop="11dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="11dp"
                                 android:layout_marginBottom="10dp"
                                 android:orientation="horizontal">
 
@@ -822,59 +845,58 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:layout_marginTop="12.5dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="25dp"
-                                android:gravity="center"
-                                android:background="#00d1ce">
+                                android:layout_marginTop="12.5dp"
+                                android:background="#00d1ce"
+                                android:gravity="center">
+
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="10sp"
-                                    android:textColor="#ffffff"
                                     android:letterSpacing="-0.01"
                                     android:lineSpacingExtra="0sp"
                                     android:text="메세지 보내기"
-                                    />
+                                    android:textColor="#ffffff"
+                                    android:textSize="10sp" />
 
 
                             </LinearLayout>
 
 
                         </LinearLayout>
-
 
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_marginLeft="15dp"
-                        android:background="#ffff"
                         android:layout_width="175dp"
                         android:layout_height="280dp"
-                        android:orientation="vertical"
-                        >
+                        android:layout_marginLeft="15dp"
+                        android:background="#ffff"
+                        android:orientation="vertical">
 
                         <LinearLayout
-                            android:layout_marginTop="5dp"
-                            android:layout_marginLeft="10dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="5dp"
                             android:orientation="horizontal">
+
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@mipmap/icon_clock"/>
+                                android:src="@mipmap/icon_clock" />
+
                             <TextView
-                                android:layout_marginLeft="4dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="8sp"
-                                android:textColor="#8d8d8d"
+                                android:layout_marginLeft="4dp"
                                 android:letterSpacing="-0.05"
                                 android:lineSpacingExtra="2sp"
                                 android:text="2018.10.15 방문"
-                                />
+                                android:textColor="#8d8d8d"
+                                android:textSize="8sp" />
 
                         </LinearLayout>
 
@@ -912,8 +934,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="5.5dp"
                                 android:layout_marginTop="7dp"
+                                android:layout_marginBottom="5.5dp"
                                 android:gravity="center_horizontal"
                                 android:letterSpacing="-0.01"
                                 android:lineSpacingExtra="2sp"
@@ -940,9 +962,9 @@
 
 
                             <LinearLayout
-                                android:layout_marginTop="11dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="11dp"
                                 android:layout_marginBottom="10dp"
                                 android:orientation="horizontal">
 
@@ -1359,58 +1381,58 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:layout_marginTop="12.5dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="25dp"
-                                android:gravity="center"
-                                android:background="#00d1ce">
+                                android:layout_marginTop="12.5dp"
+                                android:background="#00d1ce"
+                                android:gravity="center">
+
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="10sp"
-                                    android:textColor="#ffffff"
                                     android:letterSpacing="-0.01"
                                     android:lineSpacingExtra="0sp"
                                     android:text="메세지 보내기"
-                                    />
+                                    android:textColor="#ffffff"
+                                    android:textSize="10sp" />
 
 
                             </LinearLayout>
 
 
                         </LinearLayout>
-
 
 
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_marginLeft="15dp"
-                        android:background="#ffff"
                         android:layout_width="175dp"
                         android:layout_height="280dp"
-                        android:orientation="vertical"
-                        >
+                        android:layout_marginLeft="15dp"
+                        android:background="#ffff"
+                        android:orientation="vertical">
 
                         <LinearLayout
-                            android:layout_marginTop="5dp"
-                            android:layout_marginLeft="10dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="5dp"
                             android:orientation="horizontal">
+
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@mipmap/icon_clock"/>
+                                android:src="@mipmap/icon_clock" />
+
                             <TextView
-                                android:layout_marginLeft="4dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="8sp"
-                                android:textColor="#8d8d8d"
+                                android:layout_marginLeft="4dp"
                                 android:letterSpacing="-0.05"
                                 android:lineSpacingExtra="2sp"
                                 android:text="2018.10.15 방문"
-                                />
+                                android:textColor="#8d8d8d"
+                                android:textSize="8sp" />
 
                         </LinearLayout>
 
@@ -1448,8 +1470,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="5.5dp"
                                 android:layout_marginTop="7dp"
+                                android:layout_marginBottom="5.5dp"
                                 android:gravity="center_horizontal"
                                 android:letterSpacing="-0.01"
                                 android:lineSpacingExtra="2sp"
@@ -1476,9 +1498,9 @@
 
 
                             <LinearLayout
-                                android:layout_marginTop="11dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="11dp"
                                 android:layout_marginBottom="10dp"
                                 android:orientation="horizontal">
 
@@ -1895,58 +1917,58 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:layout_marginTop="12.5dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="25dp"
-                                android:gravity="center"
-                                android:background="#00d1ce">
+                                android:layout_marginTop="12.5dp"
+                                android:background="#00d1ce"
+                                android:gravity="center">
+
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="10sp"
-                                    android:textColor="#ffffff"
                                     android:letterSpacing="-0.01"
                                     android:lineSpacingExtra="0sp"
                                     android:text="메세지 보내기"
-                                    />
+                                    android:textColor="#ffffff"
+                                    android:textSize="10sp" />
 
 
                             </LinearLayout>
 
 
                         </LinearLayout>
-
 
 
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_marginLeft="15dp"
-                        android:background="#ffff"
                         android:layout_width="175dp"
                         android:layout_height="280dp"
-                        android:orientation="vertical"
-                        >
+                        android:layout_marginLeft="15dp"
+                        android:background="#ffff"
+                        android:orientation="vertical">
 
                         <LinearLayout
-                            android:layout_marginTop="5dp"
-                            android:layout_marginLeft="10dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="5dp"
                             android:orientation="horizontal">
+
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@mipmap/icon_clock"/>
+                                android:src="@mipmap/icon_clock" />
+
                             <TextView
-                                android:layout_marginLeft="4dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="8sp"
-                                android:textColor="#8d8d8d"
+                                android:layout_marginLeft="4dp"
                                 android:letterSpacing="-0.05"
                                 android:lineSpacingExtra="2sp"
                                 android:text="2018.10.15 방문"
-                                />
+                                android:textColor="#8d8d8d"
+                                android:textSize="8sp" />
 
                         </LinearLayout>
 
@@ -1984,8 +2006,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="5.5dp"
                                 android:layout_marginTop="7dp"
+                                android:layout_marginBottom="5.5dp"
                                 android:gravity="center_horizontal"
                                 android:letterSpacing="-0.01"
                                 android:lineSpacingExtra="2sp"
@@ -2012,9 +2034,9 @@
 
 
                             <LinearLayout
-                                android:layout_marginTop="11dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="11dp"
                                 android:layout_marginBottom="10dp"
                                 android:orientation="horizontal">
 
@@ -2431,58 +2453,58 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:layout_marginTop="12.5dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="25dp"
-                                android:gravity="center"
-                                android:background="#00d1ce">
+                                android:layout_marginTop="12.5dp"
+                                android:background="#00d1ce"
+                                android:gravity="center">
+
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="10sp"
-                                    android:textColor="#ffffff"
                                     android:letterSpacing="-0.01"
                                     android:lineSpacingExtra="0sp"
                                     android:text="메세지 보내기"
-                                    />
+                                    android:textColor="#ffffff"
+                                    android:textSize="10sp" />
 
 
                             </LinearLayout>
 
 
                         </LinearLayout>
-
 
 
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_marginLeft="15dp"
-                        android:background="#ffff"
                         android:layout_width="175dp"
                         android:layout_height="280dp"
-                        android:orientation="vertical"
-                        >
+                        android:layout_marginLeft="15dp"
+                        android:background="#ffff"
+                        android:orientation="vertical">
 
                         <LinearLayout
-                            android:layout_marginTop="5dp"
-                            android:layout_marginLeft="10dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="5dp"
                             android:orientation="horizontal">
+
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@mipmap/icon_clock"/>
+                                android:src="@mipmap/icon_clock" />
+
                             <TextView
-                                android:layout_marginLeft="4dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="8sp"
-                                android:textColor="#8d8d8d"
+                                android:layout_marginLeft="4dp"
                                 android:letterSpacing="-0.05"
                                 android:lineSpacingExtra="2sp"
                                 android:text="2018.10.15 방문"
-                                />
+                                android:textColor="#8d8d8d"
+                                android:textSize="8sp" />
 
                         </LinearLayout>
 
@@ -2520,8 +2542,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="5.5dp"
                                 android:layout_marginTop="7dp"
+                                android:layout_marginBottom="5.5dp"
                                 android:gravity="center_horizontal"
                                 android:letterSpacing="-0.01"
                                 android:lineSpacingExtra="2sp"
@@ -2548,9 +2570,9 @@
 
 
                             <LinearLayout
-                                android:layout_marginTop="11dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="11dp"
                                 android:layout_marginBottom="10dp"
                                 android:orientation="horizontal">
 
@@ -2967,58 +2989,58 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:layout_marginTop="12.5dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="25dp"
-                                android:gravity="center"
-                                android:background="#00d1ce">
+                                android:layout_marginTop="12.5dp"
+                                android:background="#00d1ce"
+                                android:gravity="center">
+
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="10sp"
-                                    android:textColor="#ffffff"
                                     android:letterSpacing="-0.01"
                                     android:lineSpacingExtra="0sp"
                                     android:text="메세지 보내기"
-                                    />
+                                    android:textColor="#ffffff"
+                                    android:textSize="10sp" />
 
 
                             </LinearLayout>
 
 
                         </LinearLayout>
-
 
 
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_marginLeft="15dp"
-                        android:background="#ffff"
                         android:layout_width="175dp"
                         android:layout_height="280dp"
-                        android:orientation="vertical"
-                        >
+                        android:layout_marginLeft="15dp"
+                        android:background="#ffff"
+                        android:orientation="vertical">
 
                         <LinearLayout
-                            android:layout_marginTop="5dp"
-                            android:layout_marginLeft="10dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="5dp"
                             android:orientation="horizontal">
+
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@mipmap/icon_clock"/>
+                                android:src="@mipmap/icon_clock" />
+
                             <TextView
-                                android:layout_marginLeft="4dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="8sp"
-                                android:textColor="#8d8d8d"
+                                android:layout_marginLeft="4dp"
                                 android:letterSpacing="-0.05"
                                 android:lineSpacingExtra="2sp"
                                 android:text="2018.10.15 방문"
-                                />
+                                android:textColor="#8d8d8d"
+                                android:textSize="8sp" />
 
                         </LinearLayout>
 
@@ -3056,8 +3078,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="5.5dp"
                                 android:layout_marginTop="7dp"
+                                android:layout_marginBottom="5.5dp"
                                 android:gravity="center_horizontal"
                                 android:letterSpacing="-0.01"
                                 android:lineSpacingExtra="2sp"
@@ -3084,9 +3106,9 @@
 
 
                             <LinearLayout
-                                android:layout_marginTop="11dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="11dp"
                                 android:layout_marginBottom="10dp"
                                 android:orientation="horizontal">
 
@@ -3503,27 +3525,26 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:layout_marginTop="12.5dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="25dp"
-                                android:gravity="center"
-                                android:background="#00d1ce">
+                                android:layout_marginTop="12.5dp"
+                                android:background="#00d1ce"
+                                android:gravity="center">
+
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="10sp"
-                                    android:textColor="#ffffff"
                                     android:letterSpacing="-0.01"
                                     android:lineSpacingExtra="0sp"
                                     android:text="메세지 보내기"
-                                    />
+                                    android:textColor="#ffffff"
+                                    android:textSize="10sp" />
 
 
                             </LinearLayout>
 
 
                         </LinearLayout>
-
 
 
                     </LinearLayout>
@@ -3531,15 +3552,6 @@
 
 
             </HorizontalScrollView>
-
-
-
-
-
-
-
-
-
 
 
         </LinearLayout>

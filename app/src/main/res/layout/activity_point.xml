@@ -12,6 +12,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10.5dp"
@@ -83,15 +84,14 @@
                     android:gravity="center_vertical"
                     android:orientation="vertical">
 
-                    <EditText
-                        android:id="@+id/phoneET"
+                    <TextView
+                        android:id="@+id/new_phoneTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="1sp"
-                        android:hint="전화번호"
                         android:background="@null"
-                        android:textColorHint="#ffffff"
+                        android:textColor="#ffffff"
                         android:textSize="9sp" />
 
                 </LinearLayout>
@@ -303,20 +303,68 @@
                     android:layout_height="0.3dp"
                     android:background="#ffffff"/>
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="16.5dp"
                     android:gravity="center_vertical"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/genderTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#ffffff"
-                        android:textSize="9sp"
-                        android:textColorHint="#ffffff"
-                        android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="1sp"
-                        android:text="여자" />
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:id="@+id/maleIV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="3dp"
+                                android:src="@drawable/radio_on" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="1dp"
+                                android:textSize="9sp"
+                                android:textColor="#ffffff"
+                                android:letterSpacing="-0.01"
+                                android:gravity="center_horizontal"
+                                android:text="남" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:id="@+id/femaleIV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="3dp"
+                                android:src="@drawable/radio_on" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="1dp"
+                                android:textSize="9sp"
+                                android:textColor="#ffffff"
+                                android:letterSpacing="-0.01"
+                                android:gravity="center_horizontal"
+                                android:text="여" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                 </LinearLayout>
                 <View
@@ -426,10 +474,11 @@
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="1sp"
                         android:text="4장" />
-
                 </LinearLayout>
+
                 <View
                     android:layout_marginRight="6dp"
+                    android:layout_marginBottom="2dp"
                     android:layout_width="match_parent"
                     android:layout_height="0.3dp"
                     android:background="#ffffff"/>
@@ -456,6 +505,7 @@
                 </LinearLayout>
                 <View
                     android:layout_marginRight="6dp"
+                    android:layout_marginTop="2dp"
                     android:layout_width="match_parent"
                     android:layout_height="0.3dp"
                     android:background="#ffffff"/>
@@ -465,23 +515,138 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <!--확인버튼, 스피너, 라디오그룹-->
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/okTV"
+                    android:layout_width="115dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="12.5dp"
+                    android:gravity="center"
+                    android:background="#2b2b2b"
+                    android:text="확인"
+                    android:textSize="12sp"
+                    android:textColor="#ffffff"/>
+
+                <LinearLayout
+                    android:id="@+id/use_payLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/spinnerIV"
+                    android:layout_width="114.5dp"
+                    android:layout_height="18dp"
+
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:background="#ffffff">
+
+                    <Spinner
+                        android:paddingLeft="10dp"
+                        android:id="@+id/cate_SP"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:layout_height="match_parent"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@mipmap/icon_down_arrow"/>
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="115dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp">
+                    <LinearLayout
+                        android:id="@+id/cardPayLL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/cardPayIV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/radio_off"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5.5dp"
+                            android:textSize="8sp"
+                            android:textColor="#ffffff"
+                            android:text="카드결제"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/cashPayLL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="9.5dp">
+                        <ImageView
+                            android:id="@+id/cashPayIV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/radio_off"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5.5dp"
+                            android:textSize="8sp"
+                            android:textColor="#ffffff"
+                            android:text="현금결제"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/depositlessLL"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="5.5dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/depositlessIV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/radio_off"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5.5dp"
+                        android:textSize="8sp"
+                        android:textColor="#ffffff"
+                        android:text="무통장입금"/>
+                </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
 
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/checkLL"
                 android:layout_width="115dp"
                 android:layout_height="25dp"
+                android:background="#2b2b2b"
                 android:gravity="center"
-                android:background="#2b2b2b">
+                android:visibility="gone">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:textColor="#ffffff"
                     android:letterSpacing="-0.03"
                     android:text="신규가입"
-                    />
+                    android:textColor="#ffffff"
+                    android:textSize="12sp" />
             </LinearLayout>
 
         </LinearLayout>

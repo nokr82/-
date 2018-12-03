@@ -20,14 +20,11 @@ import com.loopj.android.http.RequestParams
 import cz.msebera.android.httpclient.Header
 import org.json.JSONException
 import org.json.JSONObject
-import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import android.widget.Toast
-import com.devstories.anipointcompany.android.Actions.MemberAction
-import com.devstories.anipointcompany.android.R.id.*
 
-
+//고객방문분석메인
 class User_visit_List_Fragment : Fragment() {
     lateinit var myContext: Context
     private var progressDialog: ProgressDialog? = null
@@ -43,6 +40,8 @@ class User_visit_List_Fragment : Fragment() {
     lateinit var new_userTV: TextView
     lateinit var member_re_cntTV: TextView
     lateinit var itemdateLL: LinearLayout
+    lateinit var nextLL: LinearLayout
+    lateinit var preLL: LinearLayout
     lateinit var todayRL: RelativeLayout
     lateinit var weekRL: RelativeLayout
     lateinit var monthRL: RelativeLayout
@@ -53,9 +52,10 @@ class User_visit_List_Fragment : Fragment() {
     lateinit var three_mTV: TextView
     lateinit var accumulateLL: LinearLayout
 
-
-  var day_type = -1
-
+     var day_type = -1 //1-오늘 2-이번주 3-이번달 4-3개월
+    var page = 1    //페이지
+    var limit = 5 //보여지는갯수
+    var totalPage =1 //총페이지
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
         progressDialog = ProgressDialog(myContext)
@@ -65,6 +65,7 @@ class User_visit_List_Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         amountSP = view.findViewById(R.id.amountSP)
         dateTV = view.findViewById(R.id.dateTV)
         itemdateLL = view.findViewById(R.id.itemdateLL)
@@ -80,6 +81,8 @@ class User_visit_List_Fragment : Fragment() {
         weekRL = view.findViewById(R.id.weekRL)
         monthRL = view.findViewById(R.id.monthRL)
         three_mRL = view.findViewById(R.id.three_mRL)
+        nextLL = view.findViewById(R.id.nextLL)
+        preLL = view.findViewById(R.id.preLL)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -87,6 +90,23 @@ class User_visit_List_Fragment : Fragment() {
 
         adapter = ArrayAdapter(myContext,R.layout.spiner_item,option_amount)
         amountSP.adapter = adapter
+        //스피너 선택이벤트
+        amountSP.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+              if (position==0){
+                  limit = 5
+                  Log.d("리미트",limit.toString())
+              }else if (position==1){
+                  limit = 10
+                  Log.d("리미트",limit.toString())
+              }
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+        }
+
+
 
         //오늘날짜구하기
         val formatter = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
@@ -94,11 +114,33 @@ class User_visit_List_Fragment : Fragment() {
         val currentDate = formatter.format(date)
 
         accumulateLL.setOnClickListener {
-            val intent = Intent(myContext, PointActivity::class.java)
+            val intent = Intent(myContext, CalActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
 
+        nextLL.setOnClickListener {
+
+            if (totalPage==page){
+                Toast.makeText(myContext,"최대페이지입니다",Toast.LENGTH_SHORT).show()
+            }else{
+                page++
+                Toast.makeText(myContext,page.toString()+"페이지입니다",Toast.LENGTH_SHORT).show()
+                loadData(1)
+            }
+
+        }
+        preLL.setOnClickListener {
+
+            if (1==page){
+                Toast.makeText(myContext,"첫번쨰 페이지입니다",Toast.LENGTH_SHORT).show()
+            }else{
+                page--
+                Toast.makeText(myContext,page.toString()+"페이지입니다",Toast.LENGTH_SHORT).show()
+                loadData(1)
+            }
+
+        }
 
         todayRL.setOnClickListener {
             setmenu()
@@ -163,7 +205,7 @@ class User_visit_List_Fragment : Fragment() {
         }
 
         accumulateLL.setOnClickListener {
-            var intent = Intent(myContext, PointActivity::class.java)
+            var intent = Intent(myContext, CalActivity::class.java)
             intent.putExtra("step", 1)
             startActivity(intent)
         }
@@ -265,13 +307,15 @@ class User_visit_List_Fragment : Fragment() {
         })
     }
 
-
-
     //방문이력 뽑기
     fun loadData(company_id: Int) {
         val params = RequestParams()
         params.put("company_id",company_id)
         params.put("day_type",day_type)
+        params.put("page",page)
+        params.put("limit",limit)
+        Log.d("페이지",page.toString())
+
         Log.d("day_type",day_type.toString())
         PointAction.user_visited(params, object : JsonHttpResponseHandler() {
 
@@ -283,7 +327,10 @@ class User_visit_List_Fragment : Fragment() {
                 try {
                     val result = response!!.getString("result")
                     if ("ok" == result) {
+                        totalPage  = response.getInt("totalPage")
+
                         itemdateLL.removeAllViews()
+
                         val points = response.getJSONArray("points")
                         Log.d("데이트",points.toString())
                         for (i in 0..points.length()-1){

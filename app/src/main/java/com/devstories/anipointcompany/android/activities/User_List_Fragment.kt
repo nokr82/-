@@ -1,5 +1,6 @@
 package com.devstories.anipointcompany.android.activities
 
+import android.app.Activity.RESULT_OK
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
@@ -12,15 +13,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.devstories.aninuriandroid.adapter.UserVisitAdapter
 import com.devstories.anipointcompany.android.Actions.MemberAction
 import com.devstories.anipointcompany.android.R
-import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.Utils
-import com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView
 import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
-import com.nostra13.universalimageloader.core.ImageLoader
 import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.fra_userlist.*
 import org.json.JSONArray
@@ -29,7 +26,7 @@ import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 
-
+//고객목록메인
 class User_List_Fragment : Fragment() {
     lateinit var myContext: Context
 
@@ -39,7 +36,6 @@ class User_List_Fragment : Fragment() {
     lateinit var userList_new_userLL : LinearLayout
     lateinit var userList_most_freq_userLL : LinearLayout
     lateinit var userList_birth_userLL : LinearLayout
-    lateinit var userList_mvpLL : LinearLayout
     lateinit var joinLL : LinearLayout
     lateinit var accumulateLL : LinearLayout
     lateinit var btn_search : LinearLayout
@@ -49,6 +45,7 @@ class User_List_Fragment : Fragment() {
 
     var adapterData: ArrayList<JSONObject> = ArrayList<JSONObject>()
 
+    var EDIT_MEMBER_INFO = 101
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -67,7 +64,6 @@ class User_List_Fragment : Fragment() {
         userList_new_userLL = view.findViewById(R.id.userList_new_userLL)
         userList_most_freq_userLL = view.findViewById(R.id.userList_most_freq_userLL)
         userList_birth_userLL = view.findViewById(R.id.userList_birth_userLL)
-        userList_mvpLL = view.findViewById(R.id.userList_mvpLL)
         joinLL = view.findViewById(R.id.joinLL)
         accumulateLL = view.findViewById(R.id.accumulateLL)
         useLL = view.findViewById(R.id.useLL)
@@ -83,14 +79,12 @@ class User_List_Fragment : Fragment() {
 
 
         useLL.setOnClickListener {
-            val intent = Intent(myContext, PointActivity::class.java)
+            val intent = Intent(myContext, CalActivity::class.java)
             intent.putExtra("step",4)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
         accumulateLL.setOnClickListener {
-            val intent = Intent(myContext, PointActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            val intent = Intent(myContext, CalActivity::class.java)
             startActivity(intent)
         }
 
@@ -98,6 +92,12 @@ class User_List_Fragment : Fragment() {
             setLeftMenu()
             entire_viewTV.setTextColor(Color.parseColor("#ffffff"))
             mainData(1)
+        }
+        //단골
+        userList_most_freq_userLL.setOnClickListener {
+            setLeftMenu()
+            most_freqTV.setTextColor(Color.parseColor("#ffffff"))
+
         }
 
         userList_birth_userLL.setOnClickListener {
@@ -123,6 +123,12 @@ class User_List_Fragment : Fragment() {
             mainData(3)
         }
 
+        userList_most_freq_userLL.setOnClickListener {
+            setLeftMenu()
+            most_freqTV.setTextColor(Color.parseColor("#ffffff"))
+            mainData(4)
+        }
+
     }
 
     fun setLeftMenu(){
@@ -130,10 +136,9 @@ class User_List_Fragment : Fragment() {
         new_userTV.setTextColor(Color.parseColor("#80ffffff"))
         most_freqTV.setTextColor(Color.parseColor("#80ffffff"))
         birthTV.setTextColor(Color.parseColor("#80ffffff"))
-        mvpTV.setTextColor(Color.parseColor("#80ffffff"))
     }
 
-
+//고객목롭뽑기
     fun mainData(type : Int) {
         val params = RequestParams()
         params.put("company_id", 1)
@@ -155,20 +160,22 @@ class User_List_Fragment : Fragment() {
                     if ("ok" == result) {
                         var data = response.getJSONArray("member")
 
-                        Log.d("메인리스트",data.toString())
-
                         for (i in 0..(data.length() - 1)) {
-                            Log.d("갯수", i.toString())
+
                             adapterData.add(data[i] as JSONObject)
+
                             var json=data[i] as JSONObject
                             val member = json.getJSONObject("Member")
                             var point_o  = json.getJSONObject("Point")
+                            var visitedList  = json.getJSONArray("VisitedList")
 
                             var point =   Utils.getString(point_o, "balance")
-
+                            var member_id =   Utils.getInt(member, "id")
 
 
                             val userView = View.inflate(myContext, R.layout.item_user, null)
+
+
                             var dateTV : TextView = userView.findViewById(R.id.dateTV)
                             var nameTV : TextView = userView.findViewById(R.id.nameTV)
                             var pointTV : TextView = userView.findViewById(R.id.pointTV)
@@ -184,6 +191,7 @@ class User_List_Fragment : Fragment() {
                             var stack_pointTV: TextView = userView.findViewById(R.id.stack_pointTV)
                             var memoTV: TextView = userView.findViewById(R.id.memoTV)
                             var phoneTV: TextView = userView.findViewById(R.id.phoneTV)
+                            var modiLL: LinearLayout = userView.findViewById(R.id.modiLL)
 
 
 
@@ -210,8 +218,17 @@ class User_List_Fragment : Fragment() {
                             stack_pointTV.text = "누적:"+stack_point+"P"
                             dateTV.text = updated_date+" 방문"
                             ageTV.text = age+"세"
-                            nameTV.text = name
+                            nameTV.text = phone
                             name2TV.text = name
+
+                            if(gender == "F") {
+                                gender = "여"
+                            } else if(gender == "M"){
+                                gender = "남"
+                            } else {
+                                gender = "모름"
+                            }
+
                             genderTV.text = gender
                             memoTV.text = memo
                             couponTV.text = coupon+"장"
@@ -219,13 +236,33 @@ class User_List_Fragment : Fragment() {
                             visitTV.text = visit+"회"
                             phoneTV.text = phone
 
-                            if (isBirthTab) {
-                                nameTV.text = phone
-                                phoneTV.visibility = View.GONE
+                            var str = ""
 
-                            } else {
-                                phoneTV.visibility = View.VISIBLE
+                            for(i in 0 until visitedList.length()) {
+                                val json: JSONObject = visitedList[i] as JSONObject
+                                val companySale = json.getJSONObject("CompanySale")
+                                val category = json.getJSONObject("Category")
+
+                                val created = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(Utils.getString(companySale, "created"))
+                                val created_str = SimpleDateFormat("yyyy-MM-dd").format(created)
+
+                                if(str.length > 0) {
+                                    str += "\n";
+                                }
+
+                                str = str + created_str + " / " + Utils.getString(category, "name") + " / " + Utils.comma(Utils.getString(companySale, "price"))
+
                             }
+
+                            visit_recordTV.text = str
+
+
+                            modiLL.setOnClickListener {
+                                var intent = Intent(context, DlgEditMemberInfoActivity::class.java)
+                                intent.putExtra("member_id", member_id)
+                                startActivityForResult(intent, EDIT_MEMBER_INFO)
+                            }
+
 
                             userLL.addView(userView)
                         }
@@ -332,8 +369,6 @@ class User_List_Fragment : Fragment() {
                     if ("ok" == result) {
                         var data = response.getJSONArray("member")
 
-                        Log.d("키워드로 찾은 유저 리스트",data.toString())
-
                         for (i in 0..(data.length() - 1)) {
                             Log.d("갯수", i.toString())
                             adapterData.add(data[i] as JSONObject)
@@ -475,6 +510,25 @@ class User_List_Fragment : Fragment() {
                 }
             }
         })
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        when (requestCode) {
+            EDIT_MEMBER_INFO -> {
+                if (resultCode == RESULT_OK) {
+                    mainData(1)
+                    val member_id =data!!.getIntExtra("member_id",-1)
+                    Log.d("받아오는 값",member_id.toString())
+
+                }
+            }
+
+
+        }
+
+
     }
 
     override fun onDestroy() {

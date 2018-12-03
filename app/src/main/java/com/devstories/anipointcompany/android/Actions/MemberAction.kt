@@ -14,6 +14,12 @@ object MemberAction {
     fun my_info(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/member/my_info.json", params, handler)
     }
+
+    // 회원 정보 변경
+    fun edit_info(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/member/edit_info.json", params, handler)
+    }
+
     // 회원 목록뽑기
     fun user_list(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/member/user_list.json", params, handler)
@@ -29,9 +35,10 @@ object MemberAction {
     fun member_join(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/member/member_join.json", params, handler)
     }
-    //포인트적립
-    fun point_stack(params: RequestParams, handler: JsonHttpResponseHandler) {
-        HttpClient.post("/member/point_stack.json", params, handler)
+
+    //포인트적립/사용 새거
+    fun point(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/member/point.json", params, handler)
     }
 
 }
