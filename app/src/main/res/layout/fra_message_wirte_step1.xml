@@ -575,9 +575,7 @@
                             android:letterSpacing="-0.03"
                             android:lineSpacingExtra="4sp"
                             android:gravity="center_horizontal"
-                            android:text="각별주의"
-                            />
-
+                            android:text="각별주의" />
 
                     </LinearLayout>
 
