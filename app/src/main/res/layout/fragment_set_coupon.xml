@@ -327,6 +327,7 @@
                             android:letterSpacing="-0.18"/>
 
                         <TextView
+                            android:id="@+id/nextTV"
                             android:layout_width="65dp"
                             android:layout_height="20dp"
                             android:background="#0871bf"
