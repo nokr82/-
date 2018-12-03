@@ -1,7 +1,9 @@
 package com.devstories.anipointcompany.android.activities
 
 import android.app.ProgressDialog
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
@@ -348,6 +350,13 @@ class MessageUserFragment : Fragment() {
         nextTV.setOnClickListener {
             member_filter()
             val SetCouponFragment : SetCouponFragment = SetCouponFragment()
+
+            var intent = Intent()
+            intent.putExtra("gender", "F")
+            intent.putExtra("age", "20")
+            intent.action = "STEP1_NEXT"
+            myContext.sendBroadcast(intent)
+
 
         }
 

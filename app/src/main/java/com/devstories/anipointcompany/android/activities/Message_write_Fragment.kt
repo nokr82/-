@@ -1,7 +1,10 @@
 package com.devstories.anipointcompany.android.activities
 
 import android.app.ProgressDialog
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
@@ -29,8 +32,22 @@ class Message_write_Fragment : Fragment() {
     lateinit var finalTV: TextView
 
     lateinit var userchoiceFL: FrameLayout
-
-
+    val MessageUserFragment : MessageUserFragment = MessageUserFragment()
+    val SetCouponFragment : SetCouponFragment = SetCouponFragment()
+    val MssgAnalysisFragment : MssgAnalysisFragment = MssgAnalysisFragment()
+    internal var step1NextReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent?) {
+            if (intent != null) {
+                println("intent")
+                println("intent" + intent.getStringExtra("gender"))
+                println("intent" + intent.getStringExtra("age"))
+                setfilter()
+                couponRL.setBackgroundColor(Color.parseColor("#0068df"))
+                couponTV.setTextColor(Color.parseColor("#ffffff"))
+                childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, SetCouponFragment).commit()
+            }
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
@@ -58,10 +75,10 @@ class Message_write_Fragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val MessageUserFragment : MessageUserFragment = MessageUserFragment()
-        val SetCouponFragment : SetCouponFragment = SetCouponFragment()
-        val MssgAnalysisFragment : MssgAnalysisFragment = MssgAnalysisFragment()
 
+
+        var filter1 = IntentFilter("STEP1_NEXT")
+        myContext.registerReceiver(step1NextReceiver, filter1)
 
         setfilter()
 
