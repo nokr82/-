@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import com.devstories.anipointcompany.android.Actions.CompanyAction
 import com.devstories.anipointcompany.android.Actions.MemberAction
 import com.devstories.anipointcompany.android.Actions.MemberAction.member_join
 import com.devstories.anipointcompany.android.Actions.RequestStepAction
@@ -37,6 +38,9 @@ class CalActivity : RootActivity() {
     var p_type = -1
     var phone = ""
     var pay_type  =""
+
+    var per_type = -1
+
 
     var stackpoint = -1
     lateinit var adapter: ArrayAdapter<String>
@@ -89,6 +93,12 @@ class CalActivity : RootActivity() {
             }
         }
 
+        op_accLL.setOnClickListener {
+
+        }
+        stack2LL.setOnClickListener {
+
+        }
 
         cardPayLL.setOnClickListener {
             setmenu2()
@@ -593,6 +603,91 @@ class CalActivity : RootActivity() {
 
     }
 
+    //사업체 정보뽑기
+    fun company_info() {
+        val params = RequestParams()
+        params.put("company_id",1)
+
+
+        CompanyAction.company_info(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    val result = response!!.getString("result")
+                    if ("ok" == result) {
+
+                        val company = response.getJSONObject("company")
+                        // 기본적립
+                        val basic_per = Utils.getString(company,"basic_per")
+                        //임의적립
+                        val option_per = Utils.getInt(company,"option_per")
+
+
+
+                        stackTV.text = basic_per.toString()
+
+                        stack2TV.text = option_per.toString()
+
+
+
+
+                    } else {
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(context, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
 
 
     override fun onDestroy() {
