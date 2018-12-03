@@ -7,7 +7,10 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
+import com.devstories.anipointcompany.android.Actions.CompanyAction
 import com.devstories.anipointcompany.android.Actions.MemberAction
 import com.devstories.anipointcompany.android.Actions.MemberAction.member_join
 import com.devstories.anipointcompany.android.Actions.RequestStepAction
@@ -25,7 +28,7 @@ import org.json.JSONObject
 import java.util.*
 import kotlin.collections.ArrayList
 
-class PointActivity : RootActivity() {
+class CalActivity : RootActivity() {
 
     lateinit var context: Context
     private var progressDialog: ProgressDialog? = null
@@ -34,9 +37,15 @@ class PointActivity : RootActivity() {
     var step = -1
     var member_id = -1
     var p_type = -1
+    var phone = ""
+    var payment_type  =-1
+   var category_id = -1
+    var per_type = -1
+
 
     var stackpoint = -1
-
+    lateinit var adapter: ArrayAdapter<String>
+    var option_cate = ArrayList<String>()
 
     internal var checkHandler: Handler = object : Handler() {
         override fun handleMessage(msg: android.os.Message) {
@@ -57,20 +66,94 @@ class PointActivity : RootActivity() {
         type = intent.getIntExtra("type", -1)
         step = intent.getIntExtra("step", 1)
 
+        setmenu()
         if (step ==4){
             opTV.text = "사용"
             m_opTV.text = "P"
         }
+        company_info()
+        //계산기
+        cal()
 
 
+        //결제내용스피너
+        cate_SP.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+                if (position==0){
+                    category_id =1
+                    Log.d("포지션",category_id.toString())
+                }else if (position==1){
+                    category_id =2
+                }else if (position==2){
+                    category_id =3
+                }else if (position==3){
+                    category_id =4
+                }else if (position==4){
+                    category_id =5
+                }
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+        }
+
+        op_accLL.setOnClickListener {
+
+        }
+
+        cardPayLL.setOnClickListener {
+            setmenu2()
+            cardPayIV.setImageResource(R.drawable.radio_on)
+            payment_type = 1
+        }
+        cashPayLL.setOnClickListener {
+            setmenu2()
+            cashPayIV.setImageResource(R.drawable.radio_on)
+            payment_type = 2
+        }
+        //무통장입금
+        depositlessLL.setOnClickListener {
+            setmenu2()
+            depositlessIV.setImageResource(R.drawable.radio_on)
+            payment_type = 3
+        }
+        changeStep()
+
+    }
+
+
+
+
+    fun setmenu(){
+        maleIV.setImageResource(R.drawable.radio_off)
+        femaleIV.setImageResource(R.drawable.radio_off)
+    }
+    fun setmenu2(){
+        cardPayIV.setImageResource(R.drawable.radio_off)
+        cashPayIV.setImageResource(R.drawable.radio_off)
+        depositlessIV.setImageResource(R.drawable.radio_off)
+    }
+
+    //계산클릭이벤트
+    fun cal(){
         stackLL.setOnClickListener {
             val totalpoint =Integer.parseInt(moneyTV.text.toString())
             Log.d("포인트", totalpoint.toString())
-            stackpoint = totalpoint*3/100
+            stackpoint = totalpoint*Integer.parseInt(stackTV.text.toString())/100
             step = 3
             changeStep()
             p_type=1
             stack_point(member_id.toString())
+
+        }
+        stack2LL.setOnClickListener {
+            val totalpoint =Integer.parseInt(moneyTV.text.toString())
+            Log.d("포인트", totalpoint.toString())
+            stackpoint = totalpoint*Integer.parseInt(stack2TV.text.toString())/100
+            step = 3
+            changeStep()
+            p_type=1
+            stack_point(member_id.toString())
+
         }
 
         checkLL.setOnClickListener {
@@ -136,10 +219,8 @@ class PointActivity : RootActivity() {
                     pointTV.setText(point)
                 }
             } else {
-
             }
         }
-
         useLL.setOnClickListener {
             if (opTV.text.equals("사용")){
             val totalpoint =Integer.parseInt(moneyTV.text.toString())
@@ -212,20 +293,32 @@ class PointActivity : RootActivity() {
     // 프로세스
     fun changeStep() {
         val params = RequestParams()
+        params.put("member_id",member_id)
         params.put("company_id", 1)
-        params.put("member_id", member_id)
-        params.put("step", step)
+        params.put("point", stackpoint)//사용및적립포인트
+        params.put("type", p_type)//1적립 2사용
+        //    params.put("use_point", p_type)//사용 포인트
+        params.put("price", p_type)//상품가격
+        params.put("payment_type", payment_type)//결제방법
+        params.put("use_type", p_type)//1적립 2사용 3 적립/사용
+        params.put("category_id",category_id)//카테고리 일련번호
 
-        RequestStepAction.changeStep(params, object : JsonHttpResponseHandler() {
+        if (payment_type==-1){
+            Toast.makeText(context,"결제방식을 선택해주세요",Toast.LENGTH_SHORT).show()
+            return
+        }
+
+
+        MemberAction.point(params, object : JsonHttpResponseHandler() {
 
             override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
                 if (progressDialog != null) {
                     progressDialog!!.dismiss()
                 }
-
                 try {
-
                     val result = response!!.getString("result")
+                    Log.d("적립",response.toString())
+
                     if ("ok" == result) {
                         var requestStep = response.getJSONObject("RequestStep")
                         var step = Utils.getInt(requestStep,"step")
@@ -247,6 +340,9 @@ class PointActivity : RootActivity() {
 
             }
 
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONArray?) {
+                super.onSuccess(statusCode, headers, response)
+            }
 
             private fun error() {
                 Utils.alert(context, "조회중 장애가 발생하였습니다.")
@@ -281,6 +377,7 @@ class PointActivity : RootActivity() {
             }
         })
     }
+
 
     // 요청 체크
     fun checkStep() {
@@ -568,6 +665,97 @@ class PointActivity : RootActivity() {
 
     }
 
+    //사업체 정보뽑기
+    fun company_info() {
+        val params = RequestParams()
+        params.put("company_id",1)
+
+
+        CompanyAction.company_info(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    val result = response!!.getString("result")
+                    if ("ok" == result) {
+
+                        val company = response.getJSONObject("company")
+                        // 기본적립
+                        val basic_per = Utils.getString(company,"basic_per")
+                        //임의적립
+                        val option_per = Utils.getInt(company,"option_per")
+                        val data = response.getJSONArray("categories")
+                        Log.d("카테",data.toString())
+                        for (i in 0..data.length()-1){
+                            val json = data[i]as JSONObject
+                            val Category  = json.getJSONObject("Category")
+                            val name = Utils.getString(Category,"name")
+                            option_cate.add(name)
+
+                        }
+                        adapter = ArrayAdapter(context,R.layout.spiner_cal_item,option_cate)
+                        cate_SP.adapter = adapter
+
+
+                        stackTV.text = basic_per.toString()
+                        stack2TV.text = option_per.toString()
+
+                    } else {
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(context, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
 
 
 

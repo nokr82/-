@@ -1067,12 +1067,14 @@
 
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/op_accLL"
                         android:onClick="onClick"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:layout_height="match_parent">
                         <TextView
+                            android:id="@+id/op_accTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="24dp"

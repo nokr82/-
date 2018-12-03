@@ -170,7 +170,6 @@ class Point_List_Fragment : Fragment() {
         }
         useradapter = UserListAdapter(myContext,R.layout.item_user_point_list,adapterData)
         userLV.adapter = useradapter
-        loadData(1)
         userLV.setOnItemClickListener { parent, view, position, id ->
             var data = adapterData.get(position)
             Log.d("리스트선택",data.toString())
@@ -202,95 +201,6 @@ class Point_List_Fragment : Fragment() {
         weekTV.setTextColor(Color.parseColor("#80ffffff"))
         monthTV.setTextColor(Color.parseColor("#80ffffff"))
     }
-
-
-
-    //방문이력
-    fun loadData(company_id: Int) {
-        val params = RequestParams()
-        params.put("company_id",company_id)
-
-
-
-        PointAction.index(params, object : JsonHttpResponseHandler() {
-
-            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
-                if (progressDialog != null) {
-                    progressDialog!!.dismiss()
-                }
-
-                try {
-                    adapterData.clear()
-                    val result = response!!.getString("result")
-
-
-                    if ("ok" == result) {
-                        val data = response.getJSONArray("member_list")
-
-                        for (i in 0..(data.length() - 1)) {
-
-                            adapterData.add(data[i] as JSONObject)
-
-                        }
-
-                        useradapter.notifyDataSetChanged()
-
-
-                    } else {
-
-                    }
-
-                } catch (e: JSONException) {
-                    e.printStackTrace()
-                }
-
-            }
-
-
-            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
-
-                // System.out.println(responseString);
-            }
-
-            private fun error() {
-                Utils.alert(myContext, "조회중 장애가 발생하였습니다.")
-            }
-
-            override fun onFailure(
-                    statusCode: Int,
-                    headers: Array<Header>?,
-                    responseString: String?,
-                    throwable: Throwable
-            ) {
-                if (progressDialog != null) {
-                    progressDialog!!.dismiss()
-                }
-
-                // System.out.println(responseString);
-
-                throwable.printStackTrace()
-                error()
-            }
-
-
-            override fun onStart() {
-                // show dialog
-                if (progressDialog != null) {
-
-
-                    progressDialog!!.show()
-                }
-            }
-
-            override fun onFinish() {
-                if (progressDialog != null) {
-                    progressDialog!!.dismiss()
-                }
-            }
-        })
-    }
-
-
 
     fun datedlg(){
         DatePickerDialog(myContext, dateSetListener, year, month, day).show()
@@ -364,6 +274,17 @@ class Point_List_Fragment : Fragment() {
                         all_cntTV.text = allcnt.toString()+"명/"+total_point_cnt.toString()+"회"
                         all_stackTV.text = addPointMember.toString() +"명/"+addPointCount+"회/"+addPoint.toString()+"P"
                         all_useTV.text =usePointMember.toString() +"명/"+usePointCount+"회/"+usePoint.toString()+"P"
+                        val data2 = response.getJSONArray("member_list")
+                        adapterData.clear()
+                        useradapter.notifyDataSetChanged()
+                        Log.d("멤버리스트",data2.toString())
+                        for (i in 0..(data2.length() - 1)) {
+
+                            adapterData.add(data2[i] as JSONObject)
+
+                        }
+
+
 
 
                     } else {
@@ -426,9 +347,7 @@ class Point_List_Fragment : Fragment() {
         params.put("company_id",company_id)
         params.put("member_id",member_id)
         params.put("start_date",start_date)
-        System.out.print("시작"+start_date)
         params.put("end_date",end_date)
-        System.out.print("끝"+end_date)
 
         PointAction.user_points(params, object : JsonHttpResponseHandler() {
 

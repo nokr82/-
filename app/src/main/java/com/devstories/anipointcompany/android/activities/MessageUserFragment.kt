@@ -3,14 +3,26 @@ package com.devstories.anipointcompany.android.activities
 import android.app.ProgressDialog
 import android.content.Context
 import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import com.devstories.anipointcompany.android.Actions.CompanyAction
+import com.devstories.anipointcompany.android.Actions.CompanyAction.company_info
+import com.devstories.anipointcompany.android.Actions.CouponAction
 
 import com.devstories.anipointcompany.android.R
+import com.devstories.anipointcompany.android.base.Utils
+import com.loopj.android.http.JsonHttpResponseHandler
+import com.loopj.android.http.RequestParams
+import cz.msebera.android.httpclient.Header
+import org.json.JSONException
+import org.json.JSONObject
+import java.io.ByteArrayInputStream
 
 //메세지관리(고객선택화면)
 
@@ -66,6 +78,15 @@ class MessageUserFragment : Fragment() {
     lateinit var use_moneyTV: TextView
     lateinit var novisitTV: TextView
     lateinit var pointTV: TextView
+    lateinit var nextTV: TextView
+    lateinit var countTV: TextView
+
+
+    var gender = ArrayList<String>()
+    var age =  ArrayList<String>()
+
+    var visited_date = ""
+    var days7_yn = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -78,6 +99,8 @@ class MessageUserFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        countTV = view.findViewById(R.id.countTV)
+        nextTV = view.findViewById(R.id.nextTV)
         visitdaySP = view.findViewById(R.id.visitdaySP)
         tenLL = view.findViewById(R.id.tenLL)
         twoLL = view.findViewById(R.id.twoLL)
@@ -128,6 +151,27 @@ class MessageUserFragment : Fragment() {
         visitdaySP.adapter = adapter
         setmenu3()
         setfilter()
+        //스피너 선택이벤트
+        visitdaySP.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+                if (position==0){
+
+                }else if (position==1){
+                    visited_date = "15"
+                }else if (position==2){
+                    visited_date = "30"
+                }else if (position==3){
+                    visited_date = "60"
+                }else if (position==4){
+                    visited_date = "90"
+                }
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+        }
+
+
 
         genderNLL.setOnClickListener {
             it.isSelected = !it.isSelected
@@ -145,9 +189,11 @@ class MessageUserFragment : Fragment() {
             it.isSelected = !it.isSelected
 
             if(it.isSelected) {
+                gender.add("M")
                 genderMLL.setBackgroundResource(R.drawable.background_00d1ce)
                 menTV.setTextColor(Color.parseColor("#ffffff"))
             } else {
+                gender.remove("M")
                 genderMLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 menTV.setTextColor(Color.parseColor("#9a9a99"))
             }
@@ -157,9 +203,11 @@ class MessageUserFragment : Fragment() {
             it.isSelected = !it.isSelected
 
             if(it.isSelected) {
+                gender.add("F")
                 genderFLL.setBackgroundResource(R.drawable.background_00d1ce)
                 girlTV.setTextColor(Color.parseColor("#ffffff"))
             } else {
+                gender.remove("F")
                 genderFLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 girlTV.setTextColor(Color.parseColor("#9a9a99"))
             }
@@ -169,9 +217,11 @@ class MessageUserFragment : Fragment() {
             it.isSelected = !it.isSelected
 
             if(it.isSelected) {
+                age.add("10")
                 tenLL.setBackgroundResource(R.drawable.background_00d1ce)
                 tenTV.setTextColor(Color.parseColor("#ffffff"))
             } else {
+                age.remove("10")
                 tenLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 tenTV.setTextColor(Color.parseColor("#9a9a99"))
             }
@@ -181,9 +231,11 @@ class MessageUserFragment : Fragment() {
             it.isSelected = !it.isSelected
 
             if(it.isSelected) {
+                age.add("20")
                 twoLL.setBackgroundResource(R.drawable.background_00d1ce)
                 twoTV.setTextColor(Color.parseColor("#ffffff"))
             } else {
+                age.remove("20")
                 twoLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 twoTV.setTextColor(Color.parseColor("#9a9a99"))
             }
@@ -193,9 +245,11 @@ class MessageUserFragment : Fragment() {
             it.isSelected = !it.isSelected
 
             if(it.isSelected) {
+                age.add("30")
                 threeLL.setBackgroundResource(R.drawable.background_00d1ce)
                 threeTV.setTextColor(Color.parseColor("#ffffff"))
             } else {
+                age.remove("30")
                 threeLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 threeTV.setTextColor(Color.parseColor("#9a9a99"))
             }
@@ -205,9 +259,11 @@ class MessageUserFragment : Fragment() {
             it.isSelected = !it.isSelected
 
             if(it.isSelected) {
+                age.add("40")
                 fourLL.setBackgroundResource(R.drawable.background_00d1ce)
                 fourTV.setTextColor(Color.parseColor("#ffffff"))
             } else {
+                age.remove("40")
                 fourLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 fourTV.setTextColor(Color.parseColor("#9a9a99"))
             }
@@ -217,9 +273,11 @@ class MessageUserFragment : Fragment() {
             it.isSelected = !it.isSelected
 
             if(it.isSelected) {
+                age.add("50")
                 fiveLL.setBackgroundResource(R.drawable.background_00d1ce)
                 fiveTV.setTextColor(Color.parseColor("#ffffff"))
             } else {
+                age.remove("50")
                 fiveLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 fiveTV.setTextColor(Color.parseColor("#9a9a99"))
             }
@@ -229,9 +287,11 @@ class MessageUserFragment : Fragment() {
             it.isSelected = !it.isSelected
 
             if(it.isSelected) {
+                age.add("60")
                 sixLL.setBackgroundResource(R.drawable.background_00d1ce)
                 sixTV.setTextColor(Color.parseColor("#ffffff"))
             } else {
+                age.remove("60")
                 sixLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 sixTV.setTextColor(Color.parseColor("#9a9a99"))
             }
@@ -285,6 +345,9 @@ class MessageUserFragment : Fragment() {
             pointRL.setBackgroundColor(Color.parseColor("#0068df"))
             pointTV.setTextColor(Color.parseColor("#ffffff"))
         }
+        nextTV.setOnClickListener {
+            member_filter()
+        }
 
 
     }
@@ -303,31 +366,6 @@ class MessageUserFragment : Fragment() {
         pointTV.setTextColor(Color.parseColor("#c5c5c5"))
 
     }
-
-    fun setmenu1(){
-        genderNLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
-        genderMLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
-        genderFLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
-
-        genderTV.setTextColor(Color.parseColor("#9a9a99"))
-        menTV.setTextColor(Color.parseColor("#9a9a99"))
-        girlTV.setTextColor(Color.parseColor("#9a9a99"))
-    }
-    fun setmenu2(){
-        tenLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
-        twoLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
-        threeLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
-        fourLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
-        fiveLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
-        sixLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
-
-        tenTV.setTextColor(Color.parseColor("#9a9a99"))
-        twoTV.setTextColor(Color.parseColor("#9a9a99"))
-        threeTV.setTextColor(Color.parseColor("#9a9a99"))
-        fourTV.setTextColor(Color.parseColor("#9a9a99"))
-        fiveTV.setTextColor(Color.parseColor("#9a9a99"))
-        sixTV.setTextColor(Color.parseColor("#9a9a99"))
-    }
     fun setmenu3(){
         citizenLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
         workerLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
@@ -339,6 +377,113 @@ class MessageUserFragment : Fragment() {
         studentTV.setTextColor(Color.parseColor("#9a9a99"))
         cautionTV.setTextColor(Color.parseColor("#9a9a99"))
     }
+
+    // 쿠폰만들기(step1) - (고객필터)
+    fun member_filter() {
+        val params = RequestParams()
+
+        params.put("company_id",1)
+
+        if (age.size>0){
+            for (i in 0..(age.size -1)){
+                val agestr = age[i]
+                //배열로 입력저장은 [] 이걸 넣어준다
+                params.put("age["+i+"]",agestr)
+                Log.d("나이",agestr)
+            }
+        }else{
+            Toast.makeText(myContext,"나이를 선택해주세요",Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (gender.size>0){
+            for (i in 0..(gender.size -1)){
+                val genderstr = gender[i]
+                //배열로 입력저장은 [] 이걸 넣어준다
+                params.put("gender["+i+"]",genderstr)
+                Log.d("성별",genderstr)
+            }
+        }else{
+            Toast.makeText(myContext,"성별을 선택해주세요",Toast.LENGTH_SHORT).show()
+            return
+        }
+        params.put("visited_date",visited_date)
+
+
+
+
+
+        CouponAction.member_filter(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    val result = response!!.getString("result")
+                    if ("ok" == result) {
+                        var memberCnt = response.getString("memberCnt")
+
+                        countTV.text = memberCnt
+                        Toast.makeText(myContext,"고객선택완료",Toast.LENGTH_SHORT).show()
+
+                    }else{
+                        Toast.makeText(myContext,"업데이트실패", Toast.LENGTH_SHORT).show()
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(myContext, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
+
+
+
 
     override fun onDestroy() {
         super.onDestroy()
