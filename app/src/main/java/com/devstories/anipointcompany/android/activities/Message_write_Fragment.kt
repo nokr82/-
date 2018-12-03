@@ -55,7 +55,8 @@ class Message_write_Fragment : Fragment() {
         override fun onReceive(context: Context, intent: Intent?) {
             if (intent != null) {
                 println("intent")
-                setfilter()
+                couponRL.setBackgroundColor(Color.parseColor("#0068df"))
+                couponTV.setTextColor(Color.parseColor("#ffffff"))
                 writeRL.setBackgroundColor(Color.parseColor("#0068df"))
                 writeTV.setTextColor(Color.parseColor("#ffffff"))
                 childFragmentManager.beginTransaction().replace(R.id.userchoiceFL,MssgAnalysisFragment).commit()
@@ -68,7 +69,10 @@ class Message_write_Fragment : Fragment() {
         override fun onReceive(context: Context, intent: Intent?) {
             if (intent != null) {
                 println("intent")
-                setfilter()
+                couponRL.setBackgroundColor(Color.parseColor("#0068df"))
+                couponTV.setTextColor(Color.parseColor("#ffffff"))
+                writeRL.setBackgroundColor(Color.parseColor("#0068df"))
+                writeTV.setTextColor(Color.parseColor("#ffffff"))
                 finalRL.setBackgroundColor(Color.parseColor("#0068df"))
                 finalTV.setTextColor(Color.parseColor("#ffffff"))
                 childFragmentManager.beginTransaction().replace(R.id.userchoiceFL,MessageUserFragment).commit()
