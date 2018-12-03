@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
-
     <LinearLayout
         android:layout_width="149dp"
         android:layout_height="match_parent"
@@ -15,71 +14,70 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8.5dp"
                 android:textColor="#ffffff"
                 android:textSize="24sp"
                 android:text="메세지/\n쿠폰관리"/>
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="23.5dp"
                 android:orientation="vertical"
+                android:layout_marginTop="23.5dp"
                 android:paddingLeft="8.5dp">
-
                 <TextView
                     android:id="@+id/selCustomTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="19.5dp"
-                    android:text="고객선택"
+                    android:textSize="9sp"
                     android:textColor="#ffffff"
-                    android:textSize="9sp" />
-
+                    android:text="고객선택"/>
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="35.5dp"
+                    android:layout_height="0.5dp"
+                    android:background="#ffffff"/>
 
                 <TextView
                     android:id="@+id/setCouponTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="19.5dp"
-                    android:text="쿠폰설정"
                     android:textColor="#80ffffff"
-                    android:textSize="9sp" />
+                    android:textSize="9sp"
+                    android:text="쿠폰설정"/>
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="34dp"
+                    android:layout_height="0.5dp"/>
 
                 <TextView
                     android:id="@+id/wrMsgTV"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="12dp"
                     android:layout_marginTop="19.5dp"
                     android:text="메시지작성"
                     android:textColor="#80ffffff"
                     android:textSize="9sp" />
-
                 <View
-                    android:id="@+id/view2"
-                    android:layout_width="34dp"
-                    android:layout_height="0.5dp" />
+                    android:id="@+id/view3"
+                    android:layout_width="42dp"
+                    android:layout_height="0.5dp"/>
 
                 <TextView
                     android:id="@+id/finalCheckTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="19.5dp"
-                    android:text="최종확인"
                     android:textColor="#80ffffff"
-                    android:textSize="9sp" />
-
-                <View
-                    android:id="@+id/view3"
-                    android:layout_width="42dp"
-                    android:layout_height="0.5dp" />
-
+                    android:textSize="9sp"
+                    android:text="최종확인"/>
                 <View
                     android:id="@+id/view4"
                     android:layout_width="34dp"
-                    android:layout_height="0.5dp" />
+                    android:layout_height="0.5dp"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -103,5 +101,7 @@
         </FrameLayout>
 
     </LinearLayout>
+
+
 
 </LinearLayout>
