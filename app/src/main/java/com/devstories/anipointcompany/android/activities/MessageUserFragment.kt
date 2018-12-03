@@ -286,7 +286,6 @@ class MessageUserFragment : Fragment() {
             pointTV.setTextColor(Color.parseColor("#ffffff"))
         }
 
-
     }
 
     fun setfilter(){
