@@ -347,6 +347,8 @@ class MessageUserFragment : Fragment() {
         }
         nextTV.setOnClickListener {
             member_filter()
+            val SetCouponFragment : SetCouponFragment = SetCouponFragment()
+
         }
 
 

@@ -41,41 +41,14 @@ class MssgAnalysisFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
     }
-    // 쿠폰만들기(step1) - (고객필터)
-    fun member_filter() {
+
+    // 쿠폰 만들기(step3) - 메세지 보내기
+    fun send_message() {
         val params = RequestParams()
 
         params.put("company_id",1)
 
-//        if (age.size>0){
-//            for (i in 0..(age.size -1)){
-//                val agestr = age[i]
-//                //배열로 입력저장은 [] 이걸 넣어준다
-//                params.put("age["+i+"]",agestr)
-//                Log.d("나이",agestr)
-//            }
-//        }else{
-//            Toast.makeText(myContext,"나이를 선택해주세요",Toast.LENGTH_SHORT).show()
-//            return
-//        }
-//        if (gender.size>0){
-//            for (i in 0..(gender.size -1)){
-//                val genderstr = gender[i]
-//                //배열로 입력저장은 [] 이걸 넣어준다
-//                params.put("gender["+i+"]",genderstr)
-//                Log.d("성별",genderstr)
-//            }
-//        }else{
-//            Toast.makeText(myContext,"성별을 선택해주세요",Toast.LENGTH_SHORT).show()
-//            return
-//        }
-//        params.put("visited_date",visited_date)
-
-
-
-
-
-        CouponAction.member_filter(params, object : JsonHttpResponseHandler() {
+        CouponAction.send_message(params, object : JsonHttpResponseHandler() {
 
             override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
                 if (progressDialog != null) {
