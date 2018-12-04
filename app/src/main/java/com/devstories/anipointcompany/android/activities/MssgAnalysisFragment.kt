@@ -2,6 +2,7 @@ package com.devstories.anipointcompany.android.activities
 
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -59,7 +60,9 @@ class MssgAnalysisFragment : Fragment() {
                     val result = response!!.getString("result")
                     if ("ok" == result) {
                         var memberCnt = response.getString("memberCnt")
-
+                        var intent = Intent()
+                        intent.action = "STEP3_NEXT"
+                        myContext.sendBroadcast(intent)
 //                        countTV.text = memberCnt
                         Toast.makeText(myContext,"고객선택완료",Toast.LENGTH_SHORT).show()
 

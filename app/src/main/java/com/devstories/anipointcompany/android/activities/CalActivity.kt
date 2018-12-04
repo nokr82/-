@@ -1,5 +1,6 @@
 package com.devstories.anipointcompany.android.activities
 
+import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
@@ -47,6 +48,9 @@ class CalActivity : RootActivity() {
     var stackpoint = -1
     lateinit var adapter: ArrayAdapter<String>
     var option_cate = ArrayList<String>()
+
+    var EDIT_POINT = 101
+
 
     internal var checkHandler: Handler = object : Handler() {
         override fun handleMessage(msg: android.os.Message) {
@@ -98,7 +102,9 @@ class CalActivity : RootActivity() {
         }
 
         op_accLL.setOnClickListener {
-
+            per_type = 3
+            val intent = Intent(context, DlgEditPerActivity::class.java)
+            startActivityForResult(intent,EDIT_POINT)
         }
 
         cardPayLL.setOnClickListener {
@@ -248,7 +254,15 @@ class CalActivity : RootActivity() {
                     changeStep()
                     p_type=1
                     stack_point(member_id.toString())
-                }else{
+                }else if (per_type==3){
+                    stackpoint =Integer.parseInt(pointTV.text.toString())
+                    Log.d("포인트", stackpoint.toString())
+                    step = 3
+                    changeStep()
+                    p_type=1
+                    stack_point(member_id.toString())
+                }
+                else{
                     Toast.makeText(context,"적립퍼센트를 선택해주세요",Toast.LENGTH_SHORT).show()
                 }
 
@@ -799,8 +813,18 @@ class CalActivity : RootActivity() {
         })
     }
 
-
-
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            EDIT_POINT -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    val point = data!!.getStringExtra("point")
+                    Toast.makeText(context,point,Toast.LENGTH_SHORT).show()
+                    pointTV.text = point
+                }
+            }
+        }
+    }
     override fun onDestroy() {
         super.onDestroy()
         if (progressDialog != null) {
