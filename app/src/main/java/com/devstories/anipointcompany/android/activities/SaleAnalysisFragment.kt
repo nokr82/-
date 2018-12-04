@@ -244,6 +244,7 @@ class SaleAnalysisFragment : Fragment() {
                 error()
             }
 
+
             override fun onStart() {
                 // show dialog
                 if (progressDialog != null) {

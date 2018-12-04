@@ -561,7 +561,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="20dp"
                                 android:gravity="center">
-                                
+
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -616,8 +616,7 @@
                                     android:textColor="#666666"
                                     android:letterSpacing="-0.03"
                                     android:lineSpacingExtra="4sp"
-                                    android:text="전체 고객(명)"
-                                    />
+                                    android:text="전체 고객(명)"/>
 
                             </LinearLayout>
 
@@ -634,8 +633,6 @@
                 android:layout_width="match_parent"
                 android:gravity="center"
                 android:layout_height="wrap_content">
-
-
                 <LinearLayout
                     android:id="@+id/sa_preLL"
                     android:layout_marginRight="2.5dp"
@@ -650,10 +647,7 @@
                         android:textColor="#545454"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="4sp"
-                        android:text="이전"
-                        />
-
-
+                        android:text="이전" />
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/sa_nextLL"
@@ -669,8 +663,7 @@
                         android:textColor="#545454"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="4sp"
-                        android:text="다음"
-                        />
+                        android:text="다음" />
                 </LinearLayout>
 
             </LinearLayout>
