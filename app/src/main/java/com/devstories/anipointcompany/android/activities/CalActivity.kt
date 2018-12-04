@@ -458,6 +458,7 @@ class CalActivity : RootActivity() {
                                 var coupon = Utils.getString(member, "coupon")
                                 var memo = Utils.getString(member, "memo")
                                 var name = Utils.getString(member, "name")
+
                                 var left_point:String? = null
                                 if (new_member_yn.equals("N")){
                                     left_point = Utils.getString(point, "balance")
@@ -478,6 +479,8 @@ class CalActivity : RootActivity() {
                                 birthTV.text = birth
                                 couponTV.text = coupon
                                 memoTV.text = memo
+
+
 
                             }else if(step == 5){
                                 var phone = Utils.getString(member, "phone")
@@ -723,6 +726,98 @@ class CalActivity : RootActivity() {
 
     //사업체 정보뽑기
     fun company_info() {
+        val params = RequestParams()
+        params.put("company_id",1)
+
+
+        CompanyAction.company_info(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    val result = response!!.getString("result")
+                    if ("ok" == result) {
+
+                        val company = response.getJSONObject("company")
+                        // 기본적립
+                        val basic_per = Utils.getString(company,"basic_per")
+                        //임의적립
+                        val option_per = Utils.getInt(company,"option_per")
+                        val data = response.getJSONArray("categories")
+                        Log.d("카테",data.toString())
+                        for (i in 0..data.length()-1){
+                            val json = data[i]as JSONObject
+                            val Category  = json.getJSONObject("Category")
+                            val name = Utils.getString(Category,"name")
+                            option_cate.add(name)
+
+                        }
+                        adapter = ArrayAdapter(context,R.layout.spiner_cal_item,option_cate)
+                        cate_SP.adapter = adapter
+
+
+                        stackTV.text = basic_per.toString()
+                        stack2TV.text = option_per.toString()
+
+                    } else {
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(context, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
+
+    fun getUserCouponList() {
+        //userCouponListLL
         val params = RequestParams()
         params.put("company_id",1)
 

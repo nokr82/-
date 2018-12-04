@@ -138,7 +138,7 @@ class User_List_Fragment : Fragment() {
         birthTV.setTextColor(Color.parseColor("#80ffffff"))
     }
 
-//고객목롭뽑기
+    //고객목롭뽑기
     fun mainData(type : Int) {
         val params = RequestParams()
         params.put("company_id", 1)
