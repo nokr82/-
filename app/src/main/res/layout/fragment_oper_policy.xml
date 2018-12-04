@@ -272,6 +272,75 @@
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:background="#e7e7e7"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="82.5dp"
+                        android:layout_height="20dp"
+                        android:gravity="center"
+                        android:background="#efefef"
+                        android:text="포인트 적립률"
+                        android:textSize="8sp"
+                        android:textStyle="bold"
+                        android:textColor="#666666"
+                        android:letterSpacing="-0.2"/>
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="match_parent"
+                        android:background="#e7e7e7"/>
+                    <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="3.5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="최소 적립률: "
+                            android:textColor="#666666"
+                            android:textSize="8sp" />
+                        <EditText
+                            android:id="@+id/basic_perET"
+                            android:layout_width="50dp"
+                            android:layout_height="15dp"
+                            android:inputType="number"
+                            android:textSize="8sp"
+                            android:background="@null"
+                            android:gravity="center_vertical"
+                            android:textColor="#666666"
+                            android:text="12,500"/>
+                        <TextView
+                            android:layout_marginLeft="20dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="최대 적립률: "
+                            android:textColor="#666666"
+                            android:textSize="8sp" />
+
+                        <EditText
+                            android:id="@+id/high_perET"
+                            android:layout_width="50dp"
+                            android:layout_height="20dp"
+                            android:background="@null"
+                            android:inputType="number"
+                            android:gravity="center_vertical"
+                            android:text="12,500"
+                            android:textColor="#666666"
+                            android:textSize="8sp" />
+
+                </LinearLayout>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#e7e7e7"/>
             </LinearLayout>
 
             <TextView
