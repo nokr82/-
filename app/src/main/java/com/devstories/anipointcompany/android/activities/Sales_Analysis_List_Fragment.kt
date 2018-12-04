@@ -52,6 +52,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
     lateinit var monthTV: TextView
     lateinit var three_mTV: TextView
     lateinit var accumulateLL: LinearLayout
+    lateinit var useLL : LinearLayout
 
      var day_type = -1 //1-오늘 2-이번주 3-이번달 4-3개월
     var page = 1    //페이지
@@ -85,6 +86,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
         three_mRL = view.findViewById(R.id.three_mRL)
         nextLL = view.findViewById(R.id.nextLL)
         preLL = view.findViewById(R.id.preLL)
+        useLL = view.findViewById(R.id.useLL)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -130,6 +132,19 @@ class Sales_Analysis_List_Fragment : Fragment() {
             }
 
         }
+
+
+        accumulateLL.setOnClickListener {
+            var intent = Intent(myContext, CalActivity::class.java)
+            intent.putExtra("step", 1)
+            startActivity(intent)
+        }
+        useLL.setOnClickListener {
+            val intent = Intent(myContext, CalActivity::class.java)
+            intent.putExtra("step",4)
+            startActivity(intent)
+        }
+
         preLL.setOnClickListener {
 
             if (1==page){

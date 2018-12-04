@@ -37,9 +37,9 @@ class User_List_Fragment : Fragment() {
     lateinit var userList_most_freq_userLL : LinearLayout
     lateinit var userList_birth_userLL : LinearLayout
     lateinit var joinLL : LinearLayout
-    lateinit var accumulateLL : LinearLayout
     lateinit var btn_search : LinearLayout
     lateinit var entire_viewTV : TextView
+    lateinit var accumulateLL : LinearLayout
     lateinit var useLL : LinearLayout
     var isBirthTab = false
 

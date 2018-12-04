@@ -5,7 +5,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -21,6 +20,10 @@ import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.fragment_set_coupon.*
 import org.json.JSONException
 import org.json.JSONObject
+import android.text.Editable
+import android.text.TextWatcher
+
+
 
 //메시지쿠폰관리 - 쿠폰작성
 class SetCouponFragment : Fragment() {
@@ -30,7 +33,6 @@ class SetCouponFragment : Fragment() {
 
     lateinit var expirationLL: LinearLayout
     lateinit var expirationIV: ImageView
-    lateinit var coupon_opSP: Spinner
     lateinit var coupon_exSP: Spinner
     lateinit var coupon_prdET: TextView
     lateinit var weekdayLL: LinearLayout
@@ -41,11 +43,14 @@ class SetCouponFragment : Fragment() {
     lateinit var sundayIV: ImageView
     lateinit var validityIV: ImageView
     lateinit var helpTV: TextView
+    lateinit var coupon_prdTV: TextView
+    lateinit var exTV: TextView
+
 
     lateinit var adapter: ArrayAdapter<String>
-    var op_coupon = arrayOf("첫가입","생일","30일","60일","90일","만든쿠폰")
-    var op_expiration = arrayOf("30일","60일","90일")
+    var op_expiration = arrayOf("7일","30일","60일","90일")
 
+    var validity_alarm_yn = "Y"
     var week_use_yn = "N"
     var sat_use_yn = "N"
     var sun_use_yn = "N"
@@ -60,6 +65,11 @@ class SetCouponFragment : Fragment() {
                 println("intent")
                 println("intent" + intent.getStringExtra("gender"))
                 println("intent" + intent.getStringExtra("age"))
+                println("intent" + intent.getStringExtra("visited_date"))
+                println("intent" + intent.getStringExtra("count"))
+                println("intent" + intent.getStringExtra("from"))
+                println("intent" + intent.getStringExtra("to"))
+                println("intent" + intent.getStringExtra("search_type"))
 
             }
         }
@@ -80,7 +90,6 @@ class SetCouponFragment : Fragment() {
 
         expirationLL= view.findViewById(R.id.expirationLL)
 
-        coupon_opSP= view.findViewById(R.id.coupon_opSP)
         coupon_exSP= view.findViewById(R.id.coupon_exSP)
         coupon_prdET= view.findViewById(R.id.coupon_prdET)
 
@@ -93,7 +102,8 @@ class SetCouponFragment : Fragment() {
         weekdayIV= view.findViewById(R.id.weekdayIV)
         saturdayIV= view.findViewById(R.id.saturdayIV)
         sundayIV= view.findViewById(R.id.sundayIV)
-
+        coupon_prdTV= view.findViewById(R.id.coupon_prdTV)
+        exTV= view.findViewById(R.id.exTV)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -104,29 +114,7 @@ class SetCouponFragment : Fragment() {
         setmenu2()
         setmenu()
 
-        adapter = ArrayAdapter(myContext,R.layout.spiner_item,op_coupon)
-        coupon_opSP.adapter = adapter
-        //스피너 선택이벤트
-        coupon_opSP.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-                if (position==0){
-                    type =1
-                }else if (position==1){
-                    type =2
-                }else if (position==2){
-                    type =3
-                }else if (position==3){
-                    type =4
-                }else if (position==4){
-                    type =5
-                }else if (position==5){
-                    type =6
-                }
-            }
-            override fun onNothingSelected(p0: AdapterView<*>?) {
 
-            }
-        }
 
         adapter = ArrayAdapter(myContext,R.layout.spiner_item,op_expiration)
         coupon_exSP.adapter = adapter
@@ -135,12 +123,16 @@ class SetCouponFragment : Fragment() {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
                 if (position==0){
                     use_day=7
+                    exTV.setText("쿠폰 받은 날부터 7일간 유효")
                 }else if (position==1){
                     use_day=30
+                    exTV.setText("쿠폰 받은 날부터 30일간 유효")
                 }else if (position==2){
                     use_day = 60
-                }else if (position==2){
+                    exTV.setText("쿠폰 받은 날부터 60일간 유효")
+                }else if (position==3){
                     use_day = 90
+                    exTV.setText("쿠폰 받은 날부터 90일간 유효")
                 }
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -194,25 +186,54 @@ class SetCouponFragment : Fragment() {
             it.isSelected = !it.isSelected
             if(it.isSelected) {
                 validityIV.setImageResource(R.mipmap.switch_off)
+                validity_alarm_yn = "N"
             } else {
                 validityIV.setImageResource(R.mipmap.switch_on)
+                validity_alarm_yn = "Y"
             }
         }
+        etchange()
+
+
         nextTV.setOnClickListener {
             coupon_add()
         }
     }
 
+    fun etchange(){
+        //에딧텍스트 입력댈떄마다변화
+        coupon_prdET.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+
+                // 입력되는 텍스트에 변화가 있을 때
+
+            }
+            override fun afterTextChanged(arg0: Editable) {
+                coupon_prdTV.text = Utils.getString(coupon_prdET)
+                // 입력이 끝났을 때
+
+            }
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+
+                // 입력하기 전에
+
+            }
+
+        })
+    }
+
+
     //쿠폰만들기
     fun coupon_add() {
         val params = RequestParams()
         params.put("company_id",1)
-        params.put("type",type)
+        params.put("type",6)
         params.put("name",Utils.getString(coupon_prdET))
         params.put("week_use_yn",week_use_yn)
         params.put("sat_use_yn",sat_use_yn)
         params.put("sun_use_yn",sun_use_yn)
         params.put("use_day",use_day)
+        params.put("validity_alarm_yn",validity_alarm_yn)
         if (week_use_yn.equals("N")&&sat_use_yn.equals("N")&&sun_use_yn.equals("N")){
             Toast.makeText(myContext,"사용가능요일을 선택해주세요",Toast.LENGTH_SHORT).show()
             return

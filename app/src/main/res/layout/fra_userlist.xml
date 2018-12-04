@@ -28,7 +28,7 @@
             <LinearLayout
                 android:id="@+id/useroptionLL"
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="300dp"
                 android:orientation="vertical"
                 android:visibility="visible">
 

@@ -36,8 +36,8 @@ class SettingMyInfoFragment : Fragment() {
     lateinit var phoneNum1ET: EditText
     lateinit var phoneNum2ET: EditText
     lateinit var phoneNum3ET: EditText
-    lateinit var termET: EditText
-    lateinit var compIdET: EditText
+    lateinit var termET: TextView
+    lateinit var compIdET: TextView
     lateinit var addImage1RL: RelativeLayout
     lateinit var tempPasswordET: EditText
     lateinit var newPasswordET: EditText

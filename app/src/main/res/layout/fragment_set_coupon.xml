@@ -46,13 +46,14 @@
                         android:text="목록에서 선택한 1명"
                         android:letterSpacing="-0.2"/>
                     <TextView
+                        android:id="@+id/coupon_prdTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
                         android:textSize="12sp"
                         android:textColor="#333333"
                         android:textStyle="bold"
-                        android:text="증정"/>
+                      />
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -60,6 +61,7 @@
                         android:layout_marginTop="10dp"
                         android:gravity="center_vertical">
                         <TextView
+                            android:id="@+id/exTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#666666"
@@ -68,6 +70,7 @@
                             android:text="쿠폰 받은 날부터 30일간 유효"/>
 
                         <LinearLayout
+                            android:visibility="gone"
                             android:id="@+id/expirationLL"
                             android:layout_marginLeft="25dp"
                             android:layout_width="wrap_content"
@@ -107,7 +110,7 @@
                         android:textColor="#666666"
                         android:textStyle="bold"
                         android:letterSpacing="-0.2"
-                        android:text="쿠폰종류"/>
+                        android:text="쿠폰이름"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

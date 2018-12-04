@@ -2,6 +2,7 @@ package com.devstories.anipointcompany.android.activities
 
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -29,6 +30,9 @@ class Message_Manage_Fragment : Fragment() {
     lateinit var view2: View
     lateinit var view3: View
 
+    lateinit var accumulateLL : LinearLayout
+    lateinit var useLL : LinearLayout
+
     lateinit var messageFL: FrameLayout
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -50,6 +54,9 @@ class Message_Manage_Fragment : Fragment() {
         sendMessageTV = view.findViewById(R.id.sendMessageTV)
         autoCouponTV = view.findViewById(R.id.autoCouponTV)
 
+        accumulateLL = view.findViewById(R.id.accumulateLL)
+        useLL = view.findViewById(R.id.useLL)
+
         view1 = view.findViewById(R.id.view1)
         view2 = view.findViewById(R.id.view2)
         view3 = view.findViewById(R.id.view3)
@@ -66,6 +73,18 @@ class Message_Manage_Fragment : Fragment() {
         val AutoCouponSettingsFragment : AutoCouponSettingsFragment = AutoCouponSettingsFragment()
 
         childFragmentManager.beginTransaction().replace(R.id.messageFL, Message_write_Fragment).commit()
+
+
+        useLL.setOnClickListener {
+            val intent = Intent(myContext, CalActivity::class.java)
+            intent.putExtra("step",4)
+            startActivity(intent)
+        }
+        accumulateLL.setOnClickListener {
+            val intent = Intent(myContext, CalActivity::class.java)
+            startActivity(intent)
+        }
+
 
         // 메세지 통계
         messageStatisticsLL.setOnClickListener {
