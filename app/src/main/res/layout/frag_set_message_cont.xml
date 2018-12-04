@@ -7,82 +7,92 @@
     android:padding="10dp"
     tools:context=".activities.SetMessageContFragment">
 
-    <LinearLayout
-        android:layout_width="150dp"
-        android:layout_height="310dp"
-        android:orientation="vertical"
-        android:padding="4.5dp">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginTop="15dp"
-            android:gravity="center"
-            android:background="@drawable/background_box_f0f0f0"
-            android:text="테스트 문자 받아보기"
-            android:textSize="9sp"
-            android:textStyle="bold"
-            android:textColor="#333333"
-            android:letterSpacing="-0.03"/>
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_marginTop="10dp"
-            android:padding="9dp"
-            android:background="@drawable/box_dash_dcdcdc">
+            android:padding="4.5dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:background="@drawable/background_box_f0f0f0"
+                android:text="테스트 문자 받아보기"
+                android:textSize="9sp"
+                android:textStyle="bold"
+                android:textColor="#333333"
+                android:letterSpacing="-0.03"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4.5dp"
-                android:gravity="center">
-                <ImageView
-                    android:layout_width="12sp"
-                    android:layout_height="10dp"
-                    android:src="@mipmap/pictur_img"
-                    android:layout_marginRight="4.5dp"/>
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:padding="9dp"
+                android:background="@drawable/box_dash_dcdcdc">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4.5dp"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="12sp"
+                        android:layout_height="10dp"
+                        android:src="@mipmap/pictur_img"
+                        android:layout_marginRight="4.5dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="이미지 첨부하기"
+                        android:textColor="#5e5e5e"
+                        android:textSize="7.5sp"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="4.5sp"/>
+                </LinearLayout>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="이미지 첨부하기"
-                    android:textColor="#5e5e5e"
-                    android:textSize="7.5sp"
-                    android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="4.5sp"/>
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="6.5sp"
+                    android:textColor="#aaaaaa"
+                    android:text="사망토론 더해주세요 ! 짱재밋는뎀"/>
             </LinearLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textSize="6.5sp"
-                android:textColor="#aaaaaa"
-                android:text="사망토론 더해주세요 ! 짱재밋는뎀"/>
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="125dp"
-            android:orientation="vertical"
-            android:background="@drawable/background_box_e5ebf7"
-            android:layout_marginTop="10dp"
-            android:paddingLeft="6.5dp"
-            android:paddingTop="13dp"
-            android:paddingRight="6.5dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="[Web발신]\n[광고] 달콤한 이벤트 2차 당첨"
-                android:textStyle="bold"
-                android:textSize="8sp"
-                android:textColor="#4e4e4e"/>
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="\n고객이름님, 재방문을 축하드리며, 발렌타인데이 메뉴 10%할인 쿠폰을 드립니다.\n애드커에서 다시 또 만나요!"
-                android:textColor="#555555"
-                android:textSize="7.5sp" />
+                android:orientation="vertical"
+                android:background="@drawable/background_box_e5ebf7"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="6.5dp"
+                android:paddingTop="13dp"
+                android:paddingRight="6.5dp"
+                android:minHeight="125dp">
+                <TextView
+                    android:id="@+id/titleTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="[Web발신]\n"
+                    android:textStyle="bold"
+                    android:textSize="8sp"
+                    android:textColor="#4e4e4e"/>
+                <TextView
+                    android:id="@+id/messageTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="고객이름님, 재방문을 축하드리며, 발렌타인데이 메뉴 10%할인 쿠폰을 드립니다.\n애드커에서 다시 또 만나요!"
+                    android:textColor="#555555"
+                    android:textSize="7.5sp" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+
+    </ScrollView>
 
     <View
         android:layout_width="0.5dp"
@@ -94,6 +104,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="15dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -113,7 +124,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4.5dp"
                 android:textStyle="bold"
-                android:text="114"
+                android:text="0"
                 android:textColor="#333333"
                 android:textSize="8sp"/>
             <TextView
@@ -130,24 +141,33 @@
             android:orientation="vertical"
             android:layout_marginTop="5dp"
             android:background="@drawable/background_strock_e7e7e7">
-            <TextView
-                android:layout_width="wrap_content"
+
+            <EditText
+                android:id="@+id/titleET"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="9.5dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="9dp"
-                android:text="발렌타인데이 10% 할인"
+                android:paddingTop="9.5dp"
+                android:paddingLeft="10dp"
+                android:paddingBottom="9dp"
+                android:hint="제목을 입력해주세요"
                 android:textStyle="bold"
                 android:textSize="8sp"
-                android:textColor="#555555"/>
+                android:textColor="#555555"
+                android:background="@null"
+                android:singleLine="true"/>
+
             <EditText
                 android:id="@+id/messageContentET"
                 android:layout_width="match_parent"
+                android:padding="10dp"
                 android:layout_height="75dp"
                 android:background="@drawable/background_stroke_3c97db"
-                android:maxLines="5"
+                android:hint="내용을 입력해주세요"
                 android:textSize="7.5sp"
-                android:textColor="#555555"/>
+                android:textColor="#555555"
+                android:maxLength="1000"
+                android:gravity="left|top"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -157,11 +177,13 @@
                 android:textSize="8sp"
                 android:textColor="#555555"
                 android:text="문자 자동입력"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp">
                 <TextView
+                    android:id="@+id/companyNameTV"
                     android:layout_width="50dp"
                     android:layout_height="18dp"
                     android:layout_marginRight="7dp"
@@ -171,6 +193,7 @@
                     android:textColor="#555555"
                     android:text="매장 이름"/>
                 <TextView
+                    android:id="@+id/memberNameTV"
                     android:layout_width="50dp"
                     android:layout_height="18dp"
                     android:layout_marginRight="7dp"
@@ -180,6 +203,7 @@
                     android:textColor="#555555"
                     android:text="고객 이름"/>
                 <TextView
+                    android:id="@+id/pointTV"
                     android:layout_width="50dp"
                     android:layout_height="18dp"
                     android:background="@drawable/background_box_f4f4f4"
@@ -189,5 +213,17 @@
                     android:text="보유 포인트"/>
             </LinearLayout>
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/nextTV"
+            android:layout_width="65.5dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="10dp"
+            android:background="#0871bf"
+            android:gravity="center"
+            android:layout_gravity="right"
+            android:text="다음"
+            android:textColor="#FFFFFF"
+            android:textSize="9dp" />
     </LinearLayout>
 </LinearLayout>

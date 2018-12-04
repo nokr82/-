@@ -34,7 +34,8 @@ class Message_write_Fragment : Fragment() {
     lateinit var userchoiceFL: FrameLayout
     val MessageUserFragment : MessageUserFragment = MessageUserFragment()
     val SetCouponFragment : SetCouponFragment = SetCouponFragment()
-    val MssgAnalysisFragment : MssgAnalysisFragment = MssgAnalysisFragment()
+    val SetMessageContFragment : SetMessageContFragment = SetMessageContFragment()
+
     //고객선택
     internal var step1NextReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent?) {
@@ -52,7 +53,8 @@ class Message_write_Fragment : Fragment() {
             }
         }
     }
-    //쿠폰설정
+
+    // 쿠폰설정
     internal var step2NextReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent?) {
             if (intent != null) {
@@ -61,11 +63,12 @@ class Message_write_Fragment : Fragment() {
                 couponTV.setTextColor(Color.parseColor("#ffffff"))
                 writeRL.setBackgroundColor(Color.parseColor("#0068df"))
                 writeTV.setTextColor(Color.parseColor("#ffffff"))
-                childFragmentManager.beginTransaction().replace(R.id.userchoiceFL,MssgAnalysisFragment).commit()
+                childFragmentManager.beginTransaction().replace(R.id.userchoiceFL,SetMessageContFragment).commit()
 
             }
         }
     }
+
     //메시지작성
     internal var step3NextReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent?) {

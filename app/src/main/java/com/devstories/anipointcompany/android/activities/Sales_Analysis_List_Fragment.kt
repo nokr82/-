@@ -11,8 +11,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.devstories.aninuriandroid.adapter.VisitListAdapter
-import com.devstories.anipointcompany.android.Actions.PointAction
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
@@ -31,8 +29,10 @@ class Sales_Analysis_List_Fragment : Fragment() {
     lateinit var myContext: Context
     private var progressDialog: ProgressDialog? = null
     lateinit var adapter: ArrayAdapter<String>
+
     var option_amount =ArrayList<String>()
     var option_limit = arrayOf("5개씩보기","10개씩보기")
+    var categoryIndex = ArrayList<Int>()
 
     lateinit var pageSP: Spinner
     lateinit var amountSP: Spinner
@@ -40,6 +40,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
     lateinit var all_memberTV: TextView
     lateinit var new_userTV: TextView
     lateinit var member_re_cntTV: TextView
+    lateinit var accountlessTV : TextView
     lateinit var itemdateLL: LinearLayout
     lateinit var nextLL: LinearLayout
     lateinit var preLL: LinearLayout
@@ -52,13 +53,15 @@ class Sales_Analysis_List_Fragment : Fragment() {
     lateinit var monthTV: TextView
     lateinit var three_mTV: TextView
     lateinit var accumulateLL: LinearLayout
+    lateinit var tagTV : TextView
     lateinit var useLL : LinearLayout
 
-     var day_type = -1 //1-오늘 2-이번주 3-이번달 4-3개월
+     var day_type = 1 //1-오늘 2-이번주 3-이번달 4-3개월
     var page = 1    //페이지
     var limit = 5 //보여지는갯수
     var totalPage =1 //총페이지
     var payment_type = -1
+    var category_id = 1
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
         progressDialog = ProgressDialog(myContext)
@@ -74,6 +77,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
         itemdateLL = view.findViewById(R.id.itemdateLL)
         accumulateLL = view.findViewById(R.id.accumulateLL)
         all_memberTV = view.findViewById(R.id.all_memberTV)
+        accountlessTV = view.findViewById(R.id.accountlessTV)
         member_re_cntTV = view.findViewById(R.id.member_re_cntTV)
         new_userTV = view.findViewById(R.id.new_userTV)
         todayTV = view.findViewById(R.id.todayTV)
@@ -86,6 +90,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
         three_mRL = view.findViewById(R.id.three_mRL)
         nextLL = view.findViewById(R.id.nextLL)
         preLL = view.findViewById(R.id.preLL)
+        tagTV = view.findViewById(R.id.tagTV)
         useLL = view.findViewById(R.id.useLL)
     }
 
@@ -104,6 +109,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
                 }else if (position==1){
                     limit = 10
                 }
+                loadData(1)
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
 
@@ -164,6 +170,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
             loadData(1)
             todayTV.setTextColor(Color.parseColor("#606060"))
             dateTV.text = currentDate+"~"+currentDate
+            tagTV.text = "최근 1일간 매출내역입니다."
         }
 
         todayRL.callOnClick()
@@ -183,6 +190,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
             Log.d("현재",startDate)
             Log.d("미래",endDate)
             dateTV.text = startDate+" ~ "+endDate
+            tagTV.text = "최근 7일간 매출내역입니다."
         }
         monthRL.setOnClickListener {
             setmenu()
@@ -215,6 +223,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
             val date = Date()
             val currentDate = beforemonth.format(date).toString()
             val lastmonth = aftermonth.format(date).toString()
+            tagTV.text = "최근 3달간 매출내역입니다."
 
             dateTV.text = currentDate+" ~ "+lastmonth
         }
@@ -230,13 +239,18 @@ class Sales_Analysis_List_Fragment : Fragment() {
         loadData(1)
         amountSP.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-                if (position==0){
+                /*if (position==0){
                     payment_type = 1
                 }else if (position==1){
                     payment_type = 2
                 }else if (position==2){
                     payment_type = 3
-                }
+                }*/
+                payment_type = position + 1
+
+                category_id = categoryIndex[position]
+                //println("amountSP clicked. Position is $payment_type")
+                loadData(1)
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
 
@@ -272,7 +286,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
 
                     if ("ok" == result) {
 
-                        val companyCates = response.getJSONArray("companyCates")
+                        /*val companyCates = response.getJSONArray("companyCates")
                         Log.d("데이트",companyCates.toString())
                         for (i in 0..companyCates.length()-1){
                             Log.d("갯수",i.toString())
@@ -280,10 +294,30 @@ class Sales_Analysis_List_Fragment : Fragment() {
                             val Category = json.getJSONObject("Category")
                             val name = Utils.getString(Category,"name")
                             option_amount.add(name)
+                        }*/
 
+                        val categories = response.getJSONArray("categories")
+                        option_amount.clear()
+                        Log.d("데이트",categories.toString())
+
+                        for (i in 0 until categories.length()) {
+                            val json = categories[i] as JSONObject
+                            val company_category = json.getJSONObject("CompanyCategory")
+                            val category = json.getJSONObject("Category")
+                            val name = Utils.getString(category, "name")
+
+                            option_amount.add(name)
+
+                            val category_id = Utils.getInt(company_category, "category_id")
+
+                            categoryIndex.add(category_id)
                         }
+
                         adapter = ArrayAdapter(myContext,R.layout.spiner_item,option_amount)
                         amountSP.adapter = adapter
+
+                        adapter.notifyDataSetChanged()
+
                     } else {
 
                     }
@@ -342,9 +376,10 @@ class Sales_Analysis_List_Fragment : Fragment() {
     fun loadData(company_id: Int) {
         val params = RequestParams()
         params.put("company_id",company_id)
-        params.put("payment_type",payment_type)
-        params.put("day_type",day_type)
+        params.put("category_id",category_id)
+        params.put("day_type",4)
         params.put("limit",limit)
+        params.put("page", page)
         Log.d("페이지",page.toString())
         Log.d("day_type",day_type.toString())
 
@@ -358,9 +393,58 @@ class Sales_Analysis_List_Fragment : Fragment() {
                 try {
                     val result = response!!.getString("result")
                     if ("ok" == result) {
-                        totalPage  = response.getInt("totalPage")
+                        val totalData =  response.getJSONObject("totalData")
 
-                        option_amount.clear()
+                        val totalPrice = Utils.getString(totalData, "totalPrice")
+                        val cashTotalPrice = Utils.getString(totalData, "cashTotalPrice")
+                        val cardTotalPrice = Utils.getString(totalData, "cardTotalPrice")
+                        val bankTotalPrice = Utils.getString(totalData, "bankTotalPrice")
+
+                        all_memberTV.text = totalPrice
+                        new_userTV.text = cashTotalPrice
+                        member_re_cntTV.text = cardTotalPrice
+                        accountlessTV.text = bankTotalPrice
+
+
+                        val list = response.getJSONArray("list")
+                        //option_amount.clear()
+                        itemdateLL.removeAllViews()
+
+                        Log.d("데이트",list.toString())
+                        if (list.length() > 0) {
+                            for (i in 0 until list.length()) {
+                                //Log.d("갯수",i.toString())
+                                var json = list[i] as JSONObject
+                                val date = Utils.getString(json, "date")
+                                val totalPrice = Utils.getString(json, "totalPrice")
+                                val cash = Utils.getString(json, "cash")
+                                val card = Utils.getString(json, "card")
+                                val bank = Utils.getString(json, "bank")
+
+
+                                val salesView = View.inflate(myContext, R.layout.item_sales_analysis, null)
+                                var dateTV: TextView = salesView.findViewById(R.id.dateTV)
+                                var totalTV: TextView = salesView.findViewById(R.id.totalTV)
+                                var cashTV: TextView = salesView.findViewById(R.id.cashTV)
+                                var cardTV: TextView = salesView.findViewById(R.id.cardTV)
+                                var bankTV: TextView = salesView.findViewById(R.id.bankTV)
+
+                                dateTV.text = date.toString()
+                                totalTV.text = totalPrice
+                                cashTV.text = cash
+                                cardTV.text = card
+                                bankTV.text = bank
+
+                                itemdateLL.addView(salesView)
+
+                            }
+
+                        }
+
+
+                        /*totalPage  = response.getInt("totalPage")
+
+                        option_amount.clear()*/
 
 
 
