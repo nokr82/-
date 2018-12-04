@@ -199,7 +199,7 @@
                             android:textColor="#666666"
                             android:letterSpacing="-0.03"
                             android:lineSpacingExtra="4sp"
-                            android:text="전체 고객(명)" />
+                            android:text="전체 매출(원)" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -240,7 +240,7 @@
                             android:textColor="#666666"
                             android:letterSpacing="-0.03"
                             android:lineSpacingExtra="4sp"
-                            android:text="산규 고객(명)"
+                            android:text="현금결제(원)"
                             />
 
                     </LinearLayout>
@@ -282,7 +282,7 @@
                             android:textColor="#666666"
                             android:letterSpacing="-0.03"
                             android:lineSpacingExtra="4sp"
-                            android:text="재방문 고객(명)"
+                            android:text="카드결제(명)"
                             />
 
                     </LinearLayout>
@@ -317,15 +317,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="20dp"
                         android:gravity="center">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="8sp"
-                            android:textColor="#666666"
                             android:letterSpacing="-0.03"
                             android:lineSpacingExtra="4sp"
-                            android:text="재방문율"
-                            />
+                            android:text="무통장입금"
+                            android:textColor="#666666"
+                            android:textSize="8sp" />
 
                     </LinearLayout>
 
