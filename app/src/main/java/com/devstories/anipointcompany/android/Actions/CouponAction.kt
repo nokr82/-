@@ -23,5 +23,25 @@ object CouponAction {
         HttpClient.post("/coupon/send_message.json", params, handler)
     }
 
+    // 자동 쿠폰 - 리스트 정보
+    fun auto_coupon(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/coupon/auto_coupon.json", params, handler)
+    }
+
+    // 자동 쿠폰 - 저장
+    fun edit_coupon(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/coupon/edit_coupon.json", params, handler)
+    }
+
+    // 쿠폰 정보
+    fun coupon(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/coupon/coupon.json", params, handler)
+    }
+
+    // 자동 쿠폰 on/off
+    fun change_temp_yn(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/coupon/change_temp_yn.json", params, handler)
+    }
+
 
 }
