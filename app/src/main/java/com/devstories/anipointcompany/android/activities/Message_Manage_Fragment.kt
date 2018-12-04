@@ -65,13 +65,15 @@ class Message_Manage_Fragment : Fragment() {
         val Message_write_Fragment : Message_write_Fragment = Message_write_Fragment()
         val AutoCouponSettingsFragment : AutoCouponSettingsFragment = AutoCouponSettingsFragment()
 
-        childFragmentManager.beginTransaction().replace(R.id.messageFL, Message_write_Fragment).commit()
+        childFragmentManager.beginTransaction().replace(R.id.messageFL, MessageUserFragment).commit()
 
         // 메세지 통계
         messageStatisticsLL.setOnClickListener {
             setView()
             view1.visibility = View.VISIBLE
             messageStatisticsTV.setTextColor(Color.parseColor("#FFFFFF"))
+
+            childFragmentManager.beginTransaction().replace(R.id.messageFL, MessageUserFragment).commit()
         }
 
         // 메세지 작성
