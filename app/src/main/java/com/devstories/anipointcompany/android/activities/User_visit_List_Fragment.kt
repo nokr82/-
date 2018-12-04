@@ -52,10 +52,11 @@ class User_visit_List_Fragment : Fragment() {
     lateinit var three_mTV: TextView
     lateinit var accumulateLL: LinearLayout
 
-     var day_type = -1 //1-오늘 2-이번주 3-이번달 4-3개월
-    var page = 1    //페이지
-    var limit = 5 //보여지는갯수
-    var totalPage =1 //총페이지
+    var day_type = 1 //1-오늘 2-이번주 3-이번달 4-3개월
+    var page = 1      //페이지
+    var limit = 5     //보여지는갯수
+    var totalPage = 1  //총페이지
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
         progressDialog = ProgressDialog(myContext)
@@ -121,19 +122,22 @@ class User_visit_List_Fragment : Fragment() {
 
         nextLL.setOnClickListener {
 
-            if (totalPage==page){
-                Toast.makeText(myContext,"최대페이지입니다",Toast.LENGTH_SHORT).show()
+            if (totalPage <= page){
+                Toast.makeText(myContext,"마지막 페이지입니다",Toast.LENGTH_SHORT).show()
+
             }else{
                 page++
                 Toast.makeText(myContext,page.toString()+"페이지입니다",Toast.LENGTH_SHORT).show()
                 loadData(1)
+
             }
 
         }
+
         preLL.setOnClickListener {
 
             if (1==page){
-                Toast.makeText(myContext,"첫번쨰 페이지입니다",Toast.LENGTH_SHORT).show()
+                Toast.makeText(myContext,"첫 페이지입니다",Toast.LENGTH_SHORT).show()
             }else{
                 page--
                 Toast.makeText(myContext,page.toString()+"페이지입니다",Toast.LENGTH_SHORT).show()
@@ -217,7 +221,7 @@ class User_visit_List_Fragment : Fragment() {
 
     }
 
-    fun  setmenu(){
+    fun setmenu(){
         todayTV.setTextColor(Color.parseColor("#c5c5c5"))
         monthTV.setTextColor(Color.parseColor("#c5c5c5"))
         weekTV.setTextColor(Color.parseColor("#c5c5c5"))
@@ -333,7 +337,7 @@ class User_visit_List_Fragment : Fragment() {
 
                         val points = response.getJSONArray("points")
                         Log.d("데이트",points.toString())
-                        for (i in 0..points.length()-1){
+                        for (i in 0 until points.length()){
                             Log.d("갯수",i.toString())
                             var json=points[i] as JSONObject
                             val date = Utils.getString(json,"date")
@@ -352,13 +356,10 @@ class User_visit_List_Fragment : Fragment() {
                             all_userTV.text = alluser.toString()
                             re_userTV.text = re_member.toString()
                             new_userTV.text = new_member.toString()
+
                             itemdateLL.addView(userView)
 
-
-
                         }
-
-
 
                     } else {
 

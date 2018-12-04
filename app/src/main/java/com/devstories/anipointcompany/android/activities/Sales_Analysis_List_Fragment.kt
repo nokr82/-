@@ -128,7 +128,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
         nextLL.setOnClickListener {
 
             if (totalPage==page){
-                Toast.makeText(myContext,"최대페이지입니다",Toast.LENGTH_SHORT).show()
+                Toast.makeText(myContext,"마지막 페이지입니다",Toast.LENGTH_SHORT).show()
             }else{
                 page++
                 Toast.makeText(myContext,page.toString()+"페이지입니다",Toast.LENGTH_SHORT).show()
@@ -139,7 +139,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
         preLL.setOnClickListener {
 
             if (1==page){
-                Toast.makeText(myContext,"첫번쨰 페이지입니다",Toast.LENGTH_SHORT).show()
+                Toast.makeText(myContext,"첫 페이지입니다",Toast.LENGTH_SHORT).show()
             }else{
                 page--
                 Toast.makeText(myContext,page.toString()+"페이지입니다",Toast.LENGTH_SHORT).show()
@@ -386,10 +386,10 @@ class Sales_Analysis_List_Fragment : Fragment() {
                         val cardTotalPrice = Utils.getString(totalData, "cardTotalPrice")
                         val bankTotalPrice = Utils.getString(totalData, "bankTotalPrice")
 
-                        all_memberTV.text = totalPrice
-                        new_userTV.text = cashTotalPrice
-                        member_re_cntTV.text = cardTotalPrice
-                        accountlessTV.text = bankTotalPrice
+                        all_memberTV.text = Utils.comma(totalPrice)
+                        new_userTV.text = Utils.comma(cashTotalPrice)
+                        member_re_cntTV.text = Utils.comma(cardTotalPrice)
+                        accountlessTV.text = Utils.comma(bankTotalPrice)
 
 
                         val list = response.getJSONArray("list")
@@ -416,10 +416,10 @@ class Sales_Analysis_List_Fragment : Fragment() {
                                 var bankTV: TextView = salesView.findViewById(R.id.bankTV)
 
                                 dateTV.text = date.toString()
-                                totalTV.text = totalPrice
-                                cashTV.text = cash
-                                cardTV.text = card
-                                bankTV.text = bank
+                                totalTV.text = Utils.comma(totalPrice)
+                                cashTV.text = Utils.comma(cash)
+                                cardTV.text = Utils.comma(card)
+                                bankTV.text = Utils.comma(bank)
 
                                 itemdateLL.addView(salesView)
 
