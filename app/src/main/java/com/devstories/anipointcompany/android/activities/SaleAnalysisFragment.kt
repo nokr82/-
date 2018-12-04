@@ -2,7 +2,6 @@ package com.devstories.anipointcompany.android.activities
 
 import android.app.ProgressDialog
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -180,7 +179,7 @@ class SaleAnalysisFragment : Fragment() {
     //방문자수구하기
     fun loadcntData() {
         val params = RequestParams()
-        params.put("company_id", PrefUtils.getStringPreference(myContext, "company_id"))
+        params.put("company_id", PrefUtils.getIntPreference(myContext, "company_id"))
         params.put("payment_type",1)
         params.put("page",page)
         params.put("limit",limit)
