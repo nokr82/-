@@ -25,5 +25,8 @@ object CompanyAction {
     fun company_login(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/login/index.json", params, handler)
     }
+    fun sales_list(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/company/sales_list.json", params, handler)
+    }
 
 }

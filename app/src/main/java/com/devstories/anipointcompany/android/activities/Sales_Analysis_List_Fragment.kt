@@ -23,17 +23,18 @@ import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 import android.widget.Toast
+import com.devstories.anipointcompany.android.Actions.CompanyAction
+import kotlin.collections.ArrayList
 
 //고객방문분석메인
-class User_visit_List_Fragment : Fragment() {
+class Sales_Analysis_List_Fragment : Fragment() {
     lateinit var myContext: Context
     private var progressDialog: ProgressDialog? = null
     lateinit var adapter: ArrayAdapter<String>
-    var option_amount = arrayOf("5개씩 보기","10개씩 보기")
+    var option_amount =ArrayList<String>()
+    var option_limit = arrayOf("5개씩보기","10개씩보기")
 
-    var adapterData: ArrayList<JSONObject> = ArrayList<JSONObject>()
-    lateinit var visitAdapter: VisitListAdapter
-
+    lateinit var pageSP: Spinner
     lateinit var amountSP: Spinner
     lateinit var dateTV: TextView
     lateinit var all_memberTV: TextView
@@ -56,16 +57,17 @@ class User_visit_List_Fragment : Fragment() {
     var page = 1    //페이지
     var limit = 5 //보여지는갯수
     var totalPage =1 //총페이지
+    var payment_type = -1
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
         progressDialog = ProgressDialog(myContext)
-            return inflater.inflate(R.layout.fra_user_visit_analysis,container,false)
+            return inflater.inflate(R.layout.fra_sales_analysis,container,false)
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        pageSP = view.findViewById(R.id.pageSP)
         amountSP = view.findViewById(R.id.amountSP)
         dateTV = view.findViewById(R.id.dateTV)
         itemdateLL = view.findViewById(R.id.itemdateLL)
@@ -88,25 +90,23 @@ class User_visit_List_Fragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        adapter = ArrayAdapter(myContext,R.layout.spiner_item,option_amount)
-        amountSP.adapter = adapter
+
+
+        adapter = ArrayAdapter(myContext,R.layout.spiner_item,option_limit)
+        pageSP.adapter = adapter
         //스피너 선택이벤트
-        amountSP.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+        pageSP.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-              if (position==0){
-                  limit = 5
-                  Log.d("리미트",limit.toString())
-              }else if (position==1){
-                  limit = 10
-                  Log.d("리미트",limit.toString())
-              }
+                if (position==0){
+                    limit = 5
+                }else if (position==1){
+                    limit = 10
+                }
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
 
             }
         }
-
-
 
         //오늘날짜구하기
         val formatter = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
@@ -311,13 +311,13 @@ class User_visit_List_Fragment : Fragment() {
     fun loadData(company_id: Int) {
         val params = RequestParams()
         params.put("company_id",company_id)
+        params.put("payment_type",payment_type)
         params.put("day_type",day_type)
-        params.put("page",page)
         params.put("limit",limit)
         Log.d("페이지",page.toString())
-
         Log.d("day_type",day_type.toString())
-        PointAction.user_visited(params, object : JsonHttpResponseHandler() {
+
+        CompanyAction.sales_list(params, object : JsonHttpResponseHandler() {
 
             override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
                 if (progressDialog != null) {
@@ -329,36 +329,33 @@ class User_visit_List_Fragment : Fragment() {
                     if ("ok" == result) {
                         totalPage  = response.getInt("totalPage")
 
-                        itemdateLL.removeAllViews()
-
-                        val points = response.getJSONArray("points")
-                        Log.d("데이트",points.toString())
-                        for (i in 0..points.length()-1){
+                        option_amount.clear()
+                        val companyCates = response.getJSONArray("companyCates")
+                        Log.d("데이트",companyCates.toString())
+                        for (i in 0..companyCates.length()-1){
                             Log.d("갯수",i.toString())
-                            var json=points[i] as JSONObject
-                            val date = Utils.getString(json,"date")
-                            val new_member = Utils.getInt(json,"new_member")
-                            val re_member =Utils.getInt(json,"re_member")
-                            Log.d("데이트",re_member.toString())
-
-                            val userView = View.inflate(myContext, R.layout.item_visit, null)
-                            var dateTV : TextView = userView.findViewById(R.id.dateTV)
-                            var new_userTV : TextView = userView.findViewById(R.id.new_userTV)
-                            var re_userTV : TextView = userView.findViewById(R.id.re_userTV)
-                            var all_userTV : TextView = userView.findViewById(R.id.all_userTV)
-                            val alluser = re_member+new_member
-                              Log.d("총",alluser.toString())
-                            dateTV.text = date.toString()
-                            all_userTV.text = alluser.toString()
-                            re_userTV.text = re_member.toString()
-                            new_userTV.text = new_member.toString()
-                            itemdateLL.addView(userView)
-
-
+                            var json=companyCates[i] as JSONObject
+                            val Category = json.getJSONObject("Category")
+                            val name = Utils.getString(Category,"name")
+                            option_amount.add(name)
 
                         }
+                        adapter = ArrayAdapter(myContext,R.layout.spiner_item,option_amount)
+                        amountSP.adapter = adapter
+                        amountSP.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+                            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+                                if (position==0){
+                                    payment_type = 1
+                                }else if (position==1){
+                                    payment_type = 2
+                                }else if (position==2){
+                                    payment_type = 3
+                                }
+                            }
+                            override fun onNothingSelected(p0: AdapterView<*>?) {
 
-
+                            }
+                        }
 
                     } else {
 
