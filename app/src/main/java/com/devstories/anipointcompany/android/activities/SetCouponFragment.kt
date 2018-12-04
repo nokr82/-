@@ -213,7 +213,7 @@ class SetCouponFragment : Fragment() {
         params.put("sat_use_yn",sat_use_yn)
         params.put("sun_use_yn",sun_use_yn)
         params.put("use_day",use_day)
-        if (week_use_yn.equals("N")||week_use_yn.equals("N")||week_use_yn.equals("N")){
+        if (week_use_yn.equals("N")&&sat_use_yn.equals("N")&&sun_use_yn.equals("N")){
             Toast.makeText(myContext,"사용가능요일을 선택해주세요",Toast.LENGTH_SHORT).show()
             return
         }
