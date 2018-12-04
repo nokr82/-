@@ -51,7 +51,6 @@ class MessageUserFragment : Fragment() {
     lateinit var citizenLL: LinearLayout
     lateinit var workerLL: LinearLayout
     lateinit var studentLL: LinearLayout
-    lateinit var cautionLL: LinearLayout
 
     lateinit var tenTV: TextView
     lateinit var twoTV: TextView
@@ -82,6 +81,12 @@ class MessageUserFragment : Fragment() {
     lateinit var pointTV: TextView
     lateinit var nextTV: TextView
     lateinit var countTV: TextView
+    lateinit var visitLL: LinearLayout
+    lateinit var limitLL: LinearLayout
+    lateinit var limit_opTV: TextView
+    lateinit var limit_op2TV: TextView
+    lateinit var limit_opET: EditText
+    lateinit var limit_op2ET: EditText
 
 
     var gender = ArrayList<String>()
@@ -112,7 +117,6 @@ class MessageUserFragment : Fragment() {
         sixLL = view.findViewById(R.id.sixLL)
         studentLL = view.findViewById(R.id.studentLL)
         workerLL = view.findViewById(R.id.workerLL)
-        cautionLL = view.findViewById(R.id.cautionLL)
         genderNLL = view.findViewById(R.id.genderNLL)
         genderMLL = view.findViewById(R.id.genderMLL)
         genderFLL = view.findViewById(R.id.genderFLL)
@@ -141,8 +145,14 @@ class MessageUserFragment : Fragment() {
         acc_countTV = view.findViewById(R.id.acc_countTV)
         novisitTV = view.findViewById(R.id.novisitTV)
         pointTV = view.findViewById(R.id.pointTV)
-
-
+        visitLL= view.findViewById(R.id.visitLL)
+        limitLL= view.findViewById(R.id.limitLL)
+        limit_opTV= view.findViewById(R.id.limit_opTV)
+        limit_op2TV= view.findViewById(R.id.limit_op2TV)
+        //처음 횟수
+        limit_opET= view.findViewById(R.id.limit_opET)
+        //마지막 횟수
+        limit_op2ET= view.findViewById(R.id.limit_op2ET)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -151,8 +161,10 @@ class MessageUserFragment : Fragment() {
 
         adapter = ArrayAdapter(myContext,R.layout.spiner_item,option_visitday)
         visitdaySP.adapter = adapter
+
         setmenu3()
         setfilter()
+        setopview()
         //스피너 선택이벤트
         visitdaySP.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
@@ -317,33 +329,44 @@ class MessageUserFragment : Fragment() {
 
         }
 
-        cautionLL.setOnClickListener {
-            setmenu3()
-            cautionLL.setBackgroundResource(R.drawable.background_00d1ce)
-            cautionTV.setTextColor(Color.parseColor("#ffffff"))
-        }
+
         allRL.setOnClickListener {
             setfilter()
+            setopview()
             allRL.setBackgroundColor(Color.parseColor("#0068df"))
             allTV.setTextColor(Color.parseColor("#ffffff"))
         }
         acc_countRL.setOnClickListener {
             setfilter()
+            setopview()
+            limitLL.visibility = View.VISIBLE
+            limit_opTV.text = "회"
+            limit_op2TV.text = "회"
             acc_countRL.setBackgroundColor(Color.parseColor("#0068df"))
             acc_countTV.setTextColor(Color.parseColor("#ffffff"))
         }
         novisitRL.setOnClickListener {
             setfilter()
+            setopview()
+            visitLL.visibility = View.VISIBLE
             novisitRL.setBackgroundColor(Color.parseColor("#0068df"))
             novisitTV.setTextColor(Color.parseColor("#ffffff"))
         }
         use_moneyRL.setOnClickListener {
             setfilter()
+            setopview()
+            limit_opTV.text = "원"
+            limit_op2TV.text = "원"
+            limitLL.visibility = View.VISIBLE
             use_moneyRL.setBackgroundColor(Color.parseColor("#0068df"))
             use_moneyTV.setTextColor(Color.parseColor("#ffffff"))
         }
         pointRL.setOnClickListener {
             setfilter()
+            setopview()
+            limit_opTV.text = "P"
+            limit_op2TV.text ="P"
+            limitLL.visibility = View.VISIBLE
             pointRL.setBackgroundColor(Color.parseColor("#0068df"))
             pointTV.setTextColor(Color.parseColor("#ffffff"))
         }
@@ -369,11 +392,16 @@ class MessageUserFragment : Fragment() {
         pointTV.setTextColor(Color.parseColor("#c5c5c5"))
 
     }
+    fun setopview(){
+        limit_opET.setText("")
+        limit_op2ET.setText("")
+        visitLL.visibility = View.GONE
+        limitLL.visibility = View.GONE
+    }
     fun setmenu3(){
         citizenLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
         workerLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
         studentLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
-        cautionLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
 
         citizenTV.setTextColor(Color.parseColor("#9a9a99"))
         workerTV.setTextColor(Color.parseColor("#9a9a99"))

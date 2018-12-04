@@ -341,7 +341,6 @@ class User_visit_List_Fragment : Fragment() {
                             val re_member =Utils.getInt(json,"re_member")
                             Log.d("데이트",re_member.toString())
 
-
                             val userView = View.inflate(myContext, R.layout.item_visit, null)
                             var dateTV : TextView = userView.findViewById(R.id.dateTV)
                             var new_userTV : TextView = userView.findViewById(R.id.new_userTV)

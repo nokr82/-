@@ -18,6 +18,7 @@ import cz.msebera.android.httpclient.Header
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import kotlin.math.log
 
 //인트로
 class IntroActivity : RootActivity() {
@@ -37,8 +38,6 @@ class IntroActivity : RootActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_intro)
-
-        println("IntroActivity()")
 
         this.context = this
         progressDialog = ProgressDialog(context)
@@ -78,8 +77,8 @@ class IntroActivity : RootActivity() {
 
     private fun stopIntro() {
 
-            //handler.sendEmptyMessage(0)
         val autoLogin = PrefUtils.getBooleanPreference(context, "autoLogin")
+        //val autoLogin = false
 
         if (!autoLogin) {
             PrefUtils.clear(context)
@@ -105,6 +104,7 @@ class IntroActivity : RootActivity() {
 
 
         val params = RequestParams()
+
         params.put("login_id", PrefUtils.getStringPreference(context,"login_id"))
         params.put("passwd", PrefUtils.getStringPreference(context,"passwd"))
         //val member_type = PrefUtils.getStringPreference(context,"member_type")
