@@ -30,8 +30,8 @@ class Sales_Analysis_List_Fragment : Fragment() {
     private var progressDialog: ProgressDialog? = null
     lateinit var adapter: ArrayAdapter<String>
 
-    var option_amount = ArrayList<String>()
-    var option_limit = arrayOf("5개씩보기", "10개씩보기")
+    var option_amount =ArrayList<String>()
+    var option_limit = arrayOf("5개씩보기","10개씩보기")
     var categoryIndex = ArrayList<Int>()
 
     lateinit var pageSP: Spinner
@@ -40,7 +40,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
     lateinit var all_memberTV: TextView
     lateinit var new_userTV: TextView
     lateinit var member_re_cntTV: TextView
-    lateinit var accountlessTV: TextView
+    lateinit var accountlessTV : TextView
     lateinit var itemdateLL: LinearLayout
     lateinit var nextLL: LinearLayout
     lateinit var preLL: LinearLayout
@@ -53,19 +53,19 @@ class Sales_Analysis_List_Fragment : Fragment() {
     lateinit var monthTV: TextView
     lateinit var three_mTV: TextView
     lateinit var accumulateLL: LinearLayout
-    lateinit var tagTV: TextView
+    lateinit var tagTV : TextView
+    lateinit var useLL : LinearLayout
 
-    var day_type = 1 //1-오늘 2-이번주 3-이번달 4-3개월
+     var day_type = 1 //1-오늘 2-이번주 3-이번달 4-3개월
     var page = 1    //페이지
     var limit = 5 //보여지는갯수
-    var totalPage = 1 //총페이지
+    var totalPage =1 //총페이지
     var payment_type = -1
     var category_id = 1
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
         progressDialog = ProgressDialog(myContext)
-        return inflater.inflate(R.layout.fra_sales_analysis, container, false)
+            return inflater.inflate(R.layout.fra_sales_analysis,container,false)
     }
 
 
@@ -91,6 +91,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
         nextLL = view.findViewById(R.id.nextLL)
         preLL = view.findViewById(R.id.preLL)
         tagTV = view.findViewById(R.id.tagTV)
+        useLL = view.findViewById(R.id.useLL)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -138,6 +139,19 @@ class Sales_Analysis_List_Fragment : Fragment() {
             }
 
         }
+
+
+        accumulateLL.setOnClickListener {
+            var intent = Intent(myContext, CalActivity::class.java)
+            intent.putExtra("step", 1)
+            startActivity(intent)
+        }
+        useLL.setOnClickListener {
+            val intent = Intent(myContext, CalActivity::class.java)
+            intent.putExtra("step",4)
+            startActivity(intent)
+        }
+
         preLL.setOnClickListener {
 
             if (1 == page) {
@@ -195,25 +209,25 @@ class Sales_Analysis_List_Fragment : Fragment() {
             val lastmonth = aftermonth.format(date).toString().substring(0, 8) + endDay
             tagTV.text = "최근 30일간 매출내역입니다."
 
-            dateTV.text = currentDate + " ~ " + lastmonth
+            dateTV.text = currentDate+" ~ "+lastmonth
         }
         three_mRL.setOnClickListener {
             setmenu()
             day_type = 4
             loadcntData()
             loadData(1)
-            three_mTV.setTextColor(Color.parseColor("#606060"))
+            three_mTV .setTextColor(Color.parseColor("#606060"))
             val aftermonth = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
             val cal = Calendar.getInstance()
             //그달의 마지막일 구하기
-            val startday = cal.getActualMaximum(Calendar.MONTH) - 3
-            val beforemonth = SimpleDateFormat("yyyy." + startday + ".dd", Locale.KOREA)
+            val startday = cal.getActualMaximum(Calendar.MONTH)-3
+            val beforemonth = SimpleDateFormat("yyyy."+startday+".dd", Locale.KOREA)
             val date = Date()
             val currentDate = beforemonth.format(date).toString()
             val lastmonth = aftermonth.format(date).toString()
             tagTV.text = "최근 3달간 매출내역입니다."
 
-            dateTV.text = currentDate + " ~ " + lastmonth
+            dateTV.text = currentDate+" ~ "+lastmonth
         }
 
         accumulateLL.setOnClickListener {
@@ -225,7 +239,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
         //전체고객구하기
         loadcntData()
         loadData(1)
-        amountSP.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        amountSP.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
                 /*if (position==0){
                     payment_type = 1

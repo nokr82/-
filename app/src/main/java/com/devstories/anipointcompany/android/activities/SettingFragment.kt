@@ -3,10 +3,12 @@ package com.devstories.anipointcompany.android.activities
 import android.content.Context
 import android.os.Bundle
 import android.app.ProgressDialog
+import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.devstories.anipointcompany.android.R
 import kotlinx.android.synthetic.main.fragment_setting.*
@@ -17,6 +19,10 @@ class SettingFragment : android.support.v4.app.Fragment() {
     private var progressDialog: ProgressDialog? = null
     lateinit var myInfoTV: TextView
     lateinit var operPolicyTV: TextView
+
+
+    lateinit var accumulateLL : LinearLayout
+    lateinit var useLL : LinearLayout
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -30,12 +36,30 @@ class SettingFragment : android.support.v4.app.Fragment() {
         super.onViewCreated(view, savedInstanceState)
         myInfoTV = view.findViewById(R.id.myInfoTV)
         operPolicyTV= view.findViewById(R.id.operPolicyTV)
+
+        accumulateLL = view.findViewById(R.id.accumulateLL)
+        useLL = view.findViewById(R.id.useLL)
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val SettingMyInfoFragment : SettingMyInfoFragment = SettingMyInfoFragment()
         val OperPolicyFragment : OperPolicyFragment = OperPolicyFragment()
+
+
+
+        accumulateLL.setOnClickListener {
+            var intent = Intent(myContext, CalActivity::class.java)
+            intent.putExtra("step", 1)
+            startActivity(intent)
+        }
+        useLL.setOnClickListener {
+            val intent = Intent(myContext, CalActivity::class.java)
+            intent.putExtra("step",4)
+            startActivity(intent)
+        }
+
 
         myInfoTV.setOnClickListener {
             //프레그먼트에서 프래그먼트선언하기

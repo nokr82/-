@@ -50,7 +50,8 @@ class User_visit_List_Fragment : Fragment() {
     lateinit var weekTV: TextView
     lateinit var monthTV: TextView
     lateinit var three_mTV: TextView
-    lateinit var accumulateLL: LinearLayout
+    lateinit var accumulateLL : LinearLayout
+    lateinit var useLL : LinearLayout
 
     var day_type = 1 //1-오늘 2-이번주 3-이번달 4-3개월
     var page = 1      //페이지
@@ -71,6 +72,7 @@ class User_visit_List_Fragment : Fragment() {
         dateTV = view.findViewById(R.id.dateTV)
         itemdateLL = view.findViewById(R.id.itemdateLL)
         accumulateLL = view.findViewById(R.id.accumulateLL)
+        useLL = view.findViewById(R.id.useLL)
         all_memberTV = view.findViewById(R.id.all_memberTV)
         member_re_cntTV = view.findViewById(R.id.member_re_cntTV)
         new_userTV = view.findViewById(R.id.new_userTV)
@@ -114,11 +116,7 @@ class User_visit_List_Fragment : Fragment() {
         val date = Date()
         val currentDate = formatter.format(date)
 
-        accumulateLL.setOnClickListener {
-            val intent = Intent(myContext, CalActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-        }
+
 
         nextLL.setOnClickListener {
 
@@ -211,6 +209,11 @@ class User_visit_List_Fragment : Fragment() {
         accumulateLL.setOnClickListener {
             var intent = Intent(myContext, CalActivity::class.java)
             intent.putExtra("step", 1)
+            startActivity(intent)
+        }
+        useLL.setOnClickListener {
+            val intent = Intent(myContext, CalActivity::class.java)
+            intent.putExtra("step",4)
             startActivity(intent)
         }
 

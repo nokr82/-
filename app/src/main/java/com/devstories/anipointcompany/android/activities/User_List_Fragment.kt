@@ -37,9 +37,9 @@ class User_List_Fragment : Fragment() {
     lateinit var userList_most_freq_userLL : LinearLayout
     lateinit var userList_birth_userLL : LinearLayout
     lateinit var joinLL : LinearLayout
-    lateinit var accumulateLL : LinearLayout
     lateinit var btn_search : LinearLayout
     lateinit var entire_viewTV : TextView
+    lateinit var accumulateLL : LinearLayout
     lateinit var useLL : LinearLayout
     var isBirthTab = false
 
@@ -192,6 +192,7 @@ class User_List_Fragment : Fragment() {
                             var memoTV: TextView = userView.findViewById(R.id.memoTV)
                             var phoneTV: TextView = userView.findViewById(R.id.phoneTV)
                             var modiLL: LinearLayout = userView.findViewById(R.id.modiLL)
+                            var msgLL:LinearLayout = userView.findViewById(R.id.msgLL)
 
 
 
@@ -255,6 +256,13 @@ class User_List_Fragment : Fragment() {
                             }
 
                             visit_recordTV.text = str
+
+                        msgLL.setOnClickListener {
+                            var intent = Intent()
+                            intent.putExtra("member_id", member_id)
+                            intent.action = "MSG_NEXT"
+                            myContext.sendBroadcast(intent)
+                        }
 
 
                             modiLL.setOnClickListener {
