@@ -98,7 +98,8 @@ class CalActivity : RootActivity() {
         }
 
         op_accLL.setOnClickListener {
-
+            val intent = Intent(context, DlgEditPerActivity::class.java)
+            startActivity(intent)
         }
 
         cardPayLL.setOnClickListener {
