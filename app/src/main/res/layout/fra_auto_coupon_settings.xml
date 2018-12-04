@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,31 +12,36 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_weight="2.4"
+            android:orientation="vertical"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
 
             <LinearLayout
+                android:id="@+id/newMemberLL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:background="#eeeeee">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="34.5dp"
-                    android:orientation="horizontal">
+                    android:layout_height="49.5dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="4.5dp"
-                        android:layout_marginTop="9.5dp"
-                        android:src="@mipmap/btn_on"/>
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@mipmap/coupon"
+                        android:scaleType="centerCrop"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="13dp"
+                        android:layout_marginLeft="5dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -47,17 +51,14 @@
                             android:textSize="8sp"
                             android:textStyle="bold"
                             android:letterSpacing="-0.2"
-                            android:text="첫 가입 고객 쿠폰"/>
+                            android:text="첫 가입 고객 환영 쿠폰"/>
 
-                        <TextView
-                            android:id="@+id/couponNameTV"
+                        <ImageView
+                            android:id="@+id/newMemberIV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="3.5dp"
-                            android:text=""
-                            android:textSize="7sp"
-                            android:textColor="#666666"
-                            android:letterSpacing="-0.02"/>
+                            android:layout_marginTop="6dp"
+                            android:src="@mipmap/off"/>
 
                     </LinearLayout>
 
@@ -71,27 +72,29 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/birthMemberLL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="34.5dp"
-                    android:orientation="horizontal">
+                    android:layout_height="49.5dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="4.5dp"
-                        android:layout_marginTop="9.5dp"
-                        android:src="@mipmap/btn_on"/>
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@mipmap/coupon"
+                        android:scaleType="centerCrop"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="13dp"
+                        android:layout_marginLeft="5dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -101,17 +104,14 @@
                             android:textSize="8sp"
                             android:textStyle="bold"
                             android:letterSpacing="-0.2"
-                            android:text="생일 고객 쿠폰"/>
+                            android:text="생일 고객 축하 쿠폰"/>
 
-                        <TextView
-                            android:id="@+id/itemEventContTV"
+                        <ImageView
+                            android:id="@+id/birthMemberIV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="3.5dp"
-                            android:text="아메리카토 1잔"
-                            android:textSize="7sp"
-                            android:textColor="#666666"
-                            android:letterSpacing="-0.02"/>
+                            android:layout_marginTop="6dp"
+                            android:src="@mipmap/off"/>
 
                     </LinearLayout>
 
@@ -125,27 +125,29 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/noVisit30LL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="34.5dp"
-                    android:orientation="horizontal">
+                    android:layout_height="49.5dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="4.5dp"
-                        android:layout_marginTop="9.5dp"
-                        android:src="@mipmap/btn_on"/>
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@mipmap/coupon"
+                        android:scaleType="centerCrop"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="13dp"
+                        android:layout_marginLeft="5dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -157,14 +159,12 @@
                             android:letterSpacing="-0.2"
                             android:text="30일 미방문 고객 쿠폰"/>
 
-                        <TextView
+                        <ImageView
+                            android:id="@+id/noVisit30IV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="3.5dp"
-                            android:text="아메리카토 1잔"
-                            android:textSize="7sp"
-                            android:textColor="#666666"
-                            android:letterSpacing="-0.02"/>
+                            android:layout_marginTop="6dp"
+                            android:src="@mipmap/off"/>
 
                     </LinearLayout>
 
@@ -178,27 +178,29 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/noVisit60LL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="34.5dp"
-                    android:orientation="horizontal">
+                    android:layout_height="49.5dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="4.5dp"
-                        android:layout_marginTop="9.5dp"
-                        android:src="@mipmap/btn_on"/>
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@mipmap/coupon"
+                        android:scaleType="centerCrop"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="13dp"
+                        android:layout_marginLeft="5dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -210,14 +212,12 @@
                             android:letterSpacing="-0.2"
                             android:text="60일 미방문 고객 쿠폰"/>
 
-                        <TextView
+                        <ImageView
+                            android:id="@+id/noVisit60IV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="3.5dp"
-                            android:text="아메리카토 1잔"
-                            android:textSize="7sp"
-                            android:textColor="#666666"
-                            android:letterSpacing="-0.02"/>
+                            android:layout_marginTop="6dp"
+                            android:src="@mipmap/off"/>
 
                     </LinearLayout>
 
@@ -231,27 +231,29 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/noVisit90LL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="34.5dp"
-                    android:orientation="horizontal">
+                    android:layout_height="49.5dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="4.5dp"
-                        android:layout_marginTop="9.5dp"
-                        android:src="@mipmap/btn_on"/>
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@mipmap/coupon"
+                        android:scaleType="centerCrop"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="13dp"
+                        android:layout_marginLeft="5dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -263,14 +265,12 @@
                             android:letterSpacing="-0.2"
                             android:text="90일 미방문 고객 쿠폰"/>
 
-                        <TextView
+                        <ImageView
+                            android:id="@+id/noVisit90IV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="3.5dp"
-                            android:text="아메리카토 1잔"
-                            android:textSize="7sp"
-                            android:textColor="#666666"
-                            android:letterSpacing="-0.02"/>
+                            android:layout_marginTop="6dp"
+                            android:src="@mipmap/off"/>
 
                     </LinearLayout>
 
@@ -285,190 +285,267 @@
 
         </LinearLayout>
 
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="#f0f0f0"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="1.6"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
                 android:orientation="vertical">
-                <LinearLayout
+
+                <TextView
+                    android:id="@+id/couponNameTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="9dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="8sp"
-                        android:textColor="#666666"
-                        android:textStyle="bold"
-                        android:letterSpacing="-0.2"
-                        android:text="쿠폰종류"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20.5dp"
-                        android:text="쿠폰 유효기간"
-                        android:textColor="#666666"
-                        android:textStyle="bold"
-                        android:letterSpacing="-0.2"
-                        android:textSize="8sp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20.5dp"
-                        android:textSize="8sp"
-                        android:textStyle="bold"
-                        android:textColor="#666666"
-                        android:letterSpacing="-0.2"
-                        android:text="사용 가능 요일"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="17.5dp"
-                        android:textStyle="bold"
-                        android:textSize="8sp"
-                        android:textColor="#666666"
-                        android:text="유효기간 만료 알림"/>
-                </LinearLayout>
-
-                <EditText
-                    android:id="@+id/coupon_prdET"
-                    android:layout_width="119.5dp"
-                    android:layout_height="18dp"
-                    android:textSize="8dp"
-                    android:hint="상품명"
+                    android:textSize="10sp"
                     android:textColor="#666666"
-                    android:background="@drawable/background_strock_e7e7e7"/>
+                    android:textStyle="bold"
+                    android:letterSpacing="-0.2"
+                    android:text="첫 가입 고객 환영 쿠폰"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_height="20dp"
+                    android:layout_marginTop="15dp"
+                    android:visibility="gone">
+
                     <LinearLayout
-                        android:layout_width="119.5dp"
-                        android:layout_height="18dp"
-                        android:layout_marginTop="10dp"
+                        android:id="@+id/days30LL"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:id="@+id/days30IV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/box_check_off"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:textSize="8sp"
+                            android:textColor="#666666"
+                            android:text="30일"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:background="@drawable/background_strock_e7e7e7">
-                        <Spinner
-                            android:paddingLeft="10dp"
-                            android:id="@+id/coupon_exSP"
-                            android:layout_width="104dp"
-                            android:layout_height="18dp"
-                            android:background="@null"/>
+                        android:layout_marginLeft="6dp">
+
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@mipmap/icon_down_arrow"/>
+                            android:src="@mipmap/box_check_off"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:textSize="8sp"
+                            android:textColor="#666666"
+                            android:text="60일"/>
+
                     </LinearLayout>
+
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp">
-                        <LinearLayout
-                            android:id="@+id/weekdayLL"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="6dp"
+                        android:gravity="center_vertical">
+
+                        <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <ImageView
-                                android:id="@+id/weekdayIV"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@mipmap/box_check_on"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="4dp"
-                                android:textSize="8sp"
-                                android:textColor="#666666"
-                                android:text="평일"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:id="@+id/saturdayLL"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/box_check_off"/>
+
+                        <TextView
                             android:layout_width="wrap_content"
-                            android:layout_marginLeft="11dp"
-                            android:layout_height="wrap_content">
-                            <ImageView
-                                android:id="@+id/saturdayIV"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@mipmap/box_check_off"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="4dp"
-                                android:textSize="8sp"
-                                android:textColor="#666666"
-                                android:text="토"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:id="@+id/sundayLL"
-                            android:layout_marginLeft="11dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <ImageView
-                                android:id="@+id/sundayIV"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@mipmap/box_check_off"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="4dp"
-                                android:textSize="8sp"
-                                android:textColor="#666666"
-                                android:text="일"/>
-                        </LinearLayout>
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:textSize="8sp"
+                            android:textColor="#666666"
+                            android:text="90일"/>
+
                     </LinearLayout>
-                    <LinearLayout
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="쿠폰 유효기간"
+                    android:textSize="8dp"
+                    android:textColor="#666666"
+                    android:textStyle="bold"/>
+
+                <RelativeLayout
+                    android:layout_width="119.5dp"
+                    android:layout_height="18dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/background_strock_e7e7e7">
+
+                    <Spinner
+                        android:id="@+id/couponDateSP"
                         android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingLeft="10dp"
+                        android:background="@null"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="17dp"
-                        android:orientation="vertical">
+                        android:src="@mipmap/icon_down_arrow"
+                        android:layout_marginRight="5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"/>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="사용 가능 요일"
+                    android:textSize="8dp"
+                    android:textColor="#666666"
+                    android:textStyle="bold"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/weekDayLL"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:id="@+id/weekDayIV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/box_check_off"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:textSize="8sp"
+                            android:textColor="#666666"
+                            android:text="평일"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/satDayLL"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="6dp">
+
+                        <ImageView
+                            android:id="@+id/satDayIV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/box_check_off"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:textSize="8sp"
+                            android:textColor="#666666"
+                            android:text="토"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/sunDayLL"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="6dp"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:id="@+id/sunDayIV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/box_check_off"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:textSize="8sp"
+                            android:textColor="#666666"
+                            android:text="일"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="11dp"
+                        android:text="유효기간 만료 알림"
+                        android:textSize="8dp"
+                        android:textColor="#666666"
+                        android:textStyle="bold"/>
+
+                    <LinearLayout
+                        android:id="@+id/validityLL"
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical">
+
                         <ImageView
                             android:id="@+id/validityIV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@mipmap/switch_on"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="7dp"
-                            android:textSize="7sp"
-                            android:textColor="#666666"
-                            android:text="* 코인 추가사용"/>
-                        <TextView
-                            android:id="@+id/helpTV"
-                            android:layout_width="90dp"
-                            android:layout_height="15dp"
-                            android:layout_marginTop="2.5dp"
-                            android:gravity="center"
-                            android:background="#dcdfe0"
-                            android:textColor="#666666"
-                            android:textSize="7sp"
-                            android:text="유효기간 만료 알림이란?"
-                            android:letterSpacing="-0.18"/>
+                            android:src="@mipmap/switch_off" />
 
-                        <TextView
-                            android:id="@+id/nextTV"
-                            android:layout_width="65dp"
-                            android:layout_height="20dp"
-                            android:background="#0871bf"
-                            android:layout_gravity="right"
-                            android:gravity="center"
-                            android:textSize="9sp"
-                            android:textColor="#ffffff"
-                            android:text="다음"
-                            android:letterSpacing="-0.03"/>
                     </LinearLayout>
 
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/saveTV"
+                    android:layout_width="65dp"
+                    android:layout_height="20dp"
+                    android:background="#0871bf"
+                    android:gravity="center"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:textSize="9sp"
+                    android:textColor="#ffffff"
+                    android:text="저장"
+                    android:letterSpacing="-0.03"
+                    android:layout_marginTop="10dp"/>
+
             </LinearLayout>
 
         </LinearLayout>
