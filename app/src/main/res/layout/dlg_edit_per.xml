@@ -5,8 +5,8 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="175dp"
-        android:layout_height="wrap_content">
+        android:layout_width="300dp"
+        android:layout_height="300dp">
 
         <LinearLayout
             android:layout_marginBottom="5dp"

@@ -3,14 +3,11 @@ package com.devstories.anipointcompany.android.activities
 import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.RootActivity
 import kotlinx.android.synthetic.main.dlg_edit_per.*
 import android.content.Intent
-import com.devstories.anipointcompany.android.Actions.MemberAction.member_join
-import com.devstories.anipointcompany.android.Actions.RequestStepAction.changeStep
+import com.devstories.anipointcompany.android.base.Utils
 
 
 //회원수정 다이얼로그
@@ -37,8 +34,6 @@ class DlgEditPerActivity : RootActivity() {
 
     //계산클릭이벤트
     fun cal(){
-
-
 
         oneLL.setOnClickListener {
             moneyTV.setText(moneyTV.getText().toString() + 1)
@@ -79,14 +74,20 @@ class DlgEditPerActivity : RootActivity() {
         }
 
         useLL.setOnClickListener {
-            finish()
-
+            setpoint()
         }
 
 
     }
 
+fun setpoint(){
 
+    var money = Utils.getString(moneyTV)
+    val resultIntent = Intent()
+    resultIntent.putExtra("point",money)
+    setResult(RESULT_OK, resultIntent)
+    finish()
+}
 
 
     override fun onDestroy() {

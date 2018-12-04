@@ -259,7 +259,7 @@ class User_List_Fragment : Fragment() {
 
                             modiLL.setOnClickListener {
                                 var intent = Intent(context, DlgEditMemberInfoActivity::class.java)
-                                intent.putExtra("member_id", member_id)
+                                intent.putExtra("member_Fid", member_id)
                                 startActivityForResult(intent, EDIT_MEMBER_INFO)
                             }
 
