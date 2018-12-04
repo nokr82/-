@@ -1108,14 +1108,17 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/userCouponListLL"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
             android:layout_marginTop="18.5dp"
+            android:layout_marginBottom="18.5dp"
             android:orientation="vertical">
 
 
-            <ImageView
+            <!--<ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/coupon" />
@@ -1175,7 +1178,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/coupon" />
-            </LinearLayout>
+            </LinearLayout>-->
 
         </LinearLayout>
 
