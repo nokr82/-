@@ -213,7 +213,20 @@ class Sales_Analysis_List_Fragment : Fragment() {
         //전체고객구하기
         loadcntData()
         loadData(1)
+        amountSP.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+                if (position==0){
+                    payment_type = 1
+                }else if (position==1){
+                    payment_type = 2
+                }else if (position==2){
+                    payment_type = 3
+                }
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
 
+            }
+        }
 
     }
 
@@ -225,14 +238,13 @@ class Sales_Analysis_List_Fragment : Fragment() {
     }
 
 
-    //방문자수구하기
+    //사업체정보
     fun loadcntData() {
         val params = RequestParams()
         params.put("company_id",1)
-        params.put("day_type",day_type)
 
 
-        PointAction.user_visited(params, object : JsonHttpResponseHandler() {
+        CompanyAction.company_info(params, object : JsonHttpResponseHandler() {
 
             override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
                 if (progressDialog != null) {
@@ -244,15 +256,19 @@ class Sales_Analysis_List_Fragment : Fragment() {
 
 
                     if ("ok" == result) {
-                         //오늘 가입한회원
-                        val member_new_cnt:Int = response.getInt("newMemberCount")
-                        val member_re_cnt = response.getInt("reMemberCount")
-                        val allmember = member_new_cnt+member_re_cnt
 
+                        val companyCates = response.getJSONArray("companyCates")
+                        Log.d("데이트",companyCates.toString())
+                        for (i in 0..companyCates.length()-1){
+                            Log.d("갯수",i.toString())
+                            var json=companyCates[i] as JSONObject
+                            val Category = json.getJSONObject("Category")
+                            val name = Utils.getString(Category,"name")
+                            option_amount.add(name)
 
-                        all_memberTV.text = allmember.toString()
-                        new_userTV.text = member_new_cnt.toString()
-                        member_re_cntTV.text  = member_re_cnt.toString()
+                        }
+                        adapter = ArrayAdapter(myContext,R.layout.spiner_item,option_amount)
+                        amountSP.adapter = adapter
                     } else {
 
                     }
@@ -330,32 +346,8 @@ class Sales_Analysis_List_Fragment : Fragment() {
                         totalPage  = response.getInt("totalPage")
 
                         option_amount.clear()
-                        val companyCates = response.getJSONArray("companyCates")
-                        Log.d("데이트",companyCates.toString())
-                        for (i in 0..companyCates.length()-1){
-                            Log.d("갯수",i.toString())
-                            var json=companyCates[i] as JSONObject
-                            val Category = json.getJSONObject("Category")
-                            val name = Utils.getString(Category,"name")
-                            option_amount.add(name)
 
-                        }
-                        adapter = ArrayAdapter(myContext,R.layout.spiner_item,option_amount)
-                        amountSP.adapter = adapter
-                        amountSP.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
-                            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-                                if (position==0){
-                                    payment_type = 1
-                                }else if (position==1){
-                                    payment_type = 2
-                                }else if (position==2){
-                                    payment_type = 3
-                                }
-                            }
-                            override fun onNothingSelected(p0: AdapterView<*>?) {
 
-                            }
-                        }
 
                     } else {
 

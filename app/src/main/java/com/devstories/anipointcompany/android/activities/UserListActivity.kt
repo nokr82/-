@@ -27,15 +27,12 @@ class UserListActivity : FragmentActivity() {
         val User_visit_List_Fragment : User_visit_List_Fragment = User_visit_List_Fragment()
         val Message_Manage_Fragment : Message_Manage_Fragment = Message_Manage_Fragment()
         val Point_List_Fragment : Point_List_Fragment = Point_List_Fragment()
-        val SaleAnalysisFragment = SaleAnalysisFragment()
         val SettingFragment : SettingFragment = SettingFragment()
         val Sales_Analysis_List_Fragment : Sales_Analysis_List_Fragment = Sales_Analysis_List_Fragment()
 
 
         userLL.setBackgroundResource(R.drawable.background_strock_707070)
         supportFragmentManager.beginTransaction().replace(R.id.userFL, User_List_Fragment).commit()
-
-
         userLL.setOnClickListener {
             setmenu()
             userLL.setBackgroundResource(R.drawable.background_strock_707070)
@@ -59,17 +56,12 @@ class UserListActivity : FragmentActivity() {
         analysisRevenueLL.setOnClickListener {
             setmenu()
             analysisRevenueLL.setBackgroundResource(R.drawable.background_strock_707070)
-            supportFragmentManager.beginTransaction().replace(R.id.userFL, SaleAnalysisFragment).commit()
+            supportFragmentManager.beginTransaction().replace(R.id.userFL, Sales_Analysis_List_Fragment).commit()
         }
         settingLL.setOnClickListener {
             setmenu()
             settingLL.setBackgroundResource(R.drawable.background_strock_707070)
             supportFragmentManager.beginTransaction().replace(R.id.userFL, SettingFragment).commit()
-        }
-        analysisRevenueLL.setOnClickListener {
-            setmenu()
-            analysisRevenueLL.setBackgroundResource(R.drawable.background_strock_707070)
-            supportFragmentManager.beginTransaction().replace(R.id.userFL, Sales_Analysis_List_Fragment).commit()
         }
 
     }
@@ -82,7 +74,6 @@ class UserListActivity : FragmentActivity() {
         uservisitLL.setBackgroundResource(R.drawable.background_strock_null)
         analysisRevenueLL.setBackgroundResource(R.drawable.background_strock_null)
         settingLL.setBackgroundResource(R.drawable.background_strock_null)
-        analysisRevenueLL.setBackgroundResource(R.drawable.background_strock_null)
     }
 
 
