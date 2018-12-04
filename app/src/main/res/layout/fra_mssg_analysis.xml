@@ -13,7 +13,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="10dp"
-        android:background="@drawable/background_strock_e7e7e7">
+        android:background="@drawable/background_strock_e7e7e7"
+        android:visibility="gone">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -173,88 +174,119 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="9.5dp"
+        android:layout_marginBottom="25.5dp"
         android:background="@drawable/background_strock_e7e7e7"
-        android:padding="10dp"
-        android:orientation="horizontal">
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_height="25.5dp"
+            android:orientation="horizontal">
+
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="9sp"
-                    android:textColor="#606060"
-                    android:textStyle="bold"
-                    android:text="자동 이벤트"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textColor="#1c83d0"
-                    android:textSize="9sp"
-                    android:text="(3)"/>
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="3.5dp"
-                android:background="#606060"/>
-            <!--여기에 addView-->
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"/>
-            </ScrollView>
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="9sp"
+                        android:textColor="#606060"
+                        android:textStyle="bold"
+                        android:text="자동 이벤트"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textColor="#1c83d0"
+                        android:textSize="9sp"
+                        android:text="(3)"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#606060"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="9sp"
+                        android:textColor="#c5c5c5"
+                        android:textStyle="bold"
+                        android:text="맞춤 메세지"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textColor="#e7e7e7"
+                        android:textSize="9sp"
+                        android:text="(0)"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#606060"
+                    android:visibility="invisible"/>
+
+            </LinearLayout>
+
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#c5c5c5"/>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
+            android:minHeight="150dp"
             android:layout_weight="1"
             android:orientation="vertical">
-            <LinearLayout
+
+            <ListView
+                android:id="@+id/listLV"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="9sp"
-                    android:textColor="#c5c5c5"
-                    android:textStyle="bold"
-                    android:text="맞춤 메세지"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textColor="#e7e7e7"
-                    android:textSize="9sp"
-                    android:text="(0)"/>
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginTop="3.5dp"
-                android:background="#c5c5c5"/>
-            <!--여기에 addView-->
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"/>
-            </ScrollView>
+                android:layout_height="wrap_content">
+
+
+
+            </ListView>
+
         </LinearLayout>
+
     </LinearLayout>
+
 </LinearLayout>
