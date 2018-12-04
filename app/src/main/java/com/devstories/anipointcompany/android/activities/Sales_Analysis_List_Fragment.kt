@@ -32,6 +32,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
 
     var option_amount =ArrayList<String>()
     var option_limit = arrayOf("5개씩보기","10개씩보기")
+    var categoryIndex = ArrayList<Int>()
 
     lateinit var pageSP: Spinner
     lateinit var amountSP: Spinner
@@ -59,6 +60,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
     var limit = 5 //보여지는갯수
     var totalPage =1 //총페이지
     var payment_type = -1
+    var category_id = 1
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
         progressDialog = ProgressDialog(myContext)
@@ -231,6 +233,8 @@ class Sales_Analysis_List_Fragment : Fragment() {
                     payment_type = 3
                 }*/
                 payment_type = position + 1
+
+                category_id = categoryIndex[position]
                 //println("amountSP clicked. Position is $payment_type")
                 loadData(1)
             }
@@ -284,10 +288,15 @@ class Sales_Analysis_List_Fragment : Fragment() {
 
                         for (i in 0 until categories.length()) {
                             val json = categories[i] as JSONObject
+                            val company_category = json.getJSONObject("CompanyCategory")
                             val category = json.getJSONObject("Category")
                             val name = Utils.getString(category, "name")
 
                             option_amount.add(name)
+
+                            val category_id = Utils.getInt(company_category, "category_id")
+
+                            categoryIndex.add(category_id)
                         }
 
                         adapter = ArrayAdapter(myContext,R.layout.spiner_item,option_amount)
@@ -353,7 +362,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
     fun loadData(company_id: Int) {
         val params = RequestParams()
         params.put("company_id",company_id)
-        params.put("category_id",payment_type)
+        params.put("category_id",category_id)
         params.put("day_type",4)
         params.put("limit",limit)
         params.put("page", page)
