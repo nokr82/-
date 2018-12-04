@@ -44,6 +44,7 @@ class SetCouponFragment : Fragment() {
     lateinit var validityIV: ImageView
     lateinit var helpTV: TextView
     lateinit var coupon_prdTV: TextView
+    lateinit var skipTV: TextView
     lateinit var exTV: TextView
 
 
@@ -92,7 +93,7 @@ class SetCouponFragment : Fragment() {
 
         coupon_exSP= view.findViewById(R.id.coupon_exSP)
         coupon_prdET= view.findViewById(R.id.coupon_prdET)
-
+        skipTV= view.findViewById(R.id.skipTV)
         weekdayLL= view.findViewById(R.id.weekdayLL)
         saturdayLL= view.findViewById(R.id.saturdayLL)
         sundayLL= view.findViewById(R.id.sundayLL)
@@ -194,7 +195,11 @@ class SetCouponFragment : Fragment() {
         }
         etchange()
 
-
+        skipTV.setOnClickListener {
+            var intent = Intent()
+            intent.action = "SKIP_NEXT"
+            myContext.sendBroadcast(intent)
+        }
         nextTV.setOnClickListener {
             coupon_add()
         }

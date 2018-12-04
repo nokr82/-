@@ -1,11 +1,14 @@
 package com.devstories.anipointcompany.android.activities
 
 import android.app.ProgressDialog
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,6 +37,22 @@ class Message_Manage_Fragment : Fragment() {
     lateinit var useLL : LinearLayout
 
     lateinit var messageFL: FrameLayout
+    val MessageUserFragment : MessageUserFragment = MessageUserFragment()
+    val Message_write_Fragment : Message_write_Fragment = Message_write_Fragment()
+    val AutoCouponSettingsFragment : AutoCouponSettingsFragment = AutoCouponSettingsFragment()
+    //고객리스트 =>메시지보내기
+    internal var MsgReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent?) {
+            if (intent != null){
+            setView()
+            view2.visibility = View.VISIBLE
+            sendMessageTV.setTextColor(Color.parseColor("#FFFFFF"))
+            childFragmentManager.beginTransaction().replace(R.id.messageFL, Message_write_Fragment).commit()
+            }
+        }
+    }
+
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
@@ -68,12 +87,14 @@ class Message_Manage_Fragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val MessageUserFragment : MessageUserFragment = MessageUserFragment()
-        val Message_write_Fragment : Message_write_Fragment = Message_write_Fragment()
-        val AutoCouponSettingsFragment : AutoCouponSettingsFragment = AutoCouponSettingsFragment()
 
-        childFragmentManager.beginTransaction().replace(R.id.messageFL, MessageUserFragment).commit()
 
+       childFragmentManager.beginTransaction().replace(R.id.messageFL, MessageUserFragment).commit()
+
+
+        //메시지보내기
+        var filter = IntentFilter("MSG_NEXT")
+        myContext.registerReceiver(MsgReceiver, filter)
 
         useLL.setOnClickListener {
             val intent = Intent(myContext, CalActivity::class.java)

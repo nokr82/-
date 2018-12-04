@@ -265,7 +265,7 @@
 
         <LinearLayout
             android:layout_marginTop="14dp"
-            android:visibility="visible"
+            android:visibility="invisible"
             android:id="@+id/message_op_LL"
             android:background="#90424242"
             android:layout_width="127dp"
@@ -527,6 +527,7 @@
                 android:gravity="center_horizontal">
                 <TextView
                     android:id="@+id/okTV"
+                    android:visibility="invisible"
                     android:layout_width="115dp"
                     android:layout_height="25dp"
                     android:layout_marginTop="12.5dp"
