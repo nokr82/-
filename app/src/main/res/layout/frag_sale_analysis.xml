@@ -372,7 +372,7 @@
                     android:textColor="#666666"
                     android:letterSpacing="-0.03"
                     android:lineSpacingExtra="3sp"
-                    android:text="방문 현황 상세" />
+                    android:text="매출 분석 상세" />
             </LinearLayout>
 
 
