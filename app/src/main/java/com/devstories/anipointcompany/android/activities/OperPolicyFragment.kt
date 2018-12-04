@@ -41,6 +41,11 @@ class OperPolicyFragment : Fragment() {
     lateinit var visitLL: LinearLayout
     lateinit var accountLL: LinearLayout
     lateinit var saveTV: TextView
+    lateinit var high_perET: EditText
+    lateinit var basic_perET: EditText
+
+
+
 
     var type = -1//단골기준
     var money_type = -1//단골기준
@@ -69,7 +74,8 @@ class OperPolicyFragment : Fragment() {
         visitLL= view.findViewById(R.id.visitLL)
         accountLL= view.findViewById(R.id.accountLL)
         saveTV = view.findViewById(R.id.saveTV)
-
+        high_perET= view.findViewById(R.id.high_perET)
+        basic_perET= view.findViewById(R.id.basic_perET)
 
 
     }
@@ -154,6 +160,13 @@ class OperPolicyFragment : Fragment() {
                         val frequenter_type = Utils.getString(company,"frequenter_type")
                         //단골금액/몇회
                         val frequenter_standard = Utils.getString(company,"frequenter_standard")
+                        // 최소사용포인트
+                        val basic_per = Utils.getString(company,"basic_per")
+                        //최소사용포인트 단위
+                        val option_per = Utils.getString(company,"option_per")
+
+                        basic_perET.setText(basic_per)
+                        high_perET.setText(option_per)
 
                         min_pointTV.setText(min_use_point)
                         if (use_point_unit==100){
@@ -270,6 +283,9 @@ class OperPolicyFragment : Fragment() {
 
         params.put("frequenter_type",frequenter_type)
         params.put("use_point_unit",use_point_unit)
+        params.put("basic_per",Utils.getString(basic_perET))
+        params.put("option_per",Utils.getString(high_perET))
+
 
 
         CompanyAction.edit_info(params, object : JsonHttpResponseHandler() {

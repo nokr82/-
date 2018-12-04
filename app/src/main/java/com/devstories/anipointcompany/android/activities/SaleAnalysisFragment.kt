@@ -187,7 +187,7 @@ class SaleAnalysisFragment : Fragment() {
         params.put("day_type",day_type)
 
 
-        CompanyAction.sales_analysis(params, object : JsonHttpResponseHandler() {
+        CompanyAction.sales_list(params, object : JsonHttpResponseHandler() {
 
             override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
                 if (progressDialog != null) {
