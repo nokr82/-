@@ -27,6 +27,7 @@ class UserListActivity : FragmentActivity() {
         val User_visit_List_Fragment : User_visit_List_Fragment = User_visit_List_Fragment()
         val Message_Manage_Fragment : Message_Manage_Fragment = Message_Manage_Fragment()
         val Point_List_Fragment : Point_List_Fragment = Point_List_Fragment()
+        val SaleAnalysisFragment = SaleAnalysisFragment()
         val SettingFragment : SettingFragment = SettingFragment()
         val Sales_Analysis_List_Fragment : Sales_Analysis_List_Fragment = Sales_Analysis_List_Fragment()
 
@@ -55,6 +56,11 @@ class UserListActivity : FragmentActivity() {
             messageLL.setBackgroundResource(R.drawable.background_strock_707070)
             supportFragmentManager.beginTransaction().replace(R.id.userFL, Message_Manage_Fragment).commit()
         }
+        analysisRevenueLL.setOnClickListener {
+            setmenu()
+            analysisRevenueLL.setBackgroundResource(R.drawable.background_strock_707070)
+            supportFragmentManager.beginTransaction().replace(R.id.userFL, SaleAnalysisFragment).commit()
+        }
         settingLL.setOnClickListener {
             setmenu()
             settingLL.setBackgroundResource(R.drawable.background_strock_707070)
@@ -74,6 +80,7 @@ class UserListActivity : FragmentActivity() {
         userLL.setBackgroundResource(R.drawable.background_strock_null)
         messageLL.setBackgroundResource(R.drawable.background_strock_null)
         uservisitLL.setBackgroundResource(R.drawable.background_strock_null)
+        analysisRevenueLL.setBackgroundResource(R.drawable.background_strock_null)
         settingLL.setBackgroundResource(R.drawable.background_strock_null)
         analysisRevenueLL.setBackgroundResource(R.drawable.background_strock_null)
     }
