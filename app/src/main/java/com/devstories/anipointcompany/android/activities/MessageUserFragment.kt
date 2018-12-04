@@ -393,7 +393,8 @@ class MessageUserFragment : Fragment() {
 
     }
     fun setopview(){
-
+        limit_opET.setText("")
+        limit_op2ET.setText("")
         visitLL.visibility = View.GONE
         limitLL.visibility = View.GONE
     }

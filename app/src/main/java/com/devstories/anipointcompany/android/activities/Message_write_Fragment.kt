@@ -44,6 +44,8 @@ class Message_write_Fragment : Fragment() {
                 println("intent" + intent.getStringExtra("gender"))
                 println("intent" + intent.getStringExtra("age"))
                 setfilter()
+                userRL.setBackgroundColor(Color.parseColor("#0068df"))
+                userTV.setTextColor(Color.parseColor("#ffffff"))
                 couponRL.setBackgroundColor(Color.parseColor("#0068df"))
                 couponTV.setTextColor(Color.parseColor("#ffffff"))
                 childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, SetCouponFragment).commit()
