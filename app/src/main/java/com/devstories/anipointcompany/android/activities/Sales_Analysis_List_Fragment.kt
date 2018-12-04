@@ -52,6 +52,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
     lateinit var monthTV: TextView
     lateinit var three_mTV: TextView
     lateinit var accumulateLL: LinearLayout
+    lateinit var tagTV : TextView
 
      var day_type = 1 //1-오늘 2-이번주 3-이번달 4-3개월
     var page = 1    //페이지
@@ -86,6 +87,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
         three_mRL = view.findViewById(R.id.three_mRL)
         nextLL = view.findViewById(R.id.nextLL)
         preLL = view.findViewById(R.id.preLL)
+        tagTV = view.findViewById(R.id.tagTV)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -151,6 +153,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
             loadData(1)
             todayTV.setTextColor(Color.parseColor("#606060"))
             dateTV.text = currentDate+"~"+currentDate
+            tagTV.text = "최근 1일간 매출내역입니다."
         }
 
         todayRL.callOnClick()
@@ -170,6 +173,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
             Log.d("현재",startDate)
             Log.d("미래",endDate)
             dateTV.text = startDate+" ~ "+endDate
+            tagTV.text = "최근 7일간 매출내역입니다."
         }
         monthRL.setOnClickListener {
             setmenu()
@@ -185,6 +189,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
             val date = Date()
             val currentDate = beforemonth.format(date)
             val lastmonth = aftermonth.format(date).toString().substring(0,8)+endDay
+            tagTV.text = "최근 30일간 매출내역입니다."
 
             dateTV.text = currentDate+" ~ "+lastmonth
         }
@@ -202,6 +207,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
             val date = Date()
             val currentDate = beforemonth.format(date).toString()
             val lastmonth = aftermonth.format(date).toString()
+            tagTV.text = "최근 3달간 매출내역입니다."
 
             dateTV.text = currentDate+" ~ "+lastmonth
         }
