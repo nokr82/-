@@ -152,6 +152,14 @@ class Message_Manage_Fragment : Fragment() {
         if (progressDialog != null) {
             progressDialog!!.dismiss()
         }
+
+        try {
+            if(null != MsgReceiver) {
+                myContext.unregisterReceiver(MsgReceiver)
+            }
+
+        } catch (e: IllegalArgumentException) {
+        }
     }
 
 

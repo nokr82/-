@@ -115,6 +115,13 @@ class UserListActivity : FragmentActivity() {
         if (progressDialog != null) {
             progressDialog!!.dismiss()
         }
+        try {
+            if(null != MsgReceiver) {
+                unregisterReceiver(MsgReceiver)
+            }
+
+        } catch (e: IllegalArgumentException) {
+        }
 
 
     }
