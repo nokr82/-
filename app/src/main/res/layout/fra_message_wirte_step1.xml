@@ -178,7 +178,12 @@
                     </RelativeLayout>
 
                 </LinearLayout>
-
+<LinearLayout
+    android:id="@+id/visitLL"
+    android:visibility="gone"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
                 <TextView
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="10dp"
@@ -211,6 +216,54 @@
 
                 </LinearLayout>
 
+</LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/limitLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <EditText
+                        android:id="@+id/limit_opET"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:layout_height="wrap_content"
+                        />
+                    <TextView
+                        android:id="@+id/limit_opTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10.5dp"
+                        android:textSize="18dp"
+                        android:textColor="#666666"
+                        android:text="P"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10.5dp"
+                        android:textSize="18dp"
+                        android:textColor="#666666"
+                        android:text="~"/>
+
+                    <EditText
+                        android:id="@+id/limit_op2ET"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:layout_height="wrap_content"
+                        />
+                    <TextView
+                        android:id="@+id/limit_op2TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10.5dp"
+                        android:textSize="18dp"
+                        android:textColor="#666666"
+                        android:text="P"/>
+
+                </LinearLayout>
 
 
             </LinearLayout>
