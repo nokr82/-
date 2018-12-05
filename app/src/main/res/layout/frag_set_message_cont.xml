@@ -45,11 +45,7 @@
                     android:layout_marginBottom="4.5dp"
                     android:gravity="center">
 
-                    <ImageView
-                        android:layout_width="12sp"
-                        android:layout_height="10dp"
-                        android:layout_marginRight="4.5dp"
-                        android:src="@mipmap/pictur_img" />
+
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -102,7 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/main_bg"/>
+                />
         </LinearLayout>
 
     </ScrollView>

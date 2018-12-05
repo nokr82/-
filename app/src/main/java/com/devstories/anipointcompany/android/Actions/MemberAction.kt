@@ -30,7 +30,10 @@ object MemberAction {
         HttpClient.post("/member/visit_list.json", params, handler)
     }
 
-
+    //사용자 쿠폰 조회
+    fun inquiry_point(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/member/my_point.json", params, handler)
+    }
     //손님등록
     fun member_join(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/member/member_join.json", params, handler)
