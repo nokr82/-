@@ -303,6 +303,7 @@ class SetCouponFragment : Fragment() {
                         var intent = Intent()
                         intent.action = "STEP2_NEXT"
                         intent.putExtra("coupon_id",coupon_id)
+                        intent.putExtra("count",count)
                         intent.putExtra("search_type",search_type)
                         intent.putExtra("gender",gender)
                         intent.putExtra("age",age)

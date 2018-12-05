@@ -2,10 +2,7 @@ package com.devstories.anipointcompany.android.activities
 
 import android.app.AlertDialog
 import android.app.ProgressDialog
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
+import android.content.*
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
@@ -57,7 +54,7 @@ class SetMessageContFragment : Fragment() {
     lateinit var messageContentET:EditText
     lateinit var titleET:EditText
 
-
+    var count :String? =null
     var coupon_id :String? =null
     var search_type = -1
     var visited_date:String? =null
@@ -109,7 +106,7 @@ class SetMessageContFragment : Fragment() {
             visited_date = getArguments()!!.getString("visited_date")
             from = getArguments()!!.getString("from")
             to = getArguments()!!.getString("to")
-
+             count = getArguments()!!.getString("count")
              Log.d("쿠폰", search_type.toString())
              Log.d("쿠폰", coupon_id)
              Log.d("쿠폰", gender.toString())
@@ -191,23 +188,27 @@ class SetMessageContFragment : Fragment() {
         })
 
         nextTV.setOnClickListener {
-            showConfirmDialog()
+            dlgView()
 
         }
 
     }
-    fun showConfirmDialog() {
-        val pictureDialog = AlertDialog.Builder(myContext)
-        pictureDialog.setTitle("메시지 전송확인")
-        val pictureDialogItems = arrayOf("전송", "취소")
-        pictureDialog.setItems(pictureDialogItems
-        ) { dialog, which ->
-            when (which) {
-                0 ->   send_message()
-                1 -> dialog.cancel()
-            }
+    fun dlgView() {
+        var mPopupDlg: DialogInterface? = null
+
+        val builder = AlertDialog.Builder(myContext)
+        val dialogView = layoutInflater.inflate(R.layout.dlg_send_message, null)
+        val cancelTV = dialogView.findViewById<TextView>(R.id.cancelTV)
+        val msgWriteTV = dialogView.findViewById<TextView>(R.id.msgWriteTV)
+        val sendCntTV = dialogView.findViewById<TextView>(R.id.sendCntTV)
+        sendCntTV.text = count
+        mPopupDlg = builder.setView(dialogView).show()
+        cancelTV.setOnClickListener {
+            mPopupDlg.dismiss()
         }
-        pictureDialog.show()
+        msgWriteTV.setOnClickListener {
+            send_message()
+        }
     }
 
     // 쿠폰 만들기(step3) - 메세지 보내기

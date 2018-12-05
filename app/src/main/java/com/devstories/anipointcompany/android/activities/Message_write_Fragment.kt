@@ -98,6 +98,7 @@ class Message_write_Fragment : Fragment() {
                 //메시지작성으로
                 var args:Bundle = Bundle()
                 args.putString("coupon_id", coupon_id)
+                args.putString("count", count)
                 args.putInt("search_type", search_type)
                 args.putStringArrayList("gender", gender as ArrayList<String>?)
                 args.putStringArrayList("age", age as ArrayList<String>?)
