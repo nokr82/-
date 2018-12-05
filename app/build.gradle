@@ -6,6 +6,11 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 28
+
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
+
     defaultConfig {
         applicationId "com.devstories.anipointcompany.android"
         minSdkVersion 15
@@ -41,5 +46,7 @@ dependencies {
     implementation('io.nlopez.smartlocation:library:3.3.3') {
         transitive = false
     }
+
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 
 }

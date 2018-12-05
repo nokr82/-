@@ -1,12 +1,12 @@
 package com.devstories.aninuriandroid.adapter
 
 import android.content.Context
-import android.view.LayoutInflater
+import android.content.Intent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.devstories.anipointcompany.android.R
-import com.devstories.anipointcompany.android.R.id.*
+import com.devstories.anipointcompany.android.activities.MessageDetailActivity
 import com.devstories.anipointcompany.android.base.Utils
 import org.json.JSONObject
 import java.util.ArrayList
@@ -40,6 +40,7 @@ open class AnalysisAutoMessageAdapter (context:Context, view:Int, data: ArrayLis
         var json = data.get(position)
 
         val message = json.getJSONObject("Message")
+        val message_id = Utils.getInt(message, "id")
         val title = Utils.getString(message, "title")
         val msg = Utils.getString(message, "message")
 
@@ -69,6 +70,15 @@ open class AnalysisAutoMessageAdapter (context:Context, view:Int, data: ArrayLis
             item.itemEventContTV.text = msg
         }
 
+        item.LL.setOnClickListener {
+
+            var intent = Intent(context, MessageDetailActivity::class.java)
+            intent.putExtra("message_id", message_id)
+            intent.putExtra("type", type)
+            context.startActivity(intent)
+
+        }
+
         return retView
     }
 
@@ -88,11 +98,13 @@ open class AnalysisAutoMessageAdapter (context:Context, view:Int, data: ArrayLis
         var item_on_offIV :ImageView
         var itemEventTitleTV :TextView
         var itemEventContTV :TextView
+        var LL :LinearLayout
 
         init {
             item_on_offIV = v.findViewById(R.id.item_on_offIV) as ImageView
             itemEventTitleTV = v.findViewById(R.id.itemEventTitleTV) as TextView
             itemEventContTV = v.findViewById(R.id.itemEventContTV) as TextView
+            LL = v.findViewById(R.id.LL) as LinearLayout
         }
     }
 }
