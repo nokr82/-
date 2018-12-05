@@ -725,6 +725,7 @@
                         android:textSize="27sp"
                         android:textColor="#0066b0"
                         android:letterSpacing="-0.03"
+                        android:text="0"
                         android:lineSpacingExtra="8sp"
                         android:gravity="end"
                         />

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -88,7 +89,7 @@ class CalActivity : RootActivity() {
         //계산기
         cal()
 
-
+        stackLL.callOnClick()
         //결제내용스피너
         cate_SP.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
@@ -138,6 +139,12 @@ class CalActivity : RootActivity() {
     }
 
 
+
+    fun setmenu3(){
+        stackLL.setBackgroundColor(Color.parseColor("#ffffff"))
+        stack2LL.setBackgroundColor(Color.parseColor("#ffffff"))
+    }
+
     fun setmenu() {
         maleIV.setImageResource(R.drawable.radio_off)
         femaleIV.setImageResource(R.drawable.radio_off)
@@ -152,12 +159,17 @@ class CalActivity : RootActivity() {
     //계산클릭이벤트
     fun cal() {
         stackLL.setOnClickListener {
+            setmenu3()
+            stackLL.setBackgroundColor(Color.parseColor("#906e8a32"))
             //기본퍼센트
             per_type = 1
-
+            setPoint()
         }
+
         stack2LL.setOnClickListener {
             //임의 퍼센트
+            setmenu3()
+            stack2LL.setBackgroundColor(Color.parseColor("#906e8a32"))
             val managerpercent = stack2TV.text.toString()
             val money = moneyTV.text.toString()
             per_type = 2
@@ -169,14 +181,14 @@ class CalActivity : RootActivity() {
             if (money == null) {
                 Toast.makeText(context, "가격을 먼저 입력해주세요.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
-            }
-
+            }else{
             val percent = managerpercent.toFloat() / 100
             val floatPoint = (money.toFloat() * percent)
             val stringPoint = floatPoint.toString()
             var splitPoint = stringPoint.split(".")
             val point = splitPoint.get(0)
             pointTV.setText(point)
+            }
 
         }
 
