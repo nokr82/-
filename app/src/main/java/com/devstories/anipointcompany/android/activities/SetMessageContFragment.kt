@@ -226,14 +226,16 @@ class SetMessageContFragment : Fragment() {
         val params = RequestParams()
         params.put("company_id",1)
         params.put("coupon_id",coupon_id)
+        if (member_id != -1){
+            params.put("member_id",member_id)
+        }
         params.put("message",message)
         params.put("7days_yn","N")
         params.put("title",title)
+        if (imgIV.drawable != null){
         bitmap = imgIV.drawable as BitmapDrawable
-        if (bitmap!=null){
             params.put("upload", ByteArrayInputStream(Utils.getByteArray(bitmap!!.bitmap)))
         }
-
         if (age.size>0){
             for (i in 0..(age.size -1)){
                 val agestr = age[i]
