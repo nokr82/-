@@ -36,22 +36,16 @@ class Message_Manage_Fragment : Fragment() {
     lateinit var accumulateLL : LinearLayout
     lateinit var useLL : LinearLayout
 
+
+
+
     lateinit var messageFL: FrameLayout
     val MssgAnalysisFragment : MssgAnalysisFragment = MssgAnalysisFragment()
     val Message_write_Fragment : Message_write_Fragment = Message_write_Fragment()
     val AutoCouponSettingsFragment : AutoCouponSettingsFragment = AutoCouponSettingsFragment()
-    //고객리스트 =>메시지보내기
-    internal var MsgReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent?) {
-            if (intent != null){
-            setView()
-            view2.visibility = View.VISIBLE
-            sendMessageTV.setTextColor(Color.parseColor("#FFFFFF"))
-            childFragmentManager.beginTransaction().replace(R.id.messageFL, Message_write_Fragment).commit()
-            }
-        }
-    }
 
+
+    var member_id = -1
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -91,10 +85,19 @@ class Message_Manage_Fragment : Fragment() {
 
        childFragmentManager.beginTransaction().replace(R.id.messageFL, MssgAnalysisFragment).commit()
 
-
-        //메시지보내기
-        var filter = IntentFilter("MSG_NEXT")
-        myContext.registerReceiver(MsgReceiver, filter)
+        if (arguments != null) {
+            member_id = getArguments()!!.getInt("member_id")
+            if (member_id!=-1){
+                setView()
+                view2.visibility = View.VISIBLE
+                sendMessageTV.setTextColor(Color.parseColor("#FFFFFF"))
+                var args:Bundle = Bundle()
+                args.putInt("member_id", member_id)
+                Message_write_Fragment.setArguments(args)
+                childFragmentManager.beginTransaction().replace(R.id.messageFL, Message_write_Fragment).commit()
+            }
+            arguments = null
+        }
 
         useLL.setOnClickListener {
             val intent = Intent(myContext, CalActivity::class.java)
@@ -153,13 +156,7 @@ class Message_Manage_Fragment : Fragment() {
             progressDialog!!.dismiss()
         }
 
-        try {
-            if(null != MsgReceiver) {
-                myContext.unregisterReceiver(MsgReceiver)
-            }
 
-        } catch (e: IllegalArgumentException) {
-        }
     }
 
 

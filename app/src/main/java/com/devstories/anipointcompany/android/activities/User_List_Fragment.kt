@@ -260,6 +260,7 @@ class User_List_Fragment : Fragment() {
                         msgLL.setOnClickListener {
                             var intent = Intent()
                             intent.putExtra("member_id", member_id)
+                            Log.d("멤버아이디",member_id.toString())
                             intent.action = "MSG_NEXT"
                             myContext.sendBroadcast(intent)
                         }

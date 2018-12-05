@@ -902,13 +902,13 @@ class CalActivity : RootActivity() {
                 error()
             }
 
-            override fun onStart() {
-                // show dialog
-                if (progressDialog != null) {
-
-                    progressDialog!!.show()
-                }
-            }
+//            override fun onStart() {
+//                // show dialog
+//                if (progressDialog != null) {
+//
+//                    progressDialog!!.show()
+//                }
+//            }
 
             override fun onFinish() {
                 if (progressDialog != null) {
