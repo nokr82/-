@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="135dp"
+    android:layout_height="45dp" android:padding="5dp" android:layout_margin="5dp" >
+
+    <LinearLayout
+        android:id="@+id/couponBackLL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/item_couponNameTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3.5dp"
+            android:layout_marginRight="5dp"
+            android:lineSpacingExtra="3sp"
+            android:layout_gravity="right"
+            android:textSize="9sp"
+            android:textColor="#333333"
+            android:text="쿠폰이름"
+            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="5dp">
+            <TextView
+                android:id="@+id/item_s_validityTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="7sp"
+                android:textColor="#595959"
+                android:letterSpacing="-0.24"
+                android:text="2018-11-29"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="~"
+                android:textColor="#595959"
+                android:textSize="7sp"
+                android:letterSpacing="-0.02"/>
+            <TextView
+                android:id="@+id/item_e_validityTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="7sp"
+                android:letterSpacing="-0.02"
+                android:textColor="#595959"
+                android:text="2018-12-31"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/item_messageTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="right"
+            android:textSize="6sp"
+            android:textColor="#595959"
+            android:text="메세지" />
+    </LinearLayout>
+
+</LinearLayout>

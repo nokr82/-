@@ -54,6 +54,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
     lateinit var three_mTV: TextView
     lateinit var accumulateLL: LinearLayout
     lateinit var tagTV : TextView
+    lateinit var useLL : LinearLayout
 
      var day_type = 1 //1-오늘 2-이번주 3-이번달 4-3개월
     var page = 1    //페이지
@@ -90,6 +91,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
         nextLL = view.findViewById(R.id.nextLL)
         preLL = view.findViewById(R.id.preLL)
         tagTV = view.findViewById(R.id.tagTV)
+        useLL = view.findViewById(R.id.useLL)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -97,18 +99,19 @@ class Sales_Analysis_List_Fragment : Fragment() {
 
 
 
-        adapter = ArrayAdapter(myContext,R.layout.spiner_item,option_limit)
+        adapter = ArrayAdapter(myContext, R.layout.spiner_item, option_limit)
         pageSP.adapter = adapter
         //스피너 선택이벤트
-        pageSP.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+        pageSP.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-                if (position==0){
+                if (position == 0) {
                     limit = 5
-                }else if (position==1){
+                } else if (position == 1) {
                     limit = 10
                 }
                 loadData(1)
             }
+
             override fun onNothingSelected(p0: AdapterView<*>?) {
 
             }
@@ -127,22 +130,35 @@ class Sales_Analysis_List_Fragment : Fragment() {
 
         nextLL.setOnClickListener {
 
-            if (totalPage==page){
-                Toast.makeText(myContext,"최대페이지입니다",Toast.LENGTH_SHORT).show()
-            }else{
+            if (totalPage <= page) {
+                Toast.makeText(myContext, "마지막 페이지입니다", Toast.LENGTH_SHORT).show()
+            } else {
                 page++
-                Toast.makeText(myContext,page.toString()+"페이지입니다",Toast.LENGTH_SHORT).show()
+                Toast.makeText(myContext, page.toString() + "페이지입니다", Toast.LENGTH_SHORT).show()
                 loadData(1)
             }
 
         }
+
+
+        accumulateLL.setOnClickListener {
+            var intent = Intent(myContext, CalActivity::class.java)
+            intent.putExtra("step", 1)
+            startActivity(intent)
+        }
+        useLL.setOnClickListener {
+            val intent = Intent(myContext, CalActivity::class.java)
+            intent.putExtra("step",4)
+            startActivity(intent)
+        }
+
         preLL.setOnClickListener {
 
-            if (1==page){
-                Toast.makeText(myContext,"첫번쨰 페이지입니다",Toast.LENGTH_SHORT).show()
-            }else{
+            if (1 == page) {
+                Toast.makeText(myContext, "첫 페이지입니다", Toast.LENGTH_SHORT).show()
+            } else {
                 page--
-                Toast.makeText(myContext,page.toString()+"페이지입니다",Toast.LENGTH_SHORT).show()
+                Toast.makeText(myContext, page.toString() + "페이지입니다", Toast.LENGTH_SHORT).show()
                 loadData(1)
             }
 
@@ -154,7 +170,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
             loadcntData()
             loadData(1)
             todayTV.setTextColor(Color.parseColor("#606060"))
-            dateTV.text = currentDate+"~"+currentDate
+            dateTV.text = currentDate + "~" + currentDate
             tagTV.text = "최근 1일간 매출내역입니다."
         }
 
@@ -171,10 +187,10 @@ class Sales_Analysis_List_Fragment : Fragment() {
             val df = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
             var startDate = df.format(calendar.getTime())
             calendar.add(Calendar.DATE, 6)
-            var   endDate = df.format(calendar.getTime())
-            Log.d("현재",startDate)
-            Log.d("미래",endDate)
-            dateTV.text = startDate+" ~ "+endDate
+            var endDate = df.format(calendar.getTime())
+            Log.d("현재", startDate)
+            Log.d("미래", endDate)
+            dateTV.text = startDate + " ~ " + endDate
             tagTV.text = "최근 7일간 매출내역입니다."
         }
         monthRL.setOnClickListener {
@@ -190,7 +206,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
             val endDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH)
             val date = Date()
             val currentDate = beforemonth.format(date)
-            val lastmonth = aftermonth.format(date).toString().substring(0,8)+endDay
+            val lastmonth = aftermonth.format(date).toString().substring(0, 8) + endDay
             tagTV.text = "최근 30일간 매출내역입니다."
 
             dateTV.text = currentDate+" ~ "+lastmonth
@@ -238,6 +254,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
                 //println("amountSP clicked. Position is $payment_type")
                 loadData(1)
             }
+
             override fun onNothingSelected(p0: AdapterView<*>?) {
 
             }
@@ -245,18 +262,18 @@ class Sales_Analysis_List_Fragment : Fragment() {
 
     }
 
-    fun  setmenu(){
+    fun setmenu() {
         todayTV.setTextColor(Color.parseColor("#c5c5c5"))
         monthTV.setTextColor(Color.parseColor("#c5c5c5"))
         weekTV.setTextColor(Color.parseColor("#c5c5c5"))
-        three_mTV .setTextColor(Color.parseColor("#c5c5c5"))
+        three_mTV.setTextColor(Color.parseColor("#c5c5c5"))
     }
 
 
     //사업체정보
     fun loadcntData() {
         val params = RequestParams()
-        params.put("company_id",1)
+        params.put("company_id", 1)
 
 
         CompanyAction.company_info(params, object : JsonHttpResponseHandler() {
@@ -284,7 +301,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
 
                         val categories = response.getJSONArray("categories")
                         option_amount.clear()
-                        Log.d("데이트",categories.toString())
+                        Log.d("데이트", categories.toString())
 
                         for (i in 0 until categories.length()) {
                             val json = categories[i] as JSONObject
@@ -299,7 +316,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
                             categoryIndex.add(category_id)
                         }
 
-                        adapter = ArrayAdapter(myContext,R.layout.spiner_item,option_amount)
+                        adapter = ArrayAdapter(myContext, R.layout.spiner_item, option_amount)
                         amountSP.adapter = adapter
 
                         adapter.notifyDataSetChanged()
@@ -361,13 +378,13 @@ class Sales_Analysis_List_Fragment : Fragment() {
     //방문이력 뽑기
     fun loadData(company_id: Int) {
         val params = RequestParams()
-        params.put("company_id",company_id)
-        params.put("category_id",category_id)
-        params.put("day_type",4)
-        params.put("limit",limit)
+        params.put("company_id", company_id)
+        params.put("category_id", category_id)
+        params.put("day_type", 4)
+        params.put("limit", limit)
         params.put("page", page)
-        Log.d("페이지",page.toString())
-        Log.d("day_type",day_type.toString())
+        Log.d("페이지", page.toString())
+        Log.d("day_type", day_type.toString())
 
         CompanyAction.sales_list(params, object : JsonHttpResponseHandler() {
 
@@ -379,24 +396,24 @@ class Sales_Analysis_List_Fragment : Fragment() {
                 try {
                     val result = response!!.getString("result")
                     if ("ok" == result) {
-                        val totalData =  response.getJSONObject("totalData")
+                        val totalData = response.getJSONObject("totalData")
 
                         val totalPrice = Utils.getString(totalData, "totalPrice")
                         val cashTotalPrice = Utils.getString(totalData, "cashTotalPrice")
                         val cardTotalPrice = Utils.getString(totalData, "cardTotalPrice")
                         val bankTotalPrice = Utils.getString(totalData, "bankTotalPrice")
 
-                        all_memberTV.text = totalPrice
-                        new_userTV.text = cashTotalPrice
-                        member_re_cntTV.text = cardTotalPrice
-                        accountlessTV.text = bankTotalPrice
+                        all_memberTV.text = Utils.comma(totalPrice)
+                        new_userTV.text = Utils.comma(cashTotalPrice)
+                        member_re_cntTV.text = Utils.comma(cardTotalPrice)
+                        accountlessTV.text = Utils.comma(bankTotalPrice)
 
 
                         val list = response.getJSONArray("list")
                         //option_amount.clear()
                         itemdateLL.removeAllViews()
 
-                        Log.d("데이트",list.toString())
+                        Log.d("데이트", list.toString())
                         if (list.length() > 0) {
                             for (i in 0 until list.length()) {
                                 //Log.d("갯수",i.toString())
@@ -416,10 +433,10 @@ class Sales_Analysis_List_Fragment : Fragment() {
                                 var bankTV: TextView = salesView.findViewById(R.id.bankTV)
 
                                 dateTV.text = date.toString()
-                                totalTV.text = totalPrice
-                                cashTV.text = cash
-                                cardTV.text = card
-                                bankTV.text = bank
+                                totalTV.text = Utils.comma(totalPrice)
+                                cashTV.text = Utils.comma(cash)
+                                cardTV.text = Utils.comma(card)
+                                bankTV.text = Utils.comma(bank)
 
                                 itemdateLL.addView(salesView)
 
@@ -431,7 +448,6 @@ class Sales_Analysis_List_Fragment : Fragment() {
                         /*totalPage  = response.getInt("totalPage")
 
                         option_amount.clear()*/
-
 
 
                     } else {

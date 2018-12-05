@@ -552,6 +552,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/msgLL"
                 android:layout_marginTop="12.5dp"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"

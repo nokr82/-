@@ -310,10 +310,18 @@
                             android:layout_height="15dp"
                             android:inputType="number"
                             android:textSize="8sp"
+                            android:minEms="3"
                             android:background="@null"
                             android:gravity="center_vertical"
                             android:textColor="#666666"
-                            android:text="12,500"/>
+                            android:text=""/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="%"
+                            android:textColor="#666666"
+                            android:textSize="8sp" />
                         <TextView
                             android:layout_marginLeft="20dp"
                             android:layout_width="wrap_content"
@@ -330,7 +338,14 @@
                             android:background="@null"
                             android:inputType="number"
                             android:gravity="center_vertical"
-                            android:text="12,500"
+                            android:text=""
+                            android:textColor="#666666"
+                            android:textSize="8sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="%"
                             android:textColor="#666666"
                             android:textSize="8sp" />
 

@@ -15,8 +15,11 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
 
 import com.devstories.anipointcompany.android.R
+import kotlinx.android.synthetic.main.fra_message_wirte_step1.*
+
 //메인메시지관리
 class Message_write_Fragment : Fragment() {
     lateinit var myContext: Context
@@ -35,15 +38,15 @@ class Message_write_Fragment : Fragment() {
     val MessageUserFragment : MessageUserFragment = MessageUserFragment()
     val SetCouponFragment : SetCouponFragment = SetCouponFragment()
     val SetMessageContFragment : SetMessageContFragment = SetMessageContFragment()
-
+    var member_id = ""
     //고객선택
     internal var step1NextReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent?) {
             if (intent != null) {
                 //브로드캐스트로 프래그먼트이동리시버
-                println("intent")
-                println("intent" + intent.getStringExtra("gender"))
-                println("intent" + intent.getStringExtra("age"))
+
+//                println("intent" + intent.getStringExtra("gender"))
+//                println("intent" + intent.getStringExtra("age"))
                 setfilter()
                 userRL.setBackgroundColor(Color.parseColor("#0068df"))
                 userTV.setTextColor(Color.parseColor("#ffffff"))
@@ -53,7 +56,33 @@ class Message_write_Fragment : Fragment() {
             }
         }
     }
+    //건너뛰기
+    internal var SkipReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent?) {
+            if (intent != null) {
+                setfilter()
+                userRL.setBackgroundColor(Color.parseColor("#0068df"))
+                userTV.setTextColor(Color.parseColor("#ffffff"))
+                writeRL.setBackgroundColor(Color.parseColor("#0068df"))
+                writeTV.setTextColor(Color.parseColor("#ffffff"))
+                childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, SetMessageContFragment).commit()
+            }
+        }
+    }
 
+    //고객리스트 =>메시지보내기
+    internal var MsgReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent?) {
+            if (intent != null) {
+                setfilter()
+//                member_id =   intent!!.getStringExtra("member_id")
+//                Toast.makeText(myContext,member_id,Toast.LENGTH_SHORT).show()
+                writeRL.setBackgroundColor(Color.parseColor("#0068df"))
+                writeTV.setTextColor(Color.parseColor("#ffffff"))
+                childFragmentManager.beginTransaction().replace(R.id.userchoiceFL,SetMessageContFragment).commit()
+            }
+        }
+    }
     // 쿠폰설정
     internal var step2NextReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent?) {
@@ -112,6 +141,8 @@ class Message_write_Fragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        var filter = IntentFilter("MSG_NEXT")
+        myContext.registerReceiver(MsgReceiver, filter)
 
         //고객선택
         var filter1 = IntentFilter("STEP1_NEXT")
@@ -119,6 +150,10 @@ class Message_write_Fragment : Fragment() {
         //쿠폰설정
         var filter2 = IntentFilter("STEP2_NEXT")
         myContext.registerReceiver(step2NextReceiver, filter2)
+        //쿠폰설정
+        var skipfilter = IntentFilter("SKIP_NEXT")
+        myContext.registerReceiver(SkipReceiver, skipfilter)
+
         //메시지작성
         var filter3 = IntentFilter("STEP3_NEXT")
         myContext.registerReceiver(step3NextReceiver, filter3)
@@ -149,6 +184,47 @@ class Message_write_Fragment : Fragment() {
         if (progressDialog != null) {
             progressDialog!!.dismiss()
         }
+
+        try {
+            if(null != step1NextReceiver) {
+                myContext.unregisterReceiver(step1NextReceiver)
+            }
+
+        } catch (e: IllegalArgumentException) {
+        }
+
+        try {
+            if(null != SkipReceiver) {
+                myContext.unregisterReceiver(SkipReceiver)
+            }
+
+        } catch (e: IllegalArgumentException) {
+        }
+        try {
+            if(null != step3NextReceiver) {
+                myContext.unregisterReceiver(step3NextReceiver)
+            }
+
+        } catch (e: IllegalArgumentException) {
+        }
+
+        try {
+            if(null != step2NextReceiver) {
+                myContext.unregisterReceiver(step2NextReceiver)
+            }
+
+        } catch (e: IllegalArgumentException) {
+        }
+        try {
+            if(null != MsgReceiver) {
+                myContext.unregisterReceiver(MsgReceiver)
+            }
+
+        } catch (e: IllegalArgumentException) {
+        }
+
+
+
     }
 
 }

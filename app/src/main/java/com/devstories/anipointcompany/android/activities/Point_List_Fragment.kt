@@ -51,6 +51,8 @@ class Point_List_Fragment : Fragment() {
     lateinit var weekTV: TextView
     lateinit var monthTV: TextView
 
+    lateinit var useLL : LinearLayout
+
 
     var adapterData: ArrayList<JSONObject> = ArrayList<JSONObject>()
 
@@ -97,6 +99,7 @@ class Point_List_Fragment : Fragment() {
         todayTV = view.findViewById(R.id.todayTV)
         weekTV = view.findViewById(R.id.weekTV)
         monthTV= view.findViewById(R.id.monthTV)
+        useLL = view.findViewById(R.id.useLL)
 
     }
 
@@ -163,7 +166,11 @@ class Point_List_Fragment : Fragment() {
         }
 
 
-
+        useLL.setOnClickListener {
+            val intent = Intent(myContext, CalActivity::class.java)
+            intent.putExtra("step",4)
+            startActivity(intent)
+        }
         accumulateLL.setOnClickListener {
             val intent = Intent(myContext, CalActivity::class.java)
             startActivity(intent)

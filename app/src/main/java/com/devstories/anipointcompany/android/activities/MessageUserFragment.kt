@@ -33,7 +33,7 @@ class MessageUserFragment : Fragment() {
     lateinit var myContext: Context
     private var progressDialog: ProgressDialog? = null
     lateinit var adapter: ArrayAdapter<String>
-    var option_visitday = arrayOf("전체", "15일", "30일", "60일", "90일")
+    var option_visitday = arrayOf("15일", "30일", "60일", "90일")
 
     lateinit var visitdaySP: Spinner
 
@@ -92,6 +92,7 @@ class MessageUserFragment : Fragment() {
     var gender = ArrayList<String>()
     var age =  ArrayList<String>()
 
+    var search_type = -1
     var visited_date = ""
     var days7_yn = ""
 
@@ -186,19 +187,6 @@ class MessageUserFragment : Fragment() {
         }
 
 
-
-        genderNLL.setOnClickListener {
-            it.isSelected = !it.isSelected
-
-            if(it.isSelected) {
-                genderNLL.setBackgroundResource(R.drawable.background_00d1ce)
-                genderTV.setTextColor(Color.parseColor("#ffffff"))
-            } else {
-                genderNLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
-                genderTV.setTextColor(Color.parseColor("#9a9a99"))
-            }
-
-        }
         genderMLL.setOnClickListener {
             it.isSelected = !it.isSelected
 
@@ -211,6 +199,8 @@ class MessageUserFragment : Fragment() {
                 genderMLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 menTV.setTextColor(Color.parseColor("#9a9a99"))
             }
+            member_filter()
+
 
         }
         genderFLL.setOnClickListener {
@@ -225,6 +215,8 @@ class MessageUserFragment : Fragment() {
                 genderFLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 girlTV.setTextColor(Color.parseColor("#9a9a99"))
             }
+            member_filter()
+
         }
 
         tenLL.setOnClickListener {
@@ -239,6 +231,8 @@ class MessageUserFragment : Fragment() {
                 tenLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 tenTV.setTextColor(Color.parseColor("#9a9a99"))
             }
+            member_filter()
+
         }
 
         twoLL.setOnClickListener {
@@ -253,6 +247,8 @@ class MessageUserFragment : Fragment() {
                 twoLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 twoTV.setTextColor(Color.parseColor("#9a9a99"))
             }
+            member_filter()
+
         }
 
         threeLL.setOnClickListener {
@@ -267,6 +263,8 @@ class MessageUserFragment : Fragment() {
                 threeLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 threeTV.setTextColor(Color.parseColor("#9a9a99"))
             }
+            member_filter()
+
         }
 
         fourLL.setOnClickListener {
@@ -281,6 +279,8 @@ class MessageUserFragment : Fragment() {
                 fourLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 fourTV.setTextColor(Color.parseColor("#9a9a99"))
             }
+            member_filter()
+
         }
 
         fiveLL.setOnClickListener {
@@ -295,6 +295,8 @@ class MessageUserFragment : Fragment() {
                 fiveLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 fiveTV.setTextColor(Color.parseColor("#9a9a99"))
             }
+            member_filter()
+
         }
 
         sixLL.setOnClickListener {
@@ -309,23 +311,7 @@ class MessageUserFragment : Fragment() {
                 sixLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 sixTV.setTextColor(Color.parseColor("#9a9a99"))
             }
-        }
-
-        citizenLL.setOnClickListener {
-            setmenu3()
-            citizenLL.setBackgroundResource(R.drawable.background_00d1ce)
-            citizenTV.setTextColor(Color.parseColor("#ffffff"))
-        }
-        studentLL.setOnClickListener {
-            setmenu3()
-            studentLL.setBackgroundResource(R.drawable.background_00d1ce)
-            studentTV.setTextColor(Color.parseColor("#ffffff"))
-        }
-
-        workerLL.setOnClickListener {
-            setmenu3()
-            workerLL.setBackgroundResource(R.drawable.background_00d1ce)
-            workerTV.setTextColor(Color.parseColor("#ffffff"))
+            member_filter()
 
         }
 
@@ -333,12 +319,17 @@ class MessageUserFragment : Fragment() {
         allRL.setOnClickListener {
             setfilter()
             setopview()
+            search_type = 1
             allRL.setBackgroundColor(Color.parseColor("#0068df"))
             allTV.setTextColor(Color.parseColor("#ffffff"))
+            member_filter()
+
         }
+        allRL.callOnClick()
         acc_countRL.setOnClickListener {
             setfilter()
             setopview()
+            search_type = 2
             limitLL.visibility = View.VISIBLE
             limit_opTV.text = "회"
             limit_op2TV.text = "회"
@@ -348,6 +339,7 @@ class MessageUserFragment : Fragment() {
         novisitRL.setOnClickListener {
             setfilter()
             setopview()
+            search_type = 3
             visitLL.visibility = View.VISIBLE
             novisitRL.setBackgroundColor(Color.parseColor("#0068df"))
             novisitTV.setTextColor(Color.parseColor("#ffffff"))
@@ -355,6 +347,7 @@ class MessageUserFragment : Fragment() {
         use_moneyRL.setOnClickListener {
             setfilter()
             setopview()
+            search_type = 4
             limit_opTV.text = "원"
             limit_op2TV.text = "원"
             limitLL.visibility = View.VISIBLE
@@ -364,15 +357,32 @@ class MessageUserFragment : Fragment() {
         pointRL.setOnClickListener {
             setfilter()
             setopview()
+            search_type = 5
             limit_opTV.text = "P"
             limit_op2TV.text ="P"
             limitLL.visibility = View.VISIBLE
             pointRL.setBackgroundColor(Color.parseColor("#0068df"))
             pointTV.setTextColor(Color.parseColor("#ffffff"))
         }
+
+
+
+
         nextTV.setOnClickListener {
             member_filter()
+            //브로드캐스트로 프래그먼트이동
+            var intent = Intent()
+            intent.putExtra("gender", gender)
+            intent.putExtra("age", age)
+            Log.d("나이", age.toString())
+            intent.putExtra("visited_date", visited_date)
+            intent.putExtra("count", Utils.getString(countTV))
+            intent.putExtra("from", Utils.getString(limit_opET))
+            intent.putExtra("to", Utils.getString(limit_op2ET))
+            intent.putExtra("search_type", search_type)
 
+            intent.action = "STEP1_NEXT"
+            myContext.sendBroadcast(intent)
 
         }
 
@@ -415,6 +425,7 @@ class MessageUserFragment : Fragment() {
 
         params.put("company_id",1)
 
+
         if (age.size>0){
             for (i in 0..(age.size -1)){
                 val agestr = age[i]
@@ -422,10 +433,8 @@ class MessageUserFragment : Fragment() {
                 params.put("age["+i+"]",agestr)
                 Log.d("나이",agestr)
             }
-        }else{
-            Toast.makeText(myContext,"나이를 선택해주세요",Toast.LENGTH_SHORT).show()
-            return
         }
+
         if (gender.size>0){
             for (i in 0..(gender.size -1)){
                 val genderstr = gender[i]
@@ -433,12 +442,20 @@ class MessageUserFragment : Fragment() {
                 params.put("gender["+i+"]",genderstr)
                 Log.d("성별",genderstr)
             }
-        }else{
-            Toast.makeText(myContext,"성별을 선택해주세요",Toast.LENGTH_SHORT).show()
-            return
         }
-        params.put("visited_date",visited_date)
-
+        if (search_type==2){
+            params.put("from",Utils.getString(limit_opET))
+            params.put("to",Utils.getString(limit_op2ET))
+        }else if (search_type==3){
+            params.put("visited_date",visited_date)
+        }else if (search_type==4){
+            params.put("from",Utils.getString(limit_opET))
+            params.put("to",Utils.getString(limit_op2ET))
+        }else if (search_type==5){
+            params.put("from",Utils.getString(limit_opET))
+            params.put("to",Utils.getString(limit_op2ET))
+        }
+        params.put("search_type",search_type)
 
 
 
@@ -456,13 +473,8 @@ class MessageUserFragment : Fragment() {
                         var memberCnt = response.getString("memberCnt")
 
                         countTV.text = memberCnt
-                        Toast.makeText(myContext,"고객선택완료",Toast.LENGTH_SHORT).show()
-                        //브로드캐스트로 프래그먼트이동
-                        var intent = Intent()
-                        intent.putExtra("gender", "F")
-                        intent.putExtra("age", "20")
-                        intent.action = "STEP1_NEXT"
-                        myContext.sendBroadcast(intent)
+
+
                     }else{
                         Toast.makeText(myContext,"업데이트실패", Toast.LENGTH_SHORT).show()
 
