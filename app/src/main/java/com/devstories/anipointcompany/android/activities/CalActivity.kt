@@ -827,7 +827,7 @@ class CalActivity : RootActivity() {
         params.put("company_id", 1)
         params.put("phone", phone)
 
-        CouponAction.member_coupon_list(params, object : JsonHttpResponseHandler() {
+        CouponAction.auto_coupon(params, object : JsonHttpResponseHandler() {
 
             override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
                 if (progressDialog != null) {
