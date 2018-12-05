@@ -665,6 +665,11 @@ class CalActivity : RootActivity() {
         var getMemo = Utils.getString(memoET)
         var getName = Utils.getString(nameET)
 
+        if (getBirth.length<8){
+            Toast.makeText(context,"생년월일을 8자리 입력해주세요",Toast.LENGTH_SHORT).show()
+            return
+        }
+
         val params = RequestParams()
         params.put("company_id", 1)
         params.put("member_id", getid)
