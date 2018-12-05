@@ -192,7 +192,6 @@ class MessageUserFragment : Fragment() {
 
             if(it.isSelected) {
                 gender.add("M")
-                member_filter()
                 genderMLL.setBackgroundResource(R.drawable.background_00d1ce)
                 menTV.setTextColor(Color.parseColor("#ffffff"))
             } else {
@@ -200,6 +199,8 @@ class MessageUserFragment : Fragment() {
                 genderMLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 menTV.setTextColor(Color.parseColor("#9a9a99"))
             }
+            member_filter()
+
 
         }
         genderFLL.setOnClickListener {
@@ -207,7 +208,6 @@ class MessageUserFragment : Fragment() {
 
             if(it.isSelected) {
                 gender.add("F")
-                member_filter()
                 genderFLL.setBackgroundResource(R.drawable.background_00d1ce)
                 girlTV.setTextColor(Color.parseColor("#ffffff"))
             } else {
@@ -215,6 +215,8 @@ class MessageUserFragment : Fragment() {
                 genderFLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 girlTV.setTextColor(Color.parseColor("#9a9a99"))
             }
+            member_filter()
+
         }
 
         tenLL.setOnClickListener {
@@ -222,7 +224,6 @@ class MessageUserFragment : Fragment() {
 
             if(it.isSelected) {
                 age.add("10")
-                member_filter()
                 tenLL.setBackgroundResource(R.drawable.background_00d1ce)
                 tenTV.setTextColor(Color.parseColor("#ffffff"))
             } else {
@@ -230,6 +231,8 @@ class MessageUserFragment : Fragment() {
                 tenLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 tenTV.setTextColor(Color.parseColor("#9a9a99"))
             }
+            member_filter()
+
         }
 
         twoLL.setOnClickListener {
@@ -237,7 +240,6 @@ class MessageUserFragment : Fragment() {
 
             if(it.isSelected) {
                 age.add("20")
-                member_filter()
                 twoLL.setBackgroundResource(R.drawable.background_00d1ce)
                 twoTV.setTextColor(Color.parseColor("#ffffff"))
             } else {
@@ -245,6 +247,8 @@ class MessageUserFragment : Fragment() {
                 twoLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 twoTV.setTextColor(Color.parseColor("#9a9a99"))
             }
+            member_filter()
+
         }
 
         threeLL.setOnClickListener {
@@ -252,7 +256,6 @@ class MessageUserFragment : Fragment() {
 
             if(it.isSelected) {
                 age.add("30")
-                member_filter()
                 threeLL.setBackgroundResource(R.drawable.background_00d1ce)
                 threeTV.setTextColor(Color.parseColor("#ffffff"))
             } else {
@@ -260,6 +263,8 @@ class MessageUserFragment : Fragment() {
                 threeLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 threeTV.setTextColor(Color.parseColor("#9a9a99"))
             }
+            member_filter()
+
         }
 
         fourLL.setOnClickListener {
@@ -267,7 +272,6 @@ class MessageUserFragment : Fragment() {
 
             if(it.isSelected) {
                 age.add("40")
-                member_filter()
                 fourLL.setBackgroundResource(R.drawable.background_00d1ce)
                 fourTV.setTextColor(Color.parseColor("#ffffff"))
             } else {
@@ -275,6 +279,8 @@ class MessageUserFragment : Fragment() {
                 fourLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 fourTV.setTextColor(Color.parseColor("#9a9a99"))
             }
+            member_filter()
+
         }
 
         fiveLL.setOnClickListener {
@@ -282,7 +288,6 @@ class MessageUserFragment : Fragment() {
 
             if(it.isSelected) {
                 age.add("50")
-                member_filter()
                 fiveLL.setBackgroundResource(R.drawable.background_00d1ce)
                 fiveTV.setTextColor(Color.parseColor("#ffffff"))
             } else {
@@ -290,6 +295,8 @@ class MessageUserFragment : Fragment() {
                 fiveLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 fiveTV.setTextColor(Color.parseColor("#9a9a99"))
             }
+            member_filter()
+
         }
 
         sixLL.setOnClickListener {
@@ -297,7 +304,6 @@ class MessageUserFragment : Fragment() {
 
             if(it.isSelected) {
                 age.add("60")
-                member_filter()
                 sixLL.setBackgroundResource(R.drawable.background_00d1ce)
                 sixTV.setTextColor(Color.parseColor("#ffffff"))
             } else {
@@ -305,6 +311,8 @@ class MessageUserFragment : Fragment() {
                 sixLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 sixTV.setTextColor(Color.parseColor("#9a9a99"))
             }
+            member_filter()
+
         }
 
 
@@ -314,6 +322,8 @@ class MessageUserFragment : Fragment() {
             search_type = 1
             allRL.setBackgroundColor(Color.parseColor("#0068df"))
             allTV.setTextColor(Color.parseColor("#ffffff"))
+            member_filter()
+
         }
         allRL.callOnClick()
         acc_countRL.setOnClickListener {
@@ -463,7 +473,7 @@ class MessageUserFragment : Fragment() {
                         var memberCnt = response.getString("memberCnt")
 
                         countTV.text = memberCnt
-                        Toast.makeText(myContext,"고객선택완료",Toast.LENGTH_SHORT).show()
+
 
                     }else{
                         Toast.makeText(myContext,"업데이트실패", Toast.LENGTH_SHORT).show()

@@ -67,16 +67,19 @@ class UserListActivity : FragmentActivity() {
             setmenu()
             userLL.setBackgroundResource(R.drawable.background_strock_707070)
             supportFragmentManager.beginTransaction().replace(R.id.userFL, User_List_Fragment).commit()
+            destroy()
         }
         pointLL.setOnClickListener {
             setmenu()
             pointLL.setBackgroundResource(R.drawable.background_strock_707070)
             supportFragmentManager.beginTransaction().replace(R.id.userFL, Point_List_Fragment).commit()
+            destroy()
         }
         uservisitLL.setOnClickListener {
             setmenu()
             uservisitLL.setBackgroundResource(R.drawable.background_strock_707070)
             supportFragmentManager.beginTransaction().replace(R.id.userFL, User_visit_List_Fragment).commit()
+            destroy()
         }
         messageLL.setOnClickListener {
             setmenu()
@@ -87,14 +90,28 @@ class UserListActivity : FragmentActivity() {
             setmenu()
             analysisRevenueLL.setBackgroundResource(R.drawable.background_strock_707070)
             supportFragmentManager.beginTransaction().replace(R.id.userFL, Sales_Analysis_List_Fragment).commit()
+            destroy()
         }
         settingLL.setOnClickListener {
             setmenu()
             settingLL.setBackgroundResource(R.drawable.background_strock_707070)
             supportFragmentManager.beginTransaction().replace(R.id.userFL, SettingFragment).commit()
+            destroy()
         }
 
     }
+
+    fun destroy(){
+        try {
+            if(null != MsgReceiver) {
+                unregisterReceiver(MsgReceiver)
+            }
+
+        } catch (e: IllegalArgumentException) {
+        }
+
+    }
+
 
 
     fun setmenu(){
@@ -111,11 +128,11 @@ class UserListActivity : FragmentActivity() {
 
 
     override fun onDestroy() {
-        super.onDestroy()
-        if (progressDialog != null) {
-            progressDialog!!.dismiss()
-        }
-        try {
+            super.onDestroy()
+            if (progressDialog != null) {
+                progressDialog!!.dismiss()
+            }
+            try {
             if(null != MsgReceiver) {
                 unregisterReceiver(MsgReceiver)
             }
