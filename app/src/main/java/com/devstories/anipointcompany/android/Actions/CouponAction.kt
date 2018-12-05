@@ -43,5 +43,8 @@ object CouponAction {
         HttpClient.post("/coupon/change_temp_yn.json", params, handler)
     }
 
-
+    //고객 쿠폰리스트 조회
+    fun member_coupon_list(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/member/my_point.json", params, handler)
+    }
 }
