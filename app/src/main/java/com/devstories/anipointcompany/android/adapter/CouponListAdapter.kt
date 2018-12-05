@@ -47,10 +47,12 @@ open class CouponListAdapter (context: Context, view:Int, data: ArrayList<JSONOb
 
             val coupon_name = Utils.getString(coupon, "name")
             val coupon_type = Utils.getInt(coupon, "type")
-            val coupon_s_valid = SimpleDateFormat("yyyy-MM-dd")
+            /*val coupon_s_valid = SimpleDateFormat("yyyy-MM-dd")
                     .parse(Utils.getString(memberCoupon, "s_use_date"))
             val coupon_e_valid = SimpleDateFormat("yyyy-MM-dd")
-                    .parse(Utils.getString(memberCoupon, "e_use_date"))
+                    .parse(Utils.getString(memberCoupon, "e_use_date"))*/
+            val coupon_s_valid = Utils.getString(memberCoupon, "s_use_date")
+            val coupon_e_valid = Utils.getString(memberCoupon, "e_use_date")
             val coupon_message = Utils.getString(coupon, "message")
 
             var backgroundImg = R.mipmap.coupon

@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="135dp"
-    android:layout_height="45dp" android:padding="5dp" android:layout_margin="5dp" >
+    android:layout_height="45dp" android:padding="5dp" >
+
+    <TextView
+        android:id="@+id/item_couponClicked"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="쿠폰 사용"
+        android:textColor="#333333"
+        android:gravity="center"/>
 
     <LinearLayout
         android:id="@+id/couponBackLL"
@@ -20,6 +29,7 @@
             android:textColor="#333333"
             android:text="쿠폰이름"
             android:textStyle="bold" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,12 +42,12 @@
                 android:layout_height="wrap_content"
                 android:textSize="7sp"
                 android:textColor="#595959"
-                android:letterSpacing="-0.24"
+                android:letterSpacing="-0.2"
                 android:text="2018-11-29"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="~"
+                android:text=" ~ "
                 android:textColor="#595959"
                 android:textSize="7sp"
                 android:letterSpacing="-0.02"/>
@@ -58,7 +68,18 @@
             android:layout_gravity="right"
             android:textSize="6sp"
             android:textColor="#595959"
-            android:text="메세지" />
+            android:text="메세지"
+            android:visibility="gone"/>
+        <EditText
+            android:id="@+id/item_contentET"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:layout_gravity="right"
+            android:layout_marginRight="5dp"
+            android:textSize="6sp"
+            android:textColor="#595959"
+            android:background="@null"/>
     </LinearLayout>
 
 </LinearLayout>

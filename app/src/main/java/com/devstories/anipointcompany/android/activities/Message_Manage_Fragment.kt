@@ -37,7 +37,7 @@ class Message_Manage_Fragment : Fragment() {
     lateinit var useLL : LinearLayout
 
     lateinit var messageFL: FrameLayout
-    val MessageUserFragment : MessageUserFragment = MessageUserFragment()
+    val MssgAnalysisFragment : MssgAnalysisFragment = MssgAnalysisFragment()
     val Message_write_Fragment : Message_write_Fragment = Message_write_Fragment()
     val AutoCouponSettingsFragment : AutoCouponSettingsFragment = AutoCouponSettingsFragment()
     //고객리스트 =>메시지보내기
@@ -89,7 +89,7 @@ class Message_Manage_Fragment : Fragment() {
 
 
 
-       childFragmentManager.beginTransaction().replace(R.id.messageFL, MessageUserFragment).commit()
+       childFragmentManager.beginTransaction().replace(R.id.messageFL, MssgAnalysisFragment).commit()
 
 
         //메시지보내기
@@ -113,7 +113,7 @@ class Message_Manage_Fragment : Fragment() {
             view1.visibility = View.VISIBLE
             messageStatisticsTV.setTextColor(Color.parseColor("#FFFFFF"))
 
-            childFragmentManager.beginTransaction().replace(R.id.messageFL, MessageUserFragment).commit()
+            childFragmentManager.beginTransaction().replace(R.id.messageFL, MssgAnalysisFragment).commit()
         }
 
         // 메세지 작성

@@ -263,6 +263,35 @@ class AutoCouponSettingsFragment : Fragment() {
 
                         if (newMemberCouponResult == "ok") {
                             newMemberIV.setImageResource(R.mipmap.on)
+                        } else {
+                            newMemberIV.setImageResource(R.mipmap.off)
+                        }
+
+                        if (birthMemberCouponResult == "ok") {
+                            birthMemberIV.setImageResource(R.mipmap.on)
+                        } else {
+                            birthMemberIV.setImageResource(R.mipmap.off)
+                        }
+
+                        if (noVisit30Result == "ok") {
+                            noVisit30IV.setImageResource(R.mipmap.on)
+                        } else {
+                            noVisit30IV.setImageResource(R.mipmap.off)
+                        }
+
+                        if (noVisit60Result == "ok") {
+                            noVisit60IV.setImageResource(R.mipmap.on)
+                        } else {
+                            noVisit60IV.setImageResource(R.mipmap.off)
+                        }
+
+                        if (noVisit90Result == "ok") {
+                            noVisit90IV.setImageResource(R.mipmap.on)
+                        } else {
+                            noVisit90IV.setImageResource(R.mipmap.off)
+                        }
+
+                        if(coupon_type1_id > 0) {
 
                             val coupon = response.getJSONObject("newMemberCoupon")
                             type = Utils.getInt(coupon, "type")
@@ -305,32 +334,6 @@ class AutoCouponSettingsFragment : Fragment() {
                                 validityIV.setImageResource(R.mipmap.switch_off)
                             }
 
-                        } else {
-                            newMemberIV.setImageResource(R.mipmap.off)
-                        }
-
-                        if (birthMemberCouponResult == "ok") {
-                            birthMemberIV.setImageResource(R.mipmap.on)
-                        } else {
-                            birthMemberIV.setImageResource(R.mipmap.off)
-                        }
-
-                        if (noVisit30Result == "ok") {
-                            noVisit30IV.setImageResource(R.mipmap.on)
-                        } else {
-                            noVisit30IV.setImageResource(R.mipmap.off)
-                        }
-
-                        if (noVisit60Result == "ok") {
-                            noVisit60IV.setImageResource(R.mipmap.on)
-                        } else {
-                            noVisit60IV.setImageResource(R.mipmap.off)
-                        }
-
-                        if (noVisit90Result == "ok") {
-                            noVisit90IV.setImageResource(R.mipmap.on)
-                        } else {
-                            noVisit90IV.setImageResource(R.mipmap.off)
                         }
 
                     } else {
@@ -342,7 +345,6 @@ class AutoCouponSettingsFragment : Fragment() {
                 }
 
             }
-
 
             override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
 

@@ -75,6 +75,10 @@ class CalActivity : RootActivity() {
         type = intent.getIntExtra("type", -1)
         step = intent.getIntExtra("step", 1)
 
+
+        couponListAdapter = CouponListAdapter(context, R.layout.item_member_coupon, couponData)
+        couponLV.adapter = couponListAdapter
+
         setmenu()
         if (step == 4) {
             opTV.text = "사용"
@@ -128,6 +132,7 @@ class CalActivity : RootActivity() {
             depositlessIV.setImageResource(R.drawable.radio_on)
             payment_type = 3
         }
+
         changeStep()
 
     }
@@ -343,8 +348,6 @@ class CalActivity : RootActivity() {
 
 //                        step = Utils.getInt(requestStep, "step")
 
-
-
                         timerStart()
 
                     }
@@ -409,7 +412,7 @@ class CalActivity : RootActivity() {
                     if ("ok" == result) {
                         var requestStep = response.getJSONObject("RequestStep")
                         var member = response.getJSONObject("Member")
-                        var point = response.getJSONObject("Point")
+
 
 //                        step = Utils.getInt(requestStep, "step")
                         member_id = Utils.getInt(requestStep, "member_id")
@@ -449,11 +452,10 @@ class CalActivity : RootActivity() {
 
                                 var left_point: String? = null
                                 if (new_member_yn.equals("N")) {
+                                    var point = response.getJSONObject("Point")
                                     left_point = Utils.getString(point, "balance")
                                 }
 
-                                couponListAdapter = CouponListAdapter(context, R.layout.item_member_coupon, couponData)
-                                couponLV.adapter = couponListAdapter
                                 getUserCouponList(phone)
 
                                 stack_pointTV.text = left_point
@@ -484,6 +486,7 @@ class CalActivity : RootActivity() {
                                 var name = Utils.getString(member, "name")
                                 var left_point: String? = null
                                 if (new_member_yn.equals("N")) {
+                                    var point = response.getJSONObject("Point")
                                     left_point = Utils.getString(point, "balance")
                                 }
 
