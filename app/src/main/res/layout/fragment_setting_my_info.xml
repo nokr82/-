@@ -300,6 +300,7 @@
 
             <LinearLayout
                 android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_width="348dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -307,7 +308,6 @@
                 <HorizontalScrollView
                     android:layout_width="345dp"
                     android:layout_height="65.5dp"
-                    android:layout_marginLeft="10dp"
                     android:background="@drawable/background_strock_e7e7e7"
                     android:paddingLeft="7.5dp">
                     <LinearLayout
