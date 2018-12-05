@@ -43,5 +43,10 @@ object CouponAction {
         HttpClient.post("/coupon/change_temp_yn.json", params, handler)
     }
 
+    // 메세지 통계
+    fun message_analysis(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/coupon/message_analysis.json", params, handler)
+    }
+
 
 }
