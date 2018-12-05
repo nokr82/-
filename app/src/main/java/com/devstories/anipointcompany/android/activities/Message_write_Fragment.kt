@@ -9,6 +9,7 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +20,7 @@ import android.widget.Toast
 
 import com.devstories.anipointcompany.android.R
 import kotlinx.android.synthetic.main.fra_message_wirte_step1.*
+import java.util.ArrayList
 
 //메인메시지관리
 class Message_write_Fragment : Fragment() {
@@ -45,17 +47,87 @@ class Message_write_Fragment : Fragment() {
             if (intent != null) {
                 //브로드캐스트로 프래그먼트이동리시버
 
-//                println("intent" + intent.getStringExtra("gender"))
-//                println("intent" + intent.getStringExtra("age"))
+                var gender =  intent.getSerializableExtra("gender")
+               var age =  intent.getSerializableExtra("age")
+                var visited_date  = intent.getStringExtra("visited_date")
+               var count = intent.getStringExtra("count")
+                var from= intent.getStringExtra("from")
+                var to = intent.getStringExtra("to")
+                var search_type =intent.getIntExtra("search_type",-1)
+
+
                 setfilter()
                 userRL.setBackgroundColor(Color.parseColor("#0068df"))
                 userTV.setTextColor(Color.parseColor("#ffffff"))
                 couponRL.setBackgroundColor(Color.parseColor("#0068df"))
                 couponTV.setTextColor(Color.parseColor("#ffffff"))
+
+                //쿠폰으로보내기
+                var args:Bundle = Bundle()
+                args.putString("count", count)
+                args.putInt("search_type", search_type)
+                args.putSerializable("gender", gender as ArrayList<String>?)
+                args.putSerializable("age", age as ArrayList<String>?)
+                args.putString("visited_date", visited_date)
+                args.putString("from", from)
+                args.putString("to", to)
+                SetCouponFragment.setArguments(args)
                 childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, SetCouponFragment).commit()
             }
         }
     }
+
+    // 쿠폰설정
+    internal var step2NextReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent?) {
+            if (intent != null) {
+
+                var coupon_id = intent.getStringExtra("coupon_id")
+                var gender =  intent.getSerializableExtra("gender")
+                var age =  intent.getSerializableExtra("age")
+                var visited_date  = intent.getStringExtra("visited_date")
+                var count = intent.getStringExtra("count")
+                var from= intent.getStringExtra("from")
+                var to = intent.getStringExtra("to")
+                var search_type =intent.getIntExtra("search_type",-1)
+
+                couponRL.setBackgroundColor(Color.parseColor("#0068df"))
+                couponTV.setTextColor(Color.parseColor("#ffffff"))
+                writeRL.setBackgroundColor(Color.parseColor("#0068df"))
+                writeTV.setTextColor(Color.parseColor("#ffffff"))
+                //메시지작성으로
+                var args:Bundle = Bundle()
+                args.putString("coupon_id", coupon_id)
+                args.putInt("search_type", search_type)
+                args.putStringArrayList("gender", gender as ArrayList<String>?)
+                args.putStringArrayList("age", age as ArrayList<String>?)
+                args.putString("visited_date", visited_date)
+                args.putString("from", from)
+                args.putString("to", to)
+                SetMessageContFragment.setArguments(args)
+                childFragmentManager.beginTransaction().replace(R.id.userchoiceFL,SetMessageContFragment).commit()
+
+            }
+        }
+    }
+
+    //메시지작성
+    internal var step3NextReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent?) {
+            if (intent != null) {
+                println("intent")
+                couponRL.setBackgroundColor(Color.parseColor("#0068df"))
+                couponTV.setTextColor(Color.parseColor("#ffffff"))
+                writeRL.setBackgroundColor(Color.parseColor("#0068df"))
+                writeTV.setTextColor(Color.parseColor("#ffffff"))
+                finalRL.setBackgroundColor(Color.parseColor("#0068df"))
+                finalTV.setTextColor(Color.parseColor("#ffffff"))
+                childFragmentManager.beginTransaction().replace(R.id.userchoiceFL,MessageUserFragment).commit()
+
+            }
+        }
+    }
+
     //건너뛰기
     internal var SkipReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent?) {
@@ -83,37 +155,7 @@ class Message_write_Fragment : Fragment() {
             }
         }
     }
-    // 쿠폰설정
-    internal var step2NextReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent?) {
-            if (intent != null) {
-                println("intent")
-                couponRL.setBackgroundColor(Color.parseColor("#0068df"))
-                couponTV.setTextColor(Color.parseColor("#ffffff"))
-                writeRL.setBackgroundColor(Color.parseColor("#0068df"))
-                writeTV.setTextColor(Color.parseColor("#ffffff"))
-                childFragmentManager.beginTransaction().replace(R.id.userchoiceFL,SetMessageContFragment).commit()
 
-            }
-        }
-    }
-
-    //메시지작성
-    internal var step3NextReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent?) {
-            if (intent != null) {
-                println("intent")
-                couponRL.setBackgroundColor(Color.parseColor("#0068df"))
-                couponTV.setTextColor(Color.parseColor("#ffffff"))
-                writeRL.setBackgroundColor(Color.parseColor("#0068df"))
-                writeTV.setTextColor(Color.parseColor("#ffffff"))
-                finalRL.setBackgroundColor(Color.parseColor("#0068df"))
-                finalTV.setTextColor(Color.parseColor("#ffffff"))
-                childFragmentManager.beginTransaction().replace(R.id.userchoiceFL,MessageUserFragment).commit()
-
-            }
-        }
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context

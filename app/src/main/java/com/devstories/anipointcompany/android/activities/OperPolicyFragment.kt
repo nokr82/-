@@ -28,7 +28,7 @@ class OperPolicyFragment : Fragment() {
 
     lateinit var myContext: Context
     private var progressDialog: ProgressDialog? = null
-    lateinit var left_pointTV: EditText
+    lateinit var left_pointTV: TextView
     lateinit var min_pointTV: EditText
     lateinit var rdo1000wonIV: ImageView
     lateinit var rdo500wonIV: ImageView
@@ -151,6 +151,9 @@ class OperPolicyFragment : Fragment() {
                 try {
                     val result = response!!.getString("result")
                     if ("ok" == result) {
+                        var coin = response.getString("coin")
+                        left_pointTV.text = coin
+
                         val company = response.getJSONObject("company")
                         // 최소사용포인트
                         val min_use_point = Utils.getString(company,"min_use_point")
