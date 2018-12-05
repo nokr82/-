@@ -661,17 +661,17 @@ class CalActivity : RootActivity() {
         var getid = member_id
         var getPhone = Utils.getString(phoneET)
         var getAge = Utils.getString(ageET)
+
+
         var getBirth = Utils.getString(birthET)
         var getMemo = Utils.getString(memoET)
         var getName = Utils.getString(nameET)
-        var r_getBirth= ""
+
 
         if (getBirth.length!=8){
             Toast.makeText(context,"생년월일을 8자리 입력해주세요",Toast.LENGTH_SHORT).show()
             return
         }
-
-
 
 
         val params = RequestParams()
