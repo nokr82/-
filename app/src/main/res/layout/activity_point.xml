@@ -718,17 +718,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <TextView
                         android:id="@+id/moneyTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="27sp"
-                        android:textColor="#0066b0"
-                        android:letterSpacing="-0.03"
-                        android:text="0"
-                        android:lineSpacingExtra="8sp"
                         android:gravity="end"
-                        />
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="8sp"
+                        android:text=""
+                        android:textColor="#0066b0"
+                        android:textSize="27sp" />
                     <TextView
                         android:id="@+id/m_opTV"
                         android:layout_width="wrap_content"

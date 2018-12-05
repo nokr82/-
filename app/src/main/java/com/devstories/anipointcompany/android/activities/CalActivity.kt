@@ -89,7 +89,6 @@ class CalActivity : RootActivity() {
         //계산기
         cal()
 
-        stackLL.callOnClick()
         //결제내용스피너
         cate_SP.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
@@ -201,51 +200,51 @@ class CalActivity : RootActivity() {
             startActivity(intent)
         }
         oneLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 1)
+            moneyTV.text = moneyTV.text.toString()+1
             setPoint()
         }
         twoLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 2)
+            moneyTV.text = moneyTV.text.toString()+2
             setPoint()
         }
         threeLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 3)
+            moneyTV.text = moneyTV.text.toString()+3
             setPoint()
         }
         fourLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 4)
+            moneyTV.text = moneyTV.text.toString()+4
             setPoint()
         }
         fiveLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 5)
+            moneyTV.text = moneyTV.text.toString()+5
             setPoint()
         }
         sixLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 6)
+            moneyTV.text = moneyTV.text.toString()+6
             setPoint()
         }
         sevenLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 7)
+            moneyTV.text = moneyTV.text.toString()+7
             setPoint()
         }
         eightLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 8)
+            moneyTV.text = moneyTV.text.toString()+8
             setPoint()
         }
         nineLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 9)
+            moneyTV.text = moneyTV.text.toString()+9
             setPoint()
         }
         zeroLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 0)
+            moneyTV.text = moneyTV.text.toString()+0
             setPoint()
         }
 
         delLL.setOnClickListener {
-            val text = moneyTV.getText().toString()
+            val text = moneyTV.text.toString()
             val defaultpercent = stackTV.text.toString()
             if (text.length > 0) {
-                moneyTV.setText(text.substring(0, text.length - 1))
+                moneyTV.text = text.substring(0, text.length - 1)
                 val money = moneyTV.text.toString()
                 if (money != null && money != "") {
                     val percent = defaultpercent.toFloat() / 100
@@ -256,7 +255,7 @@ class CalActivity : RootActivity() {
                     pointTV.setText(point)
                 }
             } else {
-
+                moneyTV.setText("0")
             }
         }
         useLL.setOnClickListener {
