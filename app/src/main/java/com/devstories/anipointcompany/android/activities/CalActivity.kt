@@ -79,8 +79,8 @@ class CalActivity : RootActivity() {
         setmenu()
         setmenu4()
         if (step == 4) {
-            opTV.text = "사용"
-            m_opTV.text = "P"
+            opTV.text = "결제"
+                m_opTV.text = "￦"
         }
         company_info()
         //계산기

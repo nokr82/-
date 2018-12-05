@@ -286,15 +286,6 @@ class Sales_Analysis_List_Fragment : Fragment() {
 
                     if ("ok" == result) {
 
-                        /*val companyCates = response.getJSONArray("companyCates")
-                        Log.d("데이트",companyCates.toString())
-                        for (i in 0..companyCates.length()-1){
-                            Log.d("갯수",i.toString())
-                            var json=companyCates[i] as JSONObject
-                            val Category = json.getJSONObject("Category")
-                            val name = Utils.getString(Category,"name")
-                            option_amount.add(name)
-                        }*/
 
                         val categories = response.getJSONArray("categories")
                         option_amount.clear()

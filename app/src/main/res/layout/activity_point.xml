@@ -1055,7 +1055,6 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:background="#906e8a32"
                         android:layout_height="match_parent">
                         <TextView
                             android:id="@+id/stackTV"
