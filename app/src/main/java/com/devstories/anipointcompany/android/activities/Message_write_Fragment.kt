@@ -184,6 +184,47 @@ class Message_write_Fragment : Fragment() {
         if (progressDialog != null) {
             progressDialog!!.dismiss()
         }
+
+        try {
+            if(null != step1NextReceiver) {
+                myContext.unregisterReceiver(step1NextReceiver)
+            }
+
+        } catch (e: IllegalArgumentException) {
+        }
+
+        try {
+            if(null != SkipReceiver) {
+                myContext.unregisterReceiver(SkipReceiver)
+            }
+
+        } catch (e: IllegalArgumentException) {
+        }
+        try {
+            if(null != step3NextReceiver) {
+                myContext.unregisterReceiver(step3NextReceiver)
+            }
+
+        } catch (e: IllegalArgumentException) {
+        }
+
+        try {
+            if(null != step2NextReceiver) {
+                myContext.unregisterReceiver(step2NextReceiver)
+            }
+
+        } catch (e: IllegalArgumentException) {
+        }
+        try {
+            if(null != MsgReceiver) {
+                myContext.unregisterReceiver(MsgReceiver)
+            }
+
+        } catch (e: IllegalArgumentException) {
+        }
+
+
+
     }
 
 }
