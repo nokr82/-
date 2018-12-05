@@ -2,6 +2,7 @@ package com.devstories.anipointcompany.android.activities
 
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -58,7 +59,7 @@ class MssgAnalysisFragment : Fragment() {
 
     lateinit var autoAdapter:AnalysisAutoMessageAdapter
     lateinit var adapter:AnalysisAutoMessageAdapter
-    var adatperData:ArrayList<JSONObject> = ArrayList<JSONObject>()
+    var adapterData:ArrayList<JSONObject> = ArrayList<JSONObject>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -98,9 +99,22 @@ class MssgAnalysisFragment : Fragment() {
 
         company_id = PrefUtils.getIntPreference(myContext, "company_id")
 
-        autoAdapter = AnalysisAutoMessageAdapter(myContext, R.layout.item_auto_event, adatperData, 1)
-        adapter = AnalysisAutoMessageAdapter(myContext, R.layout.item_auto_event, adatperData, 2)
+        autoAdapter = AnalysisAutoMessageAdapter(myContext, R.layout.item_auto_event, adapterData, 1)
+        adapter = AnalysisAutoMessageAdapter(myContext, R.layout.item_auto_event, adapterData, 2)
         listLV.adapter = autoAdapter
+        listLV.setOnItemClickListener { parent, view, position, id ->
+
+            var json = adapterData.get(position)
+
+            val message = json.getJSONObject("Message")
+
+            var intent = Intent(context, MessageDetailActivity::class.java)
+            intent.putExtra("message_id", Utils.getInt(message, "id"))
+            intent.putExtra("type", search_type)
+            intent.putExtra("search_type", date_type)
+            startActivity(intent)
+
+        }
 
         searchTypeAllTV.setOnClickListener {
             date_type = 1
@@ -173,7 +187,7 @@ class MssgAnalysisFragment : Fragment() {
                         totalPage = Utils.getInt(response, "totalPage")
 
                         if(page == 1) {
-                            adatperData.clear();
+                            adapterData.clear();
                         }
 
                         val autoCouponCnt = Utils.getInt(response, "autoCouponCnt")
@@ -188,7 +202,7 @@ class MssgAnalysisFragment : Fragment() {
                         val list:JSONArray = response.getJSONArray("list")
 
                         for(i in 0 until list.length()) {
-                            adatperData.add(list[i] as JSONObject)
+                            adapterData.add(list[i] as JSONObject)
                         }
 
                         if(search_type == 1) {

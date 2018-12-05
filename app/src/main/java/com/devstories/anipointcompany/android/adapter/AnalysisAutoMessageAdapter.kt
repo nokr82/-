@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.devstories.anipointcompany.android.R
-import com.devstories.anipointcompany.android.activities.MessageDetailActivity
 import com.devstories.anipointcompany.android.base.Utils
 import org.json.JSONObject
 import java.util.ArrayList
@@ -68,15 +67,6 @@ open class AnalysisAutoMessageAdapter (context:Context, view:Int, data: ArrayLis
 
             item.itemEventTitleTV.text = title
             item.itemEventContTV.text = msg
-        }
-
-        item.LL.setOnClickListener {
-
-            var intent = Intent(context, MessageDetailActivity::class.java)
-            intent.putExtra("message_id", message_id)
-            intent.putExtra("type", type)
-            context.startActivity(intent)
-
         }
 
         return retView

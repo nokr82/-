@@ -32,7 +32,10 @@ class MessageDetailActivity : RootActivity() {
     var company_id = -1
 
     var message_id = -1
+
     var type = -1
+    var search_type = -1
+
     var totalMemberCnt = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +50,7 @@ class MessageDetailActivity : RootActivity() {
         message_id = intent.getIntExtra("message_id", -1)
         // 1-자동쿠폰 / 2-맞춤메세지
         type = intent.getIntExtra("type", 1)
+        search_type = intent.getIntExtra("search_type", 1)
 
         finishLL.setOnClickListener {
             finish()
@@ -106,6 +110,8 @@ class MessageDetailActivity : RootActivity() {
         val params = RequestParams()
         params.put("message_id", message_id)
         params.put("company_id", company_id)
+        params.put("type", type)
+        params.put("search_type", search_type)
 
         CouponAction.message_detail(params, object : JsonHttpResponseHandler() {
 
