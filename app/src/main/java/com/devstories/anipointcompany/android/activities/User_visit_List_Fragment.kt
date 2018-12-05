@@ -102,9 +102,11 @@ class User_visit_List_Fragment : Fragment() {
                 if (position == 0) {
                     limit = 5
                     Log.d("리미트", limit.toString())
+                    loadData(1)
                 } else if (position == 1) {
                     limit = 10
                     Log.d("리미트", limit.toString())
+                    loadData(1)
                 }
             }
 
@@ -261,7 +263,7 @@ class User_visit_List_Fragment : Fragment() {
                         Log.d("숫자",member_re_cnt.toString())
                         Log.d("숫자",allmember.toString())
                         Log.d("숫자",re_per.toString())
-//                        stackpoint = totalpoint * Integer.parseInt(stackTV.text.toString()) / 100
+
                         var strNumber = String.format("%.1f", re_per);
 
                         visit_perTV.text = strNumber+"%"

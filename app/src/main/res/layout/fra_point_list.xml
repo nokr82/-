@@ -86,11 +86,11 @@
                         android:layout_height="0.3dp"
                         android:background="#ffff" />
                     </LinearLayout>
-                </LinearLayout>
 
+                </LinearLayout>
                 <LinearLayout
                     android:id="@+id/weekLL"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="17.5dp"
                     android:orientation="vertical">
@@ -99,26 +99,26 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/weekTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="1sp"
-                        android:text="일주일"
-                        android:textColor="#80ffffff"
-                        android:textSize="9sp" />
+                        <TextView
+                            android:id="@+id/weekTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="1sp"
+                            android:text="일주일"
+                            android:textColor="#80ffffff"
+                            android:textSize="9sp" />
 
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="0.3dp"
-                        android:background="#ffff" />
+                        <View
+                            android:layout_width="26dp"
+                            android:layout_height="0.3dp"
+                            android:background="#ffff" />
                     </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/monthLL"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="17.5dp"
                     android:orientation="vertical">
@@ -127,24 +127,25 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/monthTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="1sp"
-                        android:text="한달"
-                        android:textColor="#80ffffff"
-                        android:textSize="9sp" />
+                        <TextView
+                            android:id="@+id/monthTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="1sp"
+                            android:text="한달"
+                            android:textColor="#80ffffff"
+                            android:textSize="9sp" />
 
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="0.3dp"
-                        android:background="#ffff" />
+                        <View
+                            android:layout_width="17dp"
+                            android:layout_height="0.3dp"
+                            android:background="#ffff" />
                     </LinearLayout>
 
 
                 </LinearLayout>
+
 
             </LinearLayout>
 
