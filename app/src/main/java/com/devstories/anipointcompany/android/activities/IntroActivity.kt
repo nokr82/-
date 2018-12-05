@@ -118,8 +118,6 @@ class IntroActivity : RootActivity() {
                 try {
                     val result = response!!.getString("result")
 
-                    print(response)
-
                     if ("ok" == result) {
 
                         val company = response.getJSONObject("company")
