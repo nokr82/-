@@ -170,6 +170,7 @@ class CalActivity : RootActivity() {
 
     //계산클릭이벤트
     fun cal() {
+        moneyTV.text = "0"
         stackLL.setOnClickListener {
             setmenu3()
             stackLL.setBackgroundColor(Color.parseColor("#906e8a32"))
@@ -212,42 +213,52 @@ class CalActivity : RootActivity() {
             startActivity(intent)
         }
         oneLL.setOnClickListener {
+            firstDigit()
             moneyTV.text = moneyTV.text.toString()+1
             setPoint()
         }
         twoLL.setOnClickListener {
+            firstDigit()
             moneyTV.text = moneyTV.text.toString()+2
             setPoint()
         }
         threeLL.setOnClickListener {
+            firstDigit()
             moneyTV.text = moneyTV.text.toString()+3
             setPoint()
         }
         fourLL.setOnClickListener {
+            firstDigit()
             moneyTV.text = moneyTV.text.toString()+4
             setPoint()
         }
         fiveLL.setOnClickListener {
+            firstDigit()
             moneyTV.text = moneyTV.text.toString()+5
             setPoint()
         }
         sixLL.setOnClickListener {
+            firstDigit()
             moneyTV.text = moneyTV.text.toString()+6
             setPoint()
         }
         sevenLL.setOnClickListener {
+            firstDigit()
             moneyTV.text = moneyTV.text.toString()+7
             setPoint()
         }
         eightLL.setOnClickListener {
+            firstDigit()
             moneyTV.text = moneyTV.text.toString()+8
             setPoint()
         }
         nineLL.setOnClickListener {
+            firstDigit()
             moneyTV.text = moneyTV.text.toString()+9
             setPoint()
         }
         zeroLL.setOnClickListener {
+            firstDigit()
             moneyTV.text = moneyTV.text.toString()+0
             setPoint()
         }
@@ -321,6 +332,12 @@ class CalActivity : RootActivity() {
 
         changeStep()
 
+    }
+
+    fun firstDigit() {
+        if(moneyTV.text.length == 1 && moneyTV.text == "0") {
+            moneyTV.text = ""
+        }
     }
 
     fun setPoint() {
