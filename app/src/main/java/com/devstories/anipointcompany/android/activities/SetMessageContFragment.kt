@@ -1,5 +1,6 @@
 package com.devstories.anipointcompany.android.activities
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -92,7 +93,7 @@ class SetMessageContFragment : Fragment() {
         imgIV = view.findViewById(R.id.imgIV)
         messageContentET = view.findViewById(R.id.messageContentET)
         titleET = view.findViewById(R.id.titleET)
-        testTV =  view.findViewById(R.id.titleET)
+        testTV =  view.findViewById(R.id.testTV)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -121,7 +122,8 @@ class SetMessageContFragment : Fragment() {
 
 
         testTV.setOnClickListener {
-
+            var intent = Intent(myContext, DlgTestMsgActivity::class.java)
+             startActivity(intent)
         }
 
 
@@ -176,10 +178,23 @@ class SetMessageContFragment : Fragment() {
         })
 
         nextTV.setOnClickListener {
-            // title
-            send_message()
+            showConfirmDialog()
+
         }
 
+    }
+    fun showConfirmDialog() {
+        val pictureDialog = AlertDialog.Builder(myContext)
+        pictureDialog.setTitle("메시지 전송확인")
+        val pictureDialogItems = arrayOf("전송", "취소")
+        pictureDialog.setItems(pictureDialogItems
+        ) { dialog, which ->
+            when (which) {
+                0 ->   send_message()
+                1 -> dialog.cancel()
+            }
+        }
+        pictureDialog.show()
     }
 
     // 쿠폰 만들기(step3) - 메세지 보내기
