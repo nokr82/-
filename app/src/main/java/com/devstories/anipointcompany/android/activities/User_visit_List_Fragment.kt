@@ -52,6 +52,7 @@ class User_visit_List_Fragment : Fragment() {
     lateinit var three_mTV: TextView
     lateinit var va_accumulateLL : LinearLayout
     lateinit var useLL : LinearLayout
+    lateinit var visit_perTV: TextView
 
     var day_type = 1 //1-오늘 2-이번주 3-이번달 4-3개월
     var page = 1      //페이지
@@ -68,6 +69,8 @@ class User_visit_List_Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        visit_perTV =  view.findViewById(R.id.visit_perTV)
         amountSP = view.findViewById(R.id.amountSP)
         dateTV = view.findViewById(R.id.dateTV)
         itemdateLL = view.findViewById(R.id.itemdateLL)
@@ -99,9 +102,11 @@ class User_visit_List_Fragment : Fragment() {
                 if (position == 0) {
                     limit = 5
                     Log.d("리미트", limit.toString())
+                    loadData(1)
                 } else if (position == 1) {
                     limit = 10
                     Log.d("리미트", limit.toString())
+                    loadData(1)
                 }
             }
 
@@ -127,7 +132,6 @@ class User_visit_List_Fragment : Fragment() {
                 page++
                 Toast.makeText(myContext, page.toString() + "페이지입니다", Toast.LENGTH_SHORT).show()
                 loadData(1)
-
             }
 
         }
@@ -255,8 +259,14 @@ class User_visit_List_Fragment : Fragment() {
                         val member_new_cnt: Int = response.getInt("newMemberCount")
                         val member_re_cnt = response.getInt("reMemberCount")
                         val allmember = member_new_cnt + member_re_cnt
+                        val re_per = member_re_cnt.toFloat()/allmember.toFloat()*100
+                        Log.d("숫자",member_re_cnt.toString())
+                        Log.d("숫자",allmember.toString())
+                        Log.d("숫자",re_per.toString())
 
+                        var strNumber = String.format("%.1f", re_per);
 
+                        visit_perTV.text = strNumber+"%"
                         all_memberTV.text = allmember.toString()
                         new_userTV.text = member_new_cnt.toString()
                         member_re_cntTV.text = member_re_cnt.toString()
