@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:gravity="center"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:gravity="center"
+            android:background="#479edf">
+            <TextView
+                android:textSize="10dp"
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="번호입력"/>
+
+        </LinearLayout>
+
+
+   <LinearLayout
+       android:layout_centerInParent="true"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       >
+
+       <LinearLayout
+           android:layout_marginLeft="20dp"
+           android:layout_marginRight="20dp"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:paddingLeft="9.5dp">
+           <LinearLayout
+               android:layout_width="0dp"
+               android:layout_weight="1"
+               android:layout_height="wrap_content"
+               android:orientation="vertical">
+               <EditText
+                   android:inputType="number"
+                   android:id="@+id/phoneNum1ET"
+                   android:layout_width="match_parent"
+                   android:layout_height="16dp"
+                   android:maxLength="3"
+                   android:textSize="8sp"
+                   android:background="@null" />
+               <View
+                   android:layout_width="match_parent"
+                   android:layout_height="0.5dp"
+                   android:background="#000000"/>
+           </LinearLayout>
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:padding="5dp"
+               android:textSize="8sp"
+               android:gravity="center"
+               android:layout_marginLeft="2.5dp"
+               android:layout_marginRight="2.5dp"
+               android:text="─"/>
+           <LinearLayout
+               android:layout_width="0dp"
+               android:layout_weight="1"
+               android:layout_height="wrap_content"
+               android:orientation="vertical">
+               <EditText
+                   android:inputType="number"
+                   android:id="@+id/phoneNum2ET"
+                   android:layout_width="match_parent"
+                   android:layout_height="16dp"
+                   android:maxLength="4"
+                   android:textSize="8sp"
+                   android:background="@null" />
+               <View
+                   android:layout_width="match_parent"
+                   android:layout_height="0.5dp"
+                   android:background="#000000"/>
+           </LinearLayout>
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:padding="5dp"
+               android:textSize="8sp"
+               android:gravity="center"
+               android:layout_marginLeft="2.5dp"
+               android:layout_marginRight="2.5dp"
+               android:text="─"/>
+           <LinearLayout
+               android:layout_width="0dp"
+               android:layout_weight="1"
+               android:layout_height="wrap_content"
+               android:orientation="vertical">
+               <EditText
+                   android:inputType="number"
+                   android:id="@+id/phoneNum3ET"
+                   android:layout_width="match_parent"
+                   android:layout_height="16dp"
+                   android:maxLength="4"
+                   android:textSize="8sp"
+                   android:background="@null" />
+               <View
+                   android:layout_width="match_parent"
+                   android:layout_height="0.5dp"
+                   android:background="#000000"/>
+           </LinearLayout>
+
+       </LinearLayout>
+
+   </LinearLayout>
+        <TextView
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="20dp"
+            android:id="@+id/checkTV"
+            android:layout_width="75dp"
+            android:layout_height="25.5dp"
+            android:gravity="center"
+            android:background="#0871bf"
+            android:textSize="10sp"
+            android:textColor="#ffffff"
+            android:text="전송"/>
+
+
+    </RelativeLayout>
+</LinearLayout>

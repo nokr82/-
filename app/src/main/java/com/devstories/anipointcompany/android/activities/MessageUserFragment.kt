@@ -16,6 +16,7 @@ import android.widget.*
 import com.devstories.anipointcompany.android.Actions.CompanyAction
 import com.devstories.anipointcompany.android.Actions.CompanyAction.company_info
 import com.devstories.anipointcompany.android.Actions.CouponAction
+import com.devstories.anipointcompany.android.Actions.CouponAction.member_filter
 
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.Utils
@@ -95,6 +96,8 @@ class MessageUserFragment : Fragment() {
     var search_type = -1
     var visited_date = ""
     var days7_yn = ""
+    var coinResult  = ""
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -370,19 +373,27 @@ class MessageUserFragment : Fragment() {
 
         nextTV.setOnClickListener {
             member_filter()
-            //브로드캐스트로 프래그먼트이동
-            var intent = Intent()
-            intent.putExtra("gender", gender)
-            intent.putExtra("age", age)
-            Log.d("나이", age.toString())
-            intent.putExtra("visited_date", visited_date)
-            intent.putExtra("count", Utils.getString(countTV))
-            intent.putExtra("from", Utils.getString(limit_opET))
-            intent.putExtra("to", Utils.getString(limit_op2ET))
-            intent.putExtra("search_type", search_type)
 
-            intent.action = "STEP1_NEXT"
-            myContext.sendBroadcast(intent)
+            if (coinResult.equals("false")){
+                Toast.makeText(myContext,"코인이 부족합니다",Toast.LENGTH_SHORT).show()
+            }else {
+                //브로드캐스트로 프래그먼트이동
+                var intent = Intent()
+                intent.putExtra("gender", gender)
+                Log.d("gender", gender.toString())
+                intent.putExtra("age",age)
+                Log.d("age", age.toString())
+                intent.putExtra("visited_date", visited_date)
+                intent.putExtra("count", Utils.getString(countTV))
+                intent.putExtra("from", Utils.getString(limit_opET))
+                Log.d("from", limit_opET.toString())
+                intent.putExtra("to", Utils.getString(limit_op2ET))
+                Log.d("to", limit_op2ET.toString())
+                intent.putExtra("search_type", search_type)
+                Log.d("search_type", search_type.toString())
+                intent.action = "STEP1_NEXT"
+                myContext.sendBroadcast(intent)
+            }
 
         }
 
@@ -471,6 +482,7 @@ class MessageUserFragment : Fragment() {
                     val result = response!!.getString("result")
                     if ("ok" == result) {
                         var memberCnt = response.getString("memberCnt")
+                        coinResult = response.getString("coinResult")
 
                         countTV.text = memberCnt
 

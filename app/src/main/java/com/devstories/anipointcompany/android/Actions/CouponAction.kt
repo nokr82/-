@@ -22,6 +22,10 @@ object CouponAction {
     fun send_message(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/coupon/send_message.json", params, handler)
     }
+    // 쿠폰 테스트메시지(step3)
+    fun test_message(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/coupon/test_message.json", params, handler)
+    }
 
     // 자동 쿠폰 - 리스트 정보
     fun auto_coupon(params: RequestParams, handler: JsonHttpResponseHandler) {

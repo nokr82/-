@@ -49,6 +49,10 @@
             android:screenOrientation="landscape"
             android:theme="@style/full_screen_dialog1"/>
         <activity
+            android:name=".activities.DlgTestMsgActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/full_screen_dialog1"/>
+        <activity
             android:name=".activities.DlgEditPerActivity"
             android:screenOrientation="landscape"
             android:theme="@style/full_screen_dialog1"/>
