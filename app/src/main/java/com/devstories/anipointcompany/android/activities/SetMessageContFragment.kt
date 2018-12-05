@@ -6,8 +6,10 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v4.app.Fragment
@@ -63,9 +65,9 @@ class SetMessageContFragment : Fragment() {
     var to :String? =null
     var gender= ArrayList<String>()
     var age = ArrayList<String>()
-
-
-
+    var bitmap:BitmapDrawable? = null
+    var thumbnail:Bitmap? = null
+    var contentURI:Uri? = null
     private val GALLERY = 1
 
 
@@ -123,6 +125,17 @@ class SetMessageContFragment : Fragment() {
 
         testTV.setOnClickListener {
             var intent = Intent(myContext, DlgTestMsgActivity::class.java)
+            var message = Utils.getString(messageContentET)
+            var title =Utils.getString(titleET)
+            intent.putExtra("title",title)
+            intent.putExtra("message",message)
+
+            if (contentURI != null) {
+                intent.putExtra("imageUri",  contentURI.toString())
+            } else {
+                // intent.putExtra("imageUri",  imageUri.toString())
+            }
+//            intent.putExtra("message",contentURI.toString())
              startActivity(intent)
         }
 
@@ -208,8 +221,10 @@ class SetMessageContFragment : Fragment() {
         params.put("message",message)
         params.put("7days_yn","N")
         params.put("title",title)
-        val bitmap = imgIV.drawable as BitmapDrawable
-        params.put("upload", ByteArrayInputStream(Utils.getByteArray(bitmap.bitmap)))
+        bitmap = imgIV.drawable as BitmapDrawable
+        if (bitmap!=null){
+            params.put("upload", ByteArrayInputStream(Utils.getByteArray(bitmap!!.bitmap)))
+        }
 
         if (age.size>0){
             for (i in 0..(age.size -1)){
@@ -325,13 +340,13 @@ class SetMessageContFragment : Fragment() {
         {
             if (data != null)
             {
-                val contentURI = data!!.data
+                contentURI = data!!.data
                 Log.d("uri",contentURI.toString())
                 //content://media/external/images/media/1200
 
                 try
                 {
-                    var thumbnail = MediaStore.Images.Media.getBitmap(myContext.contentResolver, contentURI)
+                    thumbnail= MediaStore.Images.Media.getBitmap(myContext.contentResolver, contentURI)
                     thumbnail = Utils.rotate(myContext.contentResolver, thumbnail, contentURI)
                     Log.d("thumbnail",thumbnail.toString())
                     imgIV.visibility = View.VISIBLE

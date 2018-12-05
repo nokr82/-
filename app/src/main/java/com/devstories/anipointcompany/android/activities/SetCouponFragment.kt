@@ -47,6 +47,7 @@ class SetCouponFragment : Fragment() {
     lateinit var skipTV: TextView
     lateinit var exTV: TextView
     lateinit var countTV: TextView
+    lateinit var coupon_conET: EditText
 
     lateinit var adapter: ArrayAdapter<String>
     var op_expiration = arrayOf("7일","30일","60일","90일")
@@ -110,6 +111,9 @@ class SetCouponFragment : Fragment() {
         sundayIV= view.findViewById(R.id.sundayIV)
         coupon_prdTV= view.findViewById(R.id.coupon_prdTV)
         exTV= view.findViewById(R.id.exTV)
+
+        coupon_conET= view.findViewById(R.id.coupon_conET)
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -259,6 +263,9 @@ class SetCouponFragment : Fragment() {
 
     //쿠폰만들기
     fun coupon_add() {
+
+        var content = Utils.getString(coupon_conET)
+
         val params = RequestParams()
         params.put("company_id",1)
         params.put("type",6)
@@ -266,6 +273,7 @@ class SetCouponFragment : Fragment() {
         params.put("week_use_yn",week_use_yn)
         params.put("sat_use_yn",sat_use_yn)
         params.put("sun_use_yn",sun_use_yn)
+        params.put("content",content)
         params.put("use_day",use_day)
         params.put("validity_alarm_yn",validity_alarm_yn)
         if (week_use_yn.equals("N")&&sat_use_yn.equals("N")&&sun_use_yn.equals("N")){
