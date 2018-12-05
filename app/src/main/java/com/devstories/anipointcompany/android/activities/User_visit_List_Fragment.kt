@@ -50,7 +50,7 @@ class User_visit_List_Fragment : Fragment() {
     lateinit var weekTV: TextView
     lateinit var monthTV: TextView
     lateinit var three_mTV: TextView
-    lateinit var accumulateLL : LinearLayout
+    lateinit var va_accumulateLL : LinearLayout
     lateinit var useLL : LinearLayout
 
     var day_type = 1 //1-오늘 2-이번주 3-이번달 4-3개월
@@ -71,7 +71,7 @@ class User_visit_List_Fragment : Fragment() {
         amountSP = view.findViewById(R.id.amountSP)
         dateTV = view.findViewById(R.id.dateTV)
         itemdateLL = view.findViewById(R.id.itemdateLL)
-        accumulateLL = view.findViewById(R.id.accumulateLL)
+        va_accumulateLL = view.findViewById(R.id.va_accumulateLL)
         useLL = view.findViewById(R.id.useLL)
         all_memberTV = view.findViewById(R.id.all_memberTV)
         member_re_cntTV = view.findViewById(R.id.member_re_cntTV)
@@ -206,7 +206,7 @@ class User_visit_List_Fragment : Fragment() {
             dateTV.text = currentDate + " ~ " + lastmonth
         }
 
-        accumulateLL.setOnClickListener {
+        va_accumulateLL.setOnClickListener {
             var intent = Intent(myContext, CalActivity::class.java)
             intent.putExtra("step", 1)
             startActivity(intent)
@@ -331,12 +331,12 @@ class User_visit_List_Fragment : Fragment() {
                     progressDialog!!.dismiss()
                 }
 
+                itemdateLL.removeAllViews()
+
                 try {
                     val result = response!!.getString("result")
                     if ("ok" == result) {
                         totalPage = response.getInt("totalPage")
-
-                        itemdateLL.removeAllViews()
 
                         val points = response.getJSONArray("points")
                         Log.d("데이트", points.toString())

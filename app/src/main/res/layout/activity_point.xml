@@ -725,6 +725,7 @@
                         android:textSize="27sp"
                         android:textColor="#0066b0"
                         android:letterSpacing="-0.03"
+                        android:text="0"
                         android:lineSpacingExtra="8sp"
                         android:gravity="end"
                         />
@@ -1110,9 +1111,9 @@
 
     <!--<ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">-->
+        android:layout_height="match_parent">
 
-        <!--<LinearLayout
+        <LinearLayout
             android:id="@+id/userCouponListLL"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -1123,7 +1124,8 @@
             android:orientation="vertical">
 
 
-            <!-ImageView
+
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/coupon" />
@@ -1183,11 +1185,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/coupon" />
-            </LinearLayout>-->
+            </LinearLayout>
 
-        <!--</LinearLayout>-->
+        </LinearLayout>
 
-    <!--</ScrollView>-->
+    </ScrollView>-->
 
 
 </LinearLayout>

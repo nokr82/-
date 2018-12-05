@@ -22,7 +22,7 @@ import org.json.JSONException
 import org.json.JSONObject
 import android.text.Editable
 import android.text.TextWatcher
-
+import java.io.Serializable
 
 
 //메시지쿠폰관리 - 쿠폰작성
@@ -46,7 +46,8 @@ class SetCouponFragment : Fragment() {
     lateinit var coupon_prdTV: TextView
     lateinit var skipTV: TextView
     lateinit var exTV: TextView
-
+    lateinit var countTV: TextView
+    lateinit var coupon_conET: EditText
 
     lateinit var adapter: ArrayAdapter<String>
     var op_expiration = arrayOf("7일","30일","60일","90일")
@@ -55,22 +56,27 @@ class SetCouponFragment : Fragment() {
     var week_use_yn = "N"
     var sat_use_yn = "N"
     var sun_use_yn = "N"
+
     //쿠폰종류 스피너
     var type = -1
     var use_day = -1
+    var count = ""
     //브로드캐스트로 고객정보전달
+
+    var coupon_id :String? =null
+    var search_type = -1
+    var visited_date:String? =null
+       var from:String? =null
+    var to :String? =null
+    var gender:Serializable? =null
+    var age :Serializable? = null
+
+
     internal var step1NextReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent?) {
             if (intent != null) {
                 //브로드캐스트로 프래그먼트이동리시버
-                println("intent")
-                println("intent" + intent.getStringExtra("gender"))
-                println("intent" + intent.getStringExtra("age"))
-                println("intent" + intent.getStringExtra("visited_date"))
-                println("intent" + intent.getStringExtra("count"))
-                println("intent" + intent.getStringExtra("from"))
-                println("intent" + intent.getStringExtra("to"))
-                println("intent" + intent.getStringExtra("search_type"))
+            count = intent.getStringExtra("count")
 
             }
         }
@@ -90,7 +96,7 @@ class SetCouponFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         expirationLL= view.findViewById(R.id.expirationLL)
-
+        countTV = view.findViewById(R.id.countTV)
         coupon_exSP= view.findViewById(R.id.coupon_exSP)
         coupon_prdET= view.findViewById(R.id.coupon_prdET)
         skipTV= view.findViewById(R.id.skipTV)
@@ -105,6 +111,9 @@ class SetCouponFragment : Fragment() {
         sundayIV= view.findViewById(R.id.sundayIV)
         coupon_prdTV= view.findViewById(R.id.coupon_prdTV)
         exTV= view.findViewById(R.id.exTV)
+
+        coupon_conET= view.findViewById(R.id.coupon_conET)
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -115,7 +124,31 @@ class SetCouponFragment : Fragment() {
         setmenu2()
         setmenu()
 
+//        args.putString("count", count)
+//        args.putInt("search_type", search_type)
+//        args.putSerializable("gender", gender as ArrayList<String>?)
+//        Log.d("젠더",gender.toString())
+//        args.putSerializable("age", age as ArrayList<String>?)
+//        Log.d("젠더",age.toString())
+//        args.putString("visited_date", visited_date)
+//        args.putString("from", from)
+//        args.putString("to", to)
 
+
+        if (getArguments() != null) {
+            count = getArguments()!!.getString("count")
+            search_type = getArguments()!!.getInt("search_type")
+            gender = getArguments()!!.getSerializable("gender")
+            age = getArguments()!!.getSerializable("age")
+            visited_date = getArguments()!!.getString("visited_date")
+            from = getArguments()!!.getString("from");
+            to = getArguments()!!.getString("to");
+
+        }
+
+
+
+        countTV.text = "목록에서 선택한 "+count+" 명"
 
         adapter = ArrayAdapter(myContext,R.layout.spiner_item,op_expiration)
         coupon_exSP.adapter = adapter
@@ -230,6 +263,9 @@ class SetCouponFragment : Fragment() {
 
     //쿠폰만들기
     fun coupon_add() {
+
+        var content = Utils.getString(coupon_conET)
+
         val params = RequestParams()
         params.put("company_id",1)
         params.put("type",6)
@@ -237,6 +273,7 @@ class SetCouponFragment : Fragment() {
         params.put("week_use_yn",week_use_yn)
         params.put("sat_use_yn",sat_use_yn)
         params.put("sun_use_yn",sun_use_yn)
+        params.put("content",content)
         params.put("use_day",use_day)
         params.put("validity_alarm_yn",validity_alarm_yn)
         if (week_use_yn.equals("N")&&sat_use_yn.equals("N")&&sun_use_yn.equals("N")){
@@ -261,8 +298,18 @@ class SetCouponFragment : Fragment() {
                 try {
                     val result = response!!.getString("result")
                     if ("ok" == result) {
+                        var coupon_id = response.getString("coupon_id")
+
                         var intent = Intent()
                         intent.action = "STEP2_NEXT"
+                        intent.putExtra("coupon_id",coupon_id)
+                        intent.putExtra("count",count)
+                        intent.putExtra("search_type",search_type)
+                        intent.putExtra("gender",gender)
+                        intent.putExtra("age",age)
+                        intent.putExtra("visited_date",visited_date)
+                        intent.putExtra("from",from)
+                        intent.putExtra("to",to)
                         myContext.sendBroadcast(intent)
                     }else{
                         Toast.makeText(myContext,"업데이트실패", Toast.LENGTH_SHORT).show()

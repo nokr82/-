@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -75,6 +76,10 @@ class CalActivity : RootActivity() {
         type = intent.getIntExtra("type", -1)
         step = intent.getIntExtra("step", 1)
 
+
+        couponListAdapter = CouponListAdapter(context, R.layout.item_member_coupon, couponData)
+        couponLV.adapter = couponListAdapter
+
         setmenu()
         if (step == 4) {
             opTV.text = "사용"
@@ -84,7 +89,7 @@ class CalActivity : RootActivity() {
         //계산기
         cal()
 
-
+        stackLL.callOnClick()
         //결제내용스피너
         cate_SP.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
@@ -103,6 +108,7 @@ class CalActivity : RootActivity() {
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
+
             }
         }
 
@@ -128,10 +134,17 @@ class CalActivity : RootActivity() {
             depositlessIV.setImageResource(R.drawable.radio_on)
             payment_type = 3
         }
+
         changeStep()
 
     }
 
+
+
+    fun setmenu3(){
+        stackLL.setBackgroundColor(Color.parseColor("#ffffff"))
+        stack2LL.setBackgroundColor(Color.parseColor("#ffffff"))
+    }
 
     fun setmenu() {
         maleIV.setImageResource(R.drawable.radio_off)
@@ -147,12 +160,17 @@ class CalActivity : RootActivity() {
     //계산클릭이벤트
     fun cal() {
         stackLL.setOnClickListener {
+            setmenu3()
+            stackLL.setBackgroundColor(Color.parseColor("#906e8a32"))
             //기본퍼센트
             per_type = 1
-
+            setPoint()
         }
+
         stack2LL.setOnClickListener {
             //임의 퍼센트
+            setmenu3()
+            stack2LL.setBackgroundColor(Color.parseColor("#906e8a32"))
             val managerpercent = stack2TV.text.toString()
             val money = moneyTV.text.toString()
             per_type = 2
@@ -164,14 +182,14 @@ class CalActivity : RootActivity() {
             if (money == null) {
                 Toast.makeText(context, "가격을 먼저 입력해주세요.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
-            }
-
+            }else{
             val percent = managerpercent.toFloat() / 100
             val floatPoint = (money.toFloat() * percent)
             val stringPoint = floatPoint.toString()
             var splitPoint = stringPoint.split(".")
             val point = splitPoint.get(0)
             pointTV.setText(point)
+            }
 
         }
 
@@ -238,6 +256,7 @@ class CalActivity : RootActivity() {
                     pointTV.setText(point)
                 }
             } else {
+
             }
         }
         useLL.setOnClickListener {
@@ -337,13 +356,11 @@ class CalActivity : RootActivity() {
                     if ("ok" == result) {
                         var requestStep = response.getJSONObject("RequestStep")
                         var step = Utils.getInt(requestStep,"step")
-                        if (step ==3){
+                        if (step == 3){
                             timer!!.cancel()
                         }
 
 //                        step = Utils.getInt(requestStep, "step")
-
-
 
                         timerStart()
 
@@ -409,7 +426,7 @@ class CalActivity : RootActivity() {
                     if ("ok" == result) {
                         var requestStep = response.getJSONObject("RequestStep")
                         var member = response.getJSONObject("Member")
-                        var point = response.getJSONObject("Point")
+
 
 //                        step = Utils.getInt(requestStep, "step")
                         member_id = Utils.getInt(requestStep, "member_id")
@@ -428,8 +445,9 @@ class CalActivity : RootActivity() {
                                 // 적립 -> 회원 정보
 
                                 opTV.text = "적립"
-                                //신규회원이 아닐경우
-                                if (new_member_yn == "Y") {
+
+                                //신규 체크
+                                if (member_id == 0 || new_member_yn == "Y") {
                                     joinLL.visibility = View.VISIBLE
                                     message_op_LL.visibility = View.GONE
                                     checkLL.visibility = View.VISIBLE
@@ -448,12 +466,11 @@ class CalActivity : RootActivity() {
                                 var name = Utils.getString(member, "name")
 
                                 var left_point: String? = null
-                                if (new_member_yn.equals("N")) {
+                                if (!(member_id == 0) || new_member_yn.equals("N")) {
+                                    var point = response.getJSONObject("Point")
                                     left_point = Utils.getString(point, "balance")
                                 }
 
-                                couponListAdapter = CouponListAdapter(context, R.layout.item_member_coupon, couponData)
-                                couponLV.adapter = couponListAdapter
                                 getUserCouponList(phone)
 
                                 stack_pointTV.text = left_point
@@ -484,6 +501,7 @@ class CalActivity : RootActivity() {
                                 var name = Utils.getString(member, "name")
                                 var left_point: String? = null
                                 if (new_member_yn.equals("N")) {
+                                    var point = response.getJSONObject("Point")
                                     left_point = Utils.getString(point, "balance")
                                 }
 
@@ -533,18 +551,6 @@ class CalActivity : RootActivity() {
                 error()
             }
 
-            override fun onStart() {
-                // show dialog
-                if (progressDialog != null) {
-                    progressDialog!!.show()
-                }
-            }
-
-            override fun onFinish() {
-                if (progressDialog != null) {
-                    progressDialog!!.dismiss()
-                }
-            }
         })
     }
 
@@ -636,7 +642,6 @@ class CalActivity : RootActivity() {
             }
         })
     }
-
 
     //가입
     fun member_join() {
@@ -871,7 +876,6 @@ class CalActivity : RootActivity() {
             override fun onStart() {
                 // show dialog
                 if (progressDialog != null) {
-
 
                     progressDialog!!.show()
                 }
