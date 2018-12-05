@@ -346,7 +346,6 @@ class AutoCouponSettingsFragment : Fragment() {
 
             }
 
-
             override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
 
                 // System.out.println(responseString);
