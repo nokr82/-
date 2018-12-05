@@ -94,7 +94,9 @@
                 android:textColor="#ffffff"
                 android:background="#4752df"
                 android:textSize="8sp"
-                android:text="새 메세지 작성"/>
+                android:text="새 메세지 작성"
+                android:visibility="gone"/>
+
         </LinearLayout>
 
         <TextView

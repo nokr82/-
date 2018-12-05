@@ -267,13 +267,13 @@ class MssgAnalysisFragment : Fragment() {
     fun setTopTabMenuView(){
 
         searchTypeAllTV.setTextColor(Color.parseColor("#666666"))
-        searchTypeAllTV.setBackgroundColor(Color.parseColor("#FFFFFF"))
+        searchTypeAllTV.setBackgroundColor(Color.parseColor("#00000000"))
         searchType7DaysTV.setTextColor(Color.parseColor("#666666"))
-        searchType7DaysTV.setBackgroundColor(Color.parseColor("#FFFFFF"))
+        searchType7DaysTV.setBackgroundColor(Color.parseColor("#00000000"))
         searchType30DaysTV.setTextColor(Color.parseColor("#666666"))
-        searchType30DaysTV.setBackgroundColor(Color.parseColor("#FFFFFF"))
+        searchType30DaysTV.setBackgroundColor(Color.parseColor("#00000000"))
         searchType3MonthTV.setTextColor(Color.parseColor("#666666"))
-        searchType3MonthTV.setBackgroundColor(Color.parseColor("#FFFFFF"))
+        searchType3MonthTV.setBackgroundColor(Color.parseColor("#00000000"))
 
         if(date_type == 1) {
             searchTypeAllTV.setTextColor(Color.parseColor("#ffffff"))
