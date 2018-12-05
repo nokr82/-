@@ -107,6 +107,7 @@ class CalActivity : RootActivity() {
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
+
             }
         }
 
@@ -243,6 +244,7 @@ class CalActivity : RootActivity() {
                     pointTV.setText(point)
                 }
             } else {
+
             }
         }
         useLL.setOnClickListener {
@@ -342,7 +344,7 @@ class CalActivity : RootActivity() {
                     if ("ok" == result) {
                         var requestStep = response.getJSONObject("RequestStep")
                         var step = Utils.getInt(requestStep,"step")
-                        if (step ==3){
+                        if (step == 3){
                             timer!!.cancel()
                         }
 
@@ -431,8 +433,9 @@ class CalActivity : RootActivity() {
                                 // 적립 -> 회원 정보
 
                                 opTV.text = "적립"
-                                //신규회원이 아닐경우
-                                if (new_member_yn == "Y") {
+
+                                //신규 체크
+                                if (member_id == 0 || new_member_yn == "Y") {
                                     joinLL.visibility = View.VISIBLE
                                     message_op_LL.visibility = View.GONE
                                     checkLL.visibility = View.VISIBLE
@@ -451,7 +454,7 @@ class CalActivity : RootActivity() {
                                 var name = Utils.getString(member, "name")
 
                                 var left_point: String? = null
-                                if (new_member_yn.equals("N")) {
+                                if (!(member_id == 0) || new_member_yn.equals("N")) {
                                     var point = response.getJSONObject("Point")
                                     left_point = Utils.getString(point, "balance")
                                 }
@@ -536,18 +539,6 @@ class CalActivity : RootActivity() {
                 error()
             }
 
-            override fun onStart() {
-                // show dialog
-                if (progressDialog != null) {
-                    progressDialog!!.show()
-                }
-            }
-
-            override fun onFinish() {
-                if (progressDialog != null) {
-                    progressDialog!!.dismiss()
-                }
-            }
         })
     }
 
@@ -639,7 +630,6 @@ class CalActivity : RootActivity() {
             }
         })
     }
-
 
     //가입
     fun member_join() {
@@ -874,7 +864,6 @@ class CalActivity : RootActivity() {
             override fun onStart() {
                 // show dialog
                 if (progressDialog != null) {
-
 
                     progressDialog!!.show()
                 }
