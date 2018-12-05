@@ -13,14 +13,10 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.CompanyAction
-import com.devstories.anipointcompany.android.Actions.CouponAction
 import com.devstories.anipointcompany.android.Actions.MemberAction
-import com.devstories.anipointcompany.android.Actions.MemberAction.member_join
 import com.devstories.anipointcompany.android.Actions.RequestStepAction
 import com.devstories.anipointcompany.android.R
-import com.devstories.anipointcompany.android.R.id.*
 import com.devstories.anipointcompany.android.adapter.CouponListAdapter
-import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.RootActivity
 import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
@@ -46,7 +42,7 @@ class CalActivity : RootActivity() {
     var payment_type = -1
     var category_id = -1
     var per_type = -1
-
+ var new_gender = ""
     var couponData : ArrayList<JSONObject> = ArrayList<JSONObject>()
     lateinit var couponListAdapter: CouponListAdapter
 
@@ -81,6 +77,7 @@ class CalActivity : RootActivity() {
         couponLV.adapter = couponListAdapter
 
         setmenu()
+        setmenu4()
         if (step == 4) {
             opTV.text = "사용"
             m_opTV.text = "P"
@@ -136,9 +133,24 @@ class CalActivity : RootActivity() {
 
         changeStep()
 
+        new_maleIV.setOnClickListener {
+            setmenu()
+            new_maleIV.setImageResource(R.drawable.radio_on)
+            new_gender = "M"
+        }
+        new_femaleIV.setOnClickListener {
+            setmenu()
+            new_femaleIV.setImageResource(R.drawable.radio_on)
+            new_gender = "F"
+        }
+
+
     }
 
-
+    fun setmenu4(){
+        new_femaleIV.setImageResource(R.drawable.radio_off)
+        new_maleIV.setImageResource(R.drawable.radio_off)
+    }
 
     fun setmenu3(){
         stackLL.setBackgroundColor(Color.parseColor("#ffffff"))
@@ -647,12 +659,9 @@ class CalActivity : RootActivity() {
     //가입
     fun member_join() {
         var getid = member_id
-        var getPhone = Utils.getString(phoneTV)
-        var getGender = Utils.getString(genderET)
+        var getPhone = Utils.getString(phoneET)
         var getAge = Utils.getString(ageET)
         var getBirth = Utils.getString(birthET)
-        var getPoint = Utils.getString(stack_pointET)
-        var getCoupon = Utils.getString(couponET)
         var getMemo = Utils.getString(memoET)
         var getName = Utils.getString(nameET)
 
@@ -660,9 +669,8 @@ class CalActivity : RootActivity() {
         params.put("company_id", 1)
         params.put("member_id", getid)
         params.put("age", getAge)
-        params.put("point", getPoint)
         params.put("name", getName)
-        params.put("gender", getGender)
+        params.put("gender", new_gender)
         params.put("memo", getMemo)
         params.put("phone", getPhone)
         params.put("birth", getBirth)
