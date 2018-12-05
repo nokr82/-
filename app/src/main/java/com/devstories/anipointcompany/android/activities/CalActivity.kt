@@ -455,6 +455,10 @@ class CalActivity : RootActivity() {
                                     message_op_LL.visibility = View.VISIBLE
                                     joinLL.visibility = View.GONE
                                     checkLL.visibility = View.GONE
+                                    var left_point: String? = null
+                                    var point = response.getJSONObject("Point")
+                                    left_point = Utils.getString(point, "balance")
+                                    stack_pointTV.text = left_point
                                 }
 
                                 var phone = Utils.getString(member, "phone")
@@ -465,15 +469,10 @@ class CalActivity : RootActivity() {
                                 var memo = Utils.getString(member, "memo")
                                 var name = Utils.getString(member, "name")
 
-                                var left_point: String? = null
-                                if (!(member_id == 0) || new_member_yn.equals("N")) {
-                                    var point = response.getJSONObject("Point")
-                                    left_point = Utils.getString(point, "balance")
-                                }
 
                                 getUserCouponList(phone)
 
-                                stack_pointTV.text = left_point
+
                                 titleTV.text = name
                                 if (gender.equals("M")) {
                                     setmenu()
@@ -503,6 +502,9 @@ class CalActivity : RootActivity() {
                                 if (new_member_yn.equals("N")) {
                                     var point = response.getJSONObject("Point")
                                     left_point = Utils.getString(point, "balance")
+                                    message_op_LL.visibility = View.VISIBLE
+                                    joinLL.visibility = View.GONE
+                                    checkLL.visibility = View.GONE
                                 }
 
                                 titleTV.text = name
@@ -678,6 +680,7 @@ class CalActivity : RootActivity() {
 
                     if ("ok" == result) {
                         Toast.makeText(context, "회원등록완료", Toast.LENGTH_SHORT).show()
+                        finish()
 
                     }
 
@@ -813,12 +816,11 @@ class CalActivity : RootActivity() {
     }
 
     fun getUserCouponList(phone: String) {
-        //userCouponListLL
         val params = RequestParams()
         params.put("company_id", 1)
         params.put("phone", phone)
 
-        CouponAction.auto_coupon(params, object : JsonHttpResponseHandler() {
+        MemberAction.inquiry_point(params, object : JsonHttpResponseHandler() {
 
             override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
                 if (progressDialog != null) {
@@ -827,25 +829,29 @@ class CalActivity : RootActivity() {
 
                 try {
                     val result = response!!.getString("result")
+
                     if ("ok" == result) {
 
-                        val data = response.getJSONArray("coupons")
+
+                        couponData.clear()
+                        couponListAdapter.notifyDataSetChanged()
+
+                        var data = response.getJSONArray("coupons")
                         Log.d("쿠폰데이터", data.toString())
                         for (i in 0 until data.length()) {
+
                             couponData.add(data[i] as JSONObject)
+
                         }
                         couponListAdapter.notifyDataSetChanged()
 
-                    } else {
 
                     }
 
                 } catch (e: JSONException) {
                     e.printStackTrace()
                 }
-
             }
-
 
             override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
 
@@ -865,13 +871,36 @@ class CalActivity : RootActivity() {
                 if (progressDialog != null) {
                     progressDialog!!.dismiss()
                 }
-
                 // System.out.println(responseString);
-
                 throwable.printStackTrace()
                 error()
             }
 
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    throwable: Throwable,
+                    errorResponse: JSONObject?
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+                throwable.printStackTrace()
+                error()
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    throwable: Throwable,
+                    errorResponse: JSONArray?
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+                throwable.printStackTrace()
+                error()
+            }
 
             override fun onStart() {
                 // show dialog
