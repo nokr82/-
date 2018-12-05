@@ -56,7 +56,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
     lateinit var tagTV : TextView
     lateinit var useLL : LinearLayout
 
-     var day_type = 1 //1-오늘 2-이번주 3-이번달 4-3개월
+     var day_type = -1 //1-오늘 2-이번주 3-이번달 4-3개월
     var page = 1    //페이지
     var limit = 5 //보여지는갯수
     var totalPage =1 //총페이지
@@ -97,8 +97,6 @@ class Sales_Analysis_List_Fragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-
-
         adapter = ArrayAdapter(myContext, R.layout.spiner_item, option_limit)
         pageSP.adapter = adapter
         //스피너 선택이벤트
@@ -116,7 +114,6 @@ class Sales_Analysis_List_Fragment : Fragment() {
 
             }
         }
-
         //오늘날짜구하기
         val formatter = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
         val date = Date()
@@ -238,7 +235,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
 
         //전체고객구하기
         loadcntData()
-        loadData(1)
+
         amountSP.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
                 /*if (position==0){
@@ -380,7 +377,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
         val params = RequestParams()
         params.put("company_id", company_id)
         params.put("category_id", category_id)
-        params.put("day_type", 4)
+        params.put("day_type", day_type)
         params.put("limit", limit)
         params.put("page", page)
         Log.d("페이지", page.toString())

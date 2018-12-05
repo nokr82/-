@@ -55,7 +55,7 @@ class SettingMyInfoFragment : Fragment() {
     //이걸로 api배열에 이미지를 넣는다.
     var addImages = ArrayList<Bitmap>()
     var delids = ArrayList<Int>()
-
+    var passwd = ""
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         this.myContext = container!!.context
@@ -119,7 +119,23 @@ class SettingMyInfoFragment : Fragment() {
 
             edit_image()
         }
-
+        checkTV.setOnClickListener {
+            var t_pass = Utils.getString(tempPasswordET)
+            if (passwd==t_pass){
+                var n_pass = Utils.getString(newPasswordET)
+                var n_pass2 = Utils.getString(newPassCheckET)
+                if (n_pass==n_pass2){
+                    edit_pass()
+                }else{
+                    Toast.makeText(myContext,"새로운 비밀번호가 같지않습니다",Toast.LENGTH_SHORT).show()
+                }
+            }else{
+                Toast.makeText(myContext,"현재 비밀번호가 같지않습니다",Toast.LENGTH_SHORT).show()
+            }
+            tempPasswordET.setText("")
+            newPasswordET.setText("")
+            newPassCheckET.setText("")
+        }
 
     }
 
@@ -207,6 +223,7 @@ class SettingMyInfoFragment : Fragment() {
                         val phone2 = Utils.getString(company,"phone2")
                         val phone3 = Utils.getString(company,"phone3")
                         val login_id = Utils.getString(company,"login_id")
+                         passwd=Utils.getString(company,"passwd")
 
                         compNameET.setText(company_name)
                         phoneNum1ET.setText(phone1)
@@ -308,6 +325,7 @@ class SettingMyInfoFragment : Fragment() {
         var phone3:String =  Utils.getString(phoneNum3ET)
         var login_id:String =  Utils.getString(compIdET)
 
+
         val params = RequestParams()
         params.put("company_id",1)
         params.put("company_name",company_name)
@@ -315,6 +333,12 @@ class SettingMyInfoFragment : Fragment() {
         params.put("phone2",phone2)
         params.put("phone3",phone3)
         params.put("login_id",login_id)
+
+//        var t_pass = Utils.getString(tempPasswordET)
+//        var n_pass = Utils.getString(newPasswordET)
+//        var n_pass2 = Utils.getString(newPassCheckET)
+//
+//        params.put("passwd",passwd)
 
 
         CompanyAction.edit_info(params, object : JsonHttpResponseHandler() {
@@ -383,7 +407,78 @@ class SettingMyInfoFragment : Fragment() {
             }
         })
     }
+    //사업체 비밀번호변경
+    fun edit_pass() {
+        val params = RequestParams()
+        params.put("company_id",1)
+        var n_pass2 = Utils.getString(newPassCheckET)
+        params.put("passwd",n_pass2)
+        CompanyAction.edit_info(params, object : JsonHttpResponseHandler() {
 
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    val result = response!!.getString("result")
+                    if ("ok" == result) {
+                        Toast.makeText(myContext,"변경완료", Toast.LENGTH_SHORT).show()
+
+                    }else{
+                        Toast.makeText(myContext,"변경실패", Toast.LENGTH_SHORT).show()
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(myContext, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
     //사업체 이미지 업데이트및 삭제
     fun edit_image() {
 

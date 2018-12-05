@@ -197,6 +197,7 @@ class SetMessageContFragment : Fragment() {
         nextTV.setOnClickListener {
             dlgView()
 
+
         }
 
     }
