@@ -231,7 +231,6 @@ class User_visit_List_Fragment : Fragment() {
         three_mTV.setTextColor(Color.parseColor("#c5c5c5"))
     }
 
-
     //방문자수구하기
     fun loadcntData() {
         val params = RequestParams()
