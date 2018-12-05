@@ -320,40 +320,29 @@ class CalActivity : RootActivity() {
     // 프로세스
     fun changeStep() {
         val params = RequestParams()
-        params.put("member_id", member_id)
         params.put("company_id", 1)
-        params.put("point", stackpoint)//사용및적립포인트
-        params.put("type", p_type)//1적립 2사용
-        //    params.put("use_point", p_type)//사용 포인트
-        params.put("price", p_type)//상품가격
-        params.put("payment_type", payment_type)//결제방법
-        params.put("use_type", p_type)//1적립 2사용 3 적립/사용
-        params.put("category_id", category_id)//카테고리 일련번호
+        params.put("member_id", member_id)
+        params.put("step", step)
 
-        if (payment_type == -1) {
-            Toast.makeText(context, "결제방식을 선택해주세요", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-
-        MemberAction.point(params, object : JsonHttpResponseHandler() {
+        RequestStepAction.changeStep(params, object : JsonHttpResponseHandler() {
 
             override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
                 if (progressDialog != null) {
                     progressDialog!!.dismiss()
                 }
-                try {
-                    val result = response!!.getString("result")
-                    Log.d("적립", response.toString())
 
+                try {
+
+                    val result = response!!.getString("result")
                     if ("ok" == result) {
                         var requestStep = response.getJSONObject("RequestStep")
-                        var step = Utils.getInt(requestStep, "step")
-                        if (step == 3) {
+                        var step = Utils.getInt(requestStep,"step")
+                        if (step ==3){
                             timer!!.cancel()
                         }
 
 //                        step = Utils.getInt(requestStep, "step")
+
 
 
                         timerStart()
@@ -366,9 +355,6 @@ class CalActivity : RootActivity() {
 
             }
 
-            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONArray?) {
-                super.onSuccess(statusCode, headers, response)
-            }
 
             private fun error() {
                 Utils.alert(context, "조회중 장애가 발생하였습니다.")
