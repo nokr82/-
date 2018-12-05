@@ -520,7 +520,7 @@
 
             <!--확인버튼, 스피너, 라디오그룹-->
             <LinearLayout
-
+                android:layout_marginLeft="7dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -613,7 +613,7 @@
                 <LinearLayout
                     android:id="@+id/depositlessLL"
                     android:layout_width="match_parent"
-                    android:layout_marginLeft="4dp"
+
                     android:layout_marginTop="5.5dp"
                     android:layout_height="wrap_content">
                     <ImageView
@@ -1103,11 +1103,11 @@
     </LinearLayout>
 
 
-    <ScrollView
+    <!--<ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent">-->
 
-        <LinearLayout
+        <!--<LinearLayout
             android:id="@+id/userCouponListLL"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -1115,7 +1115,12 @@
             android:layout_marginRight="25dp"
             android:layout_marginTop="18.5dp"
             android:layout_marginBottom="18.5dp"
-            android:orientation="vertical">
+            android:orientation="vertical">-->
+        <ListView
+            android:id="@+id/couponLV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"/>
 
 
             <!--<ImageView
@@ -1180,9 +1185,9 @@
                     android:src="@mipmap/coupon" />
             </LinearLayout>-->
 
-        </LinearLayout>
+        <!--</LinearLayout>-->
 
-    </ScrollView>
+    <!--</ScrollView>-->
 
 
 </LinearLayout>
