@@ -137,12 +137,12 @@ class CalActivity : RootActivity() {
         changeStep()
 
         new_maleIV.setOnClickListener {
-            setmenu()
+            setmenu4()
             new_maleIV.setImageResource(R.drawable.radio_on)
             new_gender = "M"
         }
         new_femaleIV.setOnClickListener {
-            setmenu()
+            setmenu4()
             new_femaleIV.setImageResource(R.drawable.radio_on)
             new_gender = "F"
         }
@@ -315,7 +315,7 @@ class CalActivity : RootActivity() {
 
             }
 
-            if (opTV.text.equals("사용")) {
+           else if (opTV.text.equals("결제")) {
                 val totalpoint = Integer.parseInt(moneyTV.text.toString())
                 val use_point = Integer.parseInt(stack_pointTV.text.toString())
                 stackpoint = totalpoint
@@ -692,7 +692,9 @@ class CalActivity : RootActivity() {
             Toast.makeText(context,"생년월일을 8자리 입력해주세요",Toast.LENGTH_SHORT).show()
             return
         }
+        var r_birth=  getBirth.substring(0,4)+"-"+getBirth.substring(4,6)+"-"+getBirth.substring(6,8)
 
+        Log.d("진생일",r_birth)
 
         val params = RequestParams()
         params.put("company_id", company_id)
@@ -702,7 +704,7 @@ class CalActivity : RootActivity() {
         params.put("gender", new_gender)
         params.put("memo", getMemo)
         params.put("phone", getPhone)
-        params.put("birth", getBirth)
+        params.put("birth", r_birth)
 
         MemberAction.member_join(params, object : JsonHttpResponseHandler() {
 
