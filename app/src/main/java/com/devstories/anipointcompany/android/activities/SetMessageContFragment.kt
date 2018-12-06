@@ -101,6 +101,9 @@ class SetMessageContFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         company_id = PrefUtils.getIntPreference(context, "company_id")
+        setedit()
+
+
 
         if (getArguments() != null) {
             member_id = getArguments()!!.getInt("member_id", -1)
@@ -202,6 +205,11 @@ class SetMessageContFragment : Fragment() {
 
     }
 
+    fun setedit(){
+        titleET.setText("")
+        messageContentET.setText("")
+    }
+
     fun dlgView() {
         var mPopupDlg: DialogInterface? = null
 
@@ -218,6 +226,9 @@ class SetMessageContFragment : Fragment() {
         msgWriteTV.setOnClickListener {
             send_message()
             mPopupDlg.dismiss()
+            var intent = Intent()
+            intent.action = "FINAL_NEXT"
+            myContext.sendBroadcast(intent)
 
         }
     }

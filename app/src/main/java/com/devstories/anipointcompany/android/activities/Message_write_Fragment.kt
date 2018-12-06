@@ -128,7 +128,17 @@ class Message_write_Fragment : Fragment() {
             }
         }
     }
-
+    //최종 =>메시지보내기
+    internal var FinalReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent?) {
+            if (intent != null) {
+                setfilter()
+                userRL.setBackgroundColor(Color.parseColor("#0068df"))
+                userTV.setTextColor(Color.parseColor("#ffffff"))
+                childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, MessageUserFragment).commit()
+            }
+        }
+    }
     //건너뛰기
     internal var SkipReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent?) {
@@ -207,6 +217,9 @@ class Message_write_Fragment : Fragment() {
 
         var filter = IntentFilter("MSG_NEXT")
         myContext.registerReceiver(MsgReceiver, filter)
+
+        var filter5 = IntentFilter("FINAL_NEXT")
+        myContext.registerReceiver(FinalReceiver, filter5)
 
         //고객선택
         var filter1 = IntentFilter("STEP1_NEXT")
