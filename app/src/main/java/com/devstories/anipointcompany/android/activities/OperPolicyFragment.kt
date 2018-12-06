@@ -44,6 +44,10 @@ class OperPolicyFragment : Fragment() {
     lateinit var saveTV: TextView
     lateinit var high_perET: EditText
     lateinit var basic_perET: EditText
+    lateinit var a_visitLL: LinearLayout
+    lateinit var a_costLL: LinearLayout
+
+
 
 
     var type = -1//단골기준
@@ -75,7 +79,8 @@ class OperPolicyFragment : Fragment() {
         saveTV = view.findViewById(R.id.saveTV)
         high_perET = view.findViewById(R.id.high_perET)
         basic_perET = view.findViewById(R.id.basic_perET)
-
+        a_visitLL= view.findViewById(R.id.a_visitLL)
+        a_costLL= view.findViewById(R.id.a_costLL)
 
     }
 
@@ -102,13 +107,13 @@ class OperPolicyFragment : Fragment() {
         }
 
 
-        costIV.setOnClickListener {
+        a_costLL.setOnClickListener {
             setmenu2()
             costIV.setImageResource(R.drawable.radio_on)
             accountLL.visibility = View.VISIBLE
             type = 2
         }
-        vsitIV.setOnClickListener {
+        a_visitLL.setOnClickListener {
             setmenu2()
             vsitIV.setImageResource(R.drawable.radio_on)
             visitLL.visibility = View.VISIBLE

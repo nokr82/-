@@ -128,7 +128,17 @@ class Message_write_Fragment : Fragment() {
             }
         }
     }
-
+    //최종 =>메시지보내기
+    internal var FinalReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent?) {
+            if (intent != null) {
+                setfilter()
+                userRL.setBackgroundColor(Color.parseColor("#0068df"))
+                userTV.setTextColor(Color.parseColor("#ffffff"))
+                childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, MessageUserFragment).commit()
+            }
+        }
+    }
     //건너뛰기
     internal var SkipReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent?) {
@@ -138,6 +148,26 @@ class Message_write_Fragment : Fragment() {
                 userTV.setTextColor(Color.parseColor("#ffffff"))
                 writeRL.setBackgroundColor(Color.parseColor("#0068df"))
                 writeTV.setTextColor(Color.parseColor("#ffffff"))
+
+
+                var gender = intent.getSerializableExtra("gender")
+                var age = intent.getSerializableExtra("age")
+                var visited_date = intent.getStringExtra("visited_date")
+                var count = intent.getStringExtra("count")
+                var from = intent.getStringExtra("from")
+                var to = intent.getStringExtra("to")
+                var search_type = intent.getIntExtra("search_type", -1)
+
+
+                var args: Bundle = Bundle()
+                args.putString("count", count)
+                args.putInt("search_type", search_type)
+                args.putStringArrayList("gender", gender as ArrayList<String>?)
+                args.putStringArrayList("age", age as ArrayList<String>?)
+                args.putString("visited_date", visited_date)
+                args.putString("from", from)
+                args.putString("to", to)
+                SetMessageContFragment.setArguments(args)
                 childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, SetMessageContFragment).commit()
             }
         }
@@ -187,6 +217,9 @@ class Message_write_Fragment : Fragment() {
 
         var filter = IntentFilter("MSG_NEXT")
         myContext.registerReceiver(MsgReceiver, filter)
+
+        var filter5 = IntentFilter("FINAL_NEXT")
+        myContext.registerReceiver(FinalReceiver, filter5)
 
         //고객선택
         var filter1 = IntentFilter("STEP1_NEXT")

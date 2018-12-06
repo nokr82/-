@@ -101,6 +101,9 @@ class SetMessageContFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         company_id = PrefUtils.getIntPreference(context, "company_id")
+        setedit()
+
+
 
         if (getArguments() != null) {
             member_id = getArguments()!!.getInt("member_id", -1)
@@ -117,7 +120,6 @@ class SetMessageContFragment : Fragment() {
                 to = getArguments()!!.getString("to")
                 count = getArguments()!!.getString("count")
                 Log.d("쿠폰", search_type.toString())
-                Log.d("쿠폰", coupon_id)
                 Log.d("쿠폰", gender.toString())
                 Log.d("쿠폰", age.toString())
             }
@@ -203,6 +205,11 @@ class SetMessageContFragment : Fragment() {
 
     }
 
+    fun setedit(){
+        titleET.setText("")
+        messageContentET.setText("")
+    }
+
     fun dlgView() {
         var mPopupDlg: DialogInterface? = null
 
@@ -218,6 +225,11 @@ class SetMessageContFragment : Fragment() {
         }
         msgWriteTV.setOnClickListener {
             send_message()
+            mPopupDlg.dismiss()
+            var intent = Intent()
+            intent.action = "FINAL_NEXT"
+            myContext.sendBroadcast(intent)
+
         }
     }
 

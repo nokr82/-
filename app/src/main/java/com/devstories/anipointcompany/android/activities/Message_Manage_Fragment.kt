@@ -30,9 +30,7 @@ class Message_Manage_Fragment : Fragment() {
     lateinit var sendMessageTV: TextView
     lateinit var autoCouponTV: TextView
 
-    lateinit var view1: View
-    lateinit var view2: View
-    lateinit var view3: View
+
 
     lateinit var accumulateLL : LinearLayout
     lateinit var useLL : LinearLayout
@@ -71,9 +69,7 @@ class Message_Manage_Fragment : Fragment() {
         accumulateLL = view.findViewById(R.id.accumulateLL)
         useLL = view.findViewById(R.id.useLL)
 
-        view1 = view.findViewById(R.id.view1)
-        view2 = view.findViewById(R.id.view2)
-        view3 = view.findViewById(R.id.view3)
+
 
         messageFL = view.findViewById(R.id.messageFL)
 
@@ -90,7 +86,7 @@ class Message_Manage_Fragment : Fragment() {
             member_id = getArguments()!!.getInt("member_id")
             if (member_id!=-1){
                 setView()
-                view2.visibility = View.VISIBLE
+
                 sendMessageTV.setTextColor(Color.parseColor("#FFFFFF"))
                 var args:Bundle = Bundle()
                 args.putInt("member_id", member_id)
@@ -114,7 +110,7 @@ class Message_Manage_Fragment : Fragment() {
         // 메세지 통계
         messageStatisticsLL.setOnClickListener {
             setView()
-            view1.visibility = View.VISIBLE
+
             messageStatisticsTV.setTextColor(Color.parseColor("#FFFFFF"))
 
             childFragmentManager.beginTransaction().replace(R.id.messageFL, MssgAnalysisFragment).commit()
@@ -123,7 +119,7 @@ class Message_Manage_Fragment : Fragment() {
         // 메세지 작성
         sendMessageLL .setOnClickListener {
             setView()
-            view2.visibility = View.VISIBLE
+
             sendMessageTV.setTextColor(Color.parseColor("#FFFFFF"))
 
             childFragmentManager.beginTransaction().replace(R.id.messageFL, Message_write_Fragment).commit()
@@ -132,7 +128,7 @@ class Message_Manage_Fragment : Fragment() {
         // 자동 쿠폰 설정
         autoCouponLL.setOnClickListener {
             setView()
-            view3.visibility = View.VISIBLE
+
             autoCouponTV.setTextColor(Color.parseColor("#FFFFFF"))
 
             childFragmentManager.beginTransaction().replace(R.id.messageFL, AutoCouponSettingsFragment).commit()
@@ -141,10 +137,6 @@ class Message_Manage_Fragment : Fragment() {
     }
 
     fun setView(){
-        view1.visibility = View.INVISIBLE
-        view2.visibility = View.INVISIBLE
-        view3.visibility = View.INVISIBLE
-
         messageStatisticsTV.setTextColor(Color.parseColor("#80FFFFFF"))
         sendMessageTV.setTextColor(Color.parseColor("#80FFFFFF"))
         autoCouponTV.setTextColor(Color.parseColor("#80FFFFFF"))
