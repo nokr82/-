@@ -312,7 +312,7 @@ class CalActivity : RootActivity() {
 
             }
 
-            if (opTV.text.equals("사용")) {
+            if (opTV.text.equals("결제")) {
                 val totalpoint = Integer.parseInt(moneyTV.text.toString())
                 val use_point = Integer.parseInt(stack_pointTV.text.toString())
                 stackpoint = totalpoint
