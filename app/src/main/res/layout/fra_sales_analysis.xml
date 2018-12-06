@@ -139,7 +139,7 @@
                 android:lineSpacingExtra="-2sp"
                 android:text="적립"
                 android:textColor="#ffffff"
-                android:textSize="12dp" />
+                android:textSize="24dp" />
 
 
         </LinearLayout>
@@ -178,7 +178,7 @@
                     android:lineSpacingExtra="-2sp"
                     android:text="적립"
                     android:textColor="#ffffff"
-                    android:textSize="12dp" />
+                    android:textSize="24dp" />
 
 
             </LinearLayout>
@@ -187,7 +187,7 @@
                 android:id="@+id/useLL"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:background="#ff8e1b"
                 android:gravity="center">
@@ -200,7 +200,7 @@
                     android:lineSpacingExtra="-2sp"
                     android:text="사용"
                     android:textColor="#ffffff"
-                    android:textSize="12dp" />
+                    android:textSize="24dp" />
 
 
             </LinearLayout>

@@ -109,7 +109,7 @@
                 android:id="@+id/useLL"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="20dp"
                 android:background="#ff8e1b"
                 android:gravity="center">

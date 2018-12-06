@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
@@ -15,69 +15,68 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16dp"
-                android:textColor="#666666"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
                 android:letterSpacing="-0.03"
                 android:lineSpacingExtra="3sp"
                 android:text="고객필터"
-                />
+                android:textColor="#666666"
+                android:textSize="16dp" />
 
             <LinearLayout
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/background_strock_e7e7e7">
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/background_strock_e7e7e7"
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_marginTop="9.5dp"
                     android:layout_width="match_parent"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginTop="9.5dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="20dp"
                     android:background="@drawable/background_strock_e7e7e7"
-                    android:layout_height="40dp"
                     android:orientation="horizontal">
 
                     <RelativeLayout
                         android:id="@+id/allRL"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:background="#0068df">
 
 
                         <TextView
                             android:id="@+id/allTV"
-                            android:layout_centerInParent="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="16dp"
-                            android:textColor="#ffff"
+                            android:layout_centerInParent="true"
+                            android:gravity="center_horizontal"
                             android:letterSpacing="-0.03"
                             android:lineSpacingExtra="3sp"
-                            android:gravity="center_horizontal"
                             android:text="전체"
-                            />
+                            android:textColor="#ffff"
+                            android:textSize="16dp" />
+
                         <View
-                            android:layout_alignParentBottom="true"
-                            android:background="#606060"
                             android:layout_width="match_parent"
-                            android:layout_height="0.5dp"/>
+                            android:layout_height="0.5dp"
+                            android:layout_alignParentBottom="true"
+                            android:background="#606060" />
 
                     </RelativeLayout>
 
                     <RelativeLayout
                         android:id="@+id/acc_countRL"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
 
 
                         <TextView
@@ -91,19 +90,20 @@
                             android:text="적립횟수"
                             android:textColor="#c5c5c5"
                             android:textSize="16dp" />
+
                         <View
-                            android:layout_alignParentBottom="true"
-                            android:background="#606060"
                             android:layout_width="match_parent"
-                            android:layout_height="0.5dp"/>
+                            android:layout_height="0.5dp"
+                            android:layout_alignParentBottom="true"
+                            android:background="#606060" />
 
                     </RelativeLayout>
 
                     <RelativeLayout
                         android:id="@+id/novisitRL"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
 
 
                         <TextView
@@ -117,11 +117,12 @@
                             android:text="미방문"
                             android:textColor="#c5c5c5"
                             android:textSize="16dp" />
+
                         <View
-                            android:layout_alignParentBottom="true"
-                            android:background="#606060"
                             android:layout_width="match_parent"
-                            android:layout_height="0.5dp"/>
+                            android:layout_height="0.5dp"
+                            android:layout_alignParentBottom="true"
+                            android:background="#606060" />
 
                     </RelativeLayout>
 
@@ -151,130 +152,139 @@
                             android:background="#606060" />
 
                     </RelativeLayout>
+
                     <RelativeLayout
                         android:id="@+id/pointRL"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
 
 
                         <TextView
                             android:id="@+id/pointTV"
-                            android:layout_centerInParent="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="16dp"
-                            android:textColor="#c5c5c5"
+                            android:layout_centerInParent="true"
+                            android:gravity="center_horizontal"
                             android:letterSpacing="-0.03"
                             android:lineSpacingExtra="3sp"
-                            android:gravity="center_horizontal"
                             android:text="포인트"
-                            />
+                            android:textColor="#c5c5c5"
+                            android:textSize="16dp" />
+
                         <View
-                            android:layout_alignParentBottom="true"
-                            android:background="#606060"
                             android:layout_width="match_parent"
-                            android:layout_height="0.5dp"/>
+                            android:layout_height="0.5dp"
+                            android:layout_alignParentBottom="true"
+                            android:background="#606060" />
 
                     </RelativeLayout>
 
                 </LinearLayout>
-<LinearLayout
-    android:id="@+id/visitLL"
-    android:visibility="gone"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-                <TextView
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_width="70dp"
-                    android:layout_height="18dp"
-                    android:textSize="16dp"
-                    android:textColor="#666666"
-                    android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="3sp"
-                    android:text="방문기간"
-                    />
+
                 <LinearLayout
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5.5dp"
-                    android:layout_width="70dp"
-                    android:layout_height="18dp"
-                    android:layout_marginBottom="17dp"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/background_strock_707070">
-                    <Spinner
-                        android:id="@+id/visitdaySP"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:background="@null"
-                        android:layout_height="match_parent"></Spinner>
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/icon_down_arrow"/>
+                    android:id="@+id/visitLL"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="20dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="18dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="3sp"
+                        android:text="방문기간"
+                        android:textColor="#666666"
+                        android:textSize="16dp" />
+
+                    <LinearLayout
+                        android:layout_width="70dp"
+                        android:layout_height="18dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="5.5dp"
+                        android:layout_marginBottom="17dp"
+                        android:background="@drawable/background_strock_707070"
+                        android:gravity="center_vertical">
+
+                        <Spinner
+                            android:id="@+id/visitdaySP"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@null"></Spinner>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/icon_down_arrow" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
-</LinearLayout>
                 <LinearLayout
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="40dp"
-
                     android:id="@+id/limitLL"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp">
 
 
                     <EditText
+                        android:id="@+id/limit_opET"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:gravity="center_vertical"
                         android:inputType="number"
                         android:minEms="3"
                         android:singleLine="true"
-                        android:id="@+id/limit_opET"
-                        android:textSize="20dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:background="@null" />
+                        android:textSize="20dp" />
+
                     <TextView
                         android:id="@+id/limit_opTV"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:gravity="center"
                         android:layout_marginLeft="10.5dp"
-                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:text="P"
                         android:textColor="#666666"
-                        android:text="P"/>
+                        android:textSize="20dp" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10.5dp"
-                        android:textSize="18dp"
+                        android:text="~"
                         android:textColor="#666666"
-                        android:text="~"/>
+                        android:textSize="18dp" />
 
                     <EditText
-                        android:layout_marginLeft="20dp"
-                        android:minEms="3"
-                        android:inputType="number"
-                        android:singleLine="true"
-                        android:textSize="20dp"
                         android:id="@+id/limit_op2ET"
                         android:layout_width="wrap_content"
-                        android:background="@null"
                         android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:background="@null"
                         android:gravity="center_vertical"
-                        />
+                        android:inputType="number"
+                        android:minEms="3"
+                        android:singleLine="true"
+                        android:textSize="20dp" />
+
                     <TextView
                         android:id="@+id/limit_op2TV"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10.5dp"
                         android:gravity="center_vertical"
-                        android:textSize="20dp"
+                        android:text="P"
                         android:textColor="#666666"
-                        android:text="P"/>
+                        android:textSize="20dp" />
 
                 </LinearLayout>
 
@@ -283,64 +293,66 @@
 
 
             <LinearLayout
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
                 android:layout_width="match_parent"
-                android:gravity="center_vertical"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical">
+
                 <TextView
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16dp"
-                    android:textColor="#666666"
-                    android:text="상세필터"
                     android:layout_marginRight="4dp"
-                    />
+                    android:text="상세필터"
+                    android:textColor="#666666"
+                    android:textSize="16dp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14dp"
-                    android:textColor="#a1a1a1"
                     android:letterSpacing="-0.03"
                     android:lineSpacingExtra="5sp"
                     android:text="상세 필터를 설정하지 않으면, 전체 고객이 선택됩니다 "
-                    />
+                    android:textColor="#a1a1a1"
+                    android:textSize="12dp" />
 
             </LinearLayout>
 
 
             <LinearLayout
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:orientation="vertical"
-                android:background="@drawable/background_strock_e7e7e7">
+                android:layout_height="150dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/background_strock_e7e7e7"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:gravity="center_vertical"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:gravity="center_vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10.5dp"
-                        android:textSize="16dp"
+                        android:text="성별"
                         android:textColor="#666666"
-                        android:text="성별"/>
+                        android:textSize="16dp" />
 
                     <LinearLayout
-                        android:visibility="gone"
                         android:id="@+id/genderNLL"
                         android:layout_width="50dp"
                         android:layout_height="40dp"
                         android:layout_marginLeft="17.5dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
                         android:background="@drawable/background_strock_c1c1c1"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:visibility="gone">
 
                         <TextView
                             android:id="@+id/genderTV"
@@ -361,6 +373,8 @@
                         android:layout_width="80dp"
                         android:layout_height="40dp"
                         android:layout_marginLeft="20dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
                         android:background="@drawable/background_strock_c1c1c1"
                         android:gravity="center">
 
@@ -383,6 +397,8 @@
                         android:layout_width="80dp"
                         android:layout_height="40dp"
                         android:layout_marginLeft="20dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
                         android:background="@drawable/background_strock_c1c1c1"
                         android:gravity="center">
 
@@ -406,22 +422,24 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:gravity="center_vertical"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:gravity="center_vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10.5dp"
-                        android:textSize="16dp"
+                        android:text="나이"
                         android:textColor="#666666"
-                        android:text="나이"/>
+                        android:textSize="16dp" />
 
                     <LinearLayout
                         android:id="@+id/tenLL"
                         android:layout_width="72dp"
                         android:layout_height="40dp"
                         android:layout_marginLeft="17.5dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
                         android:background="@drawable/background_strock_c1c1c1"
                         android:gravity="center">
 
@@ -444,19 +462,21 @@
                         android:layout_width="80dp"
                         android:layout_height="40dp"
                         android:layout_marginLeft="20dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
                         android:background="@drawable/background_strock_c1c1c1"
                         android:gravity="center">
+
                         <TextView
                             android:id="@+id/twoTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="16dp"
-                            android:textColor="#9a9a99"
+                            android:gravity="center_horizontal"
                             android:letterSpacing="-0.03"
                             android:lineSpacingExtra="4sp"
-                            android:gravity="center_horizontal"
                             android:text="20대"
-                            />
+                            android:textColor="#9a9a99"
+                            android:textSize="16dp" />
 
 
                     </LinearLayout>
@@ -466,6 +486,8 @@
                         android:layout_width="80dp"
                         android:layout_height="40dp"
                         android:layout_marginLeft="20dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
                         android:background="@drawable/background_strock_c1c1c1"
                         android:gravity="center">
 
@@ -482,11 +504,14 @@
 
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:id="@+id/fourLL"
                         android:layout_width="80dp"
                         android:layout_height="40dp"
                         android:layout_marginLeft="20dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
                         android:background="@drawable/background_strock_c1c1c1"
                         android:gravity="center">
 
@@ -503,27 +528,31 @@
 
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:id="@+id/fiveLL"
                         android:layout_width="80dp"
                         android:layout_height="40dp"
                         android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
                         android:background="@drawable/background_strock_c1c1c1"
                         android:gravity="center">
+
                         <TextView
                             android:id="@+id/fiveTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="16dp"
-                            android:textColor="#9a9a99"
+                            android:gravity="center_horizontal"
                             android:letterSpacing="-0.03"
                             android:lineSpacingExtra="4sp"
-                            android:gravity="center_horizontal"
                             android:text="50대"
-                            />
+                            android:textColor="#9a9a99"
+                            android:textSize="16dp" />
 
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:id="@+id/sixLL"
                         android:layout_width="80dp"
@@ -531,17 +560,17 @@
                         android:layout_marginLeft="20dp"
                         android:background="@drawable/background_strock_c1c1c1"
                         android:gravity="center">
+
                         <TextView
                             android:id="@+id/sixTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="16dp"
-                            android:textColor="#9a9a99"
+                            android:gravity="center_horizontal"
                             android:letterSpacing="-0.03"
                             android:lineSpacingExtra="4sp"
-                            android:gravity="center_horizontal"
                             android:text="60대"
-                            />
+                            android:textColor="#9a9a99"
+                            android:textSize="16dp" />
 
 
                     </LinearLayout>
@@ -549,21 +578,21 @@
                 </LinearLayout>
 
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:gravity="center_vertical"
                     android:layout_weight="1"
+                    android:gravity="center_vertical"
                     android:visibility="gone">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10.5dp"
-                        android:textSize="16dp"
+                        android:text="유형"
                         android:textColor="#666666"
-                        android:text="유형"/>
+                        android:textSize="16dp" />
+
                     <LinearLayout
                         android:id="@+id/citizenLL"
                         android:layout_width="50dp"
@@ -616,20 +645,21 @@
                         android:layout_marginLeft="20dp"
                         android:background="@drawable/background_strock_c1c1c1"
                         android:gravity="center">
+
                         <TextView
                             android:id="@+id/workerTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="16dp"
-                            android:textColor="#9a9a99"
+                            android:gravity="center_horizontal"
                             android:letterSpacing="-0.03"
                             android:lineSpacingExtra="4sp"
-                            android:gravity="center_horizontal"
                             android:text="직장인"
-                            />
+                            android:textColor="#9a9a99"
+                            android:textSize="16dp" />
 
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:id="@+id/cautionLL"
                         android:layout_width="50dp"
@@ -637,16 +667,17 @@
                         android:layout_marginLeft="20dp"
                         android:background="@drawable/background_strock_c1c1c1"
                         android:gravity="center">
+
                         <TextView
                             android:id="@+id/cautionTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="16dp"
-                            android:textColor="#9a9a99"
+                            android:gravity="center_horizontal"
                             android:letterSpacing="-0.03"
                             android:lineSpacingExtra="4sp"
-                            android:gravity="center_horizontal"
-                            android:text="각별주의" />
+                            android:text="각별주의"
+                            android:textColor="#9a9a99"
+                            android:textSize="16dp" />
 
                     </LinearLayout>
 
@@ -657,10 +688,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_marginBottom="30dp"
                 android:layout_marginTop="8dp"
-                android:paddingRight="20dp"
-                android:gravity="center_vertical|right">
+                android:layout_marginBottom="30dp"
+                android:gravity="center_vertical|right"
+                android:paddingRight="20dp">
 
                 <TextView
                     android:id="@+id/countTV"
