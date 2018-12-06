@@ -195,13 +195,14 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="200dp"
+                            android:layout_width="240dp"
                             android:layout_height="36dp"
                             android:layout_marginRight="9dp"
                             android:background="@drawable/background_strock_e7e7e7"
                             android:gravity="center_vertical">
 
                             <EditText
+                                android:paddingLeft="10dp"
                                 android:id="@+id/coupon_prdET"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -227,6 +228,7 @@
 
                             <EditText
                                 android:id="@+id/coupon_conET"
+                                android:paddingLeft="10dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@null"
@@ -260,7 +262,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="36dp">
+                        android:layout_marginTop="33dp">
 
                         <LinearLayout
                             android:id="@+id/weekdayLL"

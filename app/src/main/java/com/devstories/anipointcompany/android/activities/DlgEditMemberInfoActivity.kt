@@ -52,6 +52,8 @@ class DlgEditMemberInfoActivity : RootActivity() {
             gender = "F"
         }
 
+
+
         saveLL.setOnClickListener {
 
             val birth = Utils.getString(birthET)
@@ -59,6 +61,7 @@ class DlgEditMemberInfoActivity : RootActivity() {
             val name = Utils.getString(nameET)
             val memo = Utils.getString(memoET)
             val phone = Utils.getString(phoneET)
+
 
             println("birth.length : " + birth.length)
 
@@ -72,10 +75,10 @@ class DlgEditMemberInfoActivity : RootActivity() {
                 return@setOnClickListener
             }
 
-            if(birth.length != 8) {
-                Toast.makeText(context, "생년월일은 여덟자리로 입력해주세요", Toast.LENGTH_LONG).show()
-                return@setOnClickListener
-            }
+//            if(birth.length != 8) {
+//                Toast.makeText(context, "생년월일은 여덟자리로 입력해주세요", Toast.LENGTH_LONG).show()
+//                return@setOnClickListener
+//            }
 
             if(age == "") {
                 Toast.makeText(context, "나이를 입력해주세요", Toast.LENGTH_LONG).show()
@@ -222,6 +225,7 @@ class DlgEditMemberInfoActivity : RootActivity() {
                         val resultIntent = Intent()
                         resultIntent.putExtra("member_id",member_id)
                         setResult(RESULT_OK, resultIntent)
+                        Utils.hideKeyboard(context)
                         finish()
 
                     }

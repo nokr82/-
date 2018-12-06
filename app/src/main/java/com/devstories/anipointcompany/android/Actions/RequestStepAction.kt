@@ -19,4 +19,9 @@ object RequestStepAction {
         HttpClient.post("/request_step/change_step.json", params, handler)
     }
 
+    // 스텝 삭제
+    fun endStep(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/request_step/end_step.json", params, handler)
+    }
+
 }

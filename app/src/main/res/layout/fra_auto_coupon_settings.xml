@@ -33,10 +33,11 @@
                     android:gravity="center_vertical">
 
                     <ImageView
-                        android:layout_width="60dp"
+                        android:layout_width="120dp"
+                        android:scaleType="fitXY"
                         android:layout_height="60dp"
                         android:src="@mipmap/coupon"
-                        android:scaleType="centerCrop"/>
+                        />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -86,9 +87,9 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="60dp"
+                        android:layout_width="120dp"
+                        android:scaleType="fitXY"
                         android:layout_height="60dp"
-                        android:scaleType="centerCrop"
                         android:src="@mipmap/coupon" />
 
                     <LinearLayout
@@ -139,10 +140,11 @@
                     android:gravity="center_vertical">
 
                     <ImageView
-                        android:layout_width="60dp"
+                        android:layout_width="120dp"
+                        android:scaleType="fitXY"
                         android:layout_height="60dp"
                         android:src="@mipmap/coupon"
-                        android:scaleType="centerCrop"/>
+                     />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -192,10 +194,11 @@
                     android:gravity="center_vertical">
 
                     <ImageView
-                        android:layout_width="60dp"
+                        android:layout_width="120dp"
+                        android:scaleType="fitXY"
                         android:layout_height="60dp"
                         android:src="@mipmap/coupon"
-                        android:scaleType="centerCrop"/>
+                      />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -245,10 +248,11 @@
                     android:gravity="center_vertical">
 
                     <ImageView
-                        android:layout_width="60dp"
+                        android:layout_width="120dp"
+                        android:scaleType="fitXY"
                         android:layout_height="60dp"
                         android:src="@mipmap/coupon"
-                        android:scaleType="centerCrop"/>
+                       />
 
                     <LinearLayout
                         android:layout_width="match_parent"
