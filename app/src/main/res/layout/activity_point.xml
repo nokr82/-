@@ -642,6 +642,7 @@
 
                             <ImageView
                                 android:id="@+id/cardPayIV"
+                                android:layout_gravity="center_vertical"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/radio_off" />
@@ -662,6 +663,7 @@
                             android:layout_marginLeft="19dp">
 
                             <ImageView
+                                android:layout_gravity="center_vertical"
                                 android:id="@+id/cashPayIV"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -686,6 +688,7 @@
 
                         <ImageView
                             android:id="@+id/depositlessIV"
+                            android:layout_gravity="center_vertical"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/radio_off" />

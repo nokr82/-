@@ -376,7 +376,7 @@
 
             <LinearLayout
                 android:layout_width="690dp"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="52dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="13dp"
@@ -386,7 +386,7 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="200dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:orientation="vertical">
 
@@ -394,23 +394,34 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp">
-
+<LinearLayout
+    android:id="@+id/a_visitLL"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
                         <ImageView
                             android:id="@+id/vsitIV"
+                            android:layout_gravity="center_vertical"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="6dp"
                             android:src="@drawable/radio_off" />
 
-                        <TextView
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="11dp"
+        android:text="방문기준"
+        android:textSize="16sp" />
+</LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/a_costLL"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="11dp"
-                            android:text="방문기준"
-                            android:textSize="16sp" />
+                            android:layout_height="wrap_content">
 
                         <ImageView
                             android:id="@+id/costIV"
+                            android:layout_gravity="center_vertical"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="19dp"
@@ -422,6 +433,7 @@
                             android:layout_marginLeft="11dp"
                             android:text="금액기준"
                             android:textSize="16sp" />
+                        </LinearLayout>
                     </LinearLayout>
 
                     <View

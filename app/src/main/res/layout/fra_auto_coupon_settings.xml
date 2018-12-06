@@ -481,8 +481,8 @@
                         <ImageView
                             android:id="@+id/satDayIV"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/box_check_off"/>
+                            android:layout_height="20dp"
+                            android:src="@mipmap/box_check_off" />
 
                         <TextView
                             android:layout_width="wrap_content"

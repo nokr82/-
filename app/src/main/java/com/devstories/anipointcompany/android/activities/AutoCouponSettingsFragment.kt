@@ -426,6 +426,8 @@ class AutoCouponSettingsFragment : Fragment() {
                     sun_use_yn = "N"
                     validity_alarm_yn = "N"
 
+                    contentET.setText("")
+
                     if ("ok" == result) {
 
                         val coupon = response.getJSONObject("coupon")
