@@ -21,6 +21,7 @@ import android.graphics.Color
 import android.util.Log
 import android.widget.*
 import com.devstories.anipointcompany.android.Actions.PointAction
+import com.devstories.anipointcompany.android.base.PrefUtils
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -28,6 +29,7 @@ import java.util.*
 class Point_List_Fragment : Fragment() {
     lateinit var myContext: Context
     private var progressDialog: ProgressDialog? = null
+
     internal lateinit var view: View
     lateinit var userLV: ListView
     lateinit var first_dateLL: LinearLayout
@@ -50,8 +52,7 @@ class Point_List_Fragment : Fragment() {
     lateinit var allTV: TextView
     lateinit var weekTV: TextView
     lateinit var monthTV: TextView
-
-    lateinit var useLL : LinearLayout
+    lateinit var useLL: LinearLayout
 
 
     var adapterData: ArrayList<JSONObject> = ArrayList<JSONObject>()
@@ -62,15 +63,16 @@ class Point_List_Fragment : Fragment() {
     var year: Int = 1
     var month: Int = 1
     var day: Int = 1
+    var company_id = -1
 
-    var start_date:String?=null
-    var end_date :String?=null
+    var start_date: String? = null
+    var end_date: String? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
 
         progressDialog = ProgressDialog(myContext)
-        return inflater.inflate(R.layout.fra_point_list,container,false)
+        return inflater.inflate(R.layout.fra_point_list, container, false)
 
 
     }
@@ -85,11 +87,11 @@ class Point_List_Fragment : Fragment() {
         last_dateTV = view.findViewById(R.id.last_dateTV)
         startdateTV = view.findViewById(R.id.startdateTV)
         lastdateTV = view.findViewById(R.id.lastdateTV)
-        all_cntTV= view.findViewById(R.id.all_cntTV)
-        all_stackTV= view.findViewById(R.id.all_stackTV)
-        all_useTV= view.findViewById(R.id.all_useTV)
-        all_couponTV= view.findViewById(R.id.all_couponTV)
-        nonameTV= view.findViewById(R.id.nonameTV)
+        all_cntTV = view.findViewById(R.id.all_cntTV)
+        all_stackTV = view.findViewById(R.id.all_stackTV)
+        all_useTV = view.findViewById(R.id.all_useTV)
+        all_couponTV = view.findViewById(R.id.all_couponTV)
+        nonameTV = view.findViewById(R.id.nonameTV)
         accumulateLL = view.findViewById(R.id.accumulateLL)
         allLL = view.findViewById(R.id.allLL)
         todayLL = view.findViewById(R.id.todayLL)
@@ -98,7 +100,7 @@ class Point_List_Fragment : Fragment() {
         allTV = view.findViewById(R.id.allTV)
         todayTV = view.findViewById(R.id.todayTV)
         weekTV = view.findViewById(R.id.weekTV)
-        monthTV= view.findViewById(R.id.monthTV)
+        monthTV = view.findViewById(R.id.monthTV)
         useLL = view.findViewById(R.id.useLL)
 
     }
@@ -115,7 +117,7 @@ class Point_List_Fragment : Fragment() {
         val formatter = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
         val date = Date()
         val currentDate = formatter.format(date)
-
+        company_id = PrefUtils.getIntPreference(context, "company_id")
 
         allLL.setOnClickListener {
             setmenu()
@@ -123,15 +125,15 @@ class Point_List_Fragment : Fragment() {
             startdateTV.text = "총합"
             nonameTV.visibility = View.GONE
             lastdateTV.text = ""
-            loadmainData(1)
+            loadmainData(company_id)
         }
         todayLL.setOnClickListener {
             setmenu()
             todayTV.setTextColor(Color.parseColor("#ffffff"))
             startdateTV.text = currentDate
             nonameTV.visibility = View.VISIBLE
-            lastdateTV.text=currentDate
-            loadmainData(1)
+            lastdateTV.text = currentDate
+            loadmainData(company_id)
         }
         weekLL.setOnClickListener {
             setmenu()
@@ -141,11 +143,11 @@ class Point_List_Fragment : Fragment() {
             val df = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
             var startDate = df.format(calendar.getTime())
             calendar.add(Calendar.DATE, 6)
-            var   endDate = df.format(calendar.getTime())
+            var endDate = df.format(calendar.getTime())
             startdateTV.text = startDate
             nonameTV.visibility = View.VISIBLE
-            lastdateTV.text=endDate
-            loadmainData(1)
+            lastdateTV.text = endDate
+            loadmainData(company_id)
         }
         monthLL.setOnClickListener {
             setmenu()
@@ -157,32 +159,32 @@ class Point_List_Fragment : Fragment() {
             val endDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH)
             val date = Date()
             val currentDate = beforemonth.format(date)
-            val lastmonth = aftermonth.format(date).toString().substring(0,8)+endDay
+            val lastmonth = aftermonth.format(date).toString().substring(0, 8) + endDay
 
             startdateTV.text = currentDate
             nonameTV.visibility = View.VISIBLE
-            lastdateTV.text=lastmonth
-            loadmainData(1)
+            lastdateTV.text = lastmonth
+            loadmainData(company_id)
         }
 
 
         useLL.setOnClickListener {
             val intent = Intent(myContext, CalActivity::class.java)
-            intent.putExtra("step",4)
+            intent.putExtra("step", 4)
             startActivity(intent)
         }
         accumulateLL.setOnClickListener {
             val intent = Intent(myContext, CalActivity::class.java)
             startActivity(intent)
         }
-        useradapter = UserListAdapter(myContext,R.layout.item_user_point_list,adapterData)
+        useradapter = UserListAdapter(myContext, R.layout.item_user_point_list, adapterData)
         userLV.adapter = useradapter
         userLV.setOnItemClickListener { parent, view, position, id ->
             var data = adapterData.get(position)
-            Log.d("리스트선택",data.toString())
+            Log.d("리스트선택", data.toString())
             val member = data.getJSONObject("Member")
-            val member_id = Utils.getInt(member,"id")
-            loaditemdata(1,member_id)
+            val member_id = Utils.getInt(member, "id")
+            loaditemdata(company_id, member_id)
 
         }
 
@@ -197,22 +199,23 @@ class Point_List_Fragment : Fragment() {
         lastdateTV.text = ""
 
 
-        loadmainData(1)
+        loadmainData(company_id)
 
     }
 
 
-    fun setmenu(){
+    fun setmenu() {
         allTV.setTextColor(Color.parseColor("#80ffffff"))
         todayTV.setTextColor(Color.parseColor("#80ffffff"))
         weekTV.setTextColor(Color.parseColor("#80ffffff"))
         monthTV.setTextColor(Color.parseColor("#80ffffff"))
     }
 
-    fun datedlg(){
+    fun datedlg() {
         DatePickerDialog(myContext, dateSetListener, year, month, day).show()
     }
-    fun datedlg2(){
+
+    fun datedlg2() {
         DatePickerDialog(myContext, dateSetListener2, year, month, day).show()
     }
 
@@ -225,7 +228,7 @@ class Point_List_Fragment : Fragment() {
         startdateTV.text = msg
         nonameTV.visibility = View.VISIBLE
         Toast.makeText(myContext, msg, Toast.LENGTH_SHORT).show()
-        loadmainData(1)
+        loadmainData(company_id)
     }
     private val dateSetListener2 = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
         // TODO Auto-generated method stub
@@ -236,22 +239,23 @@ class Point_List_Fragment : Fragment() {
         last_dateTV.text = msg
         nonameTV.visibility = View.VISIBLE
         Toast.makeText(myContext, msg, Toast.LENGTH_SHORT).show()
-        loadmainData(1)
+        loadmainData(company_id)
     }
+
     //총포인트내역
     fun loadmainData(company_id: Int) {
         val params = RequestParams()
         start_date = Utils.getString(startdateTV)
-        if (start_date.equals("총합")){
+        if (start_date.equals("총합")) {
             start_date = null
         }
 
 
-        params.put("company_id",company_id)
-        params.put("start_date",start_date)
-        System.out.print("시작"+start_date)
-        params.put("end_date",end_date)
-        System.out.print("끝"+end_date)
+        params.put("company_id", company_id)
+        params.put("start_date", start_date)
+        System.out.print("시작" + start_date)
+        params.put("end_date", end_date)
+        System.out.print("끝" + end_date)
 
 
 
@@ -267,24 +271,24 @@ class Point_List_Fragment : Fragment() {
                     val result = response!!.getString("result")
                     if ("ok" == result) {
                         val data = response.getJSONObject("pointData")
-                        val allCount = Utils.getInt(data,"allCount")
-                        val addPointCount = Utils.getInt(data,"addPointCount")
-                        val addPoint = Utils.getInt(data,"addPoint")
-                        val addPointMember = Utils.getInt(data,"addPointMember")
-                        val usePointCount = Utils.getInt(data,"usePointCount")
-                        val usePoint = Utils.getInt(data,"usePoint")
-                        val usePointMember = Utils.getInt(data,"usePointMember")
-                        val allcnt =   addPointMember+usePointMember
-                        val total_point_cnt = addPointCount+usePointCount
+                        val allCount = Utils.getInt(data, "allCount")
+                        val addPointCount = Utils.getInt(data, "addPointCount")
+                        val addPoint = Utils.getInt(data, "addPoint")
+                        val addPointMember = Utils.getInt(data, "addPointMember")
+                        val usePointCount = Utils.getInt(data, "usePointCount")
+                        val usePoint = Utils.getInt(data, "usePoint")
+                        val usePointMember = Utils.getInt(data, "usePointMember")
+                        val allcnt = addPointMember + usePointMember
+                        val total_point_cnt = addPointCount + usePointCount
 
 
-                        all_cntTV.text = allcnt.toString()+"명/"+total_point_cnt.toString()+"회"
-                        all_stackTV.text = addPointMember.toString() +"명/"+addPointCount+"회/"+addPoint.toString()+"P"
-                        all_useTV.text =usePointMember.toString() +"명/"+usePointCount+"회/"+usePoint.toString()+"P"
+                        all_cntTV.text = allcnt.toString() + "명/" + total_point_cnt.toString() + "회"
+                        all_stackTV.text = addPointMember.toString() + "명/" + addPointCount + "회/" + addPoint.toString() + "P"
+                        all_useTV.text = usePointMember.toString() + "명/" + usePointCount + "회/" + usePoint.toString() + "P"
                         val data2 = response.getJSONArray("member_list")
                         adapterData.clear()
                         useradapter.notifyDataSetChanged()
-                        Log.d("멤버리스트",data2.toString())
+                        Log.d("멤버리스트", data2.toString())
                         for (i in 0..(data2.length() - 1)) {
 
                             adapterData.add(data2[i] as JSONObject)
@@ -292,10 +296,8 @@ class Point_List_Fragment : Fragment() {
                         }
 
 
-
-
                     } else {
-                        Toast.makeText(myContext,"조회실패",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(myContext, "조회실패", Toast.LENGTH_SHORT).show()
                     }
 
                 } catch (e: JSONException) {
@@ -349,12 +351,12 @@ class Point_List_Fragment : Fragment() {
     }
 
     //아이템클릭
-    fun loaditemdata(company_id: Int,member_id:Int) {
+    fun loaditemdata(company_id: Int, member_id: Int) {
         val params = RequestParams()
-        params.put("company_id",company_id)
-        params.put("member_id",member_id)
-        params.put("start_date",start_date)
-        params.put("end_date",end_date)
+        params.put("company_id", company_id)
+        params.put("member_id", member_id)
+        params.put("start_date", start_date)
+        params.put("end_date", end_date)
 
         PointAction.user_points(params, object : JsonHttpResponseHandler() {
 
@@ -370,8 +372,8 @@ class Point_List_Fragment : Fragment() {
                         val member_o = response.getJSONObject("member")
 
                         val member = member_o.getJSONObject("Member")
-                        var point = Utils.getString(member,"point")
-                        var use_point  = Utils.getString(member,"use_point")
+                        var point = Utils.getString(member, "point")
+                        var use_point = Utils.getString(member, "use_point")
 
 
                         //총방문횟수
@@ -381,19 +383,19 @@ class Point_List_Fragment : Fragment() {
                         //포인트적립횟수
                         val stack_point_cnt = response.getString("stack_point_cnt")
 
-                        if(use_point.equals(null)){
+                        if (use_point.equals(null)) {
                             use_point = "0"
                         }
-                        if (point.equals(null)){
+                        if (point.equals(null)) {
                             point = "0"
                         }
-                        all_cntTV.text = visit_cnt+"회"
-                        all_stackTV.text =stack_point_cnt+"회/"+point+"P"
-                        all_useTV.text =use_point_cnt+"회/"+use_point+"P"
+                        all_cntTV.text = visit_cnt + "회"
+                        all_stackTV.text = stack_point_cnt + "회/" + point + "P"
+                        all_useTV.text = use_point_cnt + "회/" + use_point + "P"
 
 
                     } else {
-                        Toast.makeText(myContext,"조회실패",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(myContext, "조회실패", Toast.LENGTH_SHORT).show()
                     }
 
                 } catch (e: JSONException) {

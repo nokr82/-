@@ -16,6 +16,7 @@ import android.widget.*
 import com.devstories.anipointcompany.android.Actions.CompanyAction
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.Config
+import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
@@ -56,6 +57,9 @@ class SettingMyInfoFragment : Fragment() {
     var addImages = ArrayList<Bitmap>()
     var delids = ArrayList<Int>()
     var passwd = ""
+
+    var company_id = -1
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         this.myContext = container!!.context
@@ -89,16 +93,16 @@ class SettingMyInfoFragment : Fragment() {
 
 
 
+        company_id = PrefUtils.getIntPreference(context, "company_id")
 
 
-
-        company_info(1)
+        company_info(company_id)
 
 
         //정보수정
         infocheckTV.setOnClickListener {
             edit_info()
-            company_info(1)
+            company_info(company_id)
         }
         addImage1RL.setOnClickListener {
 
@@ -327,7 +331,7 @@ class SettingMyInfoFragment : Fragment() {
 
 
         val params = RequestParams()
-        params.put("company_id",1)
+        params.put("company_id", company_id)
         params.put("company_name",company_name)
         params.put("phone1",phone1)
         params.put("phone2",phone2)
@@ -410,7 +414,7 @@ class SettingMyInfoFragment : Fragment() {
     //사업체 비밀번호변경
     fun edit_pass() {
         val params = RequestParams()
-        params.put("company_id",1)
+        params.put("company_id", company_id)
         var n_pass2 = Utils.getString(newPassCheckET)
         params.put("passwd",n_pass2)
         CompanyAction.edit_info(params, object : JsonHttpResponseHandler() {
@@ -483,7 +487,7 @@ class SettingMyInfoFragment : Fragment() {
     fun edit_image() {
 
         val params = RequestParams()
-        params.put("company_id",1)
+        params.put("company_id", company_id)
         if (delids.size>0){
 
             for (i in 0..(delids.size -1)){
@@ -530,7 +534,7 @@ class SettingMyInfoFragment : Fragment() {
                     val result = response!!.getString("result")
                     if ("ok" == result) {
                         addImages.clear()
-                        company_info(1)
+                        company_info(company_id)
 
                     }else{
                         Toast.makeText(myContext,"업데이트실패", Toast.LENGTH_SHORT).show()

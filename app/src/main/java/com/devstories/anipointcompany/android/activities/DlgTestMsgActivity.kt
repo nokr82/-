@@ -12,6 +12,7 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.CouponAction
+import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
@@ -32,7 +33,7 @@ class DlgTestMsgActivity : RootActivity() {
     var message = ""
     var thumbnail: Bitmap? = null
     var contentURI:Uri? = null
-
+    var company_id = -1
 
     var num = ""
     var num2 = ""
@@ -45,6 +46,7 @@ class DlgTestMsgActivity : RootActivity() {
 
         this.context = this
         progressDialog = ProgressDialog(context)
+
         intent = getIntent()
         title = intent.getStringExtra("title")
         message = intent.getStringExtra("message")
@@ -52,7 +54,7 @@ class DlgTestMsgActivity : RootActivity() {
         if(h != null) {
             contentURI = Uri.parse(h)
         }
-
+        company_id = PrefUtils.getIntPreference(context, "company_id")
 //        contentURI = intent.getParcelableExtra("contentURI")
 //
 //        thumbnail= MediaStore.Images.Media.getBitmap(context.contentResolver, contentURI)
@@ -85,7 +87,7 @@ class DlgTestMsgActivity : RootActivity() {
         var phone = num+num2+num3
 
         val params = RequestParams()
-        params.put("company_id",1)
+        params.put("company_id",company_id)
         params.put("title",title)
         params.put("message",message)
         params.put("phone",phone)
