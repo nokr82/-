@@ -13,14 +13,10 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.CompanyAction
-import com.devstories.anipointcompany.android.Actions.CouponAction
 import com.devstories.anipointcompany.android.Actions.MemberAction
-import com.devstories.anipointcompany.android.Actions.MemberAction.member_join
 import com.devstories.anipointcompany.android.Actions.RequestStepAction
 import com.devstories.anipointcompany.android.R
-import com.devstories.anipointcompany.android.R.id.*
 import com.devstories.anipointcompany.android.adapter.CouponListAdapter
-import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.RootActivity
 import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
@@ -46,7 +42,7 @@ class CalActivity : RootActivity() {
     var payment_type = -1
     var category_id = -1
     var per_type = -1
-
+ var new_gender = ""
     var couponData : ArrayList<JSONObject> = ArrayList<JSONObject>()
     lateinit var couponListAdapter: CouponListAdapter
 
@@ -81,15 +77,15 @@ class CalActivity : RootActivity() {
         couponLV.adapter = couponListAdapter
 
         setmenu()
+        setmenu4()
         if (step == 4) {
-            opTV.text = "사용"
-            m_opTV.text = "P"
+            opTV.text = "결제"
+                m_opTV.text = "￦"
         }
         company_info()
         //계산기
         cal()
 
-        stackLL.callOnClick()
         //결제내용스피너
         cate_SP.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
@@ -137,9 +133,24 @@ class CalActivity : RootActivity() {
 
         changeStep()
 
+        new_maleIV.setOnClickListener {
+            setmenu4()
+            new_maleIV.setImageResource(R.drawable.radio_on)
+            new_gender = "M"
+        }
+        new_femaleIV.setOnClickListener {
+            setmenu4()
+            new_femaleIV.setImageResource(R.drawable.radio_on)
+            new_gender = "F"
+        }
+
+
     }
 
-
+    fun setmenu4(){
+        new_femaleIV.setImageResource(R.drawable.radio_off)
+        new_maleIV.setImageResource(R.drawable.radio_off)
+    }
 
     fun setmenu3(){
         stackLL.setBackgroundColor(Color.parseColor("#ffffff"))
@@ -159,6 +170,7 @@ class CalActivity : RootActivity() {
 
     //계산클릭이벤트
     fun cal() {
+        moneyTV.text = "0"
         stackLL.setOnClickListener {
             setmenu3()
             stackLL.setBackgroundColor(Color.parseColor("#906e8a32"))
@@ -201,51 +213,61 @@ class CalActivity : RootActivity() {
             startActivity(intent)
         }
         oneLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 1)
+            firstDigit()
+            moneyTV.text = moneyTV.text.toString()+1
             setPoint()
         }
         twoLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 2)
+            firstDigit()
+            moneyTV.text = moneyTV.text.toString()+2
             setPoint()
         }
         threeLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 3)
+            firstDigit()
+            moneyTV.text = moneyTV.text.toString()+3
             setPoint()
         }
         fourLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 4)
+            firstDigit()
+            moneyTV.text = moneyTV.text.toString()+4
             setPoint()
         }
         fiveLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 5)
+            firstDigit()
+            moneyTV.text = moneyTV.text.toString()+5
             setPoint()
         }
         sixLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 6)
+            firstDigit()
+            moneyTV.text = moneyTV.text.toString()+6
             setPoint()
         }
         sevenLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 7)
+            firstDigit()
+            moneyTV.text = moneyTV.text.toString()+7
             setPoint()
         }
         eightLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 8)
+            firstDigit()
+            moneyTV.text = moneyTV.text.toString()+8
             setPoint()
         }
         nineLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 9)
+            firstDigit()
+            moneyTV.text = moneyTV.text.toString()+9
             setPoint()
         }
         zeroLL.setOnClickListener {
-            moneyTV.setText(moneyTV.getText().toString() + 0)
+            firstDigit()
+            moneyTV.text = moneyTV.text.toString()+0
             setPoint()
         }
 
         delLL.setOnClickListener {
-            val text = moneyTV.getText().toString()
+            val text = moneyTV.text.toString()
             val defaultpercent = stackTV.text.toString()
             if (text.length > 0) {
-                moneyTV.setText(text.substring(0, text.length - 1))
+                moneyTV.text = text.substring(0, text.length - 1)
                 val money = moneyTV.text.toString()
                 if (money != null && money != "") {
                     val percent = defaultpercent.toFloat() / 100
@@ -256,7 +278,7 @@ class CalActivity : RootActivity() {
                     pointTV.setText(point)
                 }
             } else {
-
+                moneyTV.setText("0")
             }
         }
         useLL.setOnClickListener {
@@ -290,7 +312,7 @@ class CalActivity : RootActivity() {
 
             }
 
-            if (opTV.text.equals("사용")) {
+           else if (opTV.text.equals("결제")) {
                 val totalpoint = Integer.parseInt(moneyTV.text.toString())
                 val use_point = Integer.parseInt(stack_pointTV.text.toString())
                 stackpoint = totalpoint
@@ -310,6 +332,12 @@ class CalActivity : RootActivity() {
 
         changeStep()
 
+    }
+
+    fun firstDigit() {
+        if(moneyTV.text.length == 1 && moneyTV.text == "0") {
+            moneyTV.text = ""
+        }
     }
 
     fun setPoint() {
@@ -648,25 +676,32 @@ class CalActivity : RootActivity() {
     //가입
     fun member_join() {
         var getid = member_id
-        var getPhone = Utils.getString(phoneTV)
-        var getGender = Utils.getString(genderET)
+        var getPhone = Utils.getString(phoneET)
         var getAge = Utils.getString(ageET)
+
+
         var getBirth = Utils.getString(birthET)
-        var getPoint = Utils.getString(stack_pointET)
-        var getCoupon = Utils.getString(couponET)
         var getMemo = Utils.getString(memoET)
         var getName = Utils.getString(nameET)
+
+
+        if (getBirth.length!=8){
+            Toast.makeText(context,"생년월일을 8자리 입력해주세요",Toast.LENGTH_SHORT).show()
+            return
+        }
+        var r_birth=  getBirth.substring(0,4)+"-"+getBirth.substring(4,6)+"-"+getBirth.substring(6,8)
+
+        Log.d("진생일",r_birth)
 
         val params = RequestParams()
         params.put("company_id", 1)
         params.put("member_id", getid)
         params.put("age", getAge)
-        params.put("point", getPoint)
         params.put("name", getName)
-        params.put("gender", getGender)
+        params.put("gender", new_gender)
         params.put("memo", getMemo)
         params.put("phone", getPhone)
-        params.put("birth", getBirth)
+        params.put("birth", r_birth)
 
         MemberAction.member_join(params, object : JsonHttpResponseHandler() {
 

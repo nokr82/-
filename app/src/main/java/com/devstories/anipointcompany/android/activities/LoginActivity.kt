@@ -80,16 +80,7 @@ class LoginActivity : RootActivity() {
                         PrefUtils.setPreference(context, "login_id", email)
                         PrefUtils.setPreference(context, "passwd", passwd)
                         PrefUtils.setPreference(context, "company_name", Utils.getString(company, "company_name"))
-                        /*PrefUtils.setPreference(context, "phone1", Utils.getString(company, "phone1"))
-                        PrefUtils.setPreference(context, "phone2", Utils.getInt(company, "phone2"))
-                        PrefUtils.setPreference(context, "phone3", Utils.getInt(company, "phone3"))
-                        PrefUtils.setPreference(context, "s_contract_term", Utils.getInt(company, "s_contract_term"))
-                        PrefUtils.setPreference(context, "e_contract_term", Utils.getInt(company, "e_contract_term"))
-                        PrefUtils.setPreference(context, "created", Utils.getInt(company, "created"))
-                        PrefUtils.setPreference(context, "updated", Utils.getInt(company, "updated"))
-                        PrefUtils.setPreference(context, "basic_per", Utils.getInt(company, "basic_per"))
-                        PrefUtils.setPreference(context, "option_per", Utils.getInt(company, "option_per"))
-                        PrefUtils.setPreference(context, "del_yn", Utils.getInt(company, "del_yn"))*/
+
 
                         PrefUtils.setPreference(context, "autoLogin", true)
 

@@ -215,17 +215,7 @@ class Point_List_Fragment : Fragment() {
     fun datedlg2(){
         DatePickerDialog(myContext, dateSetListener2, year, month, day).show()
     }
-    private val dateSetListener2 = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-        // TODO Auto-generated method stub
-        val msg = String.format("%d.%d.%d", year, monthOfYear + 1, dayOfMonth)
-        val end_msg = String.format("%d-%d-%d", year, monthOfYear + 1, dayOfMonth)
-        end_date = end_msg
-        lastdateTV.text = msg
-        last_dateTV.text = msg
-        nonameTV.visibility = View.VISIBLE
-        Toast.makeText(myContext, msg, Toast.LENGTH_SHORT).show()
-        loadmainData(1)
-    }
+
     private val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
         // TODO Auto-generated method stub
 
@@ -237,7 +227,17 @@ class Point_List_Fragment : Fragment() {
         Toast.makeText(myContext, msg, Toast.LENGTH_SHORT).show()
         loadmainData(1)
     }
-
+    private val dateSetListener2 = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+        // TODO Auto-generated method stub
+        val msg = String.format("%d.%d.%d", year, monthOfYear + 1, dayOfMonth)
+        val end_msg = String.format("%d-%d-%d", year, monthOfYear + 1, dayOfMonth)
+        end_date = end_msg
+        lastdateTV.text = msg
+        last_dateTV.text = msg
+        nonameTV.visibility = View.VISIBLE
+        Toast.makeText(myContext, msg, Toast.LENGTH_SHORT).show()
+        loadmainData(1)
+    }
     //총포인트내역
     fun loadmainData(company_id: Int) {
         val params = RequestParams()

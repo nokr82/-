@@ -544,7 +544,7 @@
                     android:background="#0871bf"
                     android:textSize="10sp"
                     android:textColor="#ffffff"
-                    android:text="확인"/>
+                    android:text="변경"/>
             </LinearLayout>
 
         </LinearLayout><!---->
