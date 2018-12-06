@@ -81,7 +81,7 @@ open class CouponListAdapter(context: Context, view: Int, data: ArrayList<JSONOb
         item.item_e_validityTV.text = coupon_e_valid.toString()
 
         if(check_yn == "Y") {
-            item.LL.setBackgroundColor(Color.parseColor("#e5ebf7"))
+            item.LL.setBackgroundColor(Color.parseColor("#00d1ce"))
         } else {
             item.LL.setBackgroundColor(Color.parseColor("#FFFFFF"))
         }
