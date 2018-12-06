@@ -724,7 +724,7 @@
                 android:textColor="#90ffffff"
                 android:lineSpacingExtra="25sp"
                 android:gravity="center_horizontal"
-                android:text="포인트 수량 입력"
+                android:text="적립 포인트"
                 />
 
 

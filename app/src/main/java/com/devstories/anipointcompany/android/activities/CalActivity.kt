@@ -78,6 +78,14 @@ class CalActivity : RootActivity() {
         step = intent.getIntExtra("step", 1)
         company_id = PrefUtils.getIntPreference(context, "company_id")
 
+        if(step == 1) {
+            per_type = 1
+            stackLL.setBackgroundColor(Color.parseColor("#906e8a32"))
+        } else {
+            per_type = -1
+            stackLL.setBackgroundColor(Color.parseColor("#FFFFFF"))
+        }
+
 
         couponListAdapter = CouponListAdapter(context, R.layout.item_member_coupon, couponData)
         couponLV.adapter = couponListAdapter
@@ -337,18 +345,26 @@ class CalActivity : RootActivity() {
                         return@setOnClickListener
                     }
 
-                    if (use_point > 0) {
+
+                    if (use_point < 1) {
+
+                        Toast.makeText(context, "사용자가 포인트 입력 후 진행해주세요", Toast.LENGTH_LONG).show()
+                        return@setOnClickListener
+                    }
+
+                    if(per_type > 0) {
 
                         stackpoint = Utils.getInt(pointTV)
 
                         p_type = 3
                         type = 1
-                    } else {
 
+                    } else {
                         stackpoint = use_point
 
                         p_type = 2
                         type = 2
+
                     }
 
                     step = 6
@@ -373,7 +389,19 @@ class CalActivity : RootActivity() {
 
     fun setPoint() {
 
-        val defaultpercent = stackTV.text.toString()
+        if(per_type != 1 && per_type != 2) {
+            return
+        }
+
+        var defaultpercent = ""
+
+        if(per_type == 1) {
+            defaultpercent = stackTV.text.toString()
+        } else if (per_type == 2) {
+            defaultpercent = stack2TV.text.toString()
+        }
+
+
         val money = moneyTV.text.toString()
 
         if (defaultpercent == null) {
