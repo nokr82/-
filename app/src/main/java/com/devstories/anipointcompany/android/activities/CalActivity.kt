@@ -38,12 +38,15 @@ class CalActivity : RootActivity() {
     var step = -1
     var member_id = -1
     var p_type = -1
+    var price = 0
     var phone = ""
     var payment_type = -1
     var category_id = -1
     var per_type = -1
- var new_gender = ""
-    var couponData : ArrayList<JSONObject> = ArrayList<JSONObject>()
+    var new_gender = ""
+    var member_coupon_id = -1
+    var use_point = -1
+    var couponData: ArrayList<JSONObject> = ArrayList<JSONObject>()
     lateinit var couponListAdapter: CouponListAdapter
 
     var stackpoint = -1
@@ -80,7 +83,7 @@ class CalActivity : RootActivity() {
         setmenu4()
         if (step == 4) {
             opTV.text = "결제"
-                m_opTV.text = "￦"
+            m_opTV.text = "￦"
         }
         company_info()
         //계산기
@@ -147,12 +150,12 @@ class CalActivity : RootActivity() {
 
     }
 
-    fun setmenu4(){
+    fun setmenu4() {
         new_femaleIV.setImageResource(R.drawable.radio_off)
         new_maleIV.setImageResource(R.drawable.radio_off)
     }
 
-    fun setmenu3(){
+    fun setmenu3() {
         stackLL.setBackgroundColor(Color.parseColor("#ffffff"))
         stack2LL.setBackgroundColor(Color.parseColor("#ffffff"))
     }
@@ -194,13 +197,13 @@ class CalActivity : RootActivity() {
             if (money == null) {
                 Toast.makeText(context, "가격을 먼저 입력해주세요.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
-            }else{
-            val percent = managerpercent.toFloat() / 100
-            val floatPoint = (money.toFloat() * percent)
-            val stringPoint = floatPoint.toString()
-            var splitPoint = stringPoint.split(".")
-            val point = splitPoint.get(0)
-            pointTV.setText(point)
+            } else {
+                val percent = managerpercent.toFloat() / 100
+                val floatPoint = (money.toFloat() * percent)
+                val stringPoint = floatPoint.toString()
+                var splitPoint = stringPoint.split(".")
+                val point = splitPoint.get(0)
+                pointTV.setText(point)
             }
 
         }
@@ -214,52 +217,52 @@ class CalActivity : RootActivity() {
         }
         oneLL.setOnClickListener {
             firstDigit()
-            moneyTV.text = moneyTV.text.toString()+1
+            moneyTV.text = moneyTV.text.toString() + 1
             setPoint()
         }
         twoLL.setOnClickListener {
             firstDigit()
-            moneyTV.text = moneyTV.text.toString()+2
+            moneyTV.text = moneyTV.text.toString() + 2
             setPoint()
         }
         threeLL.setOnClickListener {
             firstDigit()
-            moneyTV.text = moneyTV.text.toString()+3
+            moneyTV.text = moneyTV.text.toString() + 3
             setPoint()
         }
         fourLL.setOnClickListener {
             firstDigit()
-            moneyTV.text = moneyTV.text.toString()+4
+            moneyTV.text = moneyTV.text.toString() + 4
             setPoint()
         }
         fiveLL.setOnClickListener {
             firstDigit()
-            moneyTV.text = moneyTV.text.toString()+5
+            moneyTV.text = moneyTV.text.toString() + 5
             setPoint()
         }
         sixLL.setOnClickListener {
             firstDigit()
-            moneyTV.text = moneyTV.text.toString()+6
+            moneyTV.text = moneyTV.text.toString() + 6
             setPoint()
         }
         sevenLL.setOnClickListener {
             firstDigit()
-            moneyTV.text = moneyTV.text.toString()+7
+            moneyTV.text = moneyTV.text.toString() + 7
             setPoint()
         }
         eightLL.setOnClickListener {
             firstDigit()
-            moneyTV.text = moneyTV.text.toString()+8
+            moneyTV.text = moneyTV.text.toString() + 8
             setPoint()
         }
         nineLL.setOnClickListener {
             firstDigit()
-            moneyTV.text = moneyTV.text.toString()+9
+            moneyTV.text = moneyTV.text.toString() + 9
             setPoint()
         }
         zeroLL.setOnClickListener {
             firstDigit()
-            moneyTV.text = moneyTV.text.toString()+0
+            moneyTV.text = moneyTV.text.toString() + 0
             setPoint()
         }
 
@@ -282,49 +285,74 @@ class CalActivity : RootActivity() {
             }
         }
         useLL.setOnClickListener {
+
+            price = Utils.getInt(moneyTV)
+
+            if(price < 1) {
+                Toast.makeText(context, "가격을 입력해주세요.", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
             if (opTV.text.equals("적립")) {
+
+                p_type = 1
+                type = 1
+                step = 3
+
                 if (per_type == 1) {
                     val totalpoint = Integer.parseInt(moneyTV.text.toString())
                     Log.d("포인트", totalpoint.toString())
                     stackpoint = totalpoint * Integer.parseInt(stackTV.text.toString()) / 100
-                    step = 3
                     changeStep()
-                    p_type = 1
                     stack_point(member_id.toString())
                 } else if (per_type == 2) {
                     val totalpoint = Integer.parseInt(moneyTV.text.toString())
                     Log.d("포인트", totalpoint.toString())
                     stackpoint = totalpoint * Integer.parseInt(stack2TV.text.toString()) / 100
-                    step = 3
                     changeStep()
-                    p_type = 1
                     stack_point(member_id.toString())
                 } else if (per_type == 3) {
                     stackpoint = Integer.parseInt(pointTV.text.toString())
                     Log.d("포인트", stackpoint.toString())
-                    step = 3
                     changeStep()
-                    p_type = 1
                     stack_point(member_id.toString())
                 } else {
                     Toast.makeText(context, "적립퍼센트를 선택해주세요", Toast.LENGTH_SHORT).show()
                 }
 
-            }
+            } else if (opTV.text.equals("결제")) {
+//                val totalpoint = Integer.parseInt(moneyTV.text.toString())
+//                val use_point = Integer.parseInt(stack_pointTV.text.toString())
+//                stackpoint = totalpoint
+//
+//                if (stackpoint > use_point) {
+//                    Toast.makeText(context, "포인트가 부족합니다", Toast.LENGTH_SHORT).show()
+//                } else {
 
-           else if (opTV.text.equals("결제")) {
-                val totalpoint = Integer.parseInt(moneyTV.text.toString())
-                val use_point = Integer.parseInt(stack_pointTV.text.toString())
-                stackpoint = totalpoint
-                Log.d("사용포인트", totalpoint.toString())
-                if (stackpoint > use_point) {
-                    Toast.makeText(context, "포인트가 부족합니다", Toast.LENGTH_SHORT).show()
-                } else {
+                    if (payment_type == -1) {
+                        Toast.makeText(context, "결제방식을 선택해주세요", Toast.LENGTH_SHORT).show()
+                        return@setOnClickListener
+                    }
+
+                    if (use_point > 0) {
+
+                        stackpoint = Utils.getInt(pointTV)
+
+                        p_type = 3
+                        type = 1
+                    } else {
+
+                        stackpoint = use_point
+
+                        p_type = 2
+                        type = 2
+                    }
+
                     step = 6
-                    p_type = 2
+//                    p_type = 2
                     stack_point(member_id.toString())
                     changeStep()
-                }
+//                }
             }
         }
 
@@ -335,7 +363,7 @@ class CalActivity : RootActivity() {
     }
 
     fun firstDigit() {
-        if(moneyTV.text.length == 1 && moneyTV.text == "0") {
+        if (moneyTV.text.length == 1 && moneyTV.text == "0") {
             moneyTV.text = ""
         }
     }
@@ -383,8 +411,8 @@ class CalActivity : RootActivity() {
                     val result = response!!.getString("result")
                     if ("ok" == result) {
                         var requestStep = response.getJSONObject("RequestStep")
-                        var step = Utils.getInt(requestStep,"step")
-                        if (step == 3){
+                        var step = Utils.getInt(requestStep, "step")
+                        if (step == 3) {
                             timer!!.cancel()
                         }
 
@@ -458,6 +486,7 @@ class CalActivity : RootActivity() {
 
 //                        step = Utils.getInt(requestStep, "step")
                         member_id = Utils.getInt(requestStep, "member_id")
+                        member_coupon_id = Utils.getInt(requestStep, "member_coupon_id")
                         val result_step = Utils.getInt(requestStep, "step")
                         val new_member_yn = Utils.getString(requestStep, "new_member_yn")
 
@@ -511,12 +540,12 @@ class CalActivity : RootActivity() {
                                     maleIV.setImageResource(R.drawable.radio_off)
                                     femaleIV.setImageResource(R.drawable.radio_on)
                                 }
+
                                 phoneTV.text = phone
                                 ageTV.text = age
                                 birthTV.text = birth
                                 couponTV.text = coupon
                                 memoTV.text = memo
-
 
                             } else if (step == 5) {
                                 var phone = Utils.getString(member, "phone")
@@ -550,6 +579,29 @@ class CalActivity : RootActivity() {
                                 birthTV.text = birth
                                 couponTV.text = coupon
                                 memoTV.text = memo
+
+                                getUserCouponList(phone)
+
+                            } else if (step == 7) {
+
+                                use_point = Utils.getInt(requestStep, "point")
+
+                                usePointLL.visibility = View.VISIBLE
+                                usePointTV.text = use_point.toString()
+
+                                for (i in 0 until couponData.size) {
+                                    val data = couponData[i]
+                                    val memberCoupon = data.getJSONObject("MemberCoupon")
+
+                                    if(Utils.getInt(memberCoupon, "id") == member_coupon_id) {
+                                        data.put("check_yn", "Y")
+                                    }
+
+                                }
+
+
+                                couponListAdapter.notifyDataSetChanged()
+
                             }
 
                         }
@@ -597,21 +649,18 @@ class CalActivity : RootActivity() {
 
     //포인트적립/사용
     fun stack_point(member_id: String) {
+
         val params = RequestParams()
         params.put("member_id", member_id)
         params.put("company_id", 1)
         params.put("point", stackpoint)//사용및적립포인트
-        params.put("type", p_type)//1적립 2사용
-        //    params.put("use_point", p_type)//사용 포인트
-        params.put("price", p_type)//상품가격
+        params.put("type", type)//1적립 2사용
+        params.put("use_point", use_point)//사용 포인트
+        params.put("member_coupon_id", member_coupon_id)//사용 쿠폰
+        params.put("price", price)//상품가격
         params.put("payment_type", payment_type)//결제방법
         params.put("use_type", p_type)//1적립 2사용 3 적립/사용
         params.put("category_id", category_id)//카테고리 일련번호
-
-        if (payment_type == -1) {
-            Toast.makeText(context, "결제방식을 선택해주세요", Toast.LENGTH_SHORT).show()
-            return
-        }
 
 
         MemberAction.point(params, object : JsonHttpResponseHandler() {
@@ -685,13 +734,13 @@ class CalActivity : RootActivity() {
         var getName = Utils.getString(nameET)
 
 
-        if (getBirth.length!=8){
-            Toast.makeText(context,"생년월일을 8자리 입력해주세요",Toast.LENGTH_SHORT).show()
+        if (getBirth.length != 8) {
+            Toast.makeText(context, "생년월일을 8자리 입력해주세요", Toast.LENGTH_SHORT).show()
             return
         }
-        var r_birth=  getBirth.substring(0,4)+"-"+getBirth.substring(4,6)+"-"+getBirth.substring(6,8)
+        var r_birth = getBirth.substring(0, 4) + "-" + getBirth.substring(4, 6) + "-" + getBirth.substring(6, 8)
 
-        Log.d("진생일",r_birth)
+        Log.d("진생일", r_birth)
 
         val params = RequestParams()
         params.put("company_id", 1)

@@ -1144,11 +1144,72 @@
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/couponLV"
-        android:layout_marginTop="15dp"
-        android:layout_width="135dp"
-        android:layout_height="match_parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/usePointLL"
+            android:layout_width="135dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_marginLeft="9.5dp"
+            android:orientation="vertical"
+            android:background="#ffff"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="8sp"
+                android:layout_marginLeft="10dp"
+                android:textColor="#cbcbcb"
+                android:letterSpacing="-0.05"
+                android:lineSpacingExtra="1sp"
+                android:text="사용 포인트" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/usePointTV"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#666666"
+                    android:letterSpacing="-0.05"
+                    android:lineSpacingExtra="-9sp"
+                    android:text="0"
+                    />
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="#666666"
+                    android:letterSpacing="-0.05"
+                    android:lineSpacingExtra="-9sp"
+                    android:text="P" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/couponLV"
+            android:layout_marginTop="15dp"
+            android:layout_width="135dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
 
     <!--<ScrollView
         android:layout_width="match_parent"
