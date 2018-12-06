@@ -19,6 +19,7 @@ import com.devstories.anipointcompany.android.Actions.CouponAction
 import com.devstories.anipointcompany.android.Actions.CouponAction.member_filter
 
 import com.devstories.anipointcompany.android.R
+import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
@@ -97,7 +98,7 @@ class MessageUserFragment : Fragment() {
     var visited_date = ""
     var days7_yn = ""
     var coinResult  = ""
-
+    var company_id = -1
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -162,6 +163,7 @@ class MessageUserFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        company_id = PrefUtils.getIntPreference(context, "company_id")
 
         adapter = ArrayAdapter(myContext,R.layout.spiner_item,option_visitday)
         visitdaySP.adapter = adapter
@@ -434,7 +436,7 @@ class MessageUserFragment : Fragment() {
     fun member_filter() {
         val params = RequestParams()
 
-        params.put("company_id",1)
+        params.put("company_id", company_id)
 
 
         if (age.size>0){

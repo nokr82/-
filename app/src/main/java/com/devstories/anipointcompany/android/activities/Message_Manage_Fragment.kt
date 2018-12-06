@@ -14,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.devstories.anipointcompany.android.R
+import com.devstories.anipointcompany.android.base.PrefUtils
 
 //메시지관리  - 고객선택
 class Message_Manage_Fragment : Fragment() {
@@ -44,7 +45,7 @@ class Message_Manage_Fragment : Fragment() {
     val Message_write_Fragment : Message_write_Fragment = Message_write_Fragment()
     val AutoCouponSettingsFragment : AutoCouponSettingsFragment = AutoCouponSettingsFragment()
 
-
+    var company_id = -1
     var member_id = -1
 
 
@@ -81,7 +82,7 @@ class Message_Manage_Fragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-
+        company_id = PrefUtils.getIntPreference(context, "company_id")
 
        childFragmentManager.beginTransaction().replace(R.id.messageFL, MssgAnalysisFragment).commit()
 

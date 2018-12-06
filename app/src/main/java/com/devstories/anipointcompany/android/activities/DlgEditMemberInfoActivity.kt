@@ -17,6 +17,7 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import android.content.Intent
+import com.devstories.anipointcompany.android.base.PrefUtils
 
 
 //회원수정 다이얼로그
@@ -27,6 +28,8 @@ class DlgEditMemberInfoActivity : RootActivity() {
 
     var member_id = -1
     var gender = ""
+    var company_id = -1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dlg_edit_member_info)
@@ -35,6 +38,7 @@ class DlgEditMemberInfoActivity : RootActivity() {
         progressDialog = ProgressDialog(context)
 
         member_id = intent.getIntExtra("member_id", -1)
+        company_id = PrefUtils.getIntPreference(context, "company_id")
 
 
         maleLL.setOnClickListener {

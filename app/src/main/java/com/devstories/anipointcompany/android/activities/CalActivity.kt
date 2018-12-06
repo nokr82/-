@@ -17,6 +17,7 @@ import com.devstories.anipointcompany.android.Actions.MemberAction
 import com.devstories.anipointcompany.android.Actions.RequestStepAction
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.adapter.CouponListAdapter
+import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.RootActivity
 import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
@@ -34,6 +35,7 @@ class CalActivity : RootActivity() {
     lateinit var context: Context
     private var progressDialog: ProgressDialog? = null
 
+    var company_id = -1
     var type = -1
     var step = -1
     var member_id = -1
@@ -42,7 +44,7 @@ class CalActivity : RootActivity() {
     var payment_type = -1
     var category_id = -1
     var per_type = -1
- var new_gender = ""
+    var new_gender = ""
     var couponData : ArrayList<JSONObject> = ArrayList<JSONObject>()
     lateinit var couponListAdapter: CouponListAdapter
 
@@ -71,6 +73,7 @@ class CalActivity : RootActivity() {
         intent = getIntent()
         type = intent.getIntExtra("type", -1)
         step = intent.getIntExtra("step", 1)
+        company_id = PrefUtils.getIntPreference(context, "company_id")
 
 
         couponListAdapter = CouponListAdapter(context, R.layout.item_member_coupon, couponData)
@@ -367,7 +370,7 @@ class CalActivity : RootActivity() {
     // 프로세스
     fun changeStep() {
         val params = RequestParams()
-        params.put("company_id", 1)
+        params.put("company_id", company_id)
         params.put("member_id", member_id)
         params.put("step", step)
 
@@ -439,7 +442,7 @@ class CalActivity : RootActivity() {
     // 요청 체크
     fun checkStep() {
         val params = RequestParams()
-        params.put("company_id", 1)
+        params.put("company_id", company_id)
 
         RequestStepAction.checkStep(params, object : JsonHttpResponseHandler() {
 
@@ -599,7 +602,7 @@ class CalActivity : RootActivity() {
     fun stack_point(member_id: String) {
         val params = RequestParams()
         params.put("member_id", member_id)
-        params.put("company_id", 1)
+        params.put("company_id", company_id)
         params.put("point", stackpoint)//사용및적립포인트
         params.put("type", p_type)//1적립 2사용
         //    params.put("use_point", p_type)//사용 포인트
@@ -692,7 +695,7 @@ class CalActivity : RootActivity() {
 
 
         val params = RequestParams()
-        params.put("company_id", 1)
+        params.put("company_id", company_id)
         params.put("member_id", getid)
         params.put("age", getAge)
         params.put("name", getName)
@@ -759,7 +762,7 @@ class CalActivity : RootActivity() {
     //사업체 정보뽑기
     fun company_info() {
         val params = RequestParams()
-        params.put("company_id", 1)
+        params.put("company_id", company_id)
 
 
         CompanyAction.company_info(params, object : JsonHttpResponseHandler() {
@@ -850,7 +853,7 @@ class CalActivity : RootActivity() {
 
     fun getUserCouponList(phone: String) {
         val params = RequestParams()
-        params.put("company_id", 1)
+        params.put("company_id", company_id)
         params.put("phone", phone)
 
         MemberAction.inquiry_point(params, object : JsonHttpResponseHandler() {

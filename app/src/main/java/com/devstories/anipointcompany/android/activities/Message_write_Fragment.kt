@@ -37,9 +37,9 @@ class Message_write_Fragment : Fragment() {
     lateinit var finalTV: TextView
 
     lateinit var userchoiceFL: FrameLayout
-    val MessageUserFragment : MessageUserFragment = MessageUserFragment()
-    val SetCouponFragment : SetCouponFragment = SetCouponFragment()
-    val SetMessageContFragment : SetMessageContFragment = SetMessageContFragment()
+    val MessageUserFragment: MessageUserFragment = MessageUserFragment()
+    val SetCouponFragment: SetCouponFragment = SetCouponFragment()
+    val SetMessageContFragment: SetMessageContFragment = SetMessageContFragment()
     var member_id = -1
     //고객선택
     internal var step1NextReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
@@ -47,13 +47,13 @@ class Message_write_Fragment : Fragment() {
             if (intent != null) {
                 //브로드캐스트로 프래그먼트이동리시버
 
-                var gender =  intent.getSerializableExtra("gender")
-               var age =  intent.getSerializableExtra("age")
-                var visited_date  = intent.getStringExtra("visited_date")
-               var count = intent.getStringExtra("count")
-                var from= intent.getStringExtra("from")
+                var gender = intent.getSerializableExtra("gender")
+                var age = intent.getSerializableExtra("age")
+                var visited_date = intent.getStringExtra("visited_date")
+                var count = intent.getStringExtra("count")
+                var from = intent.getStringExtra("from")
                 var to = intent.getStringExtra("to")
-                var search_type =intent.getIntExtra("search_type",-1)
+                var search_type = intent.getIntExtra("search_type", -1)
 
 
                 setfilter()
@@ -63,7 +63,7 @@ class Message_write_Fragment : Fragment() {
                 couponTV.setTextColor(Color.parseColor("#ffffff"))
 
                 //쿠폰으로보내기
-                var args:Bundle = Bundle()
+                var args: Bundle = Bundle()
                 args.putString("count", count)
                 args.putInt("search_type", search_type)
                 args.putSerializable("gender", gender as ArrayList<String>?)
@@ -83,20 +83,20 @@ class Message_write_Fragment : Fragment() {
             if (intent != null) {
 
                 var coupon_id = intent.getStringExtra("coupon_id")
-                var gender =  intent.getSerializableExtra("gender")
-                var age =  intent.getSerializableExtra("age")
-                var visited_date  = intent.getStringExtra("visited_date")
+                var gender = intent.getSerializableExtra("gender")
+                var age = intent.getSerializableExtra("age")
+                var visited_date = intent.getStringExtra("visited_date")
                 var count = intent.getStringExtra("count")
-                var from= intent.getStringExtra("from")
+                var from = intent.getStringExtra("from")
                 var to = intent.getStringExtra("to")
-                var search_type =intent.getIntExtra("search_type",-1)
+                var search_type = intent.getIntExtra("search_type", -1)
 
                 couponRL.setBackgroundColor(Color.parseColor("#0068df"))
                 couponTV.setTextColor(Color.parseColor("#ffffff"))
                 writeRL.setBackgroundColor(Color.parseColor("#0068df"))
                 writeTV.setTextColor(Color.parseColor("#ffffff"))
                 //메시지작성으로
-                var args:Bundle = Bundle()
+                var args: Bundle = Bundle()
                 args.putString("coupon_id", coupon_id)
                 args.putString("count", count)
                 args.putInt("search_type", search_type)
@@ -106,7 +106,7 @@ class Message_write_Fragment : Fragment() {
                 args.putString("from", from)
                 args.putString("to", to)
                 SetMessageContFragment.setArguments(args)
-                childFragmentManager.beginTransaction().replace(R.id.userchoiceFL,SetMessageContFragment).commit()
+                childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, SetMessageContFragment).commit()
 
             }
         }
@@ -123,7 +123,7 @@ class Message_write_Fragment : Fragment() {
                 writeTV.setTextColor(Color.parseColor("#ffffff"))
                 finalRL.setBackgroundColor(Color.parseColor("#0068df"))
                 finalTV.setTextColor(Color.parseColor("#ffffff"))
-                childFragmentManager.beginTransaction().replace(R.id.userchoiceFL,MessageUserFragment).commit()
+                childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, MessageUserFragment).commit()
 
             }
         }
@@ -152,13 +152,13 @@ class Message_write_Fragment : Fragment() {
 //                Toast.makeText(myContext,member_id,Toast.LENGTH_SHORT).show()
                 writeRL.setBackgroundColor(Color.parseColor("#0068df"))
                 writeTV.setTextColor(Color.parseColor("#ffffff"))
-                childFragmentManager.beginTransaction().replace(R.id.userchoiceFL,SetMessageContFragment).commit()
+                childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, SetMessageContFragment).commit()
             }
         }
     }
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
 
         return inflater.inflate(R.layout.fra_message_userchoice, container, false)
@@ -185,8 +185,6 @@ class Message_write_Fragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
 
-
-
         var filter = IntentFilter("MSG_NEXT")
         myContext.registerReceiver(MsgReceiver, filter)
 
@@ -205,21 +203,21 @@ class Message_write_Fragment : Fragment() {
         myContext.registerReceiver(step3NextReceiver, filter3)
 
         if (arguments != null) {
-            member_id = getArguments()!!.getInt("member_id",-1)
-            if (member_id!=-1){
+            member_id = getArguments()!!.getInt("member_id", -1)
+            if (member_id != -1) {
                 setfilter()
 //                member_id =   intent!!.getStringExtra("member_id")
 //                Toast.makeText(myContext,member_id,Toast.LENGTH_SHORT).show()
-                var args:Bundle = Bundle()
+                var args: Bundle = Bundle()
                 args.putInt("member_id", member_id)
                 SetMessageContFragment.setArguments(args)
                 writeRL.setBackgroundColor(Color.parseColor("#0068df"))
                 writeTV.setTextColor(Color.parseColor("#ffffff"))
-                childFragmentManager.beginTransaction().replace(R.id.userchoiceFL,SetMessageContFragment).commit()
-                member_id=-1
+                childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, SetMessageContFragment).commit()
+                member_id = -1
             }
             arguments = null
-        }else{
+        } else {
             setfilter()
             userRL.setBackgroundColor(Color.parseColor("#0068df"))
             userTV.setTextColor(Color.parseColor("#ffffff"))
@@ -227,10 +225,9 @@ class Message_write_Fragment : Fragment() {
         }
 
 
-
-
     }
-    fun setfilter(){
+
+    fun setfilter() {
         userRL.setBackgroundResource(R.drawable.background_strock_null)
         couponRL.setBackgroundResource(R.drawable.background_strock_null)
         writeRL.setBackgroundResource(R.drawable.background_strock_null)
@@ -249,7 +246,7 @@ class Message_write_Fragment : Fragment() {
         }
 
         try {
-            if(null != step1NextReceiver) {
+            if (null != step1NextReceiver) {
                 myContext.unregisterReceiver(step1NextReceiver)
             }
 
@@ -257,14 +254,14 @@ class Message_write_Fragment : Fragment() {
         }
 
         try {
-            if(null != SkipReceiver) {
+            if (null != SkipReceiver) {
                 myContext.unregisterReceiver(SkipReceiver)
             }
 
         } catch (e: IllegalArgumentException) {
         }
         try {
-            if(null != step3NextReceiver) {
+            if (null != step3NextReceiver) {
                 myContext.unregisterReceiver(step3NextReceiver)
             }
 
@@ -272,20 +269,19 @@ class Message_write_Fragment : Fragment() {
         }
 
         try {
-            if(null != step2NextReceiver) {
+            if (null != step2NextReceiver) {
                 myContext.unregisterReceiver(step2NextReceiver)
             }
 
         } catch (e: IllegalArgumentException) {
         }
         try {
-            if(null != MsgReceiver) {
+            if (null != MsgReceiver) {
                 myContext.unregisterReceiver(MsgReceiver)
             }
 
         } catch (e: IllegalArgumentException) {
         }
-
 
 
     }
