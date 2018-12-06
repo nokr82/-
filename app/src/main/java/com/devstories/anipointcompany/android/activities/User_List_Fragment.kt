@@ -15,6 +15,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.devstories.anipointcompany.android.Actions.MemberAction
 import com.devstories.anipointcompany.android.R
+import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
@@ -33,18 +34,19 @@ class User_List_Fragment : Fragment() {
     private var progressDialog: ProgressDialog? = null
 
     lateinit var userLL: LinearLayout
-    lateinit var userList_new_userLL : LinearLayout
-    lateinit var userList_most_freq_userLL : LinearLayout
-    lateinit var userList_birth_userLL : LinearLayout
+    lateinit var userList_new_userLL: LinearLayout
+    lateinit var userList_most_freq_userLL: LinearLayout
+    lateinit var userList_birth_userLL: LinearLayout
     //lateinit var joinLL : LinearLayout
-    lateinit var btn_search : LinearLayout
-    lateinit var entire_viewTV : TextView
-    lateinit var accumulateLL : LinearLayout
-    lateinit var useLL : LinearLayout
+    lateinit var btn_search: LinearLayout
+    lateinit var entire_viewTV: TextView
+    lateinit var accumulateLL: LinearLayout
+    lateinit var useLL: LinearLayout
     var isBirthTab = false
 
     var adapterData: ArrayList<JSONObject> = ArrayList<JSONObject>()
     var type = 1
+    var company_id = -1
 
     var EDIT_MEMBER_INFO = 101
 
@@ -54,7 +56,7 @@ class User_List_Fragment : Fragment() {
         progressDialog = ProgressDialog(myContext)
 
 
-        return inflater.inflate(R.layout.fra_userlist,container,false)
+        return inflater.inflate(R.layout.fra_userlist, container, false)
     }
 
 
@@ -76,12 +78,13 @@ class User_List_Fragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mainData(1)
+        company_id = PrefUtils.getIntPreference(myContext, "company_id")
 
+        mainData(1)
 
         useLL.setOnClickListener {
             val intent = Intent(myContext, CalActivity::class.java)
-            intent.putExtra("step",4)
+            intent.putExtra("step", 4)
             startActivity(intent)
         }
         accumulateLL.setOnClickListener {
@@ -112,7 +115,7 @@ class User_List_Fragment : Fragment() {
 
         btn_search.setOnClickListener {
             var key = keywordET.text.toString()
-            if (key.isEmpty()){
+            if (key.isEmpty()) {
                 Utils.alert(context, "검색할 키워드를 입력하세요")
             }
             keywordET.setText("")
@@ -136,7 +139,7 @@ class User_List_Fragment : Fragment() {
 
     }
 
-    fun setLeftMenu(){
+    fun setLeftMenu() {
         entire_viewTV.setTextColor(Color.parseColor("#80ffffff"))
         new_userTV.setTextColor(Color.parseColor("#80ffffff"))
         most_freqTV.setTextColor(Color.parseColor("#80ffffff"))
@@ -144,9 +147,9 @@ class User_List_Fragment : Fragment() {
     }
 
     //고객목롭뽑기
-    fun mainData(type : Int) {
+    fun mainData(type: Int) {
         val params = RequestParams()
-        params.put("company_id", 1)
+        params.put("company_id", company_id)
         params.put("type", type)
 
         MemberAction.user_list(params, object : JsonHttpResponseHandler() {
@@ -169,67 +172,66 @@ class User_List_Fragment : Fragment() {
 
                             adapterData.add(data[i] as JSONObject)
 
-                            var json=data[i] as JSONObject
+                            var json = data[i] as JSONObject
                             val member = json.getJSONObject("Member")
-                            var point_o  = json.getJSONObject("Point")
-                            var visitedList  = json.getJSONArray("VisitedList")
+                            var point_o = json.getJSONObject("Point")
+                            var visitedList = json.getJSONArray("VisitedList")
 
-                            var point =   Utils.getString(point_o, "balance")
-                            var member_id =   Utils.getInt(member, "id")
+                            var point = Utils.getString(point_o, "balance")
+                            var member_id = Utils.getInt(member, "id")
 
 
                             val userView = View.inflate(myContext, R.layout.item_user, null)
 
 
-                            var dateTV : TextView = userView.findViewById(R.id.dateTV)
-                            var nameTV : TextView = userView.findViewById(R.id.nameTV)
-                            var pointTV : TextView = userView.findViewById(R.id.pointTV)
-                            var acc_pointTV : TextView = userView.findViewById(R.id.acc_pointTV)
-                            var visitTV : TextView = userView.findViewById(R.id.visitTV)
-                            var name2TV : TextView = userView.findViewById(R.id.name2TV)
-                            var genderTV : TextView = userView.findViewById(R.id.genderTV)
-                            var ageTV : TextView = userView.findViewById(R.id.ageTV)
-                            var birthTV : TextView = userView.findViewById(R.id.birthTV)
-                            var use_pointTV : TextView = userView.findViewById(R.id.use_pointTV)
+                            var dateTV: TextView = userView.findViewById(R.id.dateTV)
+                            var nameTV: TextView = userView.findViewById(R.id.nameTV)
+                            var pointTV: TextView = userView.findViewById(R.id.pointTV)
+                            var acc_pointTV: TextView = userView.findViewById(R.id.acc_pointTV)
+                            var visitTV: TextView = userView.findViewById(R.id.visitTV)
+                            var name2TV: TextView = userView.findViewById(R.id.name2TV)
+                            var genderTV: TextView = userView.findViewById(R.id.genderTV)
+                            var ageTV: TextView = userView.findViewById(R.id.ageTV)
+                            var birthTV: TextView = userView.findViewById(R.id.birthTV)
+                            var use_pointTV: TextView = userView.findViewById(R.id.use_pointTV)
                             var couponTV: TextView = userView.findViewById(R.id.couponTV)
                             var visit_recordTV: TextView = userView.findViewById(R.id.visit_recordTV)
                             var stack_pointTV: TextView = userView.findViewById(R.id.stack_pointTV)
                             var memoTV: TextView = userView.findViewById(R.id.memoTV)
                             var phoneTV: TextView = userView.findViewById(R.id.phoneTV)
                             var modiLL: LinearLayout = userView.findViewById(R.id.modiLL)
-                            var msgLL:LinearLayout = userView.findViewById(R.id.msgLL)
-
+                            var msgLL: LinearLayout = userView.findViewById(R.id.msgLL)
 
 
                             var id = Utils.getString(member, "id")
-                            var age =   Utils.getString(member, "age")
+                            var age = Utils.getString(member, "age")
                             var name = Utils.getString(member, "name")
-                            var gender =   Utils.getString(member, "gender")
+                            var gender = Utils.getString(member, "gender")
                             var memo = Utils.getString(member, "memo")
-                            var phone =   Utils.getString(member, "phone")
+                            var phone = Utils.getString(member, "phone")
                             var coupon = Utils.getString(member, "coupon")
-                            var stack_point =   Utils.getString(member, "point")
-                            var use_point =   Utils.getString(member, "use_point")
+                            var stack_point = Utils.getString(member, "point")
+                            var use_point = Utils.getString(member, "use_point")
                             var company_id = Utils.getString(member, "company_id")
-                            var birth =   Utils.getString(member, "birth")
+                            var birth = Utils.getString(member, "birth")
                             var created = Utils.getString(member, "created")
-                            var visit =   Utils.getString(member, "visit_cnt")
+                            var visit = Utils.getString(member, "visit_cnt")
                             val sdf = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
                             val updated = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(Utils.getString(member, "updated"))
                             val updated_date = sdf.format(updated)
 
-                            pointTV.text = point+"P"
-                            use_pointTV.text = use_point+"P"
-                            acc_pointTV.text = stack_point+"P"
-                            stack_pointTV.text = "누적:"+stack_point+"P"
-                            dateTV.text = updated_date+" 방문"
-                            ageTV.text = age+"세"
+                            pointTV.text = point + "P"
+                            use_pointTV.text = use_point + "P"
+                            acc_pointTV.text = stack_point + "P"
+                            stack_pointTV.text = "누적:" + stack_point + "P"
+                            dateTV.text = updated_date + " 방문"
+                            ageTV.text = age + "세"
                             nameTV.text = phone
                             name2TV.text = name
 
-                            if(gender == "F") {
+                            if (gender == "F") {
                                 gender = "여"
-                            } else if(gender == "M"){
+                            } else if (gender == "M") {
                                 gender = "남"
                             } else {
                                 gender = "모름"
@@ -237,14 +239,14 @@ class User_List_Fragment : Fragment() {
 
                             genderTV.text = gender
                             memoTV.text = memo
-                            couponTV.text = coupon+"장"
+                            couponTV.text = coupon + "장"
                             birthTV.text = birth
-                            visitTV.text = visit+"회"
+                            visitTV.text = visit + "회"
                             phoneTV.text = phone
 
                             var str = ""
 
-                            for(i in 0 until visitedList.length()) {
+                            for (i in 0 until visitedList.length()) {
                                 val json: JSONObject = visitedList[i] as JSONObject
                                 val companySale = json.getJSONObject("CompanySale")
                                 val category = json.getJSONObject("Category")
@@ -252,7 +254,7 @@ class User_List_Fragment : Fragment() {
                                 val created = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(Utils.getString(companySale, "created"))
                                 val created_str = SimpleDateFormat("yyyy-MM-dd").format(created)
 
-                                if(str.length > 0) {
+                                if (str.length > 0) {
                                     str += "\n";
                                 }
 
@@ -262,13 +264,13 @@ class User_List_Fragment : Fragment() {
 
                             visit_recordTV.text = str
 
-                        msgLL.setOnClickListener {
-                            var intent = Intent()
-                            intent.putExtra("member_id", member_id)
-                            Log.d("멤버아이디",member_id.toString())
-                            intent.action = "MSG_NEXT"
-                            myContext.sendBroadcast(intent)
-                        }
+                            msgLL.setOnClickListener {
+                                var intent = Intent()
+                                intent.putExtra("member_id", member_id)
+                                Log.d("멤버아이디", member_id.toString())
+                                intent.action = "MSG_NEXT"
+                                myContext.sendBroadcast(intent)
+                            }
 
 
                             modiLL.setOnClickListener {
@@ -361,9 +363,9 @@ class User_List_Fragment : Fragment() {
     }
 
     //키워드 :::: 키워드는 어쩔 수 없음 그냥 남겨두셈
-    fun keyWordData(keyword:String) {
+    fun keyWordData(keyword: String) {
         val params = RequestParams()
-        params.put("company_id", 1)
+        params.put("company_id", company_id)
         params.put("keyword", "$keyword")
         params.put("type", type)
 
@@ -387,24 +389,24 @@ class User_List_Fragment : Fragment() {
                         for (i in 0..(data.length() - 1)) {
                             Log.d("갯수", i.toString())
                             adapterData.add(data[i] as JSONObject)
-                            var json=data[i] as JSONObject
+                            var json = data[i] as JSONObject
                             val member = json.getJSONObject("Member")
-                            var point_o  = json.getJSONObject("Point")
+                            var point_o = json.getJSONObject("Point")
 
-                            var point =   Utils.getString(point_o, "balance")
+                            var point = Utils.getString(point_o, "balance")
 
 
                             val userView = View.inflate(myContext, R.layout.item_user, null)
-                            var dateTV : TextView = userView.findViewById(R.id.dateTV)
-                            var nameTV : TextView = userView.findViewById(R.id.nameTV)
-                            var pointTV : TextView = userView.findViewById(R.id.pointTV)
-                            var acc_pointTV : TextView = userView.findViewById(R.id.acc_pointTV)
-                            var visitTV : TextView = userView.findViewById(R.id.visitTV)
-                            var name2TV : TextView = userView.findViewById(R.id.name2TV)
-                            var genderTV : TextView = userView.findViewById(R.id.genderTV)
-                            var ageTV : TextView = userView.findViewById(R.id.ageTV)
-                            var birthTV : TextView = userView.findViewById(R.id.birthTV)
-                            var use_pointTV : TextView = userView.findViewById(R.id.use_pointTV)
+                            var dateTV: TextView = userView.findViewById(R.id.dateTV)
+                            var nameTV: TextView = userView.findViewById(R.id.nameTV)
+                            var pointTV: TextView = userView.findViewById(R.id.pointTV)
+                            var acc_pointTV: TextView = userView.findViewById(R.id.acc_pointTV)
+                            var visitTV: TextView = userView.findViewById(R.id.visitTV)
+                            var name2TV: TextView = userView.findViewById(R.id.name2TV)
+                            var genderTV: TextView = userView.findViewById(R.id.genderTV)
+                            var ageTV: TextView = userView.findViewById(R.id.ageTV)
+                            var birthTV: TextView = userView.findViewById(R.id.birthTV)
+                            var use_pointTV: TextView = userView.findViewById(R.id.use_pointTV)
                             var couponTV: TextView = userView.findViewById(R.id.couponTV)
                             var visit_recordTV: TextView = userView.findViewById(R.id.visit_recordTV)
                             var stack_pointTV: TextView = userView.findViewById(R.id.stack_pointTV)
@@ -412,37 +414,36 @@ class User_List_Fragment : Fragment() {
                             var phoneTV: TextView = userView.findViewById(R.id.phoneTV)
 
 
-
                             var id = Utils.getString(member, "id")
-                            var age =   Utils.getString(member, "age")
+                            var age = Utils.getString(member, "age")
                             var name = Utils.getString(member, "name")
-                            var gender =   Utils.getString(member, "gender")
+                            var gender = Utils.getString(member, "gender")
                             var memo = Utils.getString(member, "memo")
-                            var phone =   Utils.getString(member, "phone")
+                            var phone = Utils.getString(member, "phone")
                             var coupon = Utils.getString(member, "coupon")
-                            var stack_point =   Utils.getString(member, "point")
-                            var use_point =   Utils.getString(member, "use_point")
+                            var stack_point = Utils.getString(member, "point")
+                            var use_point = Utils.getString(member, "use_point")
                             var company_id = Utils.getString(member, "company_id")
-                            var birth =   Utils.getString(member, "birth")
+                            var birth = Utils.getString(member, "birth")
                             var created = Utils.getString(member, "created")
-                            var visit =   Utils.getString(member, "visit_cnt")
+                            var visit = Utils.getString(member, "visit_cnt")
                             val sdf = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
                             val updated = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(Utils.getString(member, "updated"))
                             val updated_date = sdf.format(updated)
 
-                            pointTV.text = point+"P"
-                            use_pointTV.text = use_point+"P"
-                            acc_pointTV.text = stack_point+"P"
-                            stack_pointTV.text = "누적:"+stack_point+"P"
-                            dateTV.text = updated_date+" 방문"
-                            ageTV.text = age+"세"
+                            pointTV.text = point + "P"
+                            use_pointTV.text = use_point + "P"
+                            acc_pointTV.text = stack_point + "P"
+                            stack_pointTV.text = "누적:" + stack_point + "P"
+                            dateTV.text = updated_date + " 방문"
+                            ageTV.text = age + "세"
                             nameTV.text = name
                             name2TV.text = name
                             genderTV.text = gender
                             memoTV.text = memo
-                            couponTV.text = coupon+"장"
+                            couponTV.text = coupon + "장"
                             birthTV.text = birth
-                            visitTV.text = visit+"회"
+                            visitTV.text = visit + "회"
                             phoneTV.text = phone
 
                             userLL.addView(userView)
@@ -534,8 +535,8 @@ class User_List_Fragment : Fragment() {
             EDIT_MEMBER_INFO -> {
                 if (resultCode == RESULT_OK) {
                     mainData(1)
-                    val member_id =data!!.getIntExtra("member_id",-1)
-                    Log.d("받아오는 값",member_id.toString())
+                    val member_id = data!!.getIntExtra("member_id", -1)
+                    Log.d("받아오는 값", member_id.toString())
 
                 }
             }

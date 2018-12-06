@@ -76,6 +76,8 @@ class LoginActivity : RootActivity() {
 
                         val company_id = Utils.getInt(company, "id")
 
+                        PrefUtils.clear(context)
+
                         PrefUtils.setPreference(context, "company_id", company_id)
                         PrefUtils.setPreference(context, "login_id", email)
                         PrefUtils.setPreference(context, "passwd", passwd)

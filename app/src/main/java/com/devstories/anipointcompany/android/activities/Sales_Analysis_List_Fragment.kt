@@ -22,6 +22,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.CompanyAction
+import com.devstories.anipointcompany.android.base.PrefUtils
 import kotlin.collections.ArrayList
 
 //고객방문분석메인
@@ -30,8 +31,8 @@ class Sales_Analysis_List_Fragment : Fragment() {
     private var progressDialog: ProgressDialog? = null
     lateinit var adapter: ArrayAdapter<String>
 
-    var option_amount =ArrayList<String>()
-    var option_limit = arrayOf("5개씩보기","10개씩보기")
+    var option_amount = ArrayList<String>()
+    var option_limit = arrayOf("5개씩보기", "10개씩보기")
     var categoryIndex = ArrayList<Int>()
 
     lateinit var pageSP: Spinner
@@ -40,7 +41,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
     lateinit var all_memberTV: TextView
     lateinit var new_userTV: TextView
     lateinit var member_re_cntTV: TextView
-    lateinit var accountlessTV : TextView
+    lateinit var accountlessTV: TextView
     lateinit var itemdateLL: LinearLayout
     lateinit var nextLL: LinearLayout
     lateinit var preLL: LinearLayout
@@ -53,19 +54,21 @@ class Sales_Analysis_List_Fragment : Fragment() {
     lateinit var monthTV: TextView
     lateinit var three_mTV: TextView
     lateinit var accumulateLL: LinearLayout
-    lateinit var tagTV : TextView
-    lateinit var useLL : LinearLayout
+    lateinit var tagTV: TextView
+    lateinit var useLL: LinearLayout
 
-     var day_type = -1 //1-오늘 2-이번주 3-이번달 4-3개월
+    var day_type = -1 //1-오늘 2-이번주 3-이번달 4-3개월
     var page = 1    //페이지
     var limit = 5 //보여지는갯수
-    var totalPage =1 //총페이지
+    var totalPage = 1 //총페이지
     var payment_type = -1
     var category_id = 1
+    var company_id = -1
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
         progressDialog = ProgressDialog(myContext)
-            return inflater.inflate(R.layout.fra_sales_analysis,container,false)
+        return inflater.inflate(R.layout.fra_sales_analysis, container, false)
     }
 
 
@@ -97,6 +100,8 @@ class Sales_Analysis_List_Fragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        company_id = PrefUtils.getIntPreference(context, "company_id")
+
         adapter = ArrayAdapter(myContext, R.layout.spiner_item, option_limit)
         pageSP.adapter = adapter
         //스피너 선택이벤트
@@ -107,7 +112,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
                 } else if (position == 1) {
                     limit = 10
                 }
-                loadData(1)
+                loadData(company_id)
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -132,7 +137,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
             } else {
                 page++
                 Toast.makeText(myContext, page.toString() + "페이지입니다", Toast.LENGTH_SHORT).show()
-                loadData(1)
+                loadData(company_id)
             }
 
         }
@@ -145,7 +150,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
         }
         useLL.setOnClickListener {
             val intent = Intent(myContext, CalActivity::class.java)
-            intent.putExtra("step",4)
+            intent.putExtra("step", 4)
             startActivity(intent)
         }
 
@@ -156,7 +161,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
             } else {
                 page--
                 Toast.makeText(myContext, page.toString() + "페이지입니다", Toast.LENGTH_SHORT).show()
-                loadData(1)
+                loadData(company_id)
             }
 
         }
@@ -165,7 +170,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
             setmenu()
             day_type = 1
             loadcntData()
-            loadData(1)
+            loadData(company_id)
             todayTV.setTextColor(Color.parseColor("#606060"))
             dateTV.text = currentDate + "~" + currentDate
             tagTV.text = "최근 1일간 매출내역입니다."
@@ -177,7 +182,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
             setmenu()
             day_type = 2
             loadcntData()
-            loadData(1)
+            loadData(company_id)
             weekTV.setTextColor(Color.parseColor("#606060"))
             val calendar = Calendar.getInstance()
             calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
@@ -194,7 +199,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
             setmenu()
             day_type = 3
             loadcntData()
-            loadData(1)
+            loadData(company_id)
             monthTV.setTextColor(Color.parseColor("#606060"))
             val beforemonth = SimpleDateFormat("yyyy.MM.01", Locale.KOREA)
             val aftermonth = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
@@ -206,25 +211,25 @@ class Sales_Analysis_List_Fragment : Fragment() {
             val lastmonth = aftermonth.format(date).toString().substring(0, 8) + endDay
             tagTV.text = "최근 30일간 매출내역입니다."
 
-            dateTV.text = currentDate+" ~ "+lastmonth
+            dateTV.text = currentDate + " ~ " + lastmonth
         }
         three_mRL.setOnClickListener {
             setmenu()
             day_type = 4
             loadcntData()
-            loadData(1)
-            three_mTV .setTextColor(Color.parseColor("#606060"))
+            loadData(company_id)
+            three_mTV.setTextColor(Color.parseColor("#606060"))
             val aftermonth = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
             val cal = Calendar.getInstance()
             //그달의 마지막일 구하기
-            val startday = cal.getActualMaximum(Calendar.MONTH)-3
-            val beforemonth = SimpleDateFormat("yyyy."+startday+".dd", Locale.KOREA)
+            val startday = cal.getActualMaximum(Calendar.MONTH) - 3
+            val beforemonth = SimpleDateFormat("yyyy." + startday + ".dd", Locale.KOREA)
             val date = Date()
             val currentDate = beforemonth.format(date).toString()
             val lastmonth = aftermonth.format(date).toString()
             tagTV.text = "최근 3달간 매출내역입니다."
 
-            dateTV.text = currentDate+" ~ "+lastmonth
+            dateTV.text = currentDate + " ~ " + lastmonth
         }
 
         accumulateLL.setOnClickListener {
@@ -236,7 +241,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
         //전체고객구하기
         loadcntData()
 
-        amountSP.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+        amountSP.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
                 /*if (position==0){
                     payment_type = 1
@@ -249,7 +254,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
 
                 category_id = categoryIndex[position]
                 //println("amountSP clicked. Position is $payment_type")
-                loadData(1)
+                loadData(company_id)
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -270,7 +275,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
     //사업체정보
     fun loadcntData() {
         val params = RequestParams()
-        params.put("company_id", 1)
+        params.put("company_id", company_id)
 
 
         CompanyAction.company_info(params, object : JsonHttpResponseHandler() {

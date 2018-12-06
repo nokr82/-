@@ -22,7 +22,6 @@ class UserListActivity : FragmentActivity() {
 
     lateinit var uservisitadapter: UserVisitAdapter
 
-
     val User_List_Fragment : User_List_Fragment = User_List_Fragment()
     val User_visit_List_Fragment : User_visit_List_Fragment = User_visit_List_Fragment()
     val Message_Manage_Fragment : Message_Manage_Fragment = Message_Manage_Fragment()
