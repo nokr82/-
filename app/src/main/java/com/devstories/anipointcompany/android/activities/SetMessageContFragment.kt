@@ -145,11 +145,8 @@ class SetMessageContFragment : Fragment() {
 
 
         companyNameTV.setOnClickListener {
-
             var message = messageContentET.text.toString() + "{_매장이름_}"
-
             messageContentET.setText(message)
-
         }
 
         memberNameTV.setOnClickListener {
