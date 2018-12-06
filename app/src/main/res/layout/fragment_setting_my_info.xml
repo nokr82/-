@@ -64,21 +64,25 @@
                         android:layout_width="1dp"
                         android:layout_height="40dp"
                         android:background="#e7e7e7"/>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:paddingLeft="19dp">
+
                         <EditText
                             android:id="@+id/compNameET"
                             android:layout_width="300dp"
                             android:layout_height="32dp"
-                            android:textSize="16sp"
-                            android:background="@null" />
+                            android:background="@null"
+                            android:gravity="center_vertical"
+                            android:textSize="16sp" />
+
                         <View
                             android:layout_width="300dp"
                             android:layout_height="1dp"
-                            android:background="#e7e7e7"/>
+                            android:background="#e7e7e7" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -117,6 +121,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
                             <EditText
+                                android:gravity="center_vertical"
                                 android:id="@+id/phoneNum1ET"
                                 android:layout_width="70dp"
                                 android:layout_height="32dp"
@@ -141,6 +146,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
                             <EditText
+                                android:gravity="center_vertical"
                                 android:id="@+id/phoneNum2ET"
                                 android:layout_width="70dp"
                                 android:layout_height="32dp"
@@ -165,6 +171,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
                             <EditText
+                                android:gravity="center_vertical"
                                 android:id="@+id/phoneNum3ET"
                                 android:layout_width="70dp"
                                 android:layout_height="32dp"
@@ -209,6 +216,7 @@
                         android:orientation="vertical"
                         android:paddingLeft="19dp">
                         <TextView
+                            android:gravity="center_vertical"
                             android:id="@+id/compIdET"
                             android:layout_width="300dp"
                             android:layout_height="32dp"
@@ -436,6 +444,7 @@
                             android:gravity="center_vertical"
                             android:orientation="vertical">
                             <EditText
+                                android:gravity="center_vertical"
                                 android:id="@+id/tempPasswordET"
                                 android:layout_width="300dp"
                                 android:layout_height="32dp"
@@ -476,6 +485,7 @@
                             android:gravity="center_vertical"
                             android:orientation="vertical">
                             <EditText
+                                android:gravity="center_vertical"
                                 android:id="@+id/newPasswordET"
                                 android:layout_width="300dp"
                                 android:layout_height="32dp"
@@ -515,6 +525,7 @@
                             android:gravity="center_vertical"
                             android:orientation="vertical">
                             <EditText
+                                android:gravity="center_vertical"
                                 android:id="@+id/newPassCheckET"
                                 android:layout_width="300dp"
                                 android:layout_height="32dp"

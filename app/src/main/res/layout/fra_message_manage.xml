@@ -34,7 +34,7 @@
                 <LinearLayout
                     android:id="@+id/messageStatisticsLL"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="17.5dp"
                     android:gravity="center_vertical">
 
@@ -51,11 +51,6 @@
                             android:textColor="#ffffff"
                             android:textSize="36dp" />
 
-                        <View
-                            android:id="@+id/view1"
-                            android:layout_width="match_parent"
-                            android:layout_height="0.5dp"
-                            android:background="#ffffff" />
 
                     </LinearLayout>
 
@@ -64,7 +59,7 @@
                 <LinearLayout
                     android:id="@+id/sendMessageLL"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="17.5dp"
                     android:gravity="center_vertical">
 
@@ -95,7 +90,7 @@
                 <LinearLayout
                     android:id="@+id/autoCouponLL"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="17.5dp"
                     android:gravity="center_vertical">
 

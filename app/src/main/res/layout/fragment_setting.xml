@@ -41,17 +41,14 @@
                     <TextView
                         android:id="@+id/myInfoTV"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="1sp"
                         android:text="내정보"
                         android:textColor="#ffffff"
-                        android:textSize="18sp" />
+                        android:textSize="36dp" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.6dp"
-                        android:background="#ffff" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -68,12 +65,8 @@
                         android:lineSpacingExtra="1sp"
                         android:text="운영정책"
                         android:textColor="#80ffffff"
-                        android:textSize="18sp" />
+                        android:textSize="36dp" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.6dp"
-                        android:background="#ffff" />
                 </LinearLayout>
 
             </LinearLayout>

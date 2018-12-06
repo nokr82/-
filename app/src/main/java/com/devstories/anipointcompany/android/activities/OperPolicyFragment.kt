@@ -188,10 +188,10 @@ class OperPolicyFragment : Fragment() {
                         if (frequenter_type.equals("N")) {
 
                         } else if (frequenter_type.equals("V")) {
-                            vsitIV.callOnClick()
+                            a_visitLL.callOnClick()
                             visitcntTV.setText(frequenter_standard)
                         } else if (frequenter_type.equals("P")) {
-                            costIV.callOnClick()
+                            a_costLL.callOnClick()
                             costTV.setText(frequenter_standard)
                         }
 
