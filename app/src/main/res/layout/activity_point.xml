@@ -3,7 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    
     android:background="@drawable/background_gradient"
+    android:orientation="horizontal">
+
+    <com.devstories.anipointcompany.android.base.RationalRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:ratio="550:360">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="horizontal">
 
     <LinearLayout
@@ -14,8 +26,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10.5dp"
-            android:layout_marginTop="18.5dp"
+            android:layout_marginLeft="21dp"
+            android:layout_marginTop="37dp"
             android:orientation="vertical"
             android:visibility="gone">
 
@@ -26,7 +38,7 @@
                 android:letterSpacing="-0.03"
                 android:text="박소윤 님"
                 android:textColor="#ffffff"
-                android:textSize="24sp" />
+                android:textSize="48dp" />
 
             <View
                 android:layout_width="match_parent"
@@ -39,8 +51,8 @@
 
         <LinearLayout
             android:id="@+id/joinLL"
-            android:layout_width="127dp"
-            android:layout_height="182.5dp"
+            android:layout_width="254dp"
+            android:layout_height="360dp"
             android:layout_marginTop="14dp"
             android:background="#90424242"
             android:orientation="vertical"
@@ -49,14 +61,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
                 android:orientation="vertical">
 
                 <LinearLayout
 
                     android:layout_width="wrap_content"
-                    android:layout_height="16.5dp"
+                    android:layout_height="33dp"
                     android:gravity="center_vertical"
                     android:orientation="vertical">
 
@@ -71,7 +83,7 @@
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="1sp"
                         android:textColorHint="#ffffff"
-                        android:textSize="9sp" />
+                        android:textSize="18dp" />
 
                 </LinearLayout>
 
@@ -84,7 +96,7 @@
                 <LinearLayout
 
                     android:layout_width="wrap_content"
-                    android:layout_height="16.5dp"
+                    android:layout_height="33dp"
                     android:gravity="center_vertical"
                     android:orientation="vertical">
 
@@ -100,7 +112,7 @@
                         android:lineSpacingExtra="1sp"
                         android:textColor="#ffffff"
                         android:textColorHint="#ffffff"
-                        android:textSize="9sp" />
+                        android:textSize="18dp" />
 
                 </LinearLayout>
 
@@ -112,7 +124,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="16.5dp"
+                    android:layout_height="33dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -144,7 +156,7 @@
                                 android:letterSpacing="-0.01"
                                 android:text="남"
                                 android:textColor="#ffffff"
-                                android:textSize="9sp" />
+                                android:textSize="18dp" />
 
                         </LinearLayout>
 
@@ -169,7 +181,7 @@
                                 android:letterSpacing="-0.01"
                                 android:text="여"
                                 android:textColor="#ffffff"
-                                android:textSize="9sp" />
+                                android:textSize="18dp" />
 
                         </LinearLayout>
 
@@ -184,7 +196,7 @@
                     android:background="#ffffff" />
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="16.5dp"
+                    android:layout_height="33dp"
                     android:gravity="center_vertical"
                     android:orientation="vertical">
 
@@ -200,7 +212,7 @@
                         android:textColor="#ffffff"
                         android:lineSpacingExtra="1sp"
                         android:textColorHint="#ffffff"
-                        android:textSize="9sp" />
+                        android:textSize="18dp" />
 
                 </LinearLayout>
 
@@ -212,7 +224,7 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="16.5dp"
+                    android:layout_height="33dp"
                     android:gravity="center_vertical"
                     android:orientation="vertical">
 
@@ -228,7 +240,7 @@
                         android:lineSpacingExtra="1sp"
                         android:textColor="#ffffff"
                         android:textColorHint="#ffffff"
-                        android:textSize="9sp" />
+                        android:textSize="18dp" />
 
                 </LinearLayout>
 
@@ -259,7 +271,7 @@
                         android:lineSpacingExtra="1sp"
                         android:textColor="#ffffff"
                         android:textColorHint="#ffffff"
-                        android:textSize="9sp" />
+                        android:textSize="18dp" />
 
 
                 </LinearLayout>
@@ -273,9 +285,9 @@
         </LinearLayout>
         <LinearLayout
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
             android:id="@+id/checkLL"
-            android:layout_width="115dp"
+            android:layout_width="130dp"
             android:layout_height="25dp"
             android:background="#2b2b2b"
             android:gravity="center"
@@ -292,8 +304,8 @@
 
         <LinearLayout
             android:id="@+id/message_op_LL"
-            android:layout_width="127dp"
-            android:layout_height="182.5dp"
+            android:layout_width="254dp"
+            android:layout_height="360dp"
             android:layout_marginTop="14dp"
             android:background="#90424242"
             android:orientation="vertical"
@@ -302,8 +314,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
                 android:orientation="vertical">
 
 
@@ -322,7 +334,7 @@
                         android:lineSpacingExtra="1sp"
                         android:text="010-***1-9767"
                         android:textColor="#ffffff"
-                        android:textSize="9sp" />
+                        android:textSize="18dp" />
 
                 </LinearLayout>
 
@@ -334,7 +346,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="16.5dp"
+                    android:layout_height="33dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -366,7 +378,7 @@
                                 android:letterSpacing="-0.01"
                                 android:text="남"
                                 android:textColor="#ffffff"
-                                android:textSize="9sp" />
+                                android:textSize="18dp" />
 
                         </LinearLayout>
 
@@ -391,7 +403,7 @@
                                 android:letterSpacing="-0.01"
                                 android:text="여"
                                 android:textColor="#ffffff"
-                                android:textSize="9sp" />
+                                android:textSize="18dp" />
 
                         </LinearLayout>
 
@@ -407,7 +419,7 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="16.5dp"
+                    android:layout_height="33dp"
                     android:gravity="center_vertical"
                     android:orientation="vertical">
 
@@ -419,7 +431,7 @@
                         android:lineSpacingExtra="1sp"
                         android:text="22세"
                         android:textColor="#ffffff"
-                        android:textSize="9sp" />
+                        android:textSize="18dp" />
 
                 </LinearLayout>
 
@@ -431,7 +443,7 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="16.5dp"
+                    android:layout_height="33dp"
                     android:gravity="center_vertical"
                     android:orientation="vertical">
 
@@ -443,7 +455,7 @@
                         android:lineSpacingExtra="1sp"
                         android:text="1996-04-02"
                         android:textColor="#ffffff"
-                        android:textSize="9sp" />
+                        android:textSize="18dp" />
 
                 </LinearLayout>
 
@@ -455,7 +467,7 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="16.5dp"
+                    android:layout_height="33dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -466,7 +478,7 @@
                         android:lineSpacingExtra="1sp"
                         android:text="사용가능:"
                         android:textColor="#ffffff"
-                        android:textSize="9sp" />
+                        android:textSize="18dp" />
 
                     <TextView
                         android:id="@+id/stack_pointTV"
@@ -476,7 +488,7 @@
                         android:lineSpacingExtra="1sp"
                         android:text="0"
                         android:textColor="#ffffff"
-                        android:textSize="9sp" />
+                        android:textSize="18dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -485,7 +497,7 @@
                         android:lineSpacingExtra="1sp"
                         android:text="P"
                         android:textColor="#ffffff"
-                        android:textSize="9sp" />
+                        android:textSize="18dp" />
 
                 </LinearLayout>
 
@@ -497,7 +509,7 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="16.5dp"
+                    android:layout_height="33dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -508,7 +520,7 @@
                         android:lineSpacingExtra="1sp"
                         android:text="보유쿠폰:"
                         android:textColor="#ffffff"
-                        android:textSize="9sp" />
+                        android:textSize="18dp" />
 
                     <TextView
                         android:id="@+id/couponTV"
@@ -518,7 +530,7 @@
                         android:lineSpacingExtra="1sp"
                         android:text="4장"
                         android:textColor="#ffffff"
-                        android:textSize="9sp" />
+                        android:textSize="18dp" />
                 </LinearLayout>
 
                 <View
@@ -545,7 +557,7 @@
 모양을 누르면
 설정으로 이동합니다."
                         android:textColor="#ffffff"
-                        android:textSize="8sp" />
+                        android:textSize="16dp" />
 
 
                 </LinearLayout>
@@ -575,7 +587,7 @@
 
                 <TextView
                     android:id="@+id/okTV"
-                    android:layout_width="115dp"
+                    android:layout_width="130dp"
                     android:layout_height="25dp"
                     android:layout_marginTop="12.5dp"
                     android:background="#2b2b2b"
@@ -593,10 +605,9 @@
 
                     <LinearLayout
                         android:id="@+id/spinnerIV"
-                        android:layout_width="114.5dp"
-                        android:layout_height="18dp"
-
-                        android:layout_marginTop="10dp"
+                        android:layout_width="229dp"
+                        android:layout_height="36dp"
+                        android:layout_marginTop="40dp"
                         android:background="#ffffff"
                         android:orientation="horizontal">
 
@@ -606,7 +617,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:background="@null"
-                            android:paddingLeft="10dp" />
+                            android:paddingLeft="20dp" />
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -619,10 +630,10 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="115dp"
+                        android:layout_width="260dp"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:paddingTop="10dp">
+                        android:paddingTop="20dp">
 
                         <LinearLayout
                             android:id="@+id/cardPayLL"
@@ -638,17 +649,17 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="5.5dp"
+                                android:layout_marginLeft="11dp"
                                 android:text="카드결제"
                                 android:textColor="#ffffff"
-                                android:textSize="8sp" />
+                                android:textSize="16dp" />
                         </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/cashPayLL"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="9.5dp">
+                            android:layout_marginLeft="19dp">
 
                             <ImageView
                                 android:id="@+id/cashPayIV"
@@ -662,7 +673,7 @@
                                 android:layout_marginLeft="5.5dp"
                                 android:text="현금결제"
                                 android:textColor="#ffffff"
-                                android:textSize="8sp" />
+                                android:textSize="16dp" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -685,7 +696,7 @@
                             android:layout_marginLeft="5.5dp"
                             android:text="무통장입금"
                             android:textColor="#ffffff"
-                            android:textSize="8sp" />
+                            android:textSize="16dp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -708,9 +719,9 @@
 
         <RelativeLayout
             android:layout_marginLeft="23dp"
-            android:layout_width="225dp"
+            android:layout_width="450dp"
             android:background="#90000000"
-            android:layout_height="30.5dp"
+            android:layout_height="61dp"
             android:orientation="horizontal">
 
 
@@ -720,7 +731,7 @@
                 android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"
+                android:textSize="20dp"
                 android:textColor="#90ffffff"
                 android:lineSpacingExtra="25sp"
                 android:gravity="center_horizontal"
@@ -730,7 +741,7 @@
 
             <ImageView
                 android:layout_alignParentRight="true"
-               android:layout_margin="10dp"
+               android:layout_margin="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/btn_close"/>
@@ -750,7 +761,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="47dp"
+                android:layout_height="90dp"
                 android:gravity="right"
                 android:layout_marginRight="11dp"
                 android:orientation="vertical"
@@ -767,18 +778,18 @@
                         android:layout_height="wrap_content"
                         android:gravity="end"
                         android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="8sp"
+                        android:lineSpacingExtra="16dp"
                         android:text=""
                         android:textColor="#0066b0"
-                        android:textSize="27sp" />
+                        android:textSize="54dp" />
                     <TextView
                         android:id="@+id/m_opTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="27sp"
+                        android:textSize="54dp"
                         android:textColor="#0066b0"
                         android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="8sp"
+                        android:lineSpacingExtra="16dp"
                         android:gravity="end"
                         android:text="￦"
                         />
@@ -789,8 +800,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.8"
+                android:layout_height="560dp"
                 android:orientation="vertical"
                 >
 
@@ -813,7 +823,7 @@
                             android:lineSpacingExtra="-15sp"
                             android:text="1"
                             android:textColor="#666666"
-                            android:textSize="24sp" />
+                            android:textSize="48dp" />
 
                     </LinearLayout>
                     <LinearLayout
@@ -826,7 +836,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
+                            android:textSize="48dp"
                             android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
@@ -844,7 +854,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
+                            android:textSize="48dp"
                             android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
@@ -874,7 +884,7 @@
                             android:lineSpacingExtra="-15sp"
                             android:text="4"
                             android:textColor="#666666"
-                            android:textSize="24sp" />
+                            android:textSize="48dp" />
 
                     </LinearLayout>
                     <LinearLayout
@@ -887,7 +897,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
+                            android:textSize="48dp"
                             android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
@@ -911,7 +921,7 @@
                             android:lineSpacingExtra="-15sp"
                             android:text="6"
                             android:textColor="#666666"
-                            android:textSize="24sp" />
+                            android:textSize="48dp" />
 
                     </LinearLayout>
 
@@ -930,7 +940,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
+                            android:textSize="48dp"
                             android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
@@ -948,7 +958,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
+                            android:textSize="48dp"
                             android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
@@ -966,7 +976,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
+                            android:textSize="48dp"
                             android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
@@ -1011,7 +1021,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
+                            android:textSize="48dp"
                             android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
@@ -1046,7 +1056,7 @@
                 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="80dp"
                     android:orientation="horizontal">
 
 
@@ -1060,7 +1070,7 @@
                             android:id="@+id/stackTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
+                            android:textSize="48dp"
                             android:textColor="#6e8a32"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
@@ -1070,7 +1080,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
+                            android:textSize="48dp"
                             android:textColor="#6e8a32"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
@@ -1090,7 +1100,7 @@
                             android:id="@+id/stack2TV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
+                            android:textSize="48dp"
                             android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
@@ -1100,7 +1110,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
+                            android:textSize="48dp"
                             android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
@@ -1146,7 +1156,7 @@
 
     <ListView
         android:id="@+id/couponLV"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="30dp"
         android:layout_width="135dp"
         android:layout_height="match_parent" />
 
@@ -1160,8 +1170,8 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
-            android:layout_marginTop="18.5dp"
-            android:layout_marginBottom="18.5dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginBottom="37dp"
             android:orientation="vertical">
 
 
@@ -1231,6 +1241,7 @@
         </LinearLayout>
 
     </ScrollView>-->
-
+</LinearLayout>
+    </com.devstories.anipointcompany.android.base.RationalRelativeLayout>
 
 </LinearLayout>

@@ -6,9 +6,9 @@
 
    <LinearLayout
        android:layout_width="match_parent"
-       android:layout_height="45dp"
-       android:layout_marginLeft="10dp"
-       android:layout_marginRight="10dp"
+       android:layout_height="90dp"
+       android:layout_marginLeft="20dp"
+       android:layout_marginRight="20dp"
        android:orientation="horizontal">
 
 
@@ -27,13 +27,13 @@
                android:lineSpacingExtra="51sp"
                android:text="홍길동"
                android:textColor="#666666"
-               android:textSize="10dp" />
+               android:textSize="20dp" />
 
            <TextView
                android:id="@+id/updateTV"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:textSize="8dp"
+               android:textSize="16dp"
                android:textColor="#a2a2a2"
                android:letterSpacing="-0.03"
                android:lineSpacingExtra="53sp"
@@ -55,7 +55,7 @@
                android:id="@+id/typeTV"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:textSize="8dp"
+               android:textSize="16dp"
                android:textColor="#a2a2a2"
                android:letterSpacing="-0.03"
                android:lineSpacingExtra="53sp"
@@ -65,7 +65,7 @@
                android:id="@+id/pointTV"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:textSize="8dp"
+               android:textSize="16dp"
                android:textColor="#666666"
                android:letterSpacing="-0.03"
                android:lineSpacingExtra="51sp"

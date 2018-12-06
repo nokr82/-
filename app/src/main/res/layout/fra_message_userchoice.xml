@@ -10,7 +10,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/background_strock_e7e7e7"
-        android:layout_height="20dp"
+        android:layout_height="40dp"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -25,7 +25,7 @@
                 android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="9sp"
+                android:textSize="18dp"
                 android:textColor="#ffff"
                 android:letterSpacing="-0.03"
                 android:lineSpacingExtra="3sp"
@@ -56,7 +56,7 @@
                 android:lineSpacingExtra="3sp"
                 android:text="쿠폰설정"
                 android:textColor="#c5c5c5"
-                android:textSize="9sp" />
+                android:textSize="18dp" />
             <View
                 android:layout_alignParentBottom="true"
                 android:background="#606060"
@@ -81,7 +81,7 @@
                 android:lineSpacingExtra="3sp"
                 android:text="메세지 작성"
                 android:textColor="#c5c5c5"
-                android:textSize="9sp" />
+                android:textSize="18dp" />
             <View
                 android:layout_alignParentBottom="true"
                 android:background="#606060"
@@ -107,7 +107,7 @@
                 android:lineSpacingExtra="3sp"
                 android:text="최종확인"
                 android:textColor="#c5c5c5"
-                android:textSize="9sp" />
+                android:textSize="18dp" />
 
             <View
                 android:layout_width="match_parent"
