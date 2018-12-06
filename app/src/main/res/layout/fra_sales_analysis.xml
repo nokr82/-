@@ -122,28 +122,6 @@
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/accumulateLL"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="10dp"
-            android:background="#4ed0cd"
-            android:gravity="center"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:letterSpacing="-0.03"
-                android:lineSpacingExtra="-2sp"
-                android:text="적립"
-                android:textColor="#ffffff"
-                android:textSize="24dp" />
-
-
-        </LinearLayout>
-
 
 
 
