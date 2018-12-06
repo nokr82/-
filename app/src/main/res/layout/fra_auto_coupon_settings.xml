@@ -28,13 +28,13 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="49.5dp"
+                    android:layout_height="99dp"
                     android:orientation="horizontal"
                     android:gravity="center_vertical">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:src="@mipmap/coupon"
                         android:scaleType="centerCrop"/>
 
@@ -48,7 +48,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#333333"
-                            android:textSize="8sp"
+                            android:textSize="16dp"
                             android:textStyle="bold"
                             android:letterSpacing="-0.2"
                             android:text="첫 가입 고객 환영 쿠폰"/>
@@ -81,15 +81,15 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="49.5dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:layout_height="99dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@mipmap/coupon"
-                        android:scaleType="centerCrop"/>
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/coupon" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -100,18 +100,18 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#333333"
-                            android:textSize="8sp"
-                            android:textStyle="bold"
                             android:letterSpacing="-0.2"
-                            android:text="생일 고객 축하 쿠폰"/>
+                            android:text="생일 고객 축하 쿠폰"
+                            android:textColor="#333333"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/birthMemberIV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
-                            android:src="@mipmap/off"/>
+                            android:src="@mipmap/off" />
 
                     </LinearLayout>
 
@@ -134,13 +134,13 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="49.5dp"
+                    android:layout_height="99dp"
                     android:orientation="horizontal"
                     android:gravity="center_vertical">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:src="@mipmap/coupon"
                         android:scaleType="centerCrop"/>
 
@@ -154,7 +154,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#333333"
-                            android:textSize="8sp"
+                            android:textSize="16dp"
                             android:textStyle="bold"
                             android:letterSpacing="-0.2"
                             android:text="30일 미방문 고객 쿠폰"/>
@@ -187,13 +187,13 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="49.5dp"
+                    android:layout_height="99dp"
                     android:orientation="horizontal"
                     android:gravity="center_vertical">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:src="@mipmap/coupon"
                         android:scaleType="centerCrop"/>
 
@@ -207,7 +207,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#333333"
-                            android:textSize="8sp"
+                            android:textSize="16dp"
                             android:textStyle="bold"
                             android:letterSpacing="-0.2"
                             android:text="60일 미방문 고객 쿠폰"/>
@@ -240,13 +240,13 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="49.5dp"
+                    android:layout_height="99dp"
                     android:orientation="horizontal"
                     android:gravity="center_vertical">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:src="@mipmap/coupon"
                         android:scaleType="centerCrop"/>
 
@@ -260,7 +260,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#333333"
-                            android:textSize="8sp"
+                            android:textSize="16dp"
                             android:textStyle="bold"
                             android:letterSpacing="-0.2"
                             android:text="90일 미방문 고객 쿠폰"/>
@@ -307,10 +307,9 @@
                     android:id="@+id/couponNameTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="10sp"
+                    android:textSize="20dp"
                     android:textColor="#666666"
                     android:textStyle="bold"
-                    android:letterSpacing="-0.2"
                     android:text="첫 가입 고객 환영 쿠폰"/>
 
                 <LinearLayout
@@ -335,7 +334,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
-                            android:textSize="8sp"
+                            android:textSize="16dp"
                             android:textColor="#666666"
                             android:text="30일"/>
 
@@ -356,7 +355,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
-                            android:textSize="8sp"
+                            android:textSize="16dp"
                             android:textColor="#666666"
                             android:text="60일"/>
 
@@ -377,7 +376,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
-                            android:textSize="8sp"
+                            android:textSize="16dp"
                             android:textColor="#666666"
                             android:text="90일"/>
 
@@ -390,15 +389,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:text="쿠폰 내용"
-                    android:textSize="8dp"
+                    android:textSize="16dp"
                     android:textColor="#666666"
                     android:textStyle="bold"/>
 
                 <EditText
                     android:id="@+id/contentET"
-                    android:layout_width="119.5dp"
-                    android:layout_height="18dp"
-                    android:textSize="8dp"
+                    android:layout_width="150dp"
+                    android:layout_height="36dp"
+                    android:textSize="16dp"
                     android:layout_marginTop="10dp"
                     android:paddingLeft="5dp"
                     android:singleLine="true"
@@ -409,13 +408,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:text="쿠폰 유효기간"
-                    android:textSize="8dp"
+                    android:textSize="16dp"
                     android:textColor="#666666"
                     android:textStyle="bold"/>
 
                 <RelativeLayout
                     android:layout_width="119.5dp"
-                    android:layout_height="18dp"
+                    android:layout_height="36dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/background_strock_e7e7e7">
 
@@ -441,7 +440,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:text="사용 가능 요일"
-                    android:textSize="8dp"
+                    android:textSize="16dp"
                     android:textColor="#666666"
                     android:textStyle="bold"/>
 
@@ -466,7 +465,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
-                            android:textSize="8sp"
+                            android:textSize="16dp"
                             android:textColor="#666666"
                             android:text="평일"/>
 
@@ -489,7 +488,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
-                            android:textSize="8sp"
+                            android:textSize="16dp"
                             android:textColor="#666666"
                             android:text="토"/>
 
@@ -512,7 +511,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
-                            android:textSize="8sp"
+                            android:textSize="16dp"
                             android:textColor="#666666"
                             android:text="일"/>
 
@@ -522,7 +521,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="60dp"
                     android:layout_marginTop="10dp"
                     android:gravity="center_vertical">
 
@@ -531,13 +530,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="11dp"
                         android:text="유효기간 만료 알림"
-                        android:textSize="8dp"
+                        android:textSize="16dp"
                         android:textColor="#666666"
                         android:textStyle="bold"/>
 
                     <LinearLayout
                         android:id="@+id/validityLL"
-                        android:layout_width="30dp"
+                        android:layout_width="60dp"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical">
 
@@ -553,8 +552,8 @@
 
                 <TextView
                     android:id="@+id/saveTV"
-                    android:layout_width="65dp"
-                    android:layout_height="20dp"
+                    android:layout_width="130dp"
+                    android:layout_height="40dp"
                     android:background="#0871bf"
                     android:gravity="center"
                     android:layout_gravity="right"

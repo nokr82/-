@@ -5,8 +5,8 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="300dp">
+        android:layout_width="600dp"
+        android:layout_height="600dp">
 
         <LinearLayout
             android:layout_marginBottom="5dp"
@@ -19,7 +19,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="47dp"
+                android:layout_height="94dp"
                 android:gravity="right"
                 android:layout_marginRight="11dp"
                 android:orientation="vertical"
@@ -33,7 +33,7 @@
                         android:id="@+id/moneyTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="27sp"
+                        android:textSize="54dp"
                         android:textColor="#0066b0"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="8sp"
@@ -43,7 +43,7 @@
                         android:id="@+id/m_opTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="27sp"
+                        android:textSize="54dp"
                         android:textColor="#0066b0"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="8sp"
@@ -81,7 +81,7 @@
                             android:lineSpacingExtra="-15sp"
                             android:text="1"
                             android:textColor="#666666"
-                            android:textSize="24sp" />
+                            android:textSize="58dp" />
 
                     </LinearLayout>
                     <LinearLayout
@@ -94,7 +94,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
+                            android:textSize="58dp"
                             android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
@@ -112,7 +112,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
+                            android:textSize="58dp"
                             android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
@@ -142,7 +142,7 @@
                             android:lineSpacingExtra="-15sp"
                             android:text="4"
                             android:textColor="#666666"
-                            android:textSize="24sp" />
+                            android:textSize="58dp" />
 
                     </LinearLayout>
                     <LinearLayout
@@ -155,7 +155,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
+                            android:textSize="58dp"
                             android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
@@ -179,7 +179,7 @@
                             android:lineSpacingExtra="-15sp"
                             android:text="6"
                             android:textColor="#666666"
-                            android:textSize="24sp" />
+                            android:textSize="58dp" />
 
                     </LinearLayout>
 
@@ -198,7 +198,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
+                            android:textSize="58dp"
                             android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
@@ -216,7 +216,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
+                            android:textSize="58dp"
                             android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
@@ -234,7 +234,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
+                            android:textSize="58dp"
                             android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
@@ -261,7 +261,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="21sp"
+                            android:textSize="42dp"
                             android:textColor="#ffffff"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-12sp"
@@ -279,7 +279,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
+                            android:textSize="58dp"
                             android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
@@ -295,16 +295,16 @@
                         android:gravity="center"
                         android:background="#b894ff"
                         android:layout_height="match_parent">
+
                         <TextView
                             android:id="@+id/opTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="21sp"
-                            android:textColor="#ffffff"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-12sp"
                             android:text="확인"
-                            />
+                            android:textColor="#ffffff"
+                            android:textSize="42dp" />
 
                     </LinearLayout>
 

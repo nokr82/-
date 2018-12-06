@@ -22,6 +22,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.CompanyAction
+import com.devstories.anipointcompany.android.base.PrefUtils
 import kotlin.collections.ArrayList
 
 //고객방문분석메인
@@ -98,6 +99,8 @@ class Sales_Analysis_List_Fragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        company_id = PrefUtils.getIntPreference(context, "company_id")
 
         adapter = ArrayAdapter(myContext, R.layout.spiner_item, option_limit)
         pageSP.adapter = adapter

@@ -9,9 +9,10 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+
     <LinearLayout
-        android:layout_width="149dp"
-        android:layout_height="230dp"
+        android:layout_width="300dp"
+        android:layout_height="460dp"
         android:layout_marginLeft="8.5dp"
 
         android:orientation="vertical">
@@ -24,7 +25,7 @@
             android:layout_marginTop="15.5dp"
             android:text="고객 방문\n분석"
             android:textColor="#ffff"
-            android:textSize="24dp" />
+            android:textSize="48dp" />
 
 
         <LinearLayout
@@ -48,7 +49,7 @@
                     android:lineSpacingExtra="1sp"
                     android:text="방문현황"
                     android:textColor="#ffffff"
-                    android:textSize="9sp" />
+                    android:textSize="36dp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -69,7 +70,7 @@
                     android:lineSpacingExtra="1sp"
                     android:text="요일별"
                     android:textColor="#80ffffff"
-                    android:textSize="9sp" />
+                    android:textSize="36dp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -90,7 +91,7 @@
                     android:lineSpacingExtra="1sp"
                     android:text="시간대별"
                     android:textColor="#80ffffff"
-                    android:textSize="9sp" />
+                    android:textSize="36dp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -111,7 +112,7 @@
                     android:lineSpacingExtra="1sp"
                     android:text="인구통계별"
                     android:textColor="#80ffffff"
-                    android:textSize="9sp" />
+                    android:textSize="36dp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -124,8 +125,8 @@
 
         <LinearLayout
             android:id="@+id/accumulateLL"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_marginTop="10dp"
             android:background="#4ed0cd"
             android:gravity="center"
@@ -147,56 +148,61 @@
 
     </LinearLayout>
 
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:orientation="horizontal">
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <LinearLayout
-            android:id="@+id/va_accumulateLL"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:background="#997afb"
-            android:gravity="center">
+            android:layout_marginBottom="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:letterSpacing="-0.03"
-                android:lineSpacingExtra="-2sp"
-                android:text="적립"
-                android:textColor="#ffffff"
-                android:textSize="12dp" />
+            <LinearLayout
+                android:id="@+id/va_accumulateLL"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                android:background="#997afb"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:letterSpacing="-0.03"
+                    android:lineSpacingExtra="-2sp"
+                    android:text="적립"
+                    android:textColor="#ffffff"
+                    android:textSize="12dp" />
 
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/useLL"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:background="#ff8e1b"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:letterSpacing="-0.03"
+                    android:lineSpacingExtra="-2sp"
+                    android:text="사용"
+                    android:textColor="#ffffff"
+                    android:textSize="12dp" />
+
+
+            </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/useLL"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
-            android:background="#ff8e1b"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:letterSpacing="-0.03"
-                android:lineSpacingExtra="-2sp"
-                android:text="사용"
-                android:textColor="#ffffff"
-                android:textSize="12dp" />
-
-
-        </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>
 
     <LinearLayout
@@ -210,7 +216,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="35dp"
             android:layout_marginTop="16.5dp"
             android:layout_marginRight="100dp"
@@ -233,7 +239,7 @@
                     android:lineSpacingExtra="3sp"
                     android:text="오늘"
                     android:textColor="#c5c5c5"
-                    android:textSize="9sp" />
+                    android:textSize="18dp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -260,7 +266,7 @@
                     android:lineSpacingExtra="3sp"
                     android:text="이번주"
                     android:textColor="#c5c5c5"
-                    android:textSize="9sp" />
+                    android:textSize="18dp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -287,7 +293,7 @@
                     android:lineSpacingExtra="3sp"
                     android:text="이번달"
                     android:textColor="#c5c5c5"
-                    android:textSize="9sp" />
+                    android:textSize="18dp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -314,7 +320,7 @@
                     android:lineSpacingExtra="3sp"
                     android:text="3개월"
                     android:textColor="#c5c5c5"
-                    android:textSize="9sp" />
+                    android:textSize="18dp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -328,7 +334,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
@@ -344,7 +350,7 @@
                 android:lineSpacingExtra="4sp"
                 android:text="2018.05.25 ~ 2018.08.25"
                 android:textColor="#666666"
-                android:textSize="8sp" />
+                android:textSize="16dp" />
 
         </LinearLayout>
 
@@ -373,7 +379,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
+                        android:layout_height="40dp"
                         android:background="#e7e7e7"
                         android:gravity="center">
 
@@ -384,13 +390,13 @@
                             android:lineSpacingExtra="4sp"
                             android:text="전체 고객(명)"
                             android:textColor="#666666"
-                            android:textSize="8sp" />
+                            android:textSize="16dp" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
+                        android:layout_height="40dp"
                         android:gravity="center">
 
                         <TextView
@@ -401,7 +407,7 @@
                             android:lineSpacingExtra="4sp"
                             android:text="10"
                             android:textColor="#666666"
-                            android:textSize="8sp" />
+                            android:textSize="16dp" />
 
                     </LinearLayout>
 
@@ -416,7 +422,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
+                        android:layout_height="40dp"
                         android:background="#e7e7e7"
                         android:gravity="center">
 
@@ -427,13 +433,13 @@
                             android:lineSpacingExtra="4sp"
                             android:text="산규 고객(명)"
                             android:textColor="#666666"
-                            android:textSize="8sp" />
+                            android:textSize="16dp" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
+                        android:layout_height="40dp"
                         android:gravity="center">
 
                         <TextView
@@ -444,7 +450,7 @@
                             android:lineSpacingExtra="4sp"
                             android:text="3"
                             android:textColor="#666666"
-                            android:textSize="8sp" />
+                            android:textSize="16dp" />
 
                     </LinearLayout>
 
@@ -459,7 +465,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
+                        android:layout_height="40dp"
                         android:background="#e7e7e7"
                         android:gravity="center">
 
@@ -470,13 +476,13 @@
                             android:lineSpacingExtra="4sp"
                             android:text="재방문 고객(명)"
                             android:textColor="#666666"
-                            android:textSize="8sp" />
+                            android:textSize="16dp" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
+                        android:layout_height="40dp"
                         android:gravity="center">
 
                         <TextView
@@ -487,7 +493,7 @@
                             android:lineSpacingExtra="4sp"
                             android:text="7"
                             android:textColor="#666666"
-                            android:textSize="8sp" />
+                            android:textSize="16dp" />
 
                     </LinearLayout>
 
@@ -502,7 +508,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
+                        android:layout_height="40dp"
                         android:background="#e7e7e7"
                         android:gravity="center">
 
@@ -513,13 +519,13 @@
                             android:lineSpacingExtra="4sp"
                             android:text="재방문율"
                             android:textColor="#666666"
-                            android:textSize="8sp" />
+                            android:textSize="16dp" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
+                        android:layout_height="40dp"
                         android:gravity="center">
 
                         <TextView
@@ -530,7 +536,7 @@
                             android:lineSpacingExtra="4sp"
                             android:text="70.50%"
                             android:textColor="#666666"
-                            android:textSize="8sp" />
+                            android:textSize="16dp" />
 
                     </LinearLayout>
 
@@ -543,20 +549,21 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="8dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginBottom="8dp"
                 android:background="@drawable/background_strock_e7e7e7"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="21.5dp"
+                    android:layout_height="43dp"
                     android:gravity="center_vertical">
 
                     <TextView
@@ -567,7 +574,7 @@
                         android:lineSpacingExtra="3sp"
                         android:text="방문 현황 상세"
                         android:textColor="#666666"
-                        android:textSize="9sp" />
+                        android:textSize="18dp" />
 
                 </LinearLayout>
 
@@ -586,27 +593,27 @@
                         android:lineSpacingExtra="4sp"
                         android:text="총 1일간 방문 기록입니다"
                         android:textColor="#666666"
-                        android:textSize="8sp" />
+                        android:textSize="16dp" />
 
                     <LinearLayout
-                        android:layout_width="70dp"
-                        android:layout_height="18dp"
+                        android:layout_width="140dp"
+                        android:layout_height="36dp"
                         android:background="@drawable/background_strock_e7e7e7"
                         android:gravity="center_vertical">
 
                         <Spinner
-                            android:paddingLeft="10dp"
                             android:id="@+id/amountSP"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:background="@null"></Spinner>
+                            android:background="@null"
+                            android:paddingLeft="10dp"></Spinner>
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="5dp"
                             android:layout_gravity="center_vertical"
+                            android:layout_marginRight="5dp"
                             android:src="@mipmap/icon_down_arrow" />
 
                     </LinearLayout>
@@ -614,13 +621,12 @@
 
                 </LinearLayout>
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="7.5dp"
-                    android:layout_marginTop="7.5dp"
                     android:layout_marginRight="7.5dp"
+                    android:layout_marginTop="7.5dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -641,7 +647,7 @@
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="20dp"
+                                    android:layout_height="40dp"
                                     android:background="#e7e7e7"
                                     android:gravity="center">
 
@@ -652,7 +658,7 @@
                                         android:lineSpacingExtra="4sp"
                                         android:text="날짜"
                                         android:textColor="#666666"
-                                        android:textSize="8sp" />
+                                        android:textSize="16dp" />
                                 </LinearLayout>
                             </LinearLayout>
 
@@ -665,7 +671,7 @@
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="20dp"
+                                    android:layout_height="40dp"
                                     android:background="#e7e7e7"
                                     android:gravity="center">
 
@@ -676,7 +682,7 @@
                                         android:lineSpacingExtra="4sp"
                                         android:text="신규 고객(명)"
                                         android:textColor="#666666"
-                                        android:textSize="8sp" />
+                                        android:textSize="16dp" />
 
                                 </LinearLayout>
 
@@ -691,7 +697,7 @@
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="20dp"
+                                    android:layout_height="40dp"
                                     android:background="#e7e7e7"
                                     android:gravity="center">
 
@@ -702,7 +708,7 @@
                                         android:lineSpacingExtra="4sp"
                                         android:text="재방문 고객(명)"
                                         android:textColor="#666666"
-                                        android:textSize="8sp" />
+                                        android:textSize="16dp" />
 
                                 </LinearLayout>
 
@@ -718,7 +724,7 @@
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="20dp"
+                                    android:layout_height="40dp"
                                     android:background="#e7e7e7"
                                     android:gravity="center">
 
@@ -729,7 +735,7 @@
                                         android:lineSpacingExtra="4sp"
                                         android:text="전체 고객(명)"
                                         android:textColor="#666666"
-                                        android:textSize="8sp" />
+                                        android:textSize="16dp" />
 
                                 </LinearLayout>
 
@@ -762,7 +768,7 @@
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="20dp"
+                                    android:layout_height="40dp"
                                     android:background="#e7e7e7"
                                     android:gravity="center">
 
@@ -773,7 +779,7 @@
                                         android:lineSpacingExtra="4sp"
                                         android:text="날짜"
                                         android:textColor="#666666"
-                                        android:textSize="8sp" />
+                                        android:textSize="16dp" />
                                 </LinearLayout>
                             </LinearLayout>
 
@@ -786,7 +792,7 @@
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="20dp"
+                                    android:layout_height="40dp"
                                     android:background="#e7e7e7"
                                     android:gravity="center">
 
@@ -797,7 +803,7 @@
                                         android:lineSpacingExtra="4sp"
                                         android:text="신규 고객(명)"
                                         android:textColor="#666666"
-                                        android:textSize="8sp" />
+                                        android:textSize="16dp" />
 
                                 </LinearLayout>
 
@@ -812,7 +818,7 @@
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="20dp"
+                                    android:layout_height="40dp"
                                     android:background="#e7e7e7"
                                     android:gravity="center">
 
@@ -823,7 +829,7 @@
                                         android:lineSpacingExtra="4sp"
                                         android:text="재방문 고객(명)"
                                         android:textColor="#666666"
-                                        android:textSize="8sp" />
+                                        android:textSize="16dp" />
 
                                 </LinearLayout>
 
@@ -839,7 +845,7 @@
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="20dp"
+                                    android:layout_height="40dp"
                                     android:background="#e7e7e7"
                                     android:gravity="center">
 
@@ -850,7 +856,7 @@
                                         android:lineSpacingExtra="4sp"
                                         android:text="전체 고객(명)"
                                         android:textColor="#666666"
-                                        android:textSize="8sp" />
+                                        android:textSize="16dp" />
 
                                 </LinearLayout>
 
@@ -870,15 +876,15 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
                     android:gravity="center">
 
 
                     <LinearLayout
                         android:id="@+id/preLL"
-                        android:layout_width="50dp"
-                        android:layout_height="18dp"
+                        android:layout_width="100dp"
+                        android:layout_height="36dp"
                         android:layout_marginRight="2.5dp"
                         android:background="@drawable/background_strock_cfcfcf"
                         android:gravity="center">
@@ -890,15 +896,15 @@
                             android:lineSpacingExtra="4sp"
                             android:text="이전"
                             android:textColor="#545454"
-                            android:textSize="8sp" />
+                            android:textSize="16dp" />
 
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/nextLL"
-                        android:layout_width="50dp"
-                        android:layout_height="18dp"
+                        android:layout_width="100dp"
+                        android:layout_height="36dp"
                         android:layout_marginLeft="2.5dp"
                         android:background="@drawable/background_strock_cfcfcf"
                         android:gravity="center">
@@ -910,10 +916,9 @@
                             android:lineSpacingExtra="4sp"
                             android:text="다음"
                             android:textColor="#545454"
-                            android:textSize="8sp" />
+                            android:textSize="16dp" />
                     </LinearLayout>
                 </LinearLayout>
-
 
             </LinearLayout>
 
