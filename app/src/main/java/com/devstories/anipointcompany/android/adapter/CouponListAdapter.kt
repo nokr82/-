@@ -46,6 +46,7 @@ open class CouponListAdapter (context: Context, view:Int, data: ArrayList<JSONOb
         if (used == "N" && del == "N") {
 
             val coupon_name = Utils.getString(coupon, "name")
+            val coupon_id = Utils.getString(coupon, "id")
             val coupon_type = Utils.getInt(coupon, "type")
             val coupon_s_valid = Utils.getString(memberCoupon, "s_use_date")
             val coupon_e_valid = Utils.getString(memberCoupon, "e_use_date")
@@ -80,9 +81,6 @@ open class CouponListAdapter (context: Context, view:Int, data: ArrayList<JSONOb
             item.item_s_validityTV.text = coupon_s_valid.toString()
             item.item_e_validityTV.text = coupon_e_valid.toString()
 
-            /*val coupon_week = Utils.getString(coupon, "week_use_yn")
-            val coupon_sat = Utils.getString(coupon, "sat_use_yn")
-            val coupon_sun = Utils.getString(coupon, "sun_use_yn")*/
 
         }
 

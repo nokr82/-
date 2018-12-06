@@ -37,7 +37,7 @@ class DlgTestMsgActivity : RootActivity() {
     var num = ""
     var num2 = ""
     var num3 = ""
-
+    var h:String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +48,7 @@ class DlgTestMsgActivity : RootActivity() {
         intent = getIntent()
         title = intent.getStringExtra("title")
         message = intent.getStringExtra("message")
-        val h = intent.getStringExtra("imageUri")
+        h = intent.getStringExtra("imageUri")
         if(h != null) {
             contentURI = Uri.parse(h)
         }
@@ -81,7 +81,7 @@ class DlgTestMsgActivity : RootActivity() {
         num = Utils.getString(phoneNum1ET)
         num2 = Utils.getString(phoneNum2ET)
         num3 = Utils.getString(phoneNum3ET)
-        thumbnail = MediaStore.Images.Media.getBitmap(this.contentResolver, contentURI)
+
         var phone = num+num2+num3
 
         val params = RequestParams()
@@ -89,7 +89,8 @@ class DlgTestMsgActivity : RootActivity() {
         params.put("title",title)
         params.put("message",message)
         params.put("phone",phone)
-        if (thumbnail!=null){
+        if (contentURI!=null){
+            thumbnail = MediaStore.Images.Media.getBitmap(this.contentResolver, contentURI)
             params.put("upload", ByteArrayInputStream(Utils.getByteArray(thumbnail)))
         }
         CouponAction.test_message(params, object : JsonHttpResponseHandler() {

@@ -36,7 +36,7 @@ class User_List_Fragment : Fragment() {
     lateinit var userList_new_userLL : LinearLayout
     lateinit var userList_most_freq_userLL : LinearLayout
     lateinit var userList_birth_userLL : LinearLayout
-    lateinit var joinLL : LinearLayout
+    //lateinit var joinLL : LinearLayout
     lateinit var btn_search : LinearLayout
     lateinit var entire_viewTV : TextView
     lateinit var accumulateLL : LinearLayout
@@ -44,6 +44,7 @@ class User_List_Fragment : Fragment() {
     var isBirthTab = false
 
     var adapterData: ArrayList<JSONObject> = ArrayList<JSONObject>()
+    var type = 1
 
     var EDIT_MEMBER_INFO = 101
 
@@ -64,7 +65,7 @@ class User_List_Fragment : Fragment() {
         userList_new_userLL = view.findViewById(R.id.userList_new_userLL)
         userList_most_freq_userLL = view.findViewById(R.id.userList_most_freq_userLL)
         userList_birth_userLL = view.findViewById(R.id.userList_birth_userLL)
-        joinLL = view.findViewById(R.id.joinLL)
+//        joinLL = view.findViewById(R.id.joinLL)
         accumulateLL = view.findViewById(R.id.accumulateLL)
         useLL = view.findViewById(R.id.useLL)
         btn_search = view.findViewById(R.id.btn_search)
@@ -91,6 +92,7 @@ class User_List_Fragment : Fragment() {
         entire_viewTV.setOnClickListener {
             setLeftMenu()
             entire_viewTV.setTextColor(Color.parseColor("#ffffff"))
+            type = 1
             mainData(1)
         }
         //단골
@@ -103,6 +105,7 @@ class User_List_Fragment : Fragment() {
         userList_birth_userLL.setOnClickListener {
             setLeftMenu()
             birthTV.setTextColor(Color.parseColor("#ffffff"))
+            type = 2
             mainData(2)
             isBirthTab = true
         }
@@ -120,12 +123,14 @@ class User_List_Fragment : Fragment() {
         userList_new_userLL.setOnClickListener {
             setLeftMenu()
             new_userTV.setTextColor(Color.parseColor("#ffffff"))
+            type = 3
             mainData(3)
         }
 
         userList_most_freq_userLL.setOnClickListener {
             setLeftMenu()
             most_freqTV.setTextColor(Color.parseColor("#ffffff"))
+            type = 4
             mainData(4)
         }
 
@@ -260,6 +265,7 @@ class User_List_Fragment : Fragment() {
                         msgLL.setOnClickListener {
                             var intent = Intent()
                             intent.putExtra("member_id", member_id)
+                            Log.d("멤버아이디",member_id.toString())
                             intent.action = "MSG_NEXT"
                             myContext.sendBroadcast(intent)
                         }
@@ -267,7 +273,7 @@ class User_List_Fragment : Fragment() {
 
                             modiLL.setOnClickListener {
                                 var intent = Intent(context, DlgEditMemberInfoActivity::class.java)
-                                intent.putExtra("member_Fid", member_id)
+                                intent.putExtra("member_id", member_id)
                                 startActivityForResult(intent, EDIT_MEMBER_INFO)
                             }
 
@@ -359,6 +365,7 @@ class User_List_Fragment : Fragment() {
         val params = RequestParams()
         params.put("company_id", 1)
         params.put("keyword", "$keyword")
+        params.put("type", type)
 
         MemberAction.user_list(params, object : JsonHttpResponseHandler() {
 

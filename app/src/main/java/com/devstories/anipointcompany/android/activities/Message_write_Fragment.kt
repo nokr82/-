@@ -40,7 +40,7 @@ class Message_write_Fragment : Fragment() {
     val MessageUserFragment : MessageUserFragment = MessageUserFragment()
     val SetCouponFragment : SetCouponFragment = SetCouponFragment()
     val SetMessageContFragment : SetMessageContFragment = SetMessageContFragment()
-    var member_id = ""
+    var member_id = -1
     //고객선택
     internal var step1NextReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent?) {
@@ -184,6 +184,9 @@ class Message_write_Fragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+
+
+
         var filter = IntentFilter("MSG_NEXT")
         myContext.registerReceiver(MsgReceiver, filter)
 
@@ -201,12 +204,29 @@ class Message_write_Fragment : Fragment() {
         var filter3 = IntentFilter("STEP3_NEXT")
         myContext.registerReceiver(step3NextReceiver, filter3)
 
+        if (arguments != null) {
+            member_id = getArguments()!!.getInt("member_id",-1)
+            if (member_id!=-1){
+                setfilter()
+//                member_id =   intent!!.getStringExtra("member_id")
+//                Toast.makeText(myContext,member_id,Toast.LENGTH_SHORT).show()
+                var args:Bundle = Bundle()
+                args.putInt("member_id", member_id)
+                SetMessageContFragment.setArguments(args)
+                writeRL.setBackgroundColor(Color.parseColor("#0068df"))
+                writeTV.setTextColor(Color.parseColor("#ffffff"))
+                childFragmentManager.beginTransaction().replace(R.id.userchoiceFL,SetMessageContFragment).commit()
+                member_id=-1
+            }
+            arguments = null
+        }else{
+            setfilter()
+            userRL.setBackgroundColor(Color.parseColor("#0068df"))
+            userTV.setTextColor(Color.parseColor("#ffffff"))
+            childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, MessageUserFragment).commit()
+        }
 
-        setfilter()
 
-        userRL.setBackgroundColor(Color.parseColor("#0068df"))
-        userTV.setTextColor(Color.parseColor("#ffffff"))
-        childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, MessageUserFragment).commit()
 
 
     }

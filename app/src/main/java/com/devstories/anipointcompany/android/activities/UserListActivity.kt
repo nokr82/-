@@ -35,14 +35,19 @@ class UserListActivity : FragmentActivity() {
         override fun onReceive(context: Context, intent: Intent?) {
             if (intent != null) {
                 setmenu()
-                var id =   intent.getStringExtra("member_id")
+                var id =   intent.getIntExtra("member_id",-1)
+                var args:Bundle = Bundle()
+                args.putInt("member_id", id)
+                Log.d("멤버아이디", id.toString())
+                Message_Manage_Fragment.setArguments(args)
                 messageLL.setBackgroundResource(R.drawable.background_strock_707070)
                 supportFragmentManager.beginTransaction().replace(R.id.userFL, Message_Manage_Fragment).commit()
-                //브로드캐스트생성
-                var intent = Intent()
-                intent.putExtra("member_id", id)
-                intent.action = "MSG_NEXT"
-                context.sendBroadcast(intent)
+
+//                //브로드캐스트생성
+//                var intent = Intent()
+//                intent.putExtra("member_id", id)
+//                intent.action = "MSG_NEXT"
+//                context.sendBroadcast(intent)
             }
         }
     }
@@ -67,19 +72,19 @@ class UserListActivity : FragmentActivity() {
             setmenu()
             userLL.setBackgroundResource(R.drawable.background_strock_707070)
             supportFragmentManager.beginTransaction().replace(R.id.userFL, User_List_Fragment).commit()
-            destroy()
+
         }
         pointLL.setOnClickListener {
             setmenu()
             pointLL.setBackgroundResource(R.drawable.background_strock_707070)
             supportFragmentManager.beginTransaction().replace(R.id.userFL, Point_List_Fragment).commit()
-            destroy()
+
         }
         uservisitLL.setOnClickListener {
             setmenu()
             uservisitLL.setBackgroundResource(R.drawable.background_strock_707070)
             supportFragmentManager.beginTransaction().replace(R.id.userFL, User_visit_List_Fragment).commit()
-            destroy()
+
         }
         messageLL.setOnClickListener {
             setmenu()
@@ -90,27 +95,18 @@ class UserListActivity : FragmentActivity() {
             setmenu()
             analysisRevenueLL.setBackgroundResource(R.drawable.background_strock_707070)
             supportFragmentManager.beginTransaction().replace(R.id.userFL, Sales_Analysis_List_Fragment).commit()
-            destroy()
+
         }
         settingLL.setOnClickListener {
             setmenu()
             settingLL.setBackgroundResource(R.drawable.background_strock_707070)
             supportFragmentManager.beginTransaction().replace(R.id.userFL, SettingFragment).commit()
-            destroy()
+
         }
 
     }
 
-    fun destroy(){
-        try {
-            if(null != MsgReceiver) {
-                unregisterReceiver(MsgReceiver)
-            }
 
-        } catch (e: IllegalArgumentException) {
-        }
-
-    }
 
 
 

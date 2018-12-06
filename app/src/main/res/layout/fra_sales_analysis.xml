@@ -560,6 +560,7 @@
                     android:gravity="center_vertical">
 
                     <TextView
+                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
@@ -602,6 +603,7 @@
                             android:gravity="center_vertical">
 
                             <Spinner
+                                android:paddingLeft="10dp"
                                 android:id="@+id/amountSP"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
@@ -609,6 +611,7 @@
                                 android:background="@null"></Spinner>
 
                             <ImageView
+                                android:layout_marginRight="5dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
@@ -624,6 +627,7 @@
                             android:gravity="center_vertical">
 
                             <Spinner
+                                android:paddingLeft="10dp"
                                 android:id="@+id/pageSP"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
@@ -631,6 +635,7 @@
                                 android:background="@null"></Spinner>
 
                             <ImageView
+                                android:layout_marginRight="5dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"

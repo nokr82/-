@@ -67,7 +67,7 @@ class SetMessageContFragment : Fragment() {
     var contentURI:Uri? = null
     private val GALLERY = 1
 
-
+    var member_id = -1
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -99,7 +99,12 @@ class SetMessageContFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
          if (getArguments() != null) {
-            coupon_id = getArguments()!!.getString("coupon_id")
+             member_id = getArguments()!!.getInt("member_id",-1)
+             Log.d("멤버디",member_id.toString())
+             if (member_id != -1){
+
+             }else{
+               coupon_id = getArguments()!!.getString("coupon_id")
             search_type = getArguments()!!.getInt("search_type",-1)
             gender = getArguments()!!.getStringArrayList("gender")
             age = getArguments()!!.getStringArrayList("age")
@@ -111,7 +116,9 @@ class SetMessageContFragment : Fragment() {
              Log.d("쿠폰", coupon_id)
              Log.d("쿠폰", gender.toString())
              Log.d("쿠폰", age.toString())
-        }
+             }
+
+         }
 
 
 
@@ -130,9 +137,9 @@ class SetMessageContFragment : Fragment() {
             if (contentURI != null) {
                 intent.putExtra("imageUri",  contentURI.toString())
             } else {
-                // intent.putExtra("imageUri",  imageUri.toString())
+
             }
-//            intent.putExtra("message",contentURI.toString())
+
              startActivity(intent)
         }
 
@@ -190,6 +197,7 @@ class SetMessageContFragment : Fragment() {
         nextTV.setOnClickListener {
             dlgView()
 
+
         }
 
     }
@@ -219,14 +227,16 @@ class SetMessageContFragment : Fragment() {
         val params = RequestParams()
         params.put("company_id",1)
         params.put("coupon_id",coupon_id)
+        if (member_id != -1){
+            params.put("member_id",member_id)
+        }
         params.put("message",message)
         params.put("7days_yn","N")
         params.put("title",title)
+        if (imgIV.drawable != null){
         bitmap = imgIV.drawable as BitmapDrawable
-        if (bitmap!=null){
             params.put("upload", ByteArrayInputStream(Utils.getByteArray(bitmap!!.bitmap)))
         }
-
         if (age.size>0){
             for (i in 0..(age.size -1)){
                 val agestr = age[i]

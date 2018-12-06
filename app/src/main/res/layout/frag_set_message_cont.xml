@@ -45,11 +45,7 @@
                     android:layout_marginBottom="4.5dp"
                     android:gravity="center">
 
-                    <ImageView
-                        android:layout_width="12sp"
-                        android:layout_height="10dp"
-                        android:layout_marginRight="4.5dp"
-                        android:src="@mipmap/pictur_img" />
+
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -92,7 +88,6 @@
                     android:id="@+id/messageTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="고객이름님, 재방문을 축하드리며, 발렌타인데이 메뉴 10%할인 쿠폰을 드립니다.\n애드커에서 다시 또 만나요!"
                     android:textColor="#555555"
                     android:textSize="7.5sp" />
             </LinearLayout>
@@ -102,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/main_bg"/>
+                />
         </LinearLayout>
 
     </ScrollView>

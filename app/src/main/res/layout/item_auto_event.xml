@@ -3,7 +3,9 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:gravity="center_vertical"
     android:layout_height="wrap_content">
+
     <LinearLayout
+        android:id="@+id/LL"
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:orientation="horizontal">

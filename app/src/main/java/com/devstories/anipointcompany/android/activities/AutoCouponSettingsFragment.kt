@@ -219,6 +219,13 @@ class AutoCouponSettingsFragment : Fragment() {
                 use_day = 90
             }
 
+            val content = Utils.getString(contentET)
+
+            if(content == "") {
+                Toast.makeText(context, "쿠폰 내용을 입력해주세요", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
             editCoupon()
         }
 
@@ -333,6 +340,8 @@ class AutoCouponSettingsFragment : Fragment() {
                             } else {
                                 validityIV.setImageResource(R.mipmap.switch_off)
                             }
+
+                            contentET.setText(Utils.getString(coupon, "content"))
 
                         }
 
@@ -452,6 +461,8 @@ class AutoCouponSettingsFragment : Fragment() {
                             validityIV.setImageResource(R.mipmap.switch_on)
                         }
 
+                        contentET.setText(Utils.getString(coupon, "content"))
+
                     }
 
                 } catch (e: JSONException) {
@@ -515,6 +526,7 @@ class AutoCouponSettingsFragment : Fragment() {
         params.put("sun_use_yn", sun_use_yn)
         params.put("validity_alarm_yn", validity_alarm_yn)
         params.put("name", Utils.getString(couponNameTV))
+        params.put("content", Utils.getString(contentET))
 
         CouponAction.edit_coupon(params, object : JsonHttpResponseHandler() {
 
