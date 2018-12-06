@@ -1,37 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
+
     <LinearLayout
         android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_marginLeft="8.5dp"
         android:layout_marginTop="9.5dp"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8.5dp"
+                android:text="메세지/\n쿠폰관리"
                 android:textColor="#ffffff"
-                android:textSize="48dp"
-                android:text="메세지/\n쿠폰관리"/>
+                android:textSize="48dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="460dp"
-                android:orientation="vertical"
                 android:layout_marginTop="23.5dp"
+                android:orientation="vertical"
                 android:paddingLeft="8.5dp">
 
                 <LinearLayout
                     android:id="@+id/messageStatisticsLL"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_marginTop="17.5dp"
                     android:gravity="center_vertical">
 
@@ -44,10 +47,15 @@
                             android:id="@+id/messageStatisticsTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="36dp"
+                            android:text="메세지 통계"
                             android:textColor="#ffffff"
-                            android:text="메세지 통계"/>
+                            android:textSize="36dp" />
 
+                        <View
+                            android:id="@+id/view1"
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="#ffffff" />
 
                     </LinearLayout>
 
@@ -56,7 +64,7 @@
                 <LinearLayout
                     android:id="@+id/sendMessageLL"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_marginTop="17.5dp"
                     android:gravity="center_vertical">
 
@@ -69,11 +77,16 @@
                             android:id="@+id/sendMessageTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="36dp"
+                            android:text="메세지/쿠폰 보내기"
                             android:textColor="#80ffffff"
-                            android:text="메세지/쿠폰 보내기"/>
+                            android:textSize="36dp" />
 
-
+                        <View
+                            android:id="@+id/view2"
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="#ffffff"
+                            android:visibility="invisible" />
 
                     </LinearLayout>
 
@@ -82,7 +95,7 @@
                 <LinearLayout
                     android:id="@+id/autoCouponLL"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_marginTop="17.5dp"
                     android:gravity="center_vertical">
 
@@ -95,11 +108,16 @@
                             android:id="@+id/autoCouponTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="36dp"
+                            android:text="자동 쿠폰 관리"
                             android:textColor="#80ffffff"
-                            android:text="자동 쿠폰 관리"/>
+                            android:textSize="36dp" />
 
-
+                        <View
+                            android:id="@+id/view3"
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="#ffffff"
+                            android:visibility="invisible" />
 
                     </LinearLayout>
 
@@ -135,7 +153,7 @@
                             android:lineSpacingExtra="-2sp"
                             android:text="적립"
                             android:textColor="#ffffff"
-                            android:textSize="12dp" />
+                            android:textSize="24dp" />
 
 
                     </LinearLayout>
@@ -144,7 +162,7 @@
                         android:id="@+id/useLL"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="15dp"
                         android:layout_marginTop="10dp"
                         android:background="#ff8e1b"
                         android:gravity="center">
@@ -157,7 +175,7 @@
                             android:lineSpacingExtra="-2sp"
                             android:text="사용"
                             android:textColor="#ffffff"
-                            android:textSize="12dp" />
+                            android:textSize="24dp" />
 
 
                     </LinearLayout>
@@ -174,19 +192,17 @@
 
         <FrameLayout
             android:id="@+id/messageFL"
-            android:layout_marginTop="9.5dp"
             android:layout_width="match_parent"
-            android:layout_marginRight="29dp"
             android:layout_height="match_parent"
+            android:layout_marginTop="9.5dp"
+            android:layout_marginRight="29dp"
             android:layout_marginBottom="6dp"
-            android:orientation="vertical"
             android:background="#ffff"
-            >
+            android:orientation="vertical">
 
         </FrameLayout>
 
     </LinearLayout>
-
 
 
 </LinearLayout>

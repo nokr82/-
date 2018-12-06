@@ -17,18 +17,20 @@
         android:visibility="visible">
 
         <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/background_strock_e7e7e7">
 
                 <TextView
                     android:id="@+id/searchTypeAllTV"
-                    android:layout_width="110dp"
+                    android:layout_width="0dp"
                     android:layout_height="48dp"
+                    android:layout_weight="1"
                     android:layout_gravity="center_vertical"
                     android:background="#0068df"
                     android:gravity="center"
@@ -38,29 +40,31 @@
                     android:textSize="16dp" />
 
                 <View
-                    android:layout_width="0.5dp"
+                    android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="#e7e7e7" />
-
-                <View
-                    android:layout_width="0.5dp"
-                    android:layout_height="40dp"
                     android:background="#e7e7e7" />
 
                 <TextView
                     android:id="@+id/searchType7DaysTV"
-                    android:layout_width="110dp"
+                    android:layout_width="0dp"
                     android:layout_height="40dp"
+                    android:layout_weight="1"
                     android:layout_gravity="center_vertical"
                     android:gravity="center"
                     android:text="최근 7일"
                     android:textColor="#666666"
                     android:textSize="16dp" />
 
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="40dp"
+                    android:background="#e7e7e7" />
+
                 <TextView
                     android:id="@+id/searchType30DaysTV"
-                    android:layout_width="110dp"
+                    android:layout_width="0dp"
                     android:layout_height="40dp"
+                    android:layout_weight="1"
                     android:layout_gravity="center_vertical"
                     android:gravity="center"
                     android:letterSpacing="-0.03"
@@ -69,14 +73,15 @@
                     android:textSize="16dp" />
 
                 <View
-                    android:layout_width="0.5dp"
+                    android:layout_width="1dp"
                     android:layout_height="40dp"
                     android:background="#e7e7e7" />
 
                 <TextView
                     android:id="@+id/searchType3MonthTV"
-                    android:layout_width="110dp"
+                    android:layout_width="0dp"
                     android:layout_height="40dp"
+                    android:layout_weight="1"
                     android:layout_gravity="center_vertical"
                     android:gravity="center"
                     android:text="최근 3개월"
@@ -203,7 +208,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="25.5dp"
+            android:layout_height="50dp"
             android:orientation="horizontal">
 
             <LinearLayout
