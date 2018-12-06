@@ -7,24 +7,24 @@
     android:orientation="horizontal">
 
     <LinearLayout
-        android:layout_width="149dp"
+        android:layout_width="300dp"
         android:layout_height="match_parent"
-        android:layout_marginLeft="8.5dp"
+        android:layout_marginLeft="17dp"
         android:orientation="vertical">
         <LinearLayout
-            android:layout_width="149dp"
-            android:layout_height="230dp"
-            android:layout_marginLeft="8.5dp"
+            android:layout_width="300dp"
+            android:layout_height="460dp"
+            android:layout_marginLeft="17dp"
             android:orientation="vertical">
             <TextView
                 android:id="@+id/titleTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="설정"
-                android:layout_marginTop="15.5dp"
-                android:layout_marginBottom="23.5dp"
+                android:layout_marginTop="31dp"
+                android:layout_marginBottom="47dp"
                 android:textColor="#ffff"
-                android:textSize="24dp" />
+                android:textSize="48dp" />
             <LinearLayout
                 android:id="@+id/point_op_LL"
                 android:layout_width="wrap_content"
@@ -35,7 +35,7 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="17.5dp"
+                    android:layout_marginTop="35dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -46,18 +46,18 @@
                         android:lineSpacingExtra="1sp"
                         android:text="내정보"
                         android:textColor="#ffffff"
-                        android:textSize="9sp" />
+                        android:textSize="18sp" />
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="0.3dp"
+                        android:layout_height="0.6dp"
                         android:background="#ffff" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="17.5dp"
+                    android:layout_marginTop="35dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -68,11 +68,11 @@
                         android:lineSpacingExtra="1sp"
                         android:text="운영정책"
                         android:textColor="#80ffffff"
-                        android:textSize="9sp" />
+                        android:textSize="18sp" />
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="0.3dp"
+                        android:layout_height="0.6dp"
                         android:background="#ffff" />
                 </LinearLayout>
 
@@ -86,9 +86,9 @@
 
             <LinearLayout
                 android:id="@+id/accumulateLL"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="20dp"
                 android:background="#997afb"
                 android:gravity="center">
 
@@ -100,17 +100,17 @@
                     android:lineSpacingExtra="-2sp"
                     android:text="적립"
                     android:textColor="#ffffff"
-                    android:textSize="12dp" />
+                    android:textSize="24dp" />
 
 
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/useLL"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
                 android:background="#ff8e1b"
                 android:gravity="center">
 
@@ -122,7 +122,7 @@
                     android:lineSpacingExtra="-2sp"
                     android:text="사용"
                     android:textColor="#ffffff"
-                    android:textSize="12dp" />
+                    android:textSize="24dp" />
 
 
             </LinearLayout>
@@ -132,7 +132,7 @@
 
     <!---->
     <ScrollView
-    android:layout_marginTop="15.5dp"
+    android:layout_marginTop="31dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <FrameLayout
