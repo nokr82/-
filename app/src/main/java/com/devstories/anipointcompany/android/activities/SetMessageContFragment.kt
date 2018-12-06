@@ -117,7 +117,6 @@ class SetMessageContFragment : Fragment() {
                 to = getArguments()!!.getString("to")
                 count = getArguments()!!.getString("count")
                 Log.d("쿠폰", search_type.toString())
-                Log.d("쿠폰", coupon_id)
                 Log.d("쿠폰", gender.toString())
                 Log.d("쿠폰", age.toString())
             }
@@ -218,6 +217,8 @@ class SetMessageContFragment : Fragment() {
         }
         msgWriteTV.setOnClickListener {
             send_message()
+            mPopupDlg.dismiss()
+
         }
     }
 

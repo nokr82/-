@@ -138,6 +138,26 @@ class Message_write_Fragment : Fragment() {
                 userTV.setTextColor(Color.parseColor("#ffffff"))
                 writeRL.setBackgroundColor(Color.parseColor("#0068df"))
                 writeTV.setTextColor(Color.parseColor("#ffffff"))
+
+
+                var gender = intent.getSerializableExtra("gender")
+                var age = intent.getSerializableExtra("age")
+                var visited_date = intent.getStringExtra("visited_date")
+                var count = intent.getStringExtra("count")
+                var from = intent.getStringExtra("from")
+                var to = intent.getStringExtra("to")
+                var search_type = intent.getIntExtra("search_type", -1)
+
+
+                var args: Bundle = Bundle()
+                args.putString("count", count)
+                args.putInt("search_type", search_type)
+                args.putStringArrayList("gender", gender as ArrayList<String>?)
+                args.putStringArrayList("age", age as ArrayList<String>?)
+                args.putString("visited_date", visited_date)
+                args.putString("from", from)
+                args.putString("to", to)
+                SetMessageContFragment.setArguments(args)
                 childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, SetMessageContFragment).commit()
             }
         }

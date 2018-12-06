@@ -428,6 +428,7 @@ class CalActivity : RootActivity() {
         val params = RequestParams()
         params.put("company_id", company_id)
         params.put("member_id", member_id)
+        params.put("member_coupon_id", member_coupon_id)
         params.put("step", step)
 
         RequestStepAction.changeStep(params, object : JsonHttpResponseHandler() {

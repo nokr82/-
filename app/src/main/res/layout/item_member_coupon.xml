@@ -36,7 +36,7 @@
                 android:lineSpacingExtra="3sp"
                 android:text="쿠폰이름"
                 android:textColor="#333333"
-                android:textSize="9sp"
+                android:textSize="18dp"
                 android:textStyle="bold" />
 
             <LinearLayout

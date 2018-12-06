@@ -106,6 +106,8 @@ class DlgTestMsgActivity : RootActivity() {
                     val result = response!!.getString("result")
                     if ("ok" == result) {
                         Toast.makeText(context,"전송성공", Toast.LENGTH_SHORT).show()
+                        Utils.hideKeyboard(context)
+                        finish()
                     }else{
                         Toast.makeText(context,"전송실패", Toast.LENGTH_SHORT).show()
 

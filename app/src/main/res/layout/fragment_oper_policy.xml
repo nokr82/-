@@ -376,169 +376,188 @@
 
             <LinearLayout
                 android:layout_width="690dp"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
+                android:layout_marginBottom="52dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="13dp"
-                android:layout_marginBottom="52dp"
-                android:padding="15dp"
                 android:background="@drawable/background_strock_e7e7e7"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="15dp">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="5dp">
+                    android:layout_height="200dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp">
+
                         <ImageView
                             android:id="@+id/vsitIV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="6dp"
-                            android:src="@drawable/radio_off"/>
+                            android:src="@drawable/radio_off" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="11dp"
-                            android:textSize="16sp"
-                            android:text="방문기준"/>
+                            android:text="방문기준"
+                            android:textSize="16sp" />
 
                         <ImageView
                             android:id="@+id/costIV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="19dp"
-                            android:src="@drawable/radio_off"/>
+                            android:src="@drawable/radio_off" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="11dp"
-                            android:textSize="16sp"
-                            android:text="금액기준"/>
+                            android:text="금액기준"
+                            android:textSize="16sp" />
                     </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="#e7e7e7"/>
+                        android:background="#e7e7e7" />
 
                     <LinearLayout
                         android:id="@+id/visitLL"
-                        android:visibility="gone"
                         android:layout_width="660dp"
-                        android:layout_height="10dp">
+                        android:layout_height="40dp"
+                        android:visibility="gone">
+
                         <TextView
                             android:layout_width="165dp"
                             android:layout_height="match_parent"
-                            android:gravity="center"
                             android:background="#efefef"
-                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:text="방문"
                             android:textSize="16sp"
-                            android:text="방문" />
+                            android:textStyle="bold" />
+
                         <View
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
-                            android:background="#e7e7e7"/>
+                            android:background="#e7e7e7" />
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal"
                             android:gravity="center_vertical"
+                            android:orientation="horizontal"
                             android:paddingLeft="19dp">
+
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
+
                                 <EditText
                                     android:id="@+id/visitcntTV"
                                     android:layout_width="100dp"
                                     android:layout_height="30dp"
-                                    android:textSize="16sp"
                                     android:background="@null"
                                     android:gravity="right|bottom"
+                                    android:text="0"
                                     android:textColor="#666666"
-                                    android:text="0"/>
+                                    android:textSize="16sp" />
+
                                 <View
                                     android:layout_width="100dp"
                                     android:layout_height="1dp"
-                                    android:background="#e7e7e7"/>
+                                    android:background="#e7e7e7" />
                             </LinearLayout>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="30dp"
                                 android:layout_marginLeft="13dp"
                                 android:layout_marginRight="10dp"
-                                android:textSize="16sp"
                                 android:gravity="bottom"
+                                android:text="회"
                                 android:textColor="#666666"
-                                android:text="회"/>
+                                android:textSize="16sp" />
                         </LinearLayout>
                     </LinearLayout>
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="#e7e7e7"/>
+                        android:background="#e7e7e7" />
 
                     <LinearLayout
                         android:id="@+id/accountLL"
-                        android:visibility="gone"
                         android:layout_width="660dp"
-                        android:layout_height="40dp">
+                        android:layout_height="40dp"
+                        android:visibility="gone">
+
                         <TextView
                             android:layout_width="165dp"
                             android:layout_height="match_parent"
-                            android:gravity="center"
                             android:background="#efefef"
-                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:text="금액"
                             android:textSize="16sp"
-                            android:text="금액" />
+                            android:textStyle="bold" />
+
                         <View
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
-                            android:background="#e7e7e7"/>
+                            android:background="#e7e7e7" />
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal"
                             android:gravity="center_vertical"
+                            android:orientation="horizontal"
                             android:paddingLeft="19dp">
+
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
+
                                 <EditText
                                     android:id="@+id/costTV"
                                     android:layout_width="100dp"
                                     android:layout_height="30dp"
                                     android:background="@null"
-                                    android:textSize="16sp"
                                     android:gravity="right|bottom"
+                                    android:text="0"
                                     android:textColor="#666666"
-                                    android:text="0"/>
+                                    android:textSize="16sp" />
+
                                 <View
                                     android:layout_width="100dp"
                                     android:layout_height="1dp"
-                                    android:background="#e7e7e7"/>
+                                    android:background="#e7e7e7" />
                             </LinearLayout>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="30dp"
                                 android:layout_marginLeft="13dp"
                                 android:layout_marginRight="10dp"
-                                android:textSize="16sp"
                                 android:gravity="bottom"
+                                android:text="원"
                                 android:textColor="#666666"
-                                android:text="원"/>
+                                android:textSize="16sp" />
                         </LinearLayout>
                     </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="#e7e7e7"/>
+                        android:background="#e7e7e7" />
 
                 </LinearLayout>
 

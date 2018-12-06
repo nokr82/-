@@ -255,7 +255,6 @@ class SettingMyInfoFragment : Fragment() {
                             userView.tag = Utils.getInt(CompanyImage, "id")
                             delIV.setOnClickListener {
                                 userLL.removeView(userView)
-                                Toast.makeText(myContext,userView.tag.toString(),Toast.LENGTH_SHORT).show()
                                 delids.add(userView.tag as Int)
                                 Log.d("아이디값",delids.toString())
 

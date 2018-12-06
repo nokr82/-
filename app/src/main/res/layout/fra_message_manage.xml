@@ -31,7 +31,7 @@
                 <LinearLayout
                     android:id="@+id/messageStatisticsLL"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="17.5dp"
                     android:gravity="center_vertical">
 
@@ -48,11 +48,6 @@
                             android:textColor="#ffffff"
                             android:text="메세지 통계"/>
 
-                        <View
-                            android:id="@+id/view1"
-                            android:layout_width="match_parent"
-                            android:layout_height="0.5dp"
-                            android:background="#ffffff"/>
 
                     </LinearLayout>
 
@@ -61,7 +56,7 @@
                 <LinearLayout
                     android:id="@+id/sendMessageLL"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="17.5dp"
                     android:gravity="center_vertical">
 
@@ -78,12 +73,7 @@
                             android:textColor="#80ffffff"
                             android:text="메세지/쿠폰 보내기"/>
 
-                        <View
-                            android:id="@+id/view2"
-                            android:layout_width="match_parent"
-                            android:layout_height="0.5dp"
-                            android:background="#ffffff"
-                            android:visibility="invisible"/>
+
 
                     </LinearLayout>
 
@@ -92,7 +82,7 @@
                 <LinearLayout
                     android:id="@+id/autoCouponLL"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="17.5dp"
                     android:gravity="center_vertical">
 
@@ -109,73 +99,70 @@
                             android:textColor="#80ffffff"
                             android:text="자동 쿠폰 관리"/>
 
-                        <View
-                            android:id="@+id/view3"
-                            android:layout_width="match_parent"
-                            android:layout_height="0.5dp"
-                            android:background="#ffffff"
-                            android:visibility="invisible"/>
+
 
                     </LinearLayout>
 
                 </LinearLayout>
 
             </LinearLayout>
-<RelativeLayout
-    android:layout_marginBottom="40dp"
 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-            <LinearLayout
-                 android:layout_alignParentBottom="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+            <RelativeLayout
+                android:layout_width="match_parent"
+
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp">
 
                 <LinearLayout
-                    android:id="@+id/accumulateLL"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginTop="10dp"
-                    android:background="#997afb"
-                    android:gravity="center">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="-2sp"
-                        android:text="적립"
-                        android:textColor="#ffffff"
-                        android:textSize="12dp" />
+                    <LinearLayout
+                        android:id="@+id/accumulateLL"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="10dp"
+                        android:background="#997afb"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="-2sp"
+                            android:text="적립"
+                            android:textColor="#ffffff"
+                            android:textSize="12dp" />
 
 
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/useLL"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
+                        android:background="#ff8e1b"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="-2sp"
+                            android:text="사용"
+                            android:textColor="#ffffff"
+                            android:textSize="12dp" />
+
+
+                    </LinearLayout>
                 </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/useLL"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
-                    android:background="#ff8e1b"
-                    android:gravity="center">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="-2sp"
-                        android:text="사용"
-                        android:textColor="#ffffff"
-                        android:textSize="12dp" />
-
-
-                </LinearLayout>
-            </LinearLayout>
-</RelativeLayout>
+            </RelativeLayout>
         </LinearLayout>
 
     </LinearLayout>

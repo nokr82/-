@@ -235,6 +235,13 @@ class SetCouponFragment : Fragment() {
         skipTV.setOnClickListener {
             var intent = Intent()
             intent.action = "SKIP_NEXT"
+            intent.putExtra("count", count)
+            intent.putExtra("search_type", search_type)
+            intent.putExtra("gender", gender)
+            intent.putExtra("age", age)
+            intent.putExtra("visited_date", visited_date)
+            intent.putExtra("from", from)
+            intent.putExtra("to", to)
             myContext.sendBroadcast(intent)
         }
         nextTV.setOnClickListener {
