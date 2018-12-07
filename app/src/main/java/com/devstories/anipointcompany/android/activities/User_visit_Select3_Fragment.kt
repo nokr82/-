@@ -13,7 +13,6 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.devstories.anipointcompany.android.R
 import com.github.mikephil.charting.charts.BarChart
-import com.github.mikephil.charting.charts.PieChart
 import java.text.SimpleDateFormat
 import java.util.*
 

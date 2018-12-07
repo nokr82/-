@@ -16,7 +16,6 @@ import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.Utils
 import com.github.mikephil.charting.charts.BarChart
-import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
@@ -24,7 +23,6 @@ import com.github.mikephil.charting.utils.MPPointF
 import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
 import cz.msebera.android.httpclient.Header
-import kotlinx.android.synthetic.main.activity_message_detail.*
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject

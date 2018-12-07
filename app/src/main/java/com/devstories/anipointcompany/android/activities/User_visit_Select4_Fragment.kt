@@ -11,13 +11,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
-import com.devstories.anipointcompany.android.Actions.CouponAction
 import com.devstories.anipointcompany.android.Actions.PointAction
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.Utils
 import com.github.mikephil.charting.charts.BarChart
-import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
