@@ -251,7 +251,7 @@
                     android:layout_height="wrap_content"
                     android:letterSpacing="-0.03"
                     android:lineSpacingExtra="4sp"
-                    android:text="20애"
+                    android:text="20대"
                     android:textColor="#666666"
                     android:textSize="16dp" />
 
