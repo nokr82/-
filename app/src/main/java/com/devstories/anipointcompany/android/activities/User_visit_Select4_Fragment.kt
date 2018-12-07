@@ -236,12 +236,13 @@ fun graph(){
         three_mTV.setTextColor(Color.parseColor("#c5c5c5"))
     }
 
-
+    //나이별데이터
     fun loadData() {
 
         val params = RequestParams()
         params.put("company_id", company_id)
         params.put("day_type", day_type)
+        params.put("search_type", 3)
 
         PointAction.user_detail(params, object : JsonHttpResponseHandler() {
 
