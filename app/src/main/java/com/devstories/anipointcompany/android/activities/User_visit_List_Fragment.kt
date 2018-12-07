@@ -27,6 +27,9 @@ class User_visit_List_Fragment : Fragment() {
     lateinit var timeTV: TextView
 
     val User_visit_Select1_Fragment : User_visit_Select1_Fragment = User_visit_Select1_Fragment()
+    val User_visit_Select2_Fragment : User_visit_Select2_Fragment = User_visit_Select2_Fragment()
+    val User_visit_Select3_Fragment : User_visit_Select3_Fragment = User_visit_Select3_Fragment()
+    val User_visit_Select4_Fragment : User_visit_Select4_Fragment = User_visit_Select4_Fragment()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
@@ -71,19 +74,23 @@ class User_visit_List_Fragment : Fragment() {
         daysLL.setOnClickListener {
             setView()
             daysTV.setTextColor(Color.parseColor("#FFFFFF"))
+            childFragmentManager.beginTransaction().replace(R.id.visitFL, User_visit_Select2_Fragment).commit()
         }
         timeLL.setOnClickListener {
             setView()
             timeTV.setTextColor(Color.parseColor("#FFFFFF"))
+            childFragmentManager.beginTransaction().replace(R.id.visitFL, User_visit_Select3_Fragment).commit()
         }
         ageLL.setOnClickListener {
             setView()
             ageTV.setTextColor(Color.parseColor("#FFFFFF"))
+            childFragmentManager.beginTransaction().replace(R.id.visitFL, User_visit_Select4_Fragment).commit()
         }
     }
 
 
     fun setView(){
+        allTV.setTextColor(Color.parseColor("#80FFFFFF"))
         ageTV.setTextColor(Color.parseColor("#80FFFFFF"))
         daysTV.setTextColor(Color.parseColor("#80FFFFFF"))
         timeTV.setTextColor(Color.parseColor("#80FFFFFF"))

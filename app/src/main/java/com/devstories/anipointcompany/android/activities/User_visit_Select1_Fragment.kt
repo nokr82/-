@@ -32,8 +32,6 @@ class User_visit_Select1_Fragment : Fragment() {
     lateinit var adapter: ArrayAdapter<String>
     var option_amount = arrayOf("5개씩 보기", "10개씩 보기")
 
-    var adapterData: ArrayList<JSONObject> = ArrayList<JSONObject>()
-    lateinit var visitAdapter: VisitListAdapter
 
     lateinit var amountSP: Spinner
     lateinit var dateTV: TextView
@@ -256,9 +254,12 @@ class User_visit_Select1_Fragment : Fragment() {
                         Log.d("숫자", allmember.toString())
                         Log.d("숫자", re_per.toString())
 
-                        var strNumber = String.format("%.1f", re_per);
-
-                        visit_perTV.text = strNumber + "%"
+                        var strNumber = String.format("%.1f", re_per)
+                        if (strNumber.equals("NaN")){
+                            visit_perTV.text="0%"
+                        }else{
+                            visit_perTV.text = strNumber + "%"
+                        }
                         all_memberTV.text = allmember.toString()
                         new_userTV.text = member_new_cnt.toString()
                         member_re_cntTV.text = member_re_cnt.toString()
