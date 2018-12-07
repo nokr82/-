@@ -30,6 +30,11 @@ object PointAction {
     fun user_points(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/point/user_points.json", params, handler)
     }
+
+    //시간대별 분석
+    fun time_detail(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/point/time_detail.json", params, handler)
+    }
     //방문분석4
     fun user_detail(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/point/user_detail.json", params, handler)
