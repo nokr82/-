@@ -215,8 +215,8 @@ class User_visit_Select3_Fragment : Fragment() {
                         var min_cnt = Utils.getInt(min,"count")
                         var max_time = Utils.getInt(max,"age")
                         var max_cnt = Utils.getInt(max,"count")
-                        max_memberTV.text = max_cnt.toString()+"명"+"\n"+"\n"+max_time+"시"
-                        min_memberTV.text =min_cnt.toString()+"명"+"\n"+"\n"+min_time+"시"
+                        max_memberTV.text = max_cnt.toString()+"명"+"\n"+max_time+"시"
+                        min_memberTV.text =min_cnt.toString()+"명"+"\n"+min_time+"시"
 
 
 
