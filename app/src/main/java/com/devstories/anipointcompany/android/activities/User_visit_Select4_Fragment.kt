@@ -266,7 +266,7 @@ fun graph(){
                         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM)
                         xAxis.setAvoidFirstLastClipping(true)
                         xAxis.valueFormatter = IAxisValueFormatter { value, axis ->
-                            // System.out.println("va 0 : " + value);
+//                            System.out.println("va나이 : " + value);
                             if (value < 0) {
                                 return@IAxisValueFormatter ""
                             }
