@@ -109,9 +109,10 @@ class User_visit_Select3_Fragment : Fragment() {
         ageBarChart.setTouchEnabled(false)
         ageBarChart.getAxisLeft().setAxisMinimum(0f)
         ageBarChart.getAxisRight().setEnabled(false)
+        var val_:Float? = null
         ageBarChart.getAxisLeft().setValueFormatter(IAxisValueFormatter { value, axis ->
             //                return Double.parseDouble(String.format("%.2f", value)) + "h";
-            var val_ = (value / totalMemberCnt) * 100f
+            val_ = (value / totalMemberCnt) * 100f
             String.format("%.1f", val_)+ "%"
         })
 
@@ -206,7 +207,7 @@ class User_visit_Select3_Fragment : Fragment() {
                     if ("ok" == result) {
 
                         val age = response.getJSONArray("age")
-                        val ages = arrayOf("00", "02", "04", "06", "08", "10","12", "14", "16", "18", "20", "22","총합")
+                        val ages = arrayOf("00", "02", "04", "06", "08", "10","12", "14", "16", "18", "20", "22")
 
 
                         val min = response.getJSONObject("min")
@@ -247,6 +248,7 @@ class User_visit_Select3_Fragment : Fragment() {
 
                         for (i in 0 until age.length()) {
                             var data = age[i] as JSONObject
+                            var data0 = age[0] as JSONObject
                             var data1 = age[1] as JSONObject
                             var data2 = age[2] as JSONObject
                             var data3 = age[3] as JSONObject
@@ -259,6 +261,7 @@ class User_visit_Select3_Fragment : Fragment() {
                             var data10 = age[10] as JSONObject
                             var data11 = age[11] as JSONObject
 
+                            var time0 = Utils.getInt(data0, "count")
                             var time1 = Utils.getInt(data1, "count")
                             var time2 = Utils.getInt(data2, "count")
                             var time3 = Utils.getInt(data3, "count")
@@ -270,13 +273,11 @@ class User_visit_Select3_Fragment : Fragment() {
                             var time9 = Utils.getInt(data9, "count")
                             var time10 = Utils.getInt(data10, "count")
                             var time11 = Utils.getInt(data11, "count")
-
-
-
-
+                            totalMemberCnt = time0+time1+time2+time3+time4+time5+time6+time7+time8+time9+time10+time11
 
                             ageData.add(BarEntry(i.toFloat(), Utils.getInt(data, "count").toFloat()))
                         }
+
 
 
 
