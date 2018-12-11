@@ -51,7 +51,6 @@
                             android:textColor="#333333"
                             android:textSize="16dp"
                             android:textStyle="bold"
-                            android:letterSpacing="-0.2"
                             android:text="첫 가입 고객 환영 쿠폰"/>
 
                         <ImageView
@@ -101,7 +100,6 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:letterSpacing="-0.2"
                             android:text="생일 고객 축하 쿠폰"
                             android:textColor="#333333"
                             android:textSize="16dp"
@@ -158,7 +156,6 @@
                             android:textColor="#333333"
                             android:textSize="16dp"
                             android:textStyle="bold"
-                            android:letterSpacing="-0.2"
                             android:text="30일 미방문 고객 쿠폰"/>
 
                         <ImageView
@@ -212,7 +209,6 @@
                             android:textColor="#333333"
                             android:textSize="16dp"
                             android:textStyle="bold"
-                            android:letterSpacing="-0.2"
                             android:text="60일 미방문 고객 쿠폰"/>
 
                         <ImageView
@@ -266,7 +262,6 @@
                             android:textColor="#333333"
                             android:textSize="16dp"
                             android:textStyle="bold"
-                            android:letterSpacing="-0.2"
                             android:text="90일 미방문 고객 쿠폰"/>
 
                         <ImageView

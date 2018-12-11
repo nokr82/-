@@ -319,7 +319,10 @@ fun graph(){
                         var f_cnt =  Utils.getInt(gender, "Female")
                         totalMemberCnt = m_cnt+f_cnt
                         all_memberTV.text = totalMemberCnt.toString()
-
+                        if (totalMemberCnt==0){
+                            totalMemberCnt =1
+                        }
+                        Log.d("멤버갯수",totalMemberCnt.toString())
                         val dataSet: PieDataSet = PieDataSet(entries, "성 비율");
                         dataSet.setDrawIcons(false);
 

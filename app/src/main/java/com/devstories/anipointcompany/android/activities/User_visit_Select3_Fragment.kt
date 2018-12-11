@@ -277,7 +277,9 @@ class User_visit_Select3_Fragment : Fragment() {
 
                             ageData.add(BarEntry(i.toFloat(), Utils.getInt(data, "count").toFloat()))
                         }
-
+                        if (totalMemberCnt==0){
+                            totalMemberCnt =1
+                        }
 
 
 

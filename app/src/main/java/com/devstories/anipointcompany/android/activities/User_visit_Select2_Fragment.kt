@@ -263,6 +263,13 @@ class User_visit_Select2_Fragment : Fragment() {
 
                                     ageData.add(BarEntry(i.toFloat(), Utils.getInt(data, "count").toFloat()))
                         }
+                        if (totalMemberCnt==0){
+                            totalMemberCnt =1
+
+                            all_memberTV.text = "0"
+                        }else{
+                            all_memberTV.text = totalMemberCnt.toString()
+                        }
                         ageData.removeAt(7)
 
 
@@ -283,7 +290,6 @@ class User_visit_Select2_Fragment : Fragment() {
                         val entries = ArrayList<PieEntry>()
 
 
-                        all_memberTV.text = totalMemberCnt.toString()
 
                         val dataSet: PieDataSet = PieDataSet(entries, "성 비율");
                         dataSet.setDrawIcons(false);
