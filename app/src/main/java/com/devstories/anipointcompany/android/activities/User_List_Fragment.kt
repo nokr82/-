@@ -220,9 +220,13 @@ class User_List_Fragment : Fragment() {
                             val updated = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(Utils.getString(member, "updated"))
                             val updated_date = sdf.format(updated)
                             var r_phone:String? = null
+
                             if (phone.length==11){
                                 //번호하이픈
                                r_phone = phone.substring(0, 3) + "-" + phone.substring(3, 7) + "-" + phone.substring(7,11)
+                                r_phone = r_phone.substring(0, 7) + '*' + r_phone.substring(8)
+                                r_phone = r_phone.substring(0, 6) + '*' + r_phone.substring(7)
+                                r_phone = r_phone.substring(0, 5) + '*' + r_phone.substring(6)
                             }else{
                                 r_phone =phone
                             }

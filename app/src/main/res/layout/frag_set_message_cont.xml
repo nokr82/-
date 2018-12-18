@@ -226,7 +226,7 @@
             android:background="#0871bf"
             android:gravity="center"
             android:layout_gravity="right"
-            android:text="다음"
+            android:text="확인"
             android:textColor="#FFFFFF"
             android:textSize="18dp" />
     </LinearLayout>

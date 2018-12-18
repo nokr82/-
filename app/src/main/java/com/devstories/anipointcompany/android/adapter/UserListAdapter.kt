@@ -42,15 +42,23 @@ open class UserListAdapter (context:Context, view:Int, data: ArrayList<JSONObjec
 
         var json = data.get(position)
         val member = json.getJSONObject("Member")
-        var name = Utils.getString(member, "name")
+        var phone = Utils.getString(member, "phone")
 
 
         val point_o = json.getJSONObject("Point")
         var point = Utils.getString(point_o, "point")
         var type = Utils.getInt(point_o, "type")
         var updated = Utils.getString(point_o, "created")
-
-        item.nameTV.text = name
+        if (phone.length==11){
+            //번호하이픈
+            phone = phone.substring(0, 3) + "-" + phone.substring(3, 7) + "-" + phone.substring(7,11)
+            phone = phone.substring(0, 7) + '*' + phone.substring(8)
+            phone = phone.substring(0, 6) + '*' + phone.substring(7)
+            phone = phone.substring(0, 5) + '*' + phone.substring(6)
+        }else{
+            phone =phone
+        }
+        item.nameTV.text = phone
         item.pointTV.text = point+"P"
         item.updateTV.text =updated
 

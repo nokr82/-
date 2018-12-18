@@ -290,7 +290,7 @@
                 >
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_weight="0.35"
+                    android:layout_weight="0.6"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
                     <TextView
@@ -302,7 +302,7 @@
                         android:textColor="#005a97"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="51sp"
-                        android:text="고객목록"
+                        android:text="실시간 이력"
                         />
                     <TextView
                         android:layout_marginTop="6.5dp"
@@ -384,10 +384,11 @@
                             android:background="#e7e7e7">
 
                             <TextView
+                                android:id="@+id/integratedTV"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:lineSpacingExtra="51sp"
-                                android:text="총합"
+                                android:text="고객수"
                                 android:textColor="#555555"
                                 android:textSize="14dp" />
 

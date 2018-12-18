@@ -40,6 +40,7 @@ class Point_List_Fragment : Fragment() {
     lateinit var lastdateTV: TextView
     lateinit var all_cntTV: TextView
     lateinit var all_stackTV: TextView
+    lateinit var integratedTV: TextView
     lateinit var all_useTV: TextView
     lateinit var all_couponTV: TextView
     lateinit var nonameTV: TextView
@@ -102,7 +103,7 @@ class Point_List_Fragment : Fragment() {
         weekTV = view.findViewById(R.id.weekTV)
         monthTV = view.findViewById(R.id.monthTV)
         useLL = view.findViewById(R.id.useLL)
-
+        integratedTV = view.findViewById(R.id.integratedTV)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -282,7 +283,7 @@ class Point_List_Fragment : Fragment() {
                         val total_point_cnt = addPointCount + usePointCount
 
 
-                        all_cntTV.text = allcnt.toString() + "명/" + total_point_cnt.toString() + "회"
+                        all_cntTV.text = allcnt.toString() + "명"
                         all_stackTV.text = addPointMember.toString() + "명/" + addPointCount + "회/" + addPoint.toString() + "P"
                         all_useTV.text = usePointMember.toString() + "명/" + usePointCount + "회/" + usePoint.toString() + "P"
                         val data2 = response.getJSONArray("member_list")
@@ -389,6 +390,7 @@ class Point_List_Fragment : Fragment() {
                         if (point.equals(null)) {
                             point = "0"
                         }
+                        integratedTV.text = "방문횟수"
                         all_cntTV.text = visit_cnt + "회"
                         all_stackTV.text = stack_point_cnt + "회/" + point + "P"
                         all_useTV.text = use_point_cnt + "회/" + use_point + "P"
