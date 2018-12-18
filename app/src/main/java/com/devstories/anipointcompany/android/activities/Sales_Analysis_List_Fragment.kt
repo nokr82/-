@@ -253,6 +253,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
                 payment_type = position + 1
 
                 category_id = categoryIndex[position]
+                Log.d("카테",category_id.toString())
                 //println("amountSP clicked. Position is $payment_type")
                 loadData(company_id)
             }
@@ -295,7 +296,8 @@ class Sales_Analysis_List_Fragment : Fragment() {
                         val categories = response.getJSONArray("categories")
                         option_amount.clear()
                         Log.d("데이트", categories.toString())
-
+                        option_amount.add("전체")
+                        categoryIndex.add(0)
                         for (i in 0 until categories.length()) {
                             val json = categories[i] as JSONObject
                             val company_category = json.getJSONObject("CompanyCategory")
