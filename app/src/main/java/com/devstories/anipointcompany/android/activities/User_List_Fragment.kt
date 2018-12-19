@@ -223,7 +223,7 @@ class User_List_Fragment : Fragment() {
 
                             if (phone.length==11){
                                 //번호하이픈
-                               r_phone = phone.substring(0, 3) + "-" + phone.substring(3, 7) + "-" + phone.substring(7,11)
+                                r_phone = phone.substring(0, 3) + "-" + phone.substring(3, 7) + "-" + phone.substring(7,11)
                                 r_phone = r_phone.substring(0, 7) + '*' + r_phone.substring(8)
                                 r_phone = r_phone.substring(0, 6) + '*' + r_phone.substring(7)
                                 r_phone = r_phone.substring(0, 5) + '*' + r_phone.substring(6)
@@ -389,7 +389,6 @@ class User_List_Fragment : Fragment() {
                 }
 
                 try {
-
                     userLL.removeAllViews()
                     adapterData.clear()
 
@@ -399,16 +398,21 @@ class User_List_Fragment : Fragment() {
                         var data = response.getJSONArray("member")
 
                         for (i in 0..(data.length() - 1)) {
-                            Log.d("갯수", i.toString())
+
                             adapterData.add(data[i] as JSONObject)
+
                             var json = data[i] as JSONObject
                             val member = json.getJSONObject("Member")
                             var point_o = json.getJSONObject("Point")
+                            var visitedList = json.getJSONArray("VisitedList")
 
                             var point = Utils.getString(point_o, "balance")
+                            var member_id = Utils.getInt(member, "id")
 
 
                             val userView = View.inflate(myContext, R.layout.item_user, null)
+
+
                             var dateTV: TextView = userView.findViewById(R.id.dateTV)
                             var nameTV: TextView = userView.findViewById(R.id.nameTV)
                             var pointTV: TextView = userView.findViewById(R.id.pointTV)
@@ -424,6 +428,8 @@ class User_List_Fragment : Fragment() {
                             var stack_pointTV: TextView = userView.findViewById(R.id.stack_pointTV)
                             var memoTV: TextView = userView.findViewById(R.id.memoTV)
                             var phoneTV: TextView = userView.findViewById(R.id.phoneTV)
+                            var modiLL: LinearLayout = userView.findViewById(R.id.modiLL)
+                            var msgLL: LinearLayout = userView.findViewById(R.id.msgLL)
 
 
                             var id = Utils.getString(member, "id")
@@ -442,6 +448,18 @@ class User_List_Fragment : Fragment() {
                             val sdf = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
                             val updated = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(Utils.getString(member, "updated"))
                             val updated_date = sdf.format(updated)
+                            var r_phone:String? = null
+
+                            if (phone.length==11){
+                                //번호하이픈
+                                r_phone = phone.substring(0, 3) + "-" + phone.substring(3, 7) + "-" + phone.substring(7,11)
+                                r_phone = r_phone.substring(0, 7) + '*' + r_phone.substring(8)
+                                r_phone = r_phone.substring(0, 6) + '*' + r_phone.substring(7)
+                                r_phone = r_phone.substring(0, 5) + '*' + r_phone.substring(6)
+                            }else{
+                                r_phone =phone
+                            }
+
 
                             pointTV.text = point + "P"
                             use_pointTV.text = use_point + "P"
@@ -449,14 +467,59 @@ class User_List_Fragment : Fragment() {
                             stack_pointTV.text = "누적:" + stack_point + "P"
                             dateTV.text = updated_date + " 방문"
                             ageTV.text = age + "세"
-                            nameTV.text = name
+                            nameTV.text = r_phone
                             name2TV.text = name
+
+                            if (gender == "F") {
+                                gender = "여"
+                            } else if (gender == "M") {
+                                gender = "남"
+                            } else {
+                                gender = "모름"
+                            }
+
                             genderTV.text = gender
                             memoTV.text = memo
                             couponTV.text = coupon + "장"
                             birthTV.text = birth
                             visitTV.text = visit + "회"
                             phoneTV.text = phone
+
+                            var str = ""
+
+                            for (i in 0 until visitedList.length()) {
+                                val json: JSONObject = visitedList[i] as JSONObject
+                                val companySale = json.getJSONObject("CompanySale")
+                                val category = json.getJSONObject("Category")
+
+                                val created = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(Utils.getString(companySale, "created"))
+                                val created_str = SimpleDateFormat("yyyy-MM-dd").format(created)
+
+                                if (str.length > 0) {
+                                    str += "\n";
+                                }
+
+                                str = str + created_str + " / " + Utils.getString(category, "name") + " / " + Utils.comma(Utils.getString(companySale, "price"))
+
+                            }
+
+                            visit_recordTV.text = str
+
+                            msgLL.setOnClickListener {
+                                var intent = Intent()
+                                intent.putExtra("member_id", member_id)
+                                Log.d("멤버아이디", member_id.toString())
+                                intent.action = "MSG_NEXT"
+                                myContext.sendBroadcast(intent)
+                            }
+
+
+                            modiLL.setOnClickListener {
+                                var intent = Intent(context, DlgEditMemberInfoActivity::class.java)
+                                intent.putExtra("member_id", member_id)
+                                startActivityForResult(intent, EDIT_MEMBER_INFO)
+                            }
+
 
                             userLL.addView(userView)
                         }
