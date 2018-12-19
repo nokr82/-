@@ -117,7 +117,9 @@ class User_List_Fragment : Fragment() {
             var key = keywordET.text.toString()
             if (key.isEmpty()) {
                 Utils.alert(context, "검색할 키워드를 입력하세요")
+                return@setOnClickListener
             }
+            Utils.hideKeyboard(myContext)
             keywordET.setText("")
             keyWordData(key)
 
@@ -431,6 +433,7 @@ class User_List_Fragment : Fragment() {
                     val result = response!!.getString("result")
 
                     if ("ok" == result) {
+
                         var data = response.getJSONArray("member")
 
                         for (i in 0..(data.length() - 1)) {
