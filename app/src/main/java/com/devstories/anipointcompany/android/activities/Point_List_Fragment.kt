@@ -200,6 +200,7 @@ class Point_List_Fragment : Fragment() {
             val member = data.getJSONObject("Member")
             var point = data.getJSONObject("Point")
             var type = Utils.getInt(point, "type")
+            var cate = Utils.getInt(point, "cate")
             var point_id = Utils.getInt(point, "id")
             if (type == 1){
                 var mPopupDlg: DialogInterface? = null
@@ -213,9 +214,12 @@ class Point_List_Fragment : Fragment() {
                 }
                 msgWriteTV.setOnClickListener {
                     payback(point_id)
+                    loadmainData(company_id)
                     mPopupDlg.dismiss()
                 }
 
+            }else if (cate==3){
+                Toast.makeText(myContext,"환불된 포인트입니다.",Toast.LENGTH_SHORT).show()
             }else{
                 Toast.makeText(myContext,"사용한포인트는 환불이 불가합니다",Toast.LENGTH_SHORT).show()
             }
@@ -294,6 +298,8 @@ class Point_List_Fragment : Fragment() {
                     if ("ok" == result) {
                         Toast.makeText(myContext,"환불되었습니다.",Toast.LENGTH_SHORT).show()
 
+                    }else if ("already"==result){
+                        Toast.makeText(myContext,"이미 환불된 포인트입니다.",Toast.LENGTH_SHORT).show()
                     } else {
                         Toast.makeText(myContext, "조회실패", Toast.LENGTH_SHORT).show()
                     }
