@@ -221,6 +221,27 @@ class User_List_Fragment : Fragment() {
                             val updated_date = sdf.format(updated)
                             var r_phone:String? = null
 
+                            if (age.equals("")){
+                                age = "미입력"
+                            }else{
+                                age+="세"
+                            }
+
+                            if (birth.equals("")){
+                                birth = "미입력"
+                            }
+                            if (name.equals("")){
+                                name = "미입력"
+                            }
+                            if (stack_point.equals("")){
+                                stack_point = "0"
+                            }
+
+                            if (use_point.equals("")){
+                                use_point = "0"
+                            }
+
+
                             if (phone.length==11){
                                 //번호하이픈
                                 r_phone = phone.substring(0, 3) + "-" + phone.substring(3, 7) + "-" + phone.substring(7,11)
@@ -237,7 +258,7 @@ class User_List_Fragment : Fragment() {
                             acc_pointTV.text = stack_point + "P"
                             stack_pointTV.text = "누적:" + stack_point + "P"
                             dateTV.text = updated_date + " 방문"
-                            ageTV.text = age + "세"
+                            ageTV.text = age
                             nameTV.text = r_phone
                             name2TV.text = name
 
@@ -267,10 +288,25 @@ class User_List_Fragment : Fragment() {
                                 val created_str = SimpleDateFormat("yyyy-MM-dd").format(created)
 
                                 if (str.length > 0) {
-                                    str += "\n";
+                                    str += "\n"
+                                }
+                              var use_point =  Utils.getString(companySale, "use_point")
+                                var point = Utils.getString(companySale, "point")
+                                var coupon = Utils.getString(companySale, "coupon")
+                                if (use_point.equals("")){
+                                    use_point="0"
+                                }
+                                if (point.equals("")){
+                                    point = "0"
+                                }
+                                if (coupon.equals("")){
+                                    coupon = "없음"
                                 }
 
-                                str = str + created_str + " / " + Utils.getString(category, "name") + " / " + Utils.comma(Utils.getString(companySale, "price"))
+
+                                str = str + created_str + " / " + Utils.getString(category, "name") + " / " + Utils.comma(Utils.getString(companySale, "price"))+"원\n"+
+                                        "적립: " +point + "P/사용:" +use_point+ "P"+"/사용쿠폰:"+coupon
+
 
                             }
 
@@ -450,6 +486,27 @@ class User_List_Fragment : Fragment() {
                             val updated_date = sdf.format(updated)
                             var r_phone:String? = null
 
+                            if (age.equals("")){
+                                age = "미입력"
+                            }else{
+                                age+="세"
+                            }
+
+                            if (birth.equals("")){
+                                birth = "미입력"
+                            }
+                            if (name.equals("")){
+                                name = "미입력"
+                            }
+                            if (stack_point.equals("")){
+                                stack_point = "0"
+                            }
+
+                            if (use_point.equals("")){
+                                use_point = "0"
+                            }
+
+
                             if (phone.length==11){
                                 //번호하이픈
                                 r_phone = phone.substring(0, 3) + "-" + phone.substring(3, 7) + "-" + phone.substring(7,11)
@@ -466,7 +523,7 @@ class User_List_Fragment : Fragment() {
                             acc_pointTV.text = stack_point + "P"
                             stack_pointTV.text = "누적:" + stack_point + "P"
                             dateTV.text = updated_date + " 방문"
-                            ageTV.text = age + "세"
+                            ageTV.text = age
                             nameTV.text = r_phone
                             name2TV.text = name
 
@@ -496,10 +553,25 @@ class User_List_Fragment : Fragment() {
                                 val created_str = SimpleDateFormat("yyyy-MM-dd").format(created)
 
                                 if (str.length > 0) {
-                                    str += "\n";
+                                    str += "\n"
+                                }
+                                var use_point =  Utils.getString(companySale, "use_point")
+                                var point = Utils.getString(companySale, "point")
+                                var coupon = Utils.getString(companySale, "coupon")
+                                if (use_point.equals("")){
+                                    use_point="0"
+                                }
+                                if (point.equals("")){
+                                    point = "0"
+                                }
+                                if (coupon.equals("")){
+                                    coupon = "없음"
                                 }
 
-                                str = str + created_str + " / " + Utils.getString(category, "name") + " / " + Utils.comma(Utils.getString(companySale, "price"))
+
+                                str = str + created_str + " / " + Utils.getString(category, "name") + " / " + Utils.comma(Utils.getString(companySale, "price"))+"원\n"+
+                                        "적립: " +point + "P/사용:" +use_point+ "P"+"/사용쿠폰:"+coupon
+
 
                             }
 
@@ -531,7 +603,6 @@ class User_List_Fragment : Fragment() {
                 }
 
             }
-
             override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONArray?) {
                 super.onSuccess(statusCode, headers, response)
             }
