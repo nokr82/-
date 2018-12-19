@@ -79,23 +79,6 @@
                 android:text="10"
                 />
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:layout_height="match_parent">
-            <TextView
-                android:id="@+id/bankTV"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:textSize="16dp"
-                android:textColor="#888888"
-                android:letterSpacing="-0.03"
-                android:lineSpacingExtra="4sp"
-                android:gravity="center_horizontal"
-                android:text="10"
-                />
-        </LinearLayout>
+
     </LinearLayout>
 </LinearLayout>

@@ -41,7 +41,6 @@ class Sales_Analysis_List_Fragment : Fragment() {
     lateinit var all_memberTV: TextView
     lateinit var new_userTV: TextView
     lateinit var member_re_cntTV: TextView
-    lateinit var accountlessTV: TextView
     lateinit var itemdateLL: LinearLayout
     lateinit var nextLL: LinearLayout
     lateinit var preLL: LinearLayout
@@ -80,7 +79,6 @@ class Sales_Analysis_List_Fragment : Fragment() {
         itemdateLL = view.findViewById(R.id.itemdateLL)
         accumulateLL = view.findViewById(R.id.accumulateLL)
         all_memberTV = view.findViewById(R.id.all_memberTV)
-        accountlessTV = view.findViewById(R.id.accountlessTV)
         member_re_cntTV = view.findViewById(R.id.member_re_cntTV)
         new_userTV = view.findViewById(R.id.new_userTV)
         todayTV = view.findViewById(R.id.todayTV)
@@ -297,7 +295,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
                         option_amount.clear()
                         Log.d("데이트", categories.toString())
                         option_amount.add("전체")
-                        categoryIndex.add(0)
+                        categoryIndex.add(-1)
                         for (i in 0 until categories.length()) {
                             val json = categories[i] as JSONObject
                             val company_category = json.getJSONObject("CompanyCategory")
@@ -375,6 +373,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
         val params = RequestParams()
         params.put("company_id", company_id)
         params.put("category_id", category_id)
+        Log.d("카테고리",category_id.toString())
         params.put("day_type", day_type)
         params.put("limit", limit)
         params.put("page", page)
@@ -394,14 +393,15 @@ class Sales_Analysis_List_Fragment : Fragment() {
                         val totalData = response.getJSONObject("totalData")
 
                         val totalPrice = Utils.getString(totalData, "totalPrice")
-                        val cashTotalPrice = Utils.getString(totalData, "cashTotalPrice")
+                        var cashTotalPrice = Utils.getInt(totalData, "cashTotalPrice")
                         val cardTotalPrice = Utils.getString(totalData, "cardTotalPrice")
-                        val bankTotalPrice = Utils.getString(totalData, "bankTotalPrice")
+                        val bankTotalPrice = Utils.getInt(totalData, "bankTotalPrice")
+
+                        cashTotalPrice +=bankTotalPrice
 
                         all_memberTV.text = Utils.comma(totalPrice)
-                        new_userTV.text = Utils.comma(cashTotalPrice)
+                        new_userTV.text = Utils.comma(cashTotalPrice.toString())
                         member_re_cntTV.text = Utils.comma(cardTotalPrice)
-                        accountlessTV.text = Utils.comma(bankTotalPrice)
 
 
                         val list = response.getJSONArray("list")
@@ -415,23 +415,22 @@ class Sales_Analysis_List_Fragment : Fragment() {
                                 var json = list[i] as JSONObject
                                 val date = Utils.getString(json, "date")
                                 val totalPrice = Utils.getString(json, "totalPrice")
-                                val cash = Utils.getString(json, "cash")
+                                var cash = Utils.getInt(json, "cash")
                                 val card = Utils.getString(json, "card")
-                                val bank = Utils.getString(json, "bank")
+                                val bank = Utils.getInt(json, "bank")
 
+                                cash += bank
 
                                 val salesView = View.inflate(myContext, R.layout.item_sales_analysis, null)
                                 var dateTV: TextView = salesView.findViewById(R.id.dateTV)
                                 var totalTV: TextView = salesView.findViewById(R.id.totalTV)
                                 var cashTV: TextView = salesView.findViewById(R.id.cashTV)
                                 var cardTV: TextView = salesView.findViewById(R.id.cardTV)
-                                var bankTV: TextView = salesView.findViewById(R.id.bankTV)
 
                                 dateTV.text = date.toString()
                                 totalTV.text = Utils.comma(totalPrice)
-                                cashTV.text = Utils.comma(cash)
+                                cashTV.text = Utils.comma(cash.toString())
                                 cardTV.text = Utils.comma(card)
-                                bankTV.text = Utils.comma(bank)
 
                                 itemdateLL.addView(salesView)
 
