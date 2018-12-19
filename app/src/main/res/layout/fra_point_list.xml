@@ -544,7 +544,8 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:visibility="gone"
+                        android:id="@+id/coupon_payLL"
+                        android:visibility="visible"
                         android:layout_marginTop="9.5dp"
                         android:layout_width="match_parent"
                         android:layout_height="50dp">
@@ -562,17 +563,19 @@
                                 android:letterSpacing="-0.03"
                                 android:lineSpacingExtra="54sp"
                                 android:gravity="center_horizontal"
-                                android:text="포인트 기대 수익"/>
+                                android:text="쿠폰 사용 매출"/>
 
 
                         </LinearLayout>
 
                         <LinearLayout
+
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical">
 
                             <TextView
+                                android:id="@+id/coupon_payTV"
                                 android:layout_marginLeft="10dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
