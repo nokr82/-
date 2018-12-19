@@ -2,9 +2,15 @@ package com.devstories.anipointcompany.android.activities
 
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,14 +19,18 @@ import android.widget.ImageView
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.CouponAction
 import com.devstories.anipointcompany.android.R
+import com.devstories.anipointcompany.android.base.Config
 import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
+import com.nostra13.universalimageloader.core.ImageLoader
 import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.fra_auto_coupon_settings.*
 import org.json.JSONException
 import org.json.JSONObject
+import java.io.ByteArrayInputStream
+import java.io.IOException
 
 class AutoCouponSettingsFragment : Fragment() {
 
@@ -46,6 +56,11 @@ class AutoCouponSettingsFragment : Fragment() {
     var use_day = 7
 
     var op_expiration = arrayOf("30일", "60일", "90일")
+    var bitmap: BitmapDrawable? = null
+    var thumbnail: Bitmap? = null
+    var contentURI: Uri? = null
+
+    private val GALLERY = 1
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -102,7 +117,9 @@ class AutoCouponSettingsFragment : Fragment() {
             type = 4
             couponData(coupon_type4_id)
         }
-
+        imgLL.setOnClickListener {
+            choosePhotoFromGallary()
+        }
         noVisit90LL.setOnClickListener {
             setMenuView()
             noVisit90LL.setBackgroundColor(Color.parseColor("#eeeeee"))
@@ -233,6 +250,44 @@ class AutoCouponSettingsFragment : Fragment() {
 
     }
 
+
+    private fun choosePhotoFromGallary() {
+        val galleryIntent = Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+
+        startActivityForResult(galleryIntent, GALLERY)
+
+    }
+
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == GALLERY) {
+            if (data != null) {
+                contentURI = data!!.data
+                Log.d("uri", contentURI.toString())
+                //content://media/external/images/media/1200
+
+                try {
+                    thumbnail = MediaStore.Images.Media.getBitmap(myContext.contentResolver, contentURI)
+                    thumbnail = Utils.rotate(myContext.contentResolver, thumbnail, contentURI)
+                    Log.d("thumbnail", thumbnail.toString())
+                    imgIV.setImageBitmap(thumbnail)
+
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                    Toast.makeText(myContext, "바꾸기실패", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+        }
+
+
+    }
+
+
     fun setMenuView() {
         newMemberLL.setBackgroundColor(Color.parseColor("#00000000"))
         birthMemberLL.setBackgroundColor(Color.parseColor("#00000000"))
@@ -340,8 +395,12 @@ class AutoCouponSettingsFragment : Fragment() {
                             } else {
                                 validityIV.setImageResource(R.mipmap.switch_off)
                             }
-
+                            var image_uri = Utils.getString(coupon, "image_uri")
+                            var image = Config.url + image_uri
+                            ImageLoader.getInstance().displayImage(image,imgIV, Utils.UILoptionsUserProfile)
                             contentET.setText(Utils.getString(coupon, "content"))
+
+                            messageET.setText(Utils.getString(coupon, "msg_content"))
 
                         }
 
@@ -403,6 +462,7 @@ class AutoCouponSettingsFragment : Fragment() {
         params.put("company_id", company_id)
         params.put("coupon_id", id)
 
+        imgIV.setImageResource(R.drawable.background_strock_null)
         CouponAction.coupon(params, object : JsonHttpResponseHandler() {
 
             override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
@@ -463,6 +523,10 @@ class AutoCouponSettingsFragment : Fragment() {
                             validityIV.setImageResource(R.mipmap.switch_on)
                         }
 
+                        var image_uri = Utils.getString(coupon, "image_uri")
+                        var image = Config.url + image_uri
+                        ImageLoader.getInstance().displayImage(image,imgIV, Utils.UILoptionsUserProfile)
+                        messageET.setText(Utils.getString(coupon, "msg_content"))
                         contentET.setText(Utils.getString(coupon, "content"))
 
                     }
@@ -518,9 +582,17 @@ class AutoCouponSettingsFragment : Fragment() {
     }
 
     fun editCoupon() {
+
+        val msg_content = Utils.getString(messageET)
+
         val params = RequestParams()
         params.put("company_id", company_id)
         params.put("coupon_id", coupon_id)
+        params.put("msg_content", msg_content)
+        if (imgIV.drawable != null) {
+            bitmap = imgIV.drawable as BitmapDrawable
+            params.put("upload", ByteArrayInputStream(Utils.getByteArray(bitmap!!.bitmap)))
+        }
         params.put("type", type)
         params.put("use_day", use_day)
         params.put("week_use_yn", week_use_yn)
@@ -631,7 +703,7 @@ class AutoCouponSettingsFragment : Fragment() {
                     progressDialog!!.dismiss()
                 }
 
-                // System.out.println(responseString);
+                System.out.println(responseString);
 
                 throwable.printStackTrace()
                 error()

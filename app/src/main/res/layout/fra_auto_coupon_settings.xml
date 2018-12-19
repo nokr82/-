@@ -583,6 +583,7 @@
                         </LinearLayout>
 
                         <ImageView
+                            android:id="@+id/imgIV"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:src="@mipmap/main_bg"/>
@@ -592,9 +593,10 @@
 
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginRight="20dp"
                         android:layout_height="wrap_content"
-
                         android:background="@drawable/background_box_e5ebf7"
                         android:minHeight="250dp"
                         android:orientation="vertical"
@@ -619,12 +621,6 @@
                             android:textSize="15sp" />
                     </LinearLayout>
 
-                    <ImageView
-                        android:id="@+id/imgIV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:scaleType="centerCrop"
-                        android:visibility="gone" />
                 </LinearLayout>
 
 
