@@ -279,9 +279,14 @@ class Point_List_Fragment : Fragment() {
                         val usePointCount = Utils.getInt(data, "usePointCount")
                         val usePoint = Utils.getInt(data, "usePoint")
                         val usePointMember = Utils.getInt(data, "usePointMember")
+                        val useCouponMembers = Utils.getInt(data, "useCouponMembers")
+                        val useCouponCount = Utils.getInt(data, "useCouponCount")
+
+
                         val allcnt = addPointMember + usePointMember
                         val total_point_cnt = addPointCount + usePointCount
 
+                        all_couponTV.text = useCouponMembers.toString()+"명/"+useCouponCount.toString()+"회"
 
                         all_cntTV.text = allcnt.toString() + "명"
                         all_stackTV.text = addPointMember.toString() + "명/" + addPointCount + "회/" + addPoint.toString() + "P"
