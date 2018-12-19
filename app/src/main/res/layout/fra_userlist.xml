@@ -257,6 +257,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="50dp"
                         android:layout_weight="1"
+                        android:singleLine="true"
                         android:background="@null"
                         android:hint="키워드를 입력하세요."
                         android:lineSpacingExtra="25sp"
