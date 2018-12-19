@@ -1,5 +1,6 @@
 package com.devstories.anipointcompany.android.activities
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
@@ -16,12 +17,15 @@ import cz.msebera.android.httpclient.Header
 import org.json.JSONException
 import org.json.JSONObject
 import android.app.DatePickerDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.util.Log
 import android.widget.*
+import com.devstories.anipointcompany.android.Actions.CouponAction.send_message
 import com.devstories.anipointcompany.android.Actions.PointAction
 import com.devstories.anipointcompany.android.base.PrefUtils
+import kotlinx.android.synthetic.main.fra_point_list.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -190,8 +194,36 @@ class Point_List_Fragment : Fragment() {
             val member = data.getJSONObject("Member")
             val member_id = Utils.getInt(member, "id")
             loaditemdata(company_id, member_id)
-
         }
+        userLV.setOnItemLongClickListener { parent, view, position, id ->
+            var data = adapterData.get(position)
+            val member = data.getJSONObject("Member")
+            var point = data.getJSONObject("Point")
+            var type = Utils.getInt(point, "type")
+            var point_id = Utils.getInt(point, "id")
+            if (type == 1){
+                var mPopupDlg: DialogInterface? = null
+                val builder = AlertDialog.Builder(myContext)
+                val dialogView = layoutInflater.inflate(R.layout.dlg_send_payback, null)
+                val cancelTV = dialogView.findViewById<TextView>(R.id.cancelTV)
+                val msgWriteTV = dialogView.findViewById<TextView>(R.id.msgWriteTV)
+                mPopupDlg = builder.setView(dialogView).show()
+                cancelTV.setOnClickListener {
+                    mPopupDlg.dismiss()
+                }
+                msgWriteTV.setOnClickListener {
+                    payback(point_id)
+                    mPopupDlg.dismiss()
+                }
+
+            }else{
+                Toast.makeText(myContext,"사용한포인트는 환불이 불가합니다",Toast.LENGTH_SHORT).show()
+            }
+            true
+        }
+
+
+
 
         first_dateLL.setOnClickListener {
             datedlg()
@@ -246,7 +278,75 @@ class Point_List_Fragment : Fragment() {
         Toast.makeText(myContext, msg, Toast.LENGTH_SHORT).show()
         loadmainData(company_id)
     }
+    //환불
+    fun payback(point_id: Int) {
+        val params = RequestParams()
+        params.put("point_id", point_id)
+        PointAction.pay_back(params, object : JsonHttpResponseHandler() {
 
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    val result = response!!.getString("result")
+                    if ("ok" == result) {
+                        Toast.makeText(myContext,"환불되었습니다.",Toast.LENGTH_SHORT).show()
+
+                    } else {
+                        Toast.makeText(myContext, "조회실패", Toast.LENGTH_SHORT).show()
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(myContext, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
     //총포인트내역
     fun loadmainData(company_id: Int) {
         val params = RequestParams()

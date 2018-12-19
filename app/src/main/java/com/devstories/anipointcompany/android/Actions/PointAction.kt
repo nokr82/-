@@ -30,7 +30,10 @@ object PointAction {
     fun user_points(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/point/user_points.json", params, handler)
     }
-
+    //포인트환불
+    fun pay_back(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/point/pay_back.json", params, handler)
+    }
     //시간대별 분석
     fun time_detail(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/point/time_detail.json", params, handler)
