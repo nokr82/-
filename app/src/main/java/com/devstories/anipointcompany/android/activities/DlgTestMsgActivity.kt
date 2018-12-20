@@ -92,8 +92,15 @@ class DlgTestMsgActivity : RootActivity() {
         params.put("message",message)
         params.put("phone",phone)
         if (contentURI!=null){
+            params.put("type",2)
             thumbnail = MediaStore.Images.Media.getBitmap(this.contentResolver, contentURI)
             params.put("upload", ByteArrayInputStream(Utils.getByteArray(thumbnail)))
+        }else{
+            if (message.length<30){
+                params.put("type",1)
+            }else if (message.length>30){
+                params.put("type",3)
+            }
         }
         CouponAction.test_message(params, object : JsonHttpResponseHandler() {
 

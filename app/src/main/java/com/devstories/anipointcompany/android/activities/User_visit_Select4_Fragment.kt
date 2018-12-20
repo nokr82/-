@@ -19,6 +19,7 @@ import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
 import com.github.mikephil.charting.utils.MPPointF
 import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
@@ -29,6 +30,7 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class User_visit_Select4_Fragment : Fragment() {
@@ -256,7 +258,7 @@ fun graph(){
 
                         val age = response.getJSONArray("age")
                         val gender = response.getJSONObject("gender")
-                        val ages = arrayOf("10대", "20대", "30대", "40대", "50대", "60대+")
+                        val ages = arrayOf("10대","20대", "30대", "40대", "50대", "60대+")
 
                         var xAxis = ageBarChart.getXAxis()
                         xAxis.setTextColor(Color.parseColor("#a0a0a0"))
@@ -279,6 +281,8 @@ fun graph(){
 
 
                         var ageData: MutableList<BarEntry> = ArrayList()
+                        var manData: ArrayList<BarEntry> = ArrayList()
+                        var femaleData: ArrayList<BarEntry> = ArrayList()
 
                         for (i in 0 until age.length()) {
                             var data = age[i] as JSONObject
@@ -297,23 +301,61 @@ fun graph(){
                             sixTV.text= Utils.getInt(data6, "count").toString()
 
                             ageData.add(BarEntry(i.toFloat(), Utils.getInt(data, "count").toFloat()))
+                            manData.add(BarEntry(i.toFloat(), Utils.getInt(data, "man_cnt").toFloat()))
+                            femaleData.add(BarEntry(i.toFloat(), Utils.getInt(data, "female_cnt").toFloat()))
+
                         }
 
                         var barDataSet = BarDataSet(ageData, "12")
-                        barDataSet.setColors(*intArrayOf(Color.parseColor("#4b8bc8"), Color.parseColor("#4b8bc8"), Color.parseColor("#4b8bc8"), Color.parseColor("#4b8bc8"), Color.parseColor("#4b8bc8"), Color.parseColor("#4b8bc8")))
+                        var barDataMenSet = BarDataSet(manData, "남성")
+                        var barDatafamaleSet = BarDataSet(femaleData, "여성")
+                        barDatafamaleSet.setColors(*intArrayOf(Color.parseColor("#FF00DD"), Color.parseColor("#FF00DD")
+                                , Color.parseColor("#FF00DD"), Color.parseColor("#FF00DD")
+                                , Color.parseColor("#FF00DD"), Color.parseColor("#FF00DD")))
+                        barDatafamaleSet.setDrawValues(false)
+                        barDataMenSet.setColors(*intArrayOf(Color.parseColor("#6799FF"), Color.parseColor("#6799FF")
+                                , Color.parseColor("#6799FF"), Color.parseColor("#6799FF")
+                                , Color.parseColor("#6799FF"), Color.parseColor("#6799FF")))
+                        barDataMenSet.setDrawValues(false)
+                        barDataSet.setColors(*intArrayOf(Color.parseColor("#ff8e1b"), Color.parseColor("#ff8e1b")
+                                , Color.parseColor("#ff8e1b"), Color.parseColor("#ff8e1b")
+                                , Color.parseColor("#ff8e1b"), Color.parseColor("#ff8e1b")))
                         barDataSet.setDrawValues(false)
 
-                        var barData = BarData(barDataSet)
+               /*         val labels = ArrayList<String>()
+                        labels.add("10대")
+                        labels.add("20대")
+                        labels.add("30대")
+                        labels.add("40대")
+                        labels.add("50대")
+                        labels.add("60대")*/
+                        var dataSets:ArrayList<IBarDataSet>  = ArrayList()
+                        dataSets.add(barDataMenSet)
+                        dataSets.add(barDatafamaleSet)
+
+
+
+
+                        var barData = BarData(barDataMenSet, barDatafamaleSet)
                         barData.setBarWidth(0.1f)
 
 
                         ageBarChart.setData(barData)
+//                        ageBarChart.groupBars(1980f, 0.06f, 0.02f);
                         ageBarChart.invalidate() // refresh
 
 
+
+
+
+
+
+
+
+
                         val entries = ArrayList<PieEntry>()
-                        entries.add(PieEntry(Utils.getInt(gender, "Male").toFloat(), 0))
-                        entries.add(PieEntry( Utils.getInt(gender, "Female").toFloat(), 1))
+                        entries.add(PieEntry(Utils.getInt(gender, "Male").toFloat(), "남성"))
+                        entries.add(PieEntry( Utils.getInt(gender, "Female").toFloat(), "여성"))
 
                         var m_cnt = Utils.getInt(gender, "Male")
                         var f_cnt =  Utils.getInt(gender, "Female")
@@ -323,7 +365,7 @@ fun graph(){
                             totalMemberCnt =1
                         }
                         Log.d("멤버갯수",totalMemberCnt.toString())
-                        val dataSet: PieDataSet = PieDataSet(entries, "성 비율");
+                        val dataSet: PieDataSet = PieDataSet(entries, "");
                         dataSet.setDrawIcons(false);
 
                         dataSet.sliceSpace = 3f

@@ -245,11 +245,20 @@ class SetMessageContFragment : Fragment() {
             params.put("member_id", member_id)
         }
         params.put("message", message)
+
+
         params.put("7days_yn", "N")
         params.put("title", title)
         if (imgIV.drawable != null) {
             bitmap = imgIV.drawable as BitmapDrawable
             params.put("upload", ByteArrayInputStream(Utils.getByteArray(bitmap!!.bitmap)))
+            params.put("type",2)
+        }else{
+            if (message.length<30){
+                params.put("type",1)
+            }else if (message.length>30){
+                params.put("type",3)
+            }
         }
         if (age.size > 0) {
             for (i in 0..(age.size - 1)) {
