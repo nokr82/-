@@ -309,17 +309,17 @@ fun graph(){
                         var barDataSet = BarDataSet(ageData, "12")
                         var barDataMenSet = BarDataSet(manData, "남성")
                         var barDatafamaleSet = BarDataSet(femaleData, "여성")
-                        barDatafamaleSet.setColors(*intArrayOf(Color.parseColor("#4b8bc8"), Color.parseColor("#4b8bc8")
-                                , Color.parseColor("#4b8bc8"), Color.parseColor("#4b8bc8")
-                                , Color.parseColor("#4b8bc8"), Color.parseColor("#4b8bc8")))
+                        barDatafamaleSet.setColors(*intArrayOf(Color.parseColor("#FF00DD"), Color.parseColor("#FF00DD")
+                                , Color.parseColor("#FF00DD"), Color.parseColor("#FF00DD")
+                                , Color.parseColor("#FF00DD"), Color.parseColor("#FF00DD")))
                         barDatafamaleSet.setDrawValues(false)
                         barDataMenSet.setColors(*intArrayOf(Color.parseColor("#6799FF"), Color.parseColor("#6799FF")
                                 , Color.parseColor("#6799FF"), Color.parseColor("#6799FF")
                                 , Color.parseColor("#6799FF"), Color.parseColor("#6799FF")))
                         barDataMenSet.setDrawValues(false)
-                        barDataSet.setColors(*intArrayOf(Color.parseColor("#ff8e1b"), Color.parseColor("#ff8e1b")
-                                , Color.parseColor("#ff8e1b"), Color.parseColor("#ff8e1b")
-                                , Color.parseColor("#ff8e1b"), Color.parseColor("#ff8e1b")))
+                        barDataSet.setColors(*intArrayOf(Color.parseColor("#4b8bc8"), Color.parseColor("#4b8bc8")
+                                , Color.parseColor("#4b8bc8"), Color.parseColor("#4b8bc8")
+                                , Color.parseColor("#4b8bc8"), Color.parseColor("#4b8bc8")))
                         barDataSet.setDrawValues(false)
 
                /*         val labels = ArrayList<String>()
@@ -336,16 +336,18 @@ fun graph(){
 
 
 
-                        var barData = BarData(barDataSet,barDataMenSet, barDatafamaleSet)
+                        var barData = BarData(barDataSet,barDatafamaleSet,barDataMenSet)
 //                        var barData = BarData(dataSets)
-                        barData.setBarWidth(0.1f)
 
-
-                        val barSpace = 0.02f
-                        val groupSpace = 0.3f
-
+                        barData.setBarWidth(0.16f)
+                        val barSpace = 0.08f
+                        val groupSpace = 0.16f
+//                        float groupSpace = 0.04f;
+//                        float barSpace = 0.02f; // x2 dataset
+//                        float barWidth = 0.46f; // x2 dataset
+                        // (0.46 + 0.02) * 2 + 0.04 = 1.00 -> interval per "group"
                         ageBarChart.setData(barData)
-                        ageBarChart.groupBars(0f, groupSpace, barSpace)
+                        ageBarChart.groupBars(0.0f, groupSpace, barSpace)
                         ageBarChart.invalidate() // refresh
 
 

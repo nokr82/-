@@ -159,7 +159,7 @@
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="#666666"
-                        android:letterSpacing="-0.2"/>
+                       />
                     <View
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
@@ -216,7 +216,7 @@
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="#666666"
-                        android:letterSpacing="-0.2"/>
+                        />
                     <View
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
@@ -286,7 +286,7 @@
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="#666666"
-                        android:letterSpacing="-0.2"/>
+                      />
                     <View
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
