@@ -17,6 +17,7 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import android.content.Intent
+import android.view.WindowManager
 import com.devstories.anipointcompany.android.base.PrefUtils
 
 
@@ -40,7 +41,7 @@ class DlgEditMemberInfoActivity : RootActivity() {
         member_id = intent.getIntExtra("member_id", -1)
         company_id = PrefUtils.getIntPreference(context, "company_id")
 
-
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         maleLL.setOnClickListener {
             setmenu()
             maleIV.setImageResource(R.drawable.radio_on)

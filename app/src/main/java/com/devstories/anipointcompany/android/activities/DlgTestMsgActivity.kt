@@ -10,6 +10,7 @@ import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.provider.MediaStore
 import android.util.Log
+import android.view.WindowManager
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.CouponAction
 import com.devstories.anipointcompany.android.base.PrefUtils
@@ -46,7 +47,7 @@ class DlgTestMsgActivity : RootActivity() {
 
         this.context = this
         progressDialog = ProgressDialog(context)
-
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         intent = getIntent()
         title = intent.getStringExtra("title")
         message = intent.getStringExtra("message")

@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -73,6 +74,9 @@ class CalActivity : RootActivity() {
 
         this.context = this
         progressDialog = ProgressDialog(context)
+
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
         intent = getIntent()
         type = intent.getIntExtra("type", -1)

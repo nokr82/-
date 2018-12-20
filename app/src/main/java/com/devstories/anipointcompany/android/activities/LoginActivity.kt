@@ -4,6 +4,7 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.CompanyAction
 import com.devstories.anipointcompany.android.R
@@ -30,7 +31,7 @@ class LoginActivity : RootActivity() {
 
         this.context = this
         progressDialog = ProgressDialog(context)
-
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         loginLL.setOnClickListener {
             var getName = Utils.getString(loginIdET)
             var getPW = Utils.getString(loginPassTV)

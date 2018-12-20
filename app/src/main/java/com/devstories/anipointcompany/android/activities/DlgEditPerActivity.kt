@@ -7,6 +7,7 @@ import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.RootActivity
 import kotlinx.android.synthetic.main.dlg_edit_per.*
 import android.content.Intent
+import android.view.WindowManager
 import com.devstories.anipointcompany.android.base.Utils
 
 
@@ -26,7 +27,7 @@ class DlgEditPerActivity : RootActivity() {
 
         cal()
 
-
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
 
 

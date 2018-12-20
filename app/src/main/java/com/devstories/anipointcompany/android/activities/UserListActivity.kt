@@ -9,6 +9,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
 import android.util.Log
+import android.view.WindowManager
 import com.devstories.aninuriandroid.adapter.UserVisitAdapter
 import com.devstories.anipointcompany.android.R
 import kotlinx.android.synthetic.main.activity_user_list.*
@@ -63,7 +64,7 @@ class UserListActivity : FragmentActivity() {
         var filter = IntentFilter("MSG_NEXT")
         context.registerReceiver(MsgReceiver, filter)
 
-
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
         userLL.setBackgroundResource(R.drawable.background_strock_707070)
         supportFragmentManager.beginTransaction().replace(R.id.userFL, User_List_Fragment).commit()
