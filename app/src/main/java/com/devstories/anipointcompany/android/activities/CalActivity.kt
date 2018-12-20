@@ -203,7 +203,7 @@ class CalActivity : RootActivity() {
             setmenu3()
             stack2LL.setBackgroundColor(Color.parseColor("#906e8a32"))
             val managerpercent = stack2TV.text.toString()
-            val money = moneyTV.text.toString()
+            var money = moneyTV.text.toString()
             per_type = 2
             if (managerpercent == null) {
                 Toast.makeText(context, "퍼센트를 먼저 입력해주세요.", Toast.LENGTH_SHORT).show()
@@ -212,7 +212,8 @@ class CalActivity : RootActivity() {
 
             if (money == null) {
                 Toast.makeText(context, "가격을 먼저 입력해주세요.", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+                money = "0"
+//                return@setOnClickListener
             } else {
                 val percent = managerpercent.toFloat() / 100
                 val floatPoint = (money.toFloat() * percent)
@@ -313,7 +314,7 @@ class CalActivity : RootActivity() {
 
             if(price < 1) {
                 Toast.makeText(context, "가격을 입력해주세요.", Toast.LENGTH_LONG).show()
-                return@setOnClickListener
+//                return@setOnClickListener
             }
             if (member_id<1){
                 Toast.makeText(context, "회원정보가 없습니다.", Toast.LENGTH_LONG).show()
@@ -374,7 +375,7 @@ class CalActivity : RootActivity() {
                     if (use_point < 1) {
 
                         Toast.makeText(context, "사용자가 포인트 입력 후 진행해주세요", Toast.LENGTH_LONG).show()
-                        return@setOnClickListener
+//                        return@setOnClickListener
                     }
 
                     if(per_type > 0) {
@@ -426,7 +427,7 @@ class CalActivity : RootActivity() {
         }
 
 
-        val money = moneyTV.text.toString()
+        var money = moneyTV.text.toString()
 
         if (defaultpercent == null) {
             Toast.makeText(context, "퍼센트를 먼저 입력해주세요.", Toast.LENGTH_SHORT).show()
@@ -435,7 +436,8 @@ class CalActivity : RootActivity() {
 
         if (money == null) {
             Toast.makeText(context, "가격을 먼저 입력해주세요.", Toast.LENGTH_SHORT).show()
-            return
+            money = "0"
+//            return
         }
 
         val percent = defaultpercent.toFloat() / 100

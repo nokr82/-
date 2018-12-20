@@ -309,9 +309,9 @@ fun graph(){
                         var barDataSet = BarDataSet(ageData, "12")
                         var barDataMenSet = BarDataSet(manData, "남성")
                         var barDatafamaleSet = BarDataSet(femaleData, "여성")
-                        barDatafamaleSet.setColors(*intArrayOf(Color.parseColor("#FF00DD"), Color.parseColor("#FF00DD")
-                                , Color.parseColor("#FF00DD"), Color.parseColor("#FF00DD")
-                                , Color.parseColor("#FF00DD"), Color.parseColor("#FF00DD")))
+                        barDatafamaleSet.setColors(*intArrayOf(Color.parseColor("#4b8bc8"), Color.parseColor("#4b8bc8")
+                                , Color.parseColor("#4b8bc8"), Color.parseColor("#4b8bc8")
+                                , Color.parseColor("#4b8bc8"), Color.parseColor("#4b8bc8")))
                         barDatafamaleSet.setDrawValues(false)
                         barDataMenSet.setColors(*intArrayOf(Color.parseColor("#6799FF"), Color.parseColor("#6799FF")
                                 , Color.parseColor("#6799FF"), Color.parseColor("#6799FF")
@@ -336,12 +336,16 @@ fun graph(){
 
 
 
-                        var barData = BarData(barDataMenSet, barDatafamaleSet)
+                        var barData = BarData(barDataSet,barDataMenSet, barDatafamaleSet)
+//                        var barData = BarData(dataSets)
                         barData.setBarWidth(0.1f)
 
 
+                        val barSpace = 0.02f
+                        val groupSpace = 0.3f
+
                         ageBarChart.setData(barData)
-//                        ageBarChart.groupBars(1980f, 0.06f, 0.02f);
+                        ageBarChart.groupBars(0f, groupSpace, barSpace)
                         ageBarChart.invalidate() // refresh
 
 
