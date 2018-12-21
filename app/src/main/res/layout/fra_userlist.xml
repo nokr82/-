@@ -6,6 +6,11 @@
     android:layout_height="match_parent">
 
 
+    <com.devstories.anipointcompany.android.base.RationalLinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:ratio="550:360"
+        app:adjustHeight="false">
 
 
 
@@ -13,10 +18,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
-        <com.devstories.anipointcompany.android.base.RationalRelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            app:ratio="550:360">
+        <com.devstories.anipointcompany.android.base.RationalLinearLayout
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            app:ratio="0:360"
+            app:adjustHeight="false">
         <LinearLayout
             android:layout_width="300dp"
             android:layout_height="match_parent"
@@ -139,7 +145,7 @@
                 <LinearLayout
                     android:id="@+id/userList_birth_userLL"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="35dp"
                     android:gravity="center_vertical"
                     android:orientation="vertical">
@@ -159,10 +165,6 @@
                             android:textColor="#80ffffff"
                             android:textSize="36dp" />
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.3dp"
-                            android:background="#ffff" />
 
                     </LinearLayout>
 
@@ -232,11 +234,8 @@
 
             </LinearLayout>
         </LinearLayout>
-        </com.devstories.anipointcompany.android.base.RationalRelativeLayout>
-        <com.devstories.anipointcompany.android.base.RationalRelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:ratio="550:360">
+        </com.devstories.anipointcompany.android.base.RationalLinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -315,6 +314,8 @@
 
 
         </LinearLayout>
-        </com.devstories.anipointcompany.android.base.RationalRelativeLayout>
+
     </LinearLayout>
+
+    </com.devstories.anipointcompany.android.base.RationalLinearLayout>
 </android.support.constraint.ConstraintLayout>

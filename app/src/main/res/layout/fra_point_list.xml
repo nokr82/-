@@ -6,18 +6,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+    <com.devstories.anipointcompany.android.base.RationalLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:ratio="550:360"
+        app:adjustHeight="false">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <com.devstories.anipointcompany.android.base.RationalRelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            app:ratio="300:360">
+        <com.devstories.anipointcompany.android.base.RationalLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:ratio="150:360"
+            app:adjustHeight="false">
         <LinearLayout
-            android:layout_width="300dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
             android:layout_marginLeft="8.5dp"
             android:orientation="vertical">
@@ -201,13 +207,13 @@
 
 
         </LinearLayout>
-        </com.devstories.anipointcompany.android.base.RationalRelativeLayout>
+        </com.devstories.anipointcompany.android.base.RationalLinearLayout>
 
-        <com.devstories.anipointcompany.android.base.RationalRelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            app:ratio="365:360"
-         >
+        <com.devstories.anipointcompany.android.base.RationalLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:ratio="400:360"
+            app:adjustHeight="false">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -651,6 +657,7 @@
 
             </LinearLayout>
         </LinearLayout>
-        </com.devstories.anipointcompany.android.base.RationalRelativeLayout>
+        </com.devstories.anipointcompany.android.base.RationalLinearLayout>
     </LinearLayout>
+    </com.devstories.anipointcompany.android.base.RationalLinearLayout>
 </LinearLayout>

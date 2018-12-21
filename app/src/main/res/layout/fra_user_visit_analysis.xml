@@ -6,10 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-    <com.devstories.anipointcompany.android.base.RationalRelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        app:ratio="300:360">
+    <com.devstories.anipointcompany.android.base.RationalLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:ratio="150:360"
+        app:adjustHeight="false">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -203,11 +204,11 @@
 
         </LinearLayout>
 
-    </com.devstories.anipointcompany.android.base.RationalRelativeLayout>
-    <com.devstories.anipointcompany.android.base.RationalRelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        app:ratio="550:360">
+    </com.devstories.anipointcompany.android.base.RationalLinearLayout>
+    <com.devstories.anipointcompany.android.base.RationalLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:ratio="400:360">
     <FrameLayout
         android:id="@+id/visitFL"
         android:layout_width="match_parent"
@@ -219,5 +220,5 @@
 
 
     </FrameLayout>
-    </com.devstories.anipointcompany.android.base.RationalRelativeLayout>
+    </com.devstories.anipointcompany.android.base.RationalLinearLayout>
 </LinearLayout>

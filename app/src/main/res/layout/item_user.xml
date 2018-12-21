@@ -6,12 +6,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
+    <com.devstories.anipointcompany.android.base.RationalLinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:ratio="175:280"
+        app:adjustHeight="false">
+
 
     <LinearLayout
         android:layout_marginLeft="10dp"
         android:background="#ffff"
-        android:layout_width="350dp"
-        android:layout_height="580dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         >
 
@@ -556,7 +562,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
             <LinearLayout
-                android:layout_alignParentBottom="true"
+                android:layout_marginTop="20dp"
                 android:id="@+id/msgLL"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -584,7 +590,7 @@
     </LinearLayout>
 
 
-
+</com.devstories.anipointcompany.android.base.RationalLinearLayout>
 
 
 
