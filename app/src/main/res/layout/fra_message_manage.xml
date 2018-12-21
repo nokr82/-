@@ -7,7 +7,7 @@
 
 
     <com.devstories.anipointcompany.android.base.RationalLinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         app:ratio="150:360"
         app:adjustHeight="false">
@@ -15,7 +15,7 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="8.5dp"
         android:layout_marginTop="9.5dp"
         android:orientation="vertical">
@@ -23,7 +23,7 @@
         <LinearLayout
             android:layout_marginLeft="20dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
 
@@ -146,77 +146,71 @@
 
                 </LinearLayout>
 
+                <RelativeLayout
+                    android:layout_marginTop="40dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/accumulateLL"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_marginTop="10dp"
+                            android:background="#997afb"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal"
+                                android:letterSpacing="-0.03"
+                                android:lineSpacingExtra="-2sp"
+                                android:text="적립"
+                                android:textColor="#ffffff"
+                                android:textSize="24dp" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/useLL"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="10dp"
+                            android:background="#ff8e1b"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal"
+                                android:letterSpacing="-0.03"
+                                android:lineSpacingExtra="-2sp"
+                                android:text="사용"
+                                android:textColor="#ffffff"
+                                android:textSize="24dp" />
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
             </LinearLayout>
             </ScrollView>
-            <RelativeLayout
-                android:layout_width="match_parent"
-
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:layout_marginBottom="20dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="92dp"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:id="@+id/accumulateLL"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_marginTop="10dp"
-                        android:background="#997afb"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="-2sp"
-                            android:text="적립"
-                            android:textColor="#ffffff"
-                            android:textSize="24dp" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/useLL"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="10dp"
-                        android:background="#ff8e1b"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="-2sp"
-                            android:text="사용"
-                            android:textColor="#ffffff"
-                            android:textSize="24dp" />
-
-
-                    </LinearLayout>
-                </LinearLayout>
-            </RelativeLayout>
         </LinearLayout>
 
     </LinearLayout>
+
+
+
     </com.devstories.anipointcompany.android.base.RationalLinearLayout>
-    <com.devstories.anipointcompany.android.base.RationalLinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:ratio="400:360"
-        app:adjustHeight="false">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+
 
         <FrameLayout
             android:id="@+id/messageFL"
@@ -230,6 +224,4 @@
 
         </FrameLayout>
 
-    </LinearLayout>
-    </com.devstories.anipointcompany.android.base.RationalLinearLayout>
 </LinearLayout>

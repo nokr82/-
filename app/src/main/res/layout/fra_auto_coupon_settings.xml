@@ -4,40 +4,45 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:fillViewport="true">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="2.4"
             android:orientation="vertical"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp">
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
 
             <LinearLayout
                 android:id="@+id/newMemberLL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#eeeeee"
                 android:orientation="vertical"
                 android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:background="#eeeeee">
+                android:paddingRight="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="99dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="120dp"
-                        android:scaleType="fitXY"
                         android:layout_height="60dp"
-                        android:src="@mipmap/coupon"
-                        />
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/coupon" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -48,17 +53,17 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="첫 가입 고객 환영 쿠폰"
                             android:textColor="#333333"
                             android:textSize="16dp"
-                            android:textStyle="bold"
-                            android:text="첫 가입 고객 환영 쿠폰"/>
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/newMemberIV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
-                            android:src="@mipmap/off"/>
+                            android:src="@mipmap/off" />
 
                     </LinearLayout>
 
@@ -67,7 +72,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:background="#e7e7e7"/>
+                    android:background="#e7e7e7" />
 
             </LinearLayout>
 
@@ -87,8 +92,8 @@
 
                     <ImageView
                         android:layout_width="120dp"
-                        android:scaleType="fitXY"
                         android:layout_height="60dp"
+                        android:scaleType="fitXY"
                         android:src="@mipmap/coupon" />
 
                     <LinearLayout
@@ -119,7 +124,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:background="#e7e7e7"/>
+                    android:background="#e7e7e7" />
 
             </LinearLayout>
 
@@ -134,15 +139,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="99dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="120dp"
-                        android:scaleType="fitXY"
                         android:layout_height="60dp"
-                        android:src="@mipmap/coupon"
-                     />
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/coupon" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -153,17 +157,17 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="30일 미방문 고객 쿠폰"
                             android:textColor="#333333"
                             android:textSize="16dp"
-                            android:textStyle="bold"
-                            android:text="30일 미방문 고객 쿠폰"/>
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/noVisit30IV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
-                            android:src="@mipmap/off"/>
+                            android:src="@mipmap/off" />
 
                     </LinearLayout>
 
@@ -172,7 +176,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:background="#e7e7e7"/>
+                    android:background="#e7e7e7" />
 
             </LinearLayout>
 
@@ -187,15 +191,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="99dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="120dp"
-                        android:scaleType="fitXY"
                         android:layout_height="60dp"
-                        android:src="@mipmap/coupon"
-                      />
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/coupon" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -206,17 +209,17 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="60일 미방문 고객 쿠폰"
                             android:textColor="#333333"
                             android:textSize="16dp"
-                            android:textStyle="bold"
-                            android:text="60일 미방문 고객 쿠폰"/>
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/noVisit60IV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
-                            android:src="@mipmap/off"/>
+                            android:src="@mipmap/off" />
 
                     </LinearLayout>
 
@@ -225,7 +228,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:background="#e7e7e7"/>
+                    android:background="#e7e7e7" />
 
             </LinearLayout>
 
@@ -240,15 +243,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="99dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="120dp"
-                        android:scaleType="fitXY"
                         android:layout_height="60dp"
-                        android:src="@mipmap/coupon"
-                       />
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/coupon" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -259,17 +261,17 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="90일 미방문 고객 쿠폰"
                             android:textColor="#333333"
                             android:textSize="16dp"
-                            android:textStyle="bold"
-                            android:text="90일 미방문 고객 쿠폰"/>
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/noVisit90IV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
-                            android:src="@mipmap/off"/>
+                            android:src="@mipmap/off" />
 
                     </LinearLayout>
 
@@ -278,16 +280,15 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:background="#e7e7e7"/>
+                    android:background="#e7e7e7" />
 
             </LinearLayout>
 
         </LinearLayout>
-
         <View
             android:layout_width="0.5dp"
             android:layout_height="match_parent"
-            android:background="#f0f0f0"/>
+            android:background="#f0f0f0" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -586,7 +587,7 @@
                             android:id="@+id/imgIV"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:src="@mipmap/main_bg"/>
+                            android:src="@mipmap/main_bg" />
 
 
                     </LinearLayout>
@@ -594,9 +595,9 @@
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_marginRight="20dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="1"
                         android:background="@drawable/background_box_e5ebf7"
                         android:minHeight="250dp"
                         android:orientation="vertical"
@@ -619,29 +620,30 @@
                             android:layout_height="wrap_content"
                             android:textColor="#555555"
                             android:textSize="15sp" />
+                        <TextView
+                            android:id="@+id/saveTV"
+                            android:layout_width="130dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="right"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:background="#0871bf"
+                            android:gravity="center"
+                            android:letterSpacing="-0.03"
+                            android:text="저장"
+                            android:textColor="#ffffff"
+                            android:textSize="9sp" />
                     </LinearLayout>
 
                 </LinearLayout>
 
 
-                <TextView
-                    android:id="@+id/saveTV"
-                    android:layout_width="130dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="right"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="#0871bf"
-                    android:gravity="center"
-                    android:letterSpacing="-0.03"
-                    android:text="저장"
-                    android:textColor="#ffffff"
-                    android:textSize="9sp" />
+
 
             </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
-
+    </ScrollView>
 </LinearLayout>

@@ -4,7 +4,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:layout_height="wrap_content">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -448,10 +456,7 @@
         </LinearLayout>
 
     </LinearLayout>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -485,14 +490,15 @@
                 <com.github.mikephil.charting.charts.BarChart
                     android:id="@+id/ageBarChart"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.5"
                     android:layout_height="400dp"
                     android:layout_marginRight="5dp">
 
                 </com.github.mikephil.charting.charts.BarChart>
                 <com.github.mikephil.charting.charts.PieChart
                     android:id="@+id/genderPieChart"
-                    android:layout_width="400dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="400dp"
                     android:layout_marginRight="5dp">
 
@@ -502,6 +508,6 @@
 
         </LinearLayout>
 
+</LinearLayout>
     </ScrollView>
-
 </LinearLayout>

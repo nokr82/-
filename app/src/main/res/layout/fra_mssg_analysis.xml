@@ -7,7 +7,11 @@
     android:padding="10dp"
     tools:context=".activities.MssgAnalysisFragment">
 
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:fillViewport="true">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -195,6 +199,7 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -323,5 +328,4 @@
         </LinearLayout>
 
     </LinearLayout>
-
 </LinearLayout>

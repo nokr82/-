@@ -2,7 +2,16 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
+
+    <com.devstories.anipointcompany.android.base.RationalLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:ratio="0:0"
+        app:adjustHeight="false">
+
 
    <LinearLayout
        android:layout_width="match_parent"
@@ -19,7 +28,9 @@
            android:layout_height="match_parent"
            android:orientation="vertical">
 
-           <TextView
+           <me.grantland.widget.AutofitTextView
+               android:singleLine="true"
+               android:maxLines="1"
                android:id="@+id/nameTV"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
@@ -28,8 +39,9 @@
                android:text="홍길동"
                android:textColor="#666666"
                android:textSize="20dp" />
-
-           <TextView
+           <me.grantland.widget.AutofitTextView
+               android:singleLine="true"
+               android:maxLines="1"
                android:id="@+id/updateTV"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
@@ -51,7 +63,9 @@
            android:layout_height="match_parent"
            android:orientation="vertical">
 
-           <TextView
+           <me.grantland.widget.AutofitTextView
+               android:singleLine="true"
+               android:maxLines="1"
                android:id="@+id/typeTV"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
@@ -61,7 +75,9 @@
                android:lineSpacingExtra="53sp"
                android:text="포인트 적립"
                />
-           <TextView
+           <me.grantland.widget.AutofitTextView
+               android:singleLine="true"
+               android:maxLines="1"
                android:id="@+id/pointTV"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
@@ -77,7 +93,7 @@
 
    </LinearLayout>
 
-
+    </com.devstories.anipointcompany.android.base.RationalLinearLayout>
 
 
 </LinearLayout>

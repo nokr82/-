@@ -5,65 +5,70 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
-    <LinearLayout
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
         <LinearLayout
-            android:layout_marginTop="19dp"
             android:layout_width="match_parent"
-            android:layout_marginRight="60dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:orientation="vertical"
+            android:layout_marginRight="60dp"
+            android:layout_marginTop="19dp"
             android:background="#ffff"
-            >
+            android:orientation="vertical">
+
             <TextView
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textColor="#666666"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
                 android:letterSpacing="-0.03"
                 android:lineSpacingExtra="3sp"
                 android:text="내 정보(매장정보)"
-                android:textStyle="bold"/>
+                android:textColor="#666666"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <LinearLayout
+                android:layout_width="690dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_width="690dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:background="@drawable/background_strock_e7e7e7"
                 android:gravity="center"
-                android:background="@drawable/background_strock_e7e7e7">
+                android:orientation="vertical">
 
                 <View
                     android:layout_width="660dp"
                     android:layout_height="1dp"
-                    android:background="#e7e7e7"/>
+                    android:background="#e7e7e7" />
+
                 <LinearLayout
-                    android:layout_marginTop="20dp"
                     android:layout_width="660dp"
-                    android:layout_height="40dp">
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp">
 
                     <TextView
                         android:layout_width="165dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
+                        android:background="#efefef"
+                        android:gravity="center"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="4sp"
                         android:text="상호명"
                         android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:background="#efefef"
-                        android:gravity="center"/>
+                        android:textStyle="bold" />
+
                     <View
                         android:layout_width="1dp"
                         android:layout_height="40dp"
-                        android:background="#e7e7e7"/>
+                        android:background="#e7e7e7" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -90,7 +95,7 @@
                 <View
                     android:layout_width="660dp"
                     android:layout_height="1dp"
-                    android:background="#e7e7e7"/>
+                    android:background="#e7e7e7" />
 
                 <LinearLayout
                     android:layout_width="660dp"
@@ -100,88 +105,101 @@
                         android:layout_width="165dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
+                        android:background="#efefef"
+                        android:gravity="center"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="4sp"
                         android:text="연락처"
                         android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:background="#efefef"
-                        android:gravity="center"/>
+                        android:textStyle="bold" />
+
                     <View
                         android:layout_width="1dp"
                         android:layout_height="40dp"
-                        android:background="#e7e7e7"/>
+                        android:background="#e7e7e7" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
                         android:paddingLeft="19dp">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
+
                             <EditText
-                                android:gravity="center_vertical"
                                 android:id="@+id/phoneNum1ET"
                                 android:layout_width="70dp"
                                 android:layout_height="32dp"
+                                android:background="@null"
+                                android:gravity="center_vertical"
                                 android:maxLength="3"
-                                android:textSize="16sp"
-                                android:background="@null" />
+                                android:textSize="16sp" />
+
                             <View
                                 android:layout_width="70dp"
                                 android:layout_height="1dp"
-                                android:background="#e7e7e7"/>
+                                android:background="#e7e7e7" />
                         </LinearLayout>
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:textSize="16sp"
-                            android:gravity="center"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
-                            android:text="-"/>
+                            android:gravity="center"
+                            android:text="-"
+                            android:textSize="16sp" />
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
+
                             <EditText
-                                android:gravity="center_vertical"
                                 android:id="@+id/phoneNum2ET"
                                 android:layout_width="70dp"
                                 android:layout_height="32dp"
+                                android:background="@null"
+                                android:gravity="center_vertical"
                                 android:maxLength="4"
-                                android:textSize="16sp"
-                                android:background="@null" />
+                                android:textSize="16sp" />
+
                             <View
                                 android:layout_width="70dp"
                                 android:layout_height="1dp"
-                                android:background="#e7e7e7"/>
+                                android:background="#e7e7e7" />
                         </LinearLayout>
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:textSize="16sp"
-                            android:gravity="center"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
-                            android:text="-"/>
+                            android:gravity="center"
+                            android:text="-"
+                            android:textSize="16sp" />
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
+
                             <EditText
-                                android:gravity="center_vertical"
                                 android:id="@+id/phoneNum3ET"
                                 android:layout_width="70dp"
                                 android:layout_height="32dp"
+                                android:background="@null"
+                                android:gravity="center_vertical"
                                 android:maxLength="4"
-                                android:textSize="16sp"
-                                android:background="@null" />
+                                android:textSize="16sp" />
+
                             <View
                                 android:layout_width="70dp"
                                 android:layout_height="1dp"
-                                android:background="#e7e7e7"/>
+                                android:background="#e7e7e7" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -190,7 +208,8 @@
                 <View
                     android:layout_width="660dp"
                     android:layout_height="1dp"
-                    android:background="#e7e7e7"/>
+                    android:background="#e7e7e7" />
+
                 <LinearLayout
                     android:layout_width="660dp"
                     android:layout_height="40dp">
@@ -199,40 +218,46 @@
                         android:layout_width="165dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
+                        android:background="#efefef"
+                        android:gravity="center"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="4sp"
                         android:text="아이디"
                         android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:background="#efefef"
-                        android:gravity="center"/>
+                        android:textStyle="bold" />
+
                     <View
                         android:layout_width="1dp"
                         android:layout_height="40dp"
-                        android:background="#e7e7e7"/>
+                        android:background="#e7e7e7" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:paddingLeft="19dp">
+
                         <TextView
-                            android:gravity="center_vertical"
                             android:id="@+id/compIdET"
                             android:layout_width="300dp"
                             android:layout_height="32dp"
-                            android:textSize="16sp"
-                            android:background="@null" />
+                            android:background="@null"
+                            android:gravity="center_vertical"
+                            android:textSize="16sp" />
+
                         <View
                             android:layout_width="300dp"
                             android:layout_height="1dp"
-                            android:background="#e7e7e7"/>
+                            android:background="#e7e7e7" />
                     </LinearLayout>
 
                 </LinearLayout>
+
                 <View
                     android:layout_width="660dp"
                     android:layout_height="1dp"
-                    android:background="#e7e7e7"/>
+                    android:background="#e7e7e7" />
+
                 <LinearLayout
                     android:layout_width="660dp"
                     android:layout_height="40dp">
@@ -241,32 +266,36 @@
                         android:layout_width="165dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
+                        android:background="#efefef"
+                        android:gravity="center"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="4sp"
                         android:text="계약 기간"
                         android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:background="#efefef"
-                        android:gravity="center"/>
+                        android:textStyle="bold" />
+
                     <View
                         android:layout_width="1dp"
                         android:layout_height="40dp"
-                        android:background="#e7e7e7"/>
+                        android:background="#e7e7e7" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:paddingLeft="19dp">
+
                         <TextView
                             android:id="@+id/termTV"
                             android:layout_width="300dp"
                             android:layout_height="32dp"
-                            android:textSize="16sp"
-                            android:background="@null" />
+                            android:background="@null"
+                            android:textSize="16sp" />
+
                         <View
                             android:layout_width="300dp"
                             android:layout_height="1dp"
-                            android:background="#e7e7e7"/>
+                            android:background="#e7e7e7" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -274,43 +303,43 @@
                 <View
                     android:layout_width="660dp"
                     android:layout_height="1dp"
-                    android:background="#e7e7e7"/>
+                    android:background="#e7e7e7" />
 
 
                 <TextView
                     android:id="@+id/infocheckTV"
                     android:layout_width="150dp"
                     android:layout_height="51dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="19dp"
                     android:layout_gravity="center"
-                    android:gravity="center"
+                    android:layout_marginBottom="19dp"
+                    android:layout_marginTop="30dp"
                     android:background="#0871bf"
-                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:text="수정"
                     android:textColor="#ffffff"
-                    android:text="수정"/>
+                    android:textSize="20sp" />
 
 
             </LinearLayout>
 
             <TextView
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginBottom="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textColor="#666666"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
                 android:letterSpacing="-0.03"
                 android:lineSpacingExtra="3sp"
                 android:text="이미지 등록"
-                android:textStyle="bold"/>
+                android:textColor="#666666"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <LinearLayout
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_width="700dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:orientation="vertical">
 
                 <HorizontalScrollView
@@ -318,6 +347,7 @@
                     android:layout_height="131dp"
                     android:background="@drawable/background_strock_e7e7e7"
                     android:paddingLeft="15dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -332,41 +362,41 @@
                             android:layout_height="90dp"
                             android:layout_marginRight="20dp">
 
-                        <View
-                            android:layout_width="90dp"
-                            android:layout_height="1dp"
-                            android:background="#e7e7e7" />
+                            <View
+                                android:layout_width="90dp"
+                                android:layout_height="1dp"
+                                android:background="#e7e7e7" />
 
-                        <View
-                            android:layout_width="90dp"
-                            android:layout_height="1dp"
-                            android:layout_alignParentBottom="true"
-                            android:background="#e7e7e7" />
+                            <View
+                                android:layout_width="90dp"
+                                android:layout_height="1dp"
+                                android:layout_alignParentBottom="true"
+                                android:background="#e7e7e7" />
 
-                        <View
-                            android:layout_width="1dp"
-                            android:layout_height="90dp"
-                            android:layout_alignParentRight="true"
-                            android:background="#e7e7e7" />
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="90dp"
+                                android:layout_alignParentRight="true"
+                                android:background="#e7e7e7" />
 
-                        <View
-                            android:layout_width="1dp"
-                            android:layout_height="90dp"
-                            android:layout_alignParentLeft="true"
-                            android:background="#e7e7e7" />
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="90dp"
+                                android:layout_alignParentLeft="true"
+                                android:background="#e7e7e7" />
 
-                        <View
-                            android:layout_width="60dp"
-                            android:layout_height="2dp"
-                            android:layout_centerInParent="true"
-                            android:background="#e7e7e7" />
+                            <View
+                                android:layout_width="60dp"
+                                android:layout_height="2dp"
+                                android:layout_centerInParent="true"
+                                android:background="#e7e7e7" />
 
-                        <View
-                            android:layout_width="2dp"
-                            android:layout_height="60dp"
-                            android:layout_centerInParent="true"
-                            android:background="#e7e7e7" />
-                    </RelativeLayout>
+                            <View
+                                android:layout_width="2dp"
+                                android:layout_height="60dp"
+                                android:layout_centerInParent="true"
+                                android:background="#e7e7e7" />
+                        </RelativeLayout>
 
                         <LinearLayout
                             android:id="@+id/userLL"
@@ -380,6 +410,7 @@
 
 
                 </HorizontalScrollView>
+
                 <TextView
                     android:id="@+id/imgcheckTV"
                     android:layout_width="150dp"
@@ -399,165 +430,186 @@
             <LinearLayout
                 android:layout_width="690dp"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="100dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="60dp"
-                android:layout_marginBottom="100dp"
-                android:padding="15dp"
                 android:background="@drawable/background_strock_e7e7e7"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="15dp">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
-                    android:textSize="18sp"
+                    android:text="내 정보(매장 정보)"
                     android:textColor="#666666"
-                    android:textStyle="bold"
-                    android:text="내 정보(매장 정보)"/>
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
                     <View
                         android:layout_width="660dp"
                         android:layout_height="1dp"
-                        android:background="#e7e7e7"/>
+                        android:background="#e7e7e7" />
+
                     <LinearLayout
                         android:layout_width="660dp"
                         android:layout_height="40dp">
+
                         <TextView
                             android:layout_width="165dp"
                             android:layout_height="match_parent"
-                            android:gravity="center"
                             android:background="#efefef"
-                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:text="현재 비밀번호"
                             android:textSize="16sp"
-                            android:text="현재 비밀번호" />
+                            android:textStyle="bold" />
+
                         <View
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
-                            android:background="#e7e7e7"/>
+                            android:background="#e7e7e7" />
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:paddingLeft="19dp"
                             android:gravity="center_vertical"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:paddingLeft="19dp">
+
                             <EditText
-                                android:gravity="center_vertical"
                                 android:id="@+id/tempPasswordET"
                                 android:layout_width="300dp"
                                 android:layout_height="32dp"
-                                android:textSize="16sp"
+                                android:background="@null"
+                                android:gravity="center_vertical"
                                 android:inputType="textPassword"
-                                android:background="@null"/>
+                                android:textSize="16sp" />
+
                             <View
                                 android:layout_width="300dp"
                                 android:layout_height="1dp"
-                                android:background="#e7e7e7"/>
+                                android:background="#e7e7e7" />
                         </LinearLayout>
                     </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="#e7e7e7"/>
+                        android:background="#e7e7e7" />
 
                     <LinearLayout
                         android:layout_width="660dp"
                         android:layout_height="40dp">
+
                         <TextView
                             android:layout_width="165dp"
                             android:layout_height="match_parent"
-                            android:gravity="center"
                             android:background="#efefef"
-                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:text="새 비밀번호"
                             android:textSize="16sp"
-                            android:text="새 비밀번호" />
+                            android:textStyle="bold" />
+
                         <View
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
-                            android:background="#e7e7e7"/>
+                            android:background="#e7e7e7" />
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:paddingLeft="19dp"
                             android:gravity="center_vertical"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:paddingLeft="19dp">
+
                             <EditText
-                                android:gravity="center_vertical"
                                 android:id="@+id/newPasswordET"
                                 android:layout_width="300dp"
                                 android:layout_height="32dp"
-                                android:textSize="16sp"
+                                android:background="@null"
+                                android:gravity="center_vertical"
                                 android:inputType="textPassword"
-                                android:background="@null"/>
+                                android:textSize="16sp" />
+
                             <View
                                 android:layout_width="300dp"
                                 android:layout_height="1dp"
-                                android:background="#e7e7e7"/>
+                                android:background="#e7e7e7" />
                         </LinearLayout>
                     </LinearLayout>
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="#e7e7e7"/>
+                        android:background="#e7e7e7" />
 
                     <LinearLayout
                         android:layout_width="660dp"
                         android:layout_height="40dp">
+
                         <TextView
                             android:layout_width="165dp"
                             android:layout_height="match_parent"
-                            android:gravity="center"
                             android:background="#efefef"
-                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:text="새 비밀번호 확인"
                             android:textSize="16sp"
-                            android:text="새 비밀번호 확인" />
+                            android:textStyle="bold" />
+
                         <View
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
-                            android:background="#e7e7e7"/>
+                            android:background="#e7e7e7" />
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:paddingLeft="19dp"
                             android:gravity="center_vertical"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:paddingLeft="19dp">
+
                             <EditText
-                                android:gravity="center_vertical"
                                 android:id="@+id/newPassCheckET"
                                 android:layout_width="300dp"
                                 android:layout_height="32dp"
-                                android:textSize="16sp"
+                                android:background="@null"
+                                android:gravity="center_vertical"
                                 android:inputType="textPassword"
-                                android:background="@null"/>
+                                android:textSize="16sp" />
+
                             <View
                                 android:layout_width="300dp"
                                 android:layout_height="1dp"
-                                android:background="#e7e7e7"/>
+                                android:background="#e7e7e7" />
                         </LinearLayout>
                     </LinearLayout>
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="#e7e7e7"/>
+                        android:background="#e7e7e7" />
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/checkTV"
                     android:layout_width="150dp"
                     android:layout_height="51dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="19dp"
                     android:layout_gravity="center"
-                    android:gravity="center"
+                    android:layout_marginBottom="19dp"
+                    android:layout_marginTop="30dp"
                     android:background="#0871bf"
-                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:text="변경"
                     android:textColor="#ffffff"
-                    android:text="변경"/>
+                    android:textSize="20sp" />
             </LinearLayout>
 
-        </LinearLayout><!---->
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

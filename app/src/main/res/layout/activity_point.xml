@@ -1,27 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-
     android:background="@drawable/background_gradient"
     android:orientation="horizontal">
 
-    <com.devstories.anipointcompany.android.base.RationalRelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:ratio="550:360">
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
-
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_weight="0.5">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -78,10 +67,10 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:hint="이름"
-                        android:minEms="5"
-                        android:textColor="#ffffff"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="1sp"
+                        android:minEms="5"
+                        android:textColor="#ffffff"
                         android:textColorHint="#ffffff"
                         android:textSize="18dp" />
 
@@ -105,11 +94,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="17dp"
                         android:background="@null"
-                        android:inputType="number"
                         android:hint="핸드폰번호"
-                        android:minEms="5"
+                        android:inputType="number"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="1sp"
+                        android:minEms="5"
                         android:textColor="#ffffff"
                         android:textColorHint="#ffffff"
                         android:textSize="18dp" />
@@ -194,6 +183,7 @@
                     android:layout_height="0.3dp"
                     android:layout_marginRight="6dp"
                     android:background="#ffffff" />
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="33dp"
@@ -207,10 +197,10 @@
                         android:background="@null"
                         android:hint="나이"
                         android:inputType="number"
-                        android:minEms="5"
                         android:letterSpacing="-0.03"
-                        android:textColor="#ffffff"
                         android:lineSpacingExtra="1sp"
+                        android:minEms="5"
+                        android:textColor="#ffffff"
                         android:textColorHint="#ffffff"
                         android:textSize="18dp" />
 
@@ -235,9 +225,9 @@
                         android:background="@null"
                         android:hint="생일"
                         android:inputType="number"
-                        android:minEms="5"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="1sp"
+                        android:minEms="5"
                         android:textColor="#ffffff"
                         android:textColorHint="#ffffff"
                         android:textSize="18dp" />
@@ -249,8 +239,6 @@
                     android:layout_height="0.3dp"
                     android:layout_marginRight="6dp"
                     android:background="#ffffff" />
-
-
 
 
                 <LinearLayout
@@ -265,10 +253,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:hint="메모"  android:minEms="5"
-
+                        android:hint="메모"
                         android:letterSpacing="-0.03"
+
                         android:lineSpacingExtra="1sp"
+                        android:minEms="5"
                         android:textColor="#ffffff"
                         android:textColorHint="#ffffff"
                         android:textSize="18dp" />
@@ -283,12 +272,13 @@
                     android:background="#ffffff" />
             </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
             android:id="@+id/checkLL"
             android:layout_width="130dp"
             android:layout_height="25dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
             android:background="#2b2b2b"
             android:gravity="center"
             android:visibility="gone">
@@ -642,9 +632,9 @@
 
                             <ImageView
                                 android:id="@+id/cardPayIV"
-                                android:layout_gravity="center_vertical"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
                                 android:src="@drawable/radio_off" />
 
                             <TextView
@@ -663,10 +653,10 @@
                             android:layout_marginLeft="19dp">
 
                             <ImageView
-                                android:layout_gravity="center_vertical"
                                 android:id="@+id/cashPayIV"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
                                 android:src="@drawable/radio_off" />
 
                             <TextView
@@ -688,9 +678,9 @@
 
                         <ImageView
                             android:id="@+id/depositlessIV"
-                            android:layout_gravity="center_vertical"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
                             android:src="@drawable/radio_off" />
 
                         <TextView
@@ -712,63 +702,57 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="16dp"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginRight="9.5dp"
-        android:orientation="vertical">
-
-
-
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        android:layout_weight="1">
         <RelativeLayout
-            android:layout_marginLeft="23dp"
-            android:layout_width="450dp"
-            android:background="#90000000"
+            android:layout_width="match_parent"
             android:layout_height="61dp"
+            android:layout_marginLeft="23dp"
+            android:background="#90000000"
             android:orientation="horizontal">
-
 
 
             <TextView
                 android:id="@+id/pointTV"
-                android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:textColor="#90ffffff"
-                android:lineSpacingExtra="25sp"
+                android:layout_centerInParent="true"
                 android:gravity="center_horizontal"
+                android:lineSpacingExtra="25sp"
                 android:text="적립 포인트"
-                />
+                android:textColor="#90ffffff"
+                android:textSize="20dp" />
 
 
             <ImageView
-                android:layout_alignParentRight="true"
-               android:layout_margin="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/btn_close"/>
+                android:layout_alignParentRight="true"
+                android:layout_margin="20dp"
+                android:src="@mipmap/btn_close" />
 
 
         </RelativeLayout>
-
-
         <LinearLayout
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="9.5dp"
-            android:layout_marginLeft="23dp"
             android:layout_width="match_parent"
-            android:orientation="vertical"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="23dp"
+            android:layout_marginTop="9.5dp"
             android:background="#ffffff"
-            android:layout_height="match_parent">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
-                android:gravity="right"
                 android:layout_marginRight="11dp"
-                android:orientation="vertical"
-                >
+                android:gravity="right"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -785,17 +769,17 @@
                         android:text=""
                         android:textColor="#0066b0"
                         android:textSize="54dp" />
+
                     <TextView
                         android:id="@+id/m_opTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="54dp"
-                        android:textColor="#0066b0"
+                        android:gravity="end"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="16dp"
-                        android:gravity="end"
                         android:text="￦"
-                        />
+                        android:textColor="#0066b0"
+                        android:textSize="54dp" />
 
 
                 </LinearLayout>
@@ -803,21 +787,22 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="560dp"
-                android:orientation="vertical"
-                >
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1">
+
                     <LinearLayout
-                        android:onClick="onClick"
                         android:id="@+id/oneLL"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:layout_height="match_parent">
+                        android:onClick="onClick">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -829,56 +814,59 @@
                             android:textSize="48dp" />
 
                     </LinearLayout>
+
                     <LinearLayout
-                        android:onClick="onClick"
                         android:id="@+id/twoLL"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:layout_height="match_parent">
+                        android:onClick="onClick">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="48dp"
-                            android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
                             android:text="2"
-                            />
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
 
                     </LinearLayout>
+
                     <LinearLayout
-                        android:onClick="onClick"
                         android:id="@+id/threeLL"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:layout_height="match_parent">
+                        android:onClick="onClick">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="48dp"
-                            android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
                             android:text="3"
-                            />
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
 
                     </LinearLayout>
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1">
 
                     <LinearLayout
-                        android:onClick="onClick"
                         android:id="@+id/fourLL"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:onClick="onClick">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -890,32 +878,33 @@
                             android:textSize="48dp" />
 
                     </LinearLayout>
+
                     <LinearLayout
-                        android:onClick="onClick"
                         android:id="@+id/fiveLL"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:layout_height="match_parent">
+                        android:onClick="onClick">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="48dp"
-                            android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
                             android:text="5"
-                            />
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:onClick="onClick"
                         android:id="@+id/sixLL"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:onClick="onClick">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -929,62 +918,66 @@
                     </LinearLayout>
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1">
+
                     <LinearLayout
-                        android:onClick="onClick"
                         android:id="@+id/sevenLL"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:layout_height="match_parent">
+                        android:onClick="onClick">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="48dp"
-                            android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
                             android:text="7"
-                            />
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
 
                     </LinearLayout>
+
                     <LinearLayout
-                        android:onClick="onClick"
                         android:id="@+id/eightLL"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:layout_height="match_parent">
+                        android:onClick="onClick">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="48dp"
-                            android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
                             android:text="8"
-                            />
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
 
                     </LinearLayout>
+
                     <LinearLayout
-                        android:onClick="onClick"
                         android:id="@+id/nineLL"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:layout_height="match_parent">
+                        android:onClick="onClick">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="48dp"
-                            android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
                             android:text="9"
-                            />
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
 
                     </LinearLayout>
 
@@ -995,154 +988,158 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1">
-                    <LinearLayout
-                    android:onClick="onClick"
-                    android:id="@+id/delLL"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:background="#979797"
-                    android:layout_height="match_parent">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="21sp"
-                        android:textColor="#ffffff"
-                        android:letterSpacing="-0.05"
-                        android:lineSpacingExtra="-12sp"
-                        android:text="삭제"
-                        />
 
-                </LinearLayout>
                     <LinearLayout
-                        android:onClick="onClick"
-                        android:id="@+id/zeroLL"
+                        android:id="@+id/delLL"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:background="#979797"
                         android:gravity="center"
-                        android:layout_height="match_parent">
+                        android:onClick="onClick">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="48dp"
-                            android:textColor="#666666"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-12sp"
+                            android:text="삭제"
+                            android:textColor="#ffffff"
+                            android:textSize="21sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/zeroLL"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:onClick="onClick">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
                             android:text="0"
-                            />
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
 
                     </LinearLayout>
+
                     <LinearLayout
-                        android:onClick="onClick"
                         android:id="@+id/useLL"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center"
                         android:background="#b894ff"
-                        android:layout_height="match_parent">
+                        android:gravity="center"
+                        android:onClick="onClick">
+
                         <TextView
                             android:id="@+id/opTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="21sp"
-                            android:textColor="#ffffff"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-12sp"
                             android:text="적립"
-                            />
+                            android:textColor="#ffffff"
+                            android:textSize="21sp" />
 
                     </LinearLayout>
 
 
                 </LinearLayout>
-                
-                
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
                     android:orientation="horizontal">
 
 
                     <LinearLayout
                         android:id="@+id/stackLL"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:layout_height="match_parent">
+                        android:gravity="center">
+
                         <TextView
                             android:id="@+id/stackTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="48dp"
-                            android:textColor="#6e8a32"
+                            android:gravity="center_horizontal"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
-                            android:gravity="center_horizontal"
                             android:text="3"
-                            />
+                            android:textColor="#6e8a32"
+                            android:textSize="48dp" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="48dp"
-                            android:textColor="#6e8a32"
+                            android:gravity="center_horizontal"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
-                            android:gravity="center_horizontal"
                             android:text="%"
-                            />
+                            android:textColor="#6e8a32"
+                            android:textSize="48dp" />
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:id="@+id/stack2LL"
-                        android:onClick="onClick"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:layout_height="match_parent">
+                        android:onClick="onClick">
+
                         <TextView
                             android:id="@+id/stack2TV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="48dp"
-                            android:textColor="#666666"
+                            android:gravity="center_horizontal"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
-                            android:gravity="center_horizontal"
                             android:text="100"
-                            />
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="48dp"
-                            android:textColor="#666666"
+                            android:gravity="center_horizontal"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
-                            android:gravity="center_horizontal"
                             android:text="%"
-                            />
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:id="@+id/op_accLL"
-                        android:onClick="onClick"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:layout_height="match_parent">
+                        android:onClick="onClick">
+
                         <TextView
                             android:id="@+id/op_accTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24dp"
-                            android:textColor="#666666"
+                            android:gravity="center_horizontal"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
-                            android:gravity="center_horizontal"
                             android:text="포인트"
-                            />
+                            android:textColor="#666666"
+                            android:textSize="24dp" />
 
                     </LinearLayout>
-
 
 
                 </LinearLayout>
@@ -1151,38 +1148,36 @@
 
 
         </LinearLayout>
-
-
-
-
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="270dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_weight="0.5"
+        android:layout_marginRight="20dp">
 
         <LinearLayout
             android:id="@+id/usePointLL"
-            android:layout_width="270dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
             android:layout_marginLeft="9.5dp"
-            android:orientation="vertical"
             android:background="#ffff"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
             android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16dp"
                 android:layout_marginLeft="10dp"
-                android:textColor="#cbcbcb"
                 android:letterSpacing="-0.05"
                 android:lineSpacingExtra="1sp"
-                android:text="사용 포인트" />
+                android:text="사용 포인트"
+                android:textColor="#cbcbcb"
+                android:textSize="16dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -1191,26 +1186,25 @@
 
                 <TextView
                     android:id="@+id/usePointTV"
-                    android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="18dp"
                     android:layout_marginLeft="10dp"
-                    android:textColor="#666666"
+                    android:layout_marginTop="10dp"
                     android:letterSpacing="-0.05"
                     android:lineSpacingExtra="-9sp"
                     android:text="0"
-                    />
+                    android:textColor="#666666"
+                    android:textSize="18dp" />
 
                 <TextView
-                    android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="18dp"
-                    android:textColor="#666666"
+                    android:layout_marginTop="10dp"
                     android:letterSpacing="-0.05"
                     android:lineSpacingExtra="-9sp"
-                    android:text="P" />
+                    android:text="P"
+                    android:textColor="#666666"
+                    android:textSize="18dp" />
 
             </LinearLayout>
 
@@ -1218,94 +1212,10 @@
 
         <ListView
             android:id="@+id/couponLV"
-            android:layout_marginTop="15dp"
-            android:layout_width="270dp"
-            android:layout_height="match_parent" />
-
-    </LinearLayout>
-
-    <!--<ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:id="@+id/userCouponListLL"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:layout_marginTop="37dp"
-            android:layout_marginBottom="37dp"
-            android:orientation="vertical">
+            android:layout_marginTop="15dp" />
 
-
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/coupon" />
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="9.5dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/coupon" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="9.5dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/coupon" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="9.5dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/coupon" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="9.5dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/coupon" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="9.5dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/coupon" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </ScrollView>-->
-</LinearLayout>
-    </com.devstories.anipointcompany.android.base.RationalRelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>
