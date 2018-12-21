@@ -26,7 +26,10 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
+
+            <me.grantland.widget.AutofitTextView
+                android:singleLine="true"
+                android:maxLines="2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8.5dp"
@@ -54,7 +57,10 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <TextView
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:id="@+id/messageStatisticsTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -79,7 +85,10 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <TextView
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:id="@+id/sendMessageTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -110,7 +119,10 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <TextView
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:id="@+id/autoCouponTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

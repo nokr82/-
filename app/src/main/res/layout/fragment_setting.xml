@@ -22,7 +22,10 @@
             android:layout_weight="1"
             android:layout_marginLeft="17dp"
             android:orientation="vertical">
-            <TextView
+
+            <me.grantland.widget.AutofitTextView
+                android:singleLine="true"
+                android:maxLines="1"
                 android:id="@+id/titleTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

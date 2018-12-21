@@ -57,7 +57,10 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal">
-                <TextView
+
+                <me.grantland.widget.AutofitTextView
+                    android:singleLine="true"
+                    android:maxLines="1"
                     android:id="@+id/nameTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -123,7 +126,10 @@
                     android:gravity="center"
                     android:orientation="vertical"
                     android:layout_height="wrap_content">
-                    <TextView
+
+                    <me.grantland.widget.AutofitTextView
+                        android:singleLine="true"
+                        android:maxLines="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="16dp"
@@ -132,7 +138,10 @@
                         android:lineSpacingExtra="2sp"
                         android:text="현재 보유"
                         />
-                    <TextView
+
+                    <me.grantland.widget.AutofitTextView
+                        android:singleLine="true"
+                        android:maxLines="1"
                         android:id="@+id/pointTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -150,7 +159,10 @@
                     android:gravity="center"
                     android:orientation="vertical"
                     android:layout_height="wrap_content">
-                    <TextView
+
+                    <me.grantland.widget.AutofitTextView
+                        android:singleLine="true"
+                        android:maxLines="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="16dp"
@@ -160,7 +172,10 @@
                         android:text="누적 적립"
                         />
 
-                    <TextView
+
+                    <me.grantland.widget.AutofitTextView
+                        android:singleLine="true"
+                        android:maxLines="1"
                         android:id="@+id/acc_pointTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -177,7 +192,10 @@
                     android:gravity="center"
                     android:orientation="vertical"
                     android:layout_height="wrap_content">
-                    <TextView
+
+                    <me.grantland.widget.AutofitTextView
+                        android:singleLine="true"
+                        android:maxLines="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="16dp"
@@ -186,7 +204,10 @@
                         android:lineSpacingExtra="2sp"
                         android:text="방문 횟수"
                         />
-                    <TextView
+
+                    <me.grantland.widget.AutofitTextView
+                        android:singleLine="true"
+                        android:maxLines="1"
                         android:id="@+id/visitTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -568,7 +589,10 @@
                 android:layout_height="50dp"
                 android:gravity="center"
                 android:background="#00d1ce">
-                <TextView
+
+                <me.grantland.widget.AutofitTextView
+                    android:singleLine="true"
+                    android:maxLines="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="20dp"

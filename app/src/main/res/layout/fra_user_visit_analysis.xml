@@ -25,7 +25,10 @@
                 android:layout_marginLeft="8.5dp"
                 android:orientation="vertical">
 
-                <TextView
+
+                <me.grantland.widget.AutofitTextView
+                    android:singleLine="true"
+                    android:maxLines="2"
                     android:id="@+id/titleTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -49,7 +52,10 @@
                         android:layout_marginTop="17.5dp"
                         android:orientation="vertical">
 
-                        <TextView
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:id="@+id/allTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -69,7 +75,10 @@
                         android:layout_marginTop="17.5dp"
                         android:orientation="vertical">
 
-                        <TextView
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:id="@+id/daysTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -89,7 +98,10 @@
                         android:layout_marginTop="17.5dp"
                         android:orientation="vertical">
 
-                        <TextView
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:id="@+id/timeTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -109,7 +121,10 @@
                         android:layout_marginTop="17.5dp"
                         android:orientation="vertical">
 
-                        <TextView
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:id="@+id/ageTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
