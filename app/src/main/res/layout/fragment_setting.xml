@@ -130,6 +130,10 @@
 
     </com.devstories.anipointcompany.android.base.RationalRelativeLayout>
     <!---->
+    <com.devstories.anipointcompany.android.base.RationalRelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:ratio="550:360">
     <ScrollView
     android:layout_marginTop="31dp"
     android:layout_width="match_parent"
@@ -139,6 +143,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </ScrollView>
-
+    </com.devstories.anipointcompany.android.base.RationalRelativeLayout>
 
 </LinearLayout>
