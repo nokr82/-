@@ -7,17 +7,18 @@
     android:orientation="horizontal">
 <ScrollView
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_marginTop="19dp"
+    android:layout_marginBottom="12dp"
+    android:scrollbars="none"
+    android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
         <LinearLayout
-            android:layout_marginTop="19dp"
+
             android:layout_width="match_parent"
-            android:layout_marginRight="60dp"
             android:layout_height="match_parent"
-            android:layout_marginBottom="12dp"
             android:orientation="vertical"
             android:background="#ffff" >
             <TextView
@@ -37,22 +38,23 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp"
                 android:padding="20dp"
-                android:layout_width="690dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center"
                 android:background="@drawable/background_strock_e7e7e7">
 
                 <View
-                    android:layout_width="660dp"
+                    android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="#e7e7e7"/>
                 <LinearLayout
-                    android:layout_width="660dp"
+                    android:layout_width="match_parent"
                     android:layout_height="40dp">
 
                     <TextView
-                        android:layout_width="165dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.5"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:letterSpacing="-0.03"
@@ -68,7 +70,8 @@
                         android:background="#e7e7e7"/>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
+                        android:layout_weight="1.7"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
@@ -114,7 +117,7 @@
                 </LinearLayout>
 
                 <View
-                    android:layout_width="660dp"
+                    android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="#e7e7e7"/>
 
@@ -133,9 +136,11 @@
                 android:text="포인트 정책"
                 android:textStyle="bold"/>
             <LinearLayout
-                android:layout_width="690dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
                 android:orientation="vertical"
+                android:padding="10dp"
                 android:layout_marginLeft="20dp"
                 android:gravity="center_vertical"
                 android:background="@drawable/background_strock_e7e7e7"
@@ -151,7 +156,9 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
-                        android:layout_width="165dp"
+
+                        android:layout_width="0dp"
+                        android:layout_weight="0.5"
                         android:layout_height="40dp"
                         android:gravity="center"
                         android:background="#efefef"
@@ -165,7 +172,9 @@
                         android:layout_height="match_parent"
                         android:background="#e7e7e7"/>
                     <LinearLayout
-                        android:layout_width="match_parent"
+
+                        android:layout_width="0dp"
+                        android:layout_weight="1.7"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
@@ -208,7 +217,10 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
-                        android:layout_width="165dp"
+
+                        android:layout_width="0dp"
+                        android:layout_weight="0.5"
+
                         android:layout_height="40dp"
                         android:gravity="center"
                         android:background="#efefef"
@@ -222,7 +234,9 @@
                         android:layout_height="match_parent"
                         android:background="#e7e7e7"/>
                     <LinearLayout
-                        android:layout_width="match_parent"
+
+                        android:layout_width="0dp"
+                        android:layout_weight="1.7"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
@@ -278,7 +292,9 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
-                        android:layout_width="165dp"
+
+                        android:layout_width="0dp"
+                        android:layout_weight="0.5"
                         android:layout_height="40dp"
                         android:gravity="center"
                         android:background="#efefef"
@@ -292,7 +308,9 @@
                         android:layout_height="match_parent"
                         android:background="#e7e7e7"/>
                     <LinearLayout
-                    android:layout_width="match_parent"
+
+                        android:layout_width="0dp"
+                        android:layout_weight="1.7"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
@@ -375,8 +393,9 @@
                 android:textStyle="bold"/>
 
             <LinearLayout
-                android:layout_width="690dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
                 android:layout_marginBottom="52dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="13dp"
@@ -443,12 +462,15 @@
 
                     <LinearLayout
                         android:id="@+id/visitLL"
-                        android:layout_width="660dp"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:visibility="gone">
 
                         <TextView
-                            android:layout_width="165dp"
+
+
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
                             android:layout_height="match_parent"
                             android:background="#efefef"
                             android:gravity="center"
@@ -462,7 +484,9 @@
                             android:background="#e7e7e7" />
 
                         <LinearLayout
-                            android:layout_width="match_parent"
+
+                            android:layout_width="0dp"
+                            android:layout_weight="1.7"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
                             android:orientation="horizontal"
@@ -508,12 +532,15 @@
 
                     <LinearLayout
                         android:id="@+id/accountLL"
-                        android:layout_width="660dp"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:visibility="gone">
 
                         <TextView
-                            android:layout_width="165dp"
+
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+
                             android:layout_height="match_parent"
                             android:background="#efefef"
                             android:gravity="center"
@@ -527,7 +554,8 @@
                             android:background="#e7e7e7" />
 
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.7"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
                             android:orientation="horizontal"

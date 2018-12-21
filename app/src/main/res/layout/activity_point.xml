@@ -637,7 +637,9 @@
                                 android:layout_gravity="center_vertical"
                                 android:src="@drawable/radio_off" />
 
-                            <TextView
+                            <me.grantland.widget.AutofitTextView
+                                android:singleLine="true"
+                                android:maxLines="1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="11dp"
@@ -659,7 +661,9 @@
                                 android:layout_gravity="center_vertical"
                                 android:src="@drawable/radio_off" />
 
-                            <TextView
+                            <me.grantland.widget.AutofitTextView
+                                android:singleLine="true"
+                                android:maxLines="1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5.5dp"
@@ -683,7 +687,9 @@
                             android:layout_gravity="center_vertical"
                             android:src="@drawable/radio_off" />
 
-                        <TextView
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5.5dp"
@@ -804,7 +810,9 @@
                         android:gravity="center"
                         android:onClick="onClick">
 
-                        <TextView
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:letterSpacing="-0.05"
@@ -823,7 +831,9 @@
                         android:gravity="center"
                         android:onClick="onClick">
 
-                        <TextView
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:letterSpacing="-0.05"
@@ -842,7 +852,9 @@
                         android:gravity="center"
                         android:onClick="onClick">
 
-                        <TextView
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:letterSpacing="-0.05"
@@ -868,7 +880,9 @@
                         android:gravity="center"
                         android:onClick="onClick">
 
-                        <TextView
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:letterSpacing="-0.05"
@@ -887,7 +901,9 @@
                         android:gravity="center"
                         android:onClick="onClick">
 
-                        <TextView
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:letterSpacing="-0.05"
@@ -906,7 +922,9 @@
                         android:gravity="center"
                         android:onClick="onClick">
 
-                        <TextView
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:letterSpacing="-0.05"
@@ -932,7 +950,9 @@
                         android:gravity="center"
                         android:onClick="onClick">
 
-                        <TextView
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:letterSpacing="-0.05"
@@ -951,7 +971,9 @@
                         android:gravity="center"
                         android:onClick="onClick">
 
-                        <TextView
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:letterSpacing="-0.05"
@@ -970,7 +992,9 @@
                         android:gravity="center"
                         android:onClick="onClick">
 
-                        <TextView
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:letterSpacing="-0.05"
@@ -998,7 +1022,9 @@
                         android:gravity="center"
                         android:onClick="onClick">
 
-                        <TextView
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:letterSpacing="-0.05"
@@ -1017,7 +1043,9 @@
                         android:gravity="center"
                         android:onClick="onClick">
 
-                        <TextView
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:letterSpacing="-0.05"
@@ -1037,7 +1065,9 @@
                         android:gravity="center"
                         android:onClick="onClick">
 
-                        <TextView
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:id="@+id/opTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -1066,7 +1096,9 @@
                         android:layout_weight="1"
                         android:gravity="center">
 
-                        <TextView
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:id="@+id/stackTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -1077,7 +1109,9 @@
                             android:textColor="#6e8a32"
                             android:textSize="48dp" />
 
-                        <TextView
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center_horizontal"
@@ -1128,7 +1162,9 @@
                         android:gravity="center"
                         android:onClick="onClick">
 
-                        <TextView
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:id="@+id/op_accTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -1166,8 +1202,7 @@
             android:background="#ffff"
             android:orientation="vertical"
             android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:visibility="gone">
+            android:paddingTop="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -1214,7 +1249,8 @@
             android:id="@+id/couponLV"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="15dp" />
+            android:layout_marginTop="15dp"
+            android:visibility="gone" />
 
     </LinearLayout>
 

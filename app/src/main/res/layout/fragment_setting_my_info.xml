@@ -9,15 +9,14 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:layout_marginTop="19dp"
         android:fillViewport="true"
         android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:layout_marginRight="60dp"
-            android:layout_marginTop="19dp"
             android:background="#ffff"
             android:orientation="vertical">
 
@@ -34,29 +33,26 @@
                 android:textStyle="bold" />
 
             <LinearLayout
-                android:layout_width="690dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/background_strock_e7e7e7"
                 android:gravity="center"
-                android:orientation="vertical">
-
-                <View
-                    android:layout_width="660dp"
-                    android:layout_height="1dp"
-                    android:background="#e7e7e7" />
+                android:orientation="vertical"
+                android:padding="10dp">
 
                 <LinearLayout
-                    android:layout_width="660dp"
+                    android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginTop="20dp">
 
                     <TextView
-                        android:layout_width="165dp"
+                        android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
+                        android:layout_weight="0.5"
                         android:background="#efefef"
                         android:gravity="center"
                         android:letterSpacing="-0.03"
@@ -71,21 +67,22 @@
                         android:background="#e7e7e7" />
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_weight="1.7"
                         android:orientation="vertical"
                         android:paddingLeft="19dp">
 
                         <EditText
                             android:id="@+id/compNameET"
-                            android:layout_width="300dp"
-                            android:layout_height="32dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:background="@null"
                             android:gravity="center_vertical"
                             android:textSize="16sp" />
 
                         <View
-                            android:layout_width="300dp"
+                            android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:background="#e7e7e7" />
                     </LinearLayout>
@@ -98,13 +95,14 @@
                     android:background="#e7e7e7" />
 
                 <LinearLayout
-                    android:layout_width="660dp"
+                    android:layout_width="match_parent"
                     android:layout_height="40dp">
 
                     <TextView
-                        android:layout_width="165dp"
+                        android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
+                        android:layout_weight="0.5"
                         android:background="#efefef"
                         android:gravity="center"
                         android:letterSpacing="-0.03"
@@ -119,8 +117,9 @@
                         android:background="#e7e7e7" />
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_weight="1.7"
                         android:orientation="horizontal"
                         android:paddingLeft="19dp">
 
@@ -211,13 +210,15 @@
                     android:background="#e7e7e7" />
 
                 <LinearLayout
-                    android:layout_width="660dp"
+                    android:layout_width="match_parent"
                     android:layout_height="40dp">
 
                     <TextView
-                        android:layout_width="165dp"
+
+                        android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
+                        android:layout_weight="0.5"
                         android:background="#efefef"
                         android:gravity="center"
                         android:letterSpacing="-0.03"
@@ -232,21 +233,23 @@
                         android:background="#e7e7e7" />
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_weight="1.7"
                         android:orientation="vertical"
                         android:paddingLeft="19dp">
 
                         <TextView
                             android:id="@+id/compIdET"
-                            android:layout_width="300dp"
-                            android:layout_height="32dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:background="@null"
                             android:gravity="center_vertical"
                             android:textSize="16sp" />
 
                         <View
-                            android:layout_width="300dp"
+                            android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:background="#e7e7e7" />
                     </LinearLayout>
@@ -259,13 +262,15 @@
                     android:background="#e7e7e7" />
 
                 <LinearLayout
-                    android:layout_width="660dp"
+                    android:layout_width="match_parent"
                     android:layout_height="40dp">
 
                     <TextView
-                        android:layout_width="165dp"
+
+                        android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
+                        android:layout_weight="0.5"
                         android:background="#efefef"
                         android:gravity="center"
                         android:letterSpacing="-0.03"
@@ -280,20 +285,22 @@
                         android:background="#e7e7e7" />
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_weight="1.7"
                         android:orientation="vertical"
                         android:paddingLeft="19dp">
 
                         <TextView
                             android:id="@+id/termTV"
-                            android:layout_width="300dp"
-                            android:layout_height="32dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:background="@null"
                             android:textSize="16sp" />
 
                         <View
-                            android:layout_width="300dp"
+                            android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:background="#e7e7e7" />
                     </LinearLayout>
@@ -336,14 +343,15 @@
                 android:textStyle="bold" />
 
             <LinearLayout
-                android:layout_width="700dp"
+                android:padding="10dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:orientation="vertical">
 
                 <HorizontalScrollView
-                    android:layout_width="690dp"
+                    android:layout_width="match_parent"
                     android:layout_height="131dp"
                     android:background="@drawable/background_strock_e7e7e7"
                     android:paddingLeft="15dp">
@@ -428,10 +436,11 @@
 
 
             <LinearLayout
-                android:layout_width="690dp"
+                android:layout_marginRight="20dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="100dp"
-                android:layout_marginLeft="40dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="60dp"
                 android:background="@drawable/background_strock_e7e7e7"
                 android:orientation="vertical"
@@ -453,16 +462,17 @@
                     android:orientation="vertical">
 
                     <View
-                        android:layout_width="660dp"
+                        android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="#e7e7e7" />
 
                     <LinearLayout
-                        android:layout_width="660dp"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp">
 
                         <TextView
-                            android:layout_width="165dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
                             android:layout_height="match_parent"
                             android:background="#efefef"
                             android:gravity="center"
@@ -476,7 +486,8 @@
                             android:background="#e7e7e7" />
 
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.7"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
                             android:orientation="vertical"
@@ -484,15 +495,15 @@
 
                             <EditText
                                 android:id="@+id/tempPasswordET"
-                                android:layout_width="300dp"
-                                android:layout_height="32dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:background="@null"
                                 android:gravity="center_vertical"
                                 android:inputType="textPassword"
                                 android:textSize="16sp" />
 
                             <View
-                                android:layout_width="300dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="1dp"
                                 android:background="#e7e7e7" />
                         </LinearLayout>
@@ -504,11 +515,13 @@
                         android:background="#e7e7e7" />
 
                     <LinearLayout
-                        android:layout_width="660dp"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp">
 
                         <TextView
-                            android:layout_width="165dp"
+
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
                             android:layout_height="match_parent"
                             android:background="#efefef"
                             android:gravity="center"
@@ -522,7 +535,9 @@
                             android:background="#e7e7e7" />
 
                         <LinearLayout
-                            android:layout_width="match_parent"
+
+                            android:layout_width="0dp"
+                            android:layout_weight="1.7"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
                             android:orientation="vertical"
@@ -530,15 +545,15 @@
 
                             <EditText
                                 android:id="@+id/newPasswordET"
-                                android:layout_width="300dp"
-                                android:layout_height="32dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:background="@null"
                                 android:gravity="center_vertical"
                                 android:inputType="textPassword"
                                 android:textSize="16sp" />
 
                             <View
-                                android:layout_width="300dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="1dp"
                                 android:background="#e7e7e7" />
                         </LinearLayout>
@@ -550,11 +565,12 @@
                         android:background="#e7e7e7" />
 
                     <LinearLayout
-                        android:layout_width="660dp"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp">
 
                         <TextView
-                            android:layout_width="165dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
                             android:layout_height="match_parent"
                             android:background="#efefef"
                             android:gravity="center"
@@ -568,7 +584,8 @@
                             android:background="#e7e7e7" />
 
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.7"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
                             android:orientation="vertical"
@@ -576,15 +593,15 @@
 
                             <EditText
                                 android:id="@+id/newPassCheckET"
-                                android:layout_width="300dp"
-                                android:layout_height="32dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:background="@null"
                                 android:gravity="center_vertical"
                                 android:inputType="textPassword"
                                 android:textSize="16sp" />
 
                             <View
-                                android:layout_width="300dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="1dp"
                                 android:background="#e7e7e7" />
                         </LinearLayout>
