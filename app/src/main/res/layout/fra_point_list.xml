@@ -41,6 +41,9 @@
                 android:layout_marginBottom="23.5dp"
                 android:textColor="#ffff"
                 android:textSize="48dp" />
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
 
             <LinearLayout
@@ -164,6 +167,7 @@
                 </LinearLayout>
 
             </LinearLayout>
+</ScrollView>
 
 
             <LinearLayout
@@ -220,7 +224,6 @@
             </LinearLayout>
 
 
-
         </LinearLayout>
         </com.devstories.anipointcompany.android.base.RationalLinearLayout>
 
@@ -237,7 +240,7 @@
         <LinearLayout
             android:id="@+id/first_dateLL"
             android:layout_marginTop="15.5dp"
-            android:layout_marginRight="45.5dp"
+            android:layout_marginRight="20dp"
             android:layout_width="match_parent"
             android:gravity="center_vertical"
             android:layout_height="wrap_content">
@@ -315,7 +318,7 @@
             <LinearLayout
                 android:layout_marginTop="9.5dp"
                 android:layout_width="match_parent"
-                android:layout_marginRight="29dp"
+                android:layout_marginRight="20dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="6dp"
                 android:orientation="horizontal"

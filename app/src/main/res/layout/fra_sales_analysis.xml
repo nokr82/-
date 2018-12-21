@@ -204,6 +204,12 @@
         android:layout_height="match_parent"
         app:ratio="400:360"
         app:adjustHeight="false">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -504,10 +510,6 @@
 
         </LinearLayout>
 
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -978,10 +980,10 @@
 
 
             </LinearLayout>
-        </ScrollView>
 
 
     </LinearLayout>
+        </ScrollView>
     </com.devstories.anipointcompany.android.base.RationalLinearLayout>
     </com.devstories.anipointcompany.android.base.RationalLinearLayout>
 </LinearLayout>

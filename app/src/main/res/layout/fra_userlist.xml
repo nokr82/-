@@ -44,6 +44,11 @@
                 android:textColor="#ffff"
                 android:textSize="48dp" />
 
+            <ScrollView
+                android:layout_width="match_parent"
+                android:fillViewport="true"
+                android:scrollbars="none"
+                android:layout_height="wrap_content">
             <LinearLayout
                 android:id="@+id/useroptionLL"
                 android:layout_width="300dp"
@@ -185,7 +190,6 @@
 
 
                 <LinearLayout
-                    android:layout_alignParentBottom="true"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -246,6 +250,7 @@
                 </LinearLayout>
 
             </LinearLayout>
+            </ScrollView>
         </LinearLayout>
         </com.devstories.anipointcompany.android.base.RationalLinearLayout>
 

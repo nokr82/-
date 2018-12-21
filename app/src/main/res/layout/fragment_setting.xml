@@ -34,6 +34,12 @@
                 android:layout_marginBottom="47dp"
                 android:textColor="#ffff"
                 android:textSize="48dp" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:fillViewport="true"
+                android:scrollbars="none"
+                android:layout_height="wrap_content">
             <LinearLayout
                 android:id="@+id/point_op_LL"
                 android:layout_width="wrap_content"
@@ -79,6 +85,7 @@
                 </LinearLayout>
 
             </LinearLayout>
+            </ScrollView>
         </LinearLayout>
 
         <LinearLayout
