@@ -4,8 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="20dp"
     android:orientation="horizontal">
-
+    <com.devstories.anipointcompany.android.base.RationalLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:ratio="0:360"
+        app:adjustHeight="false">
     <com.devstories.anipointcompany.android.base.RationalLinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -974,5 +979,6 @@
 
 
     </LinearLayout>
+    </com.devstories.anipointcompany.android.base.RationalLinearLayout>
     </com.devstories.anipointcompany.android.base.RationalLinearLayout>
 </LinearLayout>

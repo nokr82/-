@@ -10,7 +10,7 @@
     <com.devstories.anipointcompany.android.base.RationalLinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:ratio="550:360"
+        app:ratio="0:360"
         app:adjustHeight="false">
 
     <LinearLayout

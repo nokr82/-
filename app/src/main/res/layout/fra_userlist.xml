@@ -7,24 +7,26 @@
 
 
     <com.devstories.anipointcompany.android.base.RationalLinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:ratio="550:360"
+        app:ratio="0:360"
         app:adjustHeight="false">
 
 
 
     <LinearLayout
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
         <com.devstories.anipointcompany.android.base.RationalLinearLayout
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:ratio="0:360"
+            app:ratio="150:360"
             app:adjustHeight="false">
         <LinearLayout
-            android:layout_width="300dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
             android:layout_marginLeft="8.5dp"
             android:orientation="vertical">
@@ -236,85 +238,90 @@
         </LinearLayout>
         </com.devstories.anipointcompany.android.base.RationalLinearLayout>
 
-        <LinearLayout
+        <com.devstories.anipointcompany.android.base.RationalLinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            app:ratio="400:360"
+            app:adjustHeight="false">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="45.5dp"
-                android:layout_marginTop="15.5dp"
-                android:gravity="center_vertical">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="61dp"
-                    android:layout_weight="1"
-                    android:background="#90000000"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15.5dp"
+                    android:gravity="center_vertical">
 
-                    <EditText
-                        android:id="@+id/keywordET"
+                    <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="50dp"
+                        android:layout_height="61dp"
                         android:layout_weight="1"
-                        android:singleLine="true"
-                        android:background="@null"
-                        android:hint="키워드를 입력하세요."
-                        android:lineSpacingExtra="25sp"
-                        android:textColor="#ffffff"
-                        android:textColorHint="#ffffff"
-                        android:textSize="20dp" />
+                        android:background="#90000000"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/keywordET"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="50dp"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:hint="키워드를 입력하세요."
+                            android:lineSpacingExtra="25sp"
+                            android:singleLine="true"
+                            android:textColor="#ffffff"
+                            android:textColorHint="#ffffff"
+                            android:textSize="20dp" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/btn_search"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:background="#90000000"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/icon_search" />
+
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
 
-                <LinearLayout
-                    android:id="@+id/btn_search"
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:background="#90000000"
-                    android:gravity="center">
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginTop="9.5dp"
+                    android:scrollbars="none">
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/icon_search" />
+                    <LinearLayout
+                        android:id="@+id/userLL"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:visibility="visible">
 
 
-                </LinearLayout>
+                    </LinearLayout>
+
+
+                </HorizontalScrollView>
+
 
             </LinearLayout>
-
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp"
-                android:layout_marginTop="9.5dp"
-                android:scrollbars="none">
-
-                <LinearLayout
-                    android:id="@+id/userLL"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:visibility="visible">
-
-
-                </LinearLayout>
-
-
-            </HorizontalScrollView>
-
-
-        </LinearLayout>
-
+        </com.devstories.anipointcompany.android.base.RationalLinearLayout>
     </LinearLayout>
 
     </com.devstories.anipointcompany.android.base.RationalLinearLayout>
