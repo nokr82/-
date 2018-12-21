@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient"
     android:orientation="horizontal">
-
+    <com.devstories.anipointcompany.android.base.RationalRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:ratio="2560:1600">
+    <com.devstories.anipointcompany.android.base.RationalRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:ratio="550:360">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -134,22 +143,26 @@
 
         </LinearLayout>
 
-
+        <com.devstories.anipointcompany.android.base.RationalRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:ratio="550:360">
         <FrameLayout
             android:id="@+id/userFL"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp">
 
         </FrameLayout>
-
+        </com.devstories.anipointcompany.android.base.RationalRelativeLayout>
 
 
 
 
     </LinearLayout>
+    </com.devstories.anipointcompany.android.base.RationalRelativeLayout>
     
-    
-    
+    </com.devstories.anipointcompany.android.base.RationalRelativeLayout>
 
 
 
