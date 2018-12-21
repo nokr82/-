@@ -149,6 +149,8 @@
     <FrameLayout
             android:id="@+id/settingFL"
             android:layout_width="match_parent"
+        android:layout_marginTop="9.5dp"
+        android:layout_marginRight="29dp"
             android:layout_height="match_parent"/>
 
 
