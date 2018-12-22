@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content">
             <LinearLayout
                 android:id="@+id/useroptionLL"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:orientation="vertical"
@@ -186,29 +186,29 @@
 
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="0dp"
+                    android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:layout_marginBottom="31dp"
                     android:layout_marginTop="15dp"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
+
 
                         <LinearLayout
                             android:id="@+id/accumulateLL"
-                            android:layout_width="80dp"
+                            android:layout_width="0dp"
                             android:layout_height="80dp"
                             android:layout_marginTop="20dp"
+                            android:layout_weight="0.5"
                             android:background="#997afb"
                             android:gravity="center">
 
-                            <TextView
+                            <me.grantland.widget.AutofitTextView
+                                android:singleLine="true"
+                                android:maxLines="1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center_horizontal"
@@ -221,27 +221,36 @@
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:id="@+id/useLL"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="20dp"
-                            android:background="#ff8e1b"
-                            android:gravity="center">
+                    <LinearLayout
+                        android:id="@+id/useLL"
+                        android:layout_width="0dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="0.5"
+                        android:background="#ff8e1b"
+                        android:gravity="center">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
-                                android:letterSpacing="-0.03"
-                                android:lineSpacingExtra="-2sp"
-                                android:text="사용"
-                                android:textColor="#ffffff"
-                                android:textSize="24dp" />
+                        <me.grantland.widget.AutofitTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="-2sp"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text="사용"
+                            android:textColor="#ffffff"
+                            android:textSize="24dp" />
 
 
-                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.5"
+                        android:layout_height="match_parent">
+
                     </LinearLayout>
                 </LinearLayout>
 
