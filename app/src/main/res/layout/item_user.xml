@@ -44,6 +44,7 @@
             </LinearLayout>
 
             <ScrollView
+                android:id="@+id/allSV"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="17dp"
@@ -523,10 +524,10 @@
 
                             </LinearLayout>
 
-                            <ScrollView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1">
+                <android.support.v4.widget.NestedScrollView
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1">  
 
                                 <TextView
                                     android:id="@+id/memoTV"
@@ -538,7 +539,7 @@
                                     android:textSize="12dp" />
 
 
-                            </ScrollView>
+                </android.support.v4.widget.NestedScrollView>
                         </LinearLayout>
                         <View
                             android:layout_width="match_parent"
@@ -575,8 +576,10 @@
                                 android:layout_weight="1"
                                 android:gravity="center_vertical"
                                 android:orientation="vertical">
+                                <me.grantland.widget.AutofitTextView
+                                    android:singleLine="true"
+                                    android:maxLines="1"
 
-                                <TextView
                                     android:id="@+id/stack_pointTV"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -584,11 +587,10 @@
                                     android:text="누적 : P"
                                     android:textColor="#303030"
                                     android:textSize="12dp" />
+                            <android.support.v4.widget.NestedScrollView
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent">  
 
-                                <ScrollView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:fillViewport="true">
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -605,8 +607,7 @@
                                             android:textSize="12dp" />
 
                                     </LinearLayout>
-
-                                </ScrollView>
+                            </android.support.v4.widget.NestedScrollView>
 
                             </LinearLayout>
 
