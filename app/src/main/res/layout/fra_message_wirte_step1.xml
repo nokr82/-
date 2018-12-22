@@ -371,7 +371,8 @@
 
                     <LinearLayout
                         android:id="@+id/genderMLL"
-                        android:layout_width="80dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="40dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="15dp"
@@ -395,7 +396,8 @@
 
                     <LinearLayout
                         android:id="@+id/genderFLL"
-                        android:layout_width="80dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="40dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="15dp"
@@ -416,7 +418,29 @@
 
 
                     </LinearLayout>
+                    <LinearLayout
+                        android:visibility="invisible"
+                        android:layout_width="0dp"
+                        android:layout_weight="6"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/background_strock_c1c1c1"
+                        android:gravity="center">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="4sp"
+                            android:text="여성"
+                            android:textColor="#9a9a99"
+                            android:textSize="16dp" />
+
+
+                    </LinearLayout>
                 </LinearLayout>
 
 
@@ -436,7 +460,8 @@
 
                     <LinearLayout
                         android:id="@+id/tenLL"
-                        android:layout_width="72dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="40dp"
                         android:layout_marginLeft="17.5dp"
                         android:layout_marginTop="15dp"
@@ -460,7 +485,8 @@
 
                     <LinearLayout
                         android:id="@+id/twoLL"
-                        android:layout_width="80dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="40dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="15dp"
@@ -484,7 +510,8 @@
 
                     <LinearLayout
                         android:id="@+id/threeLL"
-                        android:layout_width="80dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="40dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="15dp"
@@ -508,7 +535,8 @@
 
                     <LinearLayout
                         android:id="@+id/fourLL"
-                        android:layout_width="80dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="40dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="15dp"
@@ -532,7 +560,8 @@
 
                     <LinearLayout
                         android:id="@+id/fiveLL"
-                        android:layout_width="80dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="40dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="20dp"
@@ -556,7 +585,8 @@
 
                     <LinearLayout
                         android:id="@+id/sixLL"
-                        android:layout_width="80dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="40dp"
                         android:layout_marginLeft="20dp"
                         android:background="@drawable/background_strock_c1c1c1"
@@ -575,7 +605,27 @@
 
 
                     </LinearLayout>
+                    <LinearLayout
+                        android:visibility="invisible"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/background_strock_c1c1c1"
+                        android:gravity="center">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="4sp"
+                            android:text="60대"
+                            android:textColor="#9a9a99"
+                            android:textSize="16dp" />
+
+
+                    </LinearLayout>
                 </LinearLayout>
 
 
