@@ -46,6 +46,8 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginTop="17dp"
+                android:layout_marginBottom="20dp"
                 android:layout_weight="1"
                 android:scrollbars="none">
 
@@ -58,7 +60,6 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="17dp"
                         android:gravity="center"
                         android:orientation="horizontal">
 
@@ -99,11 +100,9 @@
 
                     <LinearLayout
                         android:id="@+id/modiLL"
-                        android:layout_width="match_parent"
+                        android:layout_width="150dp"
                         android:layout_height="30dp"
                         android:layout_marginBottom="22dp"
-                        android:layout_marginLeft="62.5dp"
-                        android:layout_marginRight="62.5dp"
                         android:background="#e5e5e5"
                         android:gravity="center">
 
@@ -525,9 +524,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:letterSpacing="-0.01"
-                                    android:text="소형견, 말티스, 강아지 이름
-우측 최상단 톱니바퀴 모양을 누르면
-설정으로 이동합니다."
+                                    android:text="소형견, 말티스, 강아지 이름"
                                     android:textColor="#303030"
                                     android:textSize="12dp" />
 
@@ -562,7 +559,7 @@
 
                             <LinearLayout
                                 android:layout_width="0dp"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:gravity="center_vertical"
                                 android:orientation="vertical">
@@ -619,8 +616,8 @@
                 android:id="@+id/msgLL"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.1"
-                android:layout_marginTop="20dp"
+                android:layout_weight="0.06"
+
                 android:background="#00d1ce"
                 android:gravity="center">
 
