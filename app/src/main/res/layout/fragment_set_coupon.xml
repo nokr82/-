@@ -348,7 +348,10 @@
                             android:textColor="#666666"
                             android:textSize="14sp" />
 
-                        <TextView
+
+                        <me.grantland.widget.AutofitTextView
+                            android:maxLines="1"
+                            android:singleLine="true"
                             android:id="@+id/helpTV"
                             android:layout_width="180dp"
                             android:layout_height="30dp"
@@ -369,7 +372,10 @@
                                 android:layout_weight="0.2"
                                 android:layout_height="40dp"
                                 android:textSize="18sp" />
-                            <TextView
+
+                            <me.grantland.widget.AutofitTextView
+                                android:maxLines="1"
+                                android:singleLine="true"
                                 android:id="@+id/skipTV"
                                 android:layout_width="0dp"
                                 android:layout_weight="0.1"
@@ -382,7 +388,10 @@
                                 android:textColor="#ffffff"
                                 android:textSize="18sp" />
 
-                            <TextView
+
+                            <me.grantland.widget.AutofitTextView
+                                android:maxLines="1"
+                                android:singleLine="true"
                                 android:id="@+id/nextTV"
                                 android:layout_width="0dp"
                                 android:layout_weight="0.1"

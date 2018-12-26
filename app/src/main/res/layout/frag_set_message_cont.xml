@@ -24,7 +24,10 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="9dp">
-            <TextView
+
+            <me.grantland.widget.AutofitTextView
+                android:maxLines="1"
+                android:singleLine="true"
                 android:id="@+id/testTV"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -54,7 +57,10 @@
 
 
 
-                    <TextView
+
+                    <me.grantland.widget.AutofitTextView
+                        android:maxLines="1"
+                        android:singleLine="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:letterSpacing="-0.03"
@@ -78,7 +84,10 @@
                 android:paddingTop="26dp"
                 android:paddingRight="13dp"
                 android:minHeight="250dp">
-                <TextView
+
+                <me.grantland.widget.AutofitTextView
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:id="@+id/titleTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -198,7 +207,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="20dp">
-                <TextView
+
+                <me.grantland.widget.AutofitTextView
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:id="@+id/companyNameTV"
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -209,7 +221,10 @@
                     android:textSize="14sp"
                     android:textColor="#555555"
                     android:text="매장 이름"/>
-                <TextView
+
+                <me.grantland.widget.AutofitTextView
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:id="@+id/memberNameTV"
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -220,7 +235,10 @@
                     android:textSize="14sp"
                     android:textColor="#555555"
                     android:text="고객 이름"/>
-                <TextView
+
+                <me.grantland.widget.AutofitTextView
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:id="@+id/pointTV"
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -232,7 +250,7 @@
                     android:text="보유 포인트"/>
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="0.8"
                     android:layout_height="36dp"
                 />
                 <TextView
