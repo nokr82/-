@@ -396,8 +396,8 @@ class Point_List_Fragment : Fragment() {
 
                         all_couponTV.text = useCouponMembers.toString()+"명/"+useCouponCount.toString()+"회"
                         all_cntTV.text = allcnt.toString() + "명"
-                        all_stackTV.text = addPointMember.toString() + "명/" + addPointCount + "회/" + addPoint.toString() + "P"
-                        all_useTV.text = usePointMember.toString() + "명/" + usePointCount + "회/" + usePoint.toString() + "P"
+                        all_stackTV.text = addPointMember.toString() + "명/" + addPointCount + "회/" + Utils.comma(addPoint.toString())+ "P"
+                        all_useTV.text = usePointMember.toString() + "명/" + usePointCount + "회/" + Utils.comma(usePoint.toString()) + "P"
                         coupon_payTV.text = useCouponPay.toString()+"원"
                         val data2 = response.getJSONArray("member_list")
                         adapterData.clear()
@@ -514,8 +514,8 @@ class Point_List_Fragment : Fragment() {
                         integratedTV.text = "방문횟수"
                         all_couponTV.text = coupon_cnt+"회"
                         all_cntTV.text = visit_cnt + "회"
-                        all_stackTV.text = stack_point_cnt + "회/" + point + "P"
-                        all_useTV.text = use_point_cnt + "회/" + use_point + "P"
+                        all_stackTV.text = stack_point_cnt + "회/" + Utils.comma(point) + "P"
+                        all_useTV.text = use_point_cnt + "회/" + Utils.comma(use_point) + "P"
                         coupon_payTV.text =coupon_pay+"원"
 
                     } else {

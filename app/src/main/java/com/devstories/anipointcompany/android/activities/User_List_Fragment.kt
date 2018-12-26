@@ -255,10 +255,10 @@ class User_List_Fragment : Fragment() {
                             }
 
 
-                            pointTV.text = point + "P"
-                            use_pointTV.text = use_point + "P"
-                            acc_pointTV.text = stack_point + "P"
-                            stack_pointTV.text = "누적:" + stack_point + "P"
+                            pointTV.text = Utils.comma(point) + "P"
+                            use_pointTV.text = Utils.comma(use_point) + "P"
+                            acc_pointTV.text = Utils.comma(stack_point) + "P"
+                            stack_pointTV.text = "누적:" +Utils.comma(stack_point) + "P"
                             dateTV.text = updated_date + " 방문"
                             ageTV.text = age
                             nameTV.text = r_phone
@@ -276,7 +276,7 @@ class User_List_Fragment : Fragment() {
                             memoTV.text = memo
                             couponTV.text = coupon + "장"
                             birthTV.text = birth
-                            visitTV.text = visit + "회"
+                            visitTV.text = Utils.comma(visit) + "회"
                             phoneTV.text = phone
 
                             var str = ""
@@ -307,7 +307,7 @@ class User_List_Fragment : Fragment() {
 
 
                                 str = str + created_str + " / " + Utils.getString(category, "name") + " / " + Utils.comma(Utils.getString(companySale, "price"))+"원\n"+
-                                        "적립: " +point + "P/사용:" +use_point+ "P"+"/사용쿠폰:"+coupon
+                                        "적립: " +Utils.comma(point) + "P/사용:" +Utils.comma(use_point)+ "P"+"/사용쿠폰:"+coupon
 
 
                             }
@@ -521,10 +521,10 @@ class User_List_Fragment : Fragment() {
                             }
 
 
-                            pointTV.text = point + "P"
-                            use_pointTV.text = use_point + "P"
-                            acc_pointTV.text = stack_point + "P"
-                            stack_pointTV.text = "누적:" + stack_point + "P"
+                            pointTV.text =Utils.comma(point)+ "P"
+                            use_pointTV.text = Utils.comma(use_point) + "P"
+                            acc_pointTV.text = Utils.comma(stack_point) + "P"
+                            stack_pointTV.text = "누적:" +  Utils.comma(stack_point) + "P"
                             dateTV.text = updated_date + " 방문"
                             ageTV.text = age
                             nameTV.text = r_phone
@@ -573,7 +573,7 @@ class User_List_Fragment : Fragment() {
 
 
                                 str = str + created_str + " / " + Utils.getString(category, "name") + " / " + Utils.comma(Utils.getString(companySale, "price"))+"원\n"+
-                                        "적립: " +point + "P/사용:" +use_point+ "P"+"/사용쿠폰:"+coupon
+                                        "적립: " +Utils.comma(point) + "P/사용:" +Utils.comma(use_point)+ "P"+"/사용쿠폰:"+coupon
 
 
                             }
