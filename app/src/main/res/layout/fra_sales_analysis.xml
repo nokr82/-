@@ -20,7 +20,6 @@
     <LinearLayout
         android:layout_width="match_parent"
        android:layout_height="match_parent"
-        android:layout_marginLeft="8.5dp"
         android:orientation="vertical">
 
 
@@ -31,6 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:layout_marginRight="20dp"
             android:layout_marginTop="15.5dp"
             android:layout_marginBottom="23.5dp"
             android:text="매출 분석"
@@ -137,8 +137,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginRight="20dp"
             android:layout_weight="1"
+            android:layout_marginRight="20dp"
             android:layout_marginBottom="31dp"
             android:layout_marginTop="15dp"
             android:orientation="horizontal">
@@ -195,12 +195,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="0.5"
-                android:layout_height="match_parent">
-
-            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
@@ -216,10 +210,11 @@
 
 
         <ScrollView
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:fillViewport="true"
             android:layout_marginTop="9.5dp"
-            android:layout_marginRight="29dp"
+            android:layout_marginRight="20dp"
             android:layout_marginBottom="6dp"
             android:scrollbars="none"
             android:layout_height="match_parent">

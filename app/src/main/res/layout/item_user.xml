@@ -502,7 +502,7 @@
                             android:background="#e7e6e6" />
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="70dp">
+                            android:layout_height="65dp">
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -534,6 +534,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:letterSpacing="-0.01"
+                                    android:layout_marginLeft="5.5dp"
                                     android:text="소형견, 말티스, 강아지 이름"
                                     android:textColor="#303030"
                                     android:textSize="12dp" />
@@ -548,7 +549,7 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="70dp">
+                            android:layout_height="65dp">
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -579,7 +580,8 @@
                                 <me.grantland.widget.AutofitTextView
                                     android:singleLine="true"
                                     android:maxLines="1"
-
+                                    android:layout_marginLeft="5.5dp"
+                                    android:layout_marginBottom="5dp"
                                     android:id="@+id/stack_pointTV"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -589,6 +591,7 @@
                                     android:textSize="12dp" />
                             <android.support.v4.widget.NestedScrollView
                                 android:layout_height="match_parent"
+                                android:layout_marginBottom="5dp"
                                 android:layout_width="match_parent">  
 
 
@@ -598,6 +601,8 @@
                                         android:gravity="center_vertical">
 
                                         <TextView
+                                            android:layout_marginBottom="5dp"
+                                            android:layout_marginLeft="5.5dp"
                                             android:id="@+id/visit_recordTV"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
@@ -634,10 +639,9 @@
                 android:gravity="center">
 
                 <me.grantland.widget.AutofitTextView
+                    android:padding="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:letterSpacing="-0.01"
-                    android:lineSpacingExtra="0sp"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text="메세지 보내기"
