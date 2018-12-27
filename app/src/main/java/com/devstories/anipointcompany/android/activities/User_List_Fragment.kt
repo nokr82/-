@@ -82,6 +82,8 @@ class User_List_Fragment : Fragment() {
 
         mainData(1)
 
+        Utils.hideKeyboard(myContext)
+
         useLL.setOnClickListener {
             val intent = Intent(myContext, CalActivity::class.java)
             intent.putExtra("step", 4)
@@ -292,12 +294,13 @@ class User_List_Fragment : Fragment() {
                                 val created = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(Utils.getString(companySale, "created"))
                                 var created_str = SimpleDateFormat("yy-MM-dd").format(created)
 
-                                if (str.length > 0) {
+                              /*  if (str.length > 0) {
                                     str += "\n"
-                                }
+                                }*/
                               var use_point =  Utils.getString(companySale, "use_point")
                                 var point = Utils.getString(companySale, "point")
                                 var coupon = Utils.getString(companySale, "coupon")
+                                var price = Utils.getString(companySale, "price")
                           /*      if (use_point.equals("")){
                                     use_point="0"
                                 }
@@ -314,17 +317,25 @@ class User_List_Fragment : Fragment() {
 //                                str = str + created_str + " / " + Utils.getString(category, "name") + " / " + Utils.comma(Utils.getString(companySale, "price"))+"원\n"+
 //                                        "적립: " +Utils.comma(point) + "P/사용:" +Utils.comma(use_point)+ "P"+"/사용쿠폰:"+coupon
 
+
+
+
                                 if (point != ""&& use_point!=""){
-                                    str = str+created_str+" 사용 "+Utils.comma(use_point)+"P /"+" 적립 "+Utils.comma(point)+"P"
+                                    str = str+created_str+" 사용 "+Utils.comma(use_point)+"P /"+" 적립 "+Utils.comma(point)+"P"+"("+Utils.comma(Utils.getString(companySale, "price"))+"*"+
+                                            Utils.getString(companySale, "per")+"%)\n"
                                 }
                                 else if (use_point != ""){
-                                    str = str+created_str+" 사용 "+Utils.comma(use_point)+"P"
+                                    str = str+created_str+" 사용 "+Utils.comma(use_point)+"P\n"
                                 }
+
                                 else if (coupon != ""){
-                                    str = str+created_str+" 쿠폰 사용 "+coupon
+                                    str = str+created_str+" 쿠폰 사용 "+coupon+"\n"
                                 }
                                 else if (point != ""){
-                                    str = str+created_str+" 적립 "+Utils.comma(point)+"P"
+                                    str = str+created_str+" 적립 "+Utils.comma(point)+"P"+"("+Utils.comma(Utils.getString(companySale, "price"))+"*"+
+                                    Utils.getString(companySale, "per")+"%)\n"
+                                }else{
+
                                 }
 
 

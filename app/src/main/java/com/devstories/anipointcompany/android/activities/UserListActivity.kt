@@ -12,6 +12,7 @@ import android.util.Log
 import android.view.WindowManager
 import com.devstories.aninuriandroid.adapter.UserVisitAdapter
 import com.devstories.anipointcompany.android.R
+import com.devstories.anipointcompany.android.base.Utils
 import kotlinx.android.synthetic.main.activity_user_list.*
 //업체 메인화면 액티비티
 class UserListActivity : FragmentActivity() {
@@ -65,6 +66,8 @@ class UserListActivity : FragmentActivity() {
         context.registerReceiver(MsgReceiver, filter)
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+
+        Utils.hideKeyboard(this)
 
         userLL.setBackgroundResource(R.drawable.background_strock_707070)
         supportFragmentManager.beginTransaction().replace(R.id.userFL, User_List_Fragment).commit()

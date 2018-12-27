@@ -48,6 +48,7 @@ class CalActivity : RootActivity() {
     var category_id = -1
     var per_type = -1
     var new_gender = ""
+    var per = ""
     var member_coupon_id = -1
     var use_point = -1
     var couponData: ArrayList<JSONObject> = ArrayList<JSONObject>()
@@ -194,6 +195,7 @@ class CalActivity : RootActivity() {
             setmenu3()
             stackLL.setBackgroundColor(Color.parseColor("#906e8a32"))
             //기본퍼센트
+            per = stackTV.text.toString()
             per_type = 1
             setPoint()
         }
@@ -204,6 +206,9 @@ class CalActivity : RootActivity() {
             stack2LL.setBackgroundColor(Color.parseColor("#906e8a32"))
             val managerpercent = stack2TV.text.toString()
             var money = moneyTV.text.toString()
+
+            per = stack2TV.text.toString()
+
             per_type = 2
             if (managerpercent == null) {
                 Toast.makeText(context, "퍼센트를 먼저 입력해주세요.", Toast.LENGTH_SHORT).show()
@@ -308,7 +313,10 @@ class CalActivity : RootActivity() {
                 moneyTV.setText("0")
             }
         }
+
         useLL.setOnClickListener {
+
+
 
             price = Utils.getInt(moneyTV)
 
@@ -321,12 +329,11 @@ class CalActivity : RootActivity() {
                 return@setOnClickListener
             }
 
-
             if (opTV.text.equals("적립")) {
 
                 p_type = 1
                 type = 1
-            step = 3
+                 step = 3
 
                 if (payment_type == -1) {
                     Toast.makeText(context, "결제방식을 선택해주세요", Toast.LENGTH_SHORT).show()
@@ -339,11 +346,14 @@ class CalActivity : RootActivity() {
                     Log.d("포인트", totalpoint.toString())
                     stackpoint = totalpoint * Integer.parseInt(stackTV.text.toString()) / 100
                     changeStep()
+                    per=stackTV.text.toString()
 
                     stack_point(member_id.toString())
                 } else if (per_type == 2) {
                     val totalpoint = Integer.parseInt(moneyTV.text.toString())
                     Log.d("포인트", totalpoint.toString())
+
+                    per = stack2TV.text.toString()
                     stackpoint = totalpoint * Integer.parseInt(stack2TV.text.toString()) / 100
                     changeStep()
 
@@ -356,7 +366,6 @@ class CalActivity : RootActivity() {
                 } else {
                     Toast.makeText(context, "적립퍼센트를 선택해주세요", Toast.LENGTH_SHORT).show()
                 }
-
             } else if (opTV.text.equals("결제")) {
 //                val totalpoint = Integer.parseInt(moneyTV.text.toString())
 //                val use_point = Integer.parseInt(stack_pointTV.text.toString())
@@ -710,14 +719,12 @@ class CalActivity : RootActivity() {
     //포인트적립/사용
     fun stack_point(member_id: String) {
 
-
-
-
         val params = RequestParams()
         params.put("member_id", member_id)
         params.put("company_id", company_id)
         params.put("point", stackpoint)//사용및적립포인트
         params.put("type", type)//1적립 2사용
+        params.put("per", per)//적립률
         params.put("use_point", use_point)//사용 포인트
         params.put("member_coupon_id", member_coupon_id)//사용 쿠폰
         params.put("price", price)//상품가격
