@@ -82,7 +82,7 @@ class User_List_Fragment : Fragment() {
 
         mainData(1)
 
-        Utils.hideKeyboard(myContext)
+
 
         useLL.setOnClickListener {
             val intent = Intent(myContext, CalActivity::class.java)
@@ -155,7 +155,6 @@ class User_List_Fragment : Fragment() {
         val params = RequestParams()
         params.put("company_id", company_id)
         params.put("type", type)
-
         MemberAction.user_list(params, object : JsonHttpResponseHandler() {
 
             override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
