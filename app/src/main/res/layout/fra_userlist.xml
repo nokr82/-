@@ -44,26 +44,24 @@
                 android:layout_width="match_parent"
                 android:fillViewport="true"
                 android:scrollbars="none"
-                android:layout_height="wrap_content">
+                android:layout_height="0dp"
+                android:layout_weight="1">
             <LinearLayout
                 android:id="@+id/useroptionLL"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
                     android:layout_marginTop="35dp"
-                    android:gravity="center_vertical"
+                    android:gravity=""
                     android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+
 
                         <me.grantland.widget.AutofitTextView
                             android:singleLine="true"
@@ -77,26 +75,18 @@
                             android:textColor="#ffffff"
                             android:textSize="36dp" />
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.3dp"
-                            android:background="#ffff" />
 
-                    </LinearLayout>
+
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/userList_new_userLL"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="35dp"
-                    android:gravity="center_vertical">
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="">
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
 
                         <me.grantland.widget.AutofitTextView
                             android:singleLine="true"
@@ -110,22 +100,15 @@
                             android:textColor="#80ffffff"
                             android:textSize="36dp" />
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.3dp"
-                            android:background="#ffff" />
-
-                    </LinearLayout>
-
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/userList_most_freq_userLL"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="35dp"
-                    android:gravity="center_vertical"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -145,10 +128,7 @@
                             android:textColor="#80ffffff"
                             android:textSize="36dp" />
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.3dp"
-                            android:background="#ffff" />
+
 
                     </LinearLayout>
 
@@ -157,9 +137,9 @@
                 <LinearLayout
                     android:id="@+id/userList_birth_userLL"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="35dp"
-                    android:gravity="center_vertical"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -187,10 +167,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginBottom="31dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
 
