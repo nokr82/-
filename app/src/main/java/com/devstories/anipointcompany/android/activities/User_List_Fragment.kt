@@ -198,7 +198,7 @@ class User_List_Fragment : Fragment() {
                             var use_pointTV: TextView = userView.findViewById(R.id.use_pointTV)
                             var couponTV: TextView = userView.findViewById(R.id.couponTV)
                             var visit_recordTV: TextView = userView.findViewById(R.id.visit_recordTV)
-                            var stack_pointTV: TextView = userView.findViewById(R.id.stack_pointTV)
+//                            var stack_pointTV: TextView = userView.findViewById(R.id.stack_pointTV)
                             var memoTV: TextView = userView.findViewById(R.id.memoTV)
                             var phoneTV: TextView = userView.findViewById(R.id.phoneTV)
                             var modiLL: LinearLayout = userView.findViewById(R.id.modiLL)
@@ -219,14 +219,14 @@ class User_List_Fragment : Fragment() {
                             var created = Utils.getString(member, "created")
                             var visit = Utils.getString(member, "visit_cnt")
                             val sdf = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
-                            val updated = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(Utils.getString(member, "updated"))
-                            val updated_date = sdf.format(updated)
+                            val updated = SimpleDateFormat("yy-MM-dd HH:mm:ss").parse(Utils.getString(member, "updated"))
+                            var updated_date = sdf.format(updated)
                             var r_phone:String? = null
 
                             if (age.equals("")){
                                 age = "미입력"
                             }else{
-                                age+="세"
+                                age+="대"
                             }
 
                             if (birth.equals("")){
@@ -247,18 +247,19 @@ class User_List_Fragment : Fragment() {
                             if (phone.length==11){
                                 //번호하이픈
                                 r_phone = phone.substring(0, 3) + "-" + phone.substring(3, 7) + "-" + phone.substring(7,11)
-                                r_phone = r_phone.substring(0, 7) + '*' + r_phone.substring(8)
                                 r_phone = r_phone.substring(0, 6) + '*' + r_phone.substring(7)
                                 r_phone = r_phone.substring(0, 5) + '*' + r_phone.substring(6)
+                                r_phone = r_phone.substring(0, 4) + '*' + r_phone.substring(5)
                             }else{
                                 r_phone =phone
                             }
 
 
+
                             pointTV.text = Utils.comma(point) + "P"
                             use_pointTV.text = Utils.comma(use_point) + "P"
                             acc_pointTV.text = Utils.comma(stack_point) + "P"
-                            stack_pointTV.text = "누적:" +Utils.comma(stack_point) + "P"
+//                            stack_pointTV.text = "누적:" +Utils.comma(stack_point) + "P"
                             dateTV.text = updated_date + " 방문"
                             ageTV.text = age
                             nameTV.text = r_phone
@@ -281,13 +282,15 @@ class User_List_Fragment : Fragment() {
 
                             var str = ""
 
+
+
                             for (i in 0 until visitedList.length()) {
                                 val json: JSONObject = visitedList[i] as JSONObject
                                 val companySale = json.getJSONObject("CompanySale")
                                 val category = json.getJSONObject("Category")
 
                                 val created = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(Utils.getString(companySale, "created"))
-                                val created_str = SimpleDateFormat("yyyy-MM-dd").format(created)
+                                var created_str = SimpleDateFormat("yy-MM-dd").format(created)
 
                                 if (str.length > 0) {
                                     str += "\n"
@@ -295,7 +298,7 @@ class User_List_Fragment : Fragment() {
                               var use_point =  Utils.getString(companySale, "use_point")
                                 var point = Utils.getString(companySale, "point")
                                 var coupon = Utils.getString(companySale, "coupon")
-                                if (use_point.equals("")){
+                          /*      if (use_point.equals("")){
                                     use_point="0"
                                 }
                                 if (point.equals("")){
@@ -303,11 +306,28 @@ class User_List_Fragment : Fragment() {
                                 }
                                 if (coupon.equals("")){
                                     coupon = "없음"
+                                }*/
+
+                                created_str = created_str.replace("-","")
+
+
+//                                str = str + created_str + " / " + Utils.getString(category, "name") + " / " + Utils.comma(Utils.getString(companySale, "price"))+"원\n"+
+//                                        "적립: " +Utils.comma(point) + "P/사용:" +Utils.comma(use_point)+ "P"+"/사용쿠폰:"+coupon
+
+                                if (point != ""&& use_point!=""){
+                                    str = str+created_str+" 사용 "+Utils.comma(use_point)+"P /"+" 적립 "+Utils.comma(point)+"P"
+                                }
+                                else if (use_point != ""){
+                                    str = str+created_str+" 사용 "+Utils.comma(use_point)+"P"
+                                }
+                                else if (coupon != ""){
+                                    str = str+created_str+" 쿠폰 사용 "+coupon
+                                }
+                                else if (point != ""){
+                                    str = str+created_str+" 적립 "+Utils.comma(point)+"P"
                                 }
 
 
-                                str = str + created_str + " / " + Utils.getString(category, "name") + " / " + Utils.comma(Utils.getString(companySale, "price"))+"원\n"+
-                                        "적립: " +Utils.comma(point) + "P/사용:" +Utils.comma(use_point)+ "P"+"/사용쿠폰:"+coupon
 
 
                             }
@@ -464,7 +484,7 @@ class User_List_Fragment : Fragment() {
                             var use_pointTV: TextView = userView.findViewById(R.id.use_pointTV)
                             var couponTV: TextView = userView.findViewById(R.id.couponTV)
                             var visit_recordTV: TextView = userView.findViewById(R.id.visit_recordTV)
-                            var stack_pointTV: TextView = userView.findViewById(R.id.stack_pointTV)
+//                            var stack_pointTV: TextView = userView.findViewById(R.id.stack_pointTV)
                             var memoTV: TextView = userView.findViewById(R.id.memoTV)
                             var phoneTV: TextView = userView.findViewById(R.id.phoneTV)
                             var modiLL: LinearLayout = userView.findViewById(R.id.modiLL)
@@ -513,9 +533,9 @@ class User_List_Fragment : Fragment() {
                             if (phone.length==11){
                                 //번호하이픈
                                 r_phone = phone.substring(0, 3) + "-" + phone.substring(3, 7) + "-" + phone.substring(7,11)
-                                r_phone = r_phone.substring(0, 7) + '*' + r_phone.substring(8)
                                 r_phone = r_phone.substring(0, 6) + '*' + r_phone.substring(7)
                                 r_phone = r_phone.substring(0, 5) + '*' + r_phone.substring(6)
+                                r_phone = r_phone.substring(0, 4) + '*' + r_phone.substring(5)
                             }else{
                                 r_phone =phone
                             }
@@ -524,7 +544,7 @@ class User_List_Fragment : Fragment() {
                             pointTV.text =Utils.comma(point)+ "P"
                             use_pointTV.text = Utils.comma(use_point) + "P"
                             acc_pointTV.text = Utils.comma(stack_point) + "P"
-                            stack_pointTV.text = "누적:" +  Utils.comma(stack_point) + "P"
+//                            stack_pointTV.text = "누적:" +  Utils.comma(stack_point) + "P"
                             dateTV.text = updated_date + " 방문"
                             ageTV.text = age
                             nameTV.text = r_phone

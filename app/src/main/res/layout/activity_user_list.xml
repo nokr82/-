@@ -38,7 +38,7 @@
                         android:lineSpacingExtra="25sp"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:text="고객목록"
+                        android:text="고객 목록"
                         android:textColor="#ffffff"
                         android:textSize="20dp" />
 
@@ -77,7 +77,7 @@
                         android:lineSpacingExtra="25sp"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:text="고객 방문 분석"
+                        android:text="고객 분석"
                         android:textColor="#ffffff"
                         android:textSize="20dp" />
 
@@ -96,7 +96,7 @@
                         android:lineSpacingExtra="25sp"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:text="매출분석"
+                        android:text="매출 분석"
                         android:textColor="#ffffff"
                         android:textSize="20dp" />
 
@@ -115,7 +115,7 @@
                         android:lineSpacingExtra="25sp"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:text="메세지/쿠폰관리"
+                        android:text="메세지/쿠폰"
                         android:textColor="#ffffff"
                         android:textSize="20dp" />
 
