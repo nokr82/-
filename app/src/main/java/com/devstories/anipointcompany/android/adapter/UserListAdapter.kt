@@ -50,6 +50,10 @@ open class UserListAdapter (context:Context, view:Int, data: ArrayList<JSONObjec
         var type = Utils.getInt(point_o, "type")
         var updated = Utils.getString(point_o, "created")
         var cate = Utils.getInt(point_o, "cate")
+
+
+
+
         if (phone.length==11){
             //번호하이픈
             phone = phone.substring(0, 3) + "-" + phone.substring(3, 7) + "-" + phone.substring(7,11)
@@ -59,17 +63,31 @@ open class UserListAdapter (context:Context, view:Int, data: ArrayList<JSONObjec
         }else{
             phone =phone
         }
-        item.nameTV.text = phone
-        item.pointTV.text = Utils.comma(point)+"P"
-        item.updateTV.text =updated
 
-        if (type==1){
-            item.typeTV.text = "포인트 적립"
-        }else if(cate == 3){
-            item.typeTV.text = "포인트 환불"
+        if (point =="0"){
+            item.nameTV.text = phone
+            item.updateTV.text =updated
+            item.typeTV.text = "쿠폰 사용"
+            val coupon = json.getJSONObject("MemberCoupon")
+            var coupon_name = Utils.getString(coupon, "coupon_name")
+            item.pointTV.text =coupon_name
+
         }else{
-            item.typeTV.text = "포인트 사용"
+            item.nameTV.text = phone
+            item.pointTV.text = Utils.comma(point)+"P"
+            item.updateTV.text =updated
+
+            if (type==1){
+                item.typeTV.text = "포인트 적립"
+            }else if(cate == 3){
+                item.typeTV.text = "포인트 환불"
+            }else{
+                item.typeTV.text = "포인트 사용"
+            }
         }
+
+
+
 
 
 
