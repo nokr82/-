@@ -260,7 +260,13 @@ class SetCouponFragment : Fragment() {
             coupon_add()
         }
     }
-
+    override fun onPause() {
+        super.onPause()
+        setmenu2()
+        setmenu()
+        coupon_prdET.setText("")
+        coupon_conET.setText("")
+    }
     fun etchange() {
         //에딧텍스트 입력댈떄마다변화
         coupon_prdET.addTextChangedListener(object : TextWatcher {

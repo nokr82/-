@@ -296,7 +296,10 @@ class Message_write_Fragment : Fragment() {
         writeTV.setTextColor(Color.parseColor("#c5c5c5"))
         finalTV.setTextColor(Color.parseColor("#c5c5c5"))
     }
+    override fun onPause() {
+        super.onPause()
 
+    }
     override fun onDestroy() {
         super.onDestroy()
         if (progressDialog != null) {
