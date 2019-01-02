@@ -24,6 +24,7 @@ import android.widget.ArrayAdapter
 import com.devstories.anipointcompany.android.base.PrefUtils
 
 
+
 //회원수정 다이얼로그
 class DlgEditMemberInfoActivity : RootActivity() {
 
@@ -36,6 +37,8 @@ class DlgEditMemberInfoActivity : RootActivity() {
     var member_id = -1
     var gender = ""
     var company_id = -1
+
+    var updated_date = ""
 
     var age = ""
 
@@ -145,6 +148,8 @@ class DlgEditMemberInfoActivity : RootActivity() {
                         var name= Utils.getString(member, "name")
                         var memo= Utils.getString(member, "memo")
                         var age= Utils.getString(member, "age")
+                       updated_date= Utils.getString(member, "updated_date")
+
 
                         if (phone ==""){
                             phone="─"
@@ -246,6 +251,7 @@ class DlgEditMemberInfoActivity : RootActivity() {
         params.put("member_id", member_id)
         params.put("birth", Utils.getString(birthET))
         params.put("age",age)
+        params.put("updated_date",updated_date)
         params.put("gender",gender)
         params.put("name", Utils.getString(nameET))
         params.put("memo", Utils.getString(memoET))
