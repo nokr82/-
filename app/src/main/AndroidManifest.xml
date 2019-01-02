@@ -42,7 +42,7 @@
             android:name=".activities.UserListActivity"
             android:screenOrientation="landscape"
             android:theme="@style/NoTitleDialog"
-            android:windowSoftInputMode="adjustNothing|stateHidden"/>
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"/>
         <activity
             android:name=".activities.MessageDetailActivity"
             android:screenOrientation="landscape"

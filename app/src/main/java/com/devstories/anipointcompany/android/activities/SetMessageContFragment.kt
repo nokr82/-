@@ -182,7 +182,7 @@ class SetMessageContFragment : Fragment() {
 
         }
         nextTV.setOnClickListener {
-            var message = messageContentET.text.toString() + "무료거부 080-880-7463"
+            var message = messageContentET.text.toString() + "무료거부 080"
 
             messageContentET.setText(message)
             dlgView()
