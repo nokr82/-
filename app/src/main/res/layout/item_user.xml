@@ -35,9 +35,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
-                    android:letterSpacing="-0.05"
-                    android:lineSpacingExtra="2sp"
-                    android:text="2018.10.15 방문"
+                    android:text="적립기록없음"
                     android:textColor="#8d8d8d"
                     android:textSize="12dp" />
 

@@ -222,10 +222,12 @@ class User_List_Fragment : Fragment() {
                             var created = Utils.getString(member, "created")
                             var visit = Utils.getString(member, "visit_cnt")
                             val sdf = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
-                            val updated = SimpleDateFormat("yy-MM-dd HH:mm:ss").parse(Utils.getString(member, "updated"))
-                            var updated_date = sdf.format(updated)
+                            if (Utils.getString(point_o, "updated")!=""){
+                                val updated = SimpleDateFormat("yy-MM-dd HH:mm:ss").parse(Utils.getString(point_o, "updated"))
+                                var updated_date = sdf.format(updated)
+                                dateTV.text = updated_date + " 방문"
+                            }
                             var r_phone:String? = null
-
                             if (age.equals("")){
                                 age = "미입력"
                             }else{
@@ -269,7 +271,7 @@ class User_List_Fragment : Fragment() {
                             use_pointTV.text = Utils.comma(use_point) + "P"
                             acc_pointTV.text = Utils.comma(stack_point) + "P"
 //                            stack_pointTV.text = "누적:" +Utils.comma(stack_point) + "P"
-                            dateTV.text = updated_date + " 방문"
+
                             ageTV.text = age
                             nameTV.text = r_phone
                             name2TV.text = name
