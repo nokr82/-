@@ -161,10 +161,10 @@ class AutoCouponSettingsFragment : Fragment() {
         validityLL.setOnClickListener {
             if (validity_alarm_yn == "Y") {
                 validity_alarm_yn = "N"
-                validityIV.setImageResource(R.mipmap.switch_off)
+                validityIV.setImageResource(R.mipmap.off)
             } else {
                 validity_alarm_yn = "Y"
-                validityIV.setImageResource(R.mipmap.switch_on)
+                validityIV.setImageResource(R.mipmap.on)
             }
         }
 
@@ -391,9 +391,9 @@ class AutoCouponSettingsFragment : Fragment() {
                             }
 
                             if (validity_alarm_yn == "Y") {
-                                validityIV.setImageResource(R.mipmap.switch_on)
+                                validityIV.setImageResource(R.mipmap.on)
                             } else {
-                                validityIV.setImageResource(R.mipmap.switch_off)
+                                validityIV.setImageResource(R.mipmap.off)
                             }
                             var image_uri = Utils.getString(coupon, "image_uri")
                             var image = Config.url + image_uri
@@ -477,7 +477,7 @@ class AutoCouponSettingsFragment : Fragment() {
                     weekDayIV.setImageResource(R.mipmap.box_check_off)
                     satDayIV.setImageResource(R.mipmap.box_check_off)
                     sunDayIV.setImageResource(R.mipmap.box_check_off)
-                    validityIV.setImageResource(R.mipmap.switch_off)
+                    validityIV.setImageResource(R.mipmap.off)
 
                     coupon_id = -1
                     use_day = 30
@@ -520,7 +520,7 @@ class AutoCouponSettingsFragment : Fragment() {
                         }
 
                         if (validity_alarm_yn == "Y") {
-                            validityIV.setImageResource(R.mipmap.switch_on)
+                            validityIV.setImageResource(R.mipmap.on)
                         }
 
                         var image_uri = Utils.getString(coupon, "image_uri")
@@ -654,9 +654,9 @@ class AutoCouponSettingsFragment : Fragment() {
                         }
 
                         if (validity_alarm_yn == "Y") {
-                            validityIV.setImageResource(R.mipmap.switch_on)
+                            validityIV.setImageResource(R.mipmap.on)
                         } else {
-                            validityIV.setImageResource(R.mipmap.switch_off)
+                            validityIV.setImageResource(R.mipmap.off)
                         }
 
                         if(type == 1) {

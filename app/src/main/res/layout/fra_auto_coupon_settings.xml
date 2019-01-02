@@ -551,7 +551,7 @@
                                 android:id="@+id/validityIV"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@mipmap/switch_off" />
+                                android:src="@mipmap/off" />
 
                         </LinearLayout>
 

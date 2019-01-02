@@ -231,10 +231,10 @@ class SetCouponFragment : Fragment() {
         validityIV.setOnClickListener {
             it.isSelected = !it.isSelected
             if (it.isSelected) {
-                validityIV.setImageResource(R.mipmap.switch_off)
+                validityIV.setImageResource(R.mipmap.off)
                 validity_alarm_yn = "N"
             } else {
-                validityIV.setImageResource(R.mipmap.switch_on)
+                validityIV.setImageResource(R.mipmap.on)
                 validity_alarm_yn = "Y"
             }
         }
