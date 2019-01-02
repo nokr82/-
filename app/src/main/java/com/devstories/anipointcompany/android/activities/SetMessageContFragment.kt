@@ -46,6 +46,7 @@ class SetMessageContFragment : Fragment() {
     lateinit var messageTV: TextView
     lateinit var titleTV: TextView
     lateinit var nextTV: TextView
+    lateinit var companyTelTV: TextView
     lateinit var imgLL: LinearLayout
     lateinit var imgIV: ImageView
 
@@ -83,6 +84,7 @@ class SetMessageContFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        companyTelTV = view.findViewById(R.id.companyTelTV)
         companyNameTV = view.findViewById(R.id.companyNameTV)
         memberNameTV = view.findViewById(R.id.memberNameTV)
         pointTV = view.findViewById(R.id.pointTV)
@@ -163,6 +165,14 @@ class SetMessageContFragment : Fragment() {
 
         }
 
+        companyTelTV.setOnClickListener {
+
+            var message = messageContentET.text.toString() + "{_매장번호_}"
+
+            messageContentET.setText(message)
+
+        }
+
         pointTV.setOnClickListener {
 
             var message = messageContentET.text.toString() + "{_포인트_}"
@@ -233,7 +243,8 @@ class SetMessageContFragment : Fragment() {
 
     // 쿠폰 만들기(step3) - 메세지 보내기
     fun send_message() {
-        var message = Utils.getString(messageContentET)
+        var message = Utils.getString(messageContentET)+"\n무료거부 0808807463"
+
         var title = Utils.getString(titleET)
 
         val params = RequestParams()
