@@ -116,7 +116,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="30dp"
                                 android:gravity="bottom"
-                                android:text="계좌번호 : 기업은행 124-98734-9827349 예금주) 애니포인트"
+                                android:text="농협 : 351-1047-4580-13 예금주) 주식회사 에이치엔에이"
                                 android:textColor="#666666"
                                 android:textSize="12sp" />
                         </LinearLayout>
@@ -131,8 +131,8 @@
 
 
                     <LinearLayout
-                        android:layout_marginTop="20dp"
                         android:layout_width="match_parent"
+                        android:layout_marginTop="20dp"
                         android:layout_height="wrap_content">
 
                         <LinearLayout
@@ -150,7 +150,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:gravity="center"
-                                android:text="100 ~ 499개"
+                                android:text="100 ~ 499코인"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
 
@@ -176,7 +176,7 @@
                                     android:layout_height="match_parent"
                                     android:layout_marginLeft="20dp"
                                     android:gravity="center"
-                                    android:text="100 ~ 999개"
+                                    android:text="100 ~ 999코인"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
 
@@ -201,7 +201,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:gravity="center"
-                                    android:text="1000 ~ 1,999개"
+                                    android:text="1000 ~ 1,999코인"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
 
@@ -239,7 +239,7 @@
                                     android:layout_height="match_parent"
                                     android:layout_marginLeft="20dp"
                                     android:gravity="center"
-                                    android:text="2,000 ~ 2,999개"
+                                    android:text="2,000 ~ 2,999코인"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
 
@@ -266,7 +266,7 @@
                                     android:layout_height="match_parent"
                                     android:layout_marginLeft="20dp"
                                     android:gravity="center"
-                                    android:text="3,000 ~ 9999개"
+                                    android:text="3,000 ~ 9999코인"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
 
@@ -293,7 +293,7 @@
                                     android:layout_height="match_parent"
                                     android:layout_marginLeft="20dp"
                                     android:gravity="center"
-                                    android:text="10,000개 이상"
+                                    android:text="10,000코인 이상"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
 
@@ -315,6 +315,13 @@
 
                     </LinearLayout>
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="bottom"
+                        android:text="100코인 단위로 구매 가능합니다.구매 상품은 미사용시 7일이내 청약철회가 가능합니다.\n부가가치세 포함 금액입니다."
+                        android:textColor="#666666"
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 

@@ -61,7 +61,7 @@
                         android:textColor="#a1a1a1"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="3sp"
-                        android:text="고객"
+                        android:text="고객 :"
                         android:textStyle="bold"/>
 
                     <TextView
@@ -92,7 +92,7 @@
                         android:textColor="#a1a1a1"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="3sp"
-                        android:text="쿠폰"
+                        android:text="쿠폰 :"
                         android:textStyle="bold"/>
 
                     <TextView
@@ -123,7 +123,7 @@
                         android:textColor="#a1a1a1"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="3sp"
-                        android:text="날짜"
+                        android:text="날짜 :"
                         android:textStyle="bold"/>
 
                     <TextView

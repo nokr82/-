@@ -28,7 +28,7 @@
                 android:layout_marginTop="15.5dp"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:text="포인트 내역"
+                android:text="설정"
                 android:textColor="#ffff"
                 android:textSize="48dp" />
 
