@@ -123,7 +123,8 @@
 
                                 <EditText
                                     android:id="@+id/nameET"
-                                    android:layout_width="match_parent"
+                                    android:gravity="center"
+                                    android:layout_width="fill_parent"
                                     android:layout_height="match_parent"
                                     android:layout_marginLeft="5.5dp"
                                     android:background="@null"
@@ -285,7 +286,8 @@
                                 <EditText
                                     android:id="@+id/birthET"
                                     android:layout_marginLeft="5.5dp"
-                                    android:layout_width="match_parent"
+                                    android:gravity="center"
+                                    android:layout_width="fill_parent"
                                     android:layout_height="match_parent"
                                     android:textSize="12dp"
                                     android:textColor="#303030"

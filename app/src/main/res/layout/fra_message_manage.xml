@@ -89,7 +89,7 @@
                             android:layout_height="wrap_content"
                             android:letterSpacing="-0.03"
                             android:lineSpacingExtra="1sp"
-                            android:text="메세지/쿠폰 보내기"
+                            android:text="메세지 보내기"
                             android:textColor="#80ffffff"
                             android:textSize="36dp" />
 

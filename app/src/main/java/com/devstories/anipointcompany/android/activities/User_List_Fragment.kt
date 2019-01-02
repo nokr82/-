@@ -8,6 +8,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +22,7 @@ import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
 import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.fra_userlist.*
+import me.grantland.widget.AutofitTextView
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -487,7 +489,7 @@ class User_List_Fragment : Fragment() {
                             var pointTV: TextView = userView.findViewById(R.id.pointTV)
                             var acc_pointTV: TextView = userView.findViewById(R.id.acc_pointTV)
                             var visitTV: TextView = userView.findViewById(R.id.visitTV)
-                            var name2TV: TextView = userView.findViewById(R.id.name2TV)
+                            var name2TV: AutofitTextView = userView.findViewById(R.id.name2TV)
                             var genderTV: TextView = userView.findViewById(R.id.genderTV)
                             var ageTV: TextView = userView.findViewById(R.id.ageTV)
                             var birthTV: TextView = userView.findViewById(R.id.birthTV)
@@ -558,7 +560,15 @@ class User_List_Fragment : Fragment() {
                             dateTV.text = updated_date + " 방문"
                             ageTV.text = age
                             nameTV.text = r_phone
+
+                            if (name.equals("─")){
+                                name2TV.setGravity(Gravity.CENTER)
+                            }
                             name2TV.text = name
+
+
+
+
 
                             if (gender == "F") {
                                 gender = "여"

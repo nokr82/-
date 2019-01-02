@@ -155,9 +155,7 @@ class DlgEditMemberInfoActivity : RootActivity() {
                         if (name ==""){
                             name="─"
                         }
-                        if (memo ==""){
-                            memo="─"
-                        }
+
                         if (age ==""){
                           ageSP.setSelection(0)
                         }else if (age=="20"){

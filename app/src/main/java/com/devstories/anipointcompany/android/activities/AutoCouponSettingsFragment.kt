@@ -128,7 +128,6 @@ class AutoCouponSettingsFragment : Fragment() {
             type = 5
             couponData(coupon_type5_id)
         }
-
         weekDayLL.setOnClickListener {
             if (week_use_yn == "Y") {
                 week_use_yn = "N"
@@ -217,6 +216,7 @@ class AutoCouponSettingsFragment : Fragment() {
             }
 
             changeTempYn(coupon_type5_id)
+
         }
 
         saveTV.setOnClickListener {
@@ -399,7 +399,7 @@ class AutoCouponSettingsFragment : Fragment() {
                             var image = Config.url + image_uri
                             ImageLoader.getInstance().displayImage(image,imgIV, Utils.UILoptionsUserProfile)
                             contentET.setText(Utils.getString(coupon, "content"))
-
+                            titleET.setText(Utils.getString(coupon,"msg_title"))
                             messageET.setText(Utils.getString(coupon, "msg_content"))
 
                         }
@@ -527,6 +527,7 @@ class AutoCouponSettingsFragment : Fragment() {
                         var image = Config.url + image_uri
                         ImageLoader.getInstance().displayImage(image,imgIV, Utils.UILoptionsUserProfile)
                         messageET.setText(Utils.getString(coupon, "msg_content"))
+                        titleET.setText(Utils.getString(coupon, "msg_title"))
                         contentET.setText(Utils.getString(coupon, "content"))
 
                     }
@@ -589,6 +590,7 @@ class AutoCouponSettingsFragment : Fragment() {
         params.put("company_id", company_id)
         params.put("coupon_id", coupon_id)
         params.put("msg_content", msg_content)
+
         if (imgIV.drawable != null) {
             bitmap = imgIV.drawable as BitmapDrawable
             params.put("upload", ByteArrayInputStream(Utils.getByteArray(bitmap!!.bitmap)))
@@ -601,6 +603,7 @@ class AutoCouponSettingsFragment : Fragment() {
         params.put("validity_alarm_yn", validity_alarm_yn)
         params.put("name", Utils.getString(couponNameTV))
         params.put("content", Utils.getString(contentET))
+        params.put("msg_title", Utils.getString(titleET))
 
         CouponAction.edit_coupon(params, object : JsonHttpResponseHandler() {
 
