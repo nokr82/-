@@ -113,6 +113,7 @@ class SetMessageContFragment : Fragment() {
             if (member_id != -1) {
                 coupon_id = getArguments()!!.getString("coupon_id")
             } else {
+                setedit()
                 coupon_id = getArguments()!!.getString("coupon_id")
                 search_type = getArguments()!!.getInt("search_type", -1)
                 gender = getArguments()!!.getStringArrayList("gender")
@@ -180,7 +181,12 @@ class SetMessageContFragment : Fragment() {
             messageContentET.setText(message)
 
         }
+        nextTV.setOnClickListener {
+            var message = messageContentET.text.toString() + "무료거부 080-880-7463"
 
+            messageContentET.setText(message)
+            dlgView()
+        }
         messageContentET.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(s: Editable) {
@@ -192,6 +198,7 @@ class SetMessageContFragment : Fragment() {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 textLengthTV.text = s.length.toString()
                 messageTV.text = s
+
             }
         })
 
@@ -207,9 +214,7 @@ class SetMessageContFragment : Fragment() {
             }
         })
 
-        nextTV.setOnClickListener {
-            dlgView()
-        }
+
 
     }
 
@@ -243,16 +248,19 @@ class SetMessageContFragment : Fragment() {
 
     // 쿠폰 만들기(step3) - 메세지 보내기
     fun send_message() {
-        var message = Utils.getString(messageContentET)+"\n무료거부 0808807463"
 
+
+
+        var message = Utils.getString(messageContentET)
         var title = Utils.getString(titleET)
 
         val params = RequestParams()
         params.put("company_id", company_id)
         params.put("coupon_id", coupon_id)
-        if (member_id != -1) {
+        if (member_id!=-1){
             params.put("member_id", member_id)
         }
+
         params.put("message", message)
 
 

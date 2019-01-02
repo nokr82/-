@@ -655,6 +655,11 @@ class CalActivity : RootActivity() {
 
                                 use_point = Utils.getInt(requestStep, "point")
 
+                                if (use_point==-1){
+                                    use_point=0
+                                }
+
+
                                 usePointLL.visibility = View.VISIBLE
                                 usePointTV.text = use_point.toString()
 
