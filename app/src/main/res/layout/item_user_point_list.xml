@@ -34,7 +34,6 @@
                android:id="@+id/nameTV"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:letterSpacing="-0.03"
                android:lineSpacingExtra="51sp"
                android:text="홍길동"
                android:textColor="#666666"
@@ -47,7 +46,6 @@
                android:layout_height="wrap_content"
                android:textSize="16dp"
                android:textColor="#a2a2a2"
-               android:letterSpacing="-0.03"
                android:lineSpacingExtra="53sp"
                android:text="2018.10.28"
                />
@@ -71,7 +69,6 @@
                android:layout_height="wrap_content"
                android:textSize="16dp"
                android:textColor="#a2a2a2"
-               android:letterSpacing="-0.03"
                android:lineSpacingExtra="53sp"
                android:text="포인트 적립"
                />
@@ -83,7 +80,6 @@
                android:layout_height="wrap_content"
                android:textSize="16dp"
                android:textColor="#666666"
-               android:letterSpacing="-0.03"
                android:lineSpacingExtra="51sp"
                android:text="5P"
                />

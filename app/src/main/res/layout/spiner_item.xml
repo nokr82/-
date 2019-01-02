@@ -6,7 +6,6 @@
     android:layout_height="wrap_content"
     android:textSize="16dp"
     android:textColor="#666666"
-    android:letterSpacing="-0.03"
     android:lineSpacingExtra="4sp"
     android:text="전체"
     />

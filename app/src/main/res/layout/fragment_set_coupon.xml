@@ -46,7 +46,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:letterSpacing="-0.2"
                         android:text="목록에서 선택한 1명"
                         android:textColor="#666666"
                         android:textSize="16sp" />
@@ -71,7 +70,6 @@
                             android:id="@+id/exTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:letterSpacing="-0.2"
                             android:text="쿠폰 받은 날부터 30일간 유효"
                             android:textColor="#666666"
                             android:textSize="16sp" />
@@ -94,7 +92,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="8dp"
-                                android:letterSpacing="-0.2"
                                 android:text="만료 알림 보내기"
                                 android:textColor="#666666"
                                 android:textSize="16sp" />
@@ -118,7 +115,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:letterSpacing="-0.2"
                         android:text="쿠폰이름"
                         android:textColor="#666666"
                         android:textSize="16sp"
@@ -128,7 +124,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="40dp"
-                        android:letterSpacing="-0.2"
                         android:text="쿠폰 내용"
                         android:textColor="#666666"
                         android:textSize="16sp"
@@ -138,7 +133,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="40dp"
-                        android:letterSpacing="-0.2"
                         android:text="쿠폰 유효기간"
                         android:textColor="#666666"
                         android:textSize="16sp"
@@ -148,7 +142,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="40dp"
-                        android:letterSpacing="-0.2"
                         android:text="사용 가능 요일"
                         android:textColor="#666666"
                         android:textSize="16sp"
@@ -358,7 +351,6 @@
                             android:layout_marginTop="5dp"
                             android:background="#dcdfe0"
                             android:gravity="center"
-                            android:letterSpacing="-0.18"
                             android:text="유효기간 만료 알림이란?"
                             android:textColor="#666666"
                             android:textSize="14sp" />
@@ -383,7 +375,6 @@
                                 android:layout_marginRight="40dp"
                                 android:background="#0871bf"
                                 android:gravity="center"
-                                android:letterSpacing="-0.03"
                                 android:text="건너뛰기"
                                 android:textColor="#ffffff"
                                 android:textSize="18sp" />
