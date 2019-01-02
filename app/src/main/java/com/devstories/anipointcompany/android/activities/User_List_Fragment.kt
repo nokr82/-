@@ -229,7 +229,8 @@ class User_List_Fragment : Fragment() {
                             }
                             var r_phone:String? = null
                             if (age.equals("")){
-                                age = "미입력"
+                                age = "─"
+                                ageTV.gravity = Gravity.CENTER
                             }else{
                                 age+="대"
                             }
@@ -241,10 +242,12 @@ class User_List_Fragment : Fragment() {
 
 
                             if (birth.equals("")){
-                                birth = "미입력"
+                                birth = "─"
+                                birthTV.gravity = Gravity.CENTER
                             }
                             if (name.equals("")){
-                                name = "미입력"
+                                name = "─"
+                                name2TV.gravity = Gravity.CENTER
                             }
                             if (stack_point.equals("")){
                                 stack_point = "0"
@@ -486,6 +489,7 @@ class User_List_Fragment : Fragment() {
 
                         var data = response.getJSONArray("member")
 
+
                         for (i in 0..(data.length() - 1)) {
 
                             adapterData.add(data[i] as JSONObject)
@@ -507,7 +511,7 @@ class User_List_Fragment : Fragment() {
                             var pointTV: TextView = userView.findViewById(R.id.pointTV)
                             var acc_pointTV: TextView = userView.findViewById(R.id.acc_pointTV)
                             var visitTV: TextView = userView.findViewById(R.id.visitTV)
-                            var name2TV: AutofitTextView = userView.findViewById(R.id.name2TV)
+                            var name2TV: TextView = userView.findViewById(R.id.name2TV)
                             var genderTV: TextView = userView.findViewById(R.id.genderTV)
                             var ageTV: TextView = userView.findViewById(R.id.ageTV)
                             var birthTV: TextView = userView.findViewById(R.id.birthTV)
@@ -535,21 +539,32 @@ class User_List_Fragment : Fragment() {
                             var created = Utils.getString(member, "created")
                             var visit = Utils.getString(member, "visit_cnt")
                             val sdf = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
-                            val updated = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(Utils.getString(member, "updated"))
-                            val updated_date = sdf.format(updated)
-                            var r_phone:String? = null
-
-                            if (age.equals("")){
-                                age = "미입력"
-                            }else{
-                                age+="세"
+                            if (Utils.getString(point_o, "updated")!=""){
+                                val updated = SimpleDateFormat("yy-MM-dd HH:mm:ss").parse(Utils.getString(point_o, "updated"))
+                                var updated_date = sdf.format(updated)
+                                dateTV.text = updated_date + " 방문"
                             }
+                            var r_phone:String? = null
+                            if (age.equals("")){
+                                age = "─"
+                                ageTV.gravity = Gravity.CENTER
+                            }else{
+                                age+="대"
+                            }
+
+                            if (name=="─"){
+                                name2TV.gravity = Gravity.CENTER
+                            }
+
+
 
                             if (birth.equals("")){
-                                birth = "미입력"
+                                birth = "─"
+                                birthTV.gravity = Gravity.CENTER
                             }
                             if (name.equals("")){
-                                name = "미입력"
+                                name = "─"
+                                name2TV.gravity = Gravity.CENTER
                             }
                             if (stack_point.equals("")){
                                 stack_point = "0"
@@ -571,22 +586,15 @@ class User_List_Fragment : Fragment() {
                             }
 
 
-                            pointTV.text =Utils.comma(point)+ "P"
+
+                            pointTV.text = Utils.comma(point) + "P"
                             use_pointTV.text = Utils.comma(use_point) + "P"
                             acc_pointTV.text = Utils.comma(stack_point) + "P"
-//                            stack_pointTV.text = "누적:" +  Utils.comma(stack_point) + "P"
-                            dateTV.text = updated_date + " 방문"
+//                            stack_pointTV.text = "누적:" +Utils.comma(stack_point) + "P"
+
                             ageTV.text = age
                             nameTV.text = r_phone
-
-                            if (name.equals("─")){
-                                name2TV.setGravity(Gravity.CENTER)
-                            }
                             name2TV.text = name
-
-
-
-
 
                             if (gender == "F") {
                                 gender = "여"
@@ -600,38 +608,76 @@ class User_List_Fragment : Fragment() {
                             memoTV.text = memo
                             couponTV.text = coupon + "장"
                             birthTV.text = birth
-                            visitTV.text = visit + "회"
+                            visitTV.text = Utils.comma(visit) + "회"
                             phoneTV.text = phone
 
                             var str = ""
 
+
+
                             for (i in 0 until visitedList.length()) {
                                 val json: JSONObject = visitedList[i] as JSONObject
                                 val companySale = json.getJSONObject("CompanySale")
-                                val category = json.getJSONObject("Category")
+
 
                                 val created = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(Utils.getString(companySale, "created"))
-                                val created_str = SimpleDateFormat("yyyy-MM-dd").format(created)
+                                var created_str = SimpleDateFormat("yy-MM-dd").format(created)
 
-                                if (str.length > 0) {
-                                    str += "\n"
-                                }
+                                /*  if (str.length > 0) {
+                                      str += "\n"
+                                  }*/
                                 var use_point =  Utils.getString(companySale, "use_point")
                                 var point = Utils.getString(companySale, "point")
-                                var coupon = Utils.getString(companySale, "coupon")
-                                if (use_point.equals("")){
-                                    use_point="0"
-                                }
-                                if (point.equals("")){
-                                    point = "0"
-                                }
-                                if (coupon.equals("")){
-                                    coupon = "없음"
+                                var coupon = Utils.getString(companySale, "coupon_id")
+
+
+
+                                var price = Utils.getString(companySale, "price")
+                                /*      if (use_point.equals("")){
+                                          use_point="0"
+                                      }
+                                      if (point.equals("")){
+                                          point = "0"
+                                      }
+                                      if (coupon.equals("")){
+                                          coupon = "없음"
+                                      }*/
+
+                                created_str = created_str.replace("-","")
+
+
+//                                str = str + created_str + " / " + Utils.getString(category, "name") + " / " + Utils.comma(Utils.getString(companySale, "price"))+"원\n"+
+//                                        "적립: " +Utils.comma(point) + "P/사용:" +Utils.comma(use_point)+ "P"+"/사용쿠폰:"+coupon
+
+
+
+                                if (coupon!=""){
+                                    val MemberCoupon = json.getJSONObject("MemberCoupon")
+                                    var coupon_name = Utils.getString(MemberCoupon, "coupon_name")
+                                    str = str+created_str+" 쿠폰 사용 "+coupon_name+"\n"
                                 }
 
 
-                                str = str + created_str + " / " + Utils.getString(category, "name") + " / " + Utils.comma(Utils.getString(companySale, "price"))+"원\n"+
-                                        "적립: " +Utils.comma(point) + "P/사용:" +Utils.comma(use_point)+ "P"+"/사용쿠폰:"+coupon
+                                if (point != ""&& use_point!=""){
+                                    str = str+created_str+" 사용 "+Utils.comma(use_point)+"P /"+" 적립 "+Utils.comma(point)+"P"+"("+Utils.comma(Utils.getString(companySale, "price"))+"*"+
+                                            Utils.getString(companySale, "per")+"%)\n"
+                                }
+                                else if (use_point != ""){
+                                    if (use_point != "0"){
+                                        str = str+created_str+" 사용 "+Utils.comma(use_point)+"P\n"
+                                    }
+                                } else if (point != ""){
+                                    str = str+created_str+" 적립 "+Utils.comma(point)+"P"+"("+Utils.comma(Utils.getString(companySale, "price"))+"*"+
+                                            Utils.getString(companySale, "per")+"%)\n"
+                                }else{
+
+                                }
+//                                if (coupon != "-1"){
+//                                    val MemberCoupon = json.getJSONObject("MemberCoupon")
+//                                    var coupon_name = Utils.getString(MemberCoupon, "coupon_name")
+//                                    str = str+created_str+" 쿠폰 사용 "+coupon_name+"\n"
+//                                }
+
 
 
                             }
