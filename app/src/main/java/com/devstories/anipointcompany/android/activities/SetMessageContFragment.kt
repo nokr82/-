@@ -109,7 +109,7 @@ class SetMessageContFragment : Fragment() {
             member_id = getArguments()!!.getInt("member_id", -1)
             Log.d("멤버디", member_id.toString())
             if (member_id != -1) {
-
+                coupon_id = getArguments()!!.getString("coupon_id")
             } else {
                 coupon_id = getArguments()!!.getString("coupon_id")
                 search_type = getArguments()!!.getInt("search_type", -1)
@@ -199,8 +199,6 @@ class SetMessageContFragment : Fragment() {
 
         nextTV.setOnClickListener {
             dlgView()
-
-
         }
 
     }

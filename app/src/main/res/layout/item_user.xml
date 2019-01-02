@@ -7,7 +7,7 @@
 
     <com.devstories.anipointcompany.android.base.RationalLinearLayout
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:adjustHeight="false"
         app:ratio="175:280">
 
@@ -633,8 +633,7 @@
             <LinearLayout
                 android:id="@+id/msgLL"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.08"
+                android:layout_height="match_parent"
                 android:background="#00d1ce"
                 android:gravity="center">
 
@@ -644,7 +643,7 @@
                     android:layout_height="wrap_content"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="메세지 보내기"
+                    android:text="쿠폰/메세지 보내기"
                     android:textColor="#ffffff"
                     android:textSize="20dp" />
 

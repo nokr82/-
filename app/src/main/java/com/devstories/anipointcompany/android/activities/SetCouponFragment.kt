@@ -22,6 +22,7 @@ import org.json.JSONException
 import org.json.JSONObject
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import com.devstories.anipointcompany.android.base.PrefUtils
 import java.io.Serializable
 
@@ -72,7 +73,7 @@ class SetCouponFragment : Fragment() {
     var to: String? = null
     var gender: Serializable? = null
     var age: Serializable? = null
-
+    var member_id = -1
 
     internal var step1NextReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent?) {
@@ -123,6 +124,7 @@ class SetCouponFragment : Fragment() {
         //고객선택
         var filter1 = IntentFilter("STEP1_NEXT")
         myContext.registerReceiver(step1NextReceiver, filter1)
+
         company_id = PrefUtils.getIntPreference(context, "company_id")
         setmenu2()
         setmenu()
@@ -139,13 +141,19 @@ class SetCouponFragment : Fragment() {
 
 
         if (getArguments() != null) {
-            count = getArguments()!!.getString("count")
-            search_type = getArguments()!!.getInt("search_type")
-            gender = getArguments()!!.getSerializable("gender")
-            age = getArguments()!!.getSerializable("age")
-            visited_date = getArguments()!!.getString("visited_date")
-            from = getArguments()!!.getString("from");
-            to = getArguments()!!.getString("to");
+            member_id = getArguments()!!.getInt("member_id", -1)
+            Log.d("멤버디", member_id.toString())
+            if (member_id != -1) {
+
+            }else{
+                count = getArguments()!!.getString("count")
+                search_type = getArguments()!!.getInt("search_type")
+                gender = getArguments()!!.getSerializable("gender")
+                age = getArguments()!!.getSerializable("age")
+                visited_date = getArguments()!!.getString("visited_date")
+                from = getArguments()!!.getString("from")
+                to = getArguments()!!.getString("to")
+            }
 
         }
 
@@ -235,13 +243,17 @@ class SetCouponFragment : Fragment() {
         skipTV.setOnClickListener {
             var intent = Intent()
             intent.action = "SKIP_NEXT"
-            intent.putExtra("count", count)
-            intent.putExtra("search_type", search_type)
-            intent.putExtra("gender", gender)
-            intent.putExtra("age", age)
-            intent.putExtra("visited_date", visited_date)
-            intent.putExtra("from", from)
-            intent.putExtra("to", to)
+            if (member_id != -1){
+                intent.putExtra("member_id", member_id)
+            }else{
+                intent.putExtra("count", count)
+                intent.putExtra("search_type", search_type)
+                intent.putExtra("gender", gender)
+                intent.putExtra("age", age)
+                intent.putExtra("visited_date", visited_date)
+                intent.putExtra("from", from)
+                intent.putExtra("to", to)
+            }
             myContext.sendBroadcast(intent)
         }
         nextTV.setOnClickListener {
@@ -315,14 +327,19 @@ class SetCouponFragment : Fragment() {
 
                         var intent = Intent()
                         intent.action = "STEP2_NEXT"
-                        intent.putExtra("coupon_id", coupon_id)
-                        intent.putExtra("count", count)
-                        intent.putExtra("search_type", search_type)
-                        intent.putExtra("gender", gender)
-                        intent.putExtra("age", age)
-                        intent.putExtra("visited_date", visited_date)
-                        intent.putExtra("from", from)
-                        intent.putExtra("to", to)
+                        if (member_id!= -1){
+                            intent.putExtra("member_id", member_id)
+                            intent.putExtra("coupon_id", coupon_id)
+                        }else{
+                            intent.putExtra("coupon_id", coupon_id)
+                            intent.putExtra("count", count)
+                            intent.putExtra("search_type", search_type)
+                            intent.putExtra("gender", gender)
+                            intent.putExtra("age", age)
+                            intent.putExtra("visited_date", visited_date)
+                            intent.putExtra("from", from)
+                            intent.putExtra("to", to)
+                        }
                         myContext.sendBroadcast(intent)
                     } else {
                         Toast.makeText(myContext, "업데이트실패", Toast.LENGTH_SHORT).show()
