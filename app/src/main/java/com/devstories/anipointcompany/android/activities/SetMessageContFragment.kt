@@ -103,7 +103,7 @@ class SetMessageContFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         company_id = PrefUtils.getIntPreference(context, "company_id")
-        setedit()
+
 
 
 
@@ -113,7 +113,6 @@ class SetMessageContFragment : Fragment() {
             if (member_id != -1) {
                 coupon_id = getArguments()!!.getString("coupon_id")
             } else {
-                setedit()
                 coupon_id = getArguments()!!.getString("coupon_id")
                 search_type = getArguments()!!.getInt("search_type", -1)
                 gender = getArguments()!!.getStringArrayList("gender")
@@ -216,6 +215,11 @@ class SetMessageContFragment : Fragment() {
 
 
 
+    }
+
+    override fun onPause() {
+        super.onPause()
+        setedit()
     }
 
     fun setedit(){
