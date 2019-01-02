@@ -232,6 +232,12 @@ class User_List_Fragment : Fragment() {
                                 age+="대"
                             }
 
+                            if (name=="─"){
+                             name2TV.gravity = Gravity.CENTER
+                            }
+
+
+
                             if (birth.equals("")){
                                 birth = "미입력"
                             }
@@ -290,7 +296,7 @@ class User_List_Fragment : Fragment() {
                             for (i in 0 until visitedList.length()) {
                                 val json: JSONObject = visitedList[i] as JSONObject
                                 val companySale = json.getJSONObject("CompanySale")
-                                val category = json.getJSONObject("Category")
+
 
                                 val created = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(Utils.getString(companySale, "created"))
                                 var created_str = SimpleDateFormat("yy-MM-dd").format(created)
@@ -300,7 +306,10 @@ class User_List_Fragment : Fragment() {
                                 }*/
                               var use_point =  Utils.getString(companySale, "use_point")
                                 var point = Utils.getString(companySale, "point")
-                                var coupon = Utils.getString(companySale, "coupon")
+                                var coupon = Utils.getString(companySale, "coupon_id")
+
+
+
                                 var price = Utils.getString(companySale, "price")
                           /*      if (use_point.equals("")){
                                     use_point="0"
@@ -320,25 +329,32 @@ class User_List_Fragment : Fragment() {
 
 
 
+                                if (coupon!=""){
+                                    val MemberCoupon = json.getJSONObject("MemberCoupon")
+                                    var coupon_name = Utils.getString(MemberCoupon, "coupon_name")
+                                    str = str+created_str+" 쿠폰 사용 "+coupon_name+"\n"
+                                }
+
 
                                 if (point != ""&& use_point!=""){
                                     str = str+created_str+" 사용 "+Utils.comma(use_point)+"P /"+" 적립 "+Utils.comma(point)+"P"+"("+Utils.comma(Utils.getString(companySale, "price"))+"*"+
                                             Utils.getString(companySale, "per")+"%)\n"
                                 }
                                 else if (use_point != ""){
-                                    str = str+created_str+" 사용 "+Utils.comma(use_point)+"P\n"
-                                }
-
-                                else if (coupon != ""){
-                                    str = str+created_str+" 쿠폰 사용 "+coupon+"\n"
-                                }
-                                else if (point != ""){
+                                    if (use_point != "0"){
+                                        str = str+created_str+" 사용 "+Utils.comma(use_point)+"P\n"
+                                    }
+                                } else if (point != ""){
                                     str = str+created_str+" 적립 "+Utils.comma(point)+"P"+"("+Utils.comma(Utils.getString(companySale, "price"))+"*"+
                                     Utils.getString(companySale, "per")+"%)\n"
                                 }else{
 
                                 }
-
+//                                if (coupon != "-1"){
+//                                    val MemberCoupon = json.getJSONObject("MemberCoupon")
+//                                    var coupon_name = Utils.getString(MemberCoupon, "coupon_name")
+//                                    str = str+created_str+" 쿠폰 사용 "+coupon_name+"\n"
+//                                }
 
 
 
