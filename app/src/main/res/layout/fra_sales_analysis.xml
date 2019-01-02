@@ -15,7 +15,6 @@
 
         <LinearLayout
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
@@ -240,12 +239,12 @@
             android:fillViewport="true"
             android:layout_marginTop="9.5dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="6dp"
             android:scrollbars="none"
             android:layout_height="match_parent">
 
 
     <LinearLayout
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#ffff"

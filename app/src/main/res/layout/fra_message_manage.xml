@@ -229,8 +229,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="9.5dp"
-            android:layout_marginRight="29dp"
-            android:layout_marginBottom="6dp"
+            android:layout_marginRight="20dp"
             android:background="#ffff"
             android:orientation="vertical">
 
