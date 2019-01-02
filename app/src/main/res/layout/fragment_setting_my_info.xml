@@ -105,7 +105,7 @@
                         android:gravity="center"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="4sp"
-                        android:text="연락처"
+                        android:text="매장번호"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -292,6 +292,7 @@
 
                         <TextView
                             android:id="@+id/termTV"
+                            android:gravity="center_vertical"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@null"

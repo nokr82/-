@@ -95,12 +95,29 @@
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:textColor="#4e4e4e"/>
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
                 <TextView
                     android:id="@+id/messageTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#555555"
                     android:textSize="15sp" />
+                </ScrollView>
+                <me.grantland.widget.AutofitTextView
+                    android:maxLines="1"
+                    android:gravity="bottom"
+                    android:singleLine="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="무료거부 0808807463"
+                    android:layout_marginBottom="20dp"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="#4e4e4e"/>
+
             </LinearLayout>
             <ImageView
                 android:id="@+id/imgIV"
@@ -248,6 +265,19 @@
                     android:textSize="14sp"
                     android:textColor="#555555"
                     android:text="보유 포인트"/>
+                <me.grantland.widget.AutofitTextView
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:id="@+id/companyTelTV"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="36dp"
+                    android:layout_marginLeft="28dp"
+                    android:background="@drawable/background_box_f4f4f4"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:textColor="#555555"
+                    android:text="매장번호"/>
                 <TextView
                     android:layout_width="0dp"
                     android:layout_weight="0.8"
