@@ -53,15 +53,18 @@ class SettingFragment : android.support.v4.app.Fragment() {
         super.onActivityCreated(savedInstanceState)
         val SettingMyInfoFragment: SettingMyInfoFragment = SettingMyInfoFragment()
         val OperPolicyFragment: OperPolicyFragment = OperPolicyFragment()
-        Utils.getViewHeight(settingFL,object : Utils.OnHeightSetListener {
+
+        Utils.getViewHeight(msLL,object : Utils.OnHeightSetListener {
             override fun sized(width: Int, height: Int) {
-                val lps = settingFL.getLayoutParams()
+                val lps = msLL.getLayoutParams()
                 lps.width = width
                 lps.height = height
-                settingFL.setLayoutParams(lps)
+                msLL.setLayoutParams(lps)
             }
         }
         )
+
+
 
 
 

@@ -3,27 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+    android:orientation="vertical">
+
         <LinearLayout
+            android:id="@+id/spaceLL"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <com.devstories.anipointcompany.android.base.RationalLinearLayout
+                android:id="@+id/msLL"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 app:adjustHeight="false"
                 app:ratio="150:360">
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_marginLeft="20dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:orientation="vertical">
 
 
@@ -224,11 +223,16 @@
                 </LinearLayout>
             </com.devstories.anipointcompany.android.base.RationalLinearLayout>
 
-
+            <ScrollView
+                android:id="@+id/mainSV"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
             <FrameLayout
                 android:id="@+id/settingFL"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="9.5dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
@@ -236,7 +240,8 @@
                 android:orientation="vertical">
 
             </FrameLayout>
+            </ScrollView>
         </LinearLayout>
-    </ScrollView>
+
 
 </LinearLayout>
