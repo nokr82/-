@@ -87,6 +87,8 @@ class OperPolicyFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+
+
         company_id = PrefUtils.getIntPreference(context, "company_id")
         company_info()
 

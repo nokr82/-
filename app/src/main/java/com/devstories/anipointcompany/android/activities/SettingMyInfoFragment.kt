@@ -22,6 +22,7 @@ import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
 import com.nostra13.universalimageloader.core.ImageLoader
 import cz.msebera.android.httpclient.Header
+import kotlinx.android.synthetic.main.fragment_setting_my_info.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.ByteArrayInputStream
@@ -94,11 +95,13 @@ class SettingMyInfoFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
 
-
         company_id = PrefUtils.getIntPreference(context, "company_id")
 
 
         company_info(company_id)
+
+
+
 
 
         //정보수정

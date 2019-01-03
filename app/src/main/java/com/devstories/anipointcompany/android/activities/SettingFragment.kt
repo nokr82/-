@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.PrefUtils
+import com.devstories.anipointcompany.android.base.Utils
 import kotlinx.android.synthetic.main.fragment_setting.*
 
 //메인설정
@@ -21,6 +23,8 @@ class SettingFragment : android.support.v4.app.Fragment() {
     private var progressDialog: ProgressDialog? = null
     lateinit var myInfoTV: TextView
     lateinit var operPolicyTV: TextView
+
+
 
 
     lateinit var accumulateLL: LinearLayout
@@ -49,6 +53,17 @@ class SettingFragment : android.support.v4.app.Fragment() {
         super.onActivityCreated(savedInstanceState)
         val SettingMyInfoFragment: SettingMyInfoFragment = SettingMyInfoFragment()
         val OperPolicyFragment: OperPolicyFragment = OperPolicyFragment()
+        Utils.getViewHeight(settingFL,object : Utils.OnHeightSetListener {
+            override fun sized(width: Int, height: Int) {
+                val lps = settingFL.getLayoutParams()
+                lps.width = width
+                lps.height = height
+                settingFL.setLayoutParams(lps)
+            }
+        }
+        )
+
+
 
 
         accumulateLL.setOnClickListener {

@@ -4,217 +4,225 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
-
-    <com.devstories.anipointcompany.android.base.RationalLinearLayout
-        android:layout_width="0dp"
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:adjustHeight="false"
-        app:ratio="150:360">
+        android:orientation="horizontal">
 
-        <LinearLayout
+        <com.devstories.anipointcompany.android.base.RationalLinearLayout
             android:layout_width="0dp"
-            android:layout_marginLeft="20dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            app:adjustHeight="false"
+            app:ratio="150:360">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
 
-            <me.grantland.widget.AutofitTextView
-                android:id="@+id/titleTV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="23.5dp"
-                android:layout_marginTop="15.5dp"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:text="메세지/쿠폰"
-                android:textColor="#ffff"
-                android:textSize="48dp" />
-
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:fillViewport="true"
-                android:scrollbars="none"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-                <LinearLayout
-                    android:id="@+id/messageStatisticsLL"
+                <me.grantland.widget.AutofitTextView
+                    android:id="@+id/titleTV"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:visibility="visible">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="23.5dp"
+                    android:layout_marginTop="15.5dp"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="메세지/쿠폰"
+                    android:textColor="#ffff"
+                    android:textSize="48dp" />
 
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:fillViewport="true"
+                    android:scrollbars="none"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
                     <LinearLayout
+                        android:id="@+id/messageStatisticsLL"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:layout_marginTop="35dp"
-                        android:gravity=""
-                        android:orientation="vertical">
-
-
-
-                        <me.grantland.widget.AutofitTextView
-                            android:singleLine="true"
-                            android:maxLines="1"
-                            android:id="@+id/messageStatisticsTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:lineSpacingExtra="1sp"
-                            android:text="메세지 통계"
-                            android:textColor="#ffffff"
-                            android:textSize="36dp" />
-
-
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/sendMessageLL"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:gravity="">
-
-
-                        <me.grantland.widget.AutofitTextView
-                            android:singleLine="true"
-                            android:maxLines="1"
-                            android:id="@+id/sendMessageTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:lineSpacingExtra="1sp"
-                            android:text="메세지 보내기"
-                            android:textColor="#80ffffff"
-                            android:textSize="36dp" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/autoCouponLL"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-
-                        android:orientation="vertical">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:visibility="visible">
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:layout_marginTop="35dp"
+                            android:gravity=""
                             android:orientation="vertical">
+
+
 
                             <me.grantland.widget.AutofitTextView
                                 android:singleLine="true"
-                                android:id="@+id/autoCouponTV"
                                 android:maxLines="1"
-                                android:layout_width="match_parent"
+                                android:id="@+id/messageStatisticsTV"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:lineSpacingExtra="1sp"
-                                android:text="자동 쿠폰 관리"
-                                android:textColor="#80ffffff"
+                                android:text="메세지 통계"
+                                android:textColor="#ffffff"
                                 android:textSize="36dp" />
+
 
 
 
                         </LinearLayout>
 
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/monthLL"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:id="@+id/sendMessageLL"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="">
+
 
                             <me.grantland.widget.AutofitTextView
-                                android:id="@+id/monthTV"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:lineSpacingExtra="1sp"
-                                android:maxLines="1"
                                 android:singleLine="true"
+                                android:maxLines="1"
+                                android:id="@+id/sendMessageTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:lineSpacingExtra="1sp"
+                                android:text="메세지 보내기"
                                 android:textColor="#80ffffff"
                                 android:textSize="36dp" />
 
 
                         </LinearLayout>
 
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-
                         <LinearLayout
-                            android:id="@+id/accumulateLL"
-                            android:layout_width="0dp"
-                            android:layout_height="80dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_weight="0.5"
-                            android:background="#997afb"
-                            android:gravity="center">
+                            android:id="@+id/autoCouponLL"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
 
-                            <me.grantland.widget.AutofitTextView
+                            android:orientation="vertical">
+
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
-                                android:lineSpacingExtra="-2sp"
-                                android:maxLines="1"
-                                android:singleLine="true"
-                                android:text="적립"
-                                android:textColor="#ffffff"
-                                android:textSize="24dp" />
+                                android:orientation="vertical">
 
+                                <me.grantland.widget.AutofitTextView
+                                    android:singleLine="true"
+                                    android:id="@+id/autoCouponTV"
+                                    android:maxLines="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:lineSpacingExtra="1sp"
+                                    android:text="자동 쿠폰 관리"
+                                    android:textColor="#80ffffff"
+                                    android:textSize="36dp" />
+
+
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/useLL"
-                            android:layout_width="0dp"
-                            android:layout_height="80dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_weight="0.5"
-                            android:background="#ff8e1b"
-                            android:gravity="center">
+                            android:id="@+id/monthLL"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-                            <me.grantland.widget.AutofitTextView
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
-                                android:lineSpacingExtra="-2sp"
-                                android:maxLines="1"
-                                android:singleLine="true"
-                                android:text="사용"
-                                android:textColor="#ffffff"
-                                android:textSize="24dp" />
+                                android:orientation="vertical">
 
+                                <me.grantland.widget.AutofitTextView
+                                    android:id="@+id/monthTV"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:lineSpacingExtra="1sp"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:textColor="#80ffffff"
+                                    android:textSize="36dp" />
+
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+
+                            <LinearLayout
+                                android:id="@+id/accumulateLL"
+                                android:layout_width="0dp"
+                                android:layout_height="80dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_weight="0.5"
+                                android:background="#997afb"
+                                android:gravity="center">
+
+                                <me.grantland.widget.AutofitTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_horizontal"
+                                    android:lineSpacingExtra="-2sp"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text="적립"
+                                    android:textColor="#ffffff"
+                                    android:textSize="24dp" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/useLL"
+                                android:layout_width="0dp"
+                                android:layout_height="80dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_weight="0.5"
+                                android:background="#ff8e1b"
+                                android:gravity="center">
+
+                                <me.grantland.widget.AutofitTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_horizontal"
+                                    android:lineSpacingExtra="-2sp"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text="사용"
+                                    android:textColor="#ffffff"
+                                    android:textSize="24dp" />
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
                     </LinearLayout>
-
-                </LinearLayout>
-            </ScrollView>
+                </ScrollView>
 
 
 
 
-        </LinearLayout>
-    </com.devstories.anipointcompany.android.base.RationalLinearLayout>
+            </LinearLayout>
+        </com.devstories.anipointcompany.android.base.RationalLinearLayout>
 
 
         <FrameLayout
@@ -224,10 +232,11 @@
             android:layout_marginTop="9.5dp"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-
             android:background="#ffff"
             android:orientation="vertical">
 
         </FrameLayout>
+    </LinearLayout>
+</ScrollView>
 
 </LinearLayout>

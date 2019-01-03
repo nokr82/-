@@ -15,6 +15,7 @@ import android.view.ViewGroup
 import android.widget.*
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.PrefUtils
+import com.devstories.anipointcompany.android.base.Utils
 
 //메시지관리  - 고객선택
 class Message_Manage_Fragment : Fragment() {
@@ -79,6 +80,20 @@ class Message_Manage_Fragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         company_id = PrefUtils.getIntPreference(context, "company_id")
+
+
+
+        Utils.getViewHeight(messageFL,object : Utils.OnHeightSetListener {
+            override fun sized(width: Int, height: Int) {
+                val lps = messageFL.getLayoutParams()
+                lps.height = height
+                lps.width = width
+                Log.d("너비",width.toString())
+                messageFL.setLayoutParams(lps)
+            }
+        }
+        )
+
 
        childFragmentManager.beginTransaction().replace(R.id.messageFL, MssgAnalysisFragment).commit()
 

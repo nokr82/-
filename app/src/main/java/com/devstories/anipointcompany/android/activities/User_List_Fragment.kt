@@ -44,6 +44,9 @@ class User_List_Fragment : Fragment() {
     lateinit var entire_viewTV: TextView
     lateinit var accumulateLL: LinearLayout
     lateinit var useLL: LinearLayout
+    lateinit var scrollLL: LinearLayout
+
+
     var isBirthTab = false
 
     var adapterData: ArrayList<JSONObject> = ArrayList<JSONObject>()
@@ -64,7 +67,7 @@ class User_List_Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        scrollLL = view.findViewById(R.id.scrollLL)
         userLL = view.findViewById(R.id.userLL)
         userList_new_userLL = view.findViewById(R.id.userList_new_userLL)
         userList_most_freq_userLL = view.findViewById(R.id.userList_most_freq_userLL)
@@ -83,6 +86,19 @@ class User_List_Fragment : Fragment() {
         company_id = PrefUtils.getIntPreference(myContext, "company_id")
 
         mainData(1)
+
+
+
+
+        Utils.getViewHeight(scrollLL,object : Utils.OnHeightSetListener {
+                    override fun sized(width: Int, height: Int) {
+                        val lps = scrollLL.getLayoutParams()
+                        lps.height = height
+                        lps.width = width
+                        scrollLL.setLayoutParams(lps)
+                    }
+                }
+        )
 
 
 
