@@ -7,15 +7,13 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat.startActivity
 import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.view.*
+import android.widget.*
 import com.devstories.anipointcompany.android.Actions.MemberAction
 import com.devstories.anipointcompany.android.R
+import com.devstories.anipointcompany.android.R.id.*
 import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
@@ -28,9 +26,14 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
+import android.view.ViewTreeObserver.OnScrollChangedListener
+
+
 
 //고객목록메인
-class User_List_Fragment : Fragment() {
+class User_List_Fragment : Fragment()  {
+
+
     lateinit var myContext: Context
 
     private var progressDialog: ProgressDialog? = null
@@ -45,6 +48,7 @@ class User_List_Fragment : Fragment() {
     lateinit var accumulateLL: LinearLayout
     lateinit var useLL: LinearLayout
     lateinit var scrollLL: LinearLayout
+    lateinit var hoSV: HorizontalScrollView
 
 
     var isBirthTab = false
@@ -52,6 +56,14 @@ class User_List_Fragment : Fragment() {
     var adapterData: ArrayList<JSONObject> = ArrayList<JSONObject>()
     var type = 1
     var company_id = -1
+
+  /*  var page = 1
+    var totalpage = 0
+    private val visibleThreshold = 10
+    private var userScrolled = false
+    private var lastItemVisibleFlag = false
+    private var lastcount = 0
+    private var totalItemCountScroll = 0*/
 
     var EDIT_MEMBER_INFO = 101
 
@@ -69,6 +81,7 @@ class User_List_Fragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         scrollLL = view.findViewById(R.id.scrollLL)
         userLL = view.findViewById(R.id.userLL)
+        hoSV = view.findViewById(R.id.hoSV)
         userList_new_userLL = view.findViewById(R.id.userList_new_userLL)
         userList_most_freq_userLL = view.findViewById(R.id.userList_most_freq_userLL)
         userList_birth_userLL = view.findViewById(R.id.userList_birth_userLL)
@@ -86,6 +99,9 @@ class User_List_Fragment : Fragment() {
         company_id = PrefUtils.getIntPreference(myContext, "company_id")
 
         mainData(1)
+
+//        hoSV.setOnScrollListener(myContext)
+
 
 
 
@@ -161,6 +177,30 @@ class User_List_Fragment : Fragment() {
 
     }
 
+/*
+    override fun onScroll(p0: AbsListView?, p1: Int, p2: Int, p3: Int) {
+
+    }
+
+    override fun onScrollStateChanged(p0: AbsListView?, scrollState: Int) {
+        if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
+            userScrolled = true
+        } else if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && lastItemVisibleFlag) {
+            userScrolled = false
+
+            //화면이 바닥에 닿았을때
+            if (totalpage > page) {
+                page++
+                Toast.makeText(myContext,page.toString()+"입니다",Toast.LENGTH_SHORT).show()
+                lastcount = totalItemCountScroll
+
+                mainData(type)
+            }
+        }
+
+    }*/
+
+
     fun setLeftMenu() {
         entire_viewTV.setTextColor(Color.parseColor("#80ffffff"))
         new_userTV.setTextColor(Color.parseColor("#80ffffff"))
@@ -173,6 +213,7 @@ class User_List_Fragment : Fragment() {
         val params = RequestParams()
         params.put("company_id", company_id)
         params.put("type", type)
+//        params.put("page",page)
         MemberAction.user_list(params, object : JsonHttpResponseHandler() {
 
             override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
@@ -188,6 +229,10 @@ class User_List_Fragment : Fragment() {
 
                     if ("ok" == result) {
                         var data = response.getJSONArray("member")
+
+//                        totalpage = response.getInt("totalPage")
+//                        Log.d("페이지", totalpage.toString())
+
 
                         for (i in 0..(data.length() - 1)) {
 
@@ -824,3 +869,4 @@ class User_List_Fragment : Fragment() {
     }
 
 }
+
