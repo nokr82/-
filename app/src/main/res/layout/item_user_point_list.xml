@@ -2,15 +2,17 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:autofit="http://schemas.android.com/apk/res-auto"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
-    <com.devstories.anipointcompany.android.base.RationalLinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:ratio="0:0"
-        app:adjustHeight="false">
+    <!--<com.devstories.anipointcompany.android.base.RationalLinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--app:ratio="0:0"-->
+        <!--app:adjustHeight="false">-->
 
 
    <LinearLayout
@@ -34,8 +36,8 @@
                android:id="@+id/nameTV"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:lineSpacingExtra="51sp"
                android:text="홍길동"
+               autofit:minTextSize="20dp"
                android:textColor="#666666"
                android:textSize="20dp" />
            <me.grantland.widget.AutofitTextView
@@ -45,8 +47,8 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:textSize="16dp"
+               autofit:minTextSize="16dp"
                android:textColor="#a2a2a2"
-               android:lineSpacingExtra="53sp"
                android:text="2018.10.28"
                />
 
@@ -68,8 +70,8 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:textSize="16dp"
+               autofit:minTextSize="16dp"
                android:textColor="#a2a2a2"
-               android:lineSpacingExtra="53sp"
                android:text="포인트 적립"
                />
            <me.grantland.widget.AutofitTextView
@@ -79,8 +81,8 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:textSize="16dp"
+               autofit:minTextSize="16dp"
                android:textColor="#666666"
-               android:lineSpacingExtra="51sp"
                android:text="5P"
                />
 
@@ -89,7 +91,7 @@
 
    </LinearLayout>
 
-    </com.devstories.anipointcompany.android.base.RationalLinearLayout>
+    <!--</com.devstories.anipointcompany.android.base.RationalLinearLayout>-->
 
 
 </LinearLayout>
