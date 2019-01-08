@@ -155,6 +155,11 @@ class User_List_Fragment : Fragment()  {
                 Utils.alert(context, "검색할 키워드를 입력하세요")
                 return@setOnClickListener
             }
+            if (key.equals("남자")||key.equals("남")){
+                key = "M"
+            }else if (key.equals("여자")||key.equals("여")){
+                key = "F"
+            }
             Utils.hideKeyboard(myContext)
             keywordET.setText("")
             keyWordData(key)
@@ -528,6 +533,9 @@ class User_List_Fragment : Fragment()  {
 
     //키워드 :::: 키워드는 어쩔 수 없음 그냥 남겨두셈
     fun keyWordData(keyword: String) {
+
+
+
         val params = RequestParams()
         params.put("company_id", company_id)
         params.put("keyword", "$keyword")
