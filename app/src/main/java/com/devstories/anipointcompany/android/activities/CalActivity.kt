@@ -449,6 +449,10 @@ class CalActivity : RootActivity() {
 //            return
         }
 
+        if (defaultpercent==""){
+            defaultpercent="1"
+        }
+
         val percent = defaultpercent.toFloat() / 100
         val floatPoint = (money.toFloat() * percent)
         val stringPoint = floatPoint.toString()
@@ -908,9 +912,9 @@ class CalActivity : RootActivity() {
 
                         val company = response.getJSONObject("company")
                         // 기본적립
-                        val basic_per = Utils.getString(company, "basic_per")
+                        var basic_per = Utils.getString(company, "basic_per")
                         //임의적립
-                        val option_per = Utils.getInt(company, "option_per")
+                        var option_per = Utils.getInt(company, "option_per")
                         val data = response.getJSONArray("categories")
                         Log.d("카테", data.toString())
                         for (i in 0..data.length() - 1) {
@@ -922,6 +926,13 @@ class CalActivity : RootActivity() {
                         }
                         adapter = ArrayAdapter(context, R.layout.spiner_cal_item, option_cate)
                         cate_SP.adapter = adapter
+
+                        if (basic_per==""){
+                            basic_per="1"
+                        }
+                        if (option_per==-1){
+                            option_per=1
+                        }
 
 
                         stackTV.text = basic_per.toString()
