@@ -7,7 +7,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
-import android.support.v4.content.ContextCompat.startActivity
 import android.view.WindowManager
 import com.devstories.anipointcompany.android.Actions.CompanyAction
 import com.devstories.anipointcompany.android.R
@@ -83,16 +82,15 @@ class IntroActivity : RootActivity() {
         val autoLogin = PrefUtils.getBooleanPreference(context, "autoLogin")
         //val autoLogin = false
 
-//        if (!autoLogin) {
+        if (!autoLogin) {
             PrefUtils.clear(context)
             val intent = Intent(context, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
 
-//        }
-//        else {
-//            handler.sendEmptyMessage(0)
-//        }
+        } else {
+            handler.sendEmptyMessage(0)
+        }
 
     }
 
