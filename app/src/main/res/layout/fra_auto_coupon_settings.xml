@@ -458,7 +458,7 @@
 
                         <LinearLayout
                             android:id="@+id/weekDayLL"
-                            android:layout_width="35dp"
+                            android:layout_width="55dp"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical">
 
@@ -583,18 +583,29 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:letterSpacing="-0.03"
-                                    android:lineSpacingExtra="4.5sp"
                                     android:text="이미지 첨부하기"
                                     android:textColor="#5e5e5e"
                                     android:textSize="15sp" />
                             </LinearLayout>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
 
                             <ImageView
                                 android:id="@+id/imgIV"
+                                android:scaleType="fitXY"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent" />
-
+                            <ImageView
+                                android:id="@+id/delIV"
+                                android:visibility="gone"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@mipmap/btn_del_red"
+                                android:layout_centerInParent="true"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentRight="true" />
+                        </RelativeLayout>
 
                         </LinearLayout>
 

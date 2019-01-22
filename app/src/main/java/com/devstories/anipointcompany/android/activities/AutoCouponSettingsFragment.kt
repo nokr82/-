@@ -82,6 +82,10 @@ class AutoCouponSettingsFragment : Fragment() {
 
         couponDateSP.adapter = ArrayAdapter(myContext, R.layout.spiner_item, op_expiration)
 
+
+
+
+
         newMemberLL.setOnClickListener {
             setMenuView()
             newMemberLL.setBackgroundColor(Color.parseColor("#eeeeee"))
@@ -245,7 +249,9 @@ class AutoCouponSettingsFragment : Fragment() {
 
             editCoupon()
         }
-
+        delIV.setOnClickListener {
+            imgIV.setImageResource(0)
+        }
         loadData()
 
     }
@@ -266,6 +272,7 @@ class AutoCouponSettingsFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == GALLERY) {
             if (data != null) {
+                delIV.visibility = View.VISIBLE
                 contentURI = data!!.data
                 Log.d("uri", contentURI.toString())
                 //content://media/external/images/media/1200
@@ -395,7 +402,13 @@ class AutoCouponSettingsFragment : Fragment() {
                             } else {
                                 validityIV.setImageResource(R.mipmap.off)
                             }
+
                             var image_uri = Utils.getString(coupon, "image_uri")
+                            if (image_uri !=""){
+                                delIV.visibility = View.VISIBLE
+                            }else{
+                                delIV.visibility = View.GONE
+                            }
                             var image = Config.url + image_uri
                             ImageLoader.getInstance().displayImage(image,imgIV, Utils.UILoptionsUserProfile)
                             contentET.setText(Utils.getString(coupon, "content"))
@@ -524,6 +537,12 @@ class AutoCouponSettingsFragment : Fragment() {
                         }
 
                         var image_uri = Utils.getString(coupon, "image_uri")
+                        if (image_uri !=""){
+                            delIV.visibility = View.VISIBLE
+                        }else{
+                            delIV.visibility = View.GONE
+                        }
+
                         var image = Config.url + image_uri
                         ImageLoader.getInstance().displayImage(image,imgIV, Utils.UILoptionsUserProfile)
                         messageET.setText(Utils.getString(coupon, "msg_content"))
@@ -590,10 +609,13 @@ class AutoCouponSettingsFragment : Fragment() {
         params.put("company_id", company_id)
         params.put("coupon_id", coupon_id)
         params.put("msg_content", msg_content)
-
         if (imgIV.drawable != null) {
             bitmap = imgIV.drawable as BitmapDrawable
             params.put("upload", ByteArrayInputStream(Utils.getByteArray(bitmap!!.bitmap)))
+        }else{
+            params.put("image", "")
+            params.put("image_uri","")
+
         }
         params.put("type", type)
         params.put("use_day", use_day)

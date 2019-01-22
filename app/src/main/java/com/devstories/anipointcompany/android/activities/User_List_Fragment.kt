@@ -155,9 +155,9 @@ class User_List_Fragment : Fragment()  {
                 Utils.alert(context, "검색할 키워드를 입력하세요")
                 return@setOnClickListener
             }
-            if (key.equals("남자")||key.equals("남")){
+            if (key.equals("남자")||key.equals("남")||key.equals("남성")){
                 key = "M"
-            }else if (key.equals("여자")||key.equals("여")){
+            }else if (key.equals("여자")||key.equals("여")||key.equals("여성")){
                 key = "F"
             }
             Utils.hideKeyboard(myContext)
@@ -346,9 +346,9 @@ class User_List_Fragment : Fragment()  {
                             name2TV.text = name
 
                             if (gender == "F") {
-                                gender = "여"
+                                gender = "여성"
                             } else if (gender == "M") {
-                                gender = "남"
+                                gender = "남성"
                             } else {
                                 gender = "모름"
                             }
@@ -666,9 +666,9 @@ class User_List_Fragment : Fragment()  {
                             name2TV.text = name
 
                             if (gender == "F") {
-                                gender = "여"
+                                gender = "여성"
                             } else if (gender == "M") {
-                                gender = "남"
+                                gender = "남성"
                             } else {
                                 gender = "모름"
                             }

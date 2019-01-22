@@ -181,7 +181,7 @@
                                         android:textColor="#303030"
                                         android:letterSpacing="-0.01"
                                         android:gravity="center_horizontal"
-                                        android:text="남" />
+                                        android:text="남성" />
 
                                 </LinearLayout>
 
@@ -207,7 +207,7 @@
                                         android:textColor="#303030"
                                         android:letterSpacing="-0.01"
                                         android:gravity="center_horizontal"
-                                        android:text="여" />
+                                        android:text="여성" />
 
                                 </LinearLayout>
 
