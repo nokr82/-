@@ -11,6 +11,7 @@ import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.CouponAction
@@ -22,6 +23,7 @@ import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
 import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.dlg_coupon.*
+import kotlinx.android.synthetic.main.fra_auto_coupon_settings.*
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -37,7 +39,7 @@ class DlgCouponListActivity : RootActivity() {
     var title = ""
     var message = ""
     var company_id = -1
-
+    var member_id = -1
     var phone = ""
 
     var h:String? = null
@@ -64,12 +66,90 @@ class DlgCouponListActivity : RootActivity() {
 
             val coupon = data.getJSONObject("MemberCoupon")
             val coupon_id = Utils.getInt(coupon, "id")
+            member_id = Utils.getInt(coupon, "member_id")
             Log.d("쿠폰아이디", coupon_id.toString())
+            couponData(coupon_id)
 
         }
     }
 
 
+    fun couponData(id: Int) {
+        val params = RequestParams()
+        params.put("company_id", company_id)
+        params.put("coupon_id", id)
+
+
+        CouponAction.coupon_use(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    val result = response!!.getString("result")
+
+
+                    if ("ok" == result) {
+                        val resultIntent = Intent()
+                        resultIntent.putExtra("member_id",member_id)
+                        setResult(RESULT_OK, resultIntent)
+                        Log.d("쿠폰아이디", member_id.toString())
+                        finish()
+                    }else{
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(context, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
 
     fun getUserCouponList(phone: String) {
         val params = RequestParams()

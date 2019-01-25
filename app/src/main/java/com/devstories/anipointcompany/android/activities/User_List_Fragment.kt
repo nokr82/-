@@ -293,7 +293,7 @@ class User_List_Fragment : Fragment()  {
                                 var intent = Intent(context, DlgCouponListActivity::class.java)
                                 intent.putExtra("phone", phone)
                                 Log.d("쿠폰전화",phone)
-                                 startActivity(intent)
+                                 startActivityForResult(intent,EDIT_MEMBER_INFO)
                             }
 
 
@@ -622,7 +622,7 @@ class User_List_Fragment : Fragment()  {
                                 var intent = Intent(context, DlgCouponListActivity::class.java)
                                 intent.putExtra("phone", phone)
                                 Log.d("쿠폰전화",phone)
-                                startActivity(intent)
+                                startActivityForResult(intent,EDIT_MEMBER_INFO)
                             }
 
                             if (Utils.getString(point_o, "updated")!=""){

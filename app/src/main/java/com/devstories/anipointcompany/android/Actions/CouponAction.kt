@@ -42,6 +42,13 @@ object CouponAction {
         HttpClient.post("/coupon/coupon.json", params, handler)
     }
 
+    // 쿠폰만사용
+    fun coupon_use(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/coupon/coupon_use.json", params, handler)
+    }
+
+
+
     // 자동 쿠폰 on/off
     fun change_temp_yn(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/coupon/change_temp_yn.json", params, handler)
