@@ -388,7 +388,7 @@ class Point_List_Fragment : Fragment() {
                         val usePointMember = Utils.getInt(data, "usePointMember")
                         val useCouponMembers = Utils.getInt(data, "useCouponMembers")
                         val useCouponCount = Utils.getInt(data, "useCouponCount")
-                        val useCouponPay = Utils.getInt(data, "useCouponPay")
+                        var useCouponPay = Utils.getInt(data, "useCouponPay")
 
 
                         val allcnt = addPointMember + usePointMember
@@ -398,6 +398,11 @@ class Point_List_Fragment : Fragment() {
                         all_cntTV.text = allcnt.toString() + "명"
                         all_stackTV.text = addPointMember.toString() + "명/" + addPointCount + "회/" + Utils.comma(addPoint.toString())+ "P"
                         all_useTV.text = usePointMember.toString() + "명/" + usePointCount + "회/" + Utils.comma(usePoint.toString()) + "P"
+                        if (useCouponPay==-1){
+                            useCouponPay = 0
+                        }
+
+
                         coupon_payTV.text = useCouponPay.toString()+"원"
                         val data2 = response.getJSONArray("member_list")
                         adapterData.clear()
@@ -508,7 +513,7 @@ class Point_List_Fragment : Fragment() {
                         if (point.equals("")) {
                             point = "0"
                         }
-                        if (coupon_pay.equals("")) {
+                        if (coupon_pay.equals("")||coupon_pay=="-1") {
                             coupon_pay = "0"
                         }
                         integratedTV.text = "방문횟수"

@@ -175,6 +175,7 @@ class AutoCouponSettingsFragment : Fragment() {
         newMemberIV.setOnClickListener {
 
             if(coupon_type1_id < 1) {
+                Toast.makeText(myContext,"저장된 쿠폰에 정보가 없습니다.정보저장후 시도해주세요.",Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -184,6 +185,7 @@ class AutoCouponSettingsFragment : Fragment() {
         birthMemberIV.setOnClickListener {
 
             if(coupon_type2_id < 1) {
+                Toast.makeText(myContext,"저장된 쿠폰에 정보가 없습니다.정보저장후 시도해주세요.",Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -193,6 +195,7 @@ class AutoCouponSettingsFragment : Fragment() {
         noVisit30IV.setOnClickListener {
 
             if(coupon_type3_id < 1) {
+                Toast.makeText(myContext,"저장된 쿠폰에 정보가 없습니다.정보저장후 시도해주세요.",Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -203,10 +206,11 @@ class AutoCouponSettingsFragment : Fragment() {
 
             if(coupon_type4_id < 1) {
 
-                couponNameTV.text = "60일 미방문 고객 쿠폰"
+      /*          couponNameTV.text = "60일 미방문 고객 쿠폰"
                 type = 4
-                couponData(coupon_type4_id)
-
+                couponData(coupon_type4_id)*/
+                Toast.makeText(myContext,"저장된 쿠폰에 정보가 없습니다.정보저장후 시도해주세요.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             } else {
                 changeTempYn(coupon_type4_id)
             }
@@ -216,6 +220,7 @@ class AutoCouponSettingsFragment : Fragment() {
         noVisit90IV.setOnClickListener {
 
             if(coupon_type5_id < 1) {
+                Toast.makeText(myContext,"저장된 쿠폰에 정보가 없습니다.정보저장후 시도해주세요.",Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -251,6 +256,8 @@ class AutoCouponSettingsFragment : Fragment() {
         }
         delIV.setOnClickListener {
             imgIV.setImageResource(0)
+            delIV.visibility = View.GONE
+
         }
         loadData()
 
@@ -475,7 +482,11 @@ class AutoCouponSettingsFragment : Fragment() {
         params.put("company_id", company_id)
         params.put("coupon_id", id)
 
-        imgIV.setImageResource(R.drawable.background_strock_null)
+        titleET.setText("")
+        messageET.setText("")
+
+
+        imgIV.setImageResource(0)
         CouponAction.coupon(params, object : JsonHttpResponseHandler() {
 
             override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
@@ -785,11 +796,12 @@ class AutoCouponSettingsFragment : Fragment() {
                         }
 
                     } else {
-
+                        Toast.makeText(myContext,"저장된 쿠폰에 정보가 없습니다.정보저장후 시도해주세요.",Toast.LENGTH_SHORT).show()
                     }
 
                 } catch (e: JSONException) {
                     e.printStackTrace()
+                    Toast.makeText(myContext,"저장된 쿠폰에 정보가 없습니다.정보저장후 시도해주세요.",Toast.LENGTH_SHORT).show()
                 }
 
             }
