@@ -361,10 +361,22 @@
                             android:layout_gravity="right">
                             <TextView
                                 android:layout_width="0dp"
-                                android:layout_weight="0.2"
+                                android:layout_weight="0.1"
                                 android:layout_height="40dp"
                                 android:textSize="18sp" />
-
+                            <me.grantland.widget.AutofitTextView
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:id="@+id/sendcouponTV"
+                                android:layout_width="0dp"
+                                android:layout_weight="0.1"
+                                android:layout_height="40dp"
+                                android:layout_marginRight="40dp"
+                                android:background="#0871bf"
+                                android:gravity="center"
+                                android:text="쿠폰발행"
+                                android:textColor="#ffffff"
+                                android:textSize="18sp" />
                             <me.grantland.widget.AutofitTextView
                                 android:maxLines="1"
                                 android:singleLine="true"
