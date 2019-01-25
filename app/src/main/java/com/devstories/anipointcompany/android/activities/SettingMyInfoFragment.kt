@@ -522,10 +522,12 @@ class SettingMyInfoFragment : Fragment() {
 
         for (i in 0 until userLL.childCount) {
             val v = userLL.getChildAt(i)
+            Log.d("브이",v.toString())
             val imagV = v.findViewById<ImageView>(R.id.c_imgIV)
             if (imagV is ImageView) {
                 val bitmap = imagV.drawable as BitmapDrawable
                 params.put("upload[$seq]", ByteArrayInputStream(Utils.getByteArray(bitmap.bitmap)))
+                Log.d("브이",seq.toString())
                 seq++
             }
         }

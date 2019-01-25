@@ -66,7 +66,6 @@ class User_List_Fragment : Fragment()  {
     private var totalItemCountScroll = 0*/
 
     var EDIT_MEMBER_INFO = 101
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         this.myContext = container!!.context
@@ -254,7 +253,6 @@ class User_List_Fragment : Fragment()  {
 
                             val userView = View.inflate(myContext, R.layout.item_user, null)
 
-
                             var dateTV: TextView = userView.findViewById(R.id.dateTV)
                             var nameTV: TextView = userView.findViewById(R.id.nameTV)
                             var pointTV: TextView = userView.findViewById(R.id.pointTV)
@@ -272,9 +270,11 @@ class User_List_Fragment : Fragment()  {
                             var phoneTV: TextView = userView.findViewById(R.id.phoneTV)
                             var modiLL: LinearLayout = userView.findViewById(R.id.modiLL)
                             var msgLL: LinearLayout = userView.findViewById(R.id.msgLL)
+                            var couponLL:LinearLayout = userView.findViewById(R.id.couponLL)
 
 
-                            var id = Utils.getString(member, "id")
+
+                            var id = Utils.getInt(member, "id")
                             var age = Utils.getString(member, "age")
                             var name = Utils.getString(member, "name")
                             var gender = Utils.getString(member, "gender")
@@ -288,6 +288,15 @@ class User_List_Fragment : Fragment()  {
                             var created = Utils.getString(member, "created")
                             var visit = Utils.getString(member, "visit_cnt")
                             val sdf = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
+
+                            couponLL.setOnClickListener {
+                                var intent = Intent(context, DlgCouponListActivity::class.java)
+                                intent.putExtra("phone", phone)
+                                Log.d("쿠폰전화",phone)
+                                 startActivity(intent)
+                            }
+
+
                             if (Utils.getString(point_o, "updated")!=""){
                                 val updated = SimpleDateFormat("yy-MM-dd HH:mm:ss").parse(Utils.getString(point_o, "updated"))
                                 var updated_date = sdf.format(updated)
@@ -592,7 +601,7 @@ class User_List_Fragment : Fragment()  {
                             var phoneTV: TextView = userView.findViewById(R.id.phoneTV)
                             var modiLL: LinearLayout = userView.findViewById(R.id.modiLL)
                             var msgLL: LinearLayout = userView.findViewById(R.id.msgLL)
-
+                            var couponLL:LinearLayout = userView.findViewById(R.id.couponLL)
 
                             var id = Utils.getString(member, "id")
                             var age = Utils.getString(member, "age")
@@ -608,6 +617,14 @@ class User_List_Fragment : Fragment()  {
                             var created = Utils.getString(member, "created")
                             var visit = Utils.getString(member, "visit_cnt")
                             val sdf = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
+
+                            couponLL.setOnClickListener {
+                                var intent = Intent(context, DlgCouponListActivity::class.java)
+                                intent.putExtra("phone", phone)
+                                Log.d("쿠폰전화",phone)
+                                startActivity(intent)
+                            }
+
                             if (Utils.getString(point_o, "updated")!=""){
                                 val updated = SimpleDateFormat("yy-MM-dd HH:mm:ss").parse(Utils.getString(point_o, "updated"))
                                 var updated_date = sdf.format(updated)
@@ -861,6 +878,8 @@ class User_List_Fragment : Fragment()  {
                     Log.d("받아오는 값", member_id.toString())
 
                 }
+
+
             }
 
 
