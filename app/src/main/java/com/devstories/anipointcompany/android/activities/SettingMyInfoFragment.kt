@@ -273,7 +273,6 @@ class SettingMyInfoFragment : Fragment() {
 
                         }
 
-
                     } else {
 
                     }
@@ -508,7 +507,6 @@ class SettingMyInfoFragment : Fragment() {
 
         }
 
-
             //비트맵배열의 크기만큼
 //        if (addImages.size > 0){
 //            for(i in 0..(addImages.size - 1)) {
@@ -526,8 +524,8 @@ class SettingMyInfoFragment : Fragment() {
             val imagV = v.findViewById<ImageView>(R.id.c_imgIV)
             if (imagV is ImageView) {
                 val bitmap = imagV.drawable as BitmapDrawable
-                params.put("upload[$seq]", ByteArrayInputStream(Utils.getByteArray(bitmap.bitmap)))
-                Log.d("브이",seq.toString())
+                params.put("upload[$i]", ByteArrayInputStream(Utils.getByteArray(bitmap.bitmap)))
+                Log.d("브이",i.toString())
                 seq++
             }
         }
@@ -577,7 +575,7 @@ class SettingMyInfoFragment : Fragment() {
                     progressDialog!!.dismiss()
                 }
 
-                // System.out.println(responseString);
+                 System.out.println(responseString);
 
                 throwable.printStackTrace()
                 error()
