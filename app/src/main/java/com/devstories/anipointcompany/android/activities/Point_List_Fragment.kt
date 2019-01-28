@@ -1,5 +1,6 @@
 package com.devstories.anipointcompany.android.activities
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
@@ -16,12 +17,15 @@ import cz.msebera.android.httpclient.Header
 import org.json.JSONException
 import org.json.JSONObject
 import android.app.DatePickerDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.util.Log
 import android.widget.*
+import com.devstories.anipointcompany.android.Actions.CouponAction.send_message
 import com.devstories.anipointcompany.android.Actions.PointAction
 import com.devstories.anipointcompany.android.base.PrefUtils
+import kotlinx.android.synthetic.main.fra_point_list.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -40,6 +44,7 @@ class Point_List_Fragment : Fragment() {
     lateinit var lastdateTV: TextView
     lateinit var all_cntTV: TextView
     lateinit var all_stackTV: TextView
+    lateinit var integratedTV: TextView
     lateinit var all_useTV: TextView
     lateinit var all_couponTV: TextView
     lateinit var nonameTV: TextView
@@ -53,6 +58,8 @@ class Point_List_Fragment : Fragment() {
     lateinit var weekTV: TextView
     lateinit var monthTV: TextView
     lateinit var useLL: LinearLayout
+    lateinit var coupon_payLL: LinearLayout
+    lateinit var coupon_payTV: TextView
 
 
     var adapterData: ArrayList<JSONObject> = ArrayList<JSONObject>()
@@ -102,7 +109,9 @@ class Point_List_Fragment : Fragment() {
         weekTV = view.findViewById(R.id.weekTV)
         monthTV = view.findViewById(R.id.monthTV)
         useLL = view.findViewById(R.id.useLL)
-
+        integratedTV = view.findViewById(R.id.integratedTV)
+        coupon_payLL = view.findViewById(R.id.coupon_payLL)
+        coupon_payTV = view.findViewById(R.id.coupon_payTV)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -185,8 +194,40 @@ class Point_List_Fragment : Fragment() {
             val member = data.getJSONObject("Member")
             val member_id = Utils.getInt(member, "id")
             loaditemdata(company_id, member_id)
-
         }
+        userLV.setOnItemLongClickListener { parent, view, position, id ->
+            var data = adapterData.get(position)
+            val member = data.getJSONObject("Member")
+            var point = data.getJSONObject("Point")
+            var type = Utils.getInt(point, "type")
+            var cate = Utils.getInt(point, "cate")
+            var point_id = Utils.getInt(point, "id")
+            if (type == 1){
+                var mPopupDlg: DialogInterface? = null
+                val builder = AlertDialog.Builder(myContext)
+                val dialogView = layoutInflater.inflate(R.layout.dlg_send_payback, null)
+                val cancelTV = dialogView.findViewById<TextView>(R.id.cancelTV)
+                val msgWriteTV = dialogView.findViewById<TextView>(R.id.msgWriteTV)
+                mPopupDlg = builder.setView(dialogView).show()
+                cancelTV.setOnClickListener {
+                    mPopupDlg.dismiss()
+                }
+                msgWriteTV.setOnClickListener {
+                    payback(point_id)
+                    loadmainData(company_id)
+                    mPopupDlg.dismiss()
+                }
+
+            }else if (cate==3){
+                Toast.makeText(myContext,"환불된 포인트입니다.",Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(myContext,"사용한포인트는 환불이 불가합니다",Toast.LENGTH_SHORT).show()
+            }
+            true
+        }
+
+
+
 
         first_dateLL.setOnClickListener {
             datedlg()
@@ -241,7 +282,77 @@ class Point_List_Fragment : Fragment() {
         Toast.makeText(myContext, msg, Toast.LENGTH_SHORT).show()
         loadmainData(company_id)
     }
+    //환불
+    fun payback(point_id: Int) {
+        val params = RequestParams()
+        params.put("point_id", point_id)
+        PointAction.pay_back(params, object : JsonHttpResponseHandler() {
 
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    val result = response!!.getString("result")
+                    if ("ok" == result) {
+                        Toast.makeText(myContext,"환불되었습니다.",Toast.LENGTH_SHORT).show()
+
+                    }else if ("already"==result){
+                        Toast.makeText(myContext,"이미 환불된 포인트입니다.",Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(myContext, "조회실패", Toast.LENGTH_SHORT).show()
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(myContext, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
     //총포인트내역
     fun loadmainData(company_id: Int) {
         val params = RequestParams()
@@ -250,14 +361,11 @@ class Point_List_Fragment : Fragment() {
             start_date = null
         }
 
-
         params.put("company_id", company_id)
         params.put("start_date", start_date)
         System.out.print("시작" + start_date)
         params.put("end_date", end_date)
         System.out.print("끝" + end_date)
-
-
 
 
         PointAction.index(params, object : JsonHttpResponseHandler() {
@@ -278,13 +386,24 @@ class Point_List_Fragment : Fragment() {
                         val usePointCount = Utils.getInt(data, "usePointCount")
                         val usePoint = Utils.getInt(data, "usePoint")
                         val usePointMember = Utils.getInt(data, "usePointMember")
+                        val useCouponMembers = Utils.getInt(data, "useCouponMembers")
+                        val useCouponCount = Utils.getInt(data, "useCouponCount")
+                        var useCouponPay = Utils.getInt(data, "useCouponPay")
+
+
                         val allcnt = addPointMember + usePointMember
                         val total_point_cnt = addPointCount + usePointCount
 
+                        all_couponTV.text = useCouponMembers.toString()+"명/"+useCouponCount.toString()+"회"
+                        all_cntTV.text = allcnt.toString() + "명"
+                        all_stackTV.text = addPointMember.toString() + "명/" + addPointCount + "회/" + Utils.comma(addPoint.toString())+ "P"
+                        all_useTV.text = usePointMember.toString() + "명/" + usePointCount + "회/" + Utils.comma(usePoint.toString()) + "P"
+                        if (useCouponPay==-1){
+                            useCouponPay = 0
+                        }
 
-                        all_cntTV.text = allcnt.toString() + "명/" + total_point_cnt.toString() + "회"
-                        all_stackTV.text = addPointMember.toString() + "명/" + addPointCount + "회/" + addPoint.toString() + "P"
-                        all_useTV.text = usePointMember.toString() + "명/" + usePointCount + "회/" + usePoint.toString() + "P"
+
+                        coupon_payTV.text = useCouponPay.toString()+"원"
                         val data2 = response.getJSONArray("member_list")
                         adapterData.clear()
                         useradapter.notifyDataSetChanged()
@@ -369,11 +488,16 @@ class Point_List_Fragment : Fragment() {
                     val result = response!!.getString("result")
                     if ("ok" == result) {
 
+
+
+
                         val member_o = response.getJSONObject("member")
 
                         val member = member_o.getJSONObject("Member")
                         var point = Utils.getString(member, "point")
                         var use_point = Utils.getString(member, "use_point")
+                        var coupon_cnt = Utils.getString(member, "coupon_cnt")
+                        var coupon_pay = Utils.getString(member, "coupon_pay")
 
 
                         //총방문횟수
@@ -383,16 +507,21 @@ class Point_List_Fragment : Fragment() {
                         //포인트적립횟수
                         val stack_point_cnt = response.getString("stack_point_cnt")
 
-                        if (use_point.equals(null)) {
+                        if (use_point.equals("")) {
                             use_point = "0"
                         }
-                        if (point.equals(null)) {
+                        if (point.equals("")) {
                             point = "0"
                         }
+                        if (coupon_pay.equals("")||coupon_pay=="-1") {
+                            coupon_pay = "0"
+                        }
+                        integratedTV.text = "방문횟수"
+                        all_couponTV.text = coupon_cnt+"회"
                         all_cntTV.text = visit_cnt + "회"
-                        all_stackTV.text = stack_point_cnt + "회/" + point + "P"
-                        all_useTV.text = use_point_cnt + "회/" + use_point + "P"
-
+                        all_stackTV.text = stack_point_cnt + "회/" + Utils.comma(point) + "P"
+                        all_useTV.text = use_point_cnt + "회/" + Utils.comma(use_point) + "P"
+                        coupon_payTV.text =coupon_pay+"원"
 
                     } else {
                         Toast.makeText(myContext, "조회실패", Toast.LENGTH_SHORT).show()

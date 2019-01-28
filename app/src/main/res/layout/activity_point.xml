@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient"
     android:orientation="horizontal">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_weight="0.5">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10.5dp"
-            android:layout_marginTop="18.5dp"
+            android:layout_marginLeft="21dp"
+            android:layout_marginTop="37dp"
             android:orientation="vertical"
             android:visibility="gone">
 
@@ -26,7 +27,7 @@
                 android:letterSpacing="-0.03"
                 android:text="박소윤 님"
                 android:textColor="#ffffff"
-                android:textSize="24sp" />
+                android:textSize="48dp" />
 
             <View
                 android:layout_width="match_parent"
@@ -39,8 +40,8 @@
 
         <LinearLayout
             android:id="@+id/joinLL"
-            android:layout_width="127dp"
-            android:layout_height="182.5dp"
+            android:layout_width="254dp"
+            android:layout_height="360dp"
             android:layout_marginTop="14dp"
             android:background="#90424242"
             android:orientation="vertical"
@@ -49,14 +50,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
                 android:orientation="vertical">
 
                 <LinearLayout
 
                     android:layout_width="wrap_content"
-                    android:layout_height="16.5dp"
+                    android:layout_height="33dp"
                     android:gravity="center_vertical"
                     android:orientation="vertical">
 
@@ -66,12 +67,12 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:hint="이름"
-                        android:minEms="5"
-                        android:textColor="#ffffff"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="1sp"
+                        android:minEms="5"
+                        android:textColor="#ffffff"
                         android:textColorHint="#ffffff"
-                        android:textSize="9sp" />
+                        android:textSize="18dp" />
 
                 </LinearLayout>
 
@@ -84,7 +85,7 @@
                 <LinearLayout
 
                     android:layout_width="wrap_content"
-                    android:layout_height="16.5dp"
+                    android:layout_height="33dp"
                     android:gravity="center_vertical"
                     android:orientation="vertical">
 
@@ -93,14 +94,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="17dp"
                         android:background="@null"
-                        android:inputType="number"
                         android:hint="핸드폰번호"
-                        android:minEms="5"
+                        android:inputType="number"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="1sp"
+                        android:minEms="5"
                         android:textColor="#ffffff"
                         android:textColorHint="#ffffff"
-                        android:textSize="9sp" />
+                        android:textSize="18dp" />
 
                 </LinearLayout>
 
@@ -112,7 +113,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="16.5dp"
+                    android:layout_height="33dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -144,7 +145,7 @@
                                 android:letterSpacing="-0.01"
                                 android:text="남"
                                 android:textColor="#ffffff"
-                                android:textSize="9sp" />
+                                android:textSize="18dp" />
 
                         </LinearLayout>
 
@@ -169,7 +170,7 @@
                                 android:letterSpacing="-0.01"
                                 android:text="여"
                                 android:textColor="#ffffff"
-                                android:textSize="9sp" />
+                                android:textSize="18dp" />
 
                         </LinearLayout>
 
@@ -182,9 +183,10 @@
                     android:layout_height="0.3dp"
                     android:layout_marginRight="6dp"
                     android:background="#ffffff" />
+
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="16.5dp"
+                    android:layout_height="33dp"
                     android:gravity="center_vertical"
                     android:orientation="vertical">
 
@@ -195,12 +197,12 @@
                         android:background="@null"
                         android:hint="나이"
                         android:inputType="number"
-                        android:minEms="5"
                         android:letterSpacing="-0.03"
-                        android:textColor="#ffffff"
                         android:lineSpacingExtra="1sp"
+                        android:minEms="5"
+                        android:textColor="#ffffff"
                         android:textColorHint="#ffffff"
-                        android:textSize="9sp" />
+                        android:textSize="18dp" />
 
                 </LinearLayout>
 
@@ -212,7 +214,7 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="16.5dp"
+                    android:layout_height="33dp"
                     android:gravity="center_vertical"
                     android:orientation="vertical">
 
@@ -223,12 +225,12 @@
                         android:background="@null"
                         android:hint="생일"
                         android:inputType="number"
-                        android:minEms="5"
                         android:letterSpacing="-0.03"
                         android:lineSpacingExtra="1sp"
+                        android:minEms="5"
                         android:textColor="#ffffff"
                         android:textColorHint="#ffffff"
-                        android:textSize="9sp" />
+                        android:textSize="18dp" />
 
                 </LinearLayout>
 
@@ -237,8 +239,6 @@
                     android:layout_height="0.3dp"
                     android:layout_marginRight="6dp"
                     android:background="#ffffff" />
-
-
 
 
                 <LinearLayout
@@ -253,13 +253,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:hint="메모"  android:minEms="5"
-
+                        android:hint="메모"
                         android:letterSpacing="-0.03"
+
                         android:lineSpacingExtra="1sp"
+                        android:minEms="5"
                         android:textColor="#ffffff"
                         android:textColorHint="#ffffff"
-                        android:textSize="9sp" />
+                        android:textSize="18dp" />
 
 
                 </LinearLayout>
@@ -271,12 +272,13 @@
                     android:background="#ffffff" />
             </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
             android:id="@+id/checkLL"
-            android:layout_width="115dp"
+            android:layout_width="130dp"
             android:layout_height="25dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
             android:background="#2b2b2b"
             android:gravity="center"
             android:visibility="gone">
@@ -292,8 +294,8 @@
 
         <LinearLayout
             android:id="@+id/message_op_LL"
-            android:layout_width="127dp"
-            android:layout_height="182.5dp"
+            android:layout_width="254dp"
+            android:layout_height="360dp"
             android:layout_marginTop="14dp"
             android:background="#90424242"
             android:orientation="vertical"
@@ -302,8 +304,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
                 android:orientation="vertical">
 
 
@@ -322,7 +324,7 @@
                         android:lineSpacingExtra="1sp"
                         android:text="010-***1-9767"
                         android:textColor="#ffffff"
-                        android:textSize="9sp" />
+                        android:textSize="18dp" />
 
                 </LinearLayout>
 
@@ -334,7 +336,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="16.5dp"
+                    android:layout_height="33dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -366,7 +368,7 @@
                                 android:letterSpacing="-0.01"
                                 android:text="남"
                                 android:textColor="#ffffff"
-                                android:textSize="9sp" />
+                                android:textSize="18dp" />
 
                         </LinearLayout>
 
@@ -391,7 +393,7 @@
                                 android:letterSpacing="-0.01"
                                 android:text="여"
                                 android:textColor="#ffffff"
-                                android:textSize="9sp" />
+                                android:textSize="18dp" />
 
                         </LinearLayout>
 
@@ -407,7 +409,7 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="16.5dp"
+                    android:layout_height="33dp"
                     android:gravity="center_vertical"
                     android:orientation="vertical">
 
@@ -419,7 +421,7 @@
                         android:lineSpacingExtra="1sp"
                         android:text="22세"
                         android:textColor="#ffffff"
-                        android:textSize="9sp" />
+                        android:textSize="18dp" />
 
                 </LinearLayout>
 
@@ -431,7 +433,7 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="16.5dp"
+                    android:layout_height="33dp"
                     android:gravity="center_vertical"
                     android:orientation="vertical">
 
@@ -443,7 +445,7 @@
                         android:lineSpacingExtra="1sp"
                         android:text="1996-04-02"
                         android:textColor="#ffffff"
-                        android:textSize="9sp" />
+                        android:textSize="18dp" />
 
                 </LinearLayout>
 
@@ -455,7 +457,7 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="16.5dp"
+                    android:layout_height="33dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -466,7 +468,7 @@
                         android:lineSpacingExtra="1sp"
                         android:text="사용가능:"
                         android:textColor="#ffffff"
-                        android:textSize="9sp" />
+                        android:textSize="18dp" />
 
                     <TextView
                         android:id="@+id/stack_pointTV"
@@ -476,7 +478,7 @@
                         android:lineSpacingExtra="1sp"
                         android:text="0"
                         android:textColor="#ffffff"
-                        android:textSize="9sp" />
+                        android:textSize="18dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -485,7 +487,7 @@
                         android:lineSpacingExtra="1sp"
                         android:text="P"
                         android:textColor="#ffffff"
-                        android:textSize="9sp" />
+                        android:textSize="18dp" />
 
                 </LinearLayout>
 
@@ -497,7 +499,7 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="16.5dp"
+                    android:layout_height="33dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -508,7 +510,7 @@
                         android:lineSpacingExtra="1sp"
                         android:text="보유쿠폰:"
                         android:textColor="#ffffff"
-                        android:textSize="9sp" />
+                        android:textSize="18dp" />
 
                     <TextView
                         android:id="@+id/couponTV"
@@ -518,7 +520,7 @@
                         android:lineSpacingExtra="1sp"
                         android:text="4장"
                         android:textColor="#ffffff"
-                        android:textSize="9sp" />
+                        android:textSize="18dp" />
                 </LinearLayout>
 
                 <View
@@ -545,7 +547,7 @@
 모양을 누르면
 설정으로 이동합니다."
                         android:textColor="#ffffff"
-                        android:textSize="8sp" />
+                        android:textSize="16dp" />
 
 
                 </LinearLayout>
@@ -575,7 +577,7 @@
 
                 <TextView
                     android:id="@+id/okTV"
-                    android:layout_width="115dp"
+                    android:layout_width="130dp"
                     android:layout_height="25dp"
                     android:layout_marginTop="12.5dp"
                     android:background="#2b2b2b"
@@ -593,10 +595,9 @@
 
                     <LinearLayout
                         android:id="@+id/spinnerIV"
-                        android:layout_width="114.5dp"
-                        android:layout_height="18dp"
-
-                        android:layout_marginTop="10dp"
+                        android:layout_width="229dp"
+                        android:layout_height="36dp"
+                        android:layout_marginTop="40dp"
                         android:background="#ffffff"
                         android:orientation="horizontal">
 
@@ -606,7 +607,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:background="@null"
-                            android:paddingLeft="10dp" />
+                            android:paddingLeft="20dp" />
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -619,10 +620,10 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="115dp"
+                        android:layout_width="260dp"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:paddingTop="10dp">
+                        android:paddingTop="20dp">
 
                         <LinearLayout
                             android:id="@+id/cardPayLL"
@@ -633,43 +634,49 @@
                                 android:id="@+id/cardPayIV"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
                                 android:src="@drawable/radio_off" />
 
-                            <TextView
+                            <me.grantland.widget.AutofitTextView
+                                android:singleLine="true"
+                                android:maxLines="1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="5.5dp"
+                                android:layout_marginLeft="11dp"
                                 android:text="카드결제"
                                 android:textColor="#ffffff"
-                                android:textSize="8sp" />
+                                android:textSize="16dp" />
                         </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/cashPayLL"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="9.5dp">
+                            android:layout_marginLeft="19dp">
 
                             <ImageView
                                 android:id="@+id/cashPayIV"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
                                 android:src="@drawable/radio_off" />
 
-                            <TextView
+                            <me.grantland.widget.AutofitTextView
+                                android:singleLine="true"
+                                android:maxLines="1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5.5dp"
                                 android:text="현금결제"
                                 android:textColor="#ffffff"
-                                android:textSize="8sp" />
+                                android:textSize="16dp" />
                         </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/depositlessLL"
                         android:layout_width="match_parent"
-
+                        android:visibility="gone"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5.5dp">
 
@@ -677,15 +684,18 @@
                             android:id="@+id/depositlessIV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
                             android:src="@drawable/radio_off" />
 
-                        <TextView
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5.5dp"
                             android:text="무통장입금"
                             android:textColor="#ffffff"
-                            android:textSize="8sp" />
+                            android:textSize="16dp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -698,63 +708,57 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="16dp"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginRight="9.5dp"
-        android:orientation="vertical">
-
-
-
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        android:layout_weight="1">
         <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
             android:layout_marginLeft="23dp"
-            android:layout_width="225dp"
             android:background="#90000000"
-            android:layout_height="30.5dp"
             android:orientation="horizontal">
-
 
 
             <TextView
                 android:id="@+id/pointTV"
-                android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"
-                android:textColor="#90ffffff"
-                android:lineSpacingExtra="25sp"
+                android:layout_centerInParent="true"
                 android:gravity="center_horizontal"
+                android:lineSpacingExtra="25sp"
                 android:text="적립 포인트"
-                />
+                android:textColor="#90ffffff"
+                android:textSize="20dp" />
 
 
             <ImageView
-                android:layout_alignParentRight="true"
-               android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/btn_close"/>
+                android:layout_alignParentRight="true"
+                android:layout_margin="20dp"
+                android:src="@mipmap/btn_close" />
 
 
         </RelativeLayout>
-
-
         <LinearLayout
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="9.5dp"
-            android:layout_marginLeft="23dp"
             android:layout_width="match_parent"
-            android:orientation="vertical"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="23dp"
+            android:layout_marginTop="9.5dp"
             android:background="#ffffff"
-            android:layout_height="match_parent">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="47dp"
-                android:gravity="right"
+                android:layout_height="90dp"
                 android:layout_marginRight="11dp"
-                android:orientation="vertical"
-                >
+                android:gravity="right"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -767,21 +771,21 @@
                         android:layout_height="wrap_content"
                         android:gravity="end"
                         android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="8sp"
+                        android:lineSpacingExtra="16dp"
                         android:text=""
                         android:textColor="#0066b0"
-                        android:textSize="27sp" />
+                        android:textSize="54dp" />
+
                     <TextView
                         android:id="@+id/m_opTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="27sp"
-                        android:textColor="#0066b0"
-                        android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="8sp"
                         android:gravity="end"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="16dp"
                         android:text="￦"
-                        />
+                        android:textColor="#0066b0"
+                        android:textSize="54dp" />
 
 
                 </LinearLayout>
@@ -790,188 +794,214 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.8"
-                android:orientation="vertical"
-                >
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1">
+
                     <LinearLayout
-                        android:onClick="onClick"
                         android:id="@+id/oneLL"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:layout_height="match_parent">
+                        android:onClick="onClick">
 
-                        <TextView
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
                             android:text="1"
                             android:textColor="#666666"
-                            android:textSize="24sp" />
+                            android:textSize="48dp" />
 
                     </LinearLayout>
+
                     <LinearLayout
-                        android:onClick="onClick"
                         android:id="@+id/twoLL"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:layout_height="match_parent">
-                        <TextView
+                        android:onClick="onClick">
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
-                            android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
                             android:text="2"
-                            />
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
 
                     </LinearLayout>
+
                     <LinearLayout
-                        android:onClick="onClick"
                         android:id="@+id/threeLL"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:layout_height="match_parent">
-                        <TextView
+                        android:onClick="onClick">
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
-                            android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
                             android:text="3"
-                            />
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
 
                     </LinearLayout>
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1">
 
                     <LinearLayout
-                        android:onClick="onClick"
                         android:id="@+id/fourLL"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:onClick="onClick">
 
-                        <TextView
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
                             android:text="4"
                             android:textColor="#666666"
-                            android:textSize="24sp" />
+                            android:textSize="48dp" />
 
                     </LinearLayout>
+
                     <LinearLayout
-                        android:onClick="onClick"
                         android:id="@+id/fiveLL"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:layout_height="match_parent">
-                        <TextView
+                        android:onClick="onClick">
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
-                            android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
                             android:text="5"
-                            />
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:onClick="onClick"
                         android:id="@+id/sixLL"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:onClick="onClick">
 
-                        <TextView
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
                             android:text="6"
                             android:textColor="#666666"
-                            android:textSize="24sp" />
+                            android:textSize="48dp" />
 
                     </LinearLayout>
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1">
+
                     <LinearLayout
-                        android:onClick="onClick"
                         android:id="@+id/sevenLL"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:layout_height="match_parent">
-                        <TextView
+                        android:onClick="onClick">
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
-                            android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
                             android:text="7"
-                            />
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
 
                     </LinearLayout>
+
                     <LinearLayout
-                        android:onClick="onClick"
                         android:id="@+id/eightLL"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:layout_height="match_parent">
-                        <TextView
+                        android:onClick="onClick">
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
-                            android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
                             android:text="8"
-                            />
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
 
                     </LinearLayout>
+
                     <LinearLayout
-                        android:onClick="onClick"
                         android:id="@+id/nineLL"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:layout_height="match_parent">
-                        <TextView
+                        android:onClick="onClick">
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
-                            android:textColor="#666666"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
                             android:text="9"
-                            />
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
 
                     </LinearLayout>
 
@@ -982,154 +1012,168 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1">
-                    <LinearLayout
-                    android:onClick="onClick"
-                    android:id="@+id/delLL"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:background="#979797"
-                    android:layout_height="match_parent">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="21sp"
-                        android:textColor="#ffffff"
-                        android:letterSpacing="-0.05"
-                        android:lineSpacingExtra="-12sp"
-                        android:text="삭제"
-                        />
 
-                </LinearLayout>
                     <LinearLayout
-                        android:onClick="onClick"
-                        android:id="@+id/zeroLL"
+                        android:id="@+id/delLL"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:background="#979797"
                         android:gravity="center"
-                        android:layout_height="match_parent">
-                        <TextView
+                        android:onClick="onClick">
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
-                            android:textColor="#666666"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-12sp"
+                            android:text="삭제"
+                            android:textColor="#ffffff"
+                            android:textSize="21sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/zeroLL"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:onClick="onClick">
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
                             android:text="0"
-                            />
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
 
                     </LinearLayout>
+
                     <LinearLayout
-                        android:onClick="onClick"
                         android:id="@+id/useLL"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center"
                         android:background="#b894ff"
-                        android:layout_height="match_parent">
+                        android:gravity="center"
+                        android:onClick="onClick">
+
                         <TextView
                             android:id="@+id/opTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="21sp"
-                            android:textColor="#ffffff"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-12sp"
                             android:text="적립"
-                            />
+                            android:textColor="#ffffff"
+                            android:textSize="21sp" />
 
                     </LinearLayout>
 
 
                 </LinearLayout>
-                
-                
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
                     android:orientation="horizontal">
 
 
                     <LinearLayout
                         android:id="@+id/stackLL"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:layout_height="match_parent">
-                        <TextView
+                        android:gravity="center">
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:id="@+id/stackTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
-                            android:textColor="#6e8a32"
+                            android:gravity="center_horizontal"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
-                            android:gravity="center_horizontal"
                             android:text="3"
-                            />
-                        <TextView
+                            android:textColor="#6e8a32"
+                            android:textSize="48dp" />
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
-                            android:textColor="#6e8a32"
+                            android:gravity="center_horizontal"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
-                            android:gravity="center_horizontal"
                             android:text="%"
-                            />
+                            android:textColor="#6e8a32"
+                            android:textSize="48dp" />
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:id="@+id/stack2LL"
-                        android:onClick="onClick"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:layout_height="match_parent">
+                        android:onClick="onClick">
+
                         <TextView
                             android:id="@+id/stack2TV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
-                            android:textColor="#666666"
+                            android:gravity="center_horizontal"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
-                            android:gravity="center_horizontal"
                             android:text="100"
-                            />
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
-                            android:textColor="#666666"
+                            android:gravity="center_horizontal"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
-                            android:gravity="center_horizontal"
                             android:text="%"
-                            />
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:id="@+id/op_accLL"
-                        android:onClick="onClick"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:layout_height="match_parent">
-                        <TextView
+                        android:onClick="onClick">
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
                             android:id="@+id/op_accTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24dp"
-                            android:textColor="#666666"
+                            android:gravity="center_horizontal"
                             android:letterSpacing="-0.05"
                             android:lineSpacingExtra="-15sp"
-                            android:gravity="center_horizontal"
                             android:text="포인트"
-                            />
+                            android:textColor="#666666"
+                            android:textSize="24dp" />
 
                     </LinearLayout>
-
 
 
                 </LinearLayout>
@@ -1138,38 +1182,36 @@
 
 
         </LinearLayout>
-
-
-
-
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginTop="30dp"
+        android:orientation="vertical"
+        android:layout_weight="0.5"
+        android:layout_marginRight="20dp">
 
         <LinearLayout
             android:id="@+id/usePointLL"
-            android:layout_width="135dp"
+            android:visibility="gone"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
             android:layout_marginLeft="9.5dp"
-            android:orientation="vertical"
             android:background="#ffff"
-            android:visibility="gone">
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="8sp"
                 android:layout_marginLeft="10dp"
-                android:textColor="#cbcbcb"
                 android:letterSpacing="-0.05"
                 android:lineSpacingExtra="1sp"
-                android:text="사용 포인트" />
+                android:text="사용 포인트"
+                android:textColor="#cbcbcb"
+                android:textSize="16dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -1178,26 +1220,25 @@
 
                 <TextView
                     android:id="@+id/usePointTV"
-                    android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
                     android:layout_marginLeft="10dp"
-                    android:textColor="#666666"
+                    android:layout_marginTop="10dp"
                     android:letterSpacing="-0.05"
                     android:lineSpacingExtra="-9sp"
                     android:text="0"
-                    />
+                    android:textColor="#666666"
+                    android:textSize="18dp" />
 
                 <TextView
-                    android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:textColor="#666666"
+                    android:layout_marginTop="10dp"
                     android:letterSpacing="-0.05"
                     android:lineSpacingExtra="-9sp"
-                    android:text="P" />
+                    android:text="P"
+                    android:textColor="#666666"
+                    android:textSize="18dp" />
 
             </LinearLayout>
 
@@ -1205,93 +1246,11 @@
 
         <ListView
             android:id="@+id/couponLV"
-            android:layout_marginTop="15dp"
-            android:layout_width="135dp"
-            android:layout_height="match_parent" />
-
-    </LinearLayout>
-
-    <!--<ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:id="@+id/userCouponListLL"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:layout_marginTop="18.5dp"
-            android:layout_marginBottom="18.5dp"
-            android:orientation="vertical">
+            android:layout_marginTop="15dp"
+            android:visibility="visible" />
 
-
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/coupon" />
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="9.5dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/coupon" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="9.5dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/coupon" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="9.5dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/coupon" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="9.5dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/coupon" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="9.5dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/coupon" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </ScrollView>-->
-
+    </LinearLayout>
 
 </LinearLayout>

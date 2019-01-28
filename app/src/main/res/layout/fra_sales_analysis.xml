@@ -1,216 +1,258 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
 
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="149dp"
-        android:layout_height="230dp"
-        android:layout_marginLeft="8.5dp"
-
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/titleTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15.5dp"
-            android:layout_marginBottom="23.5dp"
-            android:text="매출 분석"
-            android:textColor="#ffff"
-            android:textSize="24dp" />
-
-
-        <LinearLayout
-            android:id="@+id/uservisit_op_LL"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="17.5dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="1sp"
-                    android:text="방문현황"
-                    android:textColor="#ffffff"
-                    android:textSize="9sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.3dp"
-                    android:background="#ffff" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="17.5dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="1sp"
-                    android:text="요일별"
-                    android:textColor="#80ffffff"
-                    android:textSize="9sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.3dp"
-                    android:background="#ffff" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="17.5dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="1sp"
-                    android:text="시간대별"
-                    android:textColor="#80ffffff"
-                    android:textSize="9sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.3dp"
-                    android:background="#ffff" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="17.5dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="1sp"
-                    android:text="인구통계별"
-                    android:textColor="#80ffffff"
-                    android:textSize="9sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.3dp"
-                    android:background="#ffff" />
-
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/accumulateLL"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:background="#4ed0cd"
-            android:gravity="center"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:letterSpacing="-0.03"
-                android:lineSpacingExtra="-2sp"
-                android:text="적립"
-                android:textColor="#ffffff"
-                android:textSize="12dp" />
-
-
-        </LinearLayout>
-
-
-
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/accumulateLL"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:background="#997afb"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:letterSpacing="-0.03"
-                android:lineSpacingExtra="-2sp"
-                android:text="적립"
-                android:textColor="#ffffff"
-                android:textSize="12dp" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/useLL"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
-            android:background="#ff8e1b"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:letterSpacing="-0.03"
-                android:lineSpacingExtra="-2sp"
-                android:text="사용"
-                android:textColor="#ffffff"
-                android:textSize="12dp" />
-
-
-        </LinearLayout>
-    </LinearLayout>
-</LinearLayout>
-
-
-    <LinearLayout
+    <com.devstories.anipointcompany.android.base.RationalLinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="9.5dp"
-        android:layout_marginRight="29dp"
-        android:layout_marginBottom="6dp"
+        app:ratio="150:360"
+        app:adjustHeight="false">
+
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <me.grantland.widget.AutofitTextView
+                    android:singleLine="true"
+                    android:maxLines="2"
+                    android:id="@+id/titleTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="23.5dp"
+                    android:layout_marginTop="15.5dp"
+                    android:text="매출 분석"
+                    android:textColor="#ffff"
+                    android:textSize="48dp" />
+
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:fillViewport="true"
+                    android:scrollbars="none"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:id="@+id/allLL"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:layout_marginTop="35dp"
+                            android:gravity=""
+                            android:orientation="vertical">
+
+
+
+                            <me.grantland.widget.AutofitTextView
+                                android:singleLine="true"
+                                android:maxLines="1"
+                                android:id="@+id/allTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:letterSpacing="-0.03"
+                                android:lineSpacingExtra="1sp"
+                                android:textColor="#ffffff"
+                                android:textSize="36dp" />
+
+
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/daysLL"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="">
+
+
+                            <me.grantland.widget.AutofitTextView
+                                android:singleLine="true"
+                                android:maxLines="1"
+                                android:id="@+id/daysTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:letterSpacing="-0.03"
+                                android:lineSpacingExtra="1sp"
+                                android:textColor="#80ffffff"
+                                android:textSize="36dp" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/timeLL"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <me.grantland.widget.AutofitTextView
+                                    android:singleLine="true"
+                                    android:maxLines="1"
+                                    android:id="@+id/timeTV"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:letterSpacing="-0.03"
+                                    android:lineSpacingExtra="1sp"
+                                    android:textColor="#80ffffff"
+                                    android:textSize="36dp" />
+
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ageLL"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <me.grantland.widget.AutofitTextView
+                                    android:id="@+id/ageTV"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:letterSpacing="-0.03"
+                                    android:lineSpacingExtra="1sp"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:textColor="#80ffffff"
+                                    android:textSize="36dp" />
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+
+                            <LinearLayout
+                                android:id="@+id/accumulateLL"
+                                android:layout_width="0dp"
+                                android:layout_height="80dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_weight="0.5"
+                                android:background="#997afb"
+                                android:gravity="center">
+
+                                <me.grantland.widget.AutofitTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_horizontal"
+                                    android:letterSpacing="-0.03"
+                                    android:lineSpacingExtra="-2sp"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text="적립"
+                                    android:textColor="#ffffff"
+                                    android:textSize="24dp" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/useLL"
+                                android:layout_width="0dp"
+                                android:layout_height="80dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_weight="0.5"
+                                android:background="#ff8e1b"
+                                android:gravity="center">
+
+                                <me.grantland.widget.AutofitTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_horizontal"
+                                    android:letterSpacing="-0.03"
+                                    android:lineSpacingExtra="-2sp"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text="사용"
+                                    android:textColor="#ffffff"
+                                    android:textSize="24dp" />
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </ScrollView>
+
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </com.devstories.anipointcompany.android.base.RationalLinearLayout>
+
+
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true"
+            android:layout_marginTop="9.5dp"
+            android:layout_marginRight="20dp"
+            android:scrollbars="none"
+            android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="#ffff"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="35dp"
             android:layout_marginTop="16.5dp"
             android:layout_marginRight="100dp"
@@ -233,7 +275,7 @@
                     android:lineSpacingExtra="3sp"
                     android:text="오늘"
                     android:textColor="#c5c5c5"
-                    android:textSize="9sp" />
+                    android:textSize="18dp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -260,7 +302,7 @@
                     android:lineSpacingExtra="3sp"
                     android:text="이번주"
                     android:textColor="#c5c5c5"
-                    android:textSize="9sp" />
+                    android:textSize="18dp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -287,7 +329,7 @@
                     android:lineSpacingExtra="3sp"
                     android:text="이번달"
                     android:textColor="#c5c5c5"
-                    android:textSize="9sp" />
+                    android:textSize="18dp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -314,7 +356,7 @@
                     android:lineSpacingExtra="3sp"
                     android:text="3개월"
                     android:textColor="#c5c5c5"
-                    android:textSize="9sp" />
+                    android:textSize="18dp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -328,7 +370,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
@@ -344,14 +386,14 @@
                 android:lineSpacingExtra="4sp"
                 android:text="2018.05.25 ~ 2018.08.25"
                 android:textColor="#666666"
-                android:textSize="8sp" />
+                android:textSize="16dp" />
 
         </LinearLayout>
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="110dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="4.5dp"
             android:layout_marginRight="10dp"
@@ -373,7 +415,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
+                        android:layout_height="40dp"
                         android:background="#e7e7e7"
                         android:gravity="center">
 
@@ -384,20 +426,20 @@
                             android:lineSpacingExtra="4sp"
                             android:text="전체 매출"
                             android:textColor="#666666"
-                            android:textSize="8sp" />
+                            android:textSize="16dp" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
+                        android:layout_height="40dp"
                         android:gravity="center">
 
                         <TextView
                             android:id="@+id/all_memberTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="8sp"
+                            android:textSize="16dp"
                             android:letterSpacing="-0.03"
                             android:lineSpacingExtra="4sp"
                             android:text="10"
@@ -416,7 +458,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
+                        android:layout_height="40dp"
                         android:background="#e7e7e7"
                         android:gravity="center">
 
@@ -427,13 +469,13 @@
                             android:lineSpacingExtra="4sp"
                             android:text="현금매출(원)"
                             android:textColor="#666666"
-                            android:textSize="8sp" />
+                            android:textSize="16dp" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
+                        android:layout_height="40dp"
                         android:gravity="center">
 
                         <TextView
@@ -444,7 +486,7 @@
                             android:lineSpacingExtra="4sp"
                             android:text="3"
                             android:textColor="#666666"
-                            android:textSize="8sp" />
+                            android:textSize="16dp" />
 
                     </LinearLayout>
 
@@ -459,7 +501,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
+                        android:layout_height="40dp"
                         android:background="#e7e7e7"
                         android:gravity="center">
 
@@ -470,13 +512,13 @@
                             android:lineSpacingExtra="4sp"
                             android:text="카드매출(원)"
                             android:textColor="#666666"
-                            android:textSize="8sp" />
+                            android:textSize="16dp" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
+                        android:layout_height="40dp"
                         android:gravity="center">
 
                         <TextView
@@ -487,67 +529,21 @@
                             android:lineSpacingExtra="4sp"
                             android:text="7"
                             android:textColor="#666666"
-                            android:textSize="8sp" />
+                            android:textSize="16dp" />
 
                     </LinearLayout>
 
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="20dp"
-                        android:background="#e7e7e7"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="4sp"
-                            android:text="무통장입금"
-                            android:textColor="#666666"
-                            android:textSize="8sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="20dp"
-                        android:gravity="center">
-
-                        <TextView
-                            android:id="@+id/accountlessTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="4sp"
-                            android:text="70.50%"
-                            android:textColor="#666666"
-                            android:textSize="8sp" />
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
 
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="8dp"
@@ -568,7 +564,7 @@
                         android:lineSpacingExtra="3sp"
                         android:text="방문 현황 상세"
                         android:textColor="#666666"
-                        android:textSize="9sp" />
+                        android:textSize="18dp" />
 
                 </LinearLayout>
 
@@ -579,7 +575,9 @@
                     android:layout_marginLeft="7.5dp"
                     android:layout_marginRight="7.5dp">
 
-                    <TextView
+                    <me.grantland.widget.AutofitTextView
+                        android:singleLine="true"
+                        android:maxLines="1"
                         android:id="@+id/tagTV"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -588,7 +586,7 @@
                         android:lineSpacingExtra="4sp"
                         android:text="총 1일간 방문 기록입니다"
                         android:textColor="#666666"
-                        android:textSize="8sp" />
+                        android:textSize="16dp" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -596,8 +594,8 @@
                         android:orientation="horizontal">
 
                         <LinearLayout
-                            android:layout_width="70dp"
-                            android:layout_height="18dp"
+                            android:layout_width="140dp"
+                            android:layout_height="36dp"
 
                             android:background="@drawable/background_strock_e7e7e7"
                             android:gravity="center_vertical">
@@ -620,9 +618,9 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="70dp"
-                            android:layout_height="18dp"
-                            android:layout_marginLeft="20dp"
+                            android:layout_width="180dp"
+                            android:layout_height="36dp"
+                            android:layout_marginLeft="80dp"
                             android:background="@drawable/background_strock_e7e7e7"
                             android:gravity="center_vertical">
 
@@ -668,7 +666,7 @@
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="20dp"
+                                android:layout_height="40dp"
                                 android:background="#e7e7e7"
                                 android:gravity="center">
 
@@ -679,7 +677,7 @@
                                     android:lineSpacingExtra="4sp"
                                     android:text="날짜"
                                     android:textColor="#666666"
-                                    android:textSize="8sp" />
+                                    android:textSize="16dp" />
                             </LinearLayout>
                         </LinearLayout>
 
@@ -692,7 +690,7 @@
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="20dp"
+                                android:layout_height="40dp"
                                 android:background="#e7e7e7"
                                 android:gravity="center">
 
@@ -703,7 +701,7 @@
                                     android:lineSpacingExtra="4sp"
                                     android:text="전체"
                                     android:textColor="#666666"
-                                    android:textSize="8sp" />
+                                    android:textSize="16dp" />
 
                             </LinearLayout>
 
@@ -718,7 +716,7 @@
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="20dp"
+                                android:layout_height="40dp"
                                 android:background="#e7e7e7"
                                 android:gravity="center">
 
@@ -729,7 +727,7 @@
                                     android:lineSpacingExtra="4sp"
                                     android:text="현금"
                                     android:textColor="#666666"
-                                    android:textSize="8sp" />
+                                    android:textSize="16dp" />
 
                             </LinearLayout>
 
@@ -745,7 +743,7 @@
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="20dp"
+                                android:layout_height="40dp"
                                 android:background="#e7e7e7"
                                 android:gravity="center">
 
@@ -756,34 +754,7 @@
                                     android:lineSpacingExtra="4sp"
                                     android:text="카드"
                                     android:textColor="#666666"
-                                    android:textSize="8sp" />
-
-                            </LinearLayout>
-
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="20dp"
-                                android:background="#e7e7e7"
-                                android:gravity="center">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:letterSpacing="-0.03"
-                                    android:lineSpacingExtra="4sp"
-                                    android:text="무통장입금"
-                                    android:textColor="#666666"
-                                    android:textSize="8sp" />
+                                    android:textSize="16dp" />
 
                             </LinearLayout>
 
@@ -793,207 +764,20 @@
                     </LinearLayout>
 
 
-                    <ScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
                         <LinearLayout
                             android:id="@+id/itemdateLL"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
-                            <!--<LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:gravity="center">
-
-
-                                <LinearLayout
-                                    android:id="@+id/preLL"
-                                    android:layout_width="50dp"
-                                    android:layout_height="18dp"
-                                    android:layout_marginRight="2.5dp"
-                                    android:background="@drawable/background_strock_cfcfcf"
-                                    android:gravity="center">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:letterSpacing="-0.03"
-                                        android:lineSpacingExtra="4sp"
-                                        android:text="이전"
-                                        android:textColor="#545454"
-                                        android:textSize="8sp" />
-
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:id="@+id/nextLL"
-                                    android:layout_width="50dp"
-                                    android:layout_height="18dp"
-                                    android:layout_marginLeft="2.5dp"
-                                    android:background="@drawable/background_strock_cfcfcf"
-                                    android:gravity="center">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:letterSpacing="-0.03"
-                                        android:lineSpacingExtra="4sp"
-                                        android:text="다음"
-                                        android:textColor="#545454"
-                                        android:textSize="8sp" />
-                                </LinearLayout>
-                            </LinearLayout>-->
-
-                        </LinearLayout>
-                    </ScrollView>
-                    <!--<LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            >
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="20dp"
-                                    android:background="#e7e7e7"
-                                    android:gravity="center">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:letterSpacing="-0.03"
-                                        android:lineSpacingExtra="4sp"
-                                        android:text="날짜"
-                                        android:textColor="#666666"
-                                        android:textSize="8sp" />
-                                </LinearLayout>
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="20dp"
-                                    android:background="#e7e7e7"
-                                    android:gravity="center">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:letterSpacing="-0.03"
-                                        android:lineSpacingExtra="4sp"
-                                        android:text="날짜"
-                                        android:textColor="#666666"
-                                        android:textSize="8sp" />
-                                </LinearLayout>
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="20dp"
-                                    android:background="#e7e7e7"
-                                    android:gravity="center">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:letterSpacing="-0.03"
-                                        android:lineSpacingExtra="4sp"
-                                        android:text="신규 고객(명)"
-                                        android:textColor="#666666"
-                                        android:textSize="8sp" />
-
-                                </LinearLayout>
-
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="20dp"
-                                    android:background="#e7e7e7"
-                                    android:gravity="center">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:letterSpacing="-0.03"
-                                        android:lineSpacingExtra="4sp"
-                                        android:text="재방문 고객(명)"
-                                        android:textColor="#666666"
-                                        android:textSize="8sp" />
-
-                                </LinearLayout>
-
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="20dp"
-                                    android:background="#e7e7e7"
-                                    android:gravity="center">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:letterSpacing="-0.03"
-                                        android:lineSpacingExtra="4sp"
-                                        android:text="전체 고객(명)"
-                                        android:textColor="#666666"
-                                        android:textSize="8sp" />
-
-                                </LinearLayout>
-
-
-                            </LinearLayout>
-
 
                         </LinearLayout>
 
-
-                    </LinearLayout>-->
                 </LinearLayout>
 
 
             <LinearLayout
+                android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:gravity="center"
@@ -1002,8 +786,8 @@
 
                     <LinearLayout
                         android:id="@+id/preLL"
-                        android:layout_width="50dp"
-                        android:layout_height="18dp"
+                        android:layout_width="100dp"
+                        android:layout_height="36dp"
                         android:layout_marginRight="2.5dp"
                         android:background="@drawable/background_strock_cfcfcf"
                         android:gravity="center">
@@ -1015,15 +799,15 @@
                             android:lineSpacingExtra="4sp"
                             android:text="이전"
                             android:textColor="#545454"
-                            android:textSize="8sp" />
+                            android:textSize="16dp" />
 
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/nextLL"
-                        android:layout_width="50dp"
-                        android:layout_height="18dp"
+                        android:layout_width="100dp"
+                        android:layout_height="36dp"
                         android:layout_marginLeft="2.5dp"
                         android:background="@drawable/background_strock_cfcfcf"
                         android:gravity="center">
@@ -1035,16 +819,15 @@
                             android:lineSpacingExtra="4sp"
                             android:text="다음"
                             android:textColor="#545454"
-                            android:textSize="8sp" />
+                            android:textSize="16dp" />
                     </LinearLayout>
                 </LinearLayout>
 
 
             </LinearLayout>
-        </ScrollView>
 
 
     </LinearLayout>
-
+        </ScrollView>
 
 </LinearLayout>

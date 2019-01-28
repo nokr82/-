@@ -15,8 +15,8 @@
 
     <LinearLayout
         android:id="@+id/LL"
-        android:layout_width="135dp"
-        android:layout_height="45dp"
+        android:layout_width="270dp"
+        android:layout_height="90dp"
         android:padding="5dp">
 
         <LinearLayout
@@ -36,7 +36,7 @@
                 android:lineSpacingExtra="3sp"
                 android:text="쿠폰이름"
                 android:textColor="#333333"
-                android:textSize="9sp"
+                android:textSize="18dp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -50,27 +50,24 @@
                     android:id="@+id/item_s_validityTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:letterSpacing="-0.2"
                     android:text="2018-11-29"
                     android:textColor="#595959"
-                    android:textSize="7sp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:letterSpacing="-0.02"
                     android:text=" ~ "
                     android:textColor="#595959"
-                    android:textSize="7sp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:id="@+id/item_e_validityTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:letterSpacing="-0.02"
                     android:text="2018-12-31"
                     android:textColor="#595959"
-                    android:textSize="7sp" />
+                    android:textSize="14dp" />
             </LinearLayout>
 
             <TextView
@@ -81,10 +78,10 @@
                 android:layout_marginRight="5dp"
                 android:text="메세지"
                 android:textColor="#595959"
-                android:textSize="6sp"
+                android:textSize="12dp"
                 android:visibility="gone" />
 
-            <EditText
+    <!--        <EditText
                 android:id="@+id/item_contentET"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -93,7 +90,7 @@
                 android:background="@null"
                 android:maxLines="1"
                 android:textColor="#595959"
-                android:textSize="6sp" />
+                android:textSize="12dp" />-->
         </LinearLayout>
     </LinearLayout>
 

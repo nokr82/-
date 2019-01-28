@@ -46,6 +46,7 @@ class SetMessageContFragment : Fragment() {
     lateinit var messageTV: TextView
     lateinit var titleTV: TextView
     lateinit var nextTV: TextView
+    lateinit var companyTelTV: TextView
     lateinit var imgLL: LinearLayout
     lateinit var imgIV: ImageView
 
@@ -83,6 +84,7 @@ class SetMessageContFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        companyTelTV = view.findViewById(R.id.companyTelTV)
         companyNameTV = view.findViewById(R.id.companyNameTV)
         memberNameTV = view.findViewById(R.id.memberNameTV)
         pointTV = view.findViewById(R.id.pointTV)
@@ -102,11 +104,14 @@ class SetMessageContFragment : Fragment() {
 
         company_id = PrefUtils.getIntPreference(context, "company_id")
 
+
+
+
         if (getArguments() != null) {
             member_id = getArguments()!!.getInt("member_id", -1)
             Log.d("멤버디", member_id.toString())
             if (member_id != -1) {
-
+                coupon_id = getArguments()!!.getString("coupon_id")
             } else {
                 coupon_id = getArguments()!!.getString("coupon_id")
                 search_type = getArguments()!!.getInt("search_type", -1)
@@ -117,7 +122,6 @@ class SetMessageContFragment : Fragment() {
                 to = getArguments()!!.getString("to")
                 count = getArguments()!!.getString("count")
                 Log.d("쿠폰", search_type.toString())
-                Log.d("쿠폰", coupon_id)
                 Log.d("쿠폰", gender.toString())
                 Log.d("쿠폰", age.toString())
             }
@@ -161,6 +165,14 @@ class SetMessageContFragment : Fragment() {
 
         }
 
+        companyTelTV.setOnClickListener {
+
+            var message = messageContentET.text.toString() + "{_매장번호_}"
+
+            messageContentET.setText(message)
+
+        }
+
         pointTV.setOnClickListener {
 
             var message = messageContentET.text.toString() + "{_포인트_}"
@@ -168,7 +180,9 @@ class SetMessageContFragment : Fragment() {
             messageContentET.setText(message)
 
         }
-
+        nextTV.setOnClickListener {
+            dlgView()
+        }
         messageContentET.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(s: Editable) {
@@ -180,6 +194,7 @@ class SetMessageContFragment : Fragment() {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 textLengthTV.text = s.length.toString()
                 messageTV.text = s
+
             }
         })
 
@@ -195,12 +210,18 @@ class SetMessageContFragment : Fragment() {
             }
         })
 
-        nextTV.setOnClickListener {
-            dlgView()
 
 
-        }
+    }
 
+    override fun onPause() {
+        super.onPause()
+        setedit()
+    }
+
+    fun setedit(){
+        titleET.setText("")
+        messageContentET.setText("")
     }
 
     fun dlgView() {
@@ -218,26 +239,44 @@ class SetMessageContFragment : Fragment() {
         }
         msgWriteTV.setOnClickListener {
             send_message()
+            mPopupDlg.dismiss()
+            var intent = Intent()
+            intent.action = "FINAL_NEXT"
+            myContext.sendBroadcast(intent)
+
         }
     }
 
     // 쿠폰 만들기(step3) - 메세지 보내기
     fun send_message() {
+
+
+
         var message = Utils.getString(messageContentET)
         var title = Utils.getString(titleET)
 
         val params = RequestParams()
         params.put("company_id", company_id)
         params.put("coupon_id", coupon_id)
-        if (member_id != -1) {
+        if (member_id!=-1){
             params.put("member_id", member_id)
         }
+
         params.put("message", message)
+
+
         params.put("7days_yn", "N")
         params.put("title", title)
         if (imgIV.drawable != null) {
             bitmap = imgIV.drawable as BitmapDrawable
             params.put("upload", ByteArrayInputStream(Utils.getByteArray(bitmap!!.bitmap)))
+            params.put("type",2)
+        }else{
+            if (message.length<30){
+                params.put("type",1)
+            }else if (message.length>30){
+                params.put("type",3)
+            }
         }
         if (age.size > 0) {
             for (i in 0..(age.size - 1)) {

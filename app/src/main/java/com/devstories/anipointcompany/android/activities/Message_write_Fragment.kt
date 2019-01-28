@@ -81,7 +81,6 @@ class Message_write_Fragment : Fragment() {
     internal var step2NextReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent?) {
             if (intent != null) {
-
                 var coupon_id = intent.getStringExtra("coupon_id")
                 var gender = intent.getSerializableExtra("gender")
                 var age = intent.getSerializableExtra("age")
@@ -90,6 +89,9 @@ class Message_write_Fragment : Fragment() {
                 var from = intent.getStringExtra("from")
                 var to = intent.getStringExtra("to")
                 var search_type = intent.getIntExtra("search_type", -1)
+                var member_id = intent.getIntExtra("member_id", -1)
+
+                Log.d("멤버아뒤",member_id.toString())
 
                 couponRL.setBackgroundColor(Color.parseColor("#0068df"))
                 couponTV.setTextColor(Color.parseColor("#ffffff"))
@@ -97,6 +99,9 @@ class Message_write_Fragment : Fragment() {
                 writeTV.setTextColor(Color.parseColor("#ffffff"))
                 //메시지작성으로
                 var args: Bundle = Bundle()
+                if (member_id != -1){
+                    args.putInt("member_id", member_id)
+                }
                 args.putString("coupon_id", coupon_id)
                 args.putString("count", count)
                 args.putInt("search_type", search_type)
@@ -128,7 +133,17 @@ class Message_write_Fragment : Fragment() {
             }
         }
     }
-
+    //최종 =>메시지보내기
+    internal var FinalReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent?) {
+            if (intent != null) {
+                setfilter()
+                userRL.setBackgroundColor(Color.parseColor("#0068df"))
+                userTV.setTextColor(Color.parseColor("#ffffff"))
+                childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, MessageUserFragment).commit()
+            }
+        }
+    }
     //건너뛰기
     internal var SkipReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent?) {
@@ -138,12 +153,40 @@ class Message_write_Fragment : Fragment() {
                 userTV.setTextColor(Color.parseColor("#ffffff"))
                 writeRL.setBackgroundColor(Color.parseColor("#0068df"))
                 writeTV.setTextColor(Color.parseColor("#ffffff"))
+
+
+
+                var gender = intent.getSerializableExtra("gender")
+                var age = intent.getSerializableExtra("age")
+                var visited_date = intent.getStringExtra("visited_date")
+                var count = intent.getStringExtra("count")
+                var from = intent.getStringExtra("from")
+                var to = intent.getStringExtra("to")
+                var search_type = intent.getIntExtra("search_type", -1)
+                var member_id = intent.getIntExtra("member_id", -1)
+
+                Log.d("멤버아뒤",member_id.toString())
+
+                var args: Bundle = Bundle()
+                if (member_id != -1){
+                    args.putInt("member_id", member_id)
+                }else{
+                    args.putString("count", count)
+                    args.putInt("search_type", search_type)
+                    args.putStringArrayList("gender", gender as ArrayList<String>?)
+                    args.putStringArrayList("age", age as ArrayList<String>?)
+                    args.putString("visited_date", visited_date)
+                    args.putString("from", from)
+                    args.putString("to", to)
+                }
+
+                SetMessageContFragment.setArguments(args)
                 childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, SetMessageContFragment).commit()
             }
         }
     }
 
-    //고객리스트 =>메시지보내기
+  /*  //고객리스트 =>메시지보내기
     internal var MsgReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent?) {
             if (intent != null) {
@@ -155,8 +198,20 @@ class Message_write_Fragment : Fragment() {
                 childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, SetMessageContFragment).commit()
             }
         }
-    }
-
+    }*/
+  //고객리스트 =>쿠폰설정
+  internal var MsgReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
+      override fun onReceive(context: Context, intent: Intent?) {
+          if (intent != null) {
+              setfilter()
+//                member_id =   intent!!.getStringExtra("member_id")
+//                Toast.makeText(myContext,member_id,Toast.LENGTH_SHORT).show()
+              couponRL.setBackgroundColor(Color.parseColor("#0068df"))
+              couponTV.setTextColor(Color.parseColor("#ffffff"))
+              childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, SetCouponFragment).commit()
+          }
+      }
+  }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
@@ -188,6 +243,9 @@ class Message_write_Fragment : Fragment() {
         var filter = IntentFilter("MSG_NEXT")
         myContext.registerReceiver(MsgReceiver, filter)
 
+        var filter5 = IntentFilter("FINAL_NEXT")
+        myContext.registerReceiver(FinalReceiver, filter5)
+
         //고객선택
         var filter1 = IntentFilter("STEP1_NEXT")
         myContext.registerReceiver(step1NextReceiver, filter1)
@@ -210,10 +268,10 @@ class Message_write_Fragment : Fragment() {
 //                Toast.makeText(myContext,member_id,Toast.LENGTH_SHORT).show()
                 var args: Bundle = Bundle()
                 args.putInt("member_id", member_id)
-                SetMessageContFragment.setArguments(args)
-                writeRL.setBackgroundColor(Color.parseColor("#0068df"))
-                writeTV.setTextColor(Color.parseColor("#ffffff"))
-                childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, SetMessageContFragment).commit()
+                SetCouponFragment.setArguments(args)
+                couponRL.setBackgroundColor(Color.parseColor("#0068df"))
+                couponTV.setTextColor(Color.parseColor("#ffffff"))
+                childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, SetCouponFragment).commit()
                 member_id = -1
             }
             arguments = null
@@ -238,7 +296,10 @@ class Message_write_Fragment : Fragment() {
         writeTV.setTextColor(Color.parseColor("#c5c5c5"))
         finalTV.setTextColor(Color.parseColor("#c5c5c5"))
     }
+    override fun onPause() {
+        super.onPause()
 
+    }
     override fun onDestroy() {
         super.onDestroy()
         if (progressDialog != null) {

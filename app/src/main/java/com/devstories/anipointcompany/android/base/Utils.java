@@ -35,6 +35,7 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -312,6 +313,28 @@ public class Utils {
             e.printStackTrace();
         }
         return null;
+    }
+
+
+
+    public static void getViewHeight(final View view, final OnHeightSetListener onHeightSetListener) {
+        ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
+        if (viewTreeObserver.isAlive()) {
+            viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    }
+                    onHeightSetListener.sized(view.getWidth(), view.getHeight());
+                }
+            });
+        }
+    }
+
+
+    public interface OnHeightSetListener {
+        void sized(int width, int height);
     }
 
     public static int getRotation(String photoPath) {
@@ -691,6 +714,10 @@ public class Utils {
         }
         return width;
     }
+
+
+
+
 
     public static void alert(Context context, String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);

@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -35,6 +36,7 @@ class CalActivity : RootActivity() {
     lateinit var context: Context
     private var progressDialog: ProgressDialog? = null
 
+    var request_step_id = -1
     var company_id = -1
     var type = -1
     var step = -1
@@ -46,11 +48,12 @@ class CalActivity : RootActivity() {
     var category_id = -1
     var per_type = -1
     var new_gender = ""
+    var per = ""
     var member_coupon_id = -1
     var use_point = -1
     var couponData: ArrayList<JSONObject> = ArrayList<JSONObject>()
     lateinit var couponListAdapter: CouponListAdapter
-
+    var new_member_yn = ""
     var stackpoint = -1
     lateinit var adapter: ArrayAdapter<String>
     var option_cate = ArrayList<String>()
@@ -72,6 +75,9 @@ class CalActivity : RootActivity() {
 
         this.context = this
         progressDialog = ProgressDialog(context)
+
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
         intent = getIntent()
         type = intent.getIntExtra("type", -1)
@@ -145,7 +151,7 @@ class CalActivity : RootActivity() {
             payment_type = 3
         }
 
-        changeStep()
+//        changeStep()
 
         new_maleIV.setOnClickListener {
             setmenu4()
@@ -189,6 +195,7 @@ class CalActivity : RootActivity() {
             setmenu3()
             stackLL.setBackgroundColor(Color.parseColor("#906e8a32"))
             //기본퍼센트
+            per = stackTV.text.toString()
             per_type = 1
             setPoint()
         }
@@ -198,7 +205,10 @@ class CalActivity : RootActivity() {
             setmenu3()
             stack2LL.setBackgroundColor(Color.parseColor("#906e8a32"))
             val managerpercent = stack2TV.text.toString()
-            val money = moneyTV.text.toString()
+            var money = moneyTV.text.toString()
+
+            per = stack2TV.text.toString()
+
             per_type = 2
             if (managerpercent == null) {
                 Toast.makeText(context, "퍼센트를 먼저 입력해주세요.", Toast.LENGTH_SHORT).show()
@@ -207,7 +217,8 @@ class CalActivity : RootActivity() {
 
             if (money == null) {
                 Toast.makeText(context, "가격을 먼저 입력해주세요.", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+                money = "0"
+//                return@setOnClickListener
             } else {
                 val percent = managerpercent.toFloat() / 100
                 val floatPoint = (money.toFloat() * percent)
@@ -278,29 +289,43 @@ class CalActivity : RootActivity() {
         }
 
         delLL.setOnClickListener {
-            val text = moneyTV.text.toString()
+
+            var text = moneyTV.text.toString()
             val defaultpercent = stackTV.text.toString()
-            if (text.length > 0) {
+
+            val text_val = text.substring(0, text.length - 1)
+
+            if (text_val.length > 0) {
+
+                if (text_val.equals("")){
+                    moneyTV.text = text_val
+                }
+
                 moneyTV.text = text.substring(0, text.length - 1)
+
+
                 val money = moneyTV.text.toString()
                 if (money != null && money != "") {
-                    val percent = defaultpercent.toFloat() / 100
-                    val floatPoint = (money.toFloat() * percent)
-                    val stringPoint = floatPoint.toString()
-                    var splitPoint = stringPoint.split(".")
-                    val point = splitPoint.get(0)
-                    pointTV.setText(point)
+                    setPoint()
+
                 }
             } else {
                 moneyTV.setText("0")
             }
         }
+
         useLL.setOnClickListener {
+
+
 
             price = Utils.getInt(moneyTV)
 
             if(price < 1) {
                 Toast.makeText(context, "가격을 입력해주세요.", Toast.LENGTH_LONG).show()
+//                return@setOnClickListener
+            }
+            if (member_id<1){
+                Toast.makeText(context, "회원정보가 없습니다.", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
 
@@ -308,19 +333,30 @@ class CalActivity : RootActivity() {
 
                 p_type = 1
                 type = 1
-                step = 3
+                 step = 3
+
+                if (payment_type == -1) {
+                    Toast.makeText(context, "결제방식을 선택해주세요", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+
 
                 if (per_type == 1) {
                     val totalpoint = Integer.parseInt(moneyTV.text.toString())
                     Log.d("포인트", totalpoint.toString())
                     stackpoint = totalpoint * Integer.parseInt(stackTV.text.toString()) / 100
                     changeStep()
+                    per=stackTV.text.toString()
+
                     stack_point(member_id.toString())
                 } else if (per_type == 2) {
                     val totalpoint = Integer.parseInt(moneyTV.text.toString())
                     Log.d("포인트", totalpoint.toString())
+
+                    per = stack2TV.text.toString()
                     stackpoint = totalpoint * Integer.parseInt(stack2TV.text.toString()) / 100
                     changeStep()
+
                     stack_point(member_id.toString())
                 } else if (per_type == 3) {
                     stackpoint = Integer.parseInt(pointTV.text.toString())
@@ -330,7 +366,6 @@ class CalActivity : RootActivity() {
                 } else {
                     Toast.makeText(context, "적립퍼센트를 선택해주세요", Toast.LENGTH_SHORT).show()
                 }
-
             } else if (opTV.text.equals("결제")) {
 //                val totalpoint = Integer.parseInt(moneyTV.text.toString())
 //                val use_point = Integer.parseInt(stack_pointTV.text.toString())
@@ -339,7 +374,7 @@ class CalActivity : RootActivity() {
 //                if (stackpoint > use_point) {
 //                    Toast.makeText(context, "포인트가 부족합니다", Toast.LENGTH_SHORT).show()
 //                } else {
-
+                step = 6
                     if (payment_type == -1) {
                         Toast.makeText(context, "결제방식을 선택해주세요", Toast.LENGTH_SHORT).show()
                         return@setOnClickListener
@@ -349,7 +384,7 @@ class CalActivity : RootActivity() {
                     if (use_point < 1) {
 
                         Toast.makeText(context, "사용자가 포인트 입력 후 진행해주세요", Toast.LENGTH_LONG).show()
-                        return@setOnClickListener
+//                        return@setOnClickListener
                     }
 
                     if(per_type > 0) {
@@ -368,10 +403,9 @@ class CalActivity : RootActivity() {
                     }
 
                     step = 6
-//                    p_type = 2
                     stack_point(member_id.toString())
                     changeStep()
-//                }
+
             }
         }
 
@@ -402,7 +436,7 @@ class CalActivity : RootActivity() {
         }
 
 
-        val money = moneyTV.text.toString()
+        var money = moneyTV.text.toString()
 
         if (defaultpercent == null) {
             Toast.makeText(context, "퍼센트를 먼저 입력해주세요.", Toast.LENGTH_SHORT).show()
@@ -411,7 +445,12 @@ class CalActivity : RootActivity() {
 
         if (money == null) {
             Toast.makeText(context, "가격을 먼저 입력해주세요.", Toast.LENGTH_SHORT).show()
-            return
+            money = "0"
+//            return
+        }
+
+        if (defaultpercent==""){
+            defaultpercent="1"
         }
 
         val percent = defaultpercent.toFloat() / 100
@@ -428,6 +467,7 @@ class CalActivity : RootActivity() {
         val params = RequestParams()
         params.put("company_id", company_id)
         params.put("member_id", member_id)
+        params.put("member_coupon_id", member_coupon_id)
         params.put("step", step)
 
         RequestStepAction.changeStep(params, object : JsonHttpResponseHandler() {
@@ -516,16 +556,17 @@ class CalActivity : RootActivity() {
 
 
 //                        step = Utils.getInt(requestStep, "step")
+                        request_step_id = Utils.getInt(requestStep, "id")
                         member_id = Utils.getInt(requestStep, "member_id")
                         member_coupon_id = Utils.getInt(requestStep, "member_coupon_id")
                         val result_step = Utils.getInt(requestStep, "step")
-                        val new_member_yn = Utils.getString(requestStep, "new_member_yn")
+                        new_member_yn  = Utils.getString(requestStep, "new_member_yn")
 
                         if (step != result_step) {
 
-                            if (timer != null) {
-                                timer!!.cancel()
-                            }
+//                            if (timer != null) {
+//                                timer!!.cancel()
+//                            }
 
                             step = result_step
 
@@ -533,10 +574,12 @@ class CalActivity : RootActivity() {
                                 // 적립 -> 회원 정보
 
                                 opTV.text = "적립"
+                                var phone = Utils.getString(member, "phone")
 
                                 //신규 체크
                                 if (member_id == 0 || new_member_yn == "Y") {
                                     joinLL.visibility = View.VISIBLE
+                                    phoneET.setText(phone)
                                     message_op_LL.visibility = View.GONE
                                     checkLL.visibility = View.VISIBLE
                                 } else {
@@ -549,7 +592,6 @@ class CalActivity : RootActivity() {
                                     stack_pointTV.text = left_point
                                 }
 
-                                var phone = Utils.getString(member, "phone")
                                 var gender = Utils.getString(member, "gender")
                                 var age = Utils.getString(member, "age")
                                 var birth = Utils.getString(member, "birth")
@@ -616,6 +658,11 @@ class CalActivity : RootActivity() {
                             } else if (step == 7) {
 
                                 use_point = Utils.getInt(requestStep, "point")
+
+                                if (use_point==-1){
+                                    use_point=0
+                                }
+
 
                                 usePointLL.visibility = View.VISIBLE
                                 usePointTV.text = use_point.toString()
@@ -686,6 +733,7 @@ class CalActivity : RootActivity() {
         params.put("company_id", company_id)
         params.put("point", stackpoint)//사용및적립포인트
         params.put("type", type)//1적립 2사용
+        params.put("per", per)//적립률
         params.put("use_point", use_point)//사용 포인트
         params.put("member_coupon_id", member_coupon_id)//사용 쿠폰
         params.put("price", price)//상품가격
@@ -705,12 +753,21 @@ class CalActivity : RootActivity() {
                     Log.d("적립", response.toString())
 
                     if ("ok" == result) {
+
+                        if (new_member_yn.equals("Y")){
+                            member_join()
+                        }
+
+
                         val intent = Intent(context, UserListActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
+
                         if (p_type == 1) {
+
                             Toast.makeText(context, stackpoint.toString() + "적립됩니다", Toast.LENGTH_SHORT).show()
                         } else if (p_type == 2) {
+
                             Toast.makeText(context, stackpoint.toString() + "사용됩니다", Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -795,8 +852,6 @@ class CalActivity : RootActivity() {
 
                     if ("ok" == result) {
                         Toast.makeText(context, "회원등록완료", Toast.LENGTH_SHORT).show()
-                        finish()
-
                     }
 
                 } catch (e: JSONException) {
@@ -857,9 +912,9 @@ class CalActivity : RootActivity() {
 
                         val company = response.getJSONObject("company")
                         // 기본적립
-                        val basic_per = Utils.getString(company, "basic_per")
+                        var basic_per = Utils.getString(company, "basic_per")
                         //임의적립
-                        val option_per = Utils.getInt(company, "option_per")
+                        var option_per = Utils.getInt(company, "option_per")
                         val data = response.getJSONArray("categories")
                         Log.d("카테", data.toString())
                         for (i in 0..data.length() - 1) {
@@ -871,6 +926,13 @@ class CalActivity : RootActivity() {
                         }
                         adapter = ArrayAdapter(context, R.layout.spiner_cal_item, option_cate)
                         cate_SP.adapter = adapter
+
+                        if (basic_per==""){
+                            basic_per="1"
+                        }
+                        if (option_per==-1){
+                            option_per=1
+                        }
 
 
                         stackTV.text = basic_per.toString()
@@ -1056,6 +1118,103 @@ class CalActivity : RootActivity() {
             timer!!.cancel()
         }
 
+    }
+
+    override fun finish() {
+
+        if(step == 1 || step == 4) {
+            endStep()
+        }
+
+        super.finish()
+    }
+
+    fun endStep() {
+        val params = RequestParams()
+        params.put("request_step_id", request_step_id)
+
+        RequestStepAction.endStep(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    val result = response!!.getString("result")
+
+                    if ("ok" == result) {
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+            }
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(context, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+                // System.out.println(responseString);
+                throwable.printStackTrace()
+                error()
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    throwable: Throwable,
+                    errorResponse: JSONObject?
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+                throwable.printStackTrace()
+                error()
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    throwable: Throwable,
+                    errorResponse: JSONArray?
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+                throwable.printStackTrace()
+                error()
+            }
+
+//            override fun onStart() {
+//                // show dialog
+//                if (progressDialog != null) {
+//
+//                    progressDialog!!.show()
+//                }
+//            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
     }
 
 }

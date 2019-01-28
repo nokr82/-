@@ -22,6 +22,7 @@ import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
 import com.nostra13.universalimageloader.core.ImageLoader
 import cz.msebera.android.httpclient.Header
+import kotlinx.android.synthetic.main.fragment_setting_my_info.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.ByteArrayInputStream
@@ -46,6 +47,7 @@ class SettingMyInfoFragment : Fragment() {
     lateinit var checkTV: TextView
     lateinit var infocheckTV: TextView
     lateinit var imgcheckTV: TextView
+    lateinit var termTV: TextView
     lateinit var userLL: LinearLayout
 
 
@@ -75,7 +77,7 @@ class SettingMyInfoFragment : Fragment() {
         phoneNum3ET = view.findViewById(R.id.phoneNum3ET)
         compIdET = view.findViewById(R.id.compIdET)
         addImage1RL = view.findViewById(R.id.addImage1RL)
-        termET = view.findViewById(R.id.termET)
+        termTV = view.findViewById(R.id.termTV)
         tempPasswordET = view.findViewById(R.id.tempPasswordET)
         newPasswordET = view.findViewById(R.id.newPasswordET)
         newPassCheckET = view.findViewById(R.id.newPassCheckET)
@@ -83,6 +85,7 @@ class SettingMyInfoFragment : Fragment() {
         infocheckTV= view.findViewById(R.id.infocheckTV)
         imgcheckTV= view.findViewById(R.id.imgcheckTV)
         userLL =  view.findViewById(R.id.userLL)
+        termTV=  view.findViewById(R.id.termTV)
 
 
 
@@ -92,11 +95,13 @@ class SettingMyInfoFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
 
-
         company_id = PrefUtils.getIntPreference(context, "company_id")
 
 
         company_info(company_id)
+
+
+
 
 
         //정보수정
@@ -227,13 +232,17 @@ class SettingMyInfoFragment : Fragment() {
                         val phone2 = Utils.getString(company,"phone2")
                         val phone3 = Utils.getString(company,"phone3")
                         val login_id = Utils.getString(company,"login_id")
-                         passwd=Utils.getString(company,"passwd")
+                        var s_contract_term = Utils.getString(company,"s_contract_term")
+                        var e_contract_term = Utils.getString(company,"e_contract_term")
+
+                        passwd=Utils.getString(company,"passwd")
 
                         compNameET.setText(company_name)
                         phoneNum1ET.setText(phone1)
                         phoneNum2ET.setText(phone2)
                         phoneNum3ET.setText(phone3)
                         compIdET.setText(login_id)
+                        termTV.text = s_contract_term+"~"+e_contract_term
 
                         val images = response.getJSONArray("images")
                         Log.d("이미지",images.toString())
@@ -255,7 +264,6 @@ class SettingMyInfoFragment : Fragment() {
                             userView.tag = Utils.getInt(CompanyImage, "id")
                             delIV.setOnClickListener {
                                 userLL.removeView(userView)
-                                Toast.makeText(myContext,userView.tag.toString(),Toast.LENGTH_SHORT).show()
                                 delids.add(userView.tag as Int)
                                 Log.d("아이디값",delids.toString())
 
@@ -514,10 +522,12 @@ class SettingMyInfoFragment : Fragment() {
 
         for (i in 0 until userLL.childCount) {
             val v = userLL.getChildAt(i)
+            Log.d("브이",v.toString())
             val imagV = v.findViewById<ImageView>(R.id.c_imgIV)
             if (imagV is ImageView) {
                 val bitmap = imagV.drawable as BitmapDrawable
                 params.put("upload[$seq]", ByteArrayInputStream(Utils.getByteArray(bitmap.bitmap)))
+                Log.d("브이",seq.toString())
                 seq++
             }
         }

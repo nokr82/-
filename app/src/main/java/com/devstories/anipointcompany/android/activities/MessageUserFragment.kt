@@ -164,10 +164,10 @@ class MessageUserFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         company_id = PrefUtils.getIntPreference(context, "company_id")
-
+        search_type = 1
         adapter = ArrayAdapter(myContext,R.layout.spiner_item,option_visitday)
         visitdaySP.adapter = adapter
-
+        member_filter()
         setmenu3()
         setfilter()
         setopview()
@@ -204,7 +204,7 @@ class MessageUserFragment : Fragment() {
                 genderMLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 menTV.setTextColor(Color.parseColor("#9a9a99"))
             }
-            member_filter()
+            member_filter ()
 
 
         }

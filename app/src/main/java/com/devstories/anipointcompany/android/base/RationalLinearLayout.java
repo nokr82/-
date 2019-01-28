@@ -3,24 +3,26 @@ package com.devstories.anipointcompany.android.base;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 
 import com.devstories.anipointcompany.android.R;
 
 
 /**
- * Created by dev1 on 2017-12-06.
+ * Created by theclub on 1/3/17.
  */
 
-public class RationalRelativeLayout extends RelativeLayout {
+public class RationalLinearLayout extends LinearLayout {
+
+    private boolean adjustHeight = true;
     private float ratio1 = -1.0f;
     private float ratio2 = -1.0f;
 
-    public RationalRelativeLayout(Context context) {
+    public RationalLinearLayout(Context context) {
         super(context);
     }
 
-    public RationalRelativeLayout(Context context, AttributeSet attrs) {
+    public RationalLinearLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.app, 0, 0);
@@ -38,13 +40,15 @@ public class RationalRelativeLayout extends RelativeLayout {
 
             }
 
+            adjustHeight = ta.getBoolean(R.styleable.app_adjustHeight, true);
+
         } finally {
             ta.recycle();
         }
 
     }
 
-    public RationalRelativeLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RationalLinearLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.app, 0, 0);
@@ -60,6 +64,8 @@ public class RationalRelativeLayout extends RelativeLayout {
                     this.ratio2 = Float.parseFloat(arr[1]);
                 }
 
+                adjustHeight = ta.getBoolean(R.styleable.app_adjustHeight, true);
+
             }
 
         } finally {
@@ -69,12 +75,21 @@ public class RationalRelativeLayout extends RelativeLayout {
     }
 
     @Override public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int finalHeight = MeasureSpec.getSize(heightMeasureSpec);
-        if(this.ratio1 > 0 && this.ratio2 > 0) {
-            int originalWidth = MeasureSpec.getSize(widthMeasureSpec);
-            finalHeight = (int) (this.ratio2 * originalWidth / this.ratio1);
-        }
-        super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(finalHeight, MeasureSpec.EXACTLY));
-    }
 
+        if(adjustHeight) {
+            int finalHeight = MeasureSpec.getSize(heightMeasureSpec);
+            if (this.ratio1 > 0 && this.ratio2 > 0) {
+                int originalWidth = MeasureSpec.getSize(widthMeasureSpec);
+                finalHeight = (int) (this.ratio2 * originalWidth / this.ratio1);
+            }
+            super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(finalHeight, MeasureSpec.EXACTLY));
+        } else {
+            int finalWidth = MeasureSpec.getSize(widthMeasureSpec);
+            if (this.ratio1 > 0 && this.ratio2 > 0) {
+                int originalHeight = MeasureSpec.getSize(heightMeasureSpec);
+                finalWidth = (int) (this.ratio1 * originalHeight / this.ratio2);
+            }
+            super.onMeasure(MeasureSpec.makeMeasureSpec(finalWidth, MeasureSpec.EXACTLY), heightMeasureSpec);
+        }
+    }
 }

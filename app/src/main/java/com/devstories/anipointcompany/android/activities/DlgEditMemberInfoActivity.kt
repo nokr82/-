@@ -17,7 +17,12 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import android.content.Intent
+import android.view.View
+import android.view.WindowManager
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import com.devstories.anipointcompany.android.base.PrefUtils
+
 
 
 //회원수정 다이얼로그
@@ -25,10 +30,16 @@ class DlgEditMemberInfoActivity : RootActivity() {
 
     lateinit var context: Context
     private var progressDialog: ProgressDialog? = null
+    lateinit var adapter: ArrayAdapter<String>
+    var option_age = arrayOf("미입력","20대","30대","40대","50대","60대")
+
 
     var member_id = -1
     var gender = ""
     var company_id = -1
+
+
+    var age = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +51,7 @@ class DlgEditMemberInfoActivity : RootActivity() {
         member_id = intent.getIntExtra("member_id", -1)
         company_id = PrefUtils.getIntPreference(context, "company_id")
 
-
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         maleLL.setOnClickListener {
             setmenu()
             maleIV.setImageResource(R.drawable.radio_on)
@@ -50,42 +61,47 @@ class DlgEditMemberInfoActivity : RootActivity() {
             setmenu()
             femaleIV.setImageResource(R.drawable.radio_on)
             gender = "F"
+       }
+        adapter = ArrayAdapter(this, R.layout.spiner_item, option_age)
+        ageSP.adapter = adapter
+        //스피너 선택이벤트
+        ageSP.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+                if (position == 0) {
+                           age = ""
+                } else if (position == 1) {
+                    age = "20"
+                }else if (position == 2) {
+                    age = "30"
+                }else if (position == 3) {
+                    age = "40"
+                }else if (position == 4) {
+                    age = "50"
+                }else if (position == 5) {
+                    age = "60"
+                }
+
+            }
         }
+
 
         saveLL.setOnClickListener {
 
-            val birth = Utils.getString(birthET)
-            val age = Utils.getString(ageET)
-            val name = Utils.getString(nameET)
+           /* val birth = Utils.getString(birthET)
+//            var age = Utils.getString(ageET)
+            var name = Utils.getString(nameET)
             val memo = Utils.getString(memoET)
-            val phone = Utils.getString(phoneET)
+            val phone = Utils.getString(phoneET)*/
 
-            println("birth.length : " + birth.length)
+//            if(birth.length != 8) {
+//                Toast.makeText(context, "생년월일은 여덟자리로 입력해주세요", Toast.LENGTH_LONG).show()
+//                return@setOnClickListener
+//            }
 
-            if(phone == "") {
-                Toast.makeText(context, "핸드폰 번호를 입력해주세요", Toast.LENGTH_LONG).show()
-                return@setOnClickListener
-            }
-
-            if(birth == "") {
-                Toast.makeText(context, "생년월일을 입력해주세요", Toast.LENGTH_LONG).show()
-                return@setOnClickListener
-            }
-
-            if(birth.length != 8) {
-                Toast.makeText(context, "생년월일은 여덟자리로 입력해주세요", Toast.LENGTH_LONG).show()
-                return@setOnClickListener
-            }
-
-            if(age == "") {
-                Toast.makeText(context, "나이를 입력해주세요", Toast.LENGTH_LONG).show()
-                return@setOnClickListener
-            }
-
-            if(name == "") {
-                Toast.makeText(context, "이름을 입력해주세요", Toast.LENGTH_LONG).show()
-                return@setOnClickListener
-            }
 
             editInfo()
         }
@@ -126,12 +142,42 @@ class DlgEditMemberInfoActivity : RootActivity() {
                             setmenu()
                             femaleIV.setImageResource(R.drawable.radio_on)
                         }
+                       var phone= Utils.getString(member, "phone")
+                        var birth=     Utils.getString(member, "birth")
+                        var name= Utils.getString(member, "name")
+                        var memo= Utils.getString(member, "memo")
+                        var age= Utils.getString(member, "age")
 
-                        phoneET.setText(Utils.getString(member, "phone"))
-                        nameET.setText(Utils.getString(member, "name"))
-                        ageET.setText(Utils.getString(member, "age"))
-                        birthET.setText(Utils.getString(member, "birth"))
-                        memoET.setText(Utils.getString(member, "memo"))
+
+                        if (phone ==""){
+                            phone="─"
+                        }
+                        if (birth ==""){
+                            birth="─"
+                        }
+                        if (name ==""){
+                            name="─"
+                        }
+
+                        if (age ==""){
+                          ageSP.setSelection(0)
+                        }else if (age=="20"){
+                            ageSP.setSelection(1)
+                        }else if (age=="30"){
+                            ageSP.setSelection(2)
+                        }else if (age=="40"){
+                            ageSP.setSelection(3)
+                        }else if (age=="50"){
+                            ageSP.setSelection(4)
+                        }else if (age=="60"){
+                            ageSP.setSelection(5)
+                        }
+
+                        phoneET.setText(phone)
+                        nameET.setText(name)
+//                        ageET.setText(Utils.getString(member, "age"))
+                        birthET.setText(birth)
+                        memoET.setText(memo)
 
                     }
 
@@ -202,7 +248,7 @@ class DlgEditMemberInfoActivity : RootActivity() {
         val params = RequestParams()
         params.put("member_id", member_id)
         params.put("birth", Utils.getString(birthET))
-        params.put("age", Utils.getString(ageET))
+        params.put("age",age)
         params.put("gender",gender)
         params.put("name", Utils.getString(nameET))
         params.put("memo", Utils.getString(memoET))
@@ -222,6 +268,7 @@ class DlgEditMemberInfoActivity : RootActivity() {
                         val resultIntent = Intent()
                         resultIntent.putExtra("member_id",member_id)
                         setResult(RESULT_OK, resultIntent)
+                        Utils.hideKeyboard(context)
                         finish()
 
                     }

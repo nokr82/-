@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -22,7 +23,9 @@ import org.json.JSONException
 import org.json.JSONObject
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import com.devstories.anipointcompany.android.base.PrefUtils
+import java.io.ByteArrayInputStream
 import java.io.Serializable
 
 
@@ -72,7 +75,7 @@ class SetCouponFragment : Fragment() {
     var to: String? = null
     var gender: Serializable? = null
     var age: Serializable? = null
-
+    var member_id = -1
 
     internal var step1NextReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent?) {
@@ -123,6 +126,7 @@ class SetCouponFragment : Fragment() {
         //고객선택
         var filter1 = IntentFilter("STEP1_NEXT")
         myContext.registerReceiver(step1NextReceiver, filter1)
+
         company_id = PrefUtils.getIntPreference(context, "company_id")
         setmenu2()
         setmenu()
@@ -139,13 +143,19 @@ class SetCouponFragment : Fragment() {
 
 
         if (getArguments() != null) {
-            count = getArguments()!!.getString("count")
-            search_type = getArguments()!!.getInt("search_type")
-            gender = getArguments()!!.getSerializable("gender")
-            age = getArguments()!!.getSerializable("age")
-            visited_date = getArguments()!!.getString("visited_date")
-            from = getArguments()!!.getString("from");
-            to = getArguments()!!.getString("to");
+            member_id = getArguments()!!.getInt("member_id", -1)
+            Log.d("멤버디", member_id.toString())
+            if (member_id != -1) {
+
+            }else{
+                count = getArguments()!!.getString("count")
+                search_type = getArguments()!!.getInt("search_type")
+                gender = getArguments()!!.getSerializable("gender")
+                age = getArguments()!!.getSerializable("age")
+                visited_date = getArguments()!!.getString("visited_date")
+                from = getArguments()!!.getString("from")
+                to = getArguments()!!.getString("to")
+            }
 
         }
 
@@ -223,10 +233,10 @@ class SetCouponFragment : Fragment() {
         validityIV.setOnClickListener {
             it.isSelected = !it.isSelected
             if (it.isSelected) {
-                validityIV.setImageResource(R.mipmap.switch_off)
+                validityIV.setImageResource(R.mipmap.off)
                 validity_alarm_yn = "N"
             } else {
-                validityIV.setImageResource(R.mipmap.switch_on)
+                validityIV.setImageResource(R.mipmap.on)
                 validity_alarm_yn = "Y"
             }
         }
@@ -235,13 +245,35 @@ class SetCouponFragment : Fragment() {
         skipTV.setOnClickListener {
             var intent = Intent()
             intent.action = "SKIP_NEXT"
+            if (member_id != -1){
+                intent.putExtra("member_id", member_id)
+            }else{
+                intent.putExtra("count", count)
+                intent.putExtra("search_type", search_type)
+                intent.putExtra("gender", gender)
+                intent.putExtra("age", age)
+                intent.putExtra("visited_date", visited_date)
+                intent.putExtra("from", from)
+                intent.putExtra("to", to)
+            }
             myContext.sendBroadcast(intent)
         }
+
+        sendcouponTV.setOnClickListener {
+            coupon_add2()
+        }
+
         nextTV.setOnClickListener {
             coupon_add()
         }
     }
-
+    override fun onPause() {
+        super.onPause()
+        setmenu2()
+        setmenu()
+        coupon_prdET.setText("")
+        coupon_conET.setText("")
+    }
     fun etchange() {
         //에딧텍스트 입력댈떄마다변화
         coupon_prdET.addTextChangedListener(object : TextWatcher {
@@ -266,6 +298,188 @@ class SetCouponFragment : Fragment() {
         })
     }
 
+    // 쿠폰 만들기(step3) - 메세지 보내기
+    fun send_message() {
+        val params = RequestParams()
+        params.put("company_id", company_id)
+        params.put("coupon_id", coupon_id)
+        if (member_id!=-1){
+            params.put("member_id", member_id)
+        }
+        params.put("7days_yn", "N")
+
+        if (search_type == 2) {
+            params.put("from", from)
+            params.put("to", to)
+        } else if (search_type == 3) {
+            params.put("visited_date", visited_date)
+        } else if (search_type == 4) {
+            params.put("from", from)
+            params.put("to", to)
+        } else if (search_type == 5) {
+            params.put("from", from)
+            params.put("to", to)
+        }
+        params.put("search_type", search_type)
+
+
+
+        CouponAction.send_message(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    val result = response!!.getString("result")
+                    if ("ok" == result) {
+                        Toast.makeText(myContext, "전송성공", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(myContext, "전송실패", Toast.LENGTH_SHORT).show()
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(myContext, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
+    //쿠폰만들기
+    fun coupon_add2() {
+
+        var content = Utils.getString(coupon_conET)
+
+        val params = RequestParams()
+        params.put("company_id", company_id)
+        params.put("type", 6)
+        params.put("name", Utils.getString(coupon_prdET))
+        params.put("week_use_yn", week_use_yn)
+        params.put("sat_use_yn", sat_use_yn)
+        params.put("sun_use_yn", sun_use_yn)
+        params.put("content", content)
+        params.put("use_day", use_day)
+        params.put("validity_alarm_yn", validity_alarm_yn)
+        if (week_use_yn.equals("N") && sat_use_yn.equals("N") && sun_use_yn.equals("N")) {
+            Toast.makeText(myContext, "사용가능요일을 선택해주세요", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (coupon_prdET.equals("")) {
+            Toast.makeText(myContext, "쿠폰이름을 입력해주세요", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+
+
+
+        CouponAction.coupon_add(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    val result = response!!.getString("result")
+                    if ("ok" == result) {
+                        var coupon_id = response.getString("coupon_id")
+                        send_message()
+
+                    } else {
+                        Toast.makeText(myContext, "업데이트실패", Toast.LENGTH_SHORT).show()
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+            }
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(myContext, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
 
     //쿠폰만들기
     fun coupon_add() {
@@ -308,14 +522,19 @@ class SetCouponFragment : Fragment() {
 
                         var intent = Intent()
                         intent.action = "STEP2_NEXT"
-                        intent.putExtra("coupon_id", coupon_id)
-                        intent.putExtra("count", count)
-                        intent.putExtra("search_type", search_type)
-                        intent.putExtra("gender", gender)
-                        intent.putExtra("age", age)
-                        intent.putExtra("visited_date", visited_date)
-                        intent.putExtra("from", from)
-                        intent.putExtra("to", to)
+                        if (member_id!= -1){
+                            intent.putExtra("member_id", member_id)
+                            intent.putExtra("coupon_id", coupon_id)
+                        }else{
+                            intent.putExtra("coupon_id", coupon_id)
+                            intent.putExtra("count", count)
+                            intent.putExtra("search_type", search_type)
+                            intent.putExtra("gender", gender)
+                            intent.putExtra("age", age)
+                            intent.putExtra("visited_date", visited_date)
+                            intent.putExtra("from", from)
+                            intent.putExtra("to", to)
+                        }
                         myContext.sendBroadcast(intent)
                     } else {
                         Toast.makeText(myContext, "업데이트실패", Toast.LENGTH_SHORT).show()

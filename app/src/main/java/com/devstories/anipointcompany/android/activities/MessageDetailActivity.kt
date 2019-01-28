@@ -4,6 +4,7 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
+import android.view.WindowManager
 import com.devstories.anipointcompany.android.Actions.CouponAction
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.PrefUtils
@@ -44,7 +45,7 @@ class MessageDetailActivity : RootActivity() {
 
         this.context = this
         progressDialog = ProgressDialog(context)
-
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         company_id = PrefUtils.getIntPreference(context, "company_id")
 
         message_id = intent.getIntExtra("message_id", -1)

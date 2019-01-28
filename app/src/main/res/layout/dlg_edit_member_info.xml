@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="175dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content">
 
         <ScrollView
@@ -15,7 +15,7 @@
 
             <LinearLayout
                 android:background="#ffff"
-                android:layout_width="175dp"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
@@ -30,7 +30,7 @@
                         android:layout_marginLeft="4dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="8sp"
+                        android:textSize="16dp"
                         android:textColor="#8d8d8d"
                         android:letterSpacing="-0.05"
                         android:lineSpacingExtra="2sp"
@@ -56,10 +56,10 @@
                             android:id="@+id/phoneET"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="16sp"
+                            android:textSize="32dp"
                             android:textColor="#005492"
                             android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="-6sp"
+                            android:lineSpacingExtra="-12dp"
                             android:gravity="center_horizontal"
                             android:text="01012345678"
                             android:background="@null"/>
@@ -95,7 +95,7 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="17.5dp">
+                            android:layout_height="35dp">
 
                             <LinearLayout
                                 android:layout_width="35dp"
@@ -106,7 +106,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="6sp"
+                                    android:textSize="12dp"
                                     android:textColor="#666666"
                                     android:letterSpacing="-0.01"
                                     android:gravity="center_horizontal"
@@ -123,14 +123,15 @@
 
                                 <EditText
                                     android:id="@+id/nameET"
-                                    android:layout_width="match_parent"
+                                    android:gravity="center"
+                                    android:layout_width="fill_parent"
                                     android:layout_height="match_parent"
                                     android:layout_marginLeft="5.5dp"
                                     android:background="@null"
                                     android:letterSpacing="-0.01"
                                     android:text="박소윤"
                                     android:textColor="#303030"
-                                    android:textSize="6sp" />
+                                    android:textSize="12dp" />
 
                             </LinearLayout>
 
@@ -143,7 +144,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="6sp"
+                                    android:textSize="12dp"
                                     android:textColor="#666666"
                                     android:letterSpacing="-0.01"
                                     android:gravity="center_horizontal"
@@ -176,11 +177,11 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="1dp"
-                                        android:textSize="6sp"
+                                        android:textSize="12dp"
                                         android:textColor="#303030"
                                         android:letterSpacing="-0.01"
                                         android:gravity="center_horizontal"
-                                        android:text="남" />
+                                        android:text="남성" />
 
                                 </LinearLayout>
 
@@ -202,11 +203,11 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="1dp"
-                                        android:textSize="6sp"
+                                        android:textSize="12dp"
                                         android:textColor="#303030"
                                         android:letterSpacing="-0.01"
                                         android:gravity="center_horizontal"
-                                        android:text="여" />
+                                        android:text="여성" />
 
                                 </LinearLayout>
 
@@ -216,7 +217,7 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="17.5dp">
+                            android:layout_height="35dp">
 
                             <LinearLayout
                                 android:layout_width="35dp"
@@ -227,7 +228,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="6sp"
+                                    android:textSize="12dp"
                                     android:textColor="#666666"
                                     android:letterSpacing="-0.01"
                                     android:gravity="center_horizontal"
@@ -236,25 +237,29 @@
 
                             </LinearLayout>
 
-                            <LinearLayout
+                            <RelativeLayout
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:gravity="center_vertical"
                                 android:layout_height="match_parent">
 
-                                <EditText
-                                    android:id="@+id/ageET"
+                                <Spinner
+                                    android:id="@+id/ageSP"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_marginLeft="5.5dp"
-                                    android:letterSpacing="-0.01"
-                                    android:textColor="#303030"
-                                    android:textSize="6sp"
-                                    android:inputType="number"
-                                    android:text="22"
+                                    android:textSize="12dp"
                                     android:background="@null"/>
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                   android:layout_centerInParent="true"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginRight="5.5dp"
+                                    android:src="@mipmap/icon_down_arrow"
+                                    android:layout_alignParentRight="true" />
 
-                            </LinearLayout>
+                            </RelativeLayout>
 
                             <LinearLayout
                                 android:layout_width="35dp"
@@ -265,7 +270,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="6sp"
+                                    android:textSize="12dp"
                                     android:textColor="#666666"
                                     android:letterSpacing="-0.01"
                                     android:gravity="center_horizontal"
@@ -281,9 +286,10 @@
                                 <EditText
                                     android:id="@+id/birthET"
                                     android:layout_marginLeft="5.5dp"
-                                    android:layout_width="match_parent"
+                                    android:gravity="center"
+                                    android:layout_width="fill_parent"
                                     android:layout_height="match_parent"
-                                    android:textSize="6sp"
+                                    android:textSize="12dp"
                                     android:textColor="#303030"
                                     android:letterSpacing="-0.01"
                                     android:text="19951103"
@@ -308,7 +314,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="6sp"
+                                    android:textSize="12dp"
                                     android:textColor="#666666"
                                     android:letterSpacing="-0.01"
                                     android:gravity="center_horizontal"
@@ -328,7 +334,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_marginLeft="5.5dp"
-                                    android:textSize="6sp"
+                                    android:textSize="12dp"
                                     android:textColor="#303030"
                                     android:letterSpacing="-0.01"
                                     android:text="소형견, 말티스, 강아지 이름우측 최상단 톱니바퀴 모양을 누르면설정으로 이동합니다."
@@ -349,14 +355,14 @@
                         android:id="@+id/saveLL"
                         android:layout_marginTop="12.5dp"
                         android:layout_width="match_parent"
-                        android:layout_height="25dp"
+                        android:layout_height="50dp"
                         android:gravity="center"
                         android:background="#00d1ce">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="10sp"
+                            android:textSize="20dp"
                             android:textColor="#ffffff"
                             android:letterSpacing="-0.01"
                             android:lineSpacingExtra="0sp"

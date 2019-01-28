@@ -190,9 +190,16 @@ class MssgAnalysisFragment : Fragment() {
                             adapterData.clear();
                         }
 
-                        val autoCouponCnt = Utils.getInt(response, "autoCouponCnt")
-                        val messageCnt = Utils.getInt(response, "messageCnt")
+                        var autoCouponCnt = Utils.getInt(response, "autoCouponCnt")
+                        var messageCnt = Utils.getInt(response, "messageCnt")
                         val searchDate = Utils.getString(response, "searchDate")
+
+                        if (autoCouponCnt==-1){
+                            autoCouponCnt=0
+                        }
+                        if (messageCnt==-1){
+                            messageCnt=0
+                        }
 
                         autoCntTV.text = "(" + autoCouponCnt + ")"
                         msgCntTV.text = "(" + messageCnt + ")"
