@@ -287,6 +287,7 @@ class SetCouponFragment : Fragment() {
         }
 
         sendcouponTV.setOnClickListener {
+            coupon_add2()
         }
 
         nextTV.setOnClickListener {
@@ -324,7 +325,170 @@ class SetCouponFragment : Fragment() {
         })
     }
 
+    //쿠폰만들기
+    fun self_coupon() {
+        val params = RequestParams()
+        params.put("member_id", member_id)
+        params.put("coupon_id", coupon_id)
 
+
+        CouponAction.self_coupon(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    val result = response!!.getString("result")
+                    Log.d("결과",response.toString())
+                    if ("ok" == result) {
+
+                        Toast.makeText(myContext,"쿠폰이 정상발행되었습니다",Toast.LENGTH_SHORT).show()
+
+                    } else {
+                        Toast.makeText(myContext, "업데이트실패", Toast.LENGTH_SHORT).show()
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+            }
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(myContext, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
+
+    //쿠폰만들기
+    fun coupon_add2() {
+
+        var content = Utils.getString(coupon_conET)
+
+        val params = RequestParams()
+        params.put("company_id", company_id)
+        params.put("type", 6)
+        params.put("name", Utils.getString(coupon_prdET))
+        params.put("week_use_yn", week_use_yn)
+        params.put("sat_use_yn", sat_use_yn)
+        params.put("sun_use_yn", sun_use_yn)
+        params.put("content", content)
+        params.put("use_day", use_day)
+        params.put("validity_alarm_yn", validity_alarm_yn)
+        if (week_use_yn.equals("N") && sat_use_yn.equals("N") && sun_use_yn.equals("N")) {
+            Toast.makeText(myContext, "사용가능요일을 선택해주세요", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (coupon_prdET.equals("")) {
+            Toast.makeText(myContext, "쿠폰이름을 입력해주세요", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+
+
+
+        CouponAction.coupon_add(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    val result = response!!.getString("result")
+                    if ("ok" == result) {
+                        coupon_id = response.getString("coupon_id")
+                        self_coupon()
+
+                    } else {
+                        Toast.makeText(myContext, "업데이트실패", Toast.LENGTH_SHORT).show()
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+            }
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(myContext, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
 
     //쿠폰만들기
     fun coupon_add() {

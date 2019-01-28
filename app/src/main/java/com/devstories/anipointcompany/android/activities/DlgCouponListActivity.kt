@@ -77,6 +77,7 @@ class DlgCouponListActivity : RootActivity() {
     fun couponData(id: Int) {
         val params = RequestParams()
         params.put("company_id", company_id)
+        params.put("member_id", member_id)
         params.put("coupon_id", id)
 
 
