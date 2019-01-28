@@ -183,49 +183,6 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/visitLL"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingBottom="20dp"
-                    android:visibility="gone">
-
-                    <TextView
-                        android:layout_width="70dp"
-                        android:layout_height="18dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="20dp"
-                        android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="3sp"
-                        android:text="방문기간"
-                        android:textColor="#666666"
-                        android:textSize="16dp" />
-
-                    <LinearLayout
-                        android:layout_width="70dp"
-                        android:layout_height="18dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="5.5dp"
-                        android:layout_marginBottom="17dp"
-                        android:background="@drawable/background_strock_707070"
-                        android:gravity="center_vertical">
-
-                        <Spinner
-                            android:id="@+id/visitdaySP"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:background="@null"></Spinner>
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/icon_down_arrow" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/limitLL"
@@ -234,7 +191,14 @@
                     android:layout_marginLeft="40dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp">
-
+                    <ImageView
+                        android:id="@+id/saveIV"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:src="@drawable/radio_off" />
 
                     <EditText
                         android:id="@+id/limit_opET"
@@ -253,7 +217,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10.5dp"
                         android:gravity="center"
-                        android:text="P"
+                        android:text="회"
                         android:textColor="#666666"
                         android:textSize="20dp" />
 
@@ -283,6 +247,215 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10.5dp"
                         android:gravity="center_vertical"
+                        android:text="회"
+                        android:textColor="#666666"
+                        android:textSize="20dp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/limit2LL"
+                    android:visibility="visible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp">
+                    <ImageView
+                        android:id="@+id/save2IV"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:src="@drawable/radio_off" />
+
+                    <EditText
+                        android:id="@+id/limit_op21ET"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:inputType="number"
+                        android:minEms="3"
+                        android:singleLine="true"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/limit_op21TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10.5dp"
+                        android:gravity="center"
+                        android:text="일"
+                        android:textColor="#666666"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10.5dp"
+                        android:text="~"
+                        android:textColor="#666666"
+                        android:textSize="18dp" />
+
+                    <EditText
+                        android:id="@+id/limit_op22ET"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:inputType="number"
+                        android:minEms="3"
+                        android:singleLine="true"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/limit_op22TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10.5dp"
+                        android:gravity="center_vertical"
+                        android:text="일"
+                        android:textColor="#666666"
+                        android:textSize="20dp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/limit3LL"
+                    android:visibility="visible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp">
+                    <ImageView
+                        android:id="@+id/save3IV"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:src="@drawable/radio_off" />
+
+                    <EditText
+                        android:id="@+id/limit_op3ET"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:inputType="number"
+                        android:minEms="3"
+                        android:singleLine="true"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/limit_op3TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10.5dp"
+                        android:gravity="center"
+                        android:text="원"
+                        android:textColor="#666666"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10.5dp"
+                        android:text="~"
+                        android:textColor="#666666"
+                        android:textSize="18dp" />
+
+                    <EditText
+                        android:id="@+id/limit_op23ET"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:inputType="number"
+                        android:minEms="3"
+                        android:singleLine="true"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/limit_op23TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10.5dp"
+                        android:gravity="center_vertical"
+                        android:text="원"
+                        android:textColor="#666666"
+                        android:textSize="20dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/limit4LL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:id="@+id/save4IV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="20dp"
+                        android:src="@drawable/radio_off" />
+
+                    <EditText
+                        android:id="@+id/limit_op4ET"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:inputType="number"
+                        android:minEms="3"
+                        android:singleLine="true"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/limit_op4TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10.5dp"
+                        android:gravity="center"
+                        android:text="P"
+                        android:textColor="#666666"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10.5dp"
+                        android:text="~"
+                        android:textColor="#666666"
+                        android:textSize="18dp" />
+
+                    <EditText
+                        android:id="@+id/limit_op24ET"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:inputType="number"
+                        android:minEms="3"
+                        android:singleLine="true"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/limit_op24TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10.5dp"
+                        android:gravity="center_vertical"
                         android:text="P"
                         android:textColor="#666666"
                         android:textSize="20dp" />
@@ -292,6 +465,95 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:text="선택된 필터"
+                    android:textColor="#666666"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:visibility="visible"
+                    android:id="@+id/stack_visitTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:text="선택된 필터"
+                    android:textColor="#666666"
+                    android:textSize="14dp" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:visibility="visible"
+                    android:id="@+id/mising_dayTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:text="선택된 필터"
+                    android:textColor="#666666"
+                    android:textSize="14dp" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:visibility="visible"
+                    android:id="@+id/use_money2TV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:text="선택된 필터"
+                    android:textColor="#666666"
+                    android:textSize="14dp" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:visibility="visible"
+                    android:id="@+id/left_pointTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:text="선택된 필터"
+                    android:textColor="#666666"
+                    android:textSize="14dp" />
+
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -629,110 +891,6 @@
                 </LinearLayout>
 
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:visibility="gone">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10.5dp"
-                        android:text="유형"
-                        android:textColor="#666666"
-                        android:textSize="16dp" />
-
-                    <LinearLayout
-                        android:id="@+id/citizenLL"
-                        android:layout_width="50dp"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="17.5dp"
-                        android:background="@drawable/background_strock_c1c1c1"
-
-                        android:gravity="center">
-
-                        <TextView
-                            android:id="@+id/citizenTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="4sp"
-                            android:text="동네주민"
-                            android:textColor="#9a9a99"
-                            android:textSize="16dp" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/studentLL"
-                        android:layout_width="78dp"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="20dp"
-                        android:background="@drawable/background_strock_c1c1c1"
-                        android:gravity="center">
-
-                        <TextView
-                            android:id="@+id/studentTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="4sp"
-                            android:text="대학생"
-                            android:textColor="#9a9a99"
-                            android:textSize="16dp" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/workerLL"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="20dp"
-                        android:background="@drawable/background_strock_c1c1c1"
-                        android:gravity="center">
-
-                        <TextView
-                            android:id="@+id/workerTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="4sp"
-                            android:text="직장인"
-                            android:textColor="#9a9a99"
-                            android:textSize="16dp" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/cautionLL"
-                        android:layout_width="50dp"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="20dp"
-                        android:background="@drawable/background_strock_c1c1c1"
-                        android:gravity="center">
-
-                        <TextView
-                            android:id="@+id/cautionTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="4sp"
-                            android:text="각별주의"
-                            android:textColor="#9a9a99"
-                            android:textSize="16dp" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
 
             </LinearLayout>
 
