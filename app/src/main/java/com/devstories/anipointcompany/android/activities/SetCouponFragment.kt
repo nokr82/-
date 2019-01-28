@@ -25,7 +25,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import com.devstories.anipointcompany.android.base.PrefUtils
-import java.io.ByteArrayInputStream
 import java.io.Serializable
 
 
@@ -69,10 +68,18 @@ class SetCouponFragment : Fragment() {
 
     var company_id = -1
     var coupon_id: String? = null
-    var search_type = -1
-    var visited_date: String? = null
+    var stack_visit = -1
+    var mising_day = -1
+    var use_money = -1
+    var left_point = -1
     var from: String? = null
     var to: String? = null
+    var missing_from : String? = null
+    var missing_to : String? = null
+    var use_from : String? = null
+    var use_to: String? = null
+    var left_from: String? = null
+    var left_to: String? = null
     var gender: Serializable? = null
     var age: Serializable? = null
     var member_id = -1
@@ -149,12 +156,21 @@ class SetCouponFragment : Fragment() {
 
             }else{
                 count = getArguments()!!.getString("count")
-                search_type = getArguments()!!.getInt("search_type")
+                stack_visit  = getArguments()!!.getInt("stack_visit")
+                mising_day  = getArguments()!!.getInt("mising_day")
+                use_money  = getArguments()!!.getInt("use_money")
+                left_point  = getArguments()!!.getInt("left_point")
                 gender = getArguments()!!.getSerializable("gender")
                 age = getArguments()!!.getSerializable("age")
-                visited_date = getArguments()!!.getString("visited_date")
                 from = getArguments()!!.getString("from")
                 to = getArguments()!!.getString("to")
+                missing_from = getArguments()!!.getString("missing_from")
+                missing_to = getArguments()!!.getString("missing_to")
+                use_from = getArguments()!!.getString("use_from")
+                use_to = getArguments()!!.getString("use_to")
+                left_from = getArguments()!!.getString("left_from")
+                left_to = getArguments()!!.getString("left_to")
+
             }
 
         }
@@ -249,18 +265,28 @@ class SetCouponFragment : Fragment() {
                 intent.putExtra("member_id", member_id)
             }else{
                 intent.putExtra("count", count)
-                intent.putExtra("search_type", search_type)
                 intent.putExtra("gender", gender)
                 intent.putExtra("age", age)
-                intent.putExtra("visited_date", visited_date)
                 intent.putExtra("from", from)
                 intent.putExtra("to", to)
+                intent.putExtra("missing_from",missing_from)
+                intent.putExtra("missing_to", missing_to)
+                intent.putExtra("use_from",use_from)
+                intent.putExtra("use_to", use_to)
+                intent.putExtra("left_from", left_from)
+                intent.putExtra("left_to", left_to)
+
+                intent.putExtra("stack_visit", stack_visit)
+                intent.putExtra("mising_day", mising_day)
+                intent.putExtra("use_money", use_money)
+                intent.putExtra("left_point", left_point)
+
+
             }
             myContext.sendBroadcast(intent)
         }
 
         sendcouponTV.setOnClickListener {
-            coupon_add2()
         }
 
         nextTV.setOnClickListener {
@@ -298,188 +324,7 @@ class SetCouponFragment : Fragment() {
         })
     }
 
-    // 쿠폰 만들기(step3) - 메세지 보내기
-    fun send_message() {
-        val params = RequestParams()
-        params.put("company_id", company_id)
-        params.put("coupon_id", coupon_id)
-        if (member_id!=-1){
-            params.put("member_id", member_id)
-        }
-        params.put("7days_yn", "N")
 
-        if (search_type == 2) {
-            params.put("from", from)
-            params.put("to", to)
-        } else if (search_type == 3) {
-            params.put("visited_date", visited_date)
-        } else if (search_type == 4) {
-            params.put("from", from)
-            params.put("to", to)
-        } else if (search_type == 5) {
-            params.put("from", from)
-            params.put("to", to)
-        }
-        params.put("search_type", search_type)
-
-
-
-        CouponAction.send_message(params, object : JsonHttpResponseHandler() {
-
-            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
-                if (progressDialog != null) {
-                    progressDialog!!.dismiss()
-                }
-
-                try {
-                    val result = response!!.getString("result")
-                    if ("ok" == result) {
-                        Toast.makeText(myContext, "전송성공", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(myContext, "전송실패", Toast.LENGTH_SHORT).show()
-
-                    }
-
-                } catch (e: JSONException) {
-                    e.printStackTrace()
-                }
-
-            }
-
-
-            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
-
-                // System.out.println(responseString);
-            }
-
-            private fun error() {
-                Utils.alert(myContext, "조회중 장애가 발생하였습니다.")
-            }
-
-            override fun onFailure(
-                    statusCode: Int,
-                    headers: Array<Header>?,
-                    responseString: String?,
-                    throwable: Throwable
-            ) {
-                if (progressDialog != null) {
-                    progressDialog!!.dismiss()
-                }
-
-                // System.out.println(responseString);
-
-                throwable.printStackTrace()
-                error()
-            }
-
-
-            override fun onStart() {
-                // show dialog
-                if (progressDialog != null) {
-
-
-                    progressDialog!!.show()
-                }
-            }
-
-            override fun onFinish() {
-                if (progressDialog != null) {
-                    progressDialog!!.dismiss()
-                }
-            }
-        })
-    }
-    //쿠폰만들기
-    fun coupon_add2() {
-
-        var content = Utils.getString(coupon_conET)
-
-        val params = RequestParams()
-        params.put("company_id", company_id)
-        params.put("type", 6)
-        params.put("name", Utils.getString(coupon_prdET))
-        params.put("week_use_yn", week_use_yn)
-        params.put("sat_use_yn", sat_use_yn)
-        params.put("sun_use_yn", sun_use_yn)
-        params.put("content", content)
-        params.put("use_day", use_day)
-        params.put("validity_alarm_yn", validity_alarm_yn)
-        if (week_use_yn.equals("N") && sat_use_yn.equals("N") && sun_use_yn.equals("N")) {
-            Toast.makeText(myContext, "사용가능요일을 선택해주세요", Toast.LENGTH_SHORT).show()
-            return
-        }
-        if (coupon_prdET.equals("")) {
-            Toast.makeText(myContext, "쿠폰이름을 입력해주세요", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-
-
-
-        CouponAction.coupon_add(params, object : JsonHttpResponseHandler() {
-
-            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
-                if (progressDialog != null) {
-                    progressDialog!!.dismiss()
-                }
-
-                try {
-                    val result = response!!.getString("result")
-                    if ("ok" == result) {
-                        var coupon_id = response.getString("coupon_id")
-                        send_message()
-
-                    } else {
-                        Toast.makeText(myContext, "업데이트실패", Toast.LENGTH_SHORT).show()
-                    }
-
-                } catch (e: JSONException) {
-                    e.printStackTrace()
-                }
-            }
-
-            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
-
-                // System.out.println(responseString);
-            }
-
-            private fun error() {
-                Utils.alert(myContext, "조회중 장애가 발생하였습니다.")
-            }
-
-            override fun onFailure(
-                    statusCode: Int,
-                    headers: Array<Header>?,
-                    responseString: String?,
-                    throwable: Throwable
-            ) {
-                if (progressDialog != null) {
-                    progressDialog!!.dismiss()
-                }
-
-                // System.out.println(responseString);
-
-                throwable.printStackTrace()
-                error()
-            }
-
-
-            override fun onStart() {
-                // show dialog
-                if (progressDialog != null) {
-
-
-                    progressDialog!!.show()
-                }
-            }
-
-            override fun onFinish() {
-                if (progressDialog != null) {
-                    progressDialog!!.dismiss()
-                }
-            }
-        })
-    }
 
     //쿠폰만들기
     fun coupon_add() {
@@ -527,13 +372,29 @@ class SetCouponFragment : Fragment() {
                             intent.putExtra("coupon_id", coupon_id)
                         }else{
                             intent.putExtra("coupon_id", coupon_id)
-                            intent.putExtra("count", count)
+                       /*     intent.putExtra("count", count)
                             intent.putExtra("search_type", search_type)
                             intent.putExtra("gender", gender)
                             intent.putExtra("age", age)
                             intent.putExtra("visited_date", visited_date)
                             intent.putExtra("from", from)
+                            intent.putExtra("to", to)*/
+                            intent.putExtra("count", count)
+                            intent.putExtra("gender", gender)
+                            intent.putExtra("age", age)
+                            intent.putExtra("from", from)
                             intent.putExtra("to", to)
+                            intent.putExtra("missing_from",missing_from)
+                            intent.putExtra("missing_to", missing_to)
+                            intent.putExtra("use_from",use_from)
+                            intent.putExtra("use_to", use_to)
+                            intent.putExtra("left_from", left_from)
+                            intent.putExtra("left_to", left_to)
+
+                            intent.putExtra("stack_visit", stack_visit)
+                            intent.putExtra("mising_day", mising_day)
+                            intent.putExtra("use_money", use_money)
+                            intent.putExtra("left_point", left_point)
                         }
                         myContext.sendBroadcast(intent)
                     } else {

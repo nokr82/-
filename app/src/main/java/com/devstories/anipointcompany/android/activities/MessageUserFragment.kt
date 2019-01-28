@@ -1,11 +1,9 @@
 package com.devstories.anipointcompany.android.activities
 
 import android.app.ProgressDialog
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -13,11 +11,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.devstories.anipointcompany.android.Actions.CompanyAction
-import com.devstories.anipointcompany.android.Actions.CompanyAction.company_info
 import com.devstories.anipointcompany.android.Actions.CouponAction
-import com.devstories.anipointcompany.android.Actions.CouponAction.member_filter
-
+import kotlinx.android.synthetic.main.fra_message_wirte_step1.*
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.Utils
@@ -27,6 +22,35 @@ import cz.msebera.android.httpclient.Header
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.ByteArrayInputStream
+
+
+/*     visitdaySP.adapter = adapter
+       member_filter()
+       setmenu3()
+       setfilter()
+       setopview()
+       //스피너 선택이벤트
+       visitdaySP.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+           override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+               if (position==0){
+
+               }else if (position==1){
+                   visited_date = "15"
+               }else if (position==2){
+                   visited_date = "30"
+               }else if (position==3){
+                   visited_date = "60"
+               }else if (position==4){
+                   visited_date = "90"
+               }
+           }
+           override fun onNothingSelected(p0: AdapterView<*>?) {
+
+           }
+       }*/
+
+
+
 
 //메세지관리(고객선택화면)
 
@@ -50,9 +74,7 @@ class MessageUserFragment : Fragment() {
     lateinit var genderFLL: LinearLayout
     lateinit var genderNLL: LinearLayout
 
-    lateinit var citizenLL: LinearLayout
-    lateinit var workerLL: LinearLayout
-    lateinit var studentLL: LinearLayout
+
 
     lateinit var tenTV: TextView
     lateinit var twoTV: TextView
@@ -65,10 +87,7 @@ class MessageUserFragment : Fragment() {
     lateinit var menTV: TextView
     lateinit var genderTV: TextView
 
-    lateinit var citizenTV: TextView
-    lateinit var workerTV: TextView
-    lateinit var studentTV: TextView
-    lateinit var cautionTV: TextView
+
 
     lateinit var allRL: RelativeLayout
     lateinit var acc_countRL: RelativeLayout
@@ -83,18 +102,40 @@ class MessageUserFragment : Fragment() {
     lateinit var pointTV: TextView
     lateinit var nextTV: TextView
     lateinit var countTV: TextView
-    lateinit var visitLL: LinearLayout
     lateinit var limitLL: LinearLayout
     lateinit var limit_opTV: TextView
     lateinit var limit_op2TV: TextView
     lateinit var limit_opET: EditText
     lateinit var limit_op2ET: EditText
 
+    lateinit var saveIV: ImageView
+
 
     var gender = ArrayList<String>()
     var age =  ArrayList<String>()
 
     var search_type = -1
+    var stack_visit = -1
+    var mising_day = -1
+    var use_money = -1
+    var left_point = -1
+
+    var from = -1
+    var to = -1
+    var missing_from = -1
+    var missing_to = -1
+    var use_from = -1
+    var use_to = -1
+    var left_from = -1
+    var left_to = -1
+
+
+
+    var limit_op = ""
+    var limit_op2 = ""
+
+
+
     var visited_date = ""
     var days7_yn = ""
     var coinResult  = ""
@@ -111,35 +152,29 @@ class MessageUserFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        saveIV = view.findViewById(R.id.saveIV)
+
         countTV = view.findViewById(R.id.countTV)
         nextTV = view.findViewById(R.id.nextTV)
-        visitdaySP = view.findViewById(R.id.visitdaySP)
         tenLL = view.findViewById(R.id.tenLL)
         twoLL = view.findViewById(R.id.twoLL)
         threeLL = view.findViewById(R.id.threeLL)
         fourLL = view.findViewById(R.id.fourLL)
         fiveLL = view.findViewById(R.id.fiveLL)
         sixLL = view.findViewById(R.id.sixLL)
-        studentLL = view.findViewById(R.id.studentLL)
-        workerLL = view.findViewById(R.id.workerLL)
         genderNLL = view.findViewById(R.id.genderNLL)
         genderMLL = view.findViewById(R.id.genderMLL)
         genderFLL = view.findViewById(R.id.genderFLL)
-        citizenLL = view.findViewById(R.id.citizenLL)
         tenTV = view.findViewById(R.id.tenTV)
         twoTV = view.findViewById(R.id.twoTV)
         threeTV = view.findViewById(R.id.threeTV)
         fourTV = view.findViewById(R.id.fourTV)
         fiveTV = view.findViewById(R.id.fiveTV)
         sixTV = view.findViewById(R.id.sixTV)
-        studentTV = view.findViewById(R.id.studentTV)
-        workerTV = view.findViewById(R.id.workerTV)
-        cautionTV = view.findViewById(R.id.cautionTV)
         genderTV = view.findViewById(R.id.genderTV)
         menTV = view.findViewById(R.id.menTV)
         girlTV = view.findViewById(R.id.girlTV)
-        citizenTV = view.findViewById(R.id.citizenTV)
-        cautionTV = view.findViewById(R.id.cautionTV)
         allRL = view.findViewById(R.id.allRL)
         use_moneyRL =view.findViewById(R.id.use_moneyRL)
         acc_countRL = view.findViewById(R.id.acc_countRL)
@@ -150,7 +185,6 @@ class MessageUserFragment : Fragment() {
         acc_countTV = view.findViewById(R.id.acc_countTV)
         novisitTV = view.findViewById(R.id.novisitTV)
         pointTV = view.findViewById(R.id.pointTV)
-        visitLL= view.findViewById(R.id.visitLL)
         limitLL= view.findViewById(R.id.limitLL)
         limit_opTV= view.findViewById(R.id.limit_opTV)
         limit_op2TV= view.findViewById(R.id.limit_op2TV)
@@ -166,30 +200,123 @@ class MessageUserFragment : Fragment() {
         company_id = PrefUtils.getIntPreference(context, "company_id")
         search_type = 1
         adapter = ArrayAdapter(myContext,R.layout.spiner_item,option_visitday)
-        visitdaySP.adapter = adapter
-        member_filter()
-        setmenu3()
-        setfilter()
-        setopview()
-        //스피너 선택이벤트
-        visitdaySP.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-                if (position==0){
 
-                }else if (position==1){
-                    visited_date = "15"
-                }else if (position==2){
-                    visited_date = "30"
-                }else if (position==3){
-                    visited_date = "60"
-                }else if (position==4){
-                    visited_date = "90"
-                }
-            }
-            override fun onNothingSelected(p0: AdapterView<*>?) {
 
+        setview()
+        saveIV.setOnClickListener {
+            it.isSelected = !it.isSelected
+            if(it.isSelected) {
+                saveIV.setImageResource(R.drawable.radio_on)
+                        use_money2TV.visibility = View.GONE
+                from =  Utils.getInt(limit_opET)
+                to = Utils.getInt(limit_op2ET)
+
+                stack_visitTV.text = "적립횟수:"+ from.toString()+"회"+"~"+to.toString()+"회"
+                stack_visit = 2
+
+                stack_visitTV.visibility = View.VISIBLE
+                member_filter()
+            } else {
+                stack_visit = -1
+                from = -1
+                to = -1
+                stack_visitTV.visibility = View.GONE
+                saveIV.setImageResource(R.drawable.radio_off)
             }
         }
+
+        save2IV.setOnClickListener {
+            it.isSelected = !it.isSelected
+            if(it.isSelected) {
+                save2IV.setImageResource(R.drawable.radio_on)
+                use_money2TV.visibility = View.GONE
+                missing_from  =  Utils.getInt(limit_op21ET)
+                missing_to  = Utils.getInt(limit_op22ET)
+                mising_dayTV.text = "미방문:"+ missing_from.toString()+"일"+"~"+missing_to.toString()+"일"
+                mising_dayTV.visibility = View.VISIBLE
+                mising_day = 3
+                member_filter()
+            } else {
+                mising_day = -1
+                missing_from  = -1
+                missing_to  = -1
+                mising_dayTV.visibility = View.GONE
+                save2IV.setImageResource(R.drawable.radio_off)
+            }
+        }
+
+        save3IV.setOnClickListener {
+            it.isSelected = !it.isSelected
+            if(it.isSelected) {
+                save3IV.setImageResource(R.drawable.radio_on)
+                use_money2TV.visibility = View.GONE
+                use_from  =  Utils.getInt(limit_op3ET)
+                use_to  = Utils.getInt(limit_op23ET)
+                use_money2TV.text ="구매금액"+ use_from.toString()+"원"+"~"+use_to.toString()+"원"
+                use_money2TV.visibility = View.VISIBLE
+                use_money = 4
+                member_filter()
+            } else {
+                use_money2TV.visibility = View.GONE
+                use_money = -1
+                use_from = -1
+                use_to = -1
+                save3IV.setImageResource(R.drawable.radio_off)
+            }
+        }
+        save4IV.setOnClickListener {
+            it.isSelected = !it.isSelected
+            if(it.isSelected) {
+                save4IV.setImageResource(R.drawable.radio_on)
+                left_from  =  Utils.getInt(limit_op4ET)
+                left_to  = Utils.getInt(limit_op24ET)
+                left_point = 5
+                left_pointTV.text = "포인트:"+left_from.toString()+"P"+"~"+left_to.toString()+"P"
+                left_pointTV.visibility = View.VISIBLE
+                member_filter()
+            } else {
+                left_point = -1
+                left_pointTV.visibility = View.GONE
+                left_from  = -1
+                left_to  = -1
+                save4IV.setImageResource(R.drawable.radio_off)
+            }
+        }
+
+
+        acc_countRL.setOnClickListener {
+            setfilter()
+            setopview()
+            limitLL.visibility = View.VISIBLE
+
+            acc_countRL.setBackgroundColor(Color.parseColor("#0068df"))
+            acc_countTV.setTextColor(Color.parseColor("#ffffff"))
+        }
+        novisitRL.setOnClickListener {
+            setfilter()
+            setopview()
+            limit2LL.visibility = View.VISIBLE
+            novisitRL.setBackgroundColor(Color.parseColor("#0068df"))
+            novisitTV.setTextColor(Color.parseColor("#ffffff"))
+        }
+        use_moneyRL.setOnClickListener {
+            setfilter()
+            setopview()
+            limit3LL.visibility = View.VISIBLE
+            use_moneyRL.setBackgroundColor(Color.parseColor("#0068df"))
+            use_moneyTV.setTextColor(Color.parseColor("#ffffff"))
+        }
+        pointRL.setOnClickListener {
+            setfilter()
+            setopview()
+            limit4LL.visibility = View.VISIBLE
+            pointRL.setBackgroundColor(Color.parseColor("#0068df"))
+            pointTV.setTextColor(Color.parseColor("#ffffff"))
+        }
+
+
+
+
 
 
         genderMLL.setOnClickListener {
@@ -331,44 +458,6 @@ class MessageUserFragment : Fragment() {
 
         }
         allRL.callOnClick()
-        acc_countRL.setOnClickListener {
-            setfilter()
-            setopview()
-            search_type = 2
-            limitLL.visibility = View.VISIBLE
-            limit_opTV.text = "회"
-            limit_op2TV.text = "회"
-            acc_countRL.setBackgroundColor(Color.parseColor("#0068df"))
-            acc_countTV.setTextColor(Color.parseColor("#ffffff"))
-        }
-        novisitRL.setOnClickListener {
-            setfilter()
-            setopview()
-            search_type = 3
-            visitLL.visibility = View.VISIBLE
-            novisitRL.setBackgroundColor(Color.parseColor("#0068df"))
-            novisitTV.setTextColor(Color.parseColor("#ffffff"))
-        }
-        use_moneyRL.setOnClickListener {
-            setfilter()
-            setopview()
-            search_type = 4
-            limit_opTV.text = "원"
-            limit_op2TV.text = "원"
-            limitLL.visibility = View.VISIBLE
-            use_moneyRL.setBackgroundColor(Color.parseColor("#0068df"))
-            use_moneyTV.setTextColor(Color.parseColor("#ffffff"))
-        }
-        pointRL.setOnClickListener {
-            setfilter()
-            setopview()
-            search_type = 5
-            limit_opTV.text = "P"
-            limit_op2TV.text ="P"
-            limitLL.visibility = View.VISIBLE
-            pointRL.setBackgroundColor(Color.parseColor("#0068df"))
-            pointTV.setTextColor(Color.parseColor("#ffffff"))
-        }
 
 
 
@@ -388,17 +477,35 @@ class MessageUserFragment : Fragment() {
                 intent.putExtra("visited_date", visited_date)
                 intent.putExtra("count", Utils.getString(countTV))
                 intent.putExtra("from", Utils.getString(limit_opET))
-                Log.d("from", limit_opET.toString())
                 intent.putExtra("to", Utils.getString(limit_op2ET))
-                Log.d("to", limit_op2ET.toString())
-                intent.putExtra("search_type", search_type)
-                Log.d("search_type", search_type.toString())
+                intent.putExtra("missing_from", Utils.getString(limit_op21ET))
+                intent.putExtra("missing_to", Utils.getString(limit_op22ET))
+                intent.putExtra("use_from", Utils.getString(limit_op3ET))
+                intent.putExtra("use_to", Utils.getString(limit_op23ET))
+                intent.putExtra("left_from", Utils.getString(limit_op4ET))
+                intent.putExtra("left_to", Utils.getString(limit_op24ET))
+
+                intent.putExtra("stack_visit", stack_visit)
+                intent.putExtra("mising_day", mising_day)
+                intent.putExtra("use_money", use_money)
+                intent.putExtra("left_point", left_point)
+
                 intent.action = "STEP1_NEXT"
                 myContext.sendBroadcast(intent)
             }
 
         }
 
+    }
+
+
+    override fun onPause() {
+        super.onPause()
+        search_type = -1
+        stack_visit = -1
+        mising_day = -1
+        use_money = -1
+         left_point = -1
     }
 
     fun setfilter(){
@@ -415,22 +522,22 @@ class MessageUserFragment : Fragment() {
         pointTV.setTextColor(Color.parseColor("#c5c5c5"))
 
     }
+    fun setview(){
+        stack_visitTV.visibility = View.GONE
+        mising_dayTV.visibility = View.GONE
+        use_money2TV.visibility = View.GONE
+        left_pointTV.visibility = View.GONE
+    }
+
     fun setopview(){
         limit_opET.setText("")
         limit_op2ET.setText("")
-        visitLL.visibility = View.GONE
         limitLL.visibility = View.GONE
+        limit2LL.visibility = View.GONE
+        limit3LL.visibility = View.GONE
+        limit4LL.visibility = View.GONE
     }
-    fun setmenu3(){
-        citizenLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
-        workerLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
-        studentLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
 
-        citizenTV.setTextColor(Color.parseColor("#9a9a99"))
-        workerTV.setTextColor(Color.parseColor("#9a9a99"))
-        studentTV.setTextColor(Color.parseColor("#9a9a99"))
-        cautionTV.setTextColor(Color.parseColor("#9a9a99"))
-    }
 
     // 쿠폰만들기(step1) - (고객필터)
     fun member_filter() {
@@ -456,19 +563,26 @@ class MessageUserFragment : Fragment() {
                 Log.d("성별",genderstr)
             }
         }
-        if (search_type==2){
-            params.put("from",Utils.getString(limit_opET))
-            params.put("to",Utils.getString(limit_op2ET))
-        }else if (search_type==3){
-            params.put("visited_date",visited_date)
-        }else if (search_type==4){
-            params.put("from",Utils.getString(limit_opET))
-            params.put("to",Utils.getString(limit_op2ET))
-        }else if (search_type==5){
-            params.put("from",Utils.getString(limit_opET))
-            params.put("to",Utils.getString(limit_op2ET))
+        if (stack_visit==2){
+            params.put("stack_visit",stack_visit)
+            params.put("from",from)
+            params.put("to",to)
         }
-        params.put("search_type",search_type)
+        if (mising_day==3){
+            params.put("mising_day",mising_day)
+            params.put("missing_from ",missing_from)
+            params.put("missing_to ",missing_to)
+        }
+        if (use_money==4){
+            params.put("use_money",use_money)
+            params.put("use_from",use_from)
+            params.put("use_to",use_to)
+        }
+        if (left_point==5){
+            params.put("left_point",left_point)
+            params.put("left_from",left_from)
+            params.put("left_to",left_to)
+        }
 
 
 
@@ -482,6 +596,8 @@ class MessageUserFragment : Fragment() {
 
                 try {
                     val result = response!!.getString("result")
+
+                    Log.d("결과",response.toString())
                     if ("ok" == result) {
                         var memberCnt = response.getString("memberCnt")
                         coinResult = response.getString("coinResult")

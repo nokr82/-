@@ -26,6 +26,7 @@ import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
 import cz.msebera.android.httpclient.Header
 import cz.msebera.android.httpclient.entity.SerializableEntity
+import kotlinx.android.synthetic.main.fra_message_wirte_step1.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.ByteArrayInputStream
@@ -68,6 +69,18 @@ class SetMessageContFragment : Fragment() {
     var thumbnail: Bitmap? = null
     var contentURI: Uri? = null
     private val GALLERY = 1
+
+    var stack_visit = -1
+    var mising_day = -1
+    var use_money = -1
+    var left_point = -1
+    var missing_from: String? = null
+    var missing_to: String? = null
+    var use_from : String? = null
+    var use_to: String? = null
+    var left_from : String? = null
+    var left_to : String? = null
+
 
     var member_id = -1
     var company_id = -1
@@ -114,14 +127,21 @@ class SetMessageContFragment : Fragment() {
                 coupon_id = getArguments()!!.getString("coupon_id")
             } else {
                 coupon_id = getArguments()!!.getString("coupon_id")
-                search_type = getArguments()!!.getInt("search_type", -1)
+                stack_visit  = getArguments()!!.getInt("stack_visit")
+                mising_day  = getArguments()!!.getInt("mising_day")
+                use_money  = getArguments()!!.getInt("use_money")
+                left_point  = getArguments()!!.getInt("left_point")
                 gender = getArguments()!!.getStringArrayList("gender")
                 age = getArguments()!!.getStringArrayList("age")
-                visited_date = getArguments()!!.getString("visited_date")
                 from = getArguments()!!.getString("from")
                 to = getArguments()!!.getString("to")
+                missing_from = getArguments()!!.getString("missing_from")
+                missing_to = getArguments()!!.getString("missing_to")
+                use_from = getArguments()!!.getString("use_from")
+                use_to = getArguments()!!.getString("use_to")
+                left_from = getArguments()!!.getString("left_from")
+                left_to = getArguments()!!.getString("left_to")
                 count = getArguments()!!.getString("count")
-                Log.d("쿠폰", search_type.toString())
                 Log.d("쿠폰", gender.toString())
                 Log.d("쿠폰", age.toString())
             }
@@ -295,19 +315,26 @@ class SetMessageContFragment : Fragment() {
                 Log.d("성별", genderstr)
             }
         }
-        if (search_type == 2) {
-            params.put("from", from)
-            params.put("to", to)
-        } else if (search_type == 3) {
-            params.put("visited_date", visited_date)
-        } else if (search_type == 4) {
-            params.put("from", from)
-            params.put("to", to)
-        } else if (search_type == 5) {
-            params.put("from", from)
-            params.put("to", to)
+        if (stack_visit==2){
+            params.put("stack_visit",stack_visit)
+            params.put("from",from)
+            params.put("to",to)
         }
-        params.put("search_type", search_type)
+        if (mising_day==3){
+            params.put("mising_day",mising_day)
+            params.put("missing_from ",missing_from)
+            params.put("missing_to ",missing_to)
+        }
+        if (use_money==4){
+            params.put("use_money",use_money)
+            params.put("use_from",use_from)
+            params.put("use_to",use_to)
+        }
+        if (left_point==5){
+            params.put("left_point",left_point)
+            params.put("left_from",left_from)
+            params.put("left_to",left_to)
+        }
 
 
 

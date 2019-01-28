@@ -49,11 +49,22 @@ class Message_write_Fragment : Fragment() {
 
                 var gender = intent.getSerializableExtra("gender")
                 var age = intent.getSerializableExtra("age")
-                var visited_date = intent.getStringExtra("visited_date")
                 var count = intent.getStringExtra("count")
+                var missing_from = intent.getStringExtra("missing_from")
+                var missing_to = intent.getStringExtra("missing_to")
+                var use_from = intent.getStringExtra("use_from")
+                var use_to = intent.getStringExtra("use_to")
+                var left_from = intent.getStringExtra("left_from")
+                var left_to = intent.getStringExtra("left_to")
                 var from = intent.getStringExtra("from")
                 var to = intent.getStringExtra("to")
-                var search_type = intent.getIntExtra("search_type", -1)
+
+
+
+                var stack_visit = intent.getIntExtra("stack_visit", -1)
+                var mising_day = intent.getIntExtra("mising_day", -1)
+                var use_money = intent.getIntExtra("use_money", -1)
+                var left_point = intent.getIntExtra("left_point", -1)
 
 
                 setfilter()
@@ -65,12 +76,22 @@ class Message_write_Fragment : Fragment() {
                 //쿠폰으로보내기
                 var args: Bundle = Bundle()
                 args.putString("count", count)
-                args.putInt("search_type", search_type)
+                args.putInt("stack_visit", stack_visit)
+                args.putInt("mising_day", mising_day)
+                args.putInt("use_money", use_money)
+                args.putInt("left_point", left_point)
                 args.putSerializable("gender", gender as ArrayList<String>?)
                 args.putSerializable("age", age as ArrayList<String>?)
-                args.putString("visited_date", visited_date)
+                args.putString("missing_from", missing_from)
+                args.putString("missing_to", missing_to)
+                args.putString("use_from", use_from)
+                args.putString("use_to", use_to)
+                args.putString("left_from", left_from)
+                args.putString("left_to", left_to)
                 args.putString("from", from)
                 args.putString("to", to)
+
+
                 SetCouponFragment.setArguments(args)
                 childFragmentManager.beginTransaction().replace(R.id.userchoiceFL, SetCouponFragment).commit()
             }
@@ -84,11 +105,22 @@ class Message_write_Fragment : Fragment() {
                 var coupon_id = intent.getStringExtra("coupon_id")
                 var gender = intent.getSerializableExtra("gender")
                 var age = intent.getSerializableExtra("age")
-                var visited_date = intent.getStringExtra("visited_date")
                 var count = intent.getStringExtra("count")
+                var missing_from = intent.getStringExtra("missing_from")
+                var missing_to = intent.getStringExtra("missing_to")
+                var use_from = intent.getStringExtra("use_from")
+                var use_to = intent.getStringExtra("use_to")
+                var left_from = intent.getStringExtra("left_from")
+                var left_to = intent.getStringExtra("left_to")
                 var from = intent.getStringExtra("from")
                 var to = intent.getStringExtra("to")
-                var search_type = intent.getIntExtra("search_type", -1)
+
+
+
+                var stack_visit = intent.getIntExtra("stack_visit", -1)
+                var mising_day = intent.getIntExtra("mising_day", -1)
+                var use_money = intent.getIntExtra("use_money", -1)
+                var left_point = intent.getIntExtra("left_point", -1)
                 var member_id = intent.getIntExtra("member_id", -1)
 
                 Log.d("멤버아뒤",member_id.toString())
@@ -104,10 +136,18 @@ class Message_write_Fragment : Fragment() {
                 }
                 args.putString("coupon_id", coupon_id)
                 args.putString("count", count)
-                args.putInt("search_type", search_type)
-                args.putStringArrayList("gender", gender as ArrayList<String>?)
-                args.putStringArrayList("age", age as ArrayList<String>?)
-                args.putString("visited_date", visited_date)
+                args.putInt("stack_visit", stack_visit)
+                args.putInt("mising_day", mising_day)
+                args.putInt("use_money", use_money)
+                args.putInt("left_point", left_point)
+                args.putSerializable("gender", gender as ArrayList<String>?)
+                args.putSerializable("age", age as ArrayList<String>?)
+                args.putString("missing_from", missing_from)
+                args.putString("missing_to", missing_to)
+                args.putString("use_from", use_from)
+                args.putString("use_to", use_to)
+                args.putString("left_from", left_from)
+                args.putString("left_to", left_to)
                 args.putString("from", from)
                 args.putString("to", to)
                 SetMessageContFragment.setArguments(args)
