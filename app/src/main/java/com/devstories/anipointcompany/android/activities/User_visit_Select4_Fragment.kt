@@ -19,6 +19,7 @@ import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
 import com.github.mikephil.charting.utils.MPPointF
 import com.loopj.android.http.JsonHttpResponseHandler
@@ -262,22 +263,25 @@ fun graph(){
 
                         var xAxis = ageBarChart.getXAxis()
                         xAxis.setTextColor(Color.parseColor("#a0a0a0"))
-                        xAxis.setDrawLabels(true)
+//                        xAxis.setDrawLabels(true)
+//                        ageBarChart.getAxisLeft().setAxisMinimum(0f);
                         xAxis.setDrawGridLines(false)
                         xAxis.setGranularity(1f) // minimum axis-step (interval) is 1
                         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM)
-                        xAxis.setAvoidFirstLastClipping(true)
-                        xAxis.valueFormatter = IAxisValueFormatter { value, axis ->
-//                            System.out.println("va나이 : " + value);
-                            if (value < 0) {
-                                return@IAxisValueFormatter ""
-                            }
-                            if (ages.size > value) {
-                                ages[value.toInt()]
-                            } else {
-                                ""
-                            }
-                        }
+//                        xAxis.setAvoidFirstLastClipping(true)
+                        xAxis.setValueFormatter(IndexAxisValueFormatter(ages));
+                        xAxis.setCenterAxisLabels(true)
+//                        xAxis.valueFormatter = IAxisValueFormatter { value, axis ->
+////                            System.out.println("va나이 : " + value);
+//                            if (value < 0) {
+//                                return@IAxisValueFormatter ""
+//                            }
+//                            if (ages.size > value) {
+//                                ages[value.toInt()]
+//                            } else {
+//                                ""
+//                            }
+//                        }
 
 
                         var ageData: MutableList<BarEntry> = ArrayList()
@@ -339,14 +343,16 @@ fun graph(){
                         var barData = BarData(barDataSet,barDatafamaleSet,barDataMenSet)
 //                        var barData = BarData(dataSets)
 
-                        barData.setBarWidth(0.16f)
-                        val barSpace = 0.08f
-                        val groupSpace = 0.16f
+                        barData.setBarWidth(0.27f)
+                        val barSpace = 0.02f
+                        val groupSpace = 0.13f
 //                        float groupSpace = 0.04f;
 //                        float barSpace = 0.02f; // x2 dataset
 //                        float barWidth = 0.46f; // x2 dataset
                         // (0.46 + 0.02) * 2 + 0.04 = 1.00 -> interval per "group"
                         ageBarChart.setData(barData)
+                        ageBarChart.getXAxis().setAxisMinimum(0f);
+                        ageBarChart.getXAxis().setAxisMaximum(0 + ageBarChart.getBarData().getGroupWidth(groupSpace, barSpace) * 6);
                         ageBarChart.groupBars(0.0f, groupSpace, barSpace)
                         ageBarChart.invalidate() // refresh
 
