@@ -214,7 +214,6 @@ class IntroActivity : RootActivity() {
             }
         })
 
-
     }
 
 
