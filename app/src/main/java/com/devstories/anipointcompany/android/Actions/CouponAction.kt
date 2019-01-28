@@ -14,6 +14,11 @@ object CouponAction {
         HttpClient.post("/coupon/member_filter.json", params, handler)
     }
 
+
+    fun  self_coupon(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/coupon/self_coupon.json", params, handler)
+    }
+
     // 쿠폰만들기(step2) -(쿠폰설정)
     fun  coupon_add(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/coupon/add.json", params, handler)
