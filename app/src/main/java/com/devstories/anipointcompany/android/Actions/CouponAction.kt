@@ -53,6 +53,12 @@ object CouponAction {
     }
 
 
+    //알람쿠폰
+    fun alram_coupon(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/coupon/alram_coupon.json", params, handler)
+    }
+
+
 
     // 자동 쿠폰 on/off
     fun change_temp_yn(params: RequestParams, handler: JsonHttpResponseHandler) {
