@@ -7,15 +7,14 @@
 
     <com.devstories.anipointcompany.android.base.RationalLinearLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginRight="10dp"
         app:adjustHeight="false"
         app:ratio="175:280">
 
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
+            android:layout_height="match_parent"
             android:background="#ffff"
             android:orientation="vertical">
 
@@ -49,12 +48,13 @@
                 android:layout_marginTop="17dp"
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
+                android:fillViewport="true"
                 android:scrollbars="none">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -629,26 +629,31 @@
 
             </ScrollView>
 
-
-            <LinearLayout
-                android:id="@+id/msgLL"
+            <com.devstories.anipointcompany.android.base.RationalRelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#00d1ce"
-                android:gravity="center">
+                app:ratio="175:25">
 
-                <me.grantland.widget.AutofitTextView
-                    android:padding="5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:text="쿠폰/메세지 보내기"
-                    android:textColor="#ffffff"
-                    android:textSize="20dp" />
+                <LinearLayout
+                    android:id="@+id/msgLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#00d1ce"
+                    android:gravity="center">
 
+                    <me.grantland.widget.AutofitTextView
+                        android:padding="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="쿠폰/메세지 보내기"
+                        android:textColor="#ffffff"
+                        android:textSize="20dp" />
 
-            </LinearLayout>
+                </LinearLayout>
+
+            </com.devstories.anipointcompany.android.base.RationalRelativeLayout>
 
 
         </LinearLayout>
