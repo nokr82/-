@@ -82,10 +82,6 @@ class AutoCouponSettingsFragment : Fragment() {
 
         couponDateSP.adapter = ArrayAdapter(myContext, R.layout.spiner_item, op_expiration)
 
-
-
-
-
         newMemberLL.setOnClickListener {
             setMenuView()
             newMemberLL.setBackgroundColor(Color.parseColor("#eeeeee"))
