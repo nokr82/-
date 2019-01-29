@@ -47,8 +47,18 @@ class OperPolicyFragment : Fragment() {
     lateinit var a_visitLL: LinearLayout
     lateinit var a_costLL: LinearLayout
 
-
-
+    lateinit var silverPayET:EditText
+    lateinit var silverPointET:EditText
+    lateinit var silverAddPointET:EditText
+    lateinit var goldPayET:EditText
+    lateinit var goldPointET:EditText
+    lateinit var goldAddPointET:EditText
+    lateinit var vipPayET:EditText
+    lateinit var vipPointET:EditText
+    lateinit var vipAddPointET:EditText
+    lateinit var vvipPayET:EditText
+    lateinit var vvipPointET:EditText
+    lateinit var vvipAddPointET:EditText
 
     var type = -1//단골기준
     var money_type = -1//단골기준
@@ -82,12 +92,23 @@ class OperPolicyFragment : Fragment() {
         a_visitLL= view.findViewById(R.id.a_visitLL)
         a_costLL= view.findViewById(R.id.a_costLL)
 
+        silverPayET = view.findViewById(R.id.silverPayET)
+        silverPointET = view.findViewById(R.id.silverPointET)
+        silverAddPointET = view.findViewById(R.id.silverAddPointET)
+        goldPayET = view.findViewById(R.id.goldPayET)
+        goldPointET = view.findViewById(R.id.goldPointET)
+        goldAddPointET = view.findViewById(R.id.goldAddPointET)
+        vipPayET = view.findViewById(R.id.vipPayET)
+        vipPointET = view.findViewById(R.id.vipPointET)
+        vipAddPointET = view.findViewById(R.id.vipAddPointET)
+        vvipPayET = view.findViewById(R.id.vvipPayET)
+        vvipPointET = view.findViewById(R.id.vvipPointET)
+        vvipAddPointET = view.findViewById(R.id.vvipAddPointET)
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-
 
         company_id = PrefUtils.getIntPreference(context, "company_id")
         company_info()
@@ -124,6 +145,7 @@ class OperPolicyFragment : Fragment() {
         saveTV.setOnClickListener {
             edit_info()
         }
+
 
 
     }
@@ -197,11 +219,88 @@ class OperPolicyFragment : Fragment() {
                             costTV.setText(frequenter_standard)
                         }
 
-
                         val cate = response.getJSONArray("categories")
                         Log.d("카테", cate.toString())
                         for (i in 0..cate.length() - 1) {
 
+                        }
+
+
+
+
+
+
+
+                        val silver_pay = Utils.getInt(company, "silver_pay")
+
+                        if (silver_pay > 0) {
+                            silverPayET.setText(silver_pay.toString())
+                        }
+
+                        val silver_point = Utils.getInt(company, "silver_point")
+
+                        if (silver_point > 0) {
+                            silverPointET.setText(silver_point.toString())
+                        }
+
+                        val silver_add_point = Utils.getInt(company, "silver_add_point")
+
+                        if (silver_add_point > 0) {
+                            silverAddPointET.setText(silver_add_point.toString())
+                        }
+
+                        val gold_pay = Utils.getInt(company, "gold_pay")
+
+                        if (gold_pay > 0) {
+                            goldPayET.setText(gold_pay.toString())
+                        }
+
+                        val gold_point = Utils.getInt(company, "gold_point")
+
+                        if (gold_point > 0) {
+                            goldPointET.setText(gold_point.toString())
+                        }
+
+                        val gold_add_point = Utils.getInt(company, "gold_add_point")
+
+                        if (gold_add_point > 0) {
+                            goldAddPointET.setText(gold_add_point.toString())
+                        }
+
+                        val vip_pay = Utils.getInt(company, "vip_pay")
+
+                        if (vip_pay > 0) {
+                            vipPayET.setText(vip_pay.toString())
+                        }
+
+                        val vip_point = Utils.getInt(company, "vip_point")
+
+                        if (vip_point > 0) {
+                            vipPointET.setText(vip_point.toString())
+                        }
+
+                        val vip_add_point = Utils.getInt(company, "vip_add_point")
+
+                        if (vip_add_point > 0) {
+                            vipAddPointET.setText(vip_add_point.toString())
+                        }
+
+                        val vvip_pay = Utils.getInt(company, "vvip_pay")
+
+                        if (vvip_pay > 0) {
+                            vvipPayET.setText(vvip_pay.toString())
+                        }
+
+                        val vvip_point = Utils.getInt(company, "vvip_point")
+
+                        if (vvip_point > 0) {
+                            vvipPointET.setText(vvip_point.toString())
+                        }
+
+                        val vvip_add_point = Utils.getInt(company, "vvip_add_point")
+
+                        if (vvip_add_point > 0) {
+                            vvipPointET.setText(vvip_add_point.toString())
                         }
 
                     } else {
@@ -296,7 +395,18 @@ class OperPolicyFragment : Fragment() {
         params.put("basic_per", Utils.getString(basic_perET))
         params.put("option_per", Utils.getString(high_perET))
 
-
+        params.put("silver_pay", Utils.getString(silverPayET))
+        params.put("silver_point", Utils.getString(silverPointET))
+        params.put("silver_add_point", Utils.getString(silverAddPointET))
+        params.put("gold_pay", Utils.getString(goldPayET))
+        params.put("gold_point", Utils.getString(goldPointET))
+        params.put("gold_add_point", Utils.getString(goldAddPointET))
+        params.put("vip_pay", Utils.getString(vipPayET))
+        params.put("vip_point", Utils.getString(vipPointET))
+        params.put("vip_add_point", Utils.getString(vipAddPointET))
+        params.put("vvip_pay", Utils.getString(vvipPayET))
+        params.put("vvip_point", Utils.getString(vvipPointET))
+        params.put("vvip_add_point", Utils.getString(vvipAddPointET))
 
         CompanyAction.edit_info(params, object : JsonHttpResponseHandler() {
 

@@ -801,6 +801,7 @@
                                 android:textStyle="bold"/>
 
                             <EditText
+                                android:id="@+id/silverPayET"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -813,6 +814,7 @@
                                 android:textSize="16sp" />
 
                             <EditText
+                                android:id="@+id/goldPayET"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -825,6 +827,7 @@
                                 android:textSize="16sp" />
 
                             <EditText
+                                android:id="@+id/vipPayET"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -837,6 +840,7 @@
                                 android:textSize="16sp" />
 
                             <EditText
+                                android:id="@+id/vvipPayET"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -866,6 +870,7 @@
                                 android:textStyle="bold"/>
 
                             <EditText
+                                android:id="@+id/silverPointET"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -878,6 +883,7 @@
                                 android:textSize="16sp" />
 
                             <EditText
+                                android:id="@+id/goldPointET"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -890,6 +896,7 @@
                                 android:textSize="16sp" />
 
                             <EditText
+                                android:id="@+id/vipPointET"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -902,6 +909,7 @@
                                 android:textSize="16sp" />
 
                             <EditText
+                                android:id="@+id/vvipPointET"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -931,6 +939,7 @@
                                 android:textStyle="bold"/>
 
                             <EditText
+                                android:id="@+id/silverAddPointET"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -943,6 +952,7 @@
                                 android:textSize="16sp" />
 
                             <EditText
+                                android:id="@+id/goldAddPointET"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -955,6 +965,7 @@
                                 android:textSize="16sp" />
 
                             <EditText
+                                android:id="@+id/vipAddPointET"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -967,6 +978,7 @@
                                 android:textSize="16sp" />
 
                             <EditText
+                                android:id="@+id/vvipAddPointET"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
