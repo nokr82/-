@@ -828,57 +828,111 @@
                                 android:textSize="16sp"
                                 android:textStyle="bold"/>
 
-                            <EditText
-                                android:id="@+id/silverPayET"
+                            <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@null"
-                                android:gravity="center"
-                                android:inputType="number"
-                                android:hint="-"
-                                android:text=""
-                                android:textColor="#666666"
-                                android:textSize="16sp" />
+                                android:layout_weight="1">
 
-                            <EditText
-                                android:id="@+id/goldPayET"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@null"
-                                android:gravity="center"
-                                android:inputType="number"
-                                android:hint="-"
-                                android:text=""
-                                android:textColor="#666666"
-                                android:textSize="16sp" />
+                                <EditText
+                                    android:id="@+id/silverPayET"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="center"
+                                    android:inputType="number"
+                                    android:hint="-"
+                                    android:text=""
+                                    android:textColor="#666666"
+                                    android:textSize="16sp" />
 
-                            <EditText
-                                android:id="@+id/vipPayET"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@null"
-                                android:gravity="center"
-                                android:hint="-"
-                                android:inputType="number"
-                                android:text=""
-                                android:textColor="#666666"
-                                android:textSize="16sp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="원"
+                                    android:textSize="16sp" />
 
-                            <EditText
-                                android:id="@+id/vvipPayET"
+                            </LinearLayout>
+
+
+                            <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@null"
-                                android:gravity="center"
-                                android:hint="-"
-                                android:inputType="number"
-                                android:text=""
-                                android:textColor="#666666"
-                                android:textSize="16sp" />
+                                android:layout_weight="1">
+
+                                <EditText
+                                    android:id="@+id/goldPayET"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="center"
+                                    android:inputType="number"
+                                    android:hint="-"
+                                    android:text=""
+                                    android:textColor="#666666"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="원"
+                                    android:textSize="16sp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <EditText
+                                    android:id="@+id/vipPayET"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="center"
+                                    android:hint="-"
+                                    android:inputType="number"
+                                    android:text=""
+                                    android:textColor="#666666"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="원"
+                                    android:textSize="16sp" />
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <EditText
+                                    android:id="@+id/vvipPayET"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="center"
+                                    android:hint="-"
+                                    android:inputType="number"
+                                    android:text=""
+                                    android:textColor="#666666"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="원"
+                                    android:textSize="16sp" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
@@ -897,57 +951,109 @@
                                 android:textSize="16sp"
                                 android:textStyle="bold"/>
 
-                            <EditText
-                                android:id="@+id/silverPointET"
+                            <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@null"
-                                android:gravity="center"
-                                android:hint="-"
-                                android:inputType="number"
-                                android:text=""
-                                android:textColor="#666666"
-                                android:textSize="16sp" />
+                                android:layout_weight="1">
 
-                            <EditText
-                                android:id="@+id/goldPointET"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@null"
-                                android:gravity="center"
-                                android:hint="-"
-                                android:inputType="number"
-                                android:text=""
-                                android:textColor="#666666"
-                                android:textSize="16sp" />
+                                <EditText
+                                    android:id="@+id/silverPointET"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="center"
+                                    android:hint="-"
+                                    android:inputType="number"
+                                    android:text=""
+                                    android:textColor="#666666"
+                                    android:textSize="16sp" />
 
-                            <EditText
-                                android:id="@+id/vipPointET"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@null"
-                                android:gravity="center"
-                                android:hint="-"
-                                android:inputType="number"
-                                android:text=""
-                                android:textColor="#666666"
-                                android:textSize="16sp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="원"
+                                    android:textSize="16sp" />
 
-                            <EditText
-                                android:id="@+id/vvipPointET"
+                            </LinearLayout>
+
+                            <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@null"
-                                android:gravity="center"
-                                android:hint="-"
-                                android:inputType="number"
-                                android:text=""
-                                android:textColor="#666666"
-                                android:textSize="16sp" />
+                                android:layout_weight="1">
+
+                                <EditText
+                                    android:id="@+id/goldPointET"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="center"
+                                    android:hint="-"
+                                    android:inputType="number"
+                                    android:text=""
+                                    android:textColor="#666666"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="원"
+                                    android:textSize="16sp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <EditText
+                                    android:id="@+id/vipPointET"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="center"
+                                    android:hint="-"
+                                    android:inputType="number"
+                                    android:text=""
+                                    android:textColor="#666666"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="원"
+                                    android:textSize="16sp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <EditText
+                                    android:id="@+id/vvipPointET"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="center"
+                                    android:hint="-"
+                                    android:inputType="number"
+                                    android:text=""
+                                    android:textColor="#666666"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="원"
+                                    android:textSize="16sp" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
@@ -966,57 +1072,109 @@
                                 android:textSize="16sp"
                                 android:textStyle="bold"/>
 
-                            <EditText
-                                android:id="@+id/silverAddPointET"
+                            <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@null"
-                                android:gravity="center"
-                                android:hint="-"
-                                android:inputType="number"
-                                android:text=""
-                                android:textColor="#666666"
-                                android:textSize="16sp" />
+                                android:layout_weight="1">
 
-                            <EditText
-                                android:id="@+id/goldAddPointET"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@null"
-                                android:gravity="center"
-                                android:hint="-"
-                                android:inputType="number"
-                                android:text=""
-                                android:textColor="#666666"
-                                android:textSize="16sp" />
+                                <EditText
+                                    android:id="@+id/silverAddPointET"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="center"
+                                    android:hint="-"
+                                    android:inputType="number"
+                                    android:text=""
+                                    android:textColor="#666666"
+                                    android:textSize="16sp" />
 
-                            <EditText
-                                android:id="@+id/vipAddPointET"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@null"
-                                android:gravity="center"
-                                android:hint="-"
-                                android:inputType="number"
-                                android:text=""
-                                android:textColor="#666666"
-                                android:textSize="16sp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="%"
+                                    android:textSize="16sp" />
 
-                            <EditText
-                                android:id="@+id/vvipAddPointET"
+                            </LinearLayout>
+
+                            <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@null"
-                                android:gravity="center"
-                                android:hint="-"
-                                android:inputType="number"
-                                android:text=""
-                                android:textColor="#666666"
-                                android:textSize="16sp" />
+                                android:layout_weight="1">
+
+                                <EditText
+                                    android:id="@+id/goldAddPointET"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="center"
+                                    android:hint="-"
+                                    android:inputType="number"
+                                    android:text=""
+                                    android:textColor="#666666"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="%"
+                                    android:textSize="16sp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <EditText
+                                    android:id="@+id/vipAddPointET"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="center"
+                                    android:hint="-"
+                                    android:inputType="number"
+                                    android:text=""
+                                    android:textColor="#666666"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="%"
+                                    android:textSize="16sp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <EditText
+                                    android:id="@+id/vvipAddPointET"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:gravity="center"
+                                    android:hint="-"
+                                    android:inputType="number"
+                                    android:text=""
+                                    android:textColor="#666666"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="%"
+                                    android:textSize="16sp" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
