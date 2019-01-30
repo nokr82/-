@@ -45,6 +45,7 @@ open class MembershipAdapter (context:Context, view:Int, data: ArrayList<JSONObj
         var point = Utils.getInt(member, "point")
         var use_point = Utils.getInt(member, "use_point")
         var coupon = Utils.getInt(member, "coupon")
+        var balance = Utils.getInt(member, "balance")
 
         if (phone.length==11){
             //번호하이픈
@@ -76,6 +77,7 @@ open class MembershipAdapter (context:Context, view:Int, data: ArrayList<JSONObj
         item.paymentTV.text = Utils.thousand(payment) + "원"
         item.pointTV.text = Utils.thousand(point) + "P"
         item.usePointTV.text = Utils.thousand(use_point) + "P"
+        item.balanceTV.text = Utils.thousand(balance) + "P"
         item.couponTV.text = Utils.thousand(coupon) + "장"
 
         return retView
