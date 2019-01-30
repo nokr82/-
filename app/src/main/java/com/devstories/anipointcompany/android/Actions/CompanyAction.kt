@@ -29,4 +29,7 @@ object CompanyAction {
         HttpClient.post("/company/sales_list.json", params, handler)
     }
 
+    fun membership_list(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/member/membership_list.json", params, handler)
+    }
 }

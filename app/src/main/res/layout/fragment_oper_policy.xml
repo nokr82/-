@@ -608,18 +608,41 @@
                         android:background="#e7e7e7" />
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
-                    android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="6sp"
-                    android:text="멤버십"
-                    android:textColor="#666666"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="6sp"
+                        android:text="멤버십"
+                        android:textColor="#666666"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_centerVertical="true"/>
+
+                    <TextView
+                        android:id="@+id/memberShipTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:background="@drawable/background_strock_cfcfcf"
+                        android:gravity="center"
+                        android:text="멤버십 결제하기"
+                        android:textColor="#545454"
+                        android:textSize="20sp"
+                        android:layout_alignParentRight="true"/>
+
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -639,6 +662,7 @@
                         android:background="@drawable/background_strock_e7e7e7">
 
                         <LinearLayout
+                            android:id="@+id/customerLL"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -657,6 +681,7 @@
                             android:background="#e7e7e7"/>
 
                         <LinearLayout
+                            android:id="@+id/silverLL"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -675,6 +700,7 @@
                             android:background="#e7e7e7"/>
 
                         <LinearLayout
+                            android:id="@+id/goldLL"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -693,6 +719,7 @@
                             android:background="#e7e7e7"/>
 
                         <LinearLayout
+                            android:id="@+id/vipLL"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -711,6 +738,7 @@
                             android:background="#e7e7e7"/>
 
                         <LinearLayout
+                            android:id="@+id/vvipLL"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -1087,6 +1115,7 @@
                         </LinearLayout>
 
                         <ListView
+                            android:id="@+id/membershipLV"
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
                             android:layout_marginTop="10dp">

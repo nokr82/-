@@ -64,6 +64,8 @@ class User_List_Fragment : Fragment() {
     private var lastcount = 0
     private var totalItemCountScroll = 0
 
+    private var membership_type = "A"
+
     var EDIT_MEMBER_INFO = 101
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -229,6 +231,8 @@ class User_List_Fragment : Fragment() {
         params.put("company_id", company_id)
         params.put("type", type)
         params.put("page", page)
+        params.put("membership_type", membership_type)
+
         MemberAction.user_list(params, object : JsonHttpResponseHandler() {
 
             override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
@@ -256,8 +260,6 @@ class User_List_Fragment : Fragment() {
 
 
                         for (i in 0..(data.length() - 1)) {
-
-
                                 adapterData.add(data[i] as JSONObject)
 
                                 var json = data[i] as JSONObject
@@ -288,6 +290,7 @@ class User_List_Fragment : Fragment() {
                                 var modiLL: LinearLayout = userView.findViewById(R.id.modiLL)
                                 var msgLL: LinearLayout = userView.findViewById(R.id.msgLL)
                                 var couponLL: LinearLayout = userView.findViewById(R.id.couponLL)
+                                var membershipIV: ImageView = userView.findViewById(R.id.membershipIV)
 
 
                                 var id = Utils.getInt(member, "id")
@@ -469,12 +472,28 @@ class User_List_Fragment : Fragment() {
                                     startActivityForResult(intent, EDIT_MEMBER_INFO)
                                 }
 
+                            val membership = Utils.getString(member, "membership")
 
-                                userLL.addView(userView)
+                            if (membership == "S") {
+                                membershipIV.setImageResource(R.mipmap.silver)
+                            } else if (membership == "G") {
+                                membershipIV.setImageResource(R.mipmap.gold)
+                            } else if (membership == "V") {
+                                membershipIV.setImageResource(R.mipmap.vip)
+                            } else if (membership == "W") {
+                                membershipIV.setImageResource(R.mipmap.vvip)
+                            } else {
+                                val customer_yn = Utils.getString(member, "customer_yn")
+
+                                if (customer_yn == "N") {
+                                    membershipIV.visibility = View.GONE
+                                }
+
+                            }
+
+                            userLL.addView(userView)
 
                         }
-
-                        println("adapterData.count():::::::::::::::::::::::::::::::::::::::::::::::::::::" + adapterData.count())
 
                     }
 

@@ -44,4 +44,13 @@ object MemberAction {
         HttpClient.post("/member/point.json", params, handler)
     }
 
+    // 번호로 회원 검색
+    fun search(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/member/search.json", params, handler)
+    }
+
+    // 번호로 회원 검색
+    fun edit_membership(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/member/edit_membership.json", params, handler)
+    }
 }

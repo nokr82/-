@@ -2,6 +2,7 @@ package com.devstories.anipointcompany.android.activities
 
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Build.VERSION_CODES.P
 import android.os.Bundle
@@ -12,6 +13,7 @@ import android.view.View
 import android.view.View.X
 import android.view.ViewGroup
 import android.widget.*
+import com.devstories.aninuriandroid.adapter.MembershipAdapter
 import com.devstories.anipointcompany.android.Actions.CompanyAction
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.PrefUtils
@@ -24,7 +26,7 @@ import org.json.JSONException
 import org.json.JSONObject
 
 //설정 -운영정책
-class OperPolicyFragment : Fragment() {
+class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
 
 
     lateinit var myContext: Context
@@ -60,10 +62,35 @@ class OperPolicyFragment : Fragment() {
     lateinit var vvipPointET:EditText
     lateinit var vvipAddPointET:EditText
 
+    lateinit var memberShipTV:TextView
+
+    lateinit var membershipLV:ListView
+    lateinit var membershipAdapter:MembershipAdapter
+
+    lateinit var customerLL:LinearLayout
+    lateinit var silverLL:LinearLayout
+    lateinit var goldLL:LinearLayout
+    lateinit var vipLL:LinearLayout
+    lateinit var vvipLL:LinearLayout
+
     var type = -1//단골기준
     var money_type = -1//단골기준
     var company_id = 1//단골기준
 
+    var silver = false
+    var gold = false
+    var vip = false
+    var vvip = false
+    var membership_type = "A"
+    var membershipData:ArrayList<JSONObject> = ArrayList<JSONObject>()
+
+    var page = 1
+    var totalPage = 1
+    private val visibleThreshold = 10
+    private var userScrolled = false
+    private var lastItemVisibleFlag = false
+    private var lastcount = 0
+    private var totalItemCountScroll = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
@@ -105,6 +132,15 @@ class OperPolicyFragment : Fragment() {
         vvipPointET = view.findViewById(R.id.vvipPointET)
         vvipAddPointET = view.findViewById(R.id.vvipAddPointET)
 
+        memberShipTV = view.findViewById(R.id.memberShipTV)
+        membershipLV = view.findViewById(R.id.membershipLV)
+
+        customerLL = view.findViewById(R.id.customerLL)
+        silverLL = view.findViewById(R.id.silverLL)
+        goldLL = view.findViewById(R.id.goldLL)
+        vipLL = view.findViewById(R.id.vipLL)
+        vvipLL = view.findViewById(R.id.vvipLL)
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -112,6 +148,10 @@ class OperPolicyFragment : Fragment() {
 
         company_id = PrefUtils.getIntPreference(context, "company_id")
         company_info()
+
+        membershipAdapter = MembershipAdapter(myContext, R.layout.item_membership, membershipData)
+        membershipLV.adapter = membershipAdapter
+        membershipLV.setOnScrollListener(this)
 
         rdo1000wonIV.setOnClickListener {
             setmenu()
@@ -146,7 +186,52 @@ class OperPolicyFragment : Fragment() {
             edit_info()
         }
 
+        memberShipTV.setOnClickListener {
 
+            if(!silver && !gold && !vip && !vvip) {
+                Toast.makeText(context, "멤버십 정보를 입력 후 이용해주세요.", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
+            var intent = Intent(context, DlgMemberShipActivity::class.java)
+            intent.putExtra("silver", silver)
+            intent.putExtra("gold", gold)
+            intent.putExtra("vip", vip)
+            intent.putExtra("vvip", vvip)
+            startActivity(intent)
+        }
+
+        customerLL.setOnClickListener {
+            page = 1
+            membership_type = "C"
+            membership_list()
+        }
+
+        silverLL.setOnClickListener {
+            page = 1
+            membership_type = "S"
+            membership_list()
+        }
+
+        goldLL.setOnClickListener {
+            page = 1
+            membership_type = "G"
+            membership_list()
+        }
+
+        vipLL.setOnClickListener {
+            page = 1
+            membership_type = "V"
+            membership_list()
+        }
+
+        vvipLL.setOnClickListener {
+            page = 1
+            membership_type = "W"
+            membership_list()
+        }
+
+        membership_list()
 
     }
 
@@ -168,7 +253,6 @@ class OperPolicyFragment : Fragment() {
     fun company_info() {
         val params = RequestParams()
         params.put("company_id", company_id)
-
 
         CompanyAction.company_info(params, object : JsonHttpResponseHandler() {
 
@@ -235,6 +319,7 @@ class OperPolicyFragment : Fragment() {
 
                         if (silver_pay > 0) {
                             silverPayET.setText(silver_pay.toString())
+                            silver = true
                         }
 
                         val silver_point = Utils.getInt(company, "silver_point")
@@ -253,6 +338,7 @@ class OperPolicyFragment : Fragment() {
 
                         if (gold_pay > 0) {
                             goldPayET.setText(gold_pay.toString())
+                            gold = true
                         }
 
                         val gold_point = Utils.getInt(company, "gold_point")
@@ -271,6 +357,7 @@ class OperPolicyFragment : Fragment() {
 
                         if (vip_pay > 0) {
                             vipPayET.setText(vip_pay.toString())
+                            vip = true
                         }
 
                         val vip_point = Utils.getInt(company, "vip_point")
@@ -289,6 +376,7 @@ class OperPolicyFragment : Fragment() {
 
                         if (vvip_pay > 0) {
                             vvipPayET.setText(vvip_pay.toString())
+                            vvip = true
                         }
 
                         val vvip_point = Utils.getInt(company, "vvip_point")
@@ -419,9 +507,94 @@ class OperPolicyFragment : Fragment() {
                     val result = response!!.getString("result")
                     if ("ok" == result) {
                         Toast.makeText(myContext, "수정완료", Toast.LENGTH_SHORT).show()
-
                     } else {
                         Toast.makeText(myContext, "수정실패", Toast.LENGTH_SHORT).show()
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(myContext, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
+
+    fun membership_list() {
+        val params = RequestParams()
+        params.put("company_id", company_id)
+        params.put("membership_type", membership_type)
+        params.put("page", page)
+
+        CompanyAction.membership_list(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    val result = response!!.getString("result")
+
+                    if ("ok" == result) {
+
+                        totalPage = Utils.getInt(response, "totalPage")
+
+                        if (page == 1) {
+                            membershipData.clear()
+                            membershipAdapter.notifyDataSetChanged()
+                        }
+
+                        val list = response.getJSONArray("list")
+
+                        for (i in 0 until list.length()) {
+                            membershipData.add(list[i] as JSONObject)
+                        }
+
+                        membershipAdapter.notifyDataSetChanged()
+
+                    } else {
 
                     }
 
@@ -475,6 +648,35 @@ class OperPolicyFragment : Fragment() {
         })
     }
 
+    override fun onScrollStateChanged(view: AbsListView?, scrollState: Int) {
+        if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
+            userScrolled = true
+        } else if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && lastItemVisibleFlag) {
+            userScrolled = false
+
+            //화면이 바닥에 닿았을때
+            if (totalPage > page) {
+                page++
+                lastcount = totalItemCountScroll
+
+                membership_list()
+            }
+        }
+    }
+
+    override fun onScroll(view: AbsListView?, firstVisibleItem: Int, visibleItemCount: Int, totalItemCount: Int) {
+
+        if (userScrolled && totalItemCount - visibleItemCount <= firstVisibleItem + visibleThreshold && page < totalPage && totalPage > 0) {
+            if (totalPage > page) {
+            }
+        }
+
+        //현재 화면에 보이는 첫번째 리스트 아이템의 번호(firstVisibleItem)
+        // + 현재 화면에 보이는 리스트 아이템의갯수(visibleItemCount)가
+        // 리스트 전체의 갯수(totalOtemCount)-1 보다 크거나 같을때
+        lastItemVisibleFlag = totalItemCount > 0 && firstVisibleItem + visibleItemCount >= totalItemCount
+        totalItemCountScroll = totalItemCount
+    }
 
     override fun onDestroy() {
         super.onDestroy()

@@ -45,7 +45,6 @@
                 android:id="@+id/allSV"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="17dp"
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
                 android:fillViewport="true"
@@ -57,65 +56,86 @@
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <me.grantland.widget.AutofitTextView
-                            android:id="@+id/nameTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:letterSpacing="-0.03"
-                            android:lineSpacingExtra="-6sp"
-                            android:maxLines="1"
-                            android:singleLine="true"
-                            android:text="박소윤 님"
-                            android:textColor="#005492"
-                            android:textSize="32dp" />
+                        android:layout_height="wrap_content">
 
                         <ImageView
+                            android:id="@+id/membershipIV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="8.5dp"
-                            android:src="@mipmap/arrow"
-                            android:visibility="gone" />
-                    </LinearLayout>
+                            android:src="@mipmap/custom"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"/>
 
-                    <TextView
-                        android:id="@+id/phoneTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5.5dp"
-                        android:layout_marginTop="7dp"
-                        android:gravity="center_horizontal"
-                        android:letterSpacing="-0.01"
-                        android:lineSpacingExtra="2sp"
-                        android:text="010-***1-9767"
-                        android:textColor="#9a9a9a"
-                        android:textSize="12dp"
-                        android:visibility="invisible" />
+                        <LinearLayout
+                            android:id="@+id/nameLL"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="17dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:id="@+id/modiLL"
-                        android:layout_width="130dp"
-                        android:layout_height="30dp"
-                        android:layout_marginBottom="22dp"
-                        android:background="#e5e5e5"
-                        android:gravity="center">
+                            <me.grantland.widget.AutofitTextView
+                                android:id="@+id/nameTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal"
+                                android:letterSpacing="-0.03"
+                                android:lineSpacingExtra="-6sp"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:text="박소윤 님"
+                                android:textColor="#005492"
+                                android:textSize="32dp" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="8.5dp"
+                                android:src="@mipmap/arrow"
+                                android:visibility="gone" />
+                        </LinearLayout>
 
                         <TextView
+                            android:id="@+id/phoneTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="5.5dp"
+                            android:layout_marginTop="7dp"
                             android:gravity="center_horizontal"
                             android:letterSpacing="-0.01"
                             android:lineSpacingExtra="2sp"
-                            android:text="수정"
-                            android:textColor="#aeaeae"
-                            android:textSize="12dp" />
-                    </LinearLayout>
+                            android:text="010-***1-9767"
+                            android:textColor="#9a9a9a"
+                            android:textSize="12dp"
+                            android:layout_below="@+id/nameLL"
+                            android:visibility="invisible"
+                            android:layout_centerHorizontal="true" />
+
+                        <LinearLayout
+                            android:id="@+id/modiLL"
+                            android:layout_width="130dp"
+                            android:layout_height="30dp"
+                            android:layout_marginBottom="22dp"
+                            android:background="#e5e5e5"
+                            android:layout_below="@+id/phoneTV"
+                            android:gravity="center"
+                            android:layout_centerHorizontal="true">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal"
+                                android:letterSpacing="-0.01"
+                                android:lineSpacingExtra="2sp"
+                                android:text="수정"
+                                android:textColor="#aeaeae"
+                                android:textSize="12dp" />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
