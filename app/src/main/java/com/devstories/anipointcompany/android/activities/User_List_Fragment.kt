@@ -597,12 +597,21 @@ class User_List_Fragment : Fragment() {
                     val result = response!!.getString("result")
 
                     if ("ok" == result) {
-
                         var data = response.getJSONArray("member")
+
+                        totalpage = response.getInt("totalPage")
+
+//                        userLL.removeAllViews()
+//                        adapterData.clear()
+
+                        if (page == 1) {
+                            userLL.removeAllViews()
+                            adapterData.clear()
+                        }
+//                        Log.d("페이지", totalpage.toString())
 
 
                         for (i in 0..(data.length() - 1)) {
-
                             adapterData.add(data[i] as JSONObject)
 
                             var json = data[i] as JSONObject
@@ -613,9 +622,7 @@ class User_List_Fragment : Fragment() {
                             var point = Utils.getString(point_o, "balance")
                             var member_id = Utils.getInt(member, "id")
 
-
                             val userView = View.inflate(myContext, R.layout.item_user, null)
-
 
                             var dateTV: TextView = userView.findViewById(R.id.dateTV)
                             var nameTV: TextView = userView.findViewById(R.id.nameTV)
@@ -635,8 +642,10 @@ class User_List_Fragment : Fragment() {
                             var modiLL: LinearLayout = userView.findViewById(R.id.modiLL)
                             var msgLL: LinearLayout = userView.findViewById(R.id.msgLL)
                             var couponLL: LinearLayout = userView.findViewById(R.id.couponLL)
+                            var membershipIV: ImageView = userView.findViewById(R.id.membershipIV)
 
-                            var id = Utils.getString(member, "id")
+
+                            var id = Utils.getInt(member, "id")
                             var age = Utils.getString(member, "age")
                             var name = Utils.getString(member, "name")
                             var gender = Utils.getString(member, "gender")
@@ -657,6 +666,7 @@ class User_List_Fragment : Fragment() {
                                 Log.d("쿠폰전화", phone)
                                 startActivityForResult(intent, EDIT_MEMBER_INFO)
                             }
+
 
                             if (Utils.getString(point_o, "updated") != "") {
                                 val updated = SimpleDateFormat("yy-MM-dd HH:mm:ss").parse(Utils.getString(point_o, "updated"))
@@ -814,8 +824,27 @@ class User_List_Fragment : Fragment() {
                                 startActivityForResult(intent, EDIT_MEMBER_INFO)
                             }
 
+                            val membership = Utils.getString(member, "membership")
+
+                            if (membership == "S") {
+                                membershipIV.setImageResource(R.mipmap.silver)
+                            } else if (membership == "G") {
+                                membershipIV.setImageResource(R.mipmap.gold)
+                            } else if (membership == "V") {
+                                membershipIV.setImageResource(R.mipmap.vip)
+                            } else if (membership == "W") {
+                                membershipIV.setImageResource(R.mipmap.vvip)
+                            } else {
+                                val customer_yn = Utils.getString(member, "customer_yn")
+
+                                if (customer_yn == "N") {
+                                    membershipIV.visibility = View.GONE
+                                }
+
+                            }
 
                             userLL.addView(userView)
+
                         }
 
                     }

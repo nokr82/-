@@ -19,6 +19,7 @@ import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.utils.MPPointF
 import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
@@ -228,7 +229,10 @@ class User_visit_Select3_Fragment : Fragment() {
                         xAxis.setDrawGridLines(false)
                         xAxis.setGranularity(1f) // minimum axis-step (interval) is 1
                         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM)
-                        xAxis.setAvoidFirstLastClipping(true)
+//                        xAxis.setAvoidFirstLastClipping(true)
+                        xAxis.setLabelCount(12, true)
+                       // xAxis.setValueFormatter(IndexAxisValueFormatter(ages))
+                        xAxis.setCenterAxisLabels(true)
                         xAxis.valueFormatter = IAxisValueFormatter { value, axis ->
                             // System.out.println("va 0 : " + value);
                             if (value < 0) {

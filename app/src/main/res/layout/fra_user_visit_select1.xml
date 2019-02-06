@@ -234,7 +234,7 @@
                             android:layout_height="wrap_content"
                             android:letterSpacing="-0.03"
                             android:lineSpacingExtra="4sp"
-                            android:text="산규 고객(명)"
+                            android:text="신규 고객(명)"
                             android:textColor="#666666"
                             android:textSize="16dp" />
 
