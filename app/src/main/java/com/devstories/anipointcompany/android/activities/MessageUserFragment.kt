@@ -113,6 +113,7 @@ class MessageUserFragment : Fragment() {
 
     var gender = ArrayList<String>()
     var age =  ArrayList<String>()
+    var membership =  ArrayList<String>()
 
     var search_type = -1
     var stack_visit = -1
@@ -207,7 +208,6 @@ class MessageUserFragment : Fragment() {
             it.isSelected = !it.isSelected
             if(it.isSelected) {
                 saveIV.setImageResource(R.drawable.radio_on)
-                        use_money2TV.visibility = View.GONE
                 from =  Utils.getInt(limit_opET)
                 to = Utils.getInt(limit_op2ET)
 
@@ -229,7 +229,6 @@ class MessageUserFragment : Fragment() {
             it.isSelected = !it.isSelected
             if(it.isSelected) {
                 save2IV.setImageResource(R.drawable.radio_on)
-                use_money2TV.visibility = View.GONE
                 missing_from  =  Utils.getInt(limit_op21ET)
                 missing_to  = Utils.getInt(limit_op22ET)
                 mising_dayTV.text = "미방문:"+ missing_from.toString()+"일"+"~"+missing_to.toString()+"일"
@@ -249,7 +248,6 @@ class MessageUserFragment : Fragment() {
             it.isSelected = !it.isSelected
             if(it.isSelected) {
                 save3IV.setImageResource(R.drawable.radio_on)
-                use_money2TV.visibility = View.GONE
                 use_from  =  Utils.getInt(limit_op3ET)
                 use_to  = Utils.getInt(limit_op23ET)
                 use_money2TV.text ="구매금액"+ use_from.toString()+"원"+"~"+use_to.toString()+"원"
@@ -446,6 +444,89 @@ class MessageUserFragment : Fragment() {
             member_filter()
 
         }
+
+
+        bronzeLL.setOnClickListener {
+            it.isSelected = !it.isSelected
+
+            if(it.isSelected) {
+                membership.add("bronze")
+                bronzeLL.setBackgroundResource(R.drawable.background_00d1ce)
+                bronzeTV.setTextColor(Color.parseColor("#ffffff"))
+            } else {
+                membership.remove("bronze")
+                bronzeLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
+                bronzeTV.setTextColor(Color.parseColor("#9a9a99"))
+            }
+            member_filter()
+
+        }
+
+        silverLL.setOnClickListener {
+            it.isSelected = !it.isSelected
+
+            if(it.isSelected) {
+                membership.add("silver")
+                silverLL.setBackgroundResource(R.drawable.background_00d1ce)
+                silverTV.setTextColor(Color.parseColor("#ffffff"))
+            } else {
+                membership.remove("silver")
+                silverLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
+                silverTV.setTextColor(Color.parseColor("#9a9a99"))
+            }
+            member_filter()
+
+        }
+
+        goldLL.setOnClickListener {
+            it.isSelected = !it.isSelected
+
+            if(it.isSelected) {
+                membership.add("gold")
+                goldLL.setBackgroundResource(R.drawable.background_00d1ce)
+                goldTV.setTextColor(Color.parseColor("#ffffff"))
+            } else {
+                membership.remove("gold")
+                goldLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
+                goldTV.setTextColor(Color.parseColor("#9a9a99"))
+            }
+            member_filter()
+
+        }
+
+        vipLL.setOnClickListener {
+            it.isSelected = !it.isSelected
+
+            if(it.isSelected) {
+                membership.add("vip")
+                vipLL.setBackgroundResource(R.drawable.background_00d1ce)
+                vipTV.setTextColor(Color.parseColor("#ffffff"))
+            } else {
+                membership.remove("vip")
+                vipLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
+                vipTV.setTextColor(Color.parseColor("#9a9a99"))
+            }
+            member_filter()
+
+        }
+
+        vvipLL.setOnClickListener {
+            it.isSelected = !it.isSelected
+
+            if(it.isSelected) {
+                membership.add("vvip")
+                vvipLL.setBackgroundResource(R.drawable.background_00d1ce)
+                vvipTV.setTextColor(Color.parseColor("#ffffff"))
+            } else {
+                membership.remove("vvip")
+                vvipLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
+                vvipTV.setTextColor(Color.parseColor("#9a9a99"))
+            }
+            member_filter()
+
+        }
+
+
 
 
         allRL.setOnClickListener {
