@@ -1,7 +1,9 @@
 package com.devstories.anipointcompany.android.activities
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
@@ -13,6 +15,7 @@ import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import android.widget.TextView
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.CouponAction
 import com.devstories.anipointcompany.android.Actions.MemberAction
@@ -65,10 +68,36 @@ class DlgCouponListActivity : RootActivity() {
             Log.d("리스트선택", data.toString())
 
             val coupon = data.getJSONObject("MemberCoupon")
+            val coupon_o = data.getJSONObject("Coupon")
             val coupon_id = Utils.getInt(coupon, "id")
+            val coupon_name = Utils.getString(coupon_o, "name")
+
+
             member_id = Utils.getInt(coupon, "member_id")
             Log.d("쿠폰아이디", coupon_id.toString())
-            couponData(coupon_id)
+
+            var mPopupDlg: DialogInterface? = null
+            val builder = AlertDialog.Builder(context)
+            val dialogView = layoutInflater.inflate(R.layout.dlg_send_payback, null)
+            val cancelTV = dialogView.findViewById<TextView>(R.id.cancelTV)
+            val msgWriteTV = dialogView.findViewById<TextView>(R.id.msgWriteTV)
+            val titleTV = dialogView.findViewById<TextView>(R.id.titleTV)
+            val contentTV = dialogView.findViewById<TextView>(R.id.contentTV)
+            titleTV.text = "쿠폰 사용"
+            contentTV.text = coupon_name+"쿠폰을 사용하시겠습니까?"
+            msgWriteTV.text = "사용"
+
+
+            mPopupDlg = builder.setView(dialogView).show()
+            cancelTV.setOnClickListener {
+                mPopupDlg.dismiss()
+            }
+            msgWriteTV.setOnClickListener {
+                couponData(coupon_id)
+                mPopupDlg.dismiss()
+            }
+
+
 
         }
     }

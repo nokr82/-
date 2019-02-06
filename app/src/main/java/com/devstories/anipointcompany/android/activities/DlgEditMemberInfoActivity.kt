@@ -31,7 +31,7 @@ class DlgEditMemberInfoActivity : RootActivity() {
     lateinit var context: Context
     private var progressDialog: ProgressDialog? = null
     lateinit var adapter: ArrayAdapter<String>
-    var option_age = arrayOf("미입력","20대","30대","40대","50대","60대")
+    var option_age = arrayOf("미입력","10대","20대","30대","40대","50대","60대")
 
 
     var member_id = -1
@@ -74,12 +74,14 @@ class DlgEditMemberInfoActivity : RootActivity() {
                 if (position == 0) {
                            age = ""
                 } else if (position == 1) {
-                    age = "20"
+                    age = "10"
                 }else if (position == 2) {
-                    age = "30"
+                    age = "20"
                 }else if (position == 3) {
-                    age = "40"
+                    age = "30"
                 }else if (position == 4) {
+                    age = "40"
+                }else if (position == 5) {
                     age = "50"
                 }else if (position == 5) {
                     age = "60"
@@ -161,16 +163,18 @@ class DlgEditMemberInfoActivity : RootActivity() {
 
                         if (age ==""){
                           ageSP.setSelection(0)
-                        }else if (age=="20"){
+                        }else if (age=="10"){
                             ageSP.setSelection(1)
-                        }else if (age=="30"){
+                        }else if (age=="20"){
                             ageSP.setSelection(2)
-                        }else if (age=="40"){
+                        }else if (age=="30"){
                             ageSP.setSelection(3)
-                        }else if (age=="50"){
+                        }else if (age=="40"){
                             ageSP.setSelection(4)
-                        }else if (age=="60"){
+                        }else if (age=="50"){
                             ageSP.setSelection(5)
+                        }else if (age=="60"){
+                            ageSP.setSelection(6)
                         }
 
                         phoneET.setText(phone)

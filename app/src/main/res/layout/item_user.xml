@@ -667,7 +667,7 @@
                         android:layout_height="wrap_content"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:text="쿠폰/메세지 보내기"
+                        android:text="쿠폰 발행/메세지 보내기"
                         android:textColor="#ffffff"
                         android:textSize="20dp" />
 

@@ -155,6 +155,7 @@ class SetCouponFragment : Fragment() {
             if (member_id != -1) {
 
             }else{
+                sendcouponTV.visibility = View.GONE
                 count = getArguments()!!.getString("count")
                 stack_visit  = getArguments()!!.getInt("stack_visit")
                 mising_day  = getArguments()!!.getInt("mising_day")
