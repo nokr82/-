@@ -2,6 +2,7 @@ package com.devstories.anipointcompany.android.activities
 
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -25,7 +26,8 @@ class User_visit_List_Fragment : Fragment() {
     lateinit var ageTV: TextView
     lateinit var daysTV: TextView
     lateinit var timeTV: TextView
-
+    lateinit var accumulateLL : LinearLayout
+    lateinit var useLL : LinearLayout
     val User_visit_Select1_Fragment : User_visit_Select1_Fragment = User_visit_Select1_Fragment()
     val User_visit_Select2_Fragment : User_visit_Select2_Fragment = User_visit_Select2_Fragment()
     val User_visit_Select3_Fragment : User_visit_Select3_Fragment = User_visit_Select3_Fragment()
@@ -51,6 +53,8 @@ class User_visit_List_Fragment : Fragment() {
         timeTV= view.findViewById(R.id.timeTV)
         allTV= view.findViewById(R.id.allTV)
 
+        accumulateLL = view.findViewById(R.id.accumulateLL)
+        useLL = view.findViewById(R.id.useLL)
 
     }
 
@@ -66,6 +70,18 @@ class User_visit_List_Fragment : Fragment() {
 
 
     fun click(){
+
+
+        useLL.setOnClickListener {
+            val intent = Intent(myContext, CalActivity::class.java)
+            intent.putExtra("step",4)
+            startActivity(intent)
+        }
+        accumulateLL.setOnClickListener {
+            val intent = Intent(myContext, CalActivity::class.java)
+            startActivity(intent)
+        }
+
         allLL.setOnClickListener {
             setView()
             allTV.setTextColor(Color.parseColor("#FFFFFF"))
