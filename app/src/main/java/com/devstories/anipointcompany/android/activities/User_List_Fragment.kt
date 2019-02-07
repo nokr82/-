@@ -406,6 +406,7 @@ class User_List_Fragment : Fragment() {
                                     var use_point = Utils.getString(companySale, "use_point")
                                     var point = Utils.getString(companySale, "point")
                                     var coupon = Utils.getString(companySale, "coupon_id")
+                                    var membership_id = Utils.getString(companySale, "member_ship_id")
 
 
                                     var price = Utils.getString(companySale, "price")
@@ -431,6 +432,26 @@ class User_List_Fragment : Fragment() {
                                         var coupon_name = Utils.getString(MemberCoupon, "coupon_name")
                                         str = str + created_str + " 쿠폰 사용 " + coupon_name + "\n"
                                     }
+
+                                    if (membership_id !=""){
+                                        var membership = Utils.getString(companySale, "membership")
+                                        var membership_point = Utils.getString(companySale, "membership_point")
+                                        var membership_pay = Utils.getString(companySale, "membership_pay")
+                                        var name = ""
+                                        if (membership=="S"){
+                                            name= "실버"
+                                        }else if (membership =="G"){
+                                            name= "골드"
+                                        }else if (membership =="V"){
+                                            name= "VIP"
+                                        }else if (membership =="W"){
+                                            name= "VVIP"
+                                        }
+                                        str = str + created_str + name + " 결제 " + membership_pay +"원"+ " / 적립 "+membership_point+ "\n"
+
+                                    }
+
+
 
 
                                     if (point != "" && use_point != "") {

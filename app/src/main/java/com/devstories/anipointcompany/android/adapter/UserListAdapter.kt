@@ -79,10 +79,25 @@ open class UserListAdapter (context:Context, view:Int, data: ArrayList<JSONObjec
 
             if (type==1){
                 item.typeTV.text = "포인트 적립"
-            }else if(cate == 3){
-                item.typeTV.text = "포인트 환불"
             }else{
                 item.typeTV.text = "포인트 사용"
+            }
+
+            if(cate == 3){
+                item.typeTV.text = "포인트 환불"
+            }else if (cate == 4){
+                item.typeTV.text = "멤버쉽 결제"
+                val membership = json.getJSONObject("MemberShip")
+                var membership_name = Utils.getString(membership, "membership")
+                if (membership_name.equals("S")){
+                    item.pointTV.text ="실버 결제"
+                }else if (membership_name.equals("G")){
+                    item.pointTV.text ="골드 결제"
+                }else if (membership_name.equals("V")){
+                    item.pointTV.text ="VIP 결제"
+                }else if (membership_name.equals("W")){
+                    item.pointTV.text ="VVIP 결제"
+                }
             }
         }
 
