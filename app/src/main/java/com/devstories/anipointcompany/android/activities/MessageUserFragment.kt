@@ -130,7 +130,7 @@ class MessageUserFragment : Fragment() {
     var left_from = -1
     var left_to = -1
 
-
+ var custom = ""
 
     var limit_op = ""
     var limit_op2 = ""
@@ -450,11 +450,11 @@ class MessageUserFragment : Fragment() {
             it.isSelected = !it.isSelected
 
             if(it.isSelected) {
-                membership.add("")
+                custom="Y"
                 bronzeLL.setBackgroundResource(R.drawable.background_00d1ce)
                 bronzeTV.setTextColor(Color.parseColor("#ffffff"))
             } else {
-                membership.remove("")
+                custom=""
                 bronzeLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 bronzeTV.setTextColor(Color.parseColor("#9a9a99"))
             }
@@ -551,6 +551,7 @@ class MessageUserFragment : Fragment() {
             }else {
                 //브로드캐스트로 프래그먼트이동
                 var intent = Intent()
+                intent.putExtra("custom", custom)
                 intent.putExtra("gender", gender)
                 Log.d("gender", gender.toString())
                 intent.putExtra("membership", membership)
@@ -627,7 +628,7 @@ class MessageUserFragment : Fragment() {
         val params = RequestParams()
 
         params.put("company_id", company_id)
-
+        params.put("custom",custom)
         if (membership.size>0){
             for (i in 0..(membership.size -1)){
                 val membershipstr = membership[i]

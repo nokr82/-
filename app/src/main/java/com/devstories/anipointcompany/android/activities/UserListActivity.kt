@@ -94,35 +94,41 @@ class UserListActivity : FragmentActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.userFL, User_List_Fragment).commit()
         userLL.setOnClickListener {
             setmenu()
+            Utils.hideKeyboard(this)
             userLL.setBackgroundResource(R.drawable.background_strock_707070)
             supportFragmentManager.beginTransaction().replace(R.id.userFL, User_List_Fragment).commit()
 
         }
         pointLL.setOnClickListener {
             setmenu()
+            Utils.hideKeyboard(this)
             pointLL.setBackgroundResource(R.drawable.background_strock_707070)
             supportFragmentManager.beginTransaction().replace(R.id.userFL, Point_List_Fragment).commit()
 
         }
         uservisitLL.setOnClickListener {
             setmenu()
+            Utils.hideKeyboard(this)
             uservisitLL.setBackgroundResource(R.drawable.background_strock_707070)
             supportFragmentManager.beginTransaction().replace(R.id.userFL, User_visit_List_Fragment).commit()
 
         }
         messageLL.setOnClickListener {
             setmenu()
+            Utils.hideKeyboard(this)
             messageLL.setBackgroundResource(R.drawable.background_strock_707070)
             supportFragmentManager.beginTransaction().replace(R.id.userFL, Message_Manage_Fragment).commit()
         }
         analysisRevenueLL.setOnClickListener {
             setmenu()
+            Utils.hideKeyboard(this)
             analysisRevenueLL.setBackgroundResource(R.drawable.background_strock_707070)
             supportFragmentManager.beginTransaction().replace(R.id.userFL, Sales_Analysis_List_Fragment).commit()
 
         }
         settingLL.setOnClickListener {
             setmenu()
+            Utils.hideKeyboard(this)
             settingLL.setBackgroundResource(R.drawable.background_strock_707070)
             supportFragmentManager.beginTransaction().replace(R.id.userFL, SettingFragment).commit()
 
