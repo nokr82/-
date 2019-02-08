@@ -28,8 +28,7 @@ class DlgMemberShipActivity : RootActivity() {
     lateinit var context: Context
     private var progressDialog: ProgressDialog? = null
 
-    lateinit var adapter:ArrayAdapter<String>
-    var membership = arrayListOf<String>("등급변경")
+    var membership=""
 
     var company_id = -1
     var member_id = -1
@@ -71,54 +70,41 @@ class DlgMemberShipActivity : RootActivity() {
         vip = intent.getBooleanExtra("vip", false)
         vvip = intent.getBooleanExtra("vvip", false)
 
-        if (silver) {
-            membership.add("실버")
+
+        silverLL.setOnClickListener {
+            setmenu()
+            silverIV.setImageResource(R.drawable.radio_on)
+            payTV.text = Utils.thousand(silver_pay) + "원"
+            pointTV.text = Utils.thousand(silver_point) + "원"
+            addPointTV.text = Utils.thousand(silver_add_point) + "%"
+            membership = "실버"
         }
-        if (gold) {
-            membership.add("골드")
+        goldLL.setOnClickListener {
+            setmenu()
+            goldIV.setImageResource(R.drawable.radio_on)
+            payTV.text = Utils.thousand(gold_pay) + "원"
+            pointTV.text = Utils.thousand(gold_point) + "원"
+            addPointTV.text = Utils.thousand(gold_add_point) + "%"
+            membership = "골드"
         }
-        if (vip) {
-            membership.add("VIP")
+        vipLL.setOnClickListener {
+            setmenu()
+            vipIV.setImageResource(R.drawable.radio_on)
+            payTV.text = Utils.thousand(vip_pay) + "원"
+            pointTV.text = Utils.thousand(vip_point) + "원"
+            addPointTV.text = Utils.thousand(vip_add_point) + "%"
+            membership = "VIP"
         }
-        if (vvip) {
-            membership.add("VVIP")
+        vvipLL.setOnClickListener {
+            setmenu()
+            vvipIV.setImageResource(R.drawable.radio_on)
+            payTV.text = Utils.thousand(vvip_pay) + "원"
+            pointTV.text = Utils.thousand(vvip_point) + "원"
+            addPointTV.text = Utils.thousand(vvip_add_point) + "%"
+            membership = "VVIP"
         }
 
-        adapter = ArrayAdapter(context, R.layout.spiner_item, membership)
-        memberShipSP.adapter = adapter
-        memberShipSP.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(p0: AdapterView<*>?) {
 
-            }
-
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-
-                val selected = adapter.getItem(position)
-
-                if (selected == "실버") {
-                    payTV.text = Utils.thousand(silver_pay) + "원"
-                    pointTV.text = Utils.thousand(silver_point) + "원"
-                    addPointTV.text = Utils.thousand(silver_add_point) + "%"
-                } else if (selected == "골드") {
-                    payTV.text = Utils.thousand(gold_pay) + "원"
-                    pointTV.text = Utils.thousand(gold_point) + "원"
-                    addPointTV.text = Utils.thousand(gold_add_point) + "%"
-                } else if (selected == "VIP") {
-                    payTV.text = Utils.thousand(vip_pay) + "원"
-                    pointTV.text = Utils.thousand(vip_point) + "원"
-                    addPointTV.text = Utils.thousand(vip_add_point) + "%"
-                } else if (selected == "VVIP") {
-                    payTV.text = Utils.thousand(vvip_pay) + "원"
-                    pointTV.text = Utils.thousand(vvip_point) + "원"
-                    addPointTV.text = Utils.thousand(vvip_add_point) + "%"
-                } else {
-                    payTV.text = "0원"
-                    pointTV.text = "0원"
-                    addPointTV.text = "0%"
-                }
-
-            }
-        }
 
         searchTV.setOnClickListener {
             val phone1 = Utils.getString(phoneNum1ET)
@@ -151,7 +137,7 @@ class DlgMemberShipActivity : RootActivity() {
                 return@setOnClickListener
             }
 
-            if (memberShipSP.selectedItemPosition < 1) {
+            if (payTV.text.equals("0")) {
                 Toast.makeText(context, "변경하실 등급을 선택해주세요", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
@@ -162,6 +148,13 @@ class DlgMemberShipActivity : RootActivity() {
 
         loadData()
 
+    }
+
+    fun setmenu(){
+        silverIV.setImageResource(R.drawable.radio_off)
+        goldIV.setImageResource(R.drawable.radio_off)
+        vipIV.setImageResource(R.drawable.radio_off)
+        vvipIV.setImageResource(R.drawable.radio_off)
     }
 
     fun loadData() {
@@ -334,19 +327,32 @@ class DlgMemberShipActivity : RootActivity() {
                         val membership = Utils.getString(member, "membership")
                         val name = Utils.getString(member, "name")
                         val point = Utils.getInt(member, "point")
-                        val use_point = Utils.getInt(member, "use_point")
+                        var use_point = Utils.getInt(member, "use_point")
                         val balance = Utils.getInt(member, "balance")
                         val phone = Utils.getString(member, "phone")
 
                         var membership_str = "-"
 
+                        if (use_point==-1){
+                            use_point=0
+                        }
+
+
                         if ("S" == membership) {
+                            setmenu()
+                            silverIV.setImageResource(R.drawable.radio_on)
                             membership_str = "실버"
                         } else if ("G" == membership) {
+                            setmenu()
+                            goldIV.setImageResource(R.drawable.radio_on)
                             membership_str = "골드"
                         } else if ("V" == membership) {
+                            setmenu()
+                            vipIV.setImageResource(R.drawable.radio_on)
                             membership_str = "VIP"
                         } else if ("W" == membership) {
+                            setmenu()
+                            vvipIV.setImageResource(R.drawable.radio_on)
                             membership_str = "VVIP"
                         }
 
@@ -425,7 +431,9 @@ class DlgMemberShipActivity : RootActivity() {
         val params = RequestParams()
         params.put("company_id",company_id)
         params.put("member_id", member_id)
-        params.put("membership", memberShipSP.selectedItem)
+        params.put("membership", membership)
+
+//        params.put("membership", memberShipSP.selectedItem)
 
         MemberAction.edit_membership(params, object : JsonHttpResponseHandler() {
 
