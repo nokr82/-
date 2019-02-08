@@ -458,7 +458,7 @@ class CalActivity : RootActivity() {
         val stringPoint = floatPoint.toString()
         var splitPoint = stringPoint.split(".")
         val point = splitPoint.get(0)
-        pointTV.setText(point)
+        pointTV.setText(Utils.comma(point))
 
     }
 
@@ -638,7 +638,7 @@ class CalActivity : RootActivity() {
                                 }
 
                                 titleTV.text = name
-                                stack_pointTV.text = left_point
+                                stack_pointTV.text = Utils.comma(left_point)
                                 titleTV.text = name
                                 if (gender.equals("M")) {
                                     setmenu()
@@ -665,7 +665,7 @@ class CalActivity : RootActivity() {
 
 
                                 usePointLL.visibility = View.VISIBLE
-                                usePointTV.text = use_point.toString()
+                                usePointTV.text = Utils.comma(use_point.toString())
 
                                 for (i in 0 until couponData.size) {
                                     val data = couponData[i]
@@ -1102,7 +1102,7 @@ class CalActivity : RootActivity() {
                 if (resultCode == Activity.RESULT_OK) {
                     val point = data!!.getStringExtra("point")
                     Toast.makeText(context, point, Toast.LENGTH_SHORT).show()
-                    pointTV.text = point
+                    pointTV.text = Utils.comma(point)
                 }
             }
         }
