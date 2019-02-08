@@ -47,6 +47,11 @@ open class MembershipAdapter (context:Context, view:Int, data: ArrayList<JSONObj
         var coupon = Utils.getInt(member, "coupon")
         var balance = Utils.getInt(member, "balance")
 
+        if (use_point == -1){
+            use_point = 0
+        }
+
+
         if (phone.length==11){
             //번호하이픈
             phone = phone.substring(0, 3) + "-" + phone.substring(3, 7) + "-" + phone.substring(7,11)

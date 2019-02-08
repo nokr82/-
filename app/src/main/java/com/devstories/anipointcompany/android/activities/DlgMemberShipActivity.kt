@@ -2,6 +2,7 @@ package com.devstories.anipointcompany.android.activities
 
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -442,9 +443,13 @@ class DlgMemberShipActivity : RootActivity() {
                     searchLL.visibility = View.GONE
 
                     if ("ok" == result) {
-
                         Toast.makeText(context, "변경되었습니다.", Toast.LENGTH_LONG).show()
+                        val resultIntent = Intent()
+                        setResult(RESULT_OK, resultIntent)
+                        Utils.hideKeyboard(context)
                         finish()
+//                        Toast.makeText(context, "변경되었습니다.", Toast.LENGTH_LONG).show()
+//                        finish()
 
                     } else {
                         Toast.makeText(context, "오류가 발생하였습니다.", Toast.LENGTH_LONG).show()

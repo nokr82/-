@@ -1,5 +1,6 @@
 package com.devstories.anipointcompany.android.activities
 
+import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
@@ -91,6 +92,8 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
     private var lastItemVisibleFlag = false
     private var lastcount = 0
     private var totalItemCountScroll = 0
+
+    var EDIT_MEMBER = 102
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
@@ -198,7 +201,7 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
             intent.putExtra("gold", gold)
             intent.putExtra("vip", vip)
             intent.putExtra("vvip", vvip)
-            startActivity(intent)
+            startActivityForResult(intent,EDIT_MEMBER)
         }
 
         customerLL.setOnClickListener {
@@ -232,6 +235,19 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
         }
 
         membership_list()
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            EDIT_MEMBER -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    membership_list()
+                }
+            }
+        }
+
 
     }
 
@@ -318,14 +334,14 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
                         val silver_pay = Utils.getInt(company, "silver_pay")
 
                         if (silver_pay > 0) {
-                            silverPayET.setText(silver_pay.toString())
+                            silverPayET.setText(Utils.comma(silver_pay.toString()))
                             silver = true
                         }
 
                         val silver_point = Utils.getInt(company, "silver_point")
 
                         if (silver_point > 0) {
-                            silverPointET.setText(silver_point.toString())
+                            silverPointET.setText(Utils.comma(silver_point.toString()))
                         }
 
                         val silver_add_point = Utils.getInt(company, "silver_add_point")
@@ -337,14 +353,14 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
                         val gold_pay = Utils.getInt(company, "gold_pay")
 
                         if (gold_pay > 0) {
-                            goldPayET.setText(gold_pay.toString())
+                            goldPayET.setText(Utils.comma(gold_pay.toString()))
                             gold = true
                         }
 
                         val gold_point = Utils.getInt(company, "gold_point")
 
                         if (gold_point > 0) {
-                            goldPointET.setText(gold_point.toString())
+                            goldPointET.setText(Utils.comma(gold_point.toString()))
                         }
 
                         val gold_add_point = Utils.getInt(company, "gold_add_point")
@@ -356,14 +372,14 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
                         val vip_pay = Utils.getInt(company, "vip_pay")
 
                         if (vip_pay > 0) {
-                            vipPayET.setText(vip_pay.toString())
+                            vipPayET.setText(Utils.comma(vip_pay.toString()))
                             vip = true
                         }
 
                         val vip_point = Utils.getInt(company, "vip_point")
 
                         if (vip_point > 0) {
-                            vipPointET.setText(vip_point.toString())
+                            vipPointET.setText(Utils.comma(vip_point.toString()))
                         }
 
                         val vip_add_point = Utils.getInt(company, "vip_add_point")
@@ -375,20 +391,20 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
                         val vvip_pay = Utils.getInt(company, "vvip_pay")
 
                         if (vvip_pay > 0) {
-                            vvipPayET.setText(vvip_pay.toString())
+                            vvipPayET.setText(Utils.comma(vvip_pay.toString()))
                             vvip = true
                         }
 
                         val vvip_point = Utils.getInt(company, "vvip_point")
 
                         if (vvip_point > 0) {
-                            vvipPointET.setText(vvip_point.toString())
+                            vvipPointET.setText(Utils.comma(vvip_point.toString()))
                         }
 
                         val vvip_add_point = Utils.getInt(company, "vvip_add_point")
 
                         if (vvip_add_point > 0) {
-                            vvipPointET.setText(vvip_add_point.toString())
+                            vvipAddPointET.setText(vvip_add_point.toString())
                         }
 
                     } else {
@@ -483,18 +499,18 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
         params.put("basic_per", Utils.getString(basic_perET))
         params.put("option_per", Utils.getString(high_perET))
 
-        params.put("silver_pay", Utils.getString(silverPayET))
-        params.put("silver_point", Utils.getString(silverPointET))
-        params.put("silver_add_point", Utils.getString(silverAddPointET))
-        params.put("gold_pay", Utils.getString(goldPayET))
-        params.put("gold_point", Utils.getString(goldPointET))
-        params.put("gold_add_point", Utils.getString(goldAddPointET))
-        params.put("vip_pay", Utils.getString(vipPayET))
-        params.put("vip_point", Utils.getString(vipPointET))
-        params.put("vip_add_point", Utils.getString(vipAddPointET))
-        params.put("vvip_pay", Utils.getString(vvipPayET))
-        params.put("vvip_point", Utils.getString(vvipPointET))
-        params.put("vvip_add_point", Utils.getString(vvipAddPointET))
+        params.put("silver_pay", Utils.getString(silverPayET).replace(",",""))
+        params.put("silver_point", Utils.getString(silverPointET).replace(",",""))
+        params.put("silver_add_point", Utils.getString(silverAddPointET).replace(",",""))
+        params.put("gold_pay", Utils.getString(goldPayET).replace(",",""))
+        params.put("gold_point", Utils.getString(goldPointET).replace(",",""))
+        params.put("gold_add_point", Utils.getString(goldAddPointET).replace(",",""))
+        params.put("vip_pay", Utils.getString(vipPayET).replace(",",""))
+        params.put("vip_point", Utils.getString(vipPointET).replace(",",""))
+        params.put("vip_add_point", Utils.getString(vipAddPointET).replace(",",""))
+        params.put("vvip_pay", Utils.getString(vvipPayET).replace(",",""))
+        params.put("vvip_point", Utils.getString(vvipPointET).replace(",",""))
+        params.put("vvip_add_point", Utils.getString(vvipAddPointET).replace(",",""))
 
         CompanyAction.edit_info(params, object : JsonHttpResponseHandler() {
 
