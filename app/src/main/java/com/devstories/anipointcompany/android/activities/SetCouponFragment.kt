@@ -95,6 +95,7 @@ class SetCouponFragment : Fragment() {
     }
 
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -153,7 +154,7 @@ class SetCouponFragment : Fragment() {
             member_id = getArguments()!!.getInt("member_id", -1)
             Log.d("멤버디", member_id.toString())
             if (member_id != -1) {
-
+                    count = "1"
             }else{
                 sendcouponTV.visibility = View.GONE
                 count = getArguments()!!.getString("count")
@@ -299,6 +300,7 @@ class SetCouponFragment : Fragment() {
         super.onPause()
         setmenu2()
         setmenu()
+        count = "0"
         coupon_prdET.setText("")
         coupon_conET.setText("")
     }

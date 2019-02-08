@@ -589,7 +589,7 @@ class CalActivity : RootActivity() {
                                     var left_point: String? = null
                                     var point = response.getJSONObject("Point")
                                     left_point = Utils.getString(point, "balance")
-                                    stack_pointTV.text = left_point
+                                    stack_pointTV.text = Utils.comma(left_point)
                                 }
 
                                 var gender = Utils.getString(member, "gender")

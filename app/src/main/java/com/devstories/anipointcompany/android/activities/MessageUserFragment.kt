@@ -450,11 +450,11 @@ class MessageUserFragment : Fragment() {
             it.isSelected = !it.isSelected
 
             if(it.isSelected) {
-                membership.add("bronze")
+                membership.add("")
                 bronzeLL.setBackgroundResource(R.drawable.background_00d1ce)
                 bronzeTV.setTextColor(Color.parseColor("#ffffff"))
             } else {
-                membership.remove("bronze")
+                membership.remove("")
                 bronzeLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 bronzeTV.setTextColor(Color.parseColor("#9a9a99"))
             }
@@ -466,11 +466,11 @@ class MessageUserFragment : Fragment() {
             it.isSelected = !it.isSelected
 
             if(it.isSelected) {
-                membership.add("silver")
+                membership.add("S")
                 silverLL.setBackgroundResource(R.drawable.background_00d1ce)
                 silverTV.setTextColor(Color.parseColor("#ffffff"))
             } else {
-                membership.remove("silver")
+                membership.remove("S")
                 silverLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 silverTV.setTextColor(Color.parseColor("#9a9a99"))
             }
@@ -482,11 +482,11 @@ class MessageUserFragment : Fragment() {
             it.isSelected = !it.isSelected
 
             if(it.isSelected) {
-                membership.add("gold")
+                membership.add("G")
                 goldLL.setBackgroundResource(R.drawable.background_00d1ce)
                 goldTV.setTextColor(Color.parseColor("#ffffff"))
             } else {
-                membership.remove("gold")
+                membership.remove("G")
                 goldLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 goldTV.setTextColor(Color.parseColor("#9a9a99"))
             }
@@ -498,11 +498,11 @@ class MessageUserFragment : Fragment() {
             it.isSelected = !it.isSelected
 
             if(it.isSelected) {
-                membership.add("vip")
+                membership.add("V")
                 vipLL.setBackgroundResource(R.drawable.background_00d1ce)
                 vipTV.setTextColor(Color.parseColor("#ffffff"))
             } else {
-                membership.remove("vip")
+                membership.remove("V")
                 vipLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 vipTV.setTextColor(Color.parseColor("#9a9a99"))
             }
@@ -514,11 +514,11 @@ class MessageUserFragment : Fragment() {
             it.isSelected = !it.isSelected
 
             if(it.isSelected) {
-                membership.add("vvip")
+                membership.add("W")
                 vvipLL.setBackgroundResource(R.drawable.background_00d1ce)
                 vvipTV.setTextColor(Color.parseColor("#ffffff"))
             } else {
-                membership.remove("vvip")
+                membership.remove("W")
                 vvipLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
                 vvipTV.setTextColor(Color.parseColor("#9a9a99"))
             }
@@ -553,6 +553,8 @@ class MessageUserFragment : Fragment() {
                 var intent = Intent()
                 intent.putExtra("gender", gender)
                 Log.d("gender", gender.toString())
+                intent.putExtra("membership", membership)
+                Log.d("membership", membership.toString())
                 intent.putExtra("age",age)
                 Log.d("age", age.toString())
                 intent.putExtra("visited_date", visited_date)
@@ -626,7 +628,14 @@ class MessageUserFragment : Fragment() {
 
         params.put("company_id", company_id)
 
-
+        if (membership.size>0){
+            for (i in 0..(membership.size -1)){
+                val membershipstr = membership[i]
+                //배열로 입력저장은 [] 이걸 넣어준다
+                params.put("membership["+i+"]",membershipstr)
+                Log.d("멤버쉽",membershipstr)
+            }
+        }
         if (age.size>0){
             for (i in 0..(age.size -1)){
                 val agestr = age[i]
