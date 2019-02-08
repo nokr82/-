@@ -403,7 +403,7 @@ class Point_List_Fragment : Fragment() {
                         }
 
 
-                        coupon_payTV.text = useCouponPay.toString()+"원"
+                        coupon_payTV.text = Utils.comma(useCouponPay.toString())+"원"
                         val data2 = response.getJSONArray("member_list")
                         adapterData.clear()
                         useradapter.notifyDataSetChanged()
