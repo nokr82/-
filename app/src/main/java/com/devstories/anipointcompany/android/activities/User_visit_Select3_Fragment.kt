@@ -233,7 +233,7 @@ class User_visit_Select3_Fragment : Fragment() {
                         xAxis.setAvoidFirstLastClipping(true)
                         xAxis.setLabelCount(24, false)
 //                        xAxis.setValueFormatter(IndexAxisValueFormatter(ages))
-                        xAxis.setCenterAxisLabels(true)
+//                        xAxis.setCenterAxisLabels(true)
        /*                 xAxis.valueFormatter = IAxisValueFormatter { value, axis ->
                             // System.out.println("va 0 : " + value);
                             if (value < 0) {
@@ -323,7 +323,7 @@ class User_visit_Select3_Fragment : Fragment() {
                         barDataSet.setColors(*intArrayOf(Color.parseColor("#4b8bc8"), Color.parseColor("#4b8bc8"), Color.parseColor("#4b8bc8"), Color.parseColor("#4b8bc8"), Color.parseColor("#4b8bc8"), Color.parseColor("#4b8bc8")))
                         barDataSet.setDrawValues(false)
                         var barData = BarData(barDataSet)
-                        barData.setBarWidth(0.1f)
+                        barData.setBarWidth(0.3f)
                         ageBarChart.getXAxis().setAxisMinimum(0f);
                         ageBarChart.setData(barData)
                         ageBarChart.invalidate() // refresh
