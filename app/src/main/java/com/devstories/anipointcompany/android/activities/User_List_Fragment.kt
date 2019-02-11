@@ -150,6 +150,8 @@ class User_List_Fragment : Fragment() {
 
 
 
+
+
         useLL.setOnClickListener {
             val intent = Intent(myContext, CalActivity::class.java)
             intent.putExtra("step", 4)
@@ -271,6 +273,7 @@ class User_List_Fragment : Fragment() {
                                 var member_id = Utils.getInt(member, "id")
 
                                 val userView = View.inflate(myContext, R.layout.item_user, null)
+
 
                                 var dateTV: TextView = userView.findViewById(R.id.dateTV)
                                 var nameTV: TextView = userView.findViewById(R.id.nameTV)
@@ -644,7 +647,6 @@ class User_List_Fragment : Fragment() {
                             var member_id = Utils.getInt(member, "id")
 
                             val userView = View.inflate(myContext, R.layout.item_user, null)
-
                             var dateTV: TextView = userView.findViewById(R.id.dateTV)
                             var nameTV: TextView = userView.findViewById(R.id.nameTV)
                             var pointTV: TextView = userView.findViewById(R.id.pointTV)

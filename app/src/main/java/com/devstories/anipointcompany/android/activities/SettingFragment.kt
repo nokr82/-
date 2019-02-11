@@ -62,6 +62,7 @@ class SettingFragment : android.support.v4.app.Fragment() {
                 msLL.setLayoutParams(lps)
             }
         }
+
         )
 
 

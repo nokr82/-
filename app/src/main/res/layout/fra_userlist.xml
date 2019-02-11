@@ -287,17 +287,18 @@
                 <HorizontalScrollView
                     android:id="@+id/hoSV"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
                     android:layout_marginBottom="6dp"
                     android:layout_marginTop="9.5dp"
-                    android:scrollbars="none">
+                    android:scrollbars="none"
+                    android:fillViewport="true">
 
                     <LinearLayout
                         android:id="@+id/userLL"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:visibility="visible">
+                        android:orientation="horizontal">
 
 
                     </LinearLayout>

@@ -7,7 +7,7 @@
 
     <com.devstories.anipointcompany.android.base.RationalLinearLayout
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="600dp"
         android:layout_marginRight="10dp"
         app:adjustHeight="false"
         app:ratio="175:280">
