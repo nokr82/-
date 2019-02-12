@@ -226,7 +226,7 @@ class SetMessageContFragment : Fragment() {
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                titleTV.text = "[Web발신]\n" + s + "\n"
+                titleTV.text = "[Web발신]\n"+"(광고)\n" + s + "\n"
             }
         })
 
@@ -282,7 +282,7 @@ class SetMessageContFragment : Fragment() {
             params.put("member_id", member_id)
         }
 
-        params.put("message", message)
+        params.put("message", message+"\n무료거부:080-450-5601")
 
 
         params.put("7days_yn", "N")
