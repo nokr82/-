@@ -226,7 +226,7 @@ class SetMessageContFragment : Fragment() {
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                titleTV.text = "[Web발신]\n"+"(광고)\n" + s + "\n"
+                titleTV.text = "[Web발신]\n" + s + "\n"
             }
         })
 
@@ -236,6 +236,7 @@ class SetMessageContFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
+        member_id = -1
         setedit()
     }
 
@@ -252,7 +253,11 @@ class SetMessageContFragment : Fragment() {
         val cancelTV = dialogView.findViewById<TextView>(R.id.cancelTV)
         val msgWriteTV = dialogView.findViewById<TextView>(R.id.msgWriteTV)
         val sendCntTV = dialogView.findViewById<TextView>(R.id.sendCntTV)
-        sendCntTV.text = count
+        if (member_id != -1){
+            sendCntTV.text = "1"
+        }else{
+            sendCntTV.text = count
+        }
         mPopupDlg = builder.setView(dialogView).show()
         cancelTV.setOnClickListener {
             mPopupDlg.dismiss()
@@ -282,7 +287,7 @@ class SetMessageContFragment : Fragment() {
             params.put("member_id", member_id)
         }
 
-        params.put("message", message+"\n무료거부:080-450-5601")
+        params.put("message","\n(광고)\n"+ message+"\n무료거부:080-450-5601")
 
 
         params.put("7days_yn", "N")
