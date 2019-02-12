@@ -25,7 +25,6 @@ import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.fragment_oper_policy.*
 import org.json.JSONException
 import org.json.JSONObject
-import android.view.MotionEvent
 import android.view.View.OnTouchListener
 
 
@@ -423,6 +422,29 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
                             vvipAddPointET.setText(vvip_add_point.toString())
                         }
 
+                        val silver_point_card = Utils.getInt(company, "silver_point_card")
+
+                        if (silver_point_card > 0) {
+                            cardsilverPointET.setText(Utils.comma(silver_point_card.toString()))
+                        }
+                        val gold_point_card = Utils.getInt(company, "gold_point_card")
+
+                        if (gold_point_card > 0) {
+                            cardgoldPointET.setText(Utils.comma(gold_point_card.toString()))
+                        }
+                        val vip_point_card = Utils.getInt(company, "vip_point_card")
+
+                        if (vip_point_card > 0) {
+                            cardvipPointET.setText(Utils.comma(vip_point_card.toString()))
+                        }
+                        val vvip_point_card = Utils.getInt(company, "vvip_point_card")
+
+                        if (vvip_point_card > 0) {
+                            cardvvipPointET.setText(Utils.comma(vvip_point_card.toString()))
+                        }
+
+
+
                     } else {
 
                     }
@@ -528,6 +550,11 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
         params.put("vvip_point", Utils.getString(vvipPointET).replace(",",""))
         params.put("vvip_add_point", Utils.getString(vvipAddPointET).replace(",",""))
 
+        params.put("silver_point_card", Utils.getString(cardsilverPointET).replace(",",""))
+        params.put("gold_point_card", Utils.getString(cardgoldPointET).replace(",",""))
+        params.put("vip_point_card", Utils.getString(cardvipPointET).replace(",",""))
+        params.put("vvip_point_card", Utils.getString(cardvvipPointET).replace(",",""))
+
         CompanyAction.edit_info(params, object : JsonHttpResponseHandler() {
 
             override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
@@ -539,6 +566,7 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
                     val result = response!!.getString("result")
                     if ("ok" == result) {
                         Toast.makeText(myContext, "수정완료", Toast.LENGTH_SHORT).show()
+                        company_info()
                     } else {
                         Toast.makeText(myContext, "수정실패", Toast.LENGTH_SHORT).show()
                     }

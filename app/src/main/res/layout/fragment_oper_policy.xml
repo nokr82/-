@@ -946,7 +946,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:gravity="center"
-                                android:text="적립금액(카드)"
+                                android:text="적립금액(현금)"
                                 android:textColor="#666666"
                                 android:textSize="16sp"
                                 android:textStyle="bold"/>
@@ -1066,7 +1066,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:gravity="center"
-                                android:text="적립금액(현금)"
+                                android:text="적립금액(카드)"
                                 android:textColor="#666666"
                                 android:textSize="16sp"
                                 android:textStyle="bold"/>
