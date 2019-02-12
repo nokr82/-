@@ -40,18 +40,25 @@ class DlgMemberShipActivity : RootActivity() {
 
     var silver_pay = 0
     var silver_point = 0
+    var silver_point_card = 0
     var silver_add_point = 0
 
     var gold_pay = 0
     var gold_point = 0
+    var gold_point_card = 0
     var gold_add_point = 0
 
     var vip_pay = 0
     var vip_point = 0
+    var vip_point_card = 0
     var vip_add_point = 0
+
+    var type = -1
+
 
     var vvip_pay = 0
     var vvip_point = 0
+    var vvip_point_card = 0
     var vvip_add_point = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,36 +77,84 @@ class DlgMemberShipActivity : RootActivity() {
         vip = intent.getBooleanExtra("vip", false)
         vvip = intent.getBooleanExtra("vvip", false)
 
+        cardLL.setOnClickListener {
+            setmenu2()
+            type = 2
+            cardIV.setImageResource(R.drawable.radio_on)
+
+        }
+        payLL.setOnClickListener {
+            setmenu2()
+            type = 1
+            payIV.setImageResource(R.drawable.radio_on)
+        }
+
+
+
 
         silverLL.setOnClickListener {
+            if (type == -1){
+                Toast.makeText(context,"결제방법을 선택해주세요.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             setmenu()
+
             silverIV.setImageResource(R.drawable.radio_on)
             payTV.text = Utils.thousand(silver_pay) + "원"
-            pointTV.text = Utils.thousand(silver_point) + "원"
+            if (type ==1){
+                pointTV.text = Utils.thousand(silver_point) + "원"
+            }else if (type == 2){
+                pointTV.text = Utils.thousand(silver_point_card) + "원"
+            }
             addPointTV.text = Utils.thousand(silver_add_point) + "%"
             membership = "실버"
         }
         goldLL.setOnClickListener {
+            if (type == -1){
+                Toast.makeText(context,"결제방법을 선택해주세요.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             setmenu()
             goldIV.setImageResource(R.drawable.radio_on)
             payTV.text = Utils.thousand(gold_pay) + "원"
-            pointTV.text = Utils.thousand(gold_point) + "원"
+            if (type ==1){
+                pointTV.text = Utils.thousand(gold_point) + "원"
+            }else if (type == 2){
+                pointTV.text = Utils.thousand(gold_point_card) + "원"
+            }
+
             addPointTV.text = Utils.thousand(gold_add_point) + "%"
             membership = "골드"
         }
         vipLL.setOnClickListener {
+            if (type == -1){
+                Toast.makeText(context,"결제방법을 선택해주세요.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             setmenu()
             vipIV.setImageResource(R.drawable.radio_on)
             payTV.text = Utils.thousand(vip_pay) + "원"
-            pointTV.text = Utils.thousand(vip_point) + "원"
+            if (type ==1){
+                pointTV.text = Utils.thousand(vip_point) + "원"
+            }else if (type == 2){
+                pointTV.text = Utils.thousand(vip_point_card) + "원"
+            }
             addPointTV.text = Utils.thousand(vip_add_point) + "%"
             membership = "VIP"
         }
         vvipLL.setOnClickListener {
+            if (type == -1){
+                Toast.makeText(context,"결제방법을 선택해주세요.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             setmenu()
             vvipIV.setImageResource(R.drawable.radio_on)
             payTV.text = Utils.thousand(vvip_pay) + "원"
-            pointTV.text = Utils.thousand(vvip_point) + "원"
+            if (type ==1){
+                pointTV.text = Utils.thousand(vvip_point) + "원"
+            }else if (type == 2){
+                pointTV.text = Utils.thousand(vvip_point_card) + "원"
+            }
             addPointTV.text = Utils.thousand(vvip_add_point) + "%"
             membership = "VVIP"
         }
@@ -133,12 +188,15 @@ class DlgMemberShipActivity : RootActivity() {
         saveTV.setOnClickListener {
 
             if (member_id < 1) {
-                Toast.makeText(context, "회원을 선택해주세요", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "회원을 선택해주세요.", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
-
+            if (type < 1) {
+                Toast.makeText(context, "결제방식을 선택해주세요.", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
             if (payTV.text.equals("0")) {
-                Toast.makeText(context, "변경하실 등급을 선택해주세요", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "변경하실 등급을 선택해주세요.", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
 
@@ -155,6 +213,10 @@ class DlgMemberShipActivity : RootActivity() {
         goldIV.setImageResource(R.drawable.radio_off)
         vipIV.setImageResource(R.drawable.radio_off)
         vvipIV.setImageResource(R.drawable.radio_off)
+    }
+    fun setmenu2(){
+        cardIV.setImageResource(R.drawable.radio_off)
+        payIV.setImageResource(R.drawable.radio_off)
     }
 
     fun loadData() {
@@ -186,6 +248,11 @@ class DlgMemberShipActivity : RootActivity() {
                         if (silver_point < 1) {
                             silver_point = 0
                         }
+                        silver_point_card = Utils.getInt(company, "silver_point_card")
+
+                        if (silver_point_card < 1) {
+                            silver_point_card = 0
+                        }
 
                         silver_add_point = Utils.getInt(company, "silver_add_point")
 
@@ -203,6 +270,11 @@ class DlgMemberShipActivity : RootActivity() {
 
                         if (gold_point < 1) {
                             gold_point = 0
+                        }
+                        gold_point_card = Utils.getInt(company, "gold_point_card")
+
+                        if (gold_point_card < 1) {
+                            gold_point_card = 0
                         }
 
                         gold_add_point = Utils.getInt(company, "gold_add_point")
@@ -222,6 +294,11 @@ class DlgMemberShipActivity : RootActivity() {
                         if (vip_point < 1) {
                             vip_point = 0
                         }
+                        vip_point_card = Utils.getInt(company, "vip_point_card")
+
+                        if (vip_point_card < 1) {
+                            vip_point_card = 0
+                        }
 
                         vip_add_point = Utils.getInt(company, "vip_add_point")
 
@@ -239,6 +316,12 @@ class DlgMemberShipActivity : RootActivity() {
 
                         if (vvip_point < 1) {
                             vvip_point = 0
+                        }
+
+                        vvip_point_card = Utils.getInt(company, "vvip_point_card")
+
+                        if (vvip_point_card < 1) {
+                            vvip_point_card = 0
                         }
 
                         vvip_add_point = Utils.getInt(company, "vvip_add_point")
@@ -432,6 +515,7 @@ class DlgMemberShipActivity : RootActivity() {
         params.put("company_id",company_id)
         params.put("member_id", member_id)
         params.put("membership", membership)
+        params.put("type", type)
 
 //        params.put("membership", memberShipSP.selectedItem)
 
