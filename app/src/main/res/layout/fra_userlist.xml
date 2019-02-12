@@ -8,11 +8,6 @@
 
 
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
-
 
         <LinearLayout
 
@@ -229,6 +224,8 @@
             </com.devstories.anipointcompany.android.base.RationalLinearLayout>
 
 
+
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -294,6 +291,11 @@
                     android:scrollbars="none"
                     android:fillViewport="true">
 
+                    <android.support.v4.widget.NestedScrollView
+                        android:layout_height="match_parent"
+                        android:layout_width="0dp"
+                        android:layout_weight="1">  
+
                     <LinearLayout
                         android:id="@+id/userLL"
                         android:layout_width="wrap_content"
@@ -302,6 +304,7 @@
 
 
                     </LinearLayout>
+                    </android.support.v4.widget.NestedScrollView>
 
 
                 </HorizontalScrollView>
@@ -310,8 +313,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
-    </ScrollView>
 
 
 
