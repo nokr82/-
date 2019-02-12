@@ -98,7 +98,10 @@ open class UserListAdapter (context:Context, view:Int, data: ArrayList<JSONObjec
                 }else if (membership_name.equals("W")){
                     item.pointTV.text ="VVIP 결제"
                 }
+            }else if (cate == 5){
+                item.typeTV.text = "멤버쉽 추가 적립"
             }
+
         }
 
 
