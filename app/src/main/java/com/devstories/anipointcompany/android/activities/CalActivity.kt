@@ -917,6 +917,9 @@ class CalActivity : RootActivity() {
                         var option_per = Utils.getInt(company, "option_per")
                         val data = response.getJSONArray("categories")
                         Log.d("카테", data.toString())
+                        if (data.length()==0){
+                            option_cate.add("카테고리 미설정")
+                        }
                         for (i in 0..data.length() - 1) {
                             val json = data[i] as JSONObject
                             val Category = json.getJSONObject("Category")
