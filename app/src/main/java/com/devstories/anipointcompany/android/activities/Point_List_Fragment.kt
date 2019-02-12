@@ -66,7 +66,7 @@ class Point_List_Fragment : Fragment() {
 
     lateinit var useradapter: UserListAdapter
     var data = arrayListOf<Int>()
-
+    var totalpage = 0
     var year: Int = 1
     var month: Int = 1
     var day: Int = 1
@@ -197,8 +197,11 @@ class Point_List_Fragment : Fragment() {
 
             override fun onScrollStateChanged(view: AbsListView, scrollState: Int) {
                 if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && lastitemVisibleFlag) {
-                    page++
-                    loadmainData(company_id)
+                    if (totalpage > page) {
+                        page++
+                        loadmainData(company_id)
+                    }
+
                 }
             }
 
@@ -412,7 +415,7 @@ class Point_List_Fragment : Fragment() {
                         val useCouponMembers = Utils.getInt(data, "useCouponMembers")
                         val useCouponCount = Utils.getInt(data, "useCouponCount")
                         var useCouponPay = Utils.getInt(data, "useCouponPay")
-
+                        totalpage = response.getInt("totalPage")
 
                         val allcnt = addPointMember + usePointMember
                         val total_point_cnt = addPointCount + usePointCount
