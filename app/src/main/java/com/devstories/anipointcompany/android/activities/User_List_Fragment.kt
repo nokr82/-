@@ -219,7 +219,10 @@ class User_List_Fragment : Fragment() {
         }
 
     }
-
+    override fun onPause() {
+        super.onPause()
+        page = 1
+    }
     fun setLeftMenu() {
         entire_viewTV.setTextColor(Color.parseColor("#80ffffff"))
         new_userTV.setTextColor(Color.parseColor("#80ffffff"))
