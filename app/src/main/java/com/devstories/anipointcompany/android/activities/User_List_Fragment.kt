@@ -7,27 +7,28 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat.startActivity
 import android.util.Log
-import android.view.*
-import android.widget.*
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.HorizontalScrollView
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import com.devstories.anipointcompany.android.Actions.MemberAction
 import com.devstories.anipointcompany.android.R
-import com.devstories.anipointcompany.android.R.id.*
 import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
 import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.fra_userlist.*
-import me.grantland.widget.AutofitTextView
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
-import android.view.ViewTreeObserver.OnScrollChangedListener
-import android.opengl.ETC1.getHeight
 
 
 //고객목록메인
@@ -98,9 +99,6 @@ class User_List_Fragment : Fragment() {
 
         company_id = PrefUtils.getIntPreference(myContext, "company_id")
 
-        mainData(1)
-
-
         hoSV.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
 
             val view = hoSV.getChildAt(hoSV.getChildCount() - 1)
@@ -138,19 +136,21 @@ class User_List_Fragment : Fragment() {
 
 
 
-        Utils.getViewHeight(scrollLL, object : Utils.OnHeightSetListener {
-            override fun sized(width: Int, height: Int) {
-                val lps = scrollLL.getLayoutParams()
-                lps.height = height
-                lps.width = width
-                scrollLL.setLayoutParams(lps)
-            }
+        Utils.getViewHeight(scrollLL) { width, height ->
+            val lps = scrollLL.getLayoutParams()
+            lps.height = height
+            lps.width = width
+            scrollLL.setLayoutParams(lps)
         }
-        )
 
+        Utils.getViewHeight(hoSV) { width, height ->
+            val lps = hoSV.getLayoutParams()
+            lps.height = height
+            lps.width = width
+            hoSV.setLayoutParams(lps)
 
-
-
+            mainData(1)
+        }
 
         useLL.setOnClickListener {
             val intent = Intent(myContext, CalActivity::class.java)
@@ -219,10 +219,12 @@ class User_List_Fragment : Fragment() {
         }
 
     }
+
     override fun onPause() {
         super.onPause()
         page = 1
     }
+
     fun setLeftMenu() {
         entire_viewTV.setTextColor(Color.parseColor("#80ffffff"))
         new_userTV.setTextColor(Color.parseColor("#80ffffff"))
@@ -265,214 +267,218 @@ class User_List_Fragment : Fragment() {
 
 
                         for (i in 0..(data.length() - 1)) {
-                                adapterData.add(data[i] as JSONObject)
+                            adapterData.add(data[i] as JSONObject)
 
-                                var json = data[i] as JSONObject
-                                val member = json.getJSONObject("Member")
-                                var point_o = json.getJSONObject("Point")
-                                var visitedList = json.getJSONArray("VisitedList")
+                            var json = data[i] as JSONObject
+                            val member = json.getJSONObject("Member")
+                            var point_o = json.getJSONObject("Point")
+                            var visitedList = json.getJSONArray("VisitedList")
 
-                                var point = Utils.getString(point_o, "balance")
-                                var member_id = Utils.getInt(member, "id")
+                            var point = Utils.getString(point_o, "balance")
+                            var member_id = Utils.getInt(member, "id")
 
-                                val userView = View.inflate(myContext, R.layout.item_user, null)
+                            val userView = View.inflate(myContext, R.layout.item_user, null)
+
+                            val lps = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 50)
+                            lps.height = hoSV.layoutParams.height
+                            userView.layoutParams = lps
 
 
-                                var dateTV: TextView = userView.findViewById(R.id.dateTV)
-                                var nameTV: TextView = userView.findViewById(R.id.nameTV)
-                                var pointTV: TextView = userView.findViewById(R.id.pointTV)
-                                var acc_pointTV: TextView = userView.findViewById(R.id.acc_pointTV)
-                                var visitTV: TextView = userView.findViewById(R.id.visitTV)
-                                var name2TV: TextView = userView.findViewById(R.id.name2TV)
-                                var genderTV: TextView = userView.findViewById(R.id.genderTV)
-                                var ageTV: TextView = userView.findViewById(R.id.ageTV)
-                                var birthTV: TextView = userView.findViewById(R.id.birthTV)
-                                var use_pointTV: TextView = userView.findViewById(R.id.use_pointTV)
-                                var couponTV: TextView = userView.findViewById(R.id.couponTV)
-                                var visit_recordTV: TextView = userView.findViewById(R.id.visit_recordTV)
+                            var dateTV: TextView = userView.findViewById(R.id.dateTV)
+                            var nameTV: TextView = userView.findViewById(R.id.nameTV)
+                            var pointTV: TextView = userView.findViewById(R.id.pointTV)
+                            var acc_pointTV: TextView = userView.findViewById(R.id.acc_pointTV)
+                            var visitTV: TextView = userView.findViewById(R.id.visitTV)
+                            var name2TV: TextView = userView.findViewById(R.id.name2TV)
+                            var genderTV: TextView = userView.findViewById(R.id.genderTV)
+                            var ageTV: TextView = userView.findViewById(R.id.ageTV)
+                            var birthTV: TextView = userView.findViewById(R.id.birthTV)
+                            var use_pointTV: TextView = userView.findViewById(R.id.use_pointTV)
+                            var couponTV: TextView = userView.findViewById(R.id.couponTV)
+                            var visit_recordTV: TextView = userView.findViewById(R.id.visit_recordTV)
 //                            var stack_pointTV: TextView = userView.findViewById(R.id.stack_pointTV)
-                                var memoTV: TextView = userView.findViewById(R.id.memoTV)
-                                var phoneTV: TextView = userView.findViewById(R.id.phoneTV)
-                                var modiLL: LinearLayout = userView.findViewById(R.id.modiLL)
-                                var msgLL: LinearLayout = userView.findViewById(R.id.msgLL)
-                                var couponLL: LinearLayout = userView.findViewById(R.id.couponLL)
-                                var membershipIV: ImageView = userView.findViewById(R.id.membershipIV)
+                            var memoTV: TextView = userView.findViewById(R.id.memoTV)
+                            var phoneTV: TextView = userView.findViewById(R.id.phoneTV)
+                            var modiLL: LinearLayout = userView.findViewById(R.id.modiLL)
+                            var msgLL: LinearLayout = userView.findViewById(R.id.msgLL)
+                            var couponLL: LinearLayout = userView.findViewById(R.id.couponLL)
+                            var membershipIV: ImageView = userView.findViewById(R.id.membershipIV)
 
 
-                                var id = Utils.getInt(member, "id")
-                                var age = Utils.getString(member, "age")
-                                var name = Utils.getString(member, "name")
-                                var gender = Utils.getString(member, "gender")
-                                var memo = Utils.getString(member, "memo")
-                                var phone = Utils.getString(member, "phone")
-                                var coupon = Utils.getString(member, "coupon")
-                                var stack_point = Utils.getString(member, "point")
-                                var use_point = Utils.getString(member, "use_point")
-                                var company_id = Utils.getString(member, "company_id")
-                                var birth = Utils.getString(member, "birth")
-                                var created = Utils.getString(member, "created")
-                                var visit = Utils.getString(member, "visit_cnt")
-                                val sdf = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
+                            var id = Utils.getInt(member, "id")
+                            var age = Utils.getString(member, "age")
+                            var name = Utils.getString(member, "name")
+                            var gender = Utils.getString(member, "gender")
+                            var memo = Utils.getString(member, "memo")
+                            var phone = Utils.getString(member, "phone")
+                            var coupon = Utils.getString(member, "coupon")
+                            var stack_point = Utils.getString(member, "point")
+                            var use_point = Utils.getString(member, "use_point")
+                            var company_id = Utils.getString(member, "company_id")
+                            var birth = Utils.getString(member, "birth")
+                            var created = Utils.getString(member, "created")
+                            var visit = Utils.getString(member, "visit_cnt")
+                            val sdf = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
 
-                                couponLL.setOnClickListener {
-                                    var intent = Intent(context, DlgCouponListActivity::class.java)
-                                    intent.putExtra("phone", phone)
-                                    Log.d("쿠폰전화", phone)
-                                    startActivityForResult(intent, EDIT_MEMBER_INFO)
-                                }
-
-
-                                if (Utils.getString(point_o, "updated") != "") {
-                                    val updated = SimpleDateFormat("yy-MM-dd HH:mm:ss").parse(Utils.getString(point_o, "updated"))
-                                    var updated_date = sdf.format(updated)
-                                    dateTV.text = updated_date + " 방문"
-                                }
-                                var r_phone: String? = null
-                                if (age.equals("")) {
-                                    age = "─"
-                                    ageTV.gravity = Gravity.CENTER
-                                } else {
-                                    age += "대"
-                                }
-
-                                if (name == "─") {
-                                    name2TV.gravity = Gravity.CENTER
-                                }
+                            couponLL.setOnClickListener {
+                                var intent = Intent(context, DlgCouponListActivity::class.java)
+                                intent.putExtra("phone", phone)
+                                Log.d("쿠폰전화", phone)
+                                startActivityForResult(intent, EDIT_MEMBER_INFO)
+                            }
 
 
+                            if (Utils.getString(point_o, "updated") != "") {
+                                val updated = SimpleDateFormat("yy-MM-dd HH:mm:ss").parse(Utils.getString(point_o, "updated"))
+                                var updated_date = sdf.format(updated)
+                                dateTV.text = updated_date + " 방문"
+                            }
+                            var r_phone: String? = null
+                            if (age.equals("")) {
+                                age = "─"
+                                ageTV.gravity = Gravity.CENTER
+                            } else {
+                                age += "대"
+                            }
 
-                                if (birth.equals("")) {
-                                    birth = "─"
-                                    birthTV.gravity = Gravity.CENTER
-                                }
-                                if (name.equals("")) {
-                                    name = "─"
-                                    name2TV.gravity = Gravity.CENTER
-                                }
-                                if (stack_point.equals("")) {
-                                    stack_point = "0"
-                                }
-
-                                if (use_point.equals("")) {
-                                    use_point = "0"
-                                }
-
-
-                                if (phone.length == 11) {
-                                    //번호하이픈
-                                    r_phone = phone.substring(0, 3) + "-" + phone.substring(3, 7) + "-" + phone.substring(7, 11)
-                                    r_phone = r_phone.substring(0, 6) + '*' + r_phone.substring(7)
-                                    r_phone = r_phone.substring(0, 5) + '*' + r_phone.substring(6)
-                                    r_phone = r_phone.substring(0, 4) + '*' + r_phone.substring(5)
-                                } else {
-                                    r_phone = phone
-                                }
+                            if (name == "─") {
+                                name2TV.gravity = Gravity.CENTER
+                            }
 
 
 
-                                pointTV.text = Utils.comma(point) + "P"
-                                use_pointTV.text = Utils.comma(use_point) + "P"
-                                acc_pointTV.text = Utils.comma(stack_point) + "P"
+                            if (birth.equals("")) {
+                                birth = "─"
+                                birthTV.gravity = Gravity.CENTER
+                            }
+                            if (name.equals("")) {
+                                name = "─"
+                                name2TV.gravity = Gravity.CENTER
+                            }
+                            if (stack_point.equals("")) {
+                                stack_point = "0"
+                            }
+
+                            if (use_point.equals("")) {
+                                use_point = "0"
+                            }
+
+
+                            if (phone.length == 11) {
+                                //번호하이픈
+                                r_phone = phone.substring(0, 3) + "-" + phone.substring(3, 7) + "-" + phone.substring(7, 11)
+                                r_phone = r_phone.substring(0, 6) + '*' + r_phone.substring(7)
+                                r_phone = r_phone.substring(0, 5) + '*' + r_phone.substring(6)
+                                r_phone = r_phone.substring(0, 4) + '*' + r_phone.substring(5)
+                            } else {
+                                r_phone = phone
+                            }
+
+
+
+                            pointTV.text = Utils.comma(point) + "P"
+                            use_pointTV.text = Utils.comma(use_point) + "P"
+                            acc_pointTV.text = Utils.comma(stack_point) + "P"
 //                            stack_pointTV.text = "누적:" +Utils.comma(stack_point) + "P"
 
-                                ageTV.text = age
-                                nameTV.text = r_phone
-                                name2TV.text = name
+                            ageTV.text = age
+                            nameTV.text = r_phone
+                            name2TV.text = name
 
-                                if (gender == "F") {
-                                    gender = "여성"
-                                } else if (gender == "M") {
-                                    gender = "남성"
-                                } else {
-                                    gender = "모름"
-                                }
+                            if (gender == "F") {
+                                gender = "여성"
+                            } else if (gender == "M") {
+                                gender = "남성"
+                            } else {
+                                gender = "모름"
+                            }
 
-                                genderTV.text = gender
-                                memoTV.text = memo
-                                couponTV.text = coupon + "장"
-                                birthTV.text = birth
-                                visitTV.text = Utils.comma(visit) + "회"
-                                phoneTV.text = phone
+                            genderTV.text = gender
+                            memoTV.text = memo
+                            couponTV.text = coupon + "장"
+                            birthTV.text = birth
+                            visitTV.text = Utils.comma(visit) + "회"
+                            phoneTV.text = phone
 
-                                var str = ""
-
-
-
-                                for (i in 0 until visitedList.length()) {
-                                    val json: JSONObject = visitedList[i] as JSONObject
-                                    val companySale = json.getJSONObject("CompanySale")
+                            var str = ""
 
 
-                                    val created = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(Utils.getString(companySale, "created"))
-                                    var created_str = SimpleDateFormat("yy-MM-dd").format(created)
 
-                                    /*  if (str.length > 0) {
-                                          str += "\n"
+                            for (i in 0 until visitedList.length()) {
+                                val json: JSONObject = visitedList[i] as JSONObject
+                                val companySale = json.getJSONObject("CompanySale")
+
+
+                                val created = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(Utils.getString(companySale, "created"))
+                                var created_str = SimpleDateFormat("yy-MM-dd").format(created)
+
+                                /*  if (str.length > 0) {
+                                      str += "\n"
+                                  }*/
+                                var use_point = Utils.getString(companySale, "use_point")
+                                var point = Utils.getString(companySale, "point")
+                                var coupon = Utils.getString(companySale, "coupon_id")
+                                var membership_id = Utils.getString(companySale, "member_ship_id")
+
+
+                                var price = Utils.getString(companySale, "price")
+                                /*      if (use_point.equals("")){
+                                          use_point="0"
+                                      }
+                                      if (point.equals("")){
+                                          point = "0"
+                                      }
+                                      if (coupon.equals("")){
+                                          coupon = "없음"
                                       }*/
-                                    var use_point = Utils.getString(companySale, "use_point")
-                                    var point = Utils.getString(companySale, "point")
-                                    var coupon = Utils.getString(companySale, "coupon_id")
-                                    var membership_id = Utils.getString(companySale, "member_ship_id")
 
-
-                                    var price = Utils.getString(companySale, "price")
-                                    /*      if (use_point.equals("")){
-                                              use_point="0"
-                                          }
-                                          if (point.equals("")){
-                                              point = "0"
-                                          }
-                                          if (coupon.equals("")){
-                                              coupon = "없음"
-                                          }*/
-
-                                    created_str = created_str.replace("-", "")
+                                created_str = created_str.replace("-", "")
 
 
 //                                str = str + created_str + " / " + Utils.getString(category, "name") + " / " + Utils.comma(Utils.getString(companySale, "price"))+"원\n"+
 //                                        "적립: " +Utils.comma(point) + "P/사용:" +Utils.comma(use_point)+ "P"+"/사용쿠폰:"+coupon
 
 
-                                    if (coupon != "") {
-                                        val MemberCoupon = json.getJSONObject("MemberCoupon")
-                                        var coupon_name = Utils.getString(MemberCoupon, "coupon_name")
-                                        str = str + created_str + " 쿠폰 사용 " + coupon_name + "\n"
+                                if (coupon != "") {
+                                    val MemberCoupon = json.getJSONObject("MemberCoupon")
+                                    var coupon_name = Utils.getString(MemberCoupon, "coupon_name")
+                                    str = str + created_str + " 쿠폰 사용 " + coupon_name + "\n"
+                                }
+
+                                if (membership_id != "") {
+                                    var membership = Utils.getString(companySale, "membership")
+                                    var membership_point = Utils.getString(companySale, "membership_point")
+                                    var membership_pay = Utils.getString(companySale, "membership_pay")
+                                    var name = ""
+                                    if (membership == "S") {
+                                        name = "실버"
+                                    } else if (membership == "G") {
+                                        name = "골드"
+                                    } else if (membership == "V") {
+                                        name = "VIP"
+                                    } else if (membership == "W") {
+                                        name = "VVIP"
                                     }
+                                    str = str + created_str + name + " 결제 " + membership_pay + "원" + " / 적립 " + membership_point + "\n"
 
-                                    if (membership_id !=""){
-                                        var membership = Utils.getString(companySale, "membership")
-                                        var membership_point = Utils.getString(companySale, "membership_point")
-                                        var membership_pay = Utils.getString(companySale, "membership_pay")
-                                        var name = ""
-                                        if (membership=="S"){
-                                            name= "실버"
-                                        }else if (membership =="G"){
-                                            name= "골드"
-                                        }else if (membership =="V"){
-                                            name= "VIP"
-                                        }else if (membership =="W"){
-                                            name= "VVIP"
-                                        }
-                                        str = str + created_str + name + " 결제 " + membership_pay +"원"+ " / 적립 "+membership_point+ "\n"
+                                }
 
+
+
+
+                                if (point != "" && use_point != "") {
+                                    str = str + created_str + " 사용 " + Utils.comma(use_point) + "P /" + " 적립 " + Utils.comma(point) + "P" + "(" + Utils.comma(Utils.getString(companySale, "price")) + "*" +
+                                            Utils.getString(companySale, "per") + "%)\n"
+                                } else if (use_point != "") {
+                                    if (use_point != "0") {
+                                        str = str + created_str + " 사용 " + Utils.comma(use_point) + "P\n"
                                     }
+                                } else if (point != "") {
+                                    str = str + created_str + " 적립 " + Utils.comma(point) + "P" + "(" + Utils.comma(Utils.getString(companySale, "price")) + "*" +
+                                            Utils.getString(companySale, "per") + "%)\n"
+                                } else {
 
-
-
-
-                                    if (point != "" && use_point != "") {
-                                        str = str + created_str + " 사용 " + Utils.comma(use_point) + "P /" + " 적립 " + Utils.comma(point) + "P" + "(" + Utils.comma(Utils.getString(companySale, "price")) + "*" +
-                                                Utils.getString(companySale, "per") + "%)\n"
-                                    } else if (use_point != "") {
-                                        if (use_point != "0") {
-                                            str = str + created_str + " 사용 " + Utils.comma(use_point) + "P\n"
-                                        }
-                                    } else if (point != "") {
-                                        str = str + created_str + " 적립 " + Utils.comma(point) + "P" + "(" + Utils.comma(Utils.getString(companySale, "price")) + "*" +
-                                                Utils.getString(companySale, "per") + "%)\n"
-                                    } else {
-
-                                    }
+                                }
 //                                if (coupon != "-1"){
 //                                    val MemberCoupon = json.getJSONObject("MemberCoupon")
 //                                    var coupon_name = Utils.getString(MemberCoupon, "coupon_name")
@@ -480,24 +486,24 @@ class User_List_Fragment : Fragment() {
 //                                }
 
 
-                                }
+                            }
 
-                                visit_recordTV.text = str
+                            visit_recordTV.text = str
 
-                                msgLL.setOnClickListener {
-                                    var intent = Intent()
-                                    intent.putExtra("member_id", member_id)
-                                    Log.d("멤버아이디", member_id.toString())
-                                    intent.action = "MSG_NEXT"
-                                    myContext.sendBroadcast(intent)
-                                }
+                            msgLL.setOnClickListener {
+                                var intent = Intent()
+                                intent.putExtra("member_id", member_id)
+                                Log.d("멤버아이디", member_id.toString())
+                                intent.action = "MSG_NEXT"
+                                myContext.sendBroadcast(intent)
+                            }
 
 
-                                modiLL.setOnClickListener {
-                                    var intent = Intent(context, DlgEditMemberInfoActivity::class.java)
-                                    intent.putExtra("member_id", member_id)
-                                    startActivityForResult(intent, EDIT_MEMBER_INFO)
-                                }
+                            modiLL.setOnClickListener {
+                                var intent = Intent(context, DlgEditMemberInfoActivity::class.java)
+                                intent.putExtra("member_id", member_id)
+                                startActivityForResult(intent, EDIT_MEMBER_INFO)
+                            }
 
                             val membership = Utils.getString(member, "membership")
 
