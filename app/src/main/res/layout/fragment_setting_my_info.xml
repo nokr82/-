@@ -435,7 +435,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="100dp"
+                android:layout_marginBottom="70dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="60dp"
                 android:background="@drawable/background_strock_e7e7e7"
@@ -622,7 +622,18 @@
                     android:textColor="#ffffff"
                     android:textSize="20sp" />
             </LinearLayout>
-
+            <TextView
+                android:id="@+id/logoutTV"
+                android:layout_width="150dp"
+                android:layout_height="51dp"
+                android:layout_marginRight="30dp"
+                android:layout_gravity="right"
+                android:layout_marginBottom="40dp"
+                android:background="#e83363"
+                android:gravity="center"
+                android:text="로그아웃"
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
         </LinearLayout>
 
 </LinearLayout>

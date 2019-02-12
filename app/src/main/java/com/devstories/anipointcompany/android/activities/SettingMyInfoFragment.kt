@@ -23,6 +23,7 @@ import com.loopj.android.http.RequestParams
 import com.nostra13.universalimageloader.core.ImageLoader
 import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.fragment_setting_my_info.*
+import kotlinx.android.synthetic.main.fragment_setting_my_info.view.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.ByteArrayInputStream
@@ -101,7 +102,13 @@ class SettingMyInfoFragment : Fragment() {
         company_info(company_id)
 
 
-
+        logoutTV.setOnClickListener {
+            PrefUtils.clear(context)
+            val intent = Intent(context, LoginActivity::class.java)
+            PrefUtils.setPreference(context,"autoLogin", false)
+            intent.flags= Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
 
 
         //정보수정
