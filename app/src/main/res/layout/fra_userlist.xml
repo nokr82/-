@@ -288,10 +288,7 @@
                     android:fillViewport="true"
                     android:scrollbars="none">
 
-                    <android.support.v4.widget.NestedScrollView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fillViewport="true"> 
+
 
                         <LinearLayout
                             android:id="@+id/userLL"
@@ -300,7 +297,7 @@
                             android:orientation="horizontal">
 
                         </LinearLayout>
-                    </android.support.v4.widget.NestedScrollView>
+
 
 
                 </HorizontalScrollView>
