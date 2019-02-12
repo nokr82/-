@@ -25,6 +25,10 @@ import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.fragment_oper_policy.*
 import org.json.JSONException
 import org.json.JSONObject
+import android.view.MotionEvent
+import android.view.View.OnTouchListener
+
+
 
 //설정 -운영정책
 class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
@@ -155,6 +159,18 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
         membershipAdapter = MembershipAdapter(myContext, R.layout.item_membership, membershipData)
         membershipLV.adapter = membershipAdapter
         membershipLV.setOnScrollListener(this)
+
+        membershipLV.setOnTouchListener(OnTouchListener { v, event ->
+            membershipLV.requestDisallowInterceptTouchEvent(true)
+
+            false
+        })
+
+
+
+
+
+
 
         rdo1000wonIV.setOnClickListener {
             setmenu()
