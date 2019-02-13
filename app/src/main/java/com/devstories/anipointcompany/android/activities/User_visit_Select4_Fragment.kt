@@ -340,7 +340,7 @@ fun graph(){
 
 
 
-                        var barData = BarData(barDataSet,barDatafamaleSet,barDataMenSet)
+                        var barData = BarData(barDatafamaleSet,barDataSet,barDataMenSet)
 //                        var barData = BarData(dataSets)
 
                         barData.setBarWidth(0.27f)
