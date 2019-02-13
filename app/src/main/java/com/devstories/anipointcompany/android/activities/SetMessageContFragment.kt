@@ -287,7 +287,7 @@ class SetMessageContFragment : Fragment() {
             params.put("member_id", member_id)
         }
 
-        params.put("message","\n(광고)\n"+ message+"\n무료거부:080-450-5601")
+        params.put("message",message+"\n무료거부:080-450-5601")
 
 
         params.put("7days_yn", "N")
