@@ -81,12 +81,30 @@ class DlgMemberShipActivity : RootActivity() {
             setmenu2()
             type = 2
             cardIV.setImageResource(R.drawable.radio_on)
+            if (membership=="실버"){
+                pointTV.text = Utils.thousand(silver_point_card) + "원"
+            }else if (membership=="골드"){
+                pointTV.text = Utils.thousand(gold_point_card) + "원"
+            }else if (membership=="VIP"){
+                pointTV.text = Utils.thousand(gold_point_card) + "원"
+            }else if (membership=="VVIP"){
+                pointTV.text = Utils.thousand(gold_point_card) + "원"
+            }
 
         }
         payLL.setOnClickListener {
             setmenu2()
             type = 1
             payIV.setImageResource(R.drawable.radio_on)
+            if (membership=="실버"){
+                pointTV.text = Utils.thousand(silver_point) + "원"
+            }else if (membership=="골드"){
+                pointTV.text = Utils.thousand(gold_point) + "원"
+            }else if (membership=="VIP"){
+                pointTV.text = Utils.thousand(gold_point) + "원"
+            }else if (membership=="VVIP"){
+                pointTV.text = Utils.thousand(gold_point) + "원"
+            }
         }
 
 
