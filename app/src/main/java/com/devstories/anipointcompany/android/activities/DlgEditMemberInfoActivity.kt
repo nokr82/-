@@ -83,7 +83,7 @@ class DlgEditMemberInfoActivity : RootActivity() {
                     age = "40"
                 }else if (position == 5) {
                     age = "50"
-                }else if (position == 5) {
+                }else if (position == 6) {
                     age = "60"
                 }
 
@@ -135,7 +135,7 @@ class DlgEditMemberInfoActivity : RootActivity() {
 
                     if ("ok" == result) {
                         val member = response.getJSONObject("member")
-                        val gender = Utils.getString(member, "gender")
+                        gender = Utils.getString(member, "gender")
                         Log.d("성별",gender)
                         if (gender.equals("M")){
                             setmenu()
