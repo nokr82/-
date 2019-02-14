@@ -652,13 +652,89 @@
                         </LinearLayout>
 
                     </LinearLayout>
-
                 </LinearLayout>
+
 
 
             </LinearLayout>
 
         </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <View
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp">
+
+
+
+                </View>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1.6"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:padding="20dp">
+
+                <me.grantland.widget.AutofitTextView
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:id="@+id/companyNameTV"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="36dp"
+                    android:layout_marginRight="28dp"
+                    android:background="@drawable/background_box_f4f4f4"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:textColor="#555555"
+                    android:text="매장 이름"/>
+
+                <me.grantland.widget.AutofitTextView
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:id="@+id/memberNameTV"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="36dp"
+                    android:layout_marginRight="28dp"
+                    android:background="@drawable/background_box_f4f4f4"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:textColor="#555555"
+                    android:text="고객 이름"/>
+
+                <me.grantland.widget.AutofitTextView
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:id="@+id/pointTV"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="36dp"
+                    android:background="@drawable/background_box_f4f4f4"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:textColor="#555555"
+                    android:text="보유 포인트"/>
+                <me.grantland.widget.AutofitTextView
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:id="@+id/companyTelTV"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="36dp"
+                    android:layout_marginLeft="28dp"
+                    android:background="@drawable/background_box_f4f4f4"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:textColor="#555555"
+                    android:text="매장번호"/>
+
+            </LinearLayout>
+            </LinearLayout>
             <TextView
                 android:id="@+id/saveTV"
                 android:layout_width="150dp"

@@ -82,6 +82,40 @@ class AutoCouponSettingsFragment : Fragment() {
 
         couponDateSP.adapter = ArrayAdapter(myContext, R.layout.spiner_item, op_expiration)
 
+
+
+        companyNameTV.setOnClickListener {
+            var message = messageET.text.toString() + "{_매장이름_}"
+            messageET.setText(message)
+        }
+
+        memberNameTV.setOnClickListener {
+
+            var message = messageET.text.toString() + "{_고객이름_}"
+
+            messageET.setText(message)
+
+        }
+
+        companyTelTV.setOnClickListener {
+
+            var message = messageET.text.toString() + "{_매장번호_}"
+
+            messageET.setText(message)
+
+        }
+
+        pointTV.setOnClickListener {
+
+            var message = messageET.text.toString() + "{_포인트_}"
+
+            messageET.setText(message)
+
+        }
+
+
+
+
         newMemberLL.setOnClickListener {
             setMenuView()
             newMemberLL.setBackgroundColor(Color.parseColor("#eeeeee"))
