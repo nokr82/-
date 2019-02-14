@@ -59,7 +59,9 @@ class CalActivity : RootActivity() {
     var option_cate = ArrayList<String>()
 
     var EDIT_POINT = 101
+    var option_age = arrayOf("미입력","10대","20대","30대","40대","50대","60대")
 
+    var age = ""
 
     internal var checkHandler: Handler = object : Handler() {
         override fun handleMessage(msg: android.os.Message) {
@@ -78,6 +80,36 @@ class CalActivity : RootActivity() {
 
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+
+        dropIV.rotation = 90f
+
+        adapter = ArrayAdapter(this, R.layout.spiner_item_join, option_age)
+        ageSP.adapter = adapter
+
+        ageSP.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+                if (position == 0) {
+                    age = ""
+                } else if (position == 1) {
+                    age = "10"
+                }else if (position == 2) {
+                    age = "20"
+                }else if (position == 3) {
+                    age = "30"
+                }else if (position == 4) {
+                    age = "40"
+                }else if (position == 5) {
+                    age = "50"
+                }else if (position == 6) {
+                    age = "60"
+                }
+
+            }
+        }
 
         intent = getIntent()
         type = intent.getIntExtra("type", -1)
@@ -615,10 +647,14 @@ class CalActivity : RootActivity() {
                                 }
 
                                 phoneTV.text = phone
-                                ageTV.text = age
-                                birthTV.text = birth
+                                if (age !=""){
+                                    ageTV.text = age+"대"
+                                }else{
+                                    ageTV.text = "미입력"
+                                }
+                                birthTV.text = "생년월일: "+birth
                                 couponTV.text = coupon
-                                memoTV.text = memo
+                                memoTV.text = "메모: "+memo
 
                             } else if (step == 5) {
                                 var phone = Utils.getString(member, "phone")
@@ -648,10 +684,15 @@ class CalActivity : RootActivity() {
                                     femaleIV.setImageResource(R.drawable.radio_on)
                                 }
                                 phoneTV.text = phone
-                                ageTV.text = age
-                                birthTV.text = birth
+                                if (age !=""){
+                                    ageTV.text = age+"대"
+                                }else{
+                                    ageTV.text = "미입력"
+                                }
+
+                                birthTV.text = "생년월일: "+birth
                                 couponTV.text = coupon
-                                memoTV.text = memo
+                                memoTV.text = "메모: "+memo
 
                                 getUserCouponList(phone)
 
@@ -814,7 +855,7 @@ class CalActivity : RootActivity() {
     fun member_join() {
         var getid = member_id
         var getPhone = Utils.getString(phoneET)
-        var getAge = Utils.getString(ageET)
+        var getAge = age
 
 
         var getBirth = Utils.getString(birthET)
