@@ -65,12 +65,35 @@ open class UserListAdapter (context:Context, view:Int, data: ArrayList<JSONObjec
         }
 
         if (point =="0"){
-            item.nameTV.text = phone
-            item.updateTV.text =updated
-            item.typeTV.text = "쿠폰 사용"
-            val coupon = json.getJSONObject("MemberCoupon")
-            var coupon_name = Utils.getString(coupon, "coupon_name")
-            item.pointTV.text =coupon_name
+            if (cate==0){
+                if (type==1){
+                    item.typeTV.text = "포인트 적립"
+                    if (point == "-1"){
+                        item.pointTV.text ="0"+"P"
+                    }else{
+                        item.pointTV.text = Utils.comma(point)+"P"
+                    }
+
+                }else{
+                    item.typeTV.text = "포인트 사용"
+                    if (point == "-1"){
+                        item.pointTV.text ="0"+"P"
+                    }else{
+                        item.pointTV.text = Utils.comma(point)+"P"
+                    }
+                }
+                item.nameTV.text = phone
+                item.updateTV.text =updated
+            }else{
+                item.nameTV.text = phone
+                item.updateTV.text =updated
+                item.typeTV.text = "쿠폰 사용"
+                val coupon = json.getJSONObject("MemberCoupon")
+                var coupon_name = Utils.getString(coupon, "coupon_name")
+                item.pointTV.text =coupon_name
+            }
+
+
 
         }else{
             item.nameTV.text = phone
