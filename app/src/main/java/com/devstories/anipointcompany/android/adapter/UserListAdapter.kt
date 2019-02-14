@@ -74,7 +74,11 @@ open class UserListAdapter (context:Context, view:Int, data: ArrayList<JSONObjec
 
         }else{
             item.nameTV.text = phone
-            item.pointTV.text = Utils.comma(point)+"P"
+            if (point == "-1"){
+                item.pointTV.text ="0"+"P"
+            }else{
+                item.pointTV.text = Utils.comma(point)+"P"
+            }
             item.updateTV.text =updated
 
             if (type==1){

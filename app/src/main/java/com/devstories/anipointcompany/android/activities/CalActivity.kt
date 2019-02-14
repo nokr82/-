@@ -655,7 +655,12 @@ class CalActivity : RootActivity() {
                                     ageTV.text = "미입력"
                                 }
                                 birthTV.text = "생년월일: "+birth
-                                couponTV.text = coupon
+                                if (couponData.size>0){
+                                    couponTV.text = couponData.size.toString()
+                                }else{
+                                    couponTV.text = "0"
+                                }
+
                                 memoTV.text = "메모: "+memo
 
                             } else if (step == 5) {
@@ -693,7 +698,11 @@ class CalActivity : RootActivity() {
                                 }
 
                                 birthTV.text = "생년월일: "+birth
-                                couponTV.text = coupon
+                                if (couponData.size>0){
+                                    couponTV.text = couponData.size.toString()
+                                }else{
+                                    couponTV.text = "0"
+                                }
                                 memoTV.text = "메모: "+memo
 
                                 getUserCouponList(phone)
