@@ -111,7 +111,7 @@ class User_List_Fragment : Fragment() {
 
                     if (totalpage > page) {
                         page++
-                        mainData(type)
+                        mainData(type,"")
                     }
                 }
 
@@ -149,7 +149,7 @@ class User_List_Fragment : Fragment() {
             lps.width = width
             hoSV.setLayoutParams(lps)
 
-            mainData(1)
+            mainData(1,"")
         }
 
         useLL.setOnClickListener {
@@ -167,7 +167,7 @@ class User_List_Fragment : Fragment() {
             entire_viewTV.setTextColor(Color.parseColor("#ffffff"))
             type = 1
             page = 1
-            mainData(1)
+            mainData(1,"")
         }
         //단골
         userList_most_freq_userLL.setOnClickListener {
@@ -181,7 +181,7 @@ class User_List_Fragment : Fragment() {
             birthTV.setTextColor(Color.parseColor("#ffffff"))
             type = 2
             page = 1
-            mainData(2)
+            mainData(2,"")
             isBirthTab = true
         }
 
@@ -198,7 +198,7 @@ class User_List_Fragment : Fragment() {
             }
             Utils.hideKeyboard(myContext)
             keywordET.setText("")
-            keyWordData(key)
+            mainData(1,key)
 
         }
 
@@ -207,7 +207,7 @@ class User_List_Fragment : Fragment() {
             new_userTV.setTextColor(Color.parseColor("#ffffff"))
             type = 3
             page = 1
-            mainData(3)
+            mainData(3,"")
         }
 
         userList_most_freq_userLL.setOnClickListener {
@@ -215,7 +215,7 @@ class User_List_Fragment : Fragment() {
             most_freqTV.setTextColor(Color.parseColor("#ffffff"))
             type = 4
             page = 1
-            mainData(4)
+            mainData(4,"")
         }
 
     }
@@ -233,13 +233,13 @@ class User_List_Fragment : Fragment() {
     }
 
     //고객목롭뽑기
-    fun mainData(type: Int) {
+    fun mainData(type: Int,keyword:String) {
         val params = RequestParams()
         params.put("company_id", company_id)
         params.put("type", type)
         params.put("page", page)
         params.put("membership_type", membership_type)
-
+        params.put("keyword", "$keyword")
         MemberAction.user_list(params, object : JsonHttpResponseHandler() {
 
             override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
@@ -964,7 +964,7 @@ class User_List_Fragment : Fragment() {
         when (requestCode) {
             EDIT_MEMBER_INFO -> {
                 if (resultCode == RESULT_OK) {
-                    mainData(1)
+                    mainData(1,"")
                     val member_id = data!!.getIntExtra("member_id", -1)
                     Log.d("받아오는 값", member_id.toString())
 
