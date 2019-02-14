@@ -331,7 +331,7 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
                             visitcntTV.setText(frequenter_standard)
                         } else if (frequenter_type.equals("P")) {
                             a_costLL.callOnClick()
-                            costTV.setText(frequenter_standard)
+                            costTV.setText(Utils.comma(frequenter_standard))
                         }
 
                         val cate = response.getJSONArray("categories")
@@ -521,7 +521,7 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
             frequenter_standard = Utils.getString(visitcntTV)
         } else if (type == 2) {
             frequenter_type = "P"
-            frequenter_standard = Utils.getString(costTV)
+            frequenter_standard = Utils.getString(costTV).replace(",","")
         } else {
             frequenter_type = "N"
         }
