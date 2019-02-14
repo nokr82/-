@@ -86,9 +86,9 @@ class DlgMemberShipActivity : RootActivity() {
             }else if (membership=="골드"){
                 pointTV.text = Utils.thousand(gold_point_card) + "원"
             }else if (membership=="VIP"){
-                pointTV.text = Utils.thousand(gold_point_card) + "원"
+                pointTV.text = Utils.thousand(vip_point_card) + "원"
             }else if (membership=="VVIP"){
-                pointTV.text = Utils.thousand(gold_point_card) + "원"
+                pointTV.text = Utils.thousand(vvip_point_card) + "원"
             }
 
         }
@@ -101,9 +101,9 @@ class DlgMemberShipActivity : RootActivity() {
             }else if (membership=="골드"){
                 pointTV.text = Utils.thousand(gold_point) + "원"
             }else if (membership=="VIP"){
-                pointTV.text = Utils.thousand(gold_point) + "원"
+                pointTV.text = Utils.thousand(vip_point) + "원"
             }else if (membership=="VVIP"){
-                pointTV.text = Utils.thousand(gold_point) + "원"
+                pointTV.text = Utils.thousand(vvip_point) + "원"
             }
         }
 
