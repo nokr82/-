@@ -455,6 +455,8 @@ class CalActivity : RootActivity() {
 
     fun setPoint() {
 
+        Utils.hideKeyboard(context)
+
         if(per_type != 1 && per_type != 2) {
             return
         }
@@ -863,14 +865,6 @@ class CalActivity : RootActivity() {
         var getName = Utils.getString(nameET)
 
 
-        if (getBirth.length != 8) {
-            Toast.makeText(context, "생년월일을 8자리 입력해주세요", Toast.LENGTH_SHORT).show()
-            return
-        }
-        var r_birth = getBirth.substring(0, 4) + "-" + getBirth.substring(4, 6) + "-" + getBirth.substring(6, 8)
-
-        Log.d("진생일", r_birth)
-
         val params = RequestParams()
         params.put("company_id", company_id)
         params.put("member_id", getid)
@@ -879,7 +873,12 @@ class CalActivity : RootActivity() {
         params.put("gender", new_gender)
         params.put("memo", getMemo)
         params.put("phone", getPhone)
-        params.put("birth", r_birth)
+        if(getBirth.length != 8) {
+
+        }else{
+            var r_birth = getBirth.substring(0, 4) + "-" + getBirth.substring(4, 6) + "-" + getBirth.substring(6, 8)
+            params.put("birth", r_birth)
+        }
 
         MemberAction.member_join(params, object : JsonHttpResponseHandler() {
 
