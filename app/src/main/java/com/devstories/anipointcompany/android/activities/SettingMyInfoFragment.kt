@@ -35,7 +35,7 @@ class SettingMyInfoFragment : Fragment() {
     lateinit var myContext: Context
     private var progressDialog: ProgressDialog? = null
 
-    lateinit var compNameET: EditText
+    lateinit var compNameTV: TextView
     lateinit var phoneNum1ET: EditText
     lateinit var phoneNum2ET: EditText
     lateinit var phoneNum3ET: EditText
@@ -72,7 +72,7 @@ class SettingMyInfoFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        compNameET = view.findViewById(R.id.compNameET)
+        compNameTV = view.findViewById(R.id.compNameTV)
         phoneNum1ET = view.findViewById(R.id.phoneNum1ET)
         phoneNum2ET = view.findViewById(R.id.phoneNum2ET)
         phoneNum3ET = view.findViewById(R.id.phoneNum3ET)
@@ -244,7 +244,7 @@ class SettingMyInfoFragment : Fragment() {
 
                         passwd=Utils.getString(company,"passwd")
 
-                        compNameET.setText(company_name)
+                        compNameTV.setText(company_name)
                         phoneNum1ET.setText(phone1)
                         phoneNum2ET.setText(phone2)
                         phoneNum3ET.setText(phone3)
@@ -337,7 +337,7 @@ class SettingMyInfoFragment : Fragment() {
 
     //사업체 정보수정
     fun edit_info() {
-        val company_name = Utils.getString(compNameET)
+        val company_name = Utils.getString(compNameTV)
         var phone1:String =  Utils.getString(phoneNum1ET)
         var phone2:String =  Utils.getString(phoneNum2ET)
         var phone3:String =  Utils.getString(phoneNum3ET)
