@@ -21,6 +21,9 @@ import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
 import com.nostra13.universalimageloader.core.ImageLoader
+import com.nostra13.universalimageloader.core.assist.FailReason
+import com.nostra13.universalimageloader.core.assist.ImageSize
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener
 import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.fragment_setting_my_info.*
 import kotlinx.android.synthetic.main.fragment_setting_my_info.view.*
@@ -62,6 +65,8 @@ class SettingMyInfoFragment : Fragment() {
     var passwd = ""
 
     var company_id = -1
+
+    var imageUrlToIVs = HashMap<String, ImageView>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -179,7 +184,8 @@ class SettingMyInfoFragment : Fragment() {
                 {
                     var thumbnail = MediaStore.Images.Media.getBitmap(myContext.contentResolver, contentURI)
                     thumbnail = Utils.rotate(myContext.contentResolver, thumbnail, contentURI)
-                    Log.d("thumbnail",thumbnail.toString())
+                    Log.d("넓이1",thumbnail.width.toString())
+                    Log.d("높이",thumbnail.height.toString())
                     //비트맵배열에 비트맵추가
                     addImages.add(thumbnail)
 
@@ -273,9 +279,28 @@ class SettingMyInfoFragment : Fragment() {
                                 userLL.removeView(userView)
                                 delids.add(userView.tag as Int)
                                 Log.d("아이디값",delids.toString())
-
                             }
-                            ImageLoader.getInstance().displayImage(image,c_imgIV, Utils.UILoptionsUserProfile)
+
+                            imageUrlToIVs.put(image, c_imgIV)
+
+                            ImageLoader.getInstance().loadImage(image, object : ImageLoadingListener {
+                                override fun onLoadingCancelled(imageUri: String?, view: View?) {
+
+                                }
+
+                                override fun onLoadingFailed(imageUri: String?, view: View?, failReason: FailReason?) {
+                                }
+
+                                override fun onLoadingStarted(imageUri: String?, view: View?) {
+                                }
+
+                                override fun onLoadingComplete(imageUri: String?, view: View?, loadedImage: Bitmap?) {
+                                    val iv = imageUrlToIVs.get(imageUri!!)
+                                    iv!!.setImageBitmap(loadedImage)
+                                    Log.d("높이23",loadedImage!!.height.toString())
+                                }
+                            })
+
                             userLL.addView(userView)
 
                         }
@@ -531,7 +556,10 @@ class SettingMyInfoFragment : Fragment() {
             val imagV = v.findViewById<ImageView>(R.id.c_imgIV)
             if (imagV is ImageView) {
                 val bitmap = imagV.drawable as BitmapDrawable
+
                 params.put("upload[$i]", ByteArrayInputStream(Utils.getByteArray(bitmap.bitmap)))
+                Log.d("넓이",bitmap.bitmap.width.toString())
+                Log.d("높이",bitmap.bitmap.height.toString())
                 Log.d("브이",i.toString())
                 seq++
             }
