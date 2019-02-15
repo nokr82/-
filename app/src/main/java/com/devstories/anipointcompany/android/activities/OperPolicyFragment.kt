@@ -307,6 +307,7 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
                         val frequenter_type = Utils.getString(company, "frequenter_type")
                         //단골금액/몇회
                         val frequenter_standard = Utils.getString(company, "frequenter_standard")
+                        val frequenter_standard_visit = Utils.getString(company, "frequenter_standard_visit")
                         // 최소사용포인트
                         val basic_per = Utils.getString(company, "basic_per")
                         //최소사용포인트 단위
@@ -328,12 +329,11 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
 
                         } else if (frequenter_type.equals("V")) {
                             a_visitLL.callOnClick()
-                            visitcntET.setText(frequenter_standard)
                         } else if (frequenter_type.equals("P")) {
                             a_costLL.callOnClick()
-                            costTV.setText(Utils.comma(frequenter_standard))
                         }
-
+                        visitcntET.setText(frequenter_standard_visit)
+                        costTV.setText(Utils.comma(frequenter_standard))
                         val cate = response.getJSONArray("categories")
                         Log.d("카테", cate.toString())
                         for (i in 0..cate.length() - 1) {
@@ -503,6 +503,7 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
     fun edit_info() {
         val min_use_point = Utils.getString(min_pointTV)
         var frequenter_standard: String = ""
+        var frequenter_standard_visit: String = ""
         var use_point_unit: String = ""//사용단위
         var frequenter_type: String = ""//단골기준
 
@@ -518,18 +519,20 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
 
         if (type == 1) {
             frequenter_type = "V"
-            frequenter_standard = Utils.getString(visitcntET)
         } else if (type == 2) {
             frequenter_type = "P"
-            frequenter_standard = Utils.getString(costTV).replace(",","")
         } else {
             frequenter_type = "N"
         }
+        frequenter_standard_visit = Utils.getString(visitcntET)
+        frequenter_standard = Utils.getString(costTV).replace(",","")
+
         val params = RequestParams()
         params.put("company_id", company_id)
         params.put("min_use_point", min_use_point)
         Log.d("최소", use_point_unit)
         params.put("frequenter_standard", frequenter_standard)
+        params.put("frequenter_standard_visit", frequenter_standard_visit)
         Log.d("단골", frequenter_standard)
 
         params.put("frequenter_type", frequenter_type)
