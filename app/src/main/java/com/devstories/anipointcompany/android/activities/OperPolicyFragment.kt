@@ -40,7 +40,7 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
     lateinit var rdo1000wonIV: ImageView
     lateinit var rdo500wonIV: ImageView
     lateinit var rdo100wonIV: ImageView
-    lateinit var visitcntTV: EditText
+    lateinit var visitcntET: EditText
     lateinit var costTV: EditText
     lateinit var vsitIV: ImageView
     lateinit var costIV: ImageView
@@ -112,7 +112,7 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
         rdo1000wonIV = view.findViewById(R.id.rdo1000wonIV)
         rdo500wonIV = view.findViewById(R.id.rdo500wonIV)
         rdo100wonIV = view.findViewById(R.id.rdo100wonIV)
-        visitcntTV = view.findViewById(R.id.visitcntTV)
+        visitcntET = view.findViewById(R.id.visitcntET)
         costTV = view.findViewById(R.id.costTV)
         vsitIV = view.findViewById(R.id.vsitIV)
         costIV = view.findViewById(R.id.costIV)
@@ -328,7 +328,7 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
 
                         } else if (frequenter_type.equals("V")) {
                             a_visitLL.callOnClick()
-                            visitcntTV.setText(frequenter_standard)
+                            visitcntET.setText(frequenter_standard)
                         } else if (frequenter_type.equals("P")) {
                             a_costLL.callOnClick()
                             costTV.setText(Utils.comma(frequenter_standard))
@@ -518,7 +518,7 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
 
         if (type == 1) {
             frequenter_type = "V"
-            frequenter_standard = Utils.getString(visitcntTV)
+            frequenter_standard = Utils.getString(visitcntET)
         } else if (type == 2) {
             frequenter_type = "P"
             frequenter_standard = Utils.getString(costTV).replace(",","")
