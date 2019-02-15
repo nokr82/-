@@ -266,9 +266,10 @@ class User_List_Fragment : Fragment() {
 //                        Log.d("페이지", totalpage.toString())
 
 
+                        Log.d("데잉터",data.length().toString())
                         for (i in 0..(data.length() - 1)) {
                             adapterData.add(data[i] as JSONObject)
-
+                            Log.d("데잉터",data[i].toString())
                             var json = data[i] as JSONObject
                             val member = json.getJSONObject("Member")
                             var point_o = json.getJSONObject("Point")
@@ -523,6 +524,8 @@ class User_List_Fragment : Fragment() {
                                 }
 
                             }
+
+                            println("addView::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
 
                             userLL.addView(userView)
 
