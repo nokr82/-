@@ -1,5 +1,6 @@
 package com.devstories.anipointcompany.android.activities
 
+import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Context
 import android.graphics.Color
@@ -65,6 +66,9 @@ class MessageDetailActivity : RootActivity() {
         this.context = this
         progressDialog = ProgressDialog(context)
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+
+        hideNavigations(this)
+
         company_id = PrefUtils.getIntPreference(context, "company_id")
 
         message_id = intent.getIntExtra("message_id", -1)
@@ -124,6 +128,21 @@ class MessageDetailActivity : RootActivity() {
         loadData()
 
     }
+
+    override fun onResume() {
+        super.onResume()
+        hideNavigations(this)
+    }
+    fun hideNavigations(context: Activity) {
+        val decorView = context.window.decorView
+        decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_FULLSCREEN
+                or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+    }
+
 
     fun loadData() {
 
