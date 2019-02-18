@@ -26,7 +26,8 @@ import kotlinx.android.synthetic.main.fragment_oper_policy.*
 import org.json.JSONException
 import org.json.JSONObject
 import android.view.View.OnTouchListener
-
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 //설정 -운영정책
@@ -279,6 +280,7 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
         visitLL.visibility = View.GONE
         accountLL.visibility = View.GONE
     }
+
 
     //사업체 정보뽑기
     fun company_info() {

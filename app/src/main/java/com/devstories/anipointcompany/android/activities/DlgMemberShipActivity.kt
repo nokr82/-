@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.CompanyAction
 import com.devstories.anipointcompany.android.Actions.MemberAction
+import com.devstories.anipointcompany.android.Actions.RequestStepAction
 import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
@@ -22,6 +23,8 @@ import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.dlg_membership.*
 import org.json.JSONException
 import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DlgMemberShipActivity : RootActivity() {
 
@@ -55,6 +58,7 @@ class DlgMemberShipActivity : RootActivity() {
 
     var type = -1
 
+    var left_point = 0
 
     var vvip_pay = 0
     var vvip_point = 0
@@ -226,6 +230,75 @@ class DlgMemberShipActivity : RootActivity() {
 
     }
 
+    // 알람톡보내기
+    fun send_alram() {
+        val df = SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.KOREA)
+        val str_date = df.format(Date())
+        var stack_point = Utils.getString(pointTV)
+        var stackpoint =  Utils.getString(pointTV).replace(",","")
+       var plus = stackpoint.replace("원","").toInt()
+        var balance =left_point + plus
+        val params = RequestParams()
+        params.put("company_id", company_id)
+        params.put("member_id", member_id)
+        params.put("stack_point", stack_point.toString().replace("원",""))
+        params.put("left_point", Utils.comma(balance.toString()))
+        params.put("type", "1")
+
+        RequestStepAction.send_alram(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+
+                    val result = response!!.getString("result")
+                    if ("ok" == result) {
+
+                    }
+
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            private fun error() {
+                Utils.alert(context, "조회중 장애가 발생하였습니다.")
+            }
+
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    throwable: Throwable,
+                    errorResponse: JSONObject?
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+                throwable.printStackTrace()
+                error()
+            }
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
     fun setmenu(){
         silverIV.setImageResource(R.drawable.radio_off)
         goldIV.setImageResource(R.drawable.radio_off)
@@ -433,7 +506,7 @@ class DlgMemberShipActivity : RootActivity() {
                         val phone = Utils.getString(member, "phone")
 
                         var membership_str = "-"
-
+                        left_point = balance
                         if (use_point==-1){
                             use_point=0
                         }
@@ -553,6 +626,7 @@ class DlgMemberShipActivity : RootActivity() {
                     searchLL.visibility = View.GONE
 
                     if ("ok" == result) {
+                        send_alram()
                         Toast.makeText(context, "변경되었습니다.", Toast.LENGTH_LONG).show()
                         val resultIntent = Intent()
                         setResult(RESULT_OK, resultIntent)

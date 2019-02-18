@@ -23,5 +23,8 @@ object RequestStepAction {
     fun endStep(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/request_step/end_step.json", params, handler)
     }
-
+    //알람
+    fun send_alram(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/coupon/send_alram.json", params, handler)
+    }
 }
