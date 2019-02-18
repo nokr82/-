@@ -680,7 +680,7 @@
                     <LinearLayout
                         android:id="@+id/depositlessLL"
                         android:layout_width="match_parent"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5.5dp">
 
@@ -697,7 +697,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5.5dp"
-                            android:text="무통장입금"
+                            android:text="포인트 결제"
                             android:textColor="#ffffff"
                             android:textSize="16dp" />
                     </LinearLayout>
@@ -729,11 +729,23 @@
             <TextView
                 android:id="@+id/pointTV"
                 android:layout_width="wrap_content"
+                android:visibility="visible"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:gravity="center_horizontal"
                 android:lineSpacingExtra="25sp"
                 android:text="적립 포인트"
+                android:textColor="#90ffffff"
+                android:textSize="20dp" />
+            <TextView
+                android:id="@+id/point_useTV"
+                android:layout_width="wrap_content"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="25sp"
+                android:text="0"
                 android:textColor="#90ffffff"
                 android:textSize="20dp" />
 

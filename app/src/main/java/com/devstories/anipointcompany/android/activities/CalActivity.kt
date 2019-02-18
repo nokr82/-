@@ -180,6 +180,8 @@ class CalActivity : RootActivity() {
         depositlessLL.setOnClickListener {
             setmenu2()
             depositlessIV.setImageResource(R.drawable.radio_on)
+            point_useTV.visibility = View.VISIBLE
+            pointTV.visibility = View.GONE
             payment_type = 3
         }
 
@@ -224,6 +226,10 @@ class CalActivity : RootActivity() {
     fun cal() {
         moneyTV.text = "0"
         stackLL.setOnClickListener {
+            if (payment_type==3){
+                Toast.makeText(context,"포인트결제는 적립할 수 없습니다.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             setmenu3()
             stackLL.setBackgroundColor(Color.parseColor("#906e8a32"))
             //기본퍼센트
@@ -233,8 +239,13 @@ class CalActivity : RootActivity() {
         }
 
         stack2LL.setOnClickListener {
+            if (payment_type==3){
+            Toast.makeText(context,"포인트결제는 적립할 수 없습니다.",Toast.LENGTH_SHORT).show()
+            return@setOnClickListener
+             }
             //임의 퍼센트
             setmenu3()
+
             stack2LL.setBackgroundColor(Color.parseColor("#906e8a32"))
             val managerpercent = stack2TV.text.toString()
             var money = moneyTV.text.toString()
@@ -348,8 +359,6 @@ class CalActivity : RootActivity() {
 
         useLL.setOnClickListener {
 
-
-
             price = Utils.getInt(moneyTV)
 
             if(price < 1) {
@@ -361,6 +370,16 @@ class CalActivity : RootActivity() {
                 return@setOnClickListener
             }
 
+            if (payment_type == 3){
+                if (price>use_point){
+                    Toast.makeText(context,"결제포인트가부족합니다",Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+                if (price<use_point){
+                    Toast.makeText(context,"결제포인트가 상품가격과 다릅니다",Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+            }
             if (opTV.text.equals("적립")) {
 
                 p_type = 1
@@ -493,7 +512,15 @@ class CalActivity : RootActivity() {
         val stringPoint = floatPoint.toString()
         var splitPoint = stringPoint.split(".")
         val point = splitPoint.get(0)
-        pointTV.setText(Utils.comma(point))
+        if (payment_type==3){
+            point_useTV.visibility = View.VISIBLE
+            pointTV.visibility = View.GONE
+        }else{
+            point_useTV.visibility = View.GONE
+            pointTV.visibility = View.VISIBLE
+            pointTV.setText(Utils.comma(point))
+
+        }
 
     }
 
@@ -771,6 +798,9 @@ class CalActivity : RootActivity() {
 
     //포인트적립/사용
     fun stack_point(member_id: String) {
+
+
+
 
         val params = RequestParams()
         params.put("member_id", member_id)
