@@ -391,7 +391,8 @@ class CalActivity : RootActivity() {
 
                     stack_point(member_id.toString())
                 } else if (per_type == 3) {
-                    stackpoint = Integer.parseInt(pointTV.text.toString())
+
+                    stackpoint = Integer.parseInt(Utils.getString(pointTV).replace(",",""))
                     Log.d("포인트", stackpoint.toString())
                     changeStep()
                     stack_point(member_id.toString())
