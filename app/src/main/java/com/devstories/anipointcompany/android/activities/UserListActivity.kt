@@ -1,11 +1,11 @@
 package com.devstories.anipointcompany.android.activities
 
+import android.app.Activity
 import android.app.ProgressDialog
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
@@ -59,31 +59,24 @@ class UserListActivity : FragmentActivity() {
         super.onCreate(savedInstanceState)
 
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            val w = window // in Activity's onCreate() for instance
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN)
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        }
-
-
 
         setContentView(R.layout.activity_user_list)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            val w = window // in Activity's onCreate() for instance
+            w.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+//            window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        }
         showSystemUI()
-
-
         this.context = this
         progressDialog = ProgressDialog(context)
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
 
         //메시지보내기
         var filter = IntentFilter("MSG_NEXT")
         context.registerReceiver(MsgReceiver, filter)
 
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
-        Utils.hideKeyboard(this)
 
         userLL.setBackgroundResource(R.drawable.background_strock_707070)
         supportFragmentManager.beginTransaction().replace(R.id.userFL, User_List_Fragment).commit()
@@ -143,14 +136,15 @@ class UserListActivity : FragmentActivity() {
     }
 
 
-    override fun onWindowFocusChanged(hasFocus: Boolean) {
-        super.onWindowFocusChanged(hasFocus)
-        if (hasFocus) hideSystemUI()
-    }
     override fun onResume() {
         super.onResume()
         showSystemUI()
     }
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (hasFocus) hideSystemUI()
+    }
+
     private fun hideSystemUI() {
         // Enables regular immersive mode.
         // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.
@@ -173,6 +167,7 @@ class UserListActivity : FragmentActivity() {
                 or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
     }
+
 
 
     override fun onDestroy() {
