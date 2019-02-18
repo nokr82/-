@@ -23,6 +23,7 @@ import java.util.*
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.CompanyAction
 import com.devstories.anipointcompany.android.base.PrefUtils
+import kotlinx.android.synthetic.main.fra_sales_analysis.*
 import kotlin.collections.ArrayList
 
 //고객방문분석메인
@@ -397,11 +398,12 @@ class Sales_Analysis_List_Fragment : Fragment() {
                         val cardTotalPrice = Utils.getString(totalData, "cardTotalPrice")
                         val bankTotalPrice = Utils.getInt(totalData, "bankTotalPrice")
 
-                        cashTotalPrice +=bankTotalPrice
+
 
                         all_memberTV.text = Utils.comma(totalPrice)
                         new_userTV.text = Utils.comma(cashTotalPrice.toString())
                         member_re_cntTV.text = Utils.comma(cardTotalPrice)
+                        pointTV.text = Utils.comma(bankTotalPrice.toString())
 
 
                         val list = response.getJSONArray("list")
@@ -417,21 +419,22 @@ class Sales_Analysis_List_Fragment : Fragment() {
                                 val totalPrice = Utils.getString(json, "totalPrice")
                                 var cash = Utils.getInt(json, "cash")
                                 val card = Utils.getString(json, "card")
-                                val bank = Utils.getInt(json, "bank")
+                                val point = Utils.getInt(json, "bank")
 
-                                cash += bank
+
 
                                 val salesView = View.inflate(myContext, R.layout.item_sales_analysis, null)
                                 var dateTV: TextView = salesView.findViewById(R.id.dateTV)
                                 var totalTV: TextView = salesView.findViewById(R.id.totalTV)
                                 var cashTV: TextView = salesView.findViewById(R.id.cashTV)
                                 var cardTV: TextView = salesView.findViewById(R.id.cardTV)
+                                var pointTV: TextView = salesView.findViewById(R.id.pointTV)
 
                                 dateTV.text = date.toString()
                                 totalTV.text = Utils.comma(totalPrice)
                                 cashTV.text = Utils.comma(cash.toString())
                                 cardTV.text = Utils.comma(card)
-
+                                pointTV.text =  Utils.comma(point.toString())
                                 itemdateLL.addView(salesView)
 
                             }
