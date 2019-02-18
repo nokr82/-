@@ -266,7 +266,7 @@ class User_List_Fragment : Fragment() {
 
 
                         Log.d("데잉터",data.length().toString())
-                        for (i in 0..(data.length() - 1)) {
+                        for (i in 0 until data.length()) {
                             adapterData.add(data[i] as JSONObject)
                             Log.d("데잉터",data[i].toString())
                             var json = data[i] as JSONObject
@@ -281,6 +281,11 @@ class User_List_Fragment : Fragment() {
 
                             val lps = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 50)
                             lps.height = hoSV.layoutParams.height
+
+                            // 175:280 = w : h
+                            val newwIDTH = 175 * lps.height / 280
+                            lps.width = newwIDTH
+                            lps.rightMargin = 10
                             userView.layoutParams = lps
 
 
