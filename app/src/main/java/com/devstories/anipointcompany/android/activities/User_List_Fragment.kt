@@ -151,7 +151,6 @@ class User_List_Fragment : Fragment() {
 
             mainData(1,"")
         }
-
         useLL.setOnClickListener {
             val intent = Intent(myContext, CalActivity::class.java)
             intent.putExtra("step", 4)
@@ -380,7 +379,6 @@ class User_List_Fragment : Fragment() {
                             pointTV.text = Utils.comma(point) + "P"
                             use_pointTV.text = Utils.comma(use_point) + "P"
                             acc_pointTV.text = Utils.comma(stack_point) + "P"
-//                            stack_pointTV.text = "누적:" +Utils.comma(stack_point) + "P"
 
                             ageTV.text = age
                             nameTV.text = r_phone
@@ -413,9 +411,6 @@ class User_List_Fragment : Fragment() {
                                 val created = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(Utils.getString(companySale, "created"))
                                 var created_str = SimpleDateFormat("yy-MM-dd").format(created)
 
-                                /*  if (str.length > 0) {
-                                      str += "\n"
-                                  }*/
                                 var use_point = Utils.getString(companySale, "use_point")
                                 var point = Utils.getString(companySale, "point")
                                 var coupon = Utils.getString(companySale, "coupon_id")
@@ -423,21 +418,9 @@ class User_List_Fragment : Fragment() {
 
 
                                 var price = Utils.getString(companySale, "price")
-                                /*      if (use_point.equals("")){
-                                          use_point="0"
-                                      }
-                                      if (point.equals("")){
-                                          point = "0"
-                                      }
-                                      if (coupon.equals("")){
-                                          coupon = "없음"
-                                      }*/
 
                                 created_str = created_str.replace("-", "")
 
-
-//                                str = str + created_str + " / " + Utils.getString(category, "name") + " / " + Utils.comma(Utils.getString(companySale, "price"))+"원\n"+
-//                                        "적립: " +Utils.comma(point) + "P/사용:" +Utils.comma(use_point)+ "P"+"/사용쿠폰:"+coupon
 
 
                                 if (coupon != "") {
@@ -465,8 +448,6 @@ class User_List_Fragment : Fragment() {
                                 }
 
 
-
-
                                 if (point != "" && use_point != "") {
                                     str = str + created_str + " 사용 " + Utils.comma(use_point) + "P /" + " 적립 " + Utils.comma(point) + "P" + "(" + Utils.comma(Utils.getString(companySale, "price")) + "*" +
                                             Utils.getString(companySale, "per") + "%)\n"
@@ -480,11 +461,6 @@ class User_List_Fragment : Fragment() {
                                 } else {
 
                                 }
-//                                if (coupon != "-1"){
-//                                    val MemberCoupon = json.getJSONObject("MemberCoupon")
-//                                    var coupon_name = Utils.getString(MemberCoupon, "coupon_name")
-//                                    str = str+created_str+" 쿠폰 사용 "+coupon_name+"\n"
-//                                }
 
 
                             }
