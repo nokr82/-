@@ -249,9 +249,16 @@ class DlgEditMemberInfoActivity : RootActivity() {
 
     fun editInfo(){
 
+
         val params = RequestParams()
         params.put("member_id", member_id)
-        params.put("birth", Utils.getString(birthET))
+        var getBirth = Utils.getString(birthET)
+        if(getBirth.length != 8) {
+
+        }else{
+            var r_birth = getBirth.substring(0, 4) + "-" + getBirth.substring(4, 6) + "-" + getBirth.substring(6, 8)
+            params.put("birth", r_birth)
+        }
         params.put("age",age)
         params.put("gender",gender)
         params.put("name", Utils.getString(nameET))
