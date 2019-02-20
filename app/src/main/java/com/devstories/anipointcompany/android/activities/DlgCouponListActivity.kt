@@ -45,7 +45,7 @@ class DlgCouponListActivity : RootActivity() {
     var rand_code = ""
     var member_id = -1
     var phone = ""
-
+    var coupon_id = -1
     var h:String? = null
     var couponData: ArrayList<JSONObject> = ArrayList<JSONObject>()
     lateinit var couponListAdapter: CouponListAdapter
@@ -70,13 +70,12 @@ class DlgCouponListActivity : RootActivity() {
 
             val coupon = data.getJSONObject("MemberCoupon")
             val coupon_o = data.getJSONObject("Coupon")
-            val coupon_id = Utils.getInt(coupon, "id")
+            coupon_id = Utils.getInt(coupon, "id")
             val id = Utils.getInt(coupon, "coupon_id")
             val coupon_name = Utils.getString(coupon_o, "name")
 
 
             member_id = Utils.getInt(coupon, "member_id")
-            Log.d("쿠폰아이디", coupon_id.toString())
             coupon_alram(id)
 
         }
@@ -119,7 +118,7 @@ class DlgCouponListActivity : RootActivity() {
                             mPopupDlg.dismiss()
                         }
                         msgWriteTV.setOnClickListener {
-                            couponData(id)
+                            couponData()
                             mPopupDlg.dismiss()
                         }
                     }else{
@@ -175,11 +174,11 @@ class DlgCouponListActivity : RootActivity() {
             }
         })
     }
-    fun couponData(id: Int) {
+    fun couponData() {
         val params = RequestParams()
         params.put("company_id", company_id)
         params.put("member_id", member_id)
-        params.put("coupon_id", id)
+        params.put("coupon_id", coupon_id)
 
 
         CouponAction.coupon_use(params, object : JsonHttpResponseHandler() {
