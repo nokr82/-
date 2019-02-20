@@ -42,6 +42,7 @@ class DlgCouponListActivity : RootActivity() {
     var title = ""
     var message = ""
     var company_id = -1
+    var rand_code = ""
     var member_id = -1
     var phone = ""
 
@@ -70,39 +71,110 @@ class DlgCouponListActivity : RootActivity() {
             val coupon = data.getJSONObject("MemberCoupon")
             val coupon_o = data.getJSONObject("Coupon")
             val coupon_id = Utils.getInt(coupon, "id")
+            val id = Utils.getInt(coupon, "coupon_id")
             val coupon_name = Utils.getString(coupon_o, "name")
 
 
             member_id = Utils.getInt(coupon, "member_id")
             Log.d("쿠폰아이디", coupon_id.toString())
-
-            var mPopupDlg: DialogInterface? = null
-            val builder = AlertDialog.Builder(context)
-            val dialogView = layoutInflater.inflate(R.layout.dlg_send_payback, null)
-            val cancelTV = dialogView.findViewById<TextView>(R.id.cancelTV)
-            val msgWriteTV = dialogView.findViewById<TextView>(R.id.msgWriteTV)
-            val titleTV = dialogView.findViewById<TextView>(R.id.titleTV)
-            val contentTV = dialogView.findViewById<TextView>(R.id.contentTV)
-            titleTV.text = "쿠폰 사용"
-            contentTV.text = coupon_name+"쿠폰을 사용하시겠습니까?"
-            msgWriteTV.text = "사용"
-
-
-            mPopupDlg = builder.setView(dialogView).show()
-            cancelTV.setOnClickListener {
-                mPopupDlg.dismiss()
-            }
-            msgWriteTV.setOnClickListener {
-                couponData(coupon_id)
-                mPopupDlg.dismiss()
-            }
-
-
+            coupon_alram(id)
 
         }
     }
 
+    fun coupon_alram(id:Int) {
+        val params = RequestParams()
+        params.put("company_id", company_id)
+        params.put("member_id", member_id)
+        params.put("coupon_id", id)
 
+
+        CouponAction.alram_coupon(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+                try {
+                    Log.d("인증",response.toString())
+                    val result = response!!.getString("result")
+                    rand_code  = response.getString("rand")
+                    if ("ok" == result) {
+
+                        var mPopupDlg: DialogInterface? = null
+                        val builder = AlertDialog.Builder(context)
+                        val dialogView = layoutInflater.inflate(R.layout.dlg_send_payback, null)
+                        val cancelTV = dialogView.findViewById<TextView>(R.id.cancelTV)
+                        val msgWriteTV = dialogView.findViewById<TextView>(R.id.msgWriteTV)
+                        val titleTV = dialogView.findViewById<TextView>(R.id.titleTV)
+                        val contentTV = dialogView.findViewById<TextView>(R.id.contentTV)
+
+                        titleTV.text = "쿠폰 사용"
+                        contentTV.text = "인증번호를 확인해주세요.\n"+rand_code
+                        msgWriteTV.text = "사용"
+
+
+                        mPopupDlg = builder.setView(dialogView).show()
+                        cancelTV.setOnClickListener {
+                            mPopupDlg.dismiss()
+                        }
+                        msgWriteTV.setOnClickListener {
+                            couponData(id)
+                            mPopupDlg.dismiss()
+                        }
+                    }else{
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(context, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
     fun couponData(id: Int) {
         val params = RequestParams()
         params.put("company_id", company_id)
