@@ -65,6 +65,8 @@ class CalActivity : RootActivity() {
     var EDIT_POINT = 101
     var option_age = arrayOf("미입력","10대","20대","30대","40대","50대","60대")
 
+    var use_coupon = "N"
+
     var age = ""
 
     internal var checkHandler: Handler = object : Handler() {
@@ -137,6 +139,7 @@ class CalActivity : RootActivity() {
         if (step == 4) {
             opTV.text = "결제"
             m_opTV.text = "￦"
+            couponLL.visibility = View.VISIBLE
         }
         company_info()
         //계산기
@@ -189,6 +192,17 @@ class CalActivity : RootActivity() {
             payment_type = 3
         }
 
+        couponLL.setOnClickListener {
+            if (use_coupon=="N"){
+                Toast.makeText(context,"선택된 쿠폰이 없습니다.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            setmenu2()
+            couponIV.setImageResource(R.drawable.radio_on)
+            payment_type = 4
+        }
+
+
 //        changeStep()
 
         new_maleIV.setOnClickListener {
@@ -238,6 +252,7 @@ class CalActivity : RootActivity() {
         cardPayIV.setImageResource(R.drawable.radio_off)
         cashPayIV.setImageResource(R.drawable.radio_off)
         depositlessIV.setImageResource(R.drawable.radio_off)
+        couponIV.setImageResource(R.drawable.radio_off)
     }
 
     //계산클릭이벤트
@@ -261,6 +276,7 @@ class CalActivity : RootActivity() {
             Toast.makeText(context,"포인트결제는 적립할 수 없습니다.",Toast.LENGTH_SHORT).show()
             return@setOnClickListener
              }
+
             //임의 퍼센트
             setmenu3()
 
@@ -437,13 +453,7 @@ class CalActivity : RootActivity() {
                     Toast.makeText(context, "적립퍼센트를 선택해주세요", Toast.LENGTH_SHORT).show()
                 }
             } else if (opTV.text.equals("결제")) {
-//                val totalpoint = Integer.parseInt(moneyTV.text.toString())
-//                val use_point = Integer.parseInt(stack_pointTV.text.toString())
-//                stackpoint = totalpoint
-//
-//                if (stackpoint > use_point) {
-//                    Toast.makeText(context, "포인트가 부족합니다", Toast.LENGTH_SHORT).show()
-//                } else {
+
                 step = 6
                     if (payment_type == -1) {
                         Toast.makeText(context, "결제방식을 선택해주세요", Toast.LENGTH_SHORT).show()
@@ -631,7 +641,7 @@ class CalActivity : RootActivity() {
                     val result = response!!.getString("result")
                     rand_code  = response.getString("rand")
                     if ("ok" == result) {
-
+                        use_coupon = "Y"
                         var mPopupDlg: DialogInterface? = null
                         val builder = AlertDialog.Builder(context)
                         val dialogView = layoutInflater.inflate(R.layout.dlg_send_payback, null)
