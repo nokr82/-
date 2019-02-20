@@ -1,8 +1,10 @@
 package com.devstories.anipointcompany.android.activities
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -12,6 +14,7 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.CompanyAction
 import com.devstories.anipointcompany.android.Actions.CouponAction
@@ -58,7 +61,7 @@ class CalActivity : RootActivity() {
     var stackpoint = -1
     lateinit var adapter: ArrayAdapter<String>
     var option_cate = ArrayList<String>()
-
+    var rand_code = ""
     var EDIT_POINT = 101
     var option_age = arrayOf("미입력","10대","20대","30대","40대","50대","60대")
 
@@ -555,7 +558,7 @@ class CalActivity : RootActivity() {
                 }
 
                 try {
-
+                    Log.d("체인지스텝",response.toString())
                     val result = response!!.getString("result")
                     if ("ok" == result) {
                         var requestStep = response.getJSONObject("RequestStep")
@@ -610,7 +613,100 @@ class CalActivity : RootActivity() {
             }
         })
     }
+    fun coupon_alram(id:Int) {
+        val params = RequestParams()
+        params.put("company_id", company_id)
+        params.put("member_id", member_id)
+        params.put("coupon_id", id)
 
+
+        CouponAction.alram_coupon(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+                try {
+                    Log.d("인증",response.toString())
+                    val result = response!!.getString("result")
+                    rand_code  = response.getString("rand")
+                    if ("ok" == result) {
+
+                        var mPopupDlg: DialogInterface? = null
+                        val builder = AlertDialog.Builder(context)
+                        val dialogView = layoutInflater.inflate(R.layout.dlg_send_payback, null)
+                        val cancelTV = dialogView.findViewById<TextView>(R.id.cancelTV)
+                        val msgWriteTV = dialogView.findViewById<TextView>(R.id.msgWriteTV)
+                        val titleTV = dialogView.findViewById<TextView>(R.id.titleTV)
+                        val contentTV = dialogView.findViewById<TextView>(R.id.contentTV)
+
+                        titleTV.text = "쿠폰 사용"
+                        contentTV.text = "인증번호를 확인해주세요.\n"+rand_code
+                        msgWriteTV.text = "확인"
+
+
+                        mPopupDlg = builder.setView(dialogView).show()
+                        cancelTV.setOnClickListener {
+                            Toast.makeText(context,"인증에 실패하였습니다",Toast.LENGTH_SHORT).show()
+                            mPopupDlg.dismiss()
+                            finish()
+                        }
+                        msgWriteTV.setOnClickListener {
+                            mPopupDlg.dismiss()
+                        }
+                    }else{
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(context, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
 
     // 요청 체크
     fun checkStep() {
@@ -627,6 +723,7 @@ class CalActivity : RootActivity() {
                 try {
 
                     val result = response!!.getString("result")
+                    Log.d("리퀘스트스텝",response.toString())
                     if ("ok" == result) {
                         var requestStep = response.getJSONObject("RequestStep")
                         var member = response.getJSONObject("Member")
@@ -638,6 +735,8 @@ class CalActivity : RootActivity() {
                         member_coupon_id = Utils.getInt(requestStep, "member_coupon_id")
                         val result_step = Utils.getInt(requestStep, "step")
                         new_member_yn  = Utils.getString(requestStep, "new_member_yn")
+
+
 
                         if (step != result_step) {
 
@@ -752,13 +851,15 @@ class CalActivity : RootActivity() {
 
                                 usePointLL.visibility = View.VISIBLE
                                 usePointTV.text = Utils.comma(use_point.toString())
-
                                 for (i in 0 until couponData.size) {
                                     val data = couponData[i]
                                     val memberCoupon = data.getJSONObject("MemberCoupon")
 
+                                    Log.d("쿠폰",data.toString())
                                     if(Utils.getInt(memberCoupon, "id") == member_coupon_id) {
                                         data.put("check_yn", "Y")
+                                        var coupon_id = Utils.getInt(memberCoupon, "coupon_id")
+                                        coupon_alram(coupon_id)
                                     }
 
                                 }
