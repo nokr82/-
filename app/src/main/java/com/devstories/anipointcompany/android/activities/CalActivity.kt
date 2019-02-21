@@ -1,10 +1,8 @@
 package com.devstories.anipointcompany.android.activities
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -14,10 +12,8 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.TextView
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.CompanyAction
-import com.devstories.anipointcompany.android.Actions.CouponAction
 import com.devstories.anipointcompany.android.Actions.MemberAction
 import com.devstories.anipointcompany.android.Actions.RequestStepAction
 import com.devstories.anipointcompany.android.R
@@ -61,11 +57,9 @@ class CalActivity : RootActivity() {
     var stackpoint = -1
     lateinit var adapter: ArrayAdapter<String>
     var option_cate = ArrayList<String>()
-    var rand_code = ""
+
     var EDIT_POINT = 101
     var option_age = arrayOf("미입력","10대","20대","30대","40대","50대","60대")
-
-    var use_coupon = "N"
 
     var age = ""
 
@@ -84,7 +78,7 @@ class CalActivity : RootActivity() {
         this.context = this
         progressDialog = ProgressDialog(context)
 
-        hideNavigations(this)
+
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
         dropIV.rotation = 90f
@@ -139,7 +133,6 @@ class CalActivity : RootActivity() {
         if (step == 4) {
             opTV.text = "결제"
             m_opTV.text = "￦"
-            couponLL.visibility = View.VISIBLE
         }
         company_info()
         //계산기
@@ -192,17 +185,6 @@ class CalActivity : RootActivity() {
             payment_type = 3
         }
 
-        couponLL.setOnClickListener {
-            if (use_coupon=="N"){
-                Toast.makeText(context,"선택된 쿠폰이 없습니다.",Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-            setmenu2()
-            couponIV.setImageResource(R.drawable.radio_on)
-            payment_type = 4
-        }
-
-
 //        changeStep()
 
         new_maleIV.setOnClickListener {
@@ -218,20 +200,6 @@ class CalActivity : RootActivity() {
 
 
     }
-    override fun onResume() {
-        super.onResume()
-        hideNavigations(this)
-    }
-    fun hideNavigations(context: Activity) {
-        val decorView = context.window.decorView
-        decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                or View.SYSTEM_UI_FLAG_FULLSCREEN
-                or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
-    }
-
 
     fun setmenu4() {
         new_femaleIV.setImageResource(R.drawable.radio_off)
@@ -252,7 +220,6 @@ class CalActivity : RootActivity() {
         cardPayIV.setImageResource(R.drawable.radio_off)
         cashPayIV.setImageResource(R.drawable.radio_off)
         depositlessIV.setImageResource(R.drawable.radio_off)
-        couponIV.setImageResource(R.drawable.radio_off)
     }
 
     //계산클릭이벤트
@@ -273,10 +240,9 @@ class CalActivity : RootActivity() {
 
         stack2LL.setOnClickListener {
             if (payment_type==3){
-            Toast.makeText(context,"포인트결제는 적립할 수 없습니다.",Toast.LENGTH_SHORT).show()
-            return@setOnClickListener
-             }
-
+                Toast.makeText(context,"포인트결제는 적립할 수 없습니다.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             //임의 퍼센트
             setmenu3()
 
@@ -418,7 +384,7 @@ class CalActivity : RootActivity() {
 
                 p_type = 1
                 type = 1
-                 step = 3
+                step = 3
 
                 if (payment_type == -1) {
                     Toast.makeText(context, "결제방식을 선택해주세요", Toast.LENGTH_SHORT).show()
@@ -453,38 +419,44 @@ class CalActivity : RootActivity() {
                     Toast.makeText(context, "적립퍼센트를 선택해주세요", Toast.LENGTH_SHORT).show()
                 }
             } else if (opTV.text.equals("결제")) {
+//                val totalpoint = Integer.parseInt(moneyTV.text.toString())
+//                val use_point = Integer.parseInt(stack_pointTV.text.toString())
+//                stackpoint = totalpoint
+//
+//                if (stackpoint > use_point) {
+//                    Toast.makeText(context, "포인트가 부족합니다", Toast.LENGTH_SHORT).show()
+//                } else {
+                step = 6
+                if (payment_type == -1) {
+                    Toast.makeText(context, "결제방식을 선택해주세요", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+
+
+                if (use_point < 1) {
+
+                    Toast.makeText(context, "사용자가 포인트 입력 후 진행해주세요", Toast.LENGTH_LONG).show()
+//                        return@setOnClickListener
+                }
+
+                if(per_type > 0) {
+
+                    stackpoint = Utils.getInt(pointTV)
+
+                    p_type = 3
+                    type = 1
+
+                } else {
+                    stackpoint = use_point
+
+                    p_type = 2
+                    type = 2
+
+                }
 
                 step = 6
-                    if (payment_type == -1) {
-                        Toast.makeText(context, "결제방식을 선택해주세요", Toast.LENGTH_SHORT).show()
-                        return@setOnClickListener
-                    }
-
-
-                    if (use_point < 1) {
-
-                        Toast.makeText(context, "사용자가 포인트 입력 후 진행해주세요", Toast.LENGTH_LONG).show()
-//                        return@setOnClickListener
-                    }
-
-                    if(per_type > 0) {
-
-                        stackpoint = Utils.getInt(pointTV)
-
-                        p_type = 3
-                        type = 1
-
-                    } else {
-                        stackpoint = use_point
-
-                        p_type = 2
-                        type = 2
-
-                    }
-
-                    step = 6
-                    stack_point(member_id.toString())
-                    changeStep()
+                stack_point(member_id.toString())
+                changeStep()
 
             }
         }
@@ -568,7 +540,7 @@ class CalActivity : RootActivity() {
                 }
 
                 try {
-                    Log.d("체인지스텝",response.toString())
+
                     val result = response!!.getString("result")
                     if ("ok" == result) {
                         var requestStep = response.getJSONObject("RequestStep")
@@ -623,100 +595,7 @@ class CalActivity : RootActivity() {
             }
         })
     }
-    fun coupon_alram(id:Int) {
-        val params = RequestParams()
-        params.put("company_id", company_id)
-        params.put("member_id", member_id)
-        params.put("coupon_id", id)
 
-
-        CouponAction.alram_coupon(params, object : JsonHttpResponseHandler() {
-
-            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
-                if (progressDialog != null) {
-                    progressDialog!!.dismiss()
-                }
-                try {
-                    Log.d("인증",response.toString())
-                    val result = response!!.getString("result")
-                    rand_code  = response.getString("rand")
-                    if ("ok" == result) {
-                        use_coupon = "Y"
-                        var mPopupDlg: DialogInterface? = null
-                        val builder = AlertDialog.Builder(context)
-                        val dialogView = layoutInflater.inflate(R.layout.dlg_send_payback, null)
-                        val cancelTV = dialogView.findViewById<TextView>(R.id.cancelTV)
-                        val msgWriteTV = dialogView.findViewById<TextView>(R.id.msgWriteTV)
-                        val titleTV = dialogView.findViewById<TextView>(R.id.titleTV)
-                        val contentTV = dialogView.findViewById<TextView>(R.id.contentTV)
-
-                        titleTV.text = "쿠폰 사용"
-                        contentTV.text = "인증번호를 확인해주세요.\n"+rand_code
-                        msgWriteTV.text = "확인"
-
-
-                        mPopupDlg = builder.setView(dialogView).show()
-                        cancelTV.setOnClickListener {
-                            Toast.makeText(context,"인증에 실패하였습니다",Toast.LENGTH_SHORT).show()
-                            mPopupDlg.dismiss()
-                            finish()
-                        }
-                        msgWriteTV.setOnClickListener {
-                            mPopupDlg.dismiss()
-                        }
-                    }else{
-
-                    }
-
-                } catch (e: JSONException) {
-                    e.printStackTrace()
-                }
-
-            }
-
-
-            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
-
-                // System.out.println(responseString);
-            }
-
-            private fun error() {
-                Utils.alert(context, "조회중 장애가 발생하였습니다.")
-            }
-
-            override fun onFailure(
-                    statusCode: Int,
-                    headers: Array<Header>?,
-                    responseString: String?,
-                    throwable: Throwable
-            ) {
-                if (progressDialog != null) {
-                    progressDialog!!.dismiss()
-                }
-
-                // System.out.println(responseString);
-
-                throwable.printStackTrace()
-                error()
-            }
-
-
-            override fun onStart() {
-                // show dialog
-                if (progressDialog != null) {
-
-
-                    progressDialog!!.show()
-                }
-            }
-
-            override fun onFinish() {
-                if (progressDialog != null) {
-                    progressDialog!!.dismiss()
-                }
-            }
-        })
-    }
 
     // 요청 체크
     fun checkStep() {
@@ -733,7 +612,6 @@ class CalActivity : RootActivity() {
                 try {
 
                     val result = response!!.getString("result")
-                    Log.d("리퀘스트스텝",response.toString())
                     if ("ok" == result) {
                         var requestStep = response.getJSONObject("RequestStep")
                         var member = response.getJSONObject("Member")
@@ -745,8 +623,6 @@ class CalActivity : RootActivity() {
                         member_coupon_id = Utils.getInt(requestStep, "member_coupon_id")
                         val result_step = Utils.getInt(requestStep, "step")
                         new_member_yn  = Utils.getString(requestStep, "new_member_yn")
-
-
 
                         if (step != result_step) {
 
@@ -861,15 +737,13 @@ class CalActivity : RootActivity() {
 
                                 usePointLL.visibility = View.VISIBLE
                                 usePointTV.text = Utils.comma(use_point.toString())
+
                                 for (i in 0 until couponData.size) {
                                     val data = couponData[i]
                                     val memberCoupon = data.getJSONObject("MemberCoupon")
 
-                                    Log.d("쿠폰",data.toString())
                                     if(Utils.getInt(memberCoupon, "id") == member_coupon_id) {
                                         data.put("check_yn", "Y")
-                                        var coupon_id = Utils.getInt(memberCoupon, "coupon_id")
-                                        coupon_alram(coupon_id)
                                     }
 
                                 }
@@ -953,11 +827,9 @@ class CalActivity : RootActivity() {
                     Log.d("적립", response.toString())
 
                     if ("ok" == result) {
-                        Log.d("뉴스쿨",new_member_yn.toString())
 
                         if (new_member_yn.equals("Y")){
                             member_join()
-                            send_auto()
                         }
 
 
@@ -1091,78 +963,7 @@ class CalActivity : RootActivity() {
         })
 
     }
-    //오토쿠폰
-    fun send_auto() {
-        val params = RequestParams()
-        params.put("company_id", company_id)
-        params.put("member_id", member_id)
 
-        CouponAction.send_auto(params, object : JsonHttpResponseHandler() {
-
-            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
-                if (progressDialog != null) {
-                    progressDialog!!.dismiss()
-                }
-
-                try {
-                    val result = response!!.getString("result")
-                    Log.d("리스폰",response.toString())
-                    if ("ok" == result) {
-
-
-                    } else {
-
-                    }
-
-                } catch (e: JSONException) {
-                    e.printStackTrace()
-                }
-
-            }
-
-
-            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
-
-                // System.out.println(responseString);
-            }
-
-            private fun error() {
-                Utils.alert(context, "조회중 장애가 발생하였습니다.")
-            }
-
-            override fun onFailure(
-                    statusCode: Int,
-                    headers: Array<Header>?,
-                    responseString: String?,
-                    throwable: Throwable
-            ) {
-                if (progressDialog != null) {
-                    progressDialog!!.dismiss()
-                }
-
-                // System.out.println(responseString);
-
-                throwable.printStackTrace()
-                error()
-            }
-
-
-            override fun onStart() {
-                // show dialog
-                if (progressDialog != null) {
-
-
-                    progressDialog!!.show()
-                }
-            }
-
-            override fun onFinish() {
-                if (progressDialog != null) {
-                    progressDialog!!.dismiss()
-                }
-            }
-        })
-    }
     //사업체 정보뽑기
     fun company_info() {
         val params = RequestParams()
