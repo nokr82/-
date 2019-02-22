@@ -48,6 +48,7 @@ open class UserListAdapter (context:Context, view:Int, data: ArrayList<JSONObjec
         val point_o = json.getJSONObject("Point")
         var point = Utils.getString(point_o, "point")
         var type = Utils.getInt(point_o, "type")
+        var member_coupon_id = Utils.getInt(point_o, "member_coupon_id")
         var updated = Utils.getString(point_o, "created")
         var cate = Utils.getInt(point_o, "cate")
 
@@ -64,47 +65,22 @@ open class UserListAdapter (context:Context, view:Int, data: ArrayList<JSONObjec
             phone =phone
         }
 
-        if (point =="0"){
-            if (cate==0){
-                if (type==1){
-                    item.typeTV.text = "포인트 적립"
-                    if (point == "-1"){
-                        item.pointTV.text ="0"+"P"
-                    }else{
-                        item.pointTV.text = Utils.comma(point)+"P"
-                    }
-
+        if (member_coupon_id != -1){
+            if (type==1){
+                item.typeTV.text = "포인트 적립"
+                if (point == "-1"){
+                    item.pointTV.text ="0"+"P"
                 }else{
-                    item.typeTV.text = "포인트 사용"
-                    if (point == "-1"){
-                        item.pointTV.text ="0"+"P"
-                    }else{
-                        item.pointTV.text = Utils.comma(point)+"P"
-                    }
+                    item.pointTV.text = Utils.comma(point)+"P"
                 }
-                item.nameTV.text = phone
-                item.updateTV.text =updated
             }else{
-
-                if (type==1){
-                    item.typeTV.text = "포인트 적립"
-                    if (point == "-1"){
-                        item.pointTV.text ="0"+"P"
-                    }else{
-                        item.pointTV.text = Utils.comma(point)+"P"
-                    }
-                }else{
-                    item.typeTV.text = "쿠폰 사용"
-                    val coupon = json.getJSONObject("MemberCoupon")
-                    var coupon_name = Utils.getString(coupon, "coupon_name")
-                    item.pointTV.text =coupon_name
-                }
-                item.nameTV.text = phone
-                item.updateTV.text =updated
+                item.typeTV.text = "쿠폰 사용"
+                val coupon = json.getJSONObject("MemberCoupon")
+                var coupon_name = Utils.getString(coupon, "coupon_name")
+                item.pointTV.text =coupon_name
             }
-
-
-
+            item.nameTV.text = phone
+            item.updateTV.text =updated
         }else{
             item.nameTV.text = phone
             if (point == "-1"){

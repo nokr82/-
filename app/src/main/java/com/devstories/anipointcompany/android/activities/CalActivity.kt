@@ -893,14 +893,15 @@ class CalActivity : RootActivity() {
                                     if(Utils.getInt(memberCoupon, "id") == member_coupon_id) {
                                         data.put("check_yn", "Y")
                                         coupon_id = Utils.getInt(memberCoupon, "coupon_id")
+                                        use_coupon = "Y"
 
                                     }
 
                                 }
                                 couponListAdapter.notifyDataSetChanged()
-                                if (coupon_id !=-1){
+                               /* if (coupon_id !=-1){
                                     coupon_alram(coupon_id)
-                                }
+                                }*/
                             }
 
                         }
