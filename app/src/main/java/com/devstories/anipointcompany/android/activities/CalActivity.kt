@@ -17,9 +17,11 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.CompanyAction
+import com.devstories.anipointcompany.android.Actions.CompanyAction.company_info
 import com.devstories.anipointcompany.android.Actions.CouponAction
 import com.devstories.anipointcompany.android.Actions.MemberAction
 import com.devstories.anipointcompany.android.Actions.RequestStepAction
+import com.devstories.anipointcompany.android.Actions.RequestStepAction.checkStep
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.adapter.CouponListAdapter
 import com.devstories.anipointcompany.android.base.PrefUtils
@@ -68,7 +70,7 @@ class CalActivity : RootActivity() {
     var age = ""
 
 
-
+    var coupon_id = -1
     var rand_code = ""
     var use_coupon = "N"
 
@@ -664,6 +666,7 @@ class CalActivity : RootActivity() {
                     val result = response!!.getString("result")
                     rand_code  = response.getString("rand")
                     if ("ok" == result) {
+
                         use_coupon = "Y"
                         var mPopupDlg: DialogInterface? = null
                         val builder = AlertDialog.Builder(context)
@@ -677,7 +680,7 @@ class CalActivity : RootActivity() {
                         contentTV.text = "인증번호를 확인해주세요.\n"+rand_code
                         msgWriteTV.text = "확인"
 
-
+                        if (!this@CalActivity.isFinishing()) {
                         mPopupDlg = builder.setView(dialogView).show()
                         cancelTV.setOnClickListener {
                             Toast.makeText(context,"인증에 실패하였습니다",Toast.LENGTH_SHORT).show()
@@ -687,6 +690,8 @@ class CalActivity : RootActivity() {
                         msgWriteTV.setOnClickListener {
                             mPopupDlg.dismiss()
                         }
+                        }
+
                     }else{
 
                     }
@@ -887,15 +892,15 @@ class CalActivity : RootActivity() {
 
                                     if(Utils.getInt(memberCoupon, "id") == member_coupon_id) {
                                         data.put("check_yn", "Y")
-                                        var coupon_id = Utils.getInt(memberCoupon, "coupon_id")
-                                        coupon_alram(coupon_id)
+                                        coupon_id = Utils.getInt(memberCoupon, "coupon_id")
+
                                     }
 
                                 }
-
-
                                 couponListAdapter.notifyDataSetChanged()
-
+                                if (coupon_id !=-1){
+                                    coupon_alram(coupon_id)
+                                }
                             }
 
                         }
@@ -943,9 +948,6 @@ class CalActivity : RootActivity() {
 
     //포인트적립/사용
     fun stack_point(member_id: String) {
-
-
-
 
         val params = RequestParams()
         params.put("member_id", member_id)
@@ -1415,7 +1417,7 @@ class CalActivity : RootActivity() {
 
     override fun finish() {
 
-        if(step == 1 || step == 4) {
+        if(step == 1 || step == 4 ) {
             endStep()
         }
 
