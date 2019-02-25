@@ -485,12 +485,15 @@ class CalActivity : RootActivity() {
                 }
 
 
+
                 if (use_point < 1) {
 
                     Toast.makeText(context, "사용자가 포인트 입력 후 진행해주세요", Toast.LENGTH_LONG).show()
 //                        return@setOnClickListener
                 }
-
+                if (use_point == -1){
+                    use_point = 0
+                }
                 if(per_type > 0) {
 
                     stackpoint = Utils.getInt(pointTV)
