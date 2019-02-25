@@ -459,6 +459,8 @@ class User_List_Fragment : Fragment() {
                                 } else if (use_point != "") {
                                     if (use_point != "0") {
                                         str = str + created_str + " 사용 " + Utils.comma(use_point) + "P\n"
+                                    }else{
+                                        str = str + created_str + " 사용 " + Utils.comma(use_point) + "P\n"
                                     }
                                 } else if (point != "") {
                                     str = str + created_str + " 적립 " + Utils.comma(point) + "P" + "(" + Utils.comma(Utils.getString(companySale, "price")) + "*" +
