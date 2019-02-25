@@ -50,6 +50,7 @@ open class UserListAdapter (context:Context, view:Int, data: ArrayList<JSONObjec
         var type = Utils.getInt(point_o, "type")
         var member_coupon_id = Utils.getInt(point_o, "member_coupon_id")
         var updated = Utils.getString(point_o, "created")
+        var membership_per = Utils.getInt(point_o, "membership_per")
         var cate = Utils.getInt(point_o, "cate")
 
 
@@ -67,7 +68,12 @@ open class UserListAdapter (context:Context, view:Int, data: ArrayList<JSONObjec
 
         if (member_coupon_id != -1){
             if (type==1){
-                item.typeTV.text = "포인트 적립"
+                if (membership_per != -1){
+                    item.typeTV.text = "멤버쉽 포인트 적립"
+                }else{
+                    item.typeTV.text = "포인트 적립"
+                }
+
                 if (point == "-1"){
                     item.pointTV.text ="0"+"P"
                 }else{
@@ -91,7 +97,11 @@ open class UserListAdapter (context:Context, view:Int, data: ArrayList<JSONObjec
             item.updateTV.text =updated
 
             if (type==1){
-                item.typeTV.text = "포인트 적립"
+                if (membership_per != -1){
+                    item.typeTV.text = "멤버쉽 포인트 적립"
+                }else{
+                    item.typeTV.text = "포인트 적립"
+                }
             }else{
                 item.typeTV.text = "포인트 사용"
             }
