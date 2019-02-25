@@ -520,15 +520,15 @@ class CalActivity : RootActivity() {
                 if(per_type > 0) {
                     var totalpoint = Integer.parseInt(moneyTV.text.toString())
                     if (use_point==-1){
-                        use_point = 0
+
                     }else{
                         totalpoint = totalpoint - use_point
+                        Log.d("사용",use_point.toString())
                     }
 
                     if (membership_per != -1){
                         if (per_type==1){
-
-                            stackpoint = totalpoint * (membership_per+Integer.parseInt(stackTV.text.toString())) / 100
+                            stackpoint = totalpoint  * (membership_per+Integer.parseInt(stackTV.text.toString())) / 100
                             Log.d("멤버쉽포인트", membership_per.toString())
                             Log.d("토탈포인트", totalpoint.toString())
                         }else if (per_type==2){
