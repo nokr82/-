@@ -65,8 +65,8 @@ class CalActivity : RootActivity() {
     var option_cate = ArrayList<String>()
     var EDIT_POINT = 101
     var option_age = arrayOf("미입력","10대","20대","30대","40대","50대","60대")
-
-
+    //멤버쉽추가적립
+    var membership_per = -1
     var age = ""
 
 
@@ -272,8 +272,13 @@ class CalActivity : RootActivity() {
             per_type = 1
 
             val managerpercent = stackTV.text.toString()
+            //포인트 빼기
             var money = moneyTV.text.toString()
-
+            if (use_point==-1){
+                use_point = 0
+            }else{
+                money = (money.toInt() - use_point).toString()
+            }
             per = stackTV.text.toString()
 
             if (managerpercent == null) {
@@ -306,8 +311,13 @@ class CalActivity : RootActivity() {
 
             stack2LL.setBackgroundColor(Color.parseColor("#906e8a32"))
             val managerpercent = stack2TV.text.toString()
+            //포인트 빼기
             var money = moneyTV.text.toString()
-
+            if (use_point==-1){
+                use_point = 0
+            }else{
+                money = (money.toInt() - use_point).toString()
+            }
             per = stack2TV.text.toString()
 
             per_type = 2
@@ -403,6 +413,7 @@ class CalActivity : RootActivity() {
                 }
 
                 moneyTV.text = text.substring(0, text.length - 1)
+                //포인트 빼기
 
 
                 val money = moneyTV.text.toString()
@@ -455,7 +466,12 @@ class CalActivity : RootActivity() {
                     Log.d("포인트", totalpoint.toString())
 
                     per = stackTV.text.toString()
-                    stackpoint = totalpoint * Integer.parseInt(stackTV.text.toString()) / 100
+
+                    if (membership_per != -1){
+                        stackpoint = totalpoint * (membership_per+Integer.parseInt(stackTV.text.toString())) / 100
+                    }else{
+                        stackpoint = totalpoint * Integer.parseInt(stackTV.text.toString()) / 100
+                    }
                     changeStep()
 
                     stack_point(member_id.toString())
@@ -464,7 +480,13 @@ class CalActivity : RootActivity() {
                     Log.d("포인트", totalpoint.toString())
 
                     per = stack2TV.text.toString()
-                    stackpoint = totalpoint * Integer.parseInt(stack2TV.text.toString()) / 100
+
+                    if (membership_per != -1){
+                        stackpoint = totalpoint * (membership_per+Integer.parseInt(stack2TV.text.toString())) / 100
+                        Log.d("멤버쉽포인트", membership_per.toString())
+                    }else{
+                        stackpoint = totalpoint * Integer.parseInt(stack2TV.text.toString()) / 100
+                    }
                     changeStep()
 
                     stack_point(member_id.toString())
@@ -495,9 +517,30 @@ class CalActivity : RootActivity() {
                     use_point = 0
                 }
                 if(per_type > 0) {
+                    var totalpoint = Integer.parseInt(moneyTV.text.toString())
+                    if (use_point==-1){
+                        use_point = 0
+                    }else{
+                        totalpoint = totalpoint - use_point
+                    }
 
-                    stackpoint = Utils.getInt(pointTV)
+                    if (membership_per != -1){
+                        if (per_type==1){
 
+                            stackpoint = totalpoint * (membership_per+Integer.parseInt(stackTV.text.toString())) / 100
+                            Log.d("멤버쉽포인트", membership_per.toString())
+                            Log.d("토탈포인트", totalpoint.toString())
+                        }else if (per_type==2){
+                            stackpoint = totalpoint * (membership_per+Integer.parseInt(stack2TV.text.toString())) / 100
+                            Log.d("멤버쉽포인트", membership_per.toString())
+                            Log.d("토탈포인트", totalpoint.toString())
+                        }else if (per_type == 3) {
+                            stackpoint = Integer.parseInt(Utils.getString(pointTV).replace(",",""))
+                            Log.d("포인트", stackpoint.toString())
+                        }
+                    }else{
+                        stackpoint = Utils.getInt(pointTV)
+                    }
                     p_type = 3
                     type = 1
 
@@ -508,6 +551,7 @@ class CalActivity : RootActivity() {
                     type = 2
 
                 }
+
 
                 step = 6
                 stack_point(member_id.toString())
@@ -546,7 +590,11 @@ class CalActivity : RootActivity() {
 
 
         var money = moneyTV.text.toString()
-
+        if (use_point==-1){
+            use_point = 0
+        }else{
+            money = (money.toInt() - use_point).toString()
+        }
         if (defaultpercent == null) {
             Toast.makeText(context, "퍼센트를 먼저 입력해주세요.", Toast.LENGTH_SHORT).show()
             return
@@ -774,6 +822,8 @@ class CalActivity : RootActivity() {
                         member_coupon_id = Utils.getInt(requestStep, "member_coupon_id")
                         val result_step = Utils.getInt(requestStep, "step")
                         new_member_yn  = Utils.getString(requestStep, "new_member_yn")
+                        membership_per = Utils.getInt(member, "membership_per")
+
 
                         if (step != result_step) {
 
@@ -788,6 +838,7 @@ class CalActivity : RootActivity() {
 
                                 opTV.text = "적립"
                                 var phone = Utils.getString(member, "phone")
+
 
                                 //신규 체크
                                 if (member_id == 0 || new_member_yn == "Y") {
@@ -959,8 +1010,12 @@ class CalActivity : RootActivity() {
         params.put("point", stackpoint)//사용및적립포인트
         params.put("type", type)//1적립 2사용
         params.put("per", per)//적립률
+        params.put("membership_per", membership_per)//적립률
+        Log.d("멤버쉽퍼센트",membership_per.toString())
         if (use_point==-1){
             use_point = 0
+        }else{
+            price = price - use_point
         }
         params.put("use_point", use_point)//사용 포인트
         params.put("member_coupon_id", member_coupon_id)//사용 쿠폰
