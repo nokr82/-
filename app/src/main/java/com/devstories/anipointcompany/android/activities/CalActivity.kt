@@ -146,6 +146,7 @@ class CalActivity : RootActivity() {
             opTV.text = "결제"
             m_opTV.text = "￦"
             couponLL.visibility = View.VISIBLE
+            depositlessLL.visibility = View.VISIBLE
         }
         company_info()
         //계산기
@@ -189,7 +190,7 @@ class CalActivity : RootActivity() {
             cashPayIV.setImageResource(R.drawable.radio_on)
             payment_type = 2
         }
-        //무통장입금
+        //포인트결제
         depositlessLL.setOnClickListener {
             setmenu2()
             depositlessIV.setImageResource(R.drawable.radio_on)
