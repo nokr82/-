@@ -979,8 +979,11 @@ class CalActivity : RootActivity() {
 
                     if ("ok" == result) {
 
+
+                        Log.d("뉴멤바ㅓ",new_member_yn)
                         if (new_member_yn.equals("Y")){
                             send_auto()
+                            member_join()
                         }
 
 
