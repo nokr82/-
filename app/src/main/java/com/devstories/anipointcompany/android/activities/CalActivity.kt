@@ -343,8 +343,18 @@ class CalActivity : RootActivity() {
         }
 
         checkLL.setOnClickListener {
+
+            var getBirth = Utils.getString(birthET)
+
+            if(getBirth.length != 8 && getBirth.length > 0) {
+                Toast.makeText(context, "생년월일은 8자리로 입력해주세요", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
             member_join()
+
         }
+
         titleTV.setOnClickListener {
             val intent = Intent(this, UserListActivity::class.java)
             startActivity(intent)
@@ -450,6 +460,18 @@ class CalActivity : RootActivity() {
                     return@setOnClickListener
                 }
             }
+
+            if (joinLL.visibility == View.VISIBLE) {
+
+                var getBirth = Utils.getString(birthET)
+
+                if(getBirth.length != 8 && getBirth.length > 0) {
+                    Toast.makeText(context, "생년월일은 8자리로 입력해주세요", Toast.LENGTH_LONG).show()
+                    return@setOnClickListener
+                }
+
+            }
+
             if (opTV.text.equals("적립")) {
 
                 p_type = 1
@@ -501,22 +523,21 @@ class CalActivity : RootActivity() {
                     Toast.makeText(context, "적립퍼센트를 선택해주세요", Toast.LENGTH_SHORT).show()
                 }
             } else if (opTV.text.equals("결제")) {
-                step = 6
+
                 if (payment_type == -1) {
                     Toast.makeText(context, "결제방식을 선택해주세요", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
 
-
-
                 if (use_point < 1) {
-
                     Toast.makeText(context, "사용자가 포인트 입력 후 진행해주세요", Toast.LENGTH_LONG).show()
 //                        return@setOnClickListener
                 }
+
                 if (use_point == -1){
                     use_point = 0
                 }
+
                 if(per_type > 0) {
                     var totalpoint = Integer.parseInt(moneyTV.text.toString())
                     if (use_point==-1){
@@ -542,6 +563,7 @@ class CalActivity : RootActivity() {
                     }else{
                         stackpoint = Utils.getInt(pointTV)
                     }
+
                     p_type = 3
                     type = 1
 
@@ -553,15 +575,10 @@ class CalActivity : RootActivity() {
 
                 }
 
-
-                step = 6
-                stack_point(member_id.toString())
-                changeStep()
+                sendSMS()
 
             }
         }
-
-
 
         changeStep()
 
@@ -700,6 +717,129 @@ class CalActivity : RootActivity() {
         })
     }
 
+    // 인증번호 전송
+    fun sendSMS() {
+        val params = RequestParams()
+        params.put("company_id", company_id)
+        params.put("member_id", member_id)
+        params.put("member_coupon_id", member_coupon_id)
+
+        if (p_type == 2) {
+
+            params.put("add_point", 0)
+            params.put("use_point", stackpoint)
+
+        } else if (p_type == 3) {
+
+            params.put("add_point", stackpoint)
+            params.put("use_point", use_point)
+
+        }
+
+        RequestStepAction.send_sms(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+
+                    val result = response!!.getString("result")
+                    if ("ok" == result) {
+
+                        val type = Utils.getString(response, "type")
+                        val code = Utils.getInt(response, "code")
+
+                        if (type == "coupon") {
+                            dlgSmsCode(code)
+                        } else {
+
+                            step = 6
+
+                            stack_point(member_id.toString())
+
+                            changeStep()
+                        }
+
+                    } else {
+                        Toast.makeText(context, "오류가 발생하였습니다.", Toast.LENGTH_LONG).show()
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            private fun error() {
+                Utils.alert(context, "조회중 장애가 발생하였습니다.")
+            }
+
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    throwable: Throwable,
+                    errorResponse: JSONObject?
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+                throwable.printStackTrace()
+                error()
+            }
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
+
+    fun dlgSmsCode(code: Int) {
+
+        var mPopupDlg: DialogInterface? = null
+        val builder = AlertDialog.Builder(context)
+        val dialogView = layoutInflater.inflate(R.layout.dlg_send_payback, null)
+        val cancelTV = dialogView.findViewById<TextView>(R.id.cancelTV)
+        val msgWriteTV = dialogView.findViewById<TextView>(R.id.msgWriteTV)
+        val titleTV = dialogView.findViewById<TextView>(R.id.titleTV)
+        val contentTV = dialogView.findViewById<TextView>(R.id.contentTV)
+
+        titleTV.text = "쿠폰 사용"
+        contentTV.text = "인증번호를 확인해주세요.\n" + code.toString()
+        msgWriteTV.text = "사용"
+
+        mPopupDlg = builder.setView(dialogView).show()
+
+        cancelTV.setOnClickListener {
+            mPopupDlg.dismiss()
+        }
+
+        msgWriteTV.setOnClickListener {
+                step = 6
+
+                stack_point(member_id.toString())
+
+                changeStep()
+
+            mPopupDlg.dismiss()
+        }
+
+    }
+
+    /*
     fun coupon_alram(id:Int) {
         val params = RequestParams()
         params.put("company_id", company_id)
@@ -797,6 +937,8 @@ class CalActivity : RootActivity() {
             }
         })
     }
+    */
+
     // 요청 체크
     fun checkStep() {
         val params = RequestParams()
