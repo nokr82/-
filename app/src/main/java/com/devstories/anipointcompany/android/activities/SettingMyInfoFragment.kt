@@ -21,8 +21,12 @@ import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
 import com.nostra13.universalimageloader.core.ImageLoader
+import com.nostra13.universalimageloader.core.assist.FailReason
+import com.nostra13.universalimageloader.core.assist.ImageSize
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener
 import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.fragment_setting_my_info.*
+import kotlinx.android.synthetic.main.fragment_setting_my_info.view.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.ByteArrayInputStream
@@ -34,7 +38,7 @@ class SettingMyInfoFragment : Fragment() {
     lateinit var myContext: Context
     private var progressDialog: ProgressDialog? = null
 
-    lateinit var compNameET: EditText
+    lateinit var compNameTV: TextView
     lateinit var phoneNum1ET: EditText
     lateinit var phoneNum2ET: EditText
     lateinit var phoneNum3ET: EditText
@@ -62,6 +66,8 @@ class SettingMyInfoFragment : Fragment() {
 
     var company_id = -1
 
+    var imageUrlToIVs = HashMap<String, ImageView>()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         this.myContext = container!!.context
@@ -71,7 +77,7 @@ class SettingMyInfoFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        compNameET = view.findViewById(R.id.compNameET)
+        compNameTV = view.findViewById(R.id.compNameTV)
         phoneNum1ET = view.findViewById(R.id.phoneNum1ET)
         phoneNum2ET = view.findViewById(R.id.phoneNum2ET)
         phoneNum3ET = view.findViewById(R.id.phoneNum3ET)
@@ -101,7 +107,13 @@ class SettingMyInfoFragment : Fragment() {
         company_info(company_id)
 
 
-
+        logoutTV.setOnClickListener {
+            PrefUtils.clear(context)
+            val intent = Intent(context, LoginActivity::class.java)
+            PrefUtils.setPreference(context,"autoLogin", false)
+            intent.flags= Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
 
 
         //정보수정
@@ -172,7 +184,8 @@ class SettingMyInfoFragment : Fragment() {
                 {
                     var thumbnail = MediaStore.Images.Media.getBitmap(myContext.contentResolver, contentURI)
                     thumbnail = Utils.rotate(myContext.contentResolver, thumbnail, contentURI)
-                    Log.d("thumbnail",thumbnail.toString())
+                    Log.d("넓이1",thumbnail.width.toString())
+                    Log.d("높이",thumbnail.height.toString())
                     //비트맵배열에 비트맵추가
                     addImages.add(thumbnail)
 
@@ -237,7 +250,7 @@ class SettingMyInfoFragment : Fragment() {
 
                         passwd=Utils.getString(company,"passwd")
 
-                        compNameET.setText(company_name)
+                        compNameTV.setText(company_name)
                         phoneNum1ET.setText(phone1)
                         phoneNum2ET.setText(phone2)
                         phoneNum3ET.setText(phone3)
@@ -266,9 +279,28 @@ class SettingMyInfoFragment : Fragment() {
                                 userLL.removeView(userView)
                                 delids.add(userView.tag as Int)
                                 Log.d("아이디값",delids.toString())
-
                             }
-                            ImageLoader.getInstance().displayImage(image,c_imgIV, Utils.UILoptionsUserProfile)
+
+                            imageUrlToIVs.put(image, c_imgIV)
+
+                            ImageLoader.getInstance().loadImage(image, object : ImageLoadingListener {
+                                override fun onLoadingCancelled(imageUri: String?, view: View?) {
+
+                                }
+
+                                override fun onLoadingFailed(imageUri: String?, view: View?, failReason: FailReason?) {
+                                }
+
+                                override fun onLoadingStarted(imageUri: String?, view: View?) {
+                                }
+
+                                override fun onLoadingComplete(imageUri: String?, view: View?, loadedImage: Bitmap?) {
+                                    val iv = imageUrlToIVs.get(imageUri!!)
+                                    iv!!.setImageBitmap(loadedImage)
+                                    Log.d("높이23",loadedImage!!.height.toString())
+                                }
+                            })
+
                             userLL.addView(userView)
 
                         }
@@ -330,7 +362,7 @@ class SettingMyInfoFragment : Fragment() {
 
     //사업체 정보수정
     fun edit_info() {
-        val company_name = Utils.getString(compNameET)
+        val company_name = Utils.getString(compNameTV)
         var phone1:String =  Utils.getString(phoneNum1ET)
         var phone2:String =  Utils.getString(phoneNum2ET)
         var phone3:String =  Utils.getString(phoneNum3ET)
@@ -524,7 +556,10 @@ class SettingMyInfoFragment : Fragment() {
             val imagV = v.findViewById<ImageView>(R.id.c_imgIV)
             if (imagV is ImageView) {
                 val bitmap = imagV.drawable as BitmapDrawable
+
                 params.put("upload[$i]", ByteArrayInputStream(Utils.getByteArray(bitmap.bitmap)))
+                Log.d("넓이",bitmap.bitmap.width.toString())
+                Log.d("높이",bitmap.bitmap.height.toString())
                 Log.d("브이",i.toString())
                 seq++
             }

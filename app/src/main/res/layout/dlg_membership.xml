@@ -301,21 +301,179 @@
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:orientation="vertical">
-
             <RelativeLayout
-                android:layout_width="135dp"
+                android:layout_width="match_parent"
                 android:layout_height="36dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/background_strock_e7e7e7">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+                    <LinearLayout
+                        android:layout_marginLeft="20dp"
+                        android:id="@+id/cardLL"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
 
-                <Spinner
+                        <ImageView
+                            android:id="@+id/cardIV"
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:src="@drawable/radio_off" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10.5dp"
+                            android:gravity="center"
+                            android:text="카드"
+                            android:textColor="#666666"
+                            android:textSize="20dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/payLL"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/payIV"
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:src="@drawable/radio_off" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10.5dp"
+                            android:gravity="center"
+                            android:text="현금"
+                            android:textColor="#666666"
+                            android:textSize="20dp" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/background_strock_e7e7e7">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                 >
+                    <LinearLayout
+                        android:layout_marginLeft="20dp"
+                        android:id="@+id/silverLL"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/silverIV"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:src="@drawable/radio_off" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10.5dp"
+                        android:gravity="center"
+                        android:text="실버"
+                        android:textColor="#666666"
+                        android:textSize="20dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/goldLL"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/goldIV"
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:src="@drawable/radio_off" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10.5dp"
+                            android:gravity="center"
+                            android:text="골드"
+                            android:textColor="#666666"
+                            android:textSize="20dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/vipLL"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/vipIV"
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:src="@drawable/radio_off" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10.5dp"
+                            android:gravity="center"
+                            android:text="VIP"
+                            android:textColor="#666666"
+                            android:textSize="20dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/vvipLL"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/vvipIV"
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:src="@drawable/radio_off" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10.5dp"
+                            android:gravity="center"
+                            android:text="VVIP"
+                            android:textColor="#666666"
+                            android:textSize="20dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+             <!--   <Spinner
                     android:id="@+id/memberShipSP"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5.5dp"
                     android:textSize="12dp"
-                    android:background="@null"/>
-
+                    android:background="@null"/>-->
+<!--
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -323,7 +481,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_marginRight="5.5dp"
                     android:src="@mipmap/icon_down_arrow"
-                    android:layout_alignParentRight="true" />
+                    android:layout_alignParentRight="true" />-->
 
             </RelativeLayout>
 

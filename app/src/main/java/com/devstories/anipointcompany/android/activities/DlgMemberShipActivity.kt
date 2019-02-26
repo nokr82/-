@@ -2,6 +2,7 @@ package com.devstories.anipointcompany.android.activities
 
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -13,6 +14,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.CompanyAction
 import com.devstories.anipointcompany.android.Actions.MemberAction
+import com.devstories.anipointcompany.android.Actions.RequestStepAction
 import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
@@ -21,14 +23,15 @@ import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.dlg_membership.*
 import org.json.JSONException
 import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DlgMemberShipActivity : RootActivity() {
 
     lateinit var context: Context
     private var progressDialog: ProgressDialog? = null
 
-    lateinit var adapter:ArrayAdapter<String>
-    var membership = arrayListOf<String>("등급변경")
+    var membership=""
 
     var company_id = -1
     var member_id = -1
@@ -40,18 +43,26 @@ class DlgMemberShipActivity : RootActivity() {
 
     var silver_pay = 0
     var silver_point = 0
+    var silver_point_card = 0
     var silver_add_point = 0
 
     var gold_pay = 0
     var gold_point = 0
+    var gold_point_card = 0
     var gold_add_point = 0
 
     var vip_pay = 0
     var vip_point = 0
+    var vip_point_card = 0
     var vip_add_point = 0
+
+    var type = -1
+
+    var left_point = 0
 
     var vvip_pay = 0
     var vvip_point = 0
+    var vvip_point_card = 0
     var vvip_add_point = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,54 +81,107 @@ class DlgMemberShipActivity : RootActivity() {
         vip = intent.getBooleanExtra("vip", false)
         vvip = intent.getBooleanExtra("vvip", false)
 
-        if (silver) {
-            membership.add("실버")
-        }
-        if (gold) {
-            membership.add("골드")
-        }
-        if (vip) {
-            membership.add("VIP")
-        }
-        if (vvip) {
-            membership.add("VVIP")
-        }
-
-        adapter = ArrayAdapter(context, R.layout.spiner_item, membership)
-        memberShipSP.adapter = adapter
-        memberShipSP.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-
+        cardLL.setOnClickListener {
+            setmenu2()
+            type = 2
+            cardIV.setImageResource(R.drawable.radio_on)
+            if (membership=="실버"){
+                pointTV.text = Utils.thousand(silver_point_card) + "원"
+            }else if (membership=="골드"){
+                pointTV.text = Utils.thousand(gold_point_card) + "원"
+            }else if (membership=="VIP"){
+                pointTV.text = Utils.thousand(vip_point_card) + "원"
+            }else if (membership=="VVIP"){
+                pointTV.text = Utils.thousand(vvip_point_card) + "원"
             }
 
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-
-                val selected = adapter.getItem(position)
-
-                if (selected == "실버") {
-                    payTV.text = Utils.thousand(silver_pay) + "원"
-                    pointTV.text = Utils.thousand(silver_point) + "원"
-                    addPointTV.text = Utils.thousand(silver_add_point) + "%"
-                } else if (selected == "골드") {
-                    payTV.text = Utils.thousand(gold_pay) + "원"
-                    pointTV.text = Utils.thousand(gold_point) + "원"
-                    addPointTV.text = Utils.thousand(gold_add_point) + "%"
-                } else if (selected == "VIP") {
-                    payTV.text = Utils.thousand(vip_pay) + "원"
-                    pointTV.text = Utils.thousand(vip_point) + "원"
-                    addPointTV.text = Utils.thousand(vip_add_point) + "%"
-                } else if (selected == "VVIP") {
-                    payTV.text = Utils.thousand(vvip_pay) + "원"
-                    pointTV.text = Utils.thousand(vvip_point) + "원"
-                    addPointTV.text = Utils.thousand(vvip_add_point) + "%"
-                } else {
-                    payTV.text = "0원"
-                    pointTV.text = "0원"
-                    addPointTV.text = "0%"
-                }
-
+        }
+        payLL.setOnClickListener {
+            setmenu2()
+            type = 1
+            payIV.setImageResource(R.drawable.radio_on)
+            if (membership=="실버"){
+                pointTV.text = Utils.thousand(silver_point) + "원"
+            }else if (membership=="골드"){
+                pointTV.text = Utils.thousand(gold_point) + "원"
+            }else if (membership=="VIP"){
+                pointTV.text = Utils.thousand(vip_point) + "원"
+            }else if (membership=="VVIP"){
+                pointTV.text = Utils.thousand(vvip_point) + "원"
             }
         }
+
+
+
+
+        silverLL.setOnClickListener {
+            if (type == -1){
+                Toast.makeText(context,"결제방법을 선택해주세요.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            setmenu()
+
+            silverIV.setImageResource(R.drawable.radio_on)
+            payTV.text = Utils.thousand(silver_pay) + "원"
+            if (type ==1){
+                pointTV.text = Utils.thousand(silver_point) + "원"
+            }else if (type == 2){
+                pointTV.text = Utils.thousand(silver_point_card) + "원"
+            }
+            addPointTV.text = Utils.thousand(silver_add_point) + "%"
+            membership = "실버"
+        }
+        goldLL.setOnClickListener {
+            if (type == -1){
+                Toast.makeText(context,"결제방법을 선택해주세요.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            setmenu()
+            goldIV.setImageResource(R.drawable.radio_on)
+            payTV.text = Utils.thousand(gold_pay) + "원"
+            if (type ==1){
+                pointTV.text = Utils.thousand(gold_point) + "원"
+            }else if (type == 2){
+                pointTV.text = Utils.thousand(gold_point_card) + "원"
+            }
+
+            addPointTV.text = Utils.thousand(gold_add_point) + "%"
+            membership = "골드"
+        }
+        vipLL.setOnClickListener {
+            if (type == -1){
+                Toast.makeText(context,"결제방법을 선택해주세요.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            setmenu()
+            vipIV.setImageResource(R.drawable.radio_on)
+            payTV.text = Utils.thousand(vip_pay) + "원"
+            if (type ==1){
+                pointTV.text = Utils.thousand(vip_point) + "원"
+            }else if (type == 2){
+                pointTV.text = Utils.thousand(vip_point_card) + "원"
+            }
+            addPointTV.text = Utils.thousand(vip_add_point) + "%"
+            membership = "VIP"
+        }
+        vvipLL.setOnClickListener {
+            if (type == -1){
+                Toast.makeText(context,"결제방법을 선택해주세요.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            setmenu()
+            vvipIV.setImageResource(R.drawable.radio_on)
+            payTV.text = Utils.thousand(vvip_pay) + "원"
+            if (type ==1){
+                pointTV.text = Utils.thousand(vvip_point) + "원"
+            }else if (type == 2){
+                pointTV.text = Utils.thousand(vvip_point_card) + "원"
+            }
+            addPointTV.text = Utils.thousand(vvip_add_point) + "%"
+            membership = "VVIP"
+        }
+
+
 
         searchTV.setOnClickListener {
             val phone1 = Utils.getString(phoneNum1ET)
@@ -146,12 +210,15 @@ class DlgMemberShipActivity : RootActivity() {
         saveTV.setOnClickListener {
 
             if (member_id < 1) {
-                Toast.makeText(context, "회원을 선택해주세요", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "회원을 선택해주세요.", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
-
-            if (memberShipSP.selectedItemPosition < 1) {
-                Toast.makeText(context, "변경하실 등급을 선택해주세요", Toast.LENGTH_LONG).show()
+            if (type < 1) {
+                Toast.makeText(context, "결제방식을 선택해주세요.", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+            if (payTV.text.equals("0")) {
+                Toast.makeText(context, "변경하실 등급을 선택해주세요.", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
 
@@ -161,6 +228,86 @@ class DlgMemberShipActivity : RootActivity() {
 
         loadData()
 
+    }
+
+    // 알람톡보내기
+    fun send_alram() {
+        val df = SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.KOREA)
+        val str_date = df.format(Date())
+        var stack_point = Utils.getString(pointTV)
+        var stackpoint =  Utils.getString(pointTV).replace(",","")
+       var plus = stackpoint.replace("원","").toInt()
+        var balance =left_point + plus
+        val params = RequestParams()
+        params.put("company_id", company_id)
+        params.put("member_id", member_id)
+        params.put("stack_point", stack_point.toString().replace("원",""))
+        params.put("left_point", Utils.comma(balance.toString()))
+        params.put("type", "1")
+
+        RequestStepAction.send_alram(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+
+                    val result = response!!.getString("result")
+                    if ("ok" == result) {
+
+                    }
+
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            private fun error() {
+                Utils.alert(context, "조회중 장애가 발생하였습니다.")
+            }
+
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    throwable: Throwable,
+                    errorResponse: JSONObject?
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+                throwable.printStackTrace()
+                error()
+            }
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
+    fun setmenu(){
+        silverIV.setImageResource(R.drawable.radio_off)
+        goldIV.setImageResource(R.drawable.radio_off)
+        vipIV.setImageResource(R.drawable.radio_off)
+        vvipIV.setImageResource(R.drawable.radio_off)
+    }
+    fun setmenu2(){
+        cardIV.setImageResource(R.drawable.radio_off)
+        payIV.setImageResource(R.drawable.radio_off)
     }
 
     fun loadData() {
@@ -192,6 +339,11 @@ class DlgMemberShipActivity : RootActivity() {
                         if (silver_point < 1) {
                             silver_point = 0
                         }
+                        silver_point_card = Utils.getInt(company, "silver_point_card")
+
+                        if (silver_point_card < 1) {
+                            silver_point_card = 0
+                        }
 
                         silver_add_point = Utils.getInt(company, "silver_add_point")
 
@@ -209,6 +361,11 @@ class DlgMemberShipActivity : RootActivity() {
 
                         if (gold_point < 1) {
                             gold_point = 0
+                        }
+                        gold_point_card = Utils.getInt(company, "gold_point_card")
+
+                        if (gold_point_card < 1) {
+                            gold_point_card = 0
                         }
 
                         gold_add_point = Utils.getInt(company, "gold_add_point")
@@ -228,6 +385,11 @@ class DlgMemberShipActivity : RootActivity() {
                         if (vip_point < 1) {
                             vip_point = 0
                         }
+                        vip_point_card = Utils.getInt(company, "vip_point_card")
+
+                        if (vip_point_card < 1) {
+                            vip_point_card = 0
+                        }
 
                         vip_add_point = Utils.getInt(company, "vip_add_point")
 
@@ -245,6 +407,12 @@ class DlgMemberShipActivity : RootActivity() {
 
                         if (vvip_point < 1) {
                             vvip_point = 0
+                        }
+
+                        vvip_point_card = Utils.getInt(company, "vvip_point_card")
+
+                        if (vvip_point_card < 1) {
+                            vvip_point_card = 0
                         }
 
                         vvip_add_point = Utils.getInt(company, "vvip_add_point")
@@ -333,19 +501,32 @@ class DlgMemberShipActivity : RootActivity() {
                         val membership = Utils.getString(member, "membership")
                         val name = Utils.getString(member, "name")
                         val point = Utils.getInt(member, "point")
-                        val use_point = Utils.getInt(member, "use_point")
+                        var use_point = Utils.getInt(member, "use_point")
                         val balance = Utils.getInt(member, "balance")
                         val phone = Utils.getString(member, "phone")
 
                         var membership_str = "-"
+                        left_point = balance
+                        if (use_point==-1){
+                            use_point=0
+                        }
+
 
                         if ("S" == membership) {
+                            setmenu()
+                            silverIV.setImageResource(R.drawable.radio_on)
                             membership_str = "실버"
                         } else if ("G" == membership) {
+                            setmenu()
+                            goldIV.setImageResource(R.drawable.radio_on)
                             membership_str = "골드"
                         } else if ("V" == membership) {
+                            setmenu()
+                            vipIV.setImageResource(R.drawable.radio_on)
                             membership_str = "VIP"
                         } else if ("W" == membership) {
+                            setmenu()
+                            vvipIV.setImageResource(R.drawable.radio_on)
                             membership_str = "VVIP"
                         }
 
@@ -424,7 +605,10 @@ class DlgMemberShipActivity : RootActivity() {
         val params = RequestParams()
         params.put("company_id",company_id)
         params.put("member_id", member_id)
-        params.put("membership", memberShipSP.selectedItem)
+        params.put("membership", membership)
+        params.put("type", type)
+
+//        params.put("membership", memberShipSP.selectedItem)
 
         MemberAction.edit_membership(params, object : JsonHttpResponseHandler() {
 
@@ -442,9 +626,14 @@ class DlgMemberShipActivity : RootActivity() {
                     searchLL.visibility = View.GONE
 
                     if ("ok" == result) {
-
+                        send_alram()
                         Toast.makeText(context, "변경되었습니다.", Toast.LENGTH_LONG).show()
+                        val resultIntent = Intent()
+                        setResult(RESULT_OK, resultIntent)
+                        Utils.hideKeyboard(context)
                         finish()
+//                        Toast.makeText(context, "변경되었습니다.", Toast.LENGTH_LONG).show()
+//                        finish()
 
                     } else {
                         Toast.makeText(context, "오류가 발생하였습니다.", Toast.LENGTH_LONG).show()

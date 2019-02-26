@@ -95,10 +95,20 @@
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:textColor="#4e4e4e"/>
+                <me.grantland.widget.AutofitTextView
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(광고)"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="#4e4e4e"/>
                 <ScrollView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1">
+
                 <TextView
                     android:id="@+id/messageTV"
                     android:layout_width="match_parent"
@@ -106,17 +116,17 @@
                     android:textColor="#555555"
                     android:textSize="15sp" />
                 </ScrollView>
-            <!--    <me.grantland.widget.AutofitTextView
+                <me.grantland.widget.AutofitTextView
                     android:maxLines="1"
                     android:gravity="bottom"
                     android:singleLine="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="무료거부 0808807463"
+                    android:text="무료거부: 080-450-5601"
                     android:layout_marginBottom="20dp"
                     android:textStyle="bold"
                     android:textSize="16sp"
-                    android:textColor="#4e4e4e"/>-->
+                    android:textColor="#4e4e4e"/>
 
             </LinearLayout>
             <ImageView

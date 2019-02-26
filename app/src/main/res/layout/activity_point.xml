@@ -83,7 +83,6 @@
                     android:background="#ffffff" />
 
                 <LinearLayout
-
                     android:layout_width="wrap_content"
                     android:layout_height="33dp"
                     android:gravity="center_vertical"
@@ -92,12 +91,10 @@
                     <EditText
                         android:id="@+id/phoneET"
                         android:layout_width="match_parent"
-                        android:layout_height="17dp"
+                        android:layout_height="wrap_content"
                         android:background="@null"
                         android:hint="핸드폰번호"
                         android:inputType="number"
-                        android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="1sp"
                         android:minEms="5"
                         android:textColor="#ffffff"
                         android:textColorHint="#ffffff"
@@ -188,21 +185,29 @@
                     android:layout_width="wrap_content"
                     android:layout_height="33dp"
                     android:gravity="center_vertical"
-                    android:orientation="vertical">
-
-                    <EditText
-                        android:id="@+id/ageET"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <RelativeLayout
                         android:background="@null"
-                        android:hint="나이"
-                        android:inputType="number"
-                        android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="1sp"
-                        android:minEms="5"
-                        android:textColor="#ffffff"
-                        android:textColorHint="#ffffff"
-                        android:textSize="18dp" />
+                        android:layout_width="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_height="match_parent">
+
+                        <Spinner
+                            android:id="@+id/ageSP"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"/>
+                        <ImageView
+                            android:id="@+id/dropIV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginRight="25.5dp"
+                            android:src="@mipmap/profile_arrow_next"
+                            android:layout_alignParentRight="true" />
+
+                    </RelativeLayout>
 
                 </LinearLayout>
 
@@ -225,8 +230,6 @@
                         android:background="@null"
                         android:hint="생일"
                         android:inputType="number"
-                        android:letterSpacing="-0.03"
-                        android:lineSpacingExtra="1sp"
                         android:minEms="5"
                         android:textColor="#ffffff"
                         android:textColorHint="#ffffff"
@@ -498,6 +501,7 @@
                     android:background="#ffffff" />
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="33dp"
                     android:gravity="center_vertical"
@@ -693,7 +697,31 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5.5dp"
-                            android:text="무통장입금"
+                            android:text="포인트 결제"
+                            android:textColor="#ffffff"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/couponLL"
+                        android:layout_width="match_parent"
+                        android:visibility="gone"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp">
+
+                        <ImageView
+                            android:id="@+id/couponIV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/radio_off" />
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5.5dp"
+                            android:text="쿠폰 사용"
                             android:textColor="#ffffff"
                             android:textSize="16dp" />
                     </LinearLayout>
@@ -725,11 +753,23 @@
             <TextView
                 android:id="@+id/pointTV"
                 android:layout_width="wrap_content"
+                android:visibility="visible"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:gravity="center_horizontal"
                 android:lineSpacingExtra="25sp"
                 android:text="적립 포인트"
+                android:textColor="#90ffffff"
+                android:textSize="20dp" />
+            <TextView
+                android:id="@+id/point_useTV"
+                android:layout_width="wrap_content"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="25sp"
+                android:text="0"
                 android:textColor="#90ffffff"
                 android:textSize="20dp" />
 
@@ -744,6 +784,7 @@
 
         </RelativeLayout>
         <LinearLayout
+            android:id="@+id/calLL"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -1094,9 +1135,7 @@
                         android:layout_weight="1"
                         android:gravity="center">
 
-                        <me.grantland.widget.AutofitTextView
-                            android:singleLine="true"
-                            android:maxLines="1"
+                        <TextView
                             android:id="@+id/stackTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

@@ -66,12 +66,12 @@ class Point_List_Fragment : Fragment() {
 
     lateinit var useradapter: UserListAdapter
     var data = arrayListOf<Int>()
-
+    var totalpage = 0
     var year: Int = 1
     var month: Int = 1
     var day: Int = 1
     var company_id = -1
-
+    var page: Int = 1
     var start_date: String? = null
     var end_date: String? = null
 
@@ -188,6 +188,25 @@ class Point_List_Fragment : Fragment() {
         }
         useradapter = UserListAdapter(myContext, R.layout.item_user_point_list, adapterData)
         userLV.adapter = useradapter
+
+        var lastitemVisibleFlag = false        //화면에 리스트의 마지막 아이템이 보여지는지 체크
+        userLV.setOnScrollListener(object : AbsListView.OnScrollListener {
+            override fun onScroll(view: AbsListView, firstVisibleItem: Int, visibleItemCount: Int, totalItemCount: Int) {
+                lastitemVisibleFlag = totalItemCount > 0 && firstVisibleItem + visibleItemCount >= totalItemCount
+            }
+
+            override fun onScrollStateChanged(view: AbsListView, scrollState: Int) {
+                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && lastitemVisibleFlag) {
+                    if (totalpage > page) {
+                        page++
+                        loadmainData(company_id)
+                    }
+
+                }
+            }
+
+        })
+
         userLV.setOnItemClickListener { parent, view, position, id ->
             var data = adapterData.get(position)
             Log.d("리스트선택", data.toString())
@@ -195,6 +214,8 @@ class Point_List_Fragment : Fragment() {
             val member_id = Utils.getInt(member, "id")
             loaditemdata(company_id, member_id)
         }
+
+
         userLV.setOnItemLongClickListener { parent, view, position, id ->
             var data = adapterData.get(position)
             val member = data.getJSONObject("Member")
@@ -282,6 +303,10 @@ class Point_List_Fragment : Fragment() {
         Toast.makeText(myContext, msg, Toast.LENGTH_SHORT).show()
         loadmainData(company_id)
     }
+    override fun onPause() {
+        super.onPause()
+        page = 1
+    }
     //환불
     fun payback(point_id: Int) {
         val params = RequestParams()
@@ -365,6 +390,7 @@ class Point_List_Fragment : Fragment() {
         params.put("start_date", start_date)
         System.out.print("시작" + start_date)
         params.put("end_date", end_date)
+        params.put("page", page)
         System.out.print("끝" + end_date)
 
 
@@ -377,6 +403,7 @@ class Point_List_Fragment : Fragment() {
 
                 try {
                     val result = response!!.getString("result")
+                        Log.d("대이터",response.toString())
                     if ("ok" == result) {
                         val data = response.getJSONObject("pointData")
                         val allCount = Utils.getInt(data, "allCount")
@@ -389,10 +416,16 @@ class Point_List_Fragment : Fragment() {
                         val useCouponMembers = Utils.getInt(data, "useCouponMembers")
                         val useCouponCount = Utils.getInt(data, "useCouponCount")
                         var useCouponPay = Utils.getInt(data, "useCouponPay")
+                        var allPointMembers = Utils.getInt(data, "allPointMembers")
+                        totalpage = response.getInt("totalPage")
 
-
-                        val allcnt = addPointMember + usePointMember
+                        var allcnt = allPointMembers
                         val total_point_cnt = addPointCount + usePointCount
+
+                        if (allcnt == -1){
+                            allcnt = 0
+                        }
+
 
                         all_couponTV.text = useCouponMembers.toString()+"명/"+useCouponCount.toString()+"회"
                         all_cntTV.text = allcnt.toString() + "명"
@@ -403,9 +436,11 @@ class Point_List_Fragment : Fragment() {
                         }
 
 
-                        coupon_payTV.text = useCouponPay.toString()+"원"
+                        coupon_payTV.text = Utils.comma(useCouponPay.toString())+"원"
                         val data2 = response.getJSONArray("member_list")
-                        adapterData.clear()
+                        if (page==1){
+                            adapterData.clear()
+                        }
                         useradapter.notifyDataSetChanged()
                         Log.d("멤버리스트", data2.toString())
                         for (i in 0..(data2.length() - 1)) {

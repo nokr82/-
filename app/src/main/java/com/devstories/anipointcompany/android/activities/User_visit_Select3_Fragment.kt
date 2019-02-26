@@ -19,6 +19,7 @@ import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.utils.MPPointF
 import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
@@ -207,7 +208,8 @@ class User_visit_Select3_Fragment : Fragment() {
                     if ("ok" == result) {
 
                         val age = response.getJSONArray("age")
-                        val ages = arrayOf("00", "02", "04", "06", "08", "10","12", "14", "16", "18", "20", "22")
+                        val ages = arrayOf("00", "01", "02", "03", "04", "05","06", "07", "08", "09", "10", "11","12", "13", "14", "15", "16","17", "18", "19", "20", "21", "22","23")
+//                        val ages = arrayOf("01", "03", "05", "07", "09", "11","13", "15","17", "19", "21","23")
 
 
                         val min = response.getJSONObject("min")
@@ -224,12 +226,15 @@ class User_visit_Select3_Fragment : Fragment() {
 
                         var xAxis = ageBarChart.getXAxis()
                         xAxis.setTextColor(Color.parseColor("#a0a0a0"))
-                        xAxis.setDrawLabels(true)
+//                        xAxis.setDrawLabels(true)
                         xAxis.setDrawGridLines(false)
                         xAxis.setGranularity(1f) // minimum axis-step (interval) is 1
                         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM)
                         xAxis.setAvoidFirstLastClipping(true)
-                        xAxis.valueFormatter = IAxisValueFormatter { value, axis ->
+                        xAxis.setLabelCount(24, false)
+//                        xAxis.setValueFormatter(IndexAxisValueFormatter(ages))
+//                        xAxis.setCenterAxisLabels(true)
+       /*                 xAxis.valueFormatter = IAxisValueFormatter { value, axis ->
                             // System.out.println("va 0 : " + value);
                             if (value < 0) {
                                 return@IAxisValueFormatter ""
@@ -239,7 +244,7 @@ class User_visit_Select3_Fragment : Fragment() {
                             } else {
                                 ""
                             }
-                        }
+                        }*/
 
 
                         var ageData: MutableList<BarEntry> = ArrayList()
@@ -260,6 +265,18 @@ class User_visit_Select3_Fragment : Fragment() {
                             var data9 = age[9] as JSONObject
                             var data10 = age[10] as JSONObject
                             var data11 = age[11] as JSONObject
+                            var data12 = age[12] as JSONObject
+                            var data13 = age[13] as JSONObject
+                            var data14 = age[14] as JSONObject
+                            var data15 = age[15] as JSONObject
+                            var data16 = age[16] as JSONObject
+                            var data17 = age[17] as JSONObject
+                            var data18 = age[18] as JSONObject
+                            var data19 = age[19] as JSONObject
+                            var data20 = age[20] as JSONObject
+                            var data21 = age[21] as JSONObject
+                            var data22 = age[22] as JSONObject
+                            var data23 = age[23] as JSONObject
 
                             var time0 = Utils.getInt(data0, "count")
                             var time1 = Utils.getInt(data1, "count")
@@ -273,7 +290,20 @@ class User_visit_Select3_Fragment : Fragment() {
                             var time9 = Utils.getInt(data9, "count")
                             var time10 = Utils.getInt(data10, "count")
                             var time11 = Utils.getInt(data11, "count")
-                            totalMemberCnt = time0+time1+time2+time3+time4+time5+time6+time7+time8+time9+time10+time11
+                            var time12 = Utils.getInt(data12, "count")
+                            var time13 = Utils.getInt(data13, "count")
+                            var time14 = Utils.getInt(data14, "count")
+                            var time15 = Utils.getInt(data15, "count")
+                            var time16 = Utils.getInt(data16, "count")
+                            var time17 = Utils.getInt(data17, "count")
+                            var time18 = Utils.getInt(data18, "count")
+                            var time19 = Utils.getInt(data19, "count")
+                            var time20 = Utils.getInt(data20, "count")
+                            var time21 = Utils.getInt(data21, "count")
+                            var time22 = Utils.getInt(data22, "count")
+                            var time23 = Utils.getInt(data23, "count")
+                            totalMemberCnt = time0+time1+time2+time3+time4+time5+time6+time7+time8+time9+time10+time11+
+                                    time12+time13+time14+time15+time16+time17+time18+time19+time20+time21+time22+time23
 
                             ageData.add(BarEntry(i.toFloat(), Utils.getInt(data, "count").toFloat()))
                         }
@@ -292,11 +322,9 @@ class User_visit_Select3_Fragment : Fragment() {
                         var barDataSet = BarDataSet(ageData, "12")
                         barDataSet.setColors(*intArrayOf(Color.parseColor("#4b8bc8"), Color.parseColor("#4b8bc8"), Color.parseColor("#4b8bc8"), Color.parseColor("#4b8bc8"), Color.parseColor("#4b8bc8"), Color.parseColor("#4b8bc8")))
                         barDataSet.setDrawValues(false)
-
                         var barData = BarData(barDataSet)
-                        barData.setBarWidth(0.1f)
-
-
+                        barData.setBarWidth(0.3f)
+                        ageBarChart.getXAxis().setAxisMinimum(0f);
                         ageBarChart.setData(barData)
                         ageBarChart.invalidate() // refresh
 

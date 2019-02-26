@@ -1,5 +1,6 @@
 package com.devstories.anipointcompany.android.activities
 
+import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
@@ -24,6 +25,10 @@ import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.fragment_oper_policy.*
 import org.json.JSONException
 import org.json.JSONObject
+import android.view.View.OnTouchListener
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 //설정 -운영정책
 class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
@@ -36,7 +41,7 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
     lateinit var rdo1000wonIV: ImageView
     lateinit var rdo500wonIV: ImageView
     lateinit var rdo100wonIV: ImageView
-    lateinit var visitcntTV: EditText
+    lateinit var visitcntET: EditText
     lateinit var costTV: EditText
     lateinit var vsitIV: ImageView
     lateinit var costIV: ImageView
@@ -92,6 +97,8 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
     private var lastcount = 0
     private var totalItemCountScroll = 0
 
+    var EDIT_MEMBER = 102
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
         progressDialog = ProgressDialog(myContext)
@@ -106,7 +113,7 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
         rdo1000wonIV = view.findViewById(R.id.rdo1000wonIV)
         rdo500wonIV = view.findViewById(R.id.rdo500wonIV)
         rdo100wonIV = view.findViewById(R.id.rdo100wonIV)
-        visitcntTV = view.findViewById(R.id.visitcntTV)
+        visitcntET = view.findViewById(R.id.visitcntET)
         costTV = view.findViewById(R.id.costTV)
         vsitIV = view.findViewById(R.id.vsitIV)
         costIV = view.findViewById(R.id.costIV)
@@ -153,6 +160,18 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
         membershipLV.adapter = membershipAdapter
         membershipLV.setOnScrollListener(this)
 
+        membershipLV.setOnTouchListener(OnTouchListener { v, event ->
+            membershipLV.requestDisallowInterceptTouchEvent(true)
+
+            false
+        })
+
+
+
+
+
+
+
         rdo1000wonIV.setOnClickListener {
             setmenu()
             money_type = 3
@@ -198,7 +217,7 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
             intent.putExtra("gold", gold)
             intent.putExtra("vip", vip)
             intent.putExtra("vvip", vvip)
-            startActivity(intent)
+            startActivityForResult(intent,EDIT_MEMBER)
         }
 
         customerLL.setOnClickListener {
@@ -235,6 +254,19 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
 
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            EDIT_MEMBER -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    membership_list()
+                }
+            }
+        }
+
+
+    }
+
     fun setmenu() {
         rdo1000wonIV.setImageResource(R.drawable.radio_off)
         rdo500wonIV.setImageResource(R.drawable.radio_off)
@@ -248,6 +280,7 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
         visitLL.visibility = View.GONE
         accountLL.visibility = View.GONE
     }
+
 
     //사업체 정보뽑기
     fun company_info() {
@@ -276,6 +309,7 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
                         val frequenter_type = Utils.getString(company, "frequenter_type")
                         //단골금액/몇회
                         val frequenter_standard = Utils.getString(company, "frequenter_standard")
+                        val frequenter_standard_visit = Utils.getString(company, "frequenter_standard_visit")
                         // 최소사용포인트
                         val basic_per = Utils.getString(company, "basic_per")
                         //최소사용포인트 단위
@@ -297,12 +331,11 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
 
                         } else if (frequenter_type.equals("V")) {
                             a_visitLL.callOnClick()
-                            visitcntTV.setText(frequenter_standard)
                         } else if (frequenter_type.equals("P")) {
                             a_costLL.callOnClick()
-                            costTV.setText(frequenter_standard)
                         }
-
+                        visitcntET.setText(frequenter_standard_visit)
+                        costTV.setText(Utils.comma(frequenter_standard))
                         val cate = response.getJSONArray("categories")
                         Log.d("카테", cate.toString())
                         for (i in 0..cate.length() - 1) {
@@ -318,14 +351,14 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
                         val silver_pay = Utils.getInt(company, "silver_pay")
 
                         if (silver_pay > 0) {
-                            silverPayET.setText(silver_pay.toString())
+                            silverPayET.setText(Utils.comma(silver_pay.toString()))
                             silver = true
                         }
 
                         val silver_point = Utils.getInt(company, "silver_point")
 
                         if (silver_point > 0) {
-                            silverPointET.setText(silver_point.toString())
+                            silverPointET.setText(Utils.comma(silver_point.toString()))
                         }
 
                         val silver_add_point = Utils.getInt(company, "silver_add_point")
@@ -337,14 +370,14 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
                         val gold_pay = Utils.getInt(company, "gold_pay")
 
                         if (gold_pay > 0) {
-                            goldPayET.setText(gold_pay.toString())
+                            goldPayET.setText(Utils.comma(gold_pay.toString()))
                             gold = true
                         }
 
                         val gold_point = Utils.getInt(company, "gold_point")
 
                         if (gold_point > 0) {
-                            goldPointET.setText(gold_point.toString())
+                            goldPointET.setText(Utils.comma(gold_point.toString()))
                         }
 
                         val gold_add_point = Utils.getInt(company, "gold_add_point")
@@ -356,14 +389,14 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
                         val vip_pay = Utils.getInt(company, "vip_pay")
 
                         if (vip_pay > 0) {
-                            vipPayET.setText(vip_pay.toString())
+                            vipPayET.setText(Utils.comma(vip_pay.toString()))
                             vip = true
                         }
 
                         val vip_point = Utils.getInt(company, "vip_point")
 
                         if (vip_point > 0) {
-                            vipPointET.setText(vip_point.toString())
+                            vipPointET.setText(Utils.comma(vip_point.toString()))
                         }
 
                         val vip_add_point = Utils.getInt(company, "vip_add_point")
@@ -375,21 +408,44 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
                         val vvip_pay = Utils.getInt(company, "vvip_pay")
 
                         if (vvip_pay > 0) {
-                            vvipPayET.setText(vvip_pay.toString())
+                            vvipPayET.setText(Utils.comma(vvip_pay.toString()))
                             vvip = true
                         }
 
                         val vvip_point = Utils.getInt(company, "vvip_point")
 
                         if (vvip_point > 0) {
-                            vvipPointET.setText(vvip_point.toString())
+                            vvipPointET.setText(Utils.comma(vvip_point.toString()))
                         }
 
                         val vvip_add_point = Utils.getInt(company, "vvip_add_point")
 
                         if (vvip_add_point > 0) {
-                            vvipPointET.setText(vvip_add_point.toString())
+                            vvipAddPointET.setText(vvip_add_point.toString())
                         }
+
+                        val silver_point_card = Utils.getInt(company, "silver_point_card")
+
+                        if (silver_point_card > 0) {
+                            cardsilverPointET.setText(Utils.comma(silver_point_card.toString()))
+                        }
+                        val gold_point_card = Utils.getInt(company, "gold_point_card")
+
+                        if (gold_point_card > 0) {
+                            cardgoldPointET.setText(Utils.comma(gold_point_card.toString()))
+                        }
+                        val vip_point_card = Utils.getInt(company, "vip_point_card")
+
+                        if (vip_point_card > 0) {
+                            cardvipPointET.setText(Utils.comma(vip_point_card.toString()))
+                        }
+                        val vvip_point_card = Utils.getInt(company, "vvip_point_card")
+
+                        if (vvip_point_card > 0) {
+                            cardvvipPointET.setText(Utils.comma(vvip_point_card.toString()))
+                        }
+
+
 
                     } else {
 
@@ -449,6 +505,7 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
     fun edit_info() {
         val min_use_point = Utils.getString(min_pointTV)
         var frequenter_standard: String = ""
+        var frequenter_standard_visit: String = ""
         var use_point_unit: String = ""//사용단위
         var frequenter_type: String = ""//단골기준
 
@@ -464,18 +521,20 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
 
         if (type == 1) {
             frequenter_type = "V"
-            frequenter_standard = Utils.getString(visitcntTV)
         } else if (type == 2) {
             frequenter_type = "P"
-            frequenter_standard = Utils.getString(costTV)
         } else {
             frequenter_type = "N"
         }
+        frequenter_standard_visit = Utils.getString(visitcntET)
+        frequenter_standard = Utils.getString(costTV).replace(",","")
+
         val params = RequestParams()
         params.put("company_id", company_id)
         params.put("min_use_point", min_use_point)
         Log.d("최소", use_point_unit)
         params.put("frequenter_standard", frequenter_standard)
+        params.put("frequenter_standard_visit", frequenter_standard_visit)
         Log.d("단골", frequenter_standard)
 
         params.put("frequenter_type", frequenter_type)
@@ -483,18 +542,23 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
         params.put("basic_per", Utils.getString(basic_perET))
         params.put("option_per", Utils.getString(high_perET))
 
-        params.put("silver_pay", Utils.getString(silverPayET))
-        params.put("silver_point", Utils.getString(silverPointET))
-        params.put("silver_add_point", Utils.getString(silverAddPointET))
-        params.put("gold_pay", Utils.getString(goldPayET))
-        params.put("gold_point", Utils.getString(goldPointET))
-        params.put("gold_add_point", Utils.getString(goldAddPointET))
-        params.put("vip_pay", Utils.getString(vipPayET))
-        params.put("vip_point", Utils.getString(vipPointET))
-        params.put("vip_add_point", Utils.getString(vipAddPointET))
-        params.put("vvip_pay", Utils.getString(vvipPayET))
-        params.put("vvip_point", Utils.getString(vvipPointET))
-        params.put("vvip_add_point", Utils.getString(vvipAddPointET))
+        params.put("silver_pay", Utils.getString(silverPayET).replace(",",""))
+        params.put("silver_point", Utils.getString(silverPointET).replace(",",""))
+        params.put("silver_add_point", Utils.getString(silverAddPointET).replace(",",""))
+        params.put("gold_pay", Utils.getString(goldPayET).replace(",",""))
+        params.put("gold_point", Utils.getString(goldPointET).replace(",",""))
+        params.put("gold_add_point", Utils.getString(goldAddPointET).replace(",",""))
+        params.put("vip_pay", Utils.getString(vipPayET).replace(",",""))
+        params.put("vip_point", Utils.getString(vipPointET).replace(",",""))
+        params.put("vip_add_point", Utils.getString(vipAddPointET).replace(",",""))
+        params.put("vvip_pay", Utils.getString(vvipPayET).replace(",",""))
+        params.put("vvip_point", Utils.getString(vvipPointET).replace(",",""))
+        params.put("vvip_add_point", Utils.getString(vvipAddPointET).replace(",",""))
+
+        params.put("silver_point_card", Utils.getString(cardsilverPointET).replace(",",""))
+        params.put("gold_point_card", Utils.getString(cardgoldPointET).replace(",",""))
+        params.put("vip_point_card", Utils.getString(cardvipPointET).replace(",",""))
+        params.put("vvip_point_card", Utils.getString(cardvvipPointET).replace(",",""))
 
         CompanyAction.edit_info(params, object : JsonHttpResponseHandler() {
 
@@ -507,6 +571,7 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
                     val result = response!!.getString("result")
                     if ("ok" == result) {
                         Toast.makeText(myContext, "수정완료", Toast.LENGTH_SHORT).show()
+                        company_info()
                     } else {
                         Toast.makeText(myContext, "수정실패", Toast.LENGTH_SHORT).show()
                     }

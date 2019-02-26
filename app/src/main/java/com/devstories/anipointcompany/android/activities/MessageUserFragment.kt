@@ -113,6 +113,7 @@ class MessageUserFragment : Fragment() {
 
     var gender = ArrayList<String>()
     var age =  ArrayList<String>()
+    var membership =  ArrayList<String>()
 
     var search_type = -1
     var stack_visit = -1
@@ -129,7 +130,7 @@ class MessageUserFragment : Fragment() {
     var left_from = -1
     var left_to = -1
 
-
+ var custom = ""
 
     var limit_op = ""
     var limit_op2 = ""
@@ -207,7 +208,6 @@ class MessageUserFragment : Fragment() {
             it.isSelected = !it.isSelected
             if(it.isSelected) {
                 saveIV.setImageResource(R.drawable.radio_on)
-                        use_money2TV.visibility = View.GONE
                 from =  Utils.getInt(limit_opET)
                 to = Utils.getInt(limit_op2ET)
 
@@ -229,7 +229,6 @@ class MessageUserFragment : Fragment() {
             it.isSelected = !it.isSelected
             if(it.isSelected) {
                 save2IV.setImageResource(R.drawable.radio_on)
-                use_money2TV.visibility = View.GONE
                 missing_from  =  Utils.getInt(limit_op21ET)
                 missing_to  = Utils.getInt(limit_op22ET)
                 mising_dayTV.text = "미방문:"+ missing_from.toString()+"일"+"~"+missing_to.toString()+"일"
@@ -249,7 +248,6 @@ class MessageUserFragment : Fragment() {
             it.isSelected = !it.isSelected
             if(it.isSelected) {
                 save3IV.setImageResource(R.drawable.radio_on)
-                use_money2TV.visibility = View.GONE
                 use_from  =  Utils.getInt(limit_op3ET)
                 use_to  = Utils.getInt(limit_op23ET)
                 use_money2TV.text ="구매금액"+ use_from.toString()+"원"+"~"+use_to.toString()+"원"
@@ -448,6 +446,89 @@ class MessageUserFragment : Fragment() {
         }
 
 
+        bronzeLL.setOnClickListener {
+            it.isSelected = !it.isSelected
+
+            if(it.isSelected) {
+                custom="Y"
+                bronzeLL.setBackgroundResource(R.drawable.background_00d1ce)
+                bronzeTV.setTextColor(Color.parseColor("#ffffff"))
+            } else {
+                custom=""
+                bronzeLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
+                bronzeTV.setTextColor(Color.parseColor("#9a9a99"))
+            }
+            member_filter()
+
+        }
+
+        silverLL.setOnClickListener {
+            it.isSelected = !it.isSelected
+
+            if(it.isSelected) {
+                membership.add("S")
+                silverLL.setBackgroundResource(R.drawable.background_00d1ce)
+                silverTV.setTextColor(Color.parseColor("#ffffff"))
+            } else {
+                membership.remove("S")
+                silverLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
+                silverTV.setTextColor(Color.parseColor("#9a9a99"))
+            }
+            member_filter()
+
+        }
+
+        goldLL.setOnClickListener {
+            it.isSelected = !it.isSelected
+
+            if(it.isSelected) {
+                membership.add("G")
+                goldLL.setBackgroundResource(R.drawable.background_00d1ce)
+                goldTV.setTextColor(Color.parseColor("#ffffff"))
+            } else {
+                membership.remove("G")
+                goldLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
+                goldTV.setTextColor(Color.parseColor("#9a9a99"))
+            }
+            member_filter()
+
+        }
+
+        vipLL.setOnClickListener {
+            it.isSelected = !it.isSelected
+
+            if(it.isSelected) {
+                membership.add("V")
+                vipLL.setBackgroundResource(R.drawable.background_00d1ce)
+                vipTV.setTextColor(Color.parseColor("#ffffff"))
+            } else {
+                membership.remove("V")
+                vipLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
+                vipTV.setTextColor(Color.parseColor("#9a9a99"))
+            }
+            member_filter()
+
+        }
+
+        vvipLL.setOnClickListener {
+            it.isSelected = !it.isSelected
+
+            if(it.isSelected) {
+                membership.add("W")
+                vvipLL.setBackgroundResource(R.drawable.background_00d1ce)
+                vvipTV.setTextColor(Color.parseColor("#ffffff"))
+            } else {
+                membership.remove("W")
+                vvipLL.setBackgroundResource(R.drawable.background_strock_c1c1c1)
+                vvipTV.setTextColor(Color.parseColor("#9a9a99"))
+            }
+            member_filter()
+
+        }
+
+
+
+
         allRL.setOnClickListener {
             setfilter()
             setopview()
@@ -470,8 +551,11 @@ class MessageUserFragment : Fragment() {
             }else {
                 //브로드캐스트로 프래그먼트이동
                 var intent = Intent()
+                intent.putExtra("custom", custom)
                 intent.putExtra("gender", gender)
                 Log.d("gender", gender.toString())
+                intent.putExtra("membership", membership)
+                Log.d("membership", membership.toString())
                 intent.putExtra("age",age)
                 Log.d("age", age.toString())
                 intent.putExtra("visited_date", visited_date)
@@ -544,8 +628,15 @@ class MessageUserFragment : Fragment() {
         val params = RequestParams()
 
         params.put("company_id", company_id)
-
-
+        params.put("custom",custom)
+        if (membership.size>0){
+            for (i in 0..(membership.size -1)){
+                val membershipstr = membership[i]
+                //배열로 입력저장은 [] 이걸 넣어준다
+                params.put("membership["+i+"]",membershipstr)
+                Log.d("멤버쉽",membershipstr)
+            }
+        }
         if (age.size>0){
             for (i in 0..(age.size -1)){
                 val agestr = age[i]

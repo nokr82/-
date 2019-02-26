@@ -189,8 +189,6 @@ class Message_write_Fragment : Fragment() {
         override fun onReceive(context: Context, intent: Intent?) {
             if (intent != null) {
                 setfilter()
-                userRL.setBackgroundColor(Color.parseColor("#0068df"))
-                userTV.setTextColor(Color.parseColor("#ffffff"))
                 writeRL.setBackgroundColor(Color.parseColor("#0068df"))
                 writeTV.setTextColor(Color.parseColor("#ffffff"))
 

@@ -52,6 +52,10 @@ object CouponAction {
         HttpClient.post("/coupon/coupon_use.json", params, handler)
     }
 
+    //알람쿠폰
+    fun send_auto(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/member/send_auto.json", params, handler)
+    }
 
     //알람쿠폰
     fun alram_coupon(params: RequestParams, handler: JsonHttpResponseHandler) {
