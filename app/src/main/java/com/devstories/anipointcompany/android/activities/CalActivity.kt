@@ -343,8 +343,18 @@ class CalActivity : RootActivity() {
         }
 
         checkLL.setOnClickListener {
+
+            var getBirth = Utils.getString(birthET)
+
+            if(getBirth.length != 8 && getBirth.length > 0) {
+                Toast.makeText(context, "생년월일은 8자리로 입력해주세요", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
             member_join()
+
         }
+
         titleTV.setOnClickListener {
             val intent = Intent(this, UserListActivity::class.java)
             startActivity(intent)
@@ -450,6 +460,18 @@ class CalActivity : RootActivity() {
                     return@setOnClickListener
                 }
             }
+
+            if (joinLL.visibility == View.VISIBLE) {
+
+                var getBirth = Utils.getString(birthET)
+
+                if(getBirth.length != 8 && getBirth.length > 0) {
+                    Toast.makeText(context, "생년월일은 8자리로 입력해주세요", Toast.LENGTH_LONG).show()
+                    return@setOnClickListener
+                }
+
+            }
+
             if (opTV.text.equals("적립")) {
 
                 p_type = 1

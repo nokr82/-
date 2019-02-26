@@ -104,7 +104,6 @@ class DlgEditMemberInfoActivity : RootActivity() {
 //                return@setOnClickListener
 //            }
 
-
             editInfo()
         }
 
