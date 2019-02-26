@@ -104,6 +104,14 @@ class DlgEditMemberInfoActivity : RootActivity() {
 //                return@setOnClickListener
 //            }
 
+            var getBirth = Utils.getString(birthET)
+            var birth = getBirth.replace("-", "")
+
+            if(birth.length != 8 && birth.length > 0 && birth != "─") {
+                Toast.makeText(context, "생년월일은 8자리로 입력해주세요", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
             editInfo()
         }
 
@@ -252,10 +260,11 @@ class DlgEditMemberInfoActivity : RootActivity() {
         val params = RequestParams()
         params.put("member_id", member_id)
         var getBirth = Utils.getString(birthET)
-        if(getBirth.length != 8) {
+        var birth = getBirth.replace("-", "")
+        if(birth.length != 8) {
 
         }else{
-            var r_birth = getBirth.substring(0, 4) + "-" + getBirth.substring(4, 6) + "-" + getBirth.substring(6, 8)
+            var r_birth = birth.substring(0, 4) + "-" + birth.substring(4, 6) + "-" + birth.substring(6, 8)
             params.put("birth", r_birth)
         }
         params.put("age",age)
