@@ -553,7 +553,7 @@
                             android:layout_height="wrap_content"
                             android:letterSpacing="-0.03"
                             android:lineSpacingExtra="4sp"
-                            android:text="포인트 매출(원)"
+                            android:text="포인트사용"
                             android:textColor="#666666"
                             android:textSize="16dp" />
 
