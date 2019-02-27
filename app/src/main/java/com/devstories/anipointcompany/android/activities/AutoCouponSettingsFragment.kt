@@ -17,6 +17,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Toast
+import com.devstories.anipointcompany.android.Actions.CompanyAction
 import com.devstories.anipointcompany.android.Actions.CouponAction
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.Config
@@ -59,6 +60,8 @@ class AutoCouponSettingsFragment : Fragment() {
     var bitmap: BitmapDrawable? = null
     var thumbnail: Bitmap? = null
     var contentURI: Uri? = null
+
+    var coin = -1
 
     private val GALLERY = 1
 
@@ -204,6 +207,12 @@ class AutoCouponSettingsFragment : Fragment() {
 
         newMemberIV.setOnClickListener {
 
+            if (coin <= 0){
+                Toast.makeText(myContext,"코인이 부족합니다.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+
             if(coupon_type1_id < 1) {
                 Toast.makeText(myContext,"저장된 쿠폰에 정보가 없습니다.정보저장후 시도해주세요.",Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -213,8 +222,12 @@ class AutoCouponSettingsFragment : Fragment() {
         }
 
         birthMemberIV.setOnClickListener {
-
+            if (coin <= 0){
+                Toast.makeText(myContext,"코인이 부족합니다.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             if(coupon_type2_id < 1) {
+
                 Toast.makeText(myContext,"저장된 쿠폰에 정보가 없습니다.정보저장후 시도해주세요.",Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -223,7 +236,10 @@ class AutoCouponSettingsFragment : Fragment() {
         }
 
         noVisit30IV.setOnClickListener {
-
+            if (coin <= 0){
+                Toast.makeText(myContext,"코인이 부족합니다.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             if(coupon_type3_id < 1) {
                 Toast.makeText(myContext,"저장된 쿠폰에 정보가 없습니다.정보저장후 시도해주세요.",Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -233,7 +249,10 @@ class AutoCouponSettingsFragment : Fragment() {
         }
 
         noVisit60IV.setOnClickListener {
-
+            if (coin <= 0){
+                Toast.makeText(myContext,"코인이 부족합니다.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             if(coupon_type4_id < 1) {
 
       /*          couponNameTV.text = "60일 미방문 고객 쿠폰"
@@ -248,7 +267,10 @@ class AutoCouponSettingsFragment : Fragment() {
         }
 
         noVisit90IV.setOnClickListener {
-
+            if (coin <= 0){
+                Toast.makeText(myContext,"코인이 부족합니다.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             if(coupon_type5_id < 1) {
                 Toast.makeText(myContext,"저장된 쿠폰에 정보가 없습니다.정보저장후 시도해주세요.",Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -259,7 +281,10 @@ class AutoCouponSettingsFragment : Fragment() {
         }
 
         saveTV.setOnClickListener {
-
+            if (coin <= 0){
+                Toast.makeText(myContext,"코인이 부족합니다.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             if (sun_use_yn == "N" && sat_use_yn == "N" && week_use_yn == "N") {
                 Toast.makeText(context, "사용 가능 요일을 선택해주세요", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
@@ -289,6 +314,8 @@ class AutoCouponSettingsFragment : Fragment() {
             delIV.visibility = View.GONE
 
         }
+        company_info()
+
         loadData()
 
     }
@@ -365,6 +392,7 @@ class AutoCouponSettingsFragment : Fragment() {
                         coupon_type4_id = Utils.getInt(response, "coupon_type4_id")
                         coupon_type5_id = Utils.getInt(response, "coupon_type5_id")
 
+                        Log.d("뉴멤버",newMemberCouponResult)
                         if (newMemberCouponResult == "ok") {
                             newMemberIV.setImageResource(R.mipmap.on)
                         } else {
@@ -639,6 +667,80 @@ class AutoCouponSettingsFragment : Fragment() {
             }
         })
     }
+
+    //사업체 정보뽑기
+    fun company_info() {
+        val params = RequestParams()
+        params.put("company_id", company_id)
+
+        CompanyAction.company_info(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    val result = response!!.getString("result")
+                    if ("ok" == result) {
+                        coin = response.getInt("coin")
+                        if (coin <= 0){
+                            Toast.makeText(myContext,"현재 코인이 부족합니다.",Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(myContext, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
+
 
     fun editCoupon() {
 

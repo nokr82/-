@@ -442,9 +442,9 @@ class Sales_Analysis_List_Fragment : Fragment() {
                         }
 
 
-                        /*totalPage  = response.getInt("totalPage")
+                        totalPage  = response.getInt("totalPage")
 
-                        option_amount.clear()*/
+//                        option_amount.clear()
 
 
                     } else {
