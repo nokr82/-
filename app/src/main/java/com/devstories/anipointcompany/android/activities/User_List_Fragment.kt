@@ -473,11 +473,20 @@ class User_List_Fragment : Fragment() {
                                     }
                                 } else if (point != "") {
                                     if (member_ship_per == -1){
-                                        str = str + created_str + " 적립 " + Utils.comma(point) + "P" + "(" + Utils.comma(Utils.getString(companySale, "price")) + "*" +
-                                                Utils.getString(companySale, "per") + "%)\n"
+                                        if (point =="0"){
+                                            str = str + created_str + " 적립 " + Utils.comma(point) + "P" + "(" + Utils.comma(Utils.getString(companySale, "price")) + ")\n"
+                                        }else{
+                                            str = str + created_str + " 적립 " + Utils.comma(point) + "P" + "(" + Utils.comma(Utils.getString(companySale, "price")) + "*" +
+                                                    Utils.getString(companySale, "per") + "%)\n"
+                                        }
                                     }else{
-                                        str = str + created_str + " 적립 " + Utils.comma(point) + "P" + "(" + Utils.comma(Utils.getString(companySale, "price")) + "*" +
-                                                Utils.getString(companySale, "per") + "% +"+ member_ship_per + "%)\n"
+                                        if (point =="0"){
+                                            str = str + created_str + " 적립 " + Utils.comma(point) + "P" + "(" + Utils.comma(Utils.getString(companySale, "price")) + ")\n"
+                                        }else{
+                                            str = str + created_str + " 적립 " + Utils.comma(point) + "P" + "(" + Utils.comma(Utils.getString(companySale, "price")) + "*" +
+                                                    Utils.getString(companySale, "per") + "% +"+ member_ship_per + "%)\n"
+                                        }
+
                                     }
 
 
