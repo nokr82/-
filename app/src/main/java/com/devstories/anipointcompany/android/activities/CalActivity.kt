@@ -269,14 +269,13 @@ class CalActivity : RootActivity() {
                 }
             }
 
-
+            setmenu3()
             it.isSelected = !it.isSelected
             if (it.isSelected) {
                 if (payment_type == 3) {
                     Toast.makeText(context, "포인트결제는 적립할 수 없습니다.", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
-                setmenu3()
                 stackLL.setBackgroundColor(Color.parseColor("#906e8a32"))
                 //기본퍼센트
                 per = stackTV.text.toString()
@@ -310,7 +309,6 @@ class CalActivity : RootActivity() {
                     pointTV.setText(point)
                 }
             } else {
-                setmenu3()
                 pointTV.setText("적립포인트")
                 per_type = -1
                 per = ""
@@ -327,6 +325,7 @@ class CalActivity : RootActivity() {
                     return@setOnClickListener
                 }
             }
+            setmenu3()
 
             it.isSelected = !it.isSelected
             if (it.isSelected) {
@@ -335,7 +334,6 @@ class CalActivity : RootActivity() {
                     return@setOnClickListener
                 }
                 //임의 퍼센트
-                setmenu3()
 
                 stack2LL.setBackgroundColor(Color.parseColor("#906e8a32"))
                 val managerpercent = stack2TV.text.toString()
@@ -367,7 +365,6 @@ class CalActivity : RootActivity() {
                     pointTV.setText(point)
                 }
             } else {
-                setmenu3()
                 pointTV.setText("적립포인트")
                 per_type = -1
                 per = ""
