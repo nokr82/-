@@ -83,12 +83,12 @@ class CalActivity : RootActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        hideNavigations(this)
         setContentView(R.layout.activity_point)
-
         this.context = this
         progressDialog = ProgressDialog(context)
 
-        hideNavigations(this)
+
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
         dropIV.rotation = 90f
@@ -472,7 +472,12 @@ class CalActivity : RootActivity() {
         }
 
         useLL.setOnClickListener {
-
+            if (usePointLL.visibility == View.VISIBLE) {
+                if (use_point > Utils.getString(moneyTV).toInt()) {
+                    Toast.makeText(context, "사용포인트가 상품금액보다 많습니다", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+            }
             price = Utils.getInt(moneyTV)
 
             if (price < 1) {
@@ -568,7 +573,7 @@ class CalActivity : RootActivity() {
                 }
 
                 if (use_point < 1) {
-                    Toast.makeText(context, "사용자가 포인트 입력 후 진행해주세요", Toast.LENGTH_LONG).show()
+//                    Toast.makeText(context, "사용자가 포인트 입력 후 진행해주세요", Toast.LENGTH_LONG).show()
 //                        return@setOnClickListener
                 }
 
