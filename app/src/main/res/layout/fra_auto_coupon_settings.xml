@@ -611,6 +611,7 @@
                         </LinearLayout>
 
 
+
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -622,6 +623,16 @@
                             android:paddingLeft="13dp"
                             android:paddingRight="13dp"
                             android:paddingTop="26dp">
+                            <ScrollView
+                                android:scrollbars="none"
+                                android:fillViewport="true"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
                             <EditText
                                 android:id="@+id/titleET"
                                 android:layout_width="match_parent"
@@ -648,7 +659,8 @@
                                 android:layout_height="wrap_content"
                                 android:textColor="#555555"
                                 android:textSize="15sp" />
-
+                            </LinearLayout>
+                            </ScrollView>
                         </LinearLayout>
 
                     </LinearLayout>
