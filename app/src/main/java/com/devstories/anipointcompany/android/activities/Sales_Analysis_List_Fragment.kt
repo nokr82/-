@@ -419,7 +419,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
                                 val totalPrice = Utils.getString(json, "totalPrice")
                                 var cash = Utils.getInt(json, "cash")
                                 val card = Utils.getString(json, "card")
-                                val point = Utils.getInt(json, "bank")
+                                var point = Utils.getInt(json, "bank")
 
 
 
@@ -429,6 +429,10 @@ class Sales_Analysis_List_Fragment : Fragment() {
                                 var cashTV: TextView = salesView.findViewById(R.id.cashTV)
                                 var cardTV: TextView = salesView.findViewById(R.id.cardTV)
                                 var pointTV: TextView = salesView.findViewById(R.id.pointTV)
+
+                                if (point==-1){
+                                    point = 0
+                                }
 
                                 dateTV.text = date.toString()
                                 totalTV.text = Utils.comma(totalPrice)
