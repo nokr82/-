@@ -1,7 +1,5 @@
 package com.devstories.anipointcompany.android.activities
 
-import android.app.Activity
-import android.app.ProgressDialog
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -14,13 +12,14 @@ import android.view.View
 import android.view.WindowManager
 import com.devstories.aninuriandroid.adapter.UserVisitAdapter
 import com.devstories.anipointcompany.android.R
+import com.devstories.anipointcompany.android.base.CustomProgressDialog
 import com.devstories.anipointcompany.android.base.Utils
 import kotlinx.android.synthetic.main.activity_user_list.*
 //업체 메인화면 액티비티
 class UserListActivity : FragmentActivity() {
 
     lateinit var context:Context
-    private var progressDialog: ProgressDialog? = null
+    private var progressDialog: CustomProgressDialog? = null
     var data = arrayListOf<Int>()
 
 
@@ -66,9 +65,9 @@ class UserListActivity : FragmentActivity() {
             w.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 //            window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         }
-        showSystemUI()
+        // showSystemUI()
         this.context = this
-        progressDialog = ProgressDialog(context)
+        progressDialog = CustomProgressDialog(context)
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
 
@@ -138,7 +137,7 @@ class UserListActivity : FragmentActivity() {
 
     override fun onResume() {
         super.onResume()
-        showSystemUI()
+        // showSystemUI()
     }
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)

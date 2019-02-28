@@ -2,7 +2,6 @@ package com.devstories.anipointcompany.android.activities
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.app.ProgressDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -22,6 +21,7 @@ import com.devstories.anipointcompany.android.Actions.MemberAction
 import com.devstories.anipointcompany.android.Actions.RequestStepAction
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.adapter.CouponListAdapter
+import com.devstories.anipointcompany.android.base.CustomProgressDialog
 import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.RootActivity
 import com.devstories.anipointcompany.android.base.Utils
@@ -38,7 +38,7 @@ import kotlin.collections.ArrayList
 class CalActivity : RootActivity() {
 
     lateinit var context: Context
-    private var progressDialog: ProgressDialog? = null
+    private var progressDialog: CustomProgressDialog? = null
 
     var request_step_id = -1
     var company_id = -1
@@ -86,7 +86,8 @@ class CalActivity : RootActivity() {
         hideNavigations(this)
         setContentView(R.layout.activity_point)
         this.context = this
-        progressDialog = ProgressDialog(context)
+        progressDialog = CustomProgressDialog(context, R.style.progressDialogTheme)
+        progressDialog!!.setProgressStyle(android.R.style.Widget_DeviceDefault_Light_ProgressBar_Large)
 
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)

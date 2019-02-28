@@ -1,7 +1,6 @@
 package com.devstories.anipointcompany.android.activities
 
 import android.app.Activity.RESULT_OK
-import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -18,6 +17,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.devstories.anipointcompany.android.Actions.MemberAction
 import com.devstories.anipointcompany.android.R
+import com.devstories.anipointcompany.android.base.CustomProgressDialog
 import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
@@ -36,7 +36,7 @@ class User_List_Fragment : Fragment() {
 
     lateinit var myContext: Context
 
-    private var progressDialog: ProgressDialog? = null
+    private var progressDialog: CustomProgressDialog? = null
 
     lateinit var userLL: LinearLayout
     lateinit var userList_new_userLL: LinearLayout
@@ -71,7 +71,8 @@ class User_List_Fragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         this.myContext = container!!.context
-        progressDialog = ProgressDialog(myContext)
+        progressDialog = CustomProgressDialog(context, R.style.progressDialogTheme)
+        progressDialog!!.setProgressStyle(android.R.style.Widget_DeviceDefault_Light_ProgressBar_Large)
 
 
         return inflater.inflate(R.layout.fra_userlist, container, false)
