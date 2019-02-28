@@ -24,6 +24,7 @@ import org.json.JSONObject
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import com.devstories.anipointcompany.android.base.CustomProgressDialog
 import com.devstories.anipointcompany.android.base.PrefUtils
 import java.io.Serializable
 
@@ -32,7 +33,8 @@ import java.io.Serializable
 class SetCouponFragment : Fragment() {
 
     lateinit var myContext: Context
-    private var progressDialog: ProgressDialog? = null
+
+    private var progressDialog: CustomProgressDialog? = null
 
     lateinit var expirationLL: LinearLayout
     lateinit var expirationIV: ImageView
@@ -101,7 +103,8 @@ class SetCouponFragment : Fragment() {
         // Inflate the layout for this fragment
 
         this.myContext = container!!.context
-        progressDialog = ProgressDialog(myContext)
+        progressDialog = CustomProgressDialog(context, R.style.progressDialogTheme)
+        progressDialog!!.setProgressStyle(android.R.style.Widget_DeviceDefault_Light_ProgressBar_Large)
         return inflater.inflate(R.layout.fragment_set_coupon, container, false)
     }
 

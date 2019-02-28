@@ -1,5 +1,6 @@
 package com.devstories.anipointcompany.android.activities
 
+import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
@@ -21,6 +22,7 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import com.devstories.anipointcompany.android.base.CustomProgressDialog
 import com.devstories.anipointcompany.android.base.PrefUtils
 
 
@@ -29,7 +31,7 @@ import com.devstories.anipointcompany.android.base.PrefUtils
 class DlgEditMemberInfoActivity : RootActivity() {
 
     lateinit var context: Context
-    private var progressDialog: ProgressDialog? = null
+    private var progressDialog: CustomProgressDialog? = null
     lateinit var adapter: ArrayAdapter<String>
     var option_age = arrayOf("미입력","10대","20대","30대","40대","50대","60대")
 
@@ -43,10 +45,12 @@ class DlgEditMemberInfoActivity : RootActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        hideNavigations(this)
         setContentView(R.layout.dlg_edit_member_info)
 
         this.context = this
-        progressDialog = ProgressDialog(context)
+        progressDialog = CustomProgressDialog(context, R.style.progressDialogTheme)
+        progressDialog!!.setProgressStyle(android.R.style.Widget_DeviceDefault_Light_ProgressBar_Large)
 
         member_id = intent.getIntExtra("member_id", -1)
         company_id = PrefUtils.getIntPreference(context, "company_id")
@@ -120,6 +124,15 @@ class DlgEditMemberInfoActivity : RootActivity() {
     }
 
 
+    fun hideNavigations(context: Activity) {
+        val decorView = context.window.decorView
+        decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_FULLSCREEN
+                or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+    }
     fun setmenu(){
         maleIV.setImageResource(R.drawable.radio_off)
         femaleIV.setImageResource(R.drawable.radio_off)

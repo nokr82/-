@@ -13,6 +13,7 @@ import android.view.View
 import android.view.WindowManager
 import com.devstories.anipointcompany.android.Actions.CompanyAction
 import com.devstories.anipointcompany.android.R
+import com.devstories.anipointcompany.android.base.CustomProgressDialog
 import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.RootActivity
 import com.devstories.anipointcompany.android.base.Utils
@@ -31,7 +32,7 @@ class IntroActivity : RootActivity() {
     private val _active = true
     private var splashThread: Thread? = null
 
-    private var progressDialog: ProgressDialog? = null
+    private var progressDialog: CustomProgressDialog? = null
 
     private var context: Context? = null
 
@@ -49,7 +50,8 @@ class IntroActivity : RootActivity() {
             window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         }
         this.context = this
-        progressDialog = ProgressDialog(context)
+        progressDialog = CustomProgressDialog(context, R.style.progressDialogTheme)
+        progressDialog!!.setProgressStyle(android.R.style.Widget_DeviceDefault_Light_ProgressBar_Large)
         hideNavigations(this)
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         // clear all notification

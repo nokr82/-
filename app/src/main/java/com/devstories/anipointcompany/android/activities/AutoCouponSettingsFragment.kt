@@ -21,6 +21,7 @@ import com.devstories.anipointcompany.android.Actions.CompanyAction
 import com.devstories.anipointcompany.android.Actions.CouponAction
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.Config
+import com.devstories.anipointcompany.android.base.CustomProgressDialog
 import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
@@ -36,7 +37,7 @@ import java.io.IOException
 class AutoCouponSettingsFragment : Fragment() {
 
     lateinit var myContext: Context
-    private var progressDialog: ProgressDialog? = null
+    private var progressDialog: CustomProgressDialog? = null
 
     var company_id = -1
 
@@ -68,8 +69,8 @@ class AutoCouponSettingsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         this.myContext = container!!.context
-        progressDialog = ProgressDialog(myContext)
-
+        progressDialog = CustomProgressDialog(context, R.style.progressDialogTheme)
+        progressDialog!!.setProgressStyle(android.R.style.Widget_DeviceDefault_Light_ProgressBar_Large)
         return inflater.inflate(R.layout.fra_auto_coupon_settings, container, false)
     }
 

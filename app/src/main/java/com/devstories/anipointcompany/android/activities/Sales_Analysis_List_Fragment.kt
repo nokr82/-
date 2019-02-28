@@ -22,6 +22,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.CompanyAction
+import com.devstories.anipointcompany.android.base.CustomProgressDialog
 import com.devstories.anipointcompany.android.base.PrefUtils
 import kotlinx.android.synthetic.main.fra_sales_analysis.*
 import kotlin.collections.ArrayList
@@ -29,7 +30,8 @@ import kotlin.collections.ArrayList
 //고객방문분석메인
 class Sales_Analysis_List_Fragment : Fragment() {
     lateinit var myContext: Context
-    private var progressDialog: ProgressDialog? = null
+
+    private var progressDialog: CustomProgressDialog? = null
     lateinit var adapter: ArrayAdapter<String>
 
     var option_amount = ArrayList<String>()
@@ -67,7 +69,9 @@ class Sales_Analysis_List_Fragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
-        progressDialog = ProgressDialog(myContext)
+
+        progressDialog = CustomProgressDialog(context, R.style.progressDialogTheme)
+        progressDialog!!.setProgressStyle(android.R.style.Widget_DeviceDefault_Light_ProgressBar_Large)
         return inflater.inflate(R.layout.fra_sales_analysis, container, false)
     }
 

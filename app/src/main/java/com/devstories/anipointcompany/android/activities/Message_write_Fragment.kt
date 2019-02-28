@@ -19,13 +19,14 @@ import android.widget.TextView
 import android.widget.Toast
 
 import com.devstories.anipointcompany.android.R
+import com.devstories.anipointcompany.android.base.CustomProgressDialog
 import kotlinx.android.synthetic.main.fra_message_wirte_step1.*
 import java.util.ArrayList
 
 //메인메시지관리
 class Message_write_Fragment : Fragment() {
     lateinit var myContext: Context
-    private var progressDialog: ProgressDialog? = null
+    private var progressDialog: CustomProgressDialog? = null
     lateinit var userRL: RelativeLayout
     lateinit var couponRL: RelativeLayout
     lateinit var writeRL: RelativeLayout
@@ -253,7 +254,8 @@ class Message_write_Fragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
-
+        progressDialog = CustomProgressDialog(context, R.style.progressDialogTheme)
+        progressDialog!!.setProgressStyle(android.R.style.Widget_DeviceDefault_Light_ProgressBar_Large)
         return inflater.inflate(R.layout.fra_message_userchoice, container, false)
     }
 

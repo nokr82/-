@@ -11,11 +11,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.devstories.anipointcompany.android.R
+import com.devstories.anipointcompany.android.base.CustomProgressDialog
 
 //고객방문분석메인
 class User_visit_List_Fragment : Fragment() {
     lateinit var myContext: Context
-    private var progressDialog: ProgressDialog? = null
+
+    private var progressDialog: CustomProgressDialog? = null
     lateinit var visitFL: FrameLayout
     lateinit var allLL: LinearLayout
     lateinit var ageLL: LinearLayout
@@ -35,7 +37,9 @@ class User_visit_List_Fragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
-        progressDialog = ProgressDialog(myContext)
+
+        progressDialog = CustomProgressDialog(context, R.style.progressDialogTheme)
+        progressDialog!!.setProgressStyle(android.R.style.Widget_DeviceDefault_Light_ProgressBar_Large)
         return inflater.inflate(R.layout.fra_user_visit_analysis, container, false)
     }
 

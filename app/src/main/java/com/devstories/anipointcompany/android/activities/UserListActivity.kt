@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.activity_user_list.*
 class UserListActivity : FragmentActivity() {
 
     lateinit var context:Context
+
     private var progressDialog: CustomProgressDialog? = null
     var data = arrayListOf<Int>()
 
@@ -67,7 +68,9 @@ class UserListActivity : FragmentActivity() {
         }
         // showSystemUI()
         this.context = this
-        progressDialog = CustomProgressDialog(context)
+        progressDialog = CustomProgressDialog(context, R.style.progressDialogTheme)
+        progressDialog!!.setProgressStyle(android.R.style.Widget_DeviceDefault_Light_ProgressBar_Large)
+
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
 

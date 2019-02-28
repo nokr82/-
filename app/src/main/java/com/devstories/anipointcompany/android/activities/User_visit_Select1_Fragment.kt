@@ -23,12 +23,14 @@ import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 import android.widget.Toast
+import com.devstories.anipointcompany.android.base.CustomProgressDialog
 import com.devstories.anipointcompany.android.base.PrefUtils
 
 //고객방문분석메인
 class User_visit_Select1_Fragment : Fragment() {
     lateinit var myContext: Context
-    private var progressDialog: ProgressDialog? = null
+
+    private var progressDialog: CustomProgressDialog? = null
     lateinit var adapter: ArrayAdapter<String>
     var option_amount = arrayOf("5개씩 보기", "10개씩 보기")
 
@@ -61,7 +63,9 @@ class User_visit_Select1_Fragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
-        progressDialog = ProgressDialog(myContext)
+
+        progressDialog = CustomProgressDialog(context, R.style.progressDialogTheme)
+        progressDialog!!.setProgressStyle(android.R.style.Widget_DeviceDefault_Light_ProgressBar_Large)
         return inflater.inflate(R.layout.fra_user_visit_select1, container, false)
     }
 

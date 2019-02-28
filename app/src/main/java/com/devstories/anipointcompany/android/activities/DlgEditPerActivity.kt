@@ -1,5 +1,6 @@
 package com.devstories.anipointcompany.android.activities
 
+import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
@@ -7,7 +8,9 @@ import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.RootActivity
 import kotlinx.android.synthetic.main.dlg_edit_per.*
 import android.content.Intent
+import android.view.View
 import android.view.WindowManager
+import com.devstories.anipointcompany.android.base.CustomProgressDialog
 import com.devstories.anipointcompany.android.base.Utils
 
 
@@ -15,15 +18,19 @@ import com.devstories.anipointcompany.android.base.Utils
 class DlgEditPerActivity : RootActivity() {
 
     lateinit var context: Context
-    private var progressDialog: ProgressDialog? = null
+    private var progressDialog: CustomProgressDialog? = null
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        hideNavigations(this)
         setContentView(R.layout.dlg_edit_per)
 
         this.context = this
-        progressDialog = ProgressDialog(context)
+        progressDialog = CustomProgressDialog(context, R.style.progressDialogTheme)
+        progressDialog!!.setProgressStyle(android.R.style.Widget_DeviceDefault_Light_ProgressBar_Large)
+
 
         cal()
 
@@ -33,6 +40,15 @@ class DlgEditPerActivity : RootActivity() {
 
     }
 
+    fun hideNavigations(context: Activity) {
+        val decorView = context.window.decorView
+        decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_FULLSCREEN
+                or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+    }
     //계산클릭이벤트
     fun cal(){
 

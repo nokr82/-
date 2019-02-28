@@ -13,6 +13,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.devstories.anipointcompany.android.Actions.PointAction
 import com.devstories.anipointcompany.android.R
+import com.devstories.anipointcompany.android.base.CustomProgressDialog
 import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.Utils
 import com.github.mikephil.charting.charts.BarChart
@@ -36,7 +37,8 @@ import kotlin.collections.ArrayList
 class User_visit_Select3_Fragment : Fragment() {
 
     lateinit var myContext: Context
-    private var progressDialog: ProgressDialog? = null
+
+    private var progressDialog: CustomProgressDialog? = null
 
     lateinit var ageBarChart:BarChart
     lateinit var todayRL: RelativeLayout
@@ -63,7 +65,9 @@ class User_visit_Select3_Fragment : Fragment() {
     var totalMemberCnt = 0
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
-        progressDialog = ProgressDialog(myContext)
+
+        progressDialog = CustomProgressDialog(context, R.style.progressDialogTheme)
+        progressDialog!!.setProgressStyle(android.R.style.Widget_DeviceDefault_Light_ProgressBar_Large)
         return inflater.inflate(R.layout.fra_user_visit_select3, container, false)
 
     }
