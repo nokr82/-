@@ -172,11 +172,7 @@ class CalActivity : RootActivity() {
             }
         }
 
-        op_accLL.setOnClickListener {
-            per_type = 3
-            val intent = Intent(context, DlgEditPerActivity::class.java)
-            startActivityForResult(intent, EDIT_POINT)
-        }
+
 
         cardPayLL.setOnClickListener {
             setmenu2()
@@ -244,6 +240,7 @@ class CalActivity : RootActivity() {
     fun setmenu3() {
         stackLL.setBackgroundColor(Color.parseColor("#ffffff"))
         stack2LL.setBackgroundColor(Color.parseColor("#ffffff"))
+        op_accLL.setBackgroundColor(Color.parseColor("#ffffff"))
     }
 
     fun setmenu() {
@@ -261,7 +258,25 @@ class CalActivity : RootActivity() {
     //계산클릭이벤트
     fun cal() {
         moneyTV.text = "0"
+
+        op_accLL.setOnClickListener {
+            setmenu3()
+            if (per_type != 3){
+                per_type = 3
+                op_accLL.setBackgroundColor(Color.parseColor("#906e8a32"))
+                val intent = Intent(context, DlgEditPerActivity::class.java)
+                startActivityForResult(intent, EDIT_POINT)
+            }else{
+                pointTV.setText("적립포인트")
+                per_type = -1
+                per = ""
+            }
+
+
+        }
+
         stackLL.setOnClickListener {
+
             if (usePointLL.visibility == View.VISIBLE) {
                 if (use_point > Utils.getString(moneyTV).toInt()) {
                     Toast.makeText(context, "사용포인트가 상품금액보다 많습니다", Toast.LENGTH_SHORT).show()
@@ -270,8 +285,8 @@ class CalActivity : RootActivity() {
             }
 
             setmenu3()
-            it.isSelected = !it.isSelected
-            if (it.isSelected) {
+
+            if (per_type!=1){
                 if (payment_type == 3) {
                     Toast.makeText(context, "포인트결제는 적립할 수 없습니다.", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
@@ -308,7 +323,8 @@ class CalActivity : RootActivity() {
                     val point = splitPoint.get(0)
                     pointTV.setText(point)
                 }
-            } else {
+
+            }else{
                 pointTV.setText("적립포인트")
                 per_type = -1
                 per = ""
@@ -327,8 +343,7 @@ class CalActivity : RootActivity() {
             }
             setmenu3()
 
-            it.isSelected = !it.isSelected
-            if (it.isSelected) {
+            if (per_type!=2){
                 if (payment_type == 3) {
                     Toast.makeText(context, "포인트결제는 적립할 수 없습니다.", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
@@ -364,12 +379,11 @@ class CalActivity : RootActivity() {
                     val point = splitPoint.get(0)
                     pointTV.setText(point)
                 }
-            } else {
+            }else{
                 pointTV.setText("적립포인트")
                 per_type = -1
                 per = ""
             }
-
 
         }
 
