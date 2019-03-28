@@ -32,6 +32,7 @@ class UserListActivity : FragmentActivity() {
     val Message_Manage_Fragment : Message_Manage_Fragment = Message_Manage_Fragment()
     val Point_List_Fragment : Point_List_Fragment = Point_List_Fragment()
     val SettingFragment : SettingFragment = SettingFragment()
+    val ReservationManageFragment : ReservationManageFragment = ReservationManageFragment()
 //    val Sales_Analysis_List_Fragment : Sales_Analysis_List_Fragment = Sales_Analysis_List_Fragment()
 
     //고객리스트 =>메시지보내기
@@ -117,6 +118,12 @@ class UserListActivity : FragmentActivity() {
             supportFragmentManager.beginTransaction().replace(R.id.userFL, SettingFragment).commit()
 
         }
+        reservationLL.setOnClickListener {
+            setmenu()
+            Utils.hideKeyboard(this)
+            reservationLL.setBackgroundResource(R.drawable.background_strock_707070)
+            supportFragmentManager.beginTransaction().replace(R.id.userFL, ReservationManageFragment).commit()
+        }
 
     }
 
@@ -129,6 +136,7 @@ class UserListActivity : FragmentActivity() {
         uservisitLL.setBackgroundResource(R.drawable.background_strock_null)
         analysisRevenueLL.setBackgroundResource(R.drawable.background_strock_null)
         settingLL.setBackgroundResource(R.drawable.background_strock_null)
+        reservationLL.setBackgroundResource(R.drawable.background_strock_null)
     }
 
 
