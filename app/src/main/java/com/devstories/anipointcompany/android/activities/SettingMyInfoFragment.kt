@@ -28,6 +28,7 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener
 import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.fragment_setting_my_info.*
 import kotlinx.android.synthetic.main.fragment_setting_my_info.view.*
+import kotlinx.android.synthetic.main.item_company_img.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.ByteArrayInputStream
@@ -134,6 +135,12 @@ class SettingMyInfoFragment : Fragment() {
             choosePhotoFromGallary()
         }
 
+        addmanageTV.setOnClickListener {
+            val intent = Intent(myContext,DlgAddManageActivity::class.java)
+            startActivity(intent)
+        }
+
+
         imgcheckTV.setOnClickListener {
 
             if (userLL.getChildCount() > 9) {
@@ -203,13 +210,6 @@ class SettingMyInfoFragment : Fragment() {
                     userView.tag = addImages.size -1
 
                     delIV.setOnClickListener {
-                        //그사이즈값으로 인덱스를 구해서 삭제!!!
-//                        if (addImages.size==0){
-//                            addImages.removeAt(0)
-//                            addImages.clear()
-//                        }else{
-//                            addImages.removeAt(userView.tag as Int)
-//                        }
                         Log.d("태그",userView.tag.toString())
                             userLL.removeView(userView)
                     }
@@ -226,6 +226,10 @@ class SettingMyInfoFragment : Fragment() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        company_info(company_id)
+    }
 
     //사업체 정보뽑기
     fun company_info(company_id: Int) {
@@ -305,6 +309,26 @@ class SettingMyInfoFragment : Fragment() {
                             })
 
                             userLL.addView(userView)
+
+                        }
+
+
+                        val customers = response.getJSONArray("customer")
+                        manageLL.removeAllViews()
+                        for (i in 0..customers.length()-1){
+                            //새로운뷰를 이미지의 길이만큼생성
+                            val userView = View.inflate(myContext, R.layout.item_manage, null)
+                            val delLL :LinearLayout = userView.findViewById(R.id.delLL)
+                            val nameTV :TextView = userView.findViewById(R.id.nameTV)
+                            var json=customers[i] as JSONObject
+                            val CompanyCustomer = json.getJSONObject("CompanyCustomer")
+                            val name = Utils.getString(CompanyCustomer,"name")
+                            nameTV.text = name
+                            userView.tag = Utils.getInt(CompanyCustomer, "id")
+                            delLL.setOnClickListener {
+                                manageLL.removeView(userView)
+                            }
+                            manageLL.addView(userView)
 
                         }
 

@@ -622,6 +622,44 @@
                     android:textColor="#ffffff"
                     android:textSize="20sp" />
             </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/addmanageTV"
+                android:padding="10dp"
+                android:layout_gravity="end"
+                android:text="+ 직원등록"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:textColor="#479edf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <HorizontalScrollView
+                android:layout_marginBottom="30dp"
+                android:id="@+id/hoSV"
+                android:background="@drawable/background_strock_e7e7e7"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:fillViewport="true"
+                android:scrollbars="none">
+
+
+
+                <LinearLayout
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/manageLL"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
+
+
+
+            </HorizontalScrollView>
             <TextView
                 android:id="@+id/logoutTV"
                 android:layout_width="150dp"
@@ -634,6 +672,7 @@
                 android:text="로그아웃"
                 android:textColor="#ffffff"
                 android:textSize="20sp" />
+
         </LinearLayout>
 
 </LinearLayout>

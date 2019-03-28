@@ -543,7 +543,6 @@ class User_List_Fragment : Fragment() {
 
                             }
 
-                            println("addView::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
 
                             userLL.addView(userView)
 
