@@ -35,6 +35,11 @@ class DlgReserveSave2Activity : FragmentActivity() {
         progressDialog!!.setProgressStyle(android.R.style.Widget_DeviceDefault_Light_ProgressBar_Large)
 
 
+        intent.getIntExtra("member_id",-1)
+
+
+
+
 
 
     }

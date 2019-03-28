@@ -157,6 +157,7 @@
                     android:background="#c9c9c9" />
 
             <LinearLayout
+                android:background="#50c9c9c9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -250,6 +251,7 @@
                 android:background="#c9c9c9" />
 
             <LinearLayout
+                android:background="#50c9c9c9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -284,7 +286,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="#50c9c9c9"
+                            android:background="#ffffff"
                             android:gravity="center_vertical">
 
                             <EditText
@@ -309,6 +311,7 @@
                 android:layout_height="0.5dp"
                 android:background="#c9c9c9" />
                 <LinearLayout
+                    android:background="#50c9c9c9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -401,6 +404,7 @@
                     android:layout_height="0.5dp"
                     android:background="#c9c9c9" />
             <LinearLayout
+                android:background="#50c9c9c9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -432,6 +436,7 @@
 
 
                         <RelativeLayout
+                            android:background="#ffffff"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
@@ -465,6 +470,7 @@
                 android:layout_height="0.5dp"
                 android:background="#c9c9c9" />
                 <LinearLayout
+                    android:background="#50c9c9c9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -489,6 +495,7 @@
                         android:gravity="center">
 
                         <RelativeLayout
+                            android:background="#ffffff"
                             android:layout_width="match_parent"
                             android:layout_height="35dp"
                             android:layout_marginRight="20dp">
@@ -496,6 +503,7 @@
 
 
                             <RelativeLayout
+
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
@@ -529,6 +537,7 @@
                     android:layout_height="0.5dp"
                     android:background="#c9c9c9" />
                 <LinearLayout
+                    android:background="#50c9c9c9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -560,6 +569,7 @@
 
 
                             <RelativeLayout
+                                android:background="#ffffff"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
@@ -593,6 +603,7 @@
                     android:layout_height="0.5dp"
                     android:background="#c9c9c9" />
                 <LinearLayout
+                    android:background="#50c9c9c9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -678,6 +689,7 @@
                     android:layout_height="0.5dp"
                     android:background="#c9c9c9" />
                 <LinearLayout
+                    android:background="#50c9c9c9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -763,6 +775,7 @@
                     android:layout_height="0.5dp"
                     android:background="#c9c9c9" />
                 <LinearLayout
+                    android:background="#50c9c9c9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -782,6 +795,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:background="#ffffff"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:gravity="center_vertical"

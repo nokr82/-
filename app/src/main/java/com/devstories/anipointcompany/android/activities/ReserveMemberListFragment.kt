@@ -24,9 +24,11 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
 import android.R.id
+import android.content.Intent
 import android.view.KeyEvent
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import org.w3c.dom.Text
 
 
@@ -96,10 +98,18 @@ class ReserveMemberListFragment : Fragment() {
             Log.d("리스트선택", data.toString())
             val member = data.getJSONObject("Member")
             member_id = Utils.getInt(member, "id")
-
             adapter.notifyDataSetChanged()
         }
 
+        nextTV.setOnClickListener {
+            if (member_id == -1){
+                Toast.makeText(myContext,"회원을 선택해주세요.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            val intent = Intent(myContext,DlgReserveSave2Activity::class.java)
+            intent.putExtra("member_id",member_id)
+            startActivity(intent)
+        }
 
     }
 
