@@ -8,9 +8,6 @@ import com.devstories.anipointcompany.android.R
 import android.view.View
 import android.widget.ArrayAdapter
 import com.devstories.anipointcompany.android.Actions.CompanyAction
-import com.devstories.anipointcompany.android.base.CustomProgressDialog
-import com.devstories.anipointcompany.android.base.PrefUtils
-import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
 import cz.msebera.android.httpclient.Header
@@ -21,7 +18,7 @@ import android.widget.Toast
 import android.app.TimePickerDialog
 import android.content.Intent
 import android.widget.AdapterView
-import com.devstories.anipointcompany.android.base.RootActivity
+import com.devstories.anipointcompany.android.base.*
 import org.json.JSONArray
 import java.util.*
 
@@ -123,6 +120,7 @@ class DlgReserveSave2Activity : RootActivity() {
         timeLL.setOnClickListener {
             val dialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { timePicker, hour, min ->
                 val msg = String.format("%d : %d ", hour, min)
+
                 Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
                 timeTV.text = msg
             }, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true)
