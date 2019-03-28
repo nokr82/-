@@ -110,6 +110,16 @@ class DlgReserveSave2Activity : RootActivity() {
             femaleIV.setImageResource(R.drawable.radio_on)
             stack_type =2
         }
+        timeLL.setOnClickListener {
+            val dialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { timePicker, hour, min ->
+                val msg = String.format("%d : %d ", hour, min)
+
+
+                Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+                timeTV.text = msg
+            }, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true)
+            dialog.show()
+        }
 
         sugerLL.setOnClickListener {
             val dialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { timePicker, hour, min ->
@@ -120,19 +130,7 @@ class DlgReserveSave2Activity : RootActivity() {
             dialog.show()
         }
 
-        timeLL.setOnClickListener {
-            val dialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { timePicker, hour, min ->
-                val msg = String.format("%d : %d ", hour, min)
-                var formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA)
 
-                cal.add(Calendar.MINUTE, min)
-                var today = formatter.format(cal.time)
-
-                Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
-                timeTV.text = today
-            }, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true)
-            dialog.show()
-        }
 
 
 
@@ -158,7 +156,7 @@ class DlgReserveSave2Activity : RootActivity() {
 
     fun datedlg() {
         var day = Utils.todayStr()
-        var days =    day.split("-")
+        var days = day.split("-")
         DatePickerDialog(context, dateSetListener,days[0].toInt(), days[1].toInt(), days[2].toInt()).show()
     }
 
@@ -273,13 +271,33 @@ class DlgReserveSave2Activity : RootActivity() {
             return
         }*/
 
+
+
+        var time  = Utils.getString(timeTV)
+        var times = time.split(":")
+
+        var suger  = Utils.getString(sugerTV)
+        var sugers = suger.split(":")
+
+
+        var hours = sugers[0].trim().toInt()+times[0].trim().toInt()
+
+        var min = sugers[1].trim().toInt()+times[1].trim().toInt()
+        var m_min = 0
+        if (min>60){
+            m_min = min - 60
+            min =m_min
+            hours = hours+1
+        }
+
+
         val params = RequestParams()
         params.put("member_id", member_id)
         params.put("company_id",company_id)
         params.put("customer_id",customer_id)
         params.put("surgery_name", Utils.getString(titleET))
         params.put("reserve_time", Utils.getString(timeTV))
-        params.put("surgery_time", Utils.getString(sugerTV))
+        params.put("surgery_time", hours.toString()+" : "+min.toString())
         params.put("price", Utils.getString(priceET))
         params.put("pay", Utils.getString(r_priceET))
         params.put("use_point", Utils.getString(pointET))
