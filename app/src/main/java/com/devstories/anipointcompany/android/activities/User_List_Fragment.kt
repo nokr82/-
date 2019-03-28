@@ -68,6 +68,11 @@ class User_List_Fragment : Fragment() {
     private var membership_type = "A"
 
     var EDIT_MEMBER_INFO = 101
+
+
+    val Sales_Analysis_List_Fragment : Sales_Analysis_List_Fragment = Sales_Analysis_List_Fragment()
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         this.myContext = container!!.context
@@ -87,7 +92,6 @@ class User_List_Fragment : Fragment() {
         userList_new_userLL = view.findViewById(R.id.userList_new_userLL)
         userList_most_freq_userLL = view.findViewById(R.id.userList_most_freq_userLL)
         userList_birth_userLL = view.findViewById(R.id.userList_birth_userLL)
-//        joinLL = view.findViewById(R.id.joinLL)
         accumulateLL = view.findViewById(R.id.accumulateLL)
         useLL = view.findViewById(R.id.useLL)
         btn_search = view.findViewById(R.id.btn_search)
@@ -99,6 +103,10 @@ class User_List_Fragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         company_id = PrefUtils.getIntPreference(myContext, "company_id")
+
+
+
+
 
         hoSV.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
 
@@ -119,20 +127,7 @@ class User_List_Fragment : Fragment() {
             } else {
                 scrollPositionChanged = true
             }
-//            if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
-//                userScrolled = true
-//            } else if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && lastItemVisibleFlag) {
-//                userScrolled = false
-//
-//                //화면이 바닥에 닿았을때
-//                if (totalpage > page) {
-//                    page++
-//                    Toast.makeText(myContext,page.toString()+"입니다",Toast.LENGTH_SHORT).show()
-//                    lastcount = totalItemCountScroll
-//
-//                    mainData(type)
-//                }
-//            }
+
         }
 
 
@@ -152,6 +147,13 @@ class User_List_Fragment : Fragment() {
 
             mainData(1,"")
         }
+        saleTV.setOnClickListener {
+            userallLL.visibility = View.GONE
+            saleFL.visibility = View.VISIBLE
+            setLeftMenu()
+            saleTV.setTextColor(Color.parseColor("#ffffff"))
+            childFragmentManager.beginTransaction().replace(R.id.saleFL, Sales_Analysis_List_Fragment).commit()
+        }
         useLL.setOnClickListener {
             val intent = Intent(myContext, CalActivity::class.java)
             intent.putExtra("step", 4)
@@ -163,6 +165,8 @@ class User_List_Fragment : Fragment() {
         }
 
         entire_viewTV.setOnClickListener {
+            saleFL.visibility = View.GONE
+            userallLL.visibility = View.VISIBLE
             setLeftMenu()
             entire_viewTV.setTextColor(Color.parseColor("#ffffff"))
             type = 1
@@ -171,12 +175,16 @@ class User_List_Fragment : Fragment() {
         }
         //단골
         userList_most_freq_userLL.setOnClickListener {
+            saleFL.visibility = View.GONE
+            userallLL.visibility = View.VISIBLE
             setLeftMenu()
             most_freqTV.setTextColor(Color.parseColor("#ffffff"))
 
         }
 
         userList_birth_userLL.setOnClickListener {
+            saleFL.visibility = View.GONE
+            userallLL.visibility = View.VISIBLE
             setLeftMenu()
             birthTV.setTextColor(Color.parseColor("#ffffff"))
             type = 2
@@ -203,6 +211,8 @@ class User_List_Fragment : Fragment() {
         }
 
         userList_new_userLL.setOnClickListener {
+            saleFL.visibility = View.GONE
+            userallLL.visibility = View.VISIBLE
             setLeftMenu()
             new_userTV.setTextColor(Color.parseColor("#ffffff"))
             type = 3
@@ -211,6 +221,8 @@ class User_List_Fragment : Fragment() {
         }
 
         userList_most_freq_userLL.setOnClickListener {
+            saleFL.visibility = View.GONE
+            userallLL.visibility = View.VISIBLE
             setLeftMenu()
             most_freqTV.setTextColor(Color.parseColor("#ffffff"))
             type = 4
@@ -228,6 +240,7 @@ class User_List_Fragment : Fragment() {
     fun setLeftMenu() {
         entire_viewTV.setTextColor(Color.parseColor("#80ffffff"))
         new_userTV.setTextColor(Color.parseColor("#80ffffff"))
+        saleTV.setTextColor(Color.parseColor("#80ffffff"))
         most_freqTV.setTextColor(Color.parseColor("#80ffffff"))
         birthTV.setTextColor(Color.parseColor("#80ffffff"))
     }

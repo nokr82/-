@@ -32,7 +32,7 @@ class UserListActivity : FragmentActivity() {
     val Message_Manage_Fragment : Message_Manage_Fragment = Message_Manage_Fragment()
     val Point_List_Fragment : Point_List_Fragment = Point_List_Fragment()
     val SettingFragment : SettingFragment = SettingFragment()
-    val Sales_Analysis_List_Fragment : Sales_Analysis_List_Fragment = Sales_Analysis_List_Fragment()
+//    val Sales_Analysis_List_Fragment : Sales_Analysis_List_Fragment = Sales_Analysis_List_Fragment()
 
     //고객리스트 =>메시지보내기
     internal var MsgReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
@@ -46,12 +46,6 @@ class UserListActivity : FragmentActivity() {
                 Message_Manage_Fragment.setArguments(args)
                 messageLL.setBackgroundResource(R.drawable.background_strock_707070)
                 supportFragmentManager.beginTransaction().replace(R.id.userFL, Message_Manage_Fragment).commit()
-
-//                //브로드캐스트생성
-//                var intent = Intent()
-//                intent.putExtra("member_id", id)
-//                intent.action = "MSG_NEXT"
-//                context.sendBroadcast(intent)
             }
         }
     }
@@ -110,13 +104,12 @@ class UserListActivity : FragmentActivity() {
             messageLL.setBackgroundResource(R.drawable.background_strock_707070)
             supportFragmentManager.beginTransaction().replace(R.id.userFL, Message_Manage_Fragment).commit()
         }
-        analysisRevenueLL.setOnClickListener {
+       /* analysisRevenueLL.setOnClickListener {
             setmenu()
             Utils.hideKeyboard(this)
             analysisRevenueLL.setBackgroundResource(R.drawable.background_strock_707070)
             supportFragmentManager.beginTransaction().replace(R.id.userFL, Sales_Analysis_List_Fragment).commit()
-
-        }
+        }*/
         settingLL.setOnClickListener {
             setmenu()
             Utils.hideKeyboard(this)

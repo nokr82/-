@@ -86,6 +86,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:id="@+id/analysisRevenueLL"
                     android:layout_width="140dp"
                     android:layout_height="40dp"

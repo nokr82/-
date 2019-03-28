@@ -8,6 +8,7 @@
 
 
     <com.devstories.anipointcompany.android.base.RationalLinearLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:ratio="150:360"
