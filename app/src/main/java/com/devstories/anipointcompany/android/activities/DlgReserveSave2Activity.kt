@@ -20,7 +20,10 @@ import android.content.Intent
 import android.widget.AdapterView
 import com.devstories.anipointcompany.android.base.*
 import org.json.JSONArray
+import java.text.SimpleDateFormat
 import java.util.*
+
+
 
 
 //회원수정 다이얼로그
@@ -120,12 +123,18 @@ class DlgReserveSave2Activity : RootActivity() {
         timeLL.setOnClickListener {
             val dialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { timePicker, hour, min ->
                 val msg = String.format("%d : %d ", hour, min)
+                var formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA)
+
+                cal.add(Calendar.MINUTE, min)
+                var today = formatter.format(cal.time)
 
                 Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
-                timeTV.text = msg
+                timeTV.text = today
             }, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true)
             dialog.show()
         }
+
+
 
 
         nextTV.setOnClickListener {
@@ -239,6 +248,9 @@ class DlgReserveSave2Activity : RootActivity() {
             }
         })
     }
+
+
+
 
 
 

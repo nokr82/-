@@ -268,15 +268,136 @@
                     android:layout_height="wrap_content"
                     />
 
-                <CalendarView
-                    android:id="@+id/calCV"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:gravity="center"
+                    android:layout_height="62dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="94dp"
+                        android:layout_height="42.5dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:background="@drawable/background_strock_nemo_707070">
+
+                        <Spinner
+                            android:id="@+id/yearsSP"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:popupBackground="@drawable/background_ffffff_border_bfbfbf"
+                            android:background="@null">
+
+                        </Spinner>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginRight="12.5dp"
+                            android:src="@mipmap/icon_down_arrow"/>
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:background="#999999"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:layout_height="62dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/prevMonthLL"
+                        android:layout_width="wrap_content"
+                        android:paddingLeft="25dp"
+                        android:paddingRight="25dp"
+                        android:gravity="center_vertical"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/arrow_back"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="1">
+
+                        <RelativeLayout
+                            android:layout_width="94dp"
+                            android:layout_height="42.5dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:background="@drawable/background_strock_nemo_707070">
+
+                            <Spinner
+                                android:id="@+id/monthSP"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:popupBackground="@drawable/background_ffffff_border_bfbfbf"
+                                android:background="@null">
+
+                            </Spinner>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="12.5dp"
+                                android:src="@mipmap/icon_down_arrow"/>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/nextMonthLL"
+                        android:layout_width="wrap_content"
+                        android:paddingLeft="25dp"
+                        android:paddingRight="25dp"
+                        android:gravity="center_vertical|right"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/date_forward"/>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:background="#999999"
+                    />
+
+                <com.devstories.anipointcompany.android.base.CalendarGridView2
+                    android:id="@+id/calendarGV"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1">
-
-
-
-                </CalendarView>
+                    android:layout_weight="1"
+                    android:numColumns="7"
+                    android:stretchMode="columnWidth"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"/>
 
 
 
