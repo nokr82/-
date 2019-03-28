@@ -10,18 +10,20 @@ import android.widget.*
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.R.id.dateTV
 import com.devstories.anipointcompany.android.R.id.updateTV
+import com.devstories.anipointcompany.android.activities.ReserveMemberListFragment
+import com.devstories.anipointcompany.android.activities.ReserveNewMemberFragment
 import com.devstories.anipointcompany.android.base.Utils
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-open class MemberListAdapter (context:Context, view:Int, data: ArrayList<JSONObject>) : ArrayAdapter<JSONObject>(context, view, data) {
+open class MemberListAdapter (context:Context, view:Int, data: ArrayList<JSONObject>,fragment: ReserveMemberListFragment) : ArrayAdapter<JSONObject>(context, view, data) {
 
     private lateinit var item: ViewHolder
     var view:Int = view
     var data: ArrayList<JSONObject> = data
-
+    var fragment: ReserveMemberListFragment = fragment
 
     override fun getView(position: Int, convertView: View?, parent : ViewGroup?): View {
 
@@ -43,9 +45,17 @@ open class MemberListAdapter (context:Context, view:Int, data: ArrayList<JSONObj
 
         var json = data.get(position)
         val member = json.getJSONObject("Member")
+        var member_id = Utils.getInt(member, "id")
         var phone = Utils.getString(member, "phone")
         var name = Utils.getString(member, "name")
         Log.d("제이슨",json.toString())
+
+        if (fragment.member_id ==member_id){
+            item.radioIV.setImageResource(R.drawable.radio_on)
+        }else{
+            item.radioIV.setImageResource(R.drawable.radio_off)
+        }
+
 
         item.nameTV.text = name
         item.phoneTV.text = phone
@@ -77,6 +87,7 @@ open class MemberListAdapter (context:Context, view:Int, data: ArrayList<JSONObj
         return data.count()
     }
     class ViewHolder(v: View) {
+        var radioIV = v.findViewById(R.id.radioIV) as ImageView
         var nameTV = v.findViewById(R.id.nameTV) as TextView
         var phoneTV = v.findViewById(R.id.phoneTV) as TextView
         init {

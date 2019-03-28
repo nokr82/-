@@ -12,6 +12,7 @@
 
 
        <ImageView
+           android:id="@+id/radioIV"
            android:padding="40dp"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"

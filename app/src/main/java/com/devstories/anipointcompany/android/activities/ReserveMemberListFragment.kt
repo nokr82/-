@@ -1,20 +1,16 @@
 package com.devstories.anipointcompany.android.activities
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.view.inputmethod.EditorInfo
+import android.widget.AbsListView
 import com.devstories.aninuriandroid.adapter.MemberListAdapter
 import com.devstories.anipointcompany.android.Actions.MemberAction
-
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.CustomProgressDialog
 import com.devstories.anipointcompany.android.base.PrefUtils
@@ -23,12 +19,16 @@ import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
 import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.fra_reserve_member_list.*
-import kotlinx.android.synthetic.main.fra_userlist.*
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-import java.text.SimpleDateFormat
 import java.util.*
+import android.R.id
+import android.view.KeyEvent
+import android.widget.EditText
+import android.widget.TextView
+import org.w3c.dom.Text
+
 
 // 메세지 통계
 class ReserveMemberListFragment : Fragment() {
@@ -39,8 +39,8 @@ class ReserveMemberListFragment : Fragment() {
     var page = 1
     var totalpage = 0
     var company_id = -1
-    var adapterData:ArrayList<JSONObject> = ArrayList<JSONObject>()
-
+    var adapterData: ArrayList<JSONObject> = ArrayList<JSONObject>()
+    var member_id = -1
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -60,23 +60,59 @@ class ReserveMemberListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         company_id = PrefUtils.getIntPreference(myContext, "company_id")
-        adapter = MemberListAdapter(myContext,R.layout.item_member_list,adapterData)
+        adapter = MemberListAdapter(myContext, R.layout.item_member_list, adapterData,this)
         memberLV.adapter = adapter
-        mainData("")
+        mainData()
+
+        var lastitemVisibleFlag = false        //화면에 리스트의 마지막 아이템이 보여지는지 체크
+        memberLV.setOnScrollListener(object : AbsListView.OnScrollListener {
+            override fun onScroll(view: AbsListView, firstVisibleItem: Int, visibleItemCount: Int, totalItemCount: Int) {
+                lastitemVisibleFlag = totalItemCount > 0 && firstVisibleItem + visibleItemCount >= totalItemCount
+            }
+
+            override fun onScrollStateChanged(view: AbsListView, scrollState: Int) {
+                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && lastitemVisibleFlag) {
+                    if (totalpage > page) {
+                        page++
+                        mainData()
+                    }
+
+                }
+            }
+
+        })
+        keywordET.setOnEditorActionListener() { v, actionId, event ->
+            mainData()
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                keywordET.setText("")
+                true
+            } else {
+                false
+            }
+        }
+
+        memberLV.setOnItemClickListener { parent, view, position, id ->
+            var data = adapterData.get(position)
+            Log.d("리스트선택", data.toString())
+            val member = data.getJSONObject("Member")
+            member_id = Utils.getInt(member, "id")
+
+            adapter.notifyDataSetChanged()
+        }
+
 
     }
 
 
-
-
     //고객목롭뽑기
-    fun mainData(keyword:String) {
+    fun mainData() {
 
+        val keyword = Utils.getString(keywordET)
 
         val params = RequestParams()
         params.put("company_id", company_id)
         params.put("type", 1)
-        params.put("keyword", "$keyword")
+        params.put("keyword", keyword)
         params.put("page", page)
         MemberAction.user_list(params, object : JsonHttpResponseHandler() {
 
@@ -96,9 +132,11 @@ class ReserveMemberListFragment : Fragment() {
 
                         if (page == 1) {
                             adapterData.clear()
+                            adapter.notifyDataSetChanged()
                         }
+
                         for (i in 0 until data.length()) {
-                            Log.d("데이터",data[i].toString())
+
                             adapterData.add(data[i] as JSONObject)
                         }
 
@@ -106,7 +144,7 @@ class ReserveMemberListFragment : Fragment() {
 
                     }
 
-                }catch (e: JSONException) {
+                } catch (e: JSONException) {
                     e.printStackTrace()
                 }
 
