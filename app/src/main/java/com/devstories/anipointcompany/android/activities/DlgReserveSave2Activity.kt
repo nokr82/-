@@ -17,6 +17,7 @@ import org.json.JSONObject
 import android.widget.Toast
 import android.app.TimePickerDialog
 import android.content.Intent
+import android.util.Log
 import android.widget.AdapterView
 import com.devstories.anipointcompany.android.base.*
 import org.json.JSONArray
@@ -38,7 +39,8 @@ class DlgReserveSave2Activity : RootActivity() {
     var customer_id = -1
     var stack_type = -1
     var payment_type = -1
-    lateinit var adapter: ArrayAdapter<String>
+    lateinit var ma_adapter: ArrayAdapter<String>
+    var option_age = arrayOf("미입력","10대","20대","30대","40대","50대","60대")
     var managers:ArrayList<String> = ArrayList()
     var managers_ids:ArrayList<Int> = ArrayList()
     val cal = Calendar.getInstance()
@@ -60,25 +62,17 @@ class DlgReserveSave2Activity : RootActivity() {
         setmenu()
         setmenu2()
 
-        adapter = ArrayAdapter(context, R.layout.spiner_item, managers)
-        manageSP.adapter = adapter
+        ma_adapter = ArrayAdapter(this, R.layout.spiner_item, managers)
+
+
         manageSP.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override
-            fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                if (position == 0) {
-                    Toast.makeText(context,"asdasd",Toast.LENGTH_SHORT).show()
-                } else if (position == 1) {
-                    Toast.makeText(context,"asdasd",Toast.LENGTH_SHORT).show()
-                }else if (position == 2) {
-                    Toast.makeText(context,"asdasd",Toast.LENGTH_SHORT).show()
-                }else if (position == 3) {
-                    Toast.makeText(context,"asdasd",Toast.LENGTH_SHORT).show()
-                }else{
-                    Toast.makeText(context,"asdasd",Toast.LENGTH_SHORT).show()
-                }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>) {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                customer_id = managers_ids[position]
+                Log.d("아뒤",customer_id.toString())
 
             }
         }
@@ -192,6 +186,7 @@ class DlgReserveSave2Activity : RootActivity() {
                             managers.add(name)
                             managers_ids.add(managers_id)
                         }
+                        manageSP.adapter = ma_adapter
 
                     } else {
 
