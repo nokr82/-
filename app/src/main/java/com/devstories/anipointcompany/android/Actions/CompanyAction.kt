@@ -9,7 +9,9 @@ import com.loopj.android.http.RequestParams
  */
 object CompanyAction {
 
-
+    fun reserve(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/company/reserve.json", params, handler)
+    }
     fun addmanage(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/company/addmanage.json", params, handler)
     }

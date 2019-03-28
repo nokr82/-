@@ -77,11 +77,18 @@
 
                         <LinearLayout
                             android:orientation="vertical"
-                            android:id="@+id/goodsinfoLL"
+                            android:id="@+id/dateLL"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="#ffffff"
                             android:gravity="center_vertical"/>
+
+                        <TextView
+                            android:id="@+id/dateTV"
+                            android:gravity="center_vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="선택해주세요"/>
 
 
                         <ImageView
@@ -135,9 +142,9 @@
                             <Spinner
                                 android:id="@+id/manageSP"
                                 android:layout_width="match_parent"
+                                android:textSize="12dp"
                                 android:layout_height="match_parent"
-                                android:background="#ffffff"
-                                android:gravity="center_vertical"/>
+                                android:background="@color/colorAccent" />
 
 
                             <ImageView
@@ -187,60 +194,27 @@
                         android:layout_marginRight="20dp">
 
 
-
                         <LinearLayout
-                            android:orientation="horizontal"
+                            android:id="@+id/timeLL"
+                            android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:gravity="center_vertical">
+                            android:background="#ffffff"
+                            android:gravity="center_vertical"/>
+                        <TextView
+                            android:id="@+id/timeTV"
+                            android:gravity="center_vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="선택해주세요"/>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:background="@mipmap/icon_down_arrow" />
 
-                            <RelativeLayout
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="35dp"
-                                android:layout_marginRight="20dp">
-
-
-                                <Spinner
-                                    android:id="@+id/first_timeSP"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="#ffffff"
-                                    android:gravity="center_vertical"/>
-
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_marginRight="10dp"
-                                    android:background="@mipmap/icon_down_arrow" />
-                            </RelativeLayout>
-                            <RelativeLayout
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="35dp"
-                               android:layout_marginLeft="20dp">
-
-
-                                <Spinner
-                                    android:id="@+id/last_timeSP"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="#ffffff"
-                                    android:gravity="center_vertical"/>
-
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_marginRight="10dp"
-                                    android:background="@mipmap/icon_down_arrow" />
-                            </RelativeLayout>
-                        </LinearLayout>
                     </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -340,61 +314,26 @@
                             android:layout_height="35dp"
                             android:layout_marginRight="20dp">
 
-
-
                             <LinearLayout
-                                android:orientation="horizontal"
+                                android:id="@+id/sugerLL"
+                                android:orientation="vertical"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:gravity="center_vertical">
-
-                                <RelativeLayout
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:layout_height="35dp"
-                                    android:layout_marginRight="20dp">
-
-
-                                    <Spinner
-                                        android:id="@+id/first_time2SP"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:background="#ffffff"
-                                        android:gravity="center_vertical"/>
-
-
-                                    <ImageView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_centerVertical="true"
-                                        android:layout_marginRight="10dp"
-                                        android:background="@mipmap/icon_down_arrow" />
-                                </RelativeLayout>
-                                <RelativeLayout
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:layout_height="35dp"
-                                    android:layout_marginLeft="20dp">
-
-
-                                    <Spinner
-                                        android:id="@+id/last_time2SP"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:background="#ffffff"
-                                        android:gravity="center_vertical"/>
-
-
-                                    <ImageView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_centerVertical="true"
-                                        android:layout_marginRight="10dp"
-                                        android:background="@mipmap/icon_down_arrow" />
-                                </RelativeLayout>
-                            </LinearLayout>
+                                android:background="#ffffff"
+                                android:gravity="center_vertical"/>
+                            <TextView
+                                android:id="@+id/sugerTV"
+                                android:gravity="center_vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="선택해주세요"/>
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="10dp"
+                                android:background="@mipmap/icon_down_arrow" />
                         </RelativeLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -441,7 +380,7 @@
                             android:layout_height="match_parent">
 
                             <EditText
-                                android:id="@+id/priceTV"
+                                android:id="@+id/priceET"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center_vertical"
@@ -630,14 +569,14 @@
                         android:orientation="horizontal">
 
                         <LinearLayout
-                            android:id="@+id/maleLL"
+                            android:id="@+id/cardLL"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center_vertical">
 
                             <ImageView
-                                android:id="@+id/maleIV"
+                                android:id="@+id/cardIV"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="3dp"
@@ -656,14 +595,14 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/famaleLL"
+                            android:id="@+id/payLL"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center_vertical">
 
                             <ImageView
-                                android:id="@+id/femaleIV"
+                                android:id="@+id/payIV"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="3dp"
@@ -802,14 +741,16 @@
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
                         <EditText
+                            android:hint="메모입력"
                             android:id="@+id/memoET"
+                            android:layout_margin="5dp"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="5.5dp"
                             android:textSize="12dp"
                             android:textColor="#303030"
                             android:letterSpacing="-0.01"
-                            android:text="소형견, 말티스, 강아지 이름우측 최상단 톱니바퀴 모양을 누르면설정으로 이동합니다."
+                            android:text=""
                             android:background="@null"/>
 
                     </LinearLayout>
