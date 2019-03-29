@@ -14,6 +14,7 @@ import android.widget.*
 import com.devstories.anipointcompany.android.Actions.CouponAction
 import kotlinx.android.synthetic.main.fra_message_wirte_step1.*
 import com.devstories.anipointcompany.android.R
+import com.devstories.anipointcompany.android.base.CustomProgressDialog
 import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
@@ -57,7 +58,7 @@ import java.io.ByteArrayInputStream
 class MessageUserFragment : Fragment() {
 
     lateinit var myContext: Context
-    private var progressDialog: ProgressDialog? = null
+    private var progressDialog: CustomProgressDialog? = null
     lateinit var adapter: ArrayAdapter<String>
     var option_visitday = arrayOf("15일", "30일", "60일", "90일")
 
@@ -146,7 +147,9 @@ class MessageUserFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         this.myContext = container!!.context
-        progressDialog = ProgressDialog(myContext)
+
+        progressDialog = CustomProgressDialog(context, R.style.progressDialogTheme)
+        progressDialog!!.setProgressStyle(android.R.style.Widget_DeviceDefault_Light_ProgressBar_Large)
 
         return inflater.inflate(R.layout.fra_message_wirte_step1, container, false)
     }

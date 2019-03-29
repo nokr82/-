@@ -83,6 +83,16 @@ import java.util.regex.Pattern;
 public class Utils {
     private static Bitmap noImageBitmap = null;
 
+    public static String todayStr() {
+
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+
+        Date d = new Date();
+        return sdf1.format(d);
+
+    }
+
+
     public static String since(String reg_dt) {
         if (reg_dt == null || reg_dt.trim().length() == 0) {
             return "";

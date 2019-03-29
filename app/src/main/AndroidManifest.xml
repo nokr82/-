@@ -52,7 +52,8 @@
         <activity
             android:name=".activities.DlgEditMemberInfoActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/full_screen_dialog1"/>
+            android:theme="@style/full_screen_dialog1"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
         <activity
             android:name=".activities.DlgCouponListActivity"
             android:screenOrientation="landscape"
@@ -60,15 +61,37 @@
         <activity
             android:name=".activities.DlgTestMsgActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/full_screen_dialog1"/>
+            android:theme="@style/full_screen_dialog1"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
         <activity
             android:name=".activities.DlgEditPerActivity"
             android:screenOrientation="landscape"
             android:theme="@style/full_screen_dialog1"/>
         <activity
+            android:name=".activities.DlgAddManageActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/full_screen_dialog1"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name=".activities.DlgReserveSaveActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/full_screen_dialog1"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name=".activities.DlgReserveResultActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/full_screen_dialog1"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name=".activities.DlgReserveSave2Activity"
+            android:screenOrientation="landscape"
+            android:theme="@style/full_screen_dialog1"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
             android:name=".activities.DlgMemberShipActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/full_screen_dialog1"/>
+            android:theme="@style/full_screen_dialog1"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
     </application>
 
 </manifest>

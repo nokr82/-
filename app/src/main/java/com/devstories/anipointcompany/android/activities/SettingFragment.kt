@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.devstories.anipointcompany.android.R
+import com.devstories.anipointcompany.android.base.CustomProgressDialog
 import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.Utils
 import kotlinx.android.synthetic.main.fragment_setting.*
@@ -20,7 +21,8 @@ import kotlinx.android.synthetic.main.fragment_setting.*
 class SettingFragment : android.support.v4.app.Fragment() {
 
     lateinit var myContext: Context
-    private var progressDialog: ProgressDialog? = null
+
+    private var progressDialog: CustomProgressDialog? = null
     lateinit var myInfoTV: TextView
     lateinit var operPolicyTV: TextView
 
@@ -35,6 +37,8 @@ class SettingFragment : android.support.v4.app.Fragment() {
                               savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
 
+        progressDialog = CustomProgressDialog(context, R.style.progressDialogTheme)
+        progressDialog!!.setProgressStyle(android.R.style.Widget_DeviceDefault_Light_ProgressBar_Large)
 
         return inflater.inflate(R.layout.fragment_setting, container, false)
     }

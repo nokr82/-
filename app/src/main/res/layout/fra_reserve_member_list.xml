@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_height="55dp"
+        android:background="#c9c9c9"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="61dp"
+            android:layout_weight="1"
+            android:background="@drawable/background_round_fffff"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/btn_search"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_search" />
+
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/keywordET"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="키워드를 입력하세요."
+                android:lineSpacingExtra="25sp"
+                android:singleLine="true"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+    <ListView
+        android:id="@+id/memberLV"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    </ListView>
+
+
+    <TextView
+        android:background="@drawable/background_gradient7"
+        android:gravity="center"
+        android:id="@+id/nextTV"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="다음"
+        android:textSize="18dp"
+        android:textColor="#ffffff"
+        android:textStyle="bold"/>
+
+
+
+
+
+</LinearLayout>

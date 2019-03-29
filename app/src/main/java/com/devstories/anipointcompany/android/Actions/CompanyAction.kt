@@ -9,6 +9,16 @@ import com.loopj.android.http.RequestParams
  */
 object CompanyAction {
 
+    fun reserve_list(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/company/reserve_list.json", params, handler)
+    }
+    fun reserve(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/company/reserve.json", params, handler)
+    }
+    fun addmanage(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/company/addmanage.json", params, handler)
+    }
+
     // 사업자정보
     fun company_info(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/company/info.json", params, handler)
@@ -18,7 +28,14 @@ object CompanyAction {
     fun edit_info(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/company/edit_info.json", params, handler)
     }
-
+    // 예약정보
+    fun reserve_info(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/company/reserve_info.json", params, handler)
+    }
+    // 예약정보
+    fun edit_reserve(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/company/edit_reserve.json", params, handler)
+    }
     // 사업자정보
     fun edit_image(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/company/edit_images.json", params, handler)

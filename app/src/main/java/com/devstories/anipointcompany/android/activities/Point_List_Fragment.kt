@@ -24,6 +24,7 @@ import android.util.Log
 import android.widget.*
 import com.devstories.anipointcompany.android.Actions.CouponAction.send_message
 import com.devstories.anipointcompany.android.Actions.PointAction
+import com.devstories.anipointcompany.android.base.CustomProgressDialog
 import com.devstories.anipointcompany.android.base.PrefUtils
 import kotlinx.android.synthetic.main.fra_point_list.view.*
 import java.text.SimpleDateFormat
@@ -32,7 +33,9 @@ import java.util.*
 //포인트내역
 class Point_List_Fragment : Fragment() {
     lateinit var myContext: Context
-    private var progressDialog: ProgressDialog? = null
+
+
+    private var progressDialog: CustomProgressDialog? = null
 
     internal lateinit var view: View
     lateinit var userLV: ListView
@@ -78,7 +81,8 @@ class Point_List_Fragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
 
-        progressDialog = ProgressDialog(myContext)
+        progressDialog = CustomProgressDialog(context, R.style.progressDialogTheme)
+        progressDialog!!.setProgressStyle(android.R.style.Widget_DeviceDefault_Light_ProgressBar_Large)
         return inflater.inflate(R.layout.fra_point_list, container, false)
 
 

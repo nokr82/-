@@ -84,8 +84,26 @@
                         android:textSize="20dp" />
 
                 </LinearLayout>
-
                 <LinearLayout
+                    android:id="@+id/reservationLL"
+                    android:layout_width="140dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center">
+
+                    <me.grantland.widget.AutofitTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="25sp"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="예약 관리"
+                        android:textColor="#ffffff"
+                        android:textSize="20dp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:visibility="gone"
                     android:id="@+id/analysisRevenueLL"
                     android:layout_width="140dp"
                     android:layout_height="40dp"

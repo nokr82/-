@@ -16,6 +16,7 @@ import com.devstories.aninuriandroid.adapter.AnalysisAutoMessageAdapter
 import com.devstories.anipointcompany.android.Actions.CouponAction
 
 import com.devstories.anipointcompany.android.R
+import com.devstories.anipointcompany.android.base.CustomProgressDialog
 import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
@@ -28,7 +29,8 @@ import org.json.JSONObject
 // 메세지 통계
 class MssgAnalysisFragment : Fragment() {
     lateinit var myContext: Context
-    private var progressDialog: ProgressDialog? = null
+
+    private var progressDialog: CustomProgressDialog? = null
 
     var company_id = -1
 
@@ -66,7 +68,8 @@ class MssgAnalysisFragment : Fragment() {
         // Inflate the layout for this fragment
 
         this.myContext = container!!.context
-        progressDialog = ProgressDialog(myContext)
+        progressDialog = CustomProgressDialog(context, R.style.progressDialogTheme)
+        progressDialog!!.setProgressStyle(android.R.style.Widget_DeviceDefault_Light_ProgressBar_Large)
         return inflater.inflate(R.layout.fra_mssg_analysis, container, false)
     }
 

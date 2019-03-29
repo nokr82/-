@@ -26,6 +26,7 @@ import kotlinx.android.synthetic.main.fragment_oper_policy.*
 import org.json.JSONException
 import org.json.JSONObject
 import android.view.View.OnTouchListener
+import com.devstories.anipointcompany.android.base.CustomProgressDialog
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -35,7 +36,7 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
 
 
     lateinit var myContext: Context
-    private var progressDialog: ProgressDialog? = null
+    private var progressDialog: CustomProgressDialog? = null
     lateinit var left_pointTV: TextView
     lateinit var min_pointTV: EditText
     lateinit var rdo1000wonIV: ImageView
@@ -101,7 +102,8 @@ class OperPolicyFragment : Fragment(), AbsListView.OnScrollListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
-        progressDialog = ProgressDialog(myContext)
+        progressDialog = CustomProgressDialog(context, R.style.progressDialogTheme)
+        progressDialog!!.setProgressStyle(android.R.style.Widget_DeviceDefault_Light_ProgressBar_Large)
         return inflater.inflate(R.layout.fragment_oper_policy, container, false)
     }
 

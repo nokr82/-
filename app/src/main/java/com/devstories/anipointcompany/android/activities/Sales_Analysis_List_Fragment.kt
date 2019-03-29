@@ -1,6 +1,5 @@
 package com.devstories.anipointcompany.android.activities
 
-import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -22,6 +21,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.CompanyAction
+import com.devstories.anipointcompany.android.base.CustomProgressDialog
 import com.devstories.anipointcompany.android.base.PrefUtils
 import kotlinx.android.synthetic.main.fra_sales_analysis.*
 import kotlin.collections.ArrayList
@@ -29,7 +29,8 @@ import kotlin.collections.ArrayList
 //고객방문분석메인
 class Sales_Analysis_List_Fragment : Fragment() {
     lateinit var myContext: Context
-    private var progressDialog: ProgressDialog? = null
+
+    private var progressDialog: CustomProgressDialog? = null
     lateinit var adapter: ArrayAdapter<String>
 
     var option_amount = ArrayList<String>()
@@ -67,7 +68,9 @@ class Sales_Analysis_List_Fragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
-        progressDialog = ProgressDialog(myContext)
+
+        progressDialog = CustomProgressDialog(context, R.style.progressDialogTheme)
+        progressDialog!!.setProgressStyle(android.R.style.Widget_DeviceDefault_Light_ProgressBar_Large)
         return inflater.inflate(R.layout.fra_sales_analysis, container, false)
     }
 
@@ -397,11 +400,12 @@ class Sales_Analysis_List_Fragment : Fragment() {
                         var cashTotalPrice = Utils.getInt(totalData, "cashTotalPrice")
                         val cardTotalPrice = Utils.getString(totalData, "cardTotalPrice")
                         val bankTotalPrice = Utils.getInt(totalData, "bankTotalPrice")
-
+                        val noTotalPrice = Utils.getInt(totalData, "noTotalPrice")
 
 
                         all_memberTV.text = Utils.comma(totalPrice)
                         new_userTV.text = Utils.comma(cashTotalPrice.toString())
+                        nototalsaleTV.text = Utils.comma(noTotalPrice.toString())
                         member_re_cntTV.text = Utils.comma(cardTotalPrice)
                         pointTV.text = Utils.comma(bankTotalPrice.toString())
 
@@ -419,21 +423,28 @@ class Sales_Analysis_List_Fragment : Fragment() {
                                 val totalPrice = Utils.getString(json, "totalPrice")
                                 var cash = Utils.getInt(json, "cash")
                                 val card = Utils.getString(json, "card")
-                                val point = Utils.getInt(json, "bank")
+                                val nosale = Utils.getString(json, "nosale")
+                                var point = Utils.getInt(json, "bank")
 
 
 
                                 val salesView = View.inflate(myContext, R.layout.item_sales_analysis, null)
                                 var dateTV: TextView = salesView.findViewById(R.id.dateTV)
+                                var nosaleTV: TextView = salesView.findViewById(R.id.nosaleTV)
                                 var totalTV: TextView = salesView.findViewById(R.id.totalTV)
                                 var cashTV: TextView = salesView.findViewById(R.id.cashTV)
                                 var cardTV: TextView = salesView.findViewById(R.id.cardTV)
                                 var pointTV: TextView = salesView.findViewById(R.id.pointTV)
 
+                                if (point==-1){
+                                    point = 0
+                                }
+
                                 dateTV.text = date.toString()
                                 totalTV.text = Utils.comma(totalPrice)
                                 cashTV.text = Utils.comma(cash.toString())
                                 cardTV.text = Utils.comma(card)
+                                nosaleTV.text = Utils.comma(nosale)
                                 pointTV.text =  Utils.comma(point.toString())
                                 itemdateLL.addView(salesView)
 
@@ -442,9 +453,9 @@ class Sales_Analysis_List_Fragment : Fragment() {
                         }
 
 
-                        /*totalPage  = response.getInt("totalPage")
+                        totalPage  = response.getInt("totalPage")
 
-                        option_amount.clear()*/
+//                        option_amount.clear()
 
 
                     } else {

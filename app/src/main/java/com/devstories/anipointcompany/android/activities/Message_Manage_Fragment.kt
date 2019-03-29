@@ -14,13 +14,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.devstories.anipointcompany.android.R
+import com.devstories.anipointcompany.android.base.CustomProgressDialog
 import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.Utils
 
 //메시지관리  - 고객선택
 class Message_Manage_Fragment : Fragment() {
     lateinit var myContext: Context
-    private var progressDialog: ProgressDialog? = null
+
+    private var progressDialog: CustomProgressDialog? = null
 
 
     lateinit var messageStatisticsLL: LinearLayout
@@ -50,7 +52,8 @@ class Message_Manage_Fragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
-
+        progressDialog = CustomProgressDialog(context, R.style.progressDialogTheme)
+        progressDialog!!.setProgressStyle(android.R.style.Widget_DeviceDefault_Light_ProgressBar_Large)
             return inflater.inflate(R.layout.fra_message_manage,container,false)
 
     }
@@ -78,6 +81,7 @@ class Message_Manage_Fragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
 
         company_id = PrefUtils.getIntPreference(context, "company_id")
 
@@ -157,6 +161,8 @@ class Message_Manage_Fragment : Fragment() {
         autoCouponTV.setTextColor(Color.parseColor("#80FFFFFF"))
 
     }
+
+
 
     override fun onDestroy() {
         super.onDestroy()

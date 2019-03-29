@@ -8,6 +8,7 @@
 
 
     <com.devstories.anipointcompany.android.base.RationalLinearLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:ratio="150:360"
@@ -535,7 +536,6 @@
 
 
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -553,7 +553,49 @@
                             android:layout_height="wrap_content"
                             android:letterSpacing="-0.03"
                             android:lineSpacingExtra="4sp"
-                            android:text="포인트 매출(원)"
+                            android:text="무적립매출(원)"
+                            android:textColor="#666666"
+                            android:textSize="16dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/nototalsaleTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="4sp"
+                            android:text="0"
+                            android:textColor="#666666"
+                            android:textSize="16dp" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="#e7e7e7"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="4sp"
+                            android:text="포인트사용"
                             android:textColor="#666666"
                             android:textSize="16dp" />
 
@@ -794,6 +836,32 @@
                                     android:letterSpacing="-0.03"
                                     android:lineSpacingExtra="4sp"
                                     android:text="카드"
+                                    android:textColor="#666666"
+                                    android:textSize="16dp" />
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:background="#e7e7e7"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:letterSpacing="-0.03"
+                                    android:lineSpacingExtra="4sp"
+                                    android:text="무적립"
                                     android:textColor="#666666"
                                     android:textSize="16dp" />
 

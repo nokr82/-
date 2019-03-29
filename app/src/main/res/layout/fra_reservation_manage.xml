@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+
+    <com.devstories.anipointcompany.android.base.RationalLinearLayout
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:ratio="150:360"
+        app:adjustHeight="false">
+
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <me.grantland.widget.AutofitTextView
+                    android:singleLine="true"
+                    android:maxLines="2"
+                    android:id="@+id/titleTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="23.5dp"
+                    android:layout_marginTop="15.5dp"
+                    android:text="예약 관리"
+                    android:textColor="#ffff"
+                    android:textSize="48dp" />
+
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:fillViewport="true"
+                    android:scrollbars="none"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:id="@+id/allLL"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:layout_marginTop="35dp"
+                            android:gravity=""
+                            android:orientation="vertical">
+
+
+
+                            <me.grantland.widget.AutofitTextView
+                                android:singleLine="true"
+                                android:maxLines="1"
+                                android:id="@+id/allTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:letterSpacing="-0.03"
+                                android:lineSpacingExtra="1sp"
+                                android:textColor="#ffffff"
+                                android:textSize="36dp" />
+
+
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/daysLL"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="">
+
+
+                            <me.grantland.widget.AutofitTextView
+                                android:singleLine="true"
+                                android:maxLines="1"
+                                android:id="@+id/daysTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:letterSpacing="-0.03"
+                                android:lineSpacingExtra="1sp"
+                                android:textColor="#80ffffff"
+                                android:textSize="36dp" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/timeLL"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <me.grantland.widget.AutofitTextView
+                                    android:singleLine="true"
+                                    android:maxLines="1"
+                                    android:id="@+id/timeTV"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:letterSpacing="-0.03"
+                                    android:lineSpacingExtra="1sp"
+                                    android:textColor="#80ffffff"
+                                    android:textSize="36dp" />
+
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ageLL"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <me.grantland.widget.AutofitTextView
+                                    android:id="@+id/ageTV"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:letterSpacing="-0.03"
+                                    android:lineSpacingExtra="1sp"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:textColor="#80ffffff"
+                                    android:textSize="36dp" />
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+
+                            <LinearLayout
+                                android:id="@+id/accumulateLL"
+                                android:layout_width="0dp"
+                                android:layout_height="80dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_weight="0.5"
+                                android:background="#997afb"
+                                android:gravity="center">
+
+                                <me.grantland.widget.AutofitTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_horizontal"
+                                    android:lineSpacingExtra="-2sp"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text="적립"
+                                    android:textColor="#ffffff"
+                                    android:textSize="24dp" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/useLL"
+                                android:layout_width="0dp"
+                                android:layout_height="80dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_weight="0.5"
+                                android:background="#997afb"
+                                android:gravity="center">
+
+                                <me.grantland.widget.AutofitTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_horizontal"
+                                    android:lineSpacingExtra="-2sp"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text="사용"
+                                    android:textColor="#ffffff"
+                                    android:textSize="24dp" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/noLL"
+                                android:layout_width="0dp"
+                                android:layout_height="80dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_weight="0.5"
+                                android:background="@color/colorAccent"
+                                android:gravity="center">
+
+                                <me.grantland.widget.AutofitTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_horizontal"
+                                    android:lineSpacingExtra="-2sp"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text="무적립"
+                                    android:textColor="#ffffff"
+                                    android:textSize="24dp" />
+
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </ScrollView>
+
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </com.devstories.anipointcompany.android.base.RationalLinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="9.5dp"
+            android:background="#ffff"
+            android:orientation="horizontal">
+
+            <com.devstories.anipointcompany.android.base.RationalLinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                app:adjustHeight="false"
+                app:ratio="200:280">
+
+
+                <TextView
+                    android:id="@+id/reservTV"
+                    android:padding="10dp"
+                    android:layout_gravity="end"
+                    android:text="+ 예약등록"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    android:textColor="#479edf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:gravity="center"
+                    android:layout_height="62dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="94dp"
+                        android:layout_height="42.5dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:background="@drawable/background_strock_nemo_707070">
+
+                        <Spinner
+                            android:id="@+id/yearsSP"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:popupBackground="@drawable/background_ffffff_border_bfbfbf"
+                            android:background="@null">
+
+                        </Spinner>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginRight="12.5dp"
+                            android:src="@mipmap/icon_down_arrow"/>
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:background="#999999"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:layout_height="62dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/prevMonthLL"
+                        android:layout_width="wrap_content"
+                        android:paddingLeft="25dp"
+                        android:paddingRight="25dp"
+                        android:gravity="center_vertical"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/arrow_back"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="1">
+
+                        <RelativeLayout
+                            android:layout_width="94dp"
+                            android:layout_height="42.5dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:background="@drawable/background_strock_nemo_707070">
+
+                            <Spinner
+                                android:id="@+id/monthSP"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:popupBackground="@drawable/background_ffffff_border_bfbfbf"
+                                android:background="@null">
+
+                            </Spinner>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="12.5dp"
+                                android:src="@mipmap/icon_down_arrow"/>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/nextMonthLL"
+                        android:layout_width="wrap_content"
+                        android:paddingLeft="25dp"
+                        android:paddingRight="25dp"
+                        android:gravity="center_vertical|right"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/date_forward"/>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:background="#999999"
+                    />
+
+                <com.devstories.anipointcompany.android.base.CalendarGridView2
+                    android:id="@+id/calendarGV"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:numColumns="7"
+                    android:stretchMode="columnWidth"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"/>
+
+
+
+
+            </com.devstories.anipointcompany.android.base.RationalLinearLayout>
+
+
+
+                <ListView
+                    android:id="@+id/reservationLV"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+
+                </ListView>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>
