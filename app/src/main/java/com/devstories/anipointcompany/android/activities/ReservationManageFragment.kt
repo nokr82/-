@@ -43,6 +43,8 @@ class ReservationManageFragment : Fragment() {
     var year = 0
     var month = 0
 
+    var search_date = ""
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
 
@@ -182,6 +184,15 @@ class ReservationManageFragment : Fragment() {
             calendarGV.draw()
         }
 
+        calendarGV.setOnDateSelectedListener { year, month, day ->
+
+            search_date = "${year}.${month }.${day}"
+            page = 1
+
+            reserve_list()
+
+        }
+
         reserve_list()
 
         reservationDays()
@@ -198,6 +209,7 @@ class ReservationManageFragment : Fragment() {
         val params = RequestParams()
         params.put("company_id", company_id)
         params.put("page", page)
+        params.put("search_date", search_date)
 
         CompanyAction.reserve_list(params, object : JsonHttpResponseHandler() {
 
@@ -300,7 +312,6 @@ class ReservationManageFragment : Fragment() {
                     if ("ok" == result) {
 
                         var reservation = response.getJSONArray("reservation")
-
 
                         for (i in 0 until reservation.length()) {
                             calendarData.add(reservation[i] as JSONObject)
