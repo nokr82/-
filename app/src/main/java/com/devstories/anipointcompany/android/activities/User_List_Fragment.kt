@@ -159,6 +159,11 @@ class User_List_Fragment : Fragment() {
             val intent = Intent(myContext, CalActivity::class.java)
             startActivity(intent)
         }
+        noLL.setOnClickListener {
+            val intent = Intent(myContext, CalActivity::class.java)
+            intent.putExtra("no_stack", 1)
+            startActivity(intent)
+        }
 
         entire_viewTV.setOnClickListener {
             saleFL.visibility = View.GONE
