@@ -17,6 +17,7 @@ import org.json.JSONObject
 import android.widget.Toast
 import android.app.TimePickerDialog
 import android.content.Intent
+import android.util.Log
 import android.widget.AdapterView
 import com.devstories.anipointcompany.android.base.*
 import org.json.JSONArray
@@ -38,7 +39,8 @@ class DlgReserveSave2Activity : RootActivity() {
     var customer_id = -1
     var stack_type = -1
     var payment_type = -1
-    lateinit var adapter: ArrayAdapter<String>
+    lateinit var ma_adapter: ArrayAdapter<String>
+    var option_age = arrayOf("미입력","10대","20대","30대","40대","50대","60대")
     var managers:ArrayList<String> = ArrayList()
     var managers_ids:ArrayList<Int> = ArrayList()
     val cal = Calendar.getInstance()
@@ -60,25 +62,17 @@ class DlgReserveSave2Activity : RootActivity() {
         setmenu()
         setmenu2()
 
-        adapter = ArrayAdapter(context, R.layout.spiner_item, managers)
-        manageSP.adapter = adapter
+        ma_adapter = ArrayAdapter(this, R.layout.spiner_item, managers)
+
+
         manageSP.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override
-            fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                if (position == 0) {
-                    Toast.makeText(context,"asdasd",Toast.LENGTH_SHORT).show()
-                } else if (position == 1) {
-                    Toast.makeText(context,"asdasd",Toast.LENGTH_SHORT).show()
-                }else if (position == 2) {
-                    Toast.makeText(context,"asdasd",Toast.LENGTH_SHORT).show()
-                }else if (position == 3) {
-                    Toast.makeText(context,"asdasd",Toast.LENGTH_SHORT).show()
-                }else{
-                    Toast.makeText(context,"asdasd",Toast.LENGTH_SHORT).show()
-                }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>) {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                customer_id = managers_ids[position]
+                Log.d("아뒤",customer_id.toString())
 
             }
         }
@@ -110,6 +104,16 @@ class DlgReserveSave2Activity : RootActivity() {
             femaleIV.setImageResource(R.drawable.radio_on)
             stack_type =2
         }
+        timeLL.setOnClickListener {
+            val dialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { timePicker, hour, min ->
+                val msg = String.format("%d : %d ", hour, min)
+
+
+                Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+                timeTV.text = msg
+            }, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true)
+            dialog.show()
+        }
 
         sugerLL.setOnClickListener {
             val dialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { timePicker, hour, min ->
@@ -120,19 +124,7 @@ class DlgReserveSave2Activity : RootActivity() {
             dialog.show()
         }
 
-        timeLL.setOnClickListener {
-            val dialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { timePicker, hour, min ->
-                val msg = String.format("%d : %d ", hour, min)
-                var formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA)
 
-                cal.add(Calendar.MINUTE, min)
-                var today = formatter.format(cal.time)
-
-                Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
-                timeTV.text = today
-            }, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true)
-            dialog.show()
-        }
 
 
 
@@ -158,7 +150,7 @@ class DlgReserveSave2Activity : RootActivity() {
 
     fun datedlg() {
         var day = Utils.todayStr()
-        var days =    day.split("-")
+        var days = day.split("-")
         DatePickerDialog(context, dateSetListener,days[0].toInt(), days[1].toInt(), days[2].toInt()).show()
     }
 
@@ -194,6 +186,7 @@ class DlgReserveSave2Activity : RootActivity() {
                             managers.add(name)
                             managers_ids.add(managers_id)
                         }
+                        manageSP.adapter = ma_adapter
 
                     } else {
 
@@ -273,13 +266,33 @@ class DlgReserveSave2Activity : RootActivity() {
             return
         }*/
 
+
+
+        var time  = Utils.getString(timeTV)
+        var times = time.split(":")
+
+        var suger  = Utils.getString(sugerTV)
+        var sugers = suger.split(":")
+
+
+        var hours = sugers[0].trim().toInt()+times[0].trim().toInt()
+
+        var min = sugers[1].trim().toInt()+times[1].trim().toInt()
+        var m_min = 0
+        if (min>60){
+            m_min = min - 60
+            min =m_min
+            hours = hours+1
+        }
+
+
         val params = RequestParams()
         params.put("member_id", member_id)
         params.put("company_id",company_id)
         params.put("customer_id",customer_id)
         params.put("surgery_name", Utils.getString(titleET))
         params.put("reserve_time", Utils.getString(timeTV))
-        params.put("surgery_time", Utils.getString(sugerTV))
+        params.put("surgery_time", hours.toString()+" : "+min.toString())
         params.put("price", Utils.getString(priceET))
         params.put("pay", Utils.getString(r_priceET))
         params.put("use_point", Utils.getString(pointET))
