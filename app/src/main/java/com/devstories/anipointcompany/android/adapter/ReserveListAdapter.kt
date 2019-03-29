@@ -55,14 +55,26 @@ open class ReserveListAdapter (context:Context, view:Int, data: ArrayList<JSONOb
         val reserve = json.getJSONObject("Reserve")
         var point = Utils.getString(reserve, "point")
         var reserve_time = Utils.getString(reserve, "reserve_time")
+        var result_type = Utils.getInt(reserve, "result_type")
         var surgery_time = Utils.getString(reserve, "surgery_time")
         var surgery_name = Utils.getString(reserve, "surgery_name")
+
+
+
 
         item.customerTV.text =customer_name
         item.first_timeTV.text =reserve_time
         item.last_timeTV.text =surgery_time
         item.titleTV.text =surgery_name
         item.nameTV.text =phone
+        if (result_type == 1){
+            item.typeTV.text = "예약"
+        }else  if (result_type == 2){
+            item.typeTV.text = "예약완료"
+        }else  if (result_type == 3){
+            item.typeTV.text = "노쇼"
+        }
+
 
 
 
@@ -82,6 +94,7 @@ open class ReserveListAdapter (context:Context, view:Int, data: ArrayList<JSONOb
         return data.count()
     }
     class ViewHolder(v: View) {
+        var typeTV = v.findViewById(R.id.typeTV) as TextView
         var first_timeTV = v.findViewById(R.id.first_timeTV) as TextView
         var nameTV = v.findViewById(R.id.nameTV) as TextView
         var last_timeTV = v.findViewById(R.id.last_timeTV) as TextView

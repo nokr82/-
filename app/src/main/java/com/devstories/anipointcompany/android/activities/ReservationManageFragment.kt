@@ -68,8 +68,10 @@ class ReservationManageFragment : Fragment() {
             var data = adapterData.get(position)
             val reserve = data.getJSONObject("Reserve")
             val reserve_id = Utils.getInt(reserve, "id")
+            val member_id = Utils.getInt(reserve, "member_id")
             val intent = Intent(myContext, DlgReserveResultActivity::class.java)
             intent.putExtra("reserve_id", reserve_id)
+            intent.putExtra("member_id", member_id)
             startActivity(intent)
         }
 
