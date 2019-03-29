@@ -46,7 +46,7 @@ class DlgReserveResultActivity : RootActivity() {
     var managers: ArrayList<String> = ArrayList()
     var managers_ids: ArrayList<Int> = ArrayList()
     val cal = Calendar.getInstance()
-
+    var reserve_date = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         hideNavigations(this)
@@ -308,7 +308,7 @@ class DlgReserveResultActivity : RootActivity() {
                         var basic_per = Utils.getString(reserve, "basic_per")
                         var option_per = Utils.getString(reserve, "option_per")
                         reserve_time = Utils.getString(reserve, "reserve_time")
-                        var reserve_date = Utils.getString(reserve, "reserve_date")
+                        reserve_date = Utils.getString(reserve, "reserve_date")
                         var surgery_time = Utils.getString(reserve, "surgery_time")
                         var surgery_name = Utils.getString(reserve, "surgery_name")
                         var price = Utils.getString(reserve, "price")
@@ -523,7 +523,7 @@ class DlgReserveResultActivity : RootActivity() {
         params.put("payment_type", payment_type)
         params.put("stack_type", stack_type)
         params.put("memo", Utils.getString(memoET))
-        params.put("reserve_date", Utils.getString(dateTV))
+        params.put("reserve_date", reserve_date)
 
 
         CompanyAction.reserve(params, object : JsonHttpResponseHandler() {
@@ -603,6 +603,92 @@ class DlgReserveResultActivity : RootActivity() {
             }
         })
     }
+
+    fun reserve_confirm() {
+
+        val params = RequestParams()
+        params.put("member_id", member_id)
+        params.put("company_id", company_id)
+        params.put("id", reserve_id)
+
+        CompanyAction.reserve_confirm(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    val result = response!!.getString("result")
+
+                    if ("ok" == result) {
+                        Utils.hideKeyboard(context)
+                        finish()
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONArray?) {
+                super.onSuccess(statusCode, headers, response)
+            }
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(context, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(statusCode: Int, headers: Array<Header>?, responseString: String?, throwable: Throwable) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+            override fun onFailure(statusCode: Int, headers: Array<Header>?, throwable: Throwable, errorResponse: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+                throwable.printStackTrace()
+                error()
+            }
+
+            override fun onFailure(statusCode: Int, headers: Array<Header>?, throwable: Throwable, errorResponse: JSONArray?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+                throwable.printStackTrace()
+                error()
+            }
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
+
 
 
     fun hideNavigations(context: Activity) {

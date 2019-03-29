@@ -8,6 +8,11 @@ import com.loopj.android.http.RequestParams
  * Created by hooni
  */
 object CompanyAction {
+
+    fun reserve_confirm(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/company/reserve_del.json", params, handler)
+    }
+
     fun reserve_del(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/company/reserve_del.json", params, handler)
     }
