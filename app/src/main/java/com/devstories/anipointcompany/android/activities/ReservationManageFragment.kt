@@ -186,14 +186,8 @@ class ReservationManageFragment : Fragment() {
         }
 
         calendarGV.setOnItemClickListener { parent, view, position, id ->
-
-            search_date = calendarGV.seletedDate
-            page = 1
-
-            reserve_list()
-
+            println("TEST:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
         }
-
 
         reserve_list()
 
@@ -223,8 +217,6 @@ class ReservationManageFragment : Fragment() {
                 try {
 
                     val result = response!!.getString("result")
-
-                    println("response::::::::::::::::::::::::::::::::::${response}")
 
                     if ("ok" == result) {
 

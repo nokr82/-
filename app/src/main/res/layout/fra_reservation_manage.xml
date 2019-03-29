@@ -412,11 +412,11 @@
                     android:id="@+id/calendarGV"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:numColumns="7"
-                    android:stretchMode="columnWidth"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"/>
+                    android:stretchMode="columnWidth" />
 
 
 
