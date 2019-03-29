@@ -56,6 +56,7 @@ class CalActivity : RootActivity() {
     var member_coupon_id = -1
     var use_point = -1
     var no_stack = -1
+    var reserve_type = -1
     var couponData: ArrayList<JSONObject> = ArrayList<JSONObject>()
     lateinit var couponListAdapter: CouponListAdapter
     var new_member_yn = ""
@@ -127,6 +128,22 @@ class CalActivity : RootActivity() {
         type = intent.getIntExtra("type", -1)
         step = intent.getIntExtra("step", 1)
         no_stack = intent.getIntExtra("no_stack", -1)
+        reserve_type = intent.getIntExtra("reserve_type", -1)
+        if (reserve_type == 1){
+            step = 2
+            member_id = intent.getIntExtra("member_id", -1)
+            use_point = intent.getIntExtra("use_point",-1)
+            moneyTV.text = intent.getStringExtra("price")
+            payment_type = intent.getIntExtra("payment_type",-1)
+            per_type = intent.getIntExtra("per_type", -1)
+            new_member_yn = "N"
+            Log.d("완료",price.toString())
+            Log.d("완료",payment_type.toString())
+            Log.d("완료",per_type.toString())
+            Log.d("완료",use_point.toString())
+        }
+
+
         company_id = PrefUtils.getIntPreference(context, "company_id")
 
         if (no_stack == 1){
@@ -560,6 +577,10 @@ class CalActivity : RootActivity() {
                     return@setOnClickListener
                 }
 
+                if (reserve_type != -1){
+                    changeStep()
+                    stack_point(member_id.toString())
+                }else{
 
                 if (per_type == 1) {
                     val totalpoint = Integer.parseInt(moneyTV.text.toString())
@@ -575,7 +596,8 @@ class CalActivity : RootActivity() {
                     changeStep()
 
                     stack_point(member_id.toString())
-                } else if (per_type == 2) {
+                }
+                else if (per_type == 2) {
                     val totalpoint = Integer.parseInt(moneyTV.text.toString())
                     Log.d("포인트", totalpoint.toString())
 
@@ -590,19 +612,24 @@ class CalActivity : RootActivity() {
                     changeStep()
 
                     stack_point(member_id.toString())
-                } else if (per_type == 3) {
+                }
+                else if (per_type == 3) {
 
                     stackpoint = Integer.parseInt(Utils.getString(pointTV).replace(",", ""))
                     Log.d("포인트", stackpoint.toString())
                     changeStep()
                     stack_point(member_id.toString())
-                } else {
+                }
+                else {
 //                    Toast.makeText(context, "적립퍼센트를 선택해주세요", Toast.LENGTH_SHORT).show()
                     stackpoint = 0
                     Log.d("포인트", stackpoint.toString())
                     changeStep()
                     stack_point(member_id.toString())
                 }
+
+                }
+
             }
             else if (opTV.text.equals("결제")) {
 
@@ -733,6 +760,9 @@ class CalActivity : RootActivity() {
         params.put("company_id", company_id)
         params.put("member_id", member_id)
         params.put("member_coupon_id", member_coupon_id)
+        if (reserve_type ==1){
+            params.put("new_member_yn", "N")
+        }
         params.put("step", step)
 
         RequestStepAction.changeStep(params, object : JsonHttpResponseHandler() {
@@ -742,6 +772,7 @@ class CalActivity : RootActivity() {
                     progressDialog!!.dismiss()
                 }
 
+                Log.d("아휴",response.toString())
                 try {
 
                     val result = response!!.getString("result")
@@ -958,6 +989,7 @@ class CalActivity : RootActivity() {
                                 pointTV.setText("적립포인트")
                             }
                         }
+                        //여기가문제다
                         if (step != result_step) {
 
 //                            if (timer != null) {

@@ -10,15 +10,6 @@ import com.loopj.android.http.RequestParams
  */
 object PointAction {
 
-    // 회원 목록뽑기
-    fun user_list(params: RequestParams, handler: JsonHttpResponseHandler) {
-        HttpClient.post("/point/user_list.json", params, handler)
-    }
-
-    //방문 이력
-    fun visit_list(params: RequestParams, handler: JsonHttpResponseHandler) {
-        HttpClient.post("/point/visit_list.json", params, handler)
-    }
     fun index(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/point/index.json", params, handler)
     }

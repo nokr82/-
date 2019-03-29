@@ -18,6 +18,7 @@ import org.json.JSONObject
 import android.widget.Toast
 import android.app.TimePickerDialog
 import android.content.DialogInterface
+import android.content.Intent
 import android.util.Log
 import android.widget.AdapterView
 import android.widget.TextView
@@ -33,7 +34,6 @@ class DlgReserveResultActivity : RootActivity() {
     lateinit var context: Context
     private var progressDialog: CustomProgressDialog? = null
 
-
     var member_id = -1
     var company_id = -1
     var reserve_id = -1
@@ -42,11 +42,13 @@ class DlgReserveResultActivity : RootActivity() {
     var payment_type = -1
     var result_type = -1
     var reserve_time = ""
+    var use_point = ""
     lateinit var ma_adapter: ArrayAdapter<String>
     var managers: ArrayList<String> = ArrayList()
     var managers_ids: ArrayList<Int> = ArrayList()
     val cal = Calendar.getInstance()
     var reserve_date = ""
+    var pay = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         hideNavigations(this)
@@ -97,7 +99,7 @@ class DlgReserveResultActivity : RootActivity() {
         payLL.setOnClickListener {
             setmenu()
             payIV.setImageResource(R.drawable.radio_on)
-            payment_type = 1
+            payment_type = 2
         }
 
         maleLL.setOnClickListener {
@@ -159,6 +161,24 @@ class DlgReserveResultActivity : RootActivity() {
         modiTV.setOnClickListener {
             reserve()
         }
+
+        saleTV.setOnClickListener {
+            if (result_type!=2){
+                Toast.makeText(context,"예약완료처리를 클릭해주세요.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val intent = Intent(context,CalActivity::class.java)
+            intent.putExtra("reserve_type",1)
+            intent.putExtra("member_id",member_id)
+            intent.putExtra("pay",pay)
+            intent.putExtra("use_point",use_point)
+            intent.putExtra("per_type",stack_type)
+            intent.putExtra("payment_type",payment_type)
+            startActivity(intent)
+        }
+
+
         reserve_info()
         company_info()
 
@@ -220,18 +240,27 @@ class DlgReserveResultActivity : RootActivity() {
                         op_perTV.text = basic_per.toString() + "%"
                         basicTV.text = option_per.toString() + "%"
 
-
+                        var name = ""
                         val customers = response.getJSONArray("customer")
+
+                        var position = 0
+
                         for (i in 0..customers.length() - 1) {
                             //새로운뷰를 이미지의 길이만큼생성
                             var json = customers[i] as JSONObject
                             val CompanyCustomer = json.getJSONObject("CompanyCustomer")
-                            val name = Utils.getString(CompanyCustomer, "name")
+                            name = Utils.getString(CompanyCustomer, "name")
                             val managers_id = Utils.getInt(CompanyCustomer, "id")
+
                             managers.add(name)
                             managers_ids.add(managers_id)
+                            if ( customer_id == managers_id){
+                                position =  i+1
+                            }
+
                         }
                         manageSP.adapter = ma_adapter
+                        manageSP.setSelection(position)
 
                     } else {
 
@@ -305,20 +334,28 @@ class DlgReserveResultActivity : RootActivity() {
                     if ("ok" == result) {
                         val reserve_s = response.getJSONObject("reserve")
                         val reserve = reserve_s.getJSONObject("Reserve")
-                        var basic_per = Utils.getString(reserve, "basic_per")
-                        var option_per = Utils.getString(reserve, "option_per")
+                        stack_type = Utils.getInt(reserve, "stack_type")
                         reserve_time = Utils.getString(reserve, "reserve_time")
                         reserve_date = Utils.getString(reserve, "reserve_date")
+                        payment_type = Utils.getInt(reserve,"payment_type")
+                        customer_id = Utils.getInt(reserve,"customer_id")
                         var surgery_time = Utils.getString(reserve, "surgery_time")
                         var surgery_name = Utils.getString(reserve, "surgery_name")
                         var price = Utils.getString(reserve, "price")
-                        var pay = Utils.getString(reserve, "pay")
-                        var use_point = Utils.getString(reserve, "use_point")
+                        pay = Utils.getString(reserve, "pay")
+                        use_point = Utils.getString(reserve, "use_point")
                         priceET.setText(price)
                         r_priceET.setText(pay)
                         pointET.setText(use_point)
 
                         result_type = Utils.getInt(reserve, "result_type")
+
+                        if (payment_type ==1){
+                            cardIV.setImageResource(R.drawable.radio_on)
+                        }else if(payment_type ==2){
+                            payIV.setImageResource(R.drawable.radio_on)
+                        }
+
                         if (result_type ==1){
                             reserveIV.setImageResource(R.drawable.radio_on)
                         }else if(result_type ==2){
@@ -603,92 +640,6 @@ class DlgReserveResultActivity : RootActivity() {
             }
         })
     }
-
-    fun reserve_confirm() {
-
-        val params = RequestParams()
-        params.put("member_id", member_id)
-        params.put("company_id", company_id)
-        params.put("id", reserve_id)
-
-        CompanyAction.reserve_confirm(params, object : JsonHttpResponseHandler() {
-
-            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
-                if (progressDialog != null) {
-                    progressDialog!!.dismiss()
-                }
-
-                try {
-                    val result = response!!.getString("result")
-
-                    if ("ok" == result) {
-                        Utils.hideKeyboard(context)
-                        finish()
-
-                    }
-
-                } catch (e: JSONException) {
-                    e.printStackTrace()
-                }
-
-            }
-
-            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONArray?) {
-                super.onSuccess(statusCode, headers, response)
-            }
-
-            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
-
-                // System.out.println(responseString);
-            }
-
-            private fun error() {
-                Utils.alert(context, "조회중 장애가 발생하였습니다.")
-            }
-
-            override fun onFailure(statusCode: Int, headers: Array<Header>?, responseString: String?, throwable: Throwable) {
-                if (progressDialog != null) {
-                    progressDialog!!.dismiss()
-                }
-
-                System.out.println(responseString);
-
-                throwable.printStackTrace()
-                error()
-            }
-
-            override fun onFailure(statusCode: Int, headers: Array<Header>?, throwable: Throwable, errorResponse: JSONObject?) {
-                if (progressDialog != null) {
-                    progressDialog!!.dismiss()
-                }
-                throwable.printStackTrace()
-                error()
-            }
-
-            override fun onFailure(statusCode: Int, headers: Array<Header>?, throwable: Throwable, errorResponse: JSONArray?) {
-                if (progressDialog != null) {
-                    progressDialog!!.dismiss()
-                }
-                throwable.printStackTrace()
-                error()
-            }
-
-            override fun onStart() {
-                // show dialog
-                if (progressDialog != null) {
-
-                    progressDialog!!.show()
-                }
-            }
-
-            override fun onFinish() {
-                if (progressDialog != null) {
-                    progressDialog!!.dismiss()
-                }
-            }
-        })
-    }
-
 
 
     fun hideNavigations(context: Activity) {
