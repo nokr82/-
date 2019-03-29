@@ -109,6 +109,7 @@ class ReserveMemberListFragment : Fragment() {
             val intent = Intent(myContext,DlgReserveSave2Activity::class.java)
             intent.putExtra("member_id",member_id)
             startActivity(intent)
+            activity!!.finish()
         }
 
     }

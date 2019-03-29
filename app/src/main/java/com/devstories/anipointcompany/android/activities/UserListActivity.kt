@@ -197,7 +197,7 @@ class UserListActivity : FragmentActivity() {
                         if (reserve_yn =="N"){
                             reservationLL.visibility = View.GONE
                         }else{
-                            reservationLL.visibility = View.GONE
+                            reservationLL.visibility = View.VISIBLE
                         }
 
                     } else {

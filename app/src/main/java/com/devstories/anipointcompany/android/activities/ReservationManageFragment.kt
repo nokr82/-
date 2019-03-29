@@ -69,6 +69,11 @@ class ReservationManageFragment : Fragment() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        reserve_list()
+    }
+
     //예약 정보뽑기
     fun reserve_list() {
         val params = RequestParams()

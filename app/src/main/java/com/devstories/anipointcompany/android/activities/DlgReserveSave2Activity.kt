@@ -40,7 +40,6 @@ class DlgReserveSave2Activity : RootActivity() {
     var stack_type = -1
     var payment_type = -1
     lateinit var ma_adapter: ArrayAdapter<String>
-    var option_age = arrayOf("미입력","10대","20대","30대","40대","50대","60대")
     var managers:ArrayList<String> = ArrayList()
     var managers_ids:ArrayList<Int> = ArrayList()
     val cal = Calendar.getInstance()
@@ -54,7 +53,8 @@ class DlgReserveSave2Activity : RootActivity() {
         progressDialog = CustomProgressDialog(context, R.style.progressDialogTheme)
         progressDialog!!.setProgressStyle(android.R.style.Widget_DeviceDefault_Light_ProgressBar_Large)
 
-
+        managers.add("담당자를 선택해주세요.")
+        managers_ids.add(-1)
         member_id = intent.getIntExtra("member_id",-1)
 
         company_id = PrefUtils.getIntPreference(context,"company_id")
@@ -174,6 +174,16 @@ class DlgReserveSave2Activity : RootActivity() {
                     val result = response!!.getString("result")
                     if ("ok" == result) {
                         val company = response.getJSONObject("company")
+                        var basic_per = Utils.getInt(company,"basic_per")
+                        var option_per = Utils.getInt(company,"option_per")
+                        if (basic_per == -1){
+                            basic_per = 0
+                        }
+                        if (option_per == -1){
+                            option_per = 0
+                        }
+                        op_perTV.text = basic_per.toString()+"%"
+                        basicTV.text = option_per.toString()+"%"
 
 
                         val customers = response.getJSONArray("customer")
@@ -279,7 +289,7 @@ class DlgReserveSave2Activity : RootActivity() {
 
         var min = sugers[1].trim().toInt()+times[1].trim().toInt()
         var m_min = 0
-        if (min>60){
+        if (min>59){
             m_min = min - 60
             min =m_min
             hours = hours+1
