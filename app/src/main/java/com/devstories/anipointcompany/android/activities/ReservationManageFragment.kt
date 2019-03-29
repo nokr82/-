@@ -21,6 +21,7 @@ import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.fra_reservation_manage.*
 import org.json.JSONException
 import org.json.JSONObject
+import java.text.SimpleDateFormat
 import java.util.*
 
 class ReservationManageFragment : Fragment() {
@@ -184,14 +185,15 @@ class ReservationManageFragment : Fragment() {
             calendarGV.draw()
         }
 
-        calendarGV.setOnDateSelectedListener { year, month, day ->
+        calendarGV.setOnItemClickListener { parent, view, position, id ->
 
-            search_date = "${year}.${month }.${day}"
+            search_date = calendarGV.seletedDate
             page = 1
 
             reserve_list()
 
         }
+
 
         reserve_list()
 
@@ -222,10 +224,14 @@ class ReservationManageFragment : Fragment() {
 
                     val result = response!!.getString("result")
 
+                    println("response::::::::::::::::::::::::::::::::::${response}")
+
                     if ("ok" == result) {
 
                         var data = response.getJSONArray("reserve")
                         totalpage = response.getInt("totalPage")
+                        search_date = Utils.getString(response, "search_date")
+                        val seletedDate = SimpleDateFormat("yyyy-MM-dd").format(SimpleDateFormat("yyyy.M.d").parse(search_date))
 
                         if (page == 1) {
                             adapterData.clear()
@@ -235,6 +241,10 @@ class ReservationManageFragment : Fragment() {
                         for (i in 0 until data.length()) {
                             adapterData.add(data[i] as JSONObject)
                         }
+
+                        calendarGV.seletedDate = seletedDate
+
+                        calendarGV.draw()
 
                         reserveListAdapter.notifyDataSetChanged()
 

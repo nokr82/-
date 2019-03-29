@@ -38,6 +38,8 @@ public class CalendarGridView2 extends GridView {
     private int year;
     private int month;
 
+    private String seletedDate = "";
+
     private OnDateSelectedListener onDateSelectedListener;
 
     ArrayList<CalendarDate> data = new ArrayList<CalendarDate>();
@@ -52,6 +54,14 @@ public class CalendarGridView2 extends GridView {
 
     public void setObjectData(ArrayList<JSONObject> objectData) {
         this.objectData = objectData;
+    }
+
+    public String getSeletedDate() {
+        return seletedDate;
+    }
+
+    public void setSeletedDate(String seletedDate) {
+        this.seletedDate = seletedDate;
     }
 
     public int getYear() {
@@ -198,6 +208,10 @@ public class CalendarGridView2 extends GridView {
                 cd.setToday(true);
             }
 
+            if (cd.getFullDay().equals(seletedDate)) {
+                cd.setSeleted(true);
+            }
+
             data.add(cd);
         }
 
@@ -215,7 +229,6 @@ public class CalendarGridView2 extends GridView {
             cd.setYear(cal.get(Calendar.YEAR));
             cd.setPrevMonth(false);
             cd.setNextMonth(true);
-
 
             data.add(cd);
 
