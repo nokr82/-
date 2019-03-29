@@ -28,13 +28,7 @@
                     android:singleLine="true"
                     android:textSize="15dp" />
 
-            <TextView
-                android:layout_centerInParent="true"
-                android:layout_alignParentRight="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorAccent"
-                android:text="＊필수"/>
+
             </RelativeLayout>
         <View
             android:layout_width="match_parent"

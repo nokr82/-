@@ -315,7 +315,16 @@ class DlgReserveResultActivity : RootActivity() {
                         r_priceET.setText(pay)
                         pointET.setText(use_point)
 
-                        var result_type = Utils.getInt(reserve, "result_type")
+                        result_type = Utils.getInt(reserve, "result_type")
+                        if (result_type ==1){
+                            reserveIV.setImageResource(R.drawable.radio_on)
+                        }else if(result_type ==2){
+                            reserve_comIV.setImageResource(R.drawable.radio_on)
+                        }else if(result_type ==3){
+                            noshowIV.setImageResource(R.drawable.radio_on)
+                        }
+
+
 
                         dateTV.text = reserve_date.replace(".", "-") + " " + reserve_time
                         sugerTV.text = surgery_time
