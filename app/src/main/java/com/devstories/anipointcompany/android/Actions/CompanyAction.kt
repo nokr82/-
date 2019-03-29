@@ -18,6 +18,7 @@ object CompanyAction {
     fun edit_info(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/company/edit_info.json", params, handler)
     }
+
     // 사업자정보
     fun edit_image(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/company/edit_images.json", params, handler)
