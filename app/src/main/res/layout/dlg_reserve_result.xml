@@ -5,7 +5,38 @@
     android:layout_height="600dp"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
 
+        <ImageView
+            android:id="@+id/backIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:src="@mipmap/arrow_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="예약정보"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+        <TextView
+            android:padding="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="#479edf"
+            android:text="매출등록"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
     <ScrollView
         android:layout_width="600dp"
         android:layout_height="0dp"
@@ -17,36 +48,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="15dp"
-                    android:src="@mipmap/arrow_back" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="예약정보"
-                    android:textSize="18dp"
-                    android:textStyle="bold" />
-                <TextView
-                    android:padding="10dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:textColor="#479edf"
-                    android:text="매출등록"
-                    android:textSize="18dp"
-                    android:textStyle="bold" />
-
-
-            </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -58,14 +60,14 @@
                 android:orientation="horizontal">
                 <LinearLayout
                     android:layout_marginLeft="20dp"
-                    android:id="@+id/reseveLL"
+                    android:id="@+id/reserveLL"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical|center">
 
                     <ImageView
-                        android:id="@+id/reseveIV"
+                        android:id="@+id/reserveIV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="3dp"
@@ -79,7 +81,7 @@
                         android:textColor="#303030"
                         android:letterSpacing="-0.01"
                         android:gravity="center_horizontal"
-                        android:text="카드결제" />
+                        android:text="예약처리" />
 
                 </LinearLayout>
 
@@ -88,7 +90,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical|center">
 
                     <ImageView
                         android:id="@+id/reserve_comIV"
@@ -105,7 +107,7 @@
                         android:textColor="#303030"
                         android:letterSpacing="-0.01"
                         android:gravity="center_horizontal"
-                        android:text="현금결제" />
+                        android:text="예약완료처리" />
 
                 </LinearLayout>
 
@@ -115,7 +117,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical|center">
 
                     <ImageView
                         android:id="@+id/noshowIV"
@@ -132,7 +134,7 @@
                         android:textColor="#303030"
                         android:letterSpacing="-0.01"
                         android:gravity="center_horizontal"
-                        android:text="현금결제" />
+                        android:text="노쇼처리" />
 
                 </LinearLayout>
 
@@ -263,7 +265,124 @@
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:background="#c9c9c9" />
+                <LinearLayout
+                    android:background="#50c9c9c9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
+                    <LinearLayout
+                        android:layout_width="100dp"
+                        android:layout_height="50dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="14dp"
+                            android:text="노쇼횟수"
+                            android:textColor="#000000"
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="center">
+
+                        <RelativeLayout
+                            android:id="@+id/configRV"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_marginRight="20dp">
+
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical">
+
+                                <TextView
+                                    android:id="@+id/noshowTV"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_margin="5dp"
+                                    android:background="@null"
+                                    android:hint="시술내용을 입력해주세요"
+                                    android:singleLine="true"
+                                    android:textSize="12dp" />
+                            </LinearLayout>
+
+
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#c9c9c9" />
+                <LinearLayout
+                    android:background="#50c9c9c9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="100dp"
+                        android:layout_height="50dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="14dp"
+                            android:text="고객연락처"
+                            android:textColor="#000000"
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="center">
+
+                        <RelativeLayout
+                            android:id="@+id/configRV"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_marginRight="20dp">
+
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical">
+
+                                <TextView
+                                    android:id="@+id/phoneTV"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_margin="5dp"
+                                    android:background="@null"
+                                    android:hint="시술내용을 입력해주세요"
+                                    android:singleLine="true"
+                                    android:textSize="12dp" />
+                            </LinearLayout>
+
+
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#c9c9c9" />
 
             <LinearLayout
                 android:background="#50c9c9c9"
@@ -811,6 +930,7 @@
 
     </ScrollView>
     <LinearLayout
+        android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <TextView

@@ -121,7 +121,9 @@ class DlgReserveSave2Activity : RootActivity() {
             }, 0, 0, true)
             dialog.show()
         }
-
+        backIV.setOnClickListener {
+            finish()
+        }
 
 
 

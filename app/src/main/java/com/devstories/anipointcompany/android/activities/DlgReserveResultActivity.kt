@@ -20,6 +20,7 @@ import android.util.Log
 import android.widget.AdapterView
 import com.devstories.anipointcompany.android.base.*
 import org.json.JSONArray
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -36,6 +37,8 @@ class DlgReserveResultActivity : RootActivity() {
     var customer_id = -1
     var stack_type = -1
     var payment_type = -1
+    var result_type = -1
+
     lateinit var ma_adapter: ArrayAdapter<String>
     var managers: ArrayList<String> = ArrayList()
     var managers_ids: ArrayList<Int> = ArrayList()
@@ -62,7 +65,7 @@ class DlgReserveResultActivity : RootActivity() {
 
         setmenu()
         setmenu2()
-
+        setmenu3()
         ma_adapter = ArrayAdapter(this, R.layout.spiner_item, managers)
 
 
@@ -126,16 +129,36 @@ class DlgReserveResultActivity : RootActivity() {
         }
 
 
+        backIV.setOnClickListener {
+            finish()
+        }
 
+        delTV.setOnClickListener {
+            reserve_del()
+        }
 
-
+        reserveLL.setOnClickListener {
+            setmenu3()
+            result_type = 1
+            reserveIV.setImageResource(R.drawable.radio_on)
+        }
+        reserve_comLL.setOnClickListener {
+            setmenu3()
+            result_type = 2
+            reserve_comIV.setImageResource(R.drawable.radio_on)
+        }
+        noshowLL.setOnClickListener {
+            setmenu3()
+            result_type = 3
+            noshowIV.setImageResource(R.drawable.radio_on)
+        }
 
         modiTV.setOnClickListener {
             reserve()
         }
-
-        company_info()
         reserve_info()
+        company_info()
+
 
     }
 
@@ -148,6 +171,13 @@ class DlgReserveResultActivity : RootActivity() {
     fun setmenu2() {
         maleIV.setImageResource(R.drawable.radio_off)
         femaleIV.setImageResource(R.drawable.radio_off)
+    }
+
+    fun setmenu3() {
+        reserveIV.setImageResource(R.drawable.radio_off)
+        reserve_comIV.setImageResource(R.drawable.radio_off)
+        noshowIV.setImageResource(R.drawable.radio_off)
+
     }
 
     fun datedlg() {
@@ -267,25 +297,111 @@ class DlgReserveResultActivity : RootActivity() {
                 }
 
                 try {
+                    Log.d("리저브", response.toString())
                     val result = response!!.getString("result")
                     if ("ok" == result) {
-                        val reserve = response.getJSONObject("reserve")
+                        val reserve_s = response.getJSONObject("reserve")
+                        val reserve = reserve_s.getJSONObject("Reserve")
                         var basic_per = Utils.getString(reserve, "basic_per")
                         var option_per = Utils.getString(reserve, "option_per")
                         var reserve_time = Utils.getString(reserve, "reserve_time")
+                        var reserve_date = Utils.getString(reserve, "reserve_date")
                         var surgery_time = Utils.getString(reserve, "surgery_time")
                         var surgery_name = Utils.getString(reserve, "surgery_name")
+                        var price = Utils.getString(reserve, "price")
+                        var pay = Utils.getString(reserve, "pay")
+                        var use_point = Utils.getString(reserve, "use_point")
+                        priceET.setText(price)
+                        r_priceET.setText(pay)
+                        pointET.setText(use_point)
+
                         var result_type = Utils.getInt(reserve, "result_type")
 
+                        dateTV.text = reserve_date.replace(".", "-") + " " + reserve_time
+                        sugerTV.text = surgery_time
+                        titleET.setText(surgery_name)
 
-                        var customer = response.getJSONObject("CompanyCustomer")
+                        var customer = reserve_s.getJSONObject("CompanyCustomer")
                         var customer_name = Utils.getString(customer, "name")
 
-                        var member = response.getJSONObject("Member")
+
+                        var member = reserve_s.getJSONObject("Member")
                         var noshow_cnt = Utils.getString(member, "noshow_cnt")
                         var phone = Utils.getString(member, "phone")
 
+                        phoneTV.text = phone
+                        noshowTV.text = noshow_cnt
 
+                    } else {
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(context, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
+
+    fun reserve_del() {
+        val params = RequestParams()
+        params.put("reserve_id", reserve_id)
+
+
+        CompanyAction.reserve_del(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    val result = response!!.getString("result")
+                    if ("ok" == result) {
+                        finish()
                     } else {
 
                     }
@@ -355,8 +471,8 @@ class DlgReserveResultActivity : RootActivity() {
             return
         }
 
-        if (customer_id == -1){
-            Toast.makeText(context,"담당자를 입력해주세요",Toast.LENGTH_SHORT).show()
+        if (customer_id == -1) {
+            Toast.makeText(context, "담당자를 입력해주세요", Toast.LENGTH_SHORT).show()
             return
         }
 
