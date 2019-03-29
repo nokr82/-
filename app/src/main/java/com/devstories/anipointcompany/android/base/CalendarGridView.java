@@ -666,7 +666,7 @@ public class CalendarGridView extends GridView {
         public ViewHolder(View v) {
             dayTV = (TextView) v.findViewById(R.id.dayTV);
             backIV = (ImageView) v.findViewById(R.id.backIV);
-            dayIV = (ImageView) v.findViewById(R.id.dayIV);
+//            dayIV = (ImageView) v.findViewById(R.id.dayIV);
 
         }
     }
