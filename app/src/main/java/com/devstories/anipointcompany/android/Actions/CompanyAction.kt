@@ -28,6 +28,14 @@ object CompanyAction {
     fun edit_info(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/company/edit_info.json", params, handler)
     }
+    // 예약정보
+    fun reserve_info(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/company/reserve_info.json", params, handler)
+    }
+    // 예약정보
+    fun edit_reserve(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/company/edit_reserve.json", params, handler)
+    }
     // 사업자정보
     fun edit_image(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/company/edit_images.json", params, handler)

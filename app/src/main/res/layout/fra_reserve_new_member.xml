@@ -81,7 +81,7 @@
 
 
     <TextView
-        android:background="#479edf"
+        android:background="@drawable/background_gradient7"
         android:gravity="center"
         android:id="@+id/nextTV"
         android:layout_width="match_parent"

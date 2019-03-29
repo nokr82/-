@@ -28,7 +28,7 @@ import java.util.*
 
 
 //회원수정 다이얼로그
-class DlgReserveSave2Activity : RootActivity() {
+class DlgReserveResultActivity : RootActivity() {
 
     lateinit var context: Context
     private var progressDialog: CustomProgressDialog? = null
@@ -36,6 +36,7 @@ class DlgReserveSave2Activity : RootActivity() {
 
     var member_id = -1
     var company_id = -1
+    var reserve_id = -1
     var customer_id = -1
     var stack_type = -1
     var payment_type = -1
@@ -47,7 +48,7 @@ class DlgReserveSave2Activity : RootActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         hideNavigations(this)
-        setContentView(R.layout.dlg_reserve_save2)
+        setContentView(R.layout.dlg_reserve_result)
 
         this.context = this
         progressDialog = CustomProgressDialog(context, R.style.progressDialogTheme)
@@ -134,7 +135,7 @@ class DlgReserveSave2Activity : RootActivity() {
         }
 
         company_info()
-
+        reserve_info()
 
     }
 
@@ -252,7 +253,91 @@ class DlgReserveSave2Activity : RootActivity() {
         })
     }
 
+    fun reserve_info() {
+        val params = RequestParams()
+        params.put("reserve_id",reserve_id)
 
+
+        CompanyAction.reserve_info(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    val result = response!!.getString("result")
+                    if ("ok" == result) {
+                        val reserve = response.getJSONObject("reserve")
+                        var basic_per = Utils.getString(reserve,"basic_per")
+                        var option_per = Utils.getString(reserve,"option_per")
+                        var reserve_time = Utils.getString(reserve,"reserve_time")
+                        var surgery_time = Utils.getString(reserve,"surgery_time")
+                        var surgery_name = Utils.getString(reserve,"surgery_name")
+                        var result_type = Utils.getInt(reserve,"result_type")
+
+
+                        var customer =response.getJSONObject("CompanyCustomer")
+                        var customer_name = Utils.getString(customer,"name")
+
+                        var member =response.getJSONObject("Member")
+                        var noshow_cnt = Utils.getString(member,"noshow_cnt")
+                        var phone = Utils.getString(member,"phone")
+
+
+                    } else {
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(context, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
 
 
 

@@ -78,6 +78,11 @@
             android:theme="@style/full_screen_dialog1"
             android:windowSoftInputMode="adjustResize|stateHidden"/>
         <activity
+            android:name=".activities.DlgReserveResultActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/full_screen_dialog1"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
             android:name=".activities.DlgReserveSave2Activity"
             android:screenOrientation="landscape"
             android:theme="@style/full_screen_dialog1"
