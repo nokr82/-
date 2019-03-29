@@ -9,6 +9,7 @@ import com.loopj.android.http.RequestParams
  */
 object CompanyAction {
 
+
     fun reserve_list(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/company/reserve_list.json", params, handler)
     }
