@@ -3,34 +3,39 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@android:color/white"
-    android:paddingRight="8dp">
+    android:background="@android:color/white">
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/dayLL"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp">
-        <ImageView
-            android:id="@+id/backIV"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_centerInParent="true"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
         <TextView
             android:id="@+id/dayTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="right"
+            android:gravity="center"
             android:textSize="11dp"
+            android:text="1"
             android:textColor="#888889"/>
-        <ImageView
-            android:id="@+id/dayIV"
+
+        <TextView
+            android:id="@+id/reservationCntTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
             android:gravity="center"
-            android:textSize="17.5dp"
-            android:textColor="#888889"
-            android:layout_centerInParent="true"
-            android:visibility="gone"/>
-    </RelativeLayout>
+            android:textSize="11dp"
+            android:text="2"
+            android:textColor="#FFFFFF"
+            android:visibility="invisible"
+            android:background="@drawable/circle_ff5a5a"/>
+
+    </LinearLayout>
 
 </LinearLayout>
