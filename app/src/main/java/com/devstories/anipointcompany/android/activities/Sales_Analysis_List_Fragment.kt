@@ -1,6 +1,5 @@
 package com.devstories.anipointcompany.android.activities
 
-import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -401,11 +400,12 @@ class Sales_Analysis_List_Fragment : Fragment() {
                         var cashTotalPrice = Utils.getInt(totalData, "cashTotalPrice")
                         val cardTotalPrice = Utils.getString(totalData, "cardTotalPrice")
                         val bankTotalPrice = Utils.getInt(totalData, "bankTotalPrice")
-
+                        val noTotalPrice = Utils.getInt(totalData, "noTotalPrice")
 
 
                         all_memberTV.text = Utils.comma(totalPrice)
                         new_userTV.text = Utils.comma(cashTotalPrice.toString())
+                        nototalsaleTV.text = Utils.comma(noTotalPrice.toString())
                         member_re_cntTV.text = Utils.comma(cardTotalPrice)
                         pointTV.text = Utils.comma(bankTotalPrice.toString())
 
@@ -423,12 +423,14 @@ class Sales_Analysis_List_Fragment : Fragment() {
                                 val totalPrice = Utils.getString(json, "totalPrice")
                                 var cash = Utils.getInt(json, "cash")
                                 val card = Utils.getString(json, "card")
+                                val nosale = Utils.getString(json, "nosale")
                                 var point = Utils.getInt(json, "bank")
 
 
 
                                 val salesView = View.inflate(myContext, R.layout.item_sales_analysis, null)
                                 var dateTV: TextView = salesView.findViewById(R.id.dateTV)
+                                var nosaleTV: TextView = salesView.findViewById(R.id.nosaleTV)
                                 var totalTV: TextView = salesView.findViewById(R.id.totalTV)
                                 var cashTV: TextView = salesView.findViewById(R.id.cashTV)
                                 var cardTV: TextView = salesView.findViewById(R.id.cardTV)
@@ -442,6 +444,7 @@ class Sales_Analysis_List_Fragment : Fragment() {
                                 totalTV.text = Utils.comma(totalPrice)
                                 cashTV.text = Utils.comma(cash.toString())
                                 cardTV.text = Utils.comma(card)
+                                nosaleTV.text = Utils.comma(nosale)
                                 pointTV.text =  Utils.comma(point.toString())
                                 itemdateLL.addView(salesView)
 
