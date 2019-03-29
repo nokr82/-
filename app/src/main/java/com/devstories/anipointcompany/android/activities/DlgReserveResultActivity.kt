@@ -477,6 +477,7 @@ class DlgReserveResultActivity : RootActivity() {
         }
 
 
+
         var time = Utils.getString(dateTV)
         var times = time.split(":")
 
