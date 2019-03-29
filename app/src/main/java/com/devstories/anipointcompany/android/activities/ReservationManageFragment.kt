@@ -33,6 +33,8 @@ class ReservationManageFragment : Fragment() {
 
 
 
+    var page = 1
+    var totalpage = 0
     var company_id = -1
 
 
@@ -57,7 +59,23 @@ class ReservationManageFragment : Fragment() {
 
         reserveListAdapter = ReserveListAdapter(myContext, R.layout.item_reserve_list, adapterData,this)
         reservationLV.adapter = reserveListAdapter
+        var lastitemVisibleFlag = false
+        reservationLV.setOnScrollListener(object : AbsListView.OnScrollListener {
+            override fun onScroll(view: AbsListView, firstVisibleItem: Int, visibleItemCount: Int, totalItemCount: Int) {
+                lastitemVisibleFlag = totalItemCount > 0 && firstVisibleItem + visibleItemCount >= totalItemCount
+            }
 
+            override fun onScrollStateChanged(view: AbsListView, scrollState: Int) {
+                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && lastitemVisibleFlag) {
+                    if (totalpage > page) {
+                        page++
+                        reserve_list()
+                    }
+
+                }
+            }
+
+        })
 
         reservTV.setOnClickListener {
             val intent = Intent(context, DlgReserveSaveActivity::class.java)
@@ -78,7 +96,7 @@ class ReservationManageFragment : Fragment() {
     fun reserve_list() {
         val params = RequestParams()
         params.put("company_id", company_id)
-
+        params.put("page", page)
         CompanyAction.reserve_list(params, object : JsonHttpResponseHandler() {
 
             override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
@@ -91,11 +109,11 @@ class ReservationManageFragment : Fragment() {
                     val result = response!!.getString("result")
                     if ("ok" == result) {
                         var data = response.getJSONArray("reserve")
-
-//                        if (page == 1) {
+                        totalpage = response.getInt("totalPage")
+                        if (page == 1) {
                             adapterData.clear()
-//                            adapter.notifyDataSetChanged()
-//                        }
+                            reserveListAdapter.notifyDataSetChanged()
+                        }
 
                         for (i in 0 until data.length()) {
 
