@@ -197,7 +197,7 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginTop="20dp"
                                 android:layout_weight="0.5"
-                                android:background="#ff8e1b"
+                                android:background="#997afb"
                                 android:gravity="center">
 
                                 <me.grantland.widget.AutofitTextView
@@ -214,7 +214,29 @@
 
                             </LinearLayout>
 
+                            <LinearLayout
+                                android:id="@+id/noLL"
+                                android:layout_width="0dp"
+                                android:layout_height="80dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_weight="0.5"
+                                android:background="@color/colorAccent"
+                                android:gravity="center">
 
+                                <me.grantland.widget.AutofitTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_horizontal"
+                                    android:lineSpacingExtra="-2sp"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text="무적립"
+                                    android:textColor="#ffffff"
+                                    android:textSize="24dp" />
+
+
+                            </LinearLayout>
                         </LinearLayout>
 
                     </LinearLayout>

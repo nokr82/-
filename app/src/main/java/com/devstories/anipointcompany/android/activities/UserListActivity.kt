@@ -12,10 +12,19 @@ import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import com.devstories.aninuriandroid.adapter.UserVisitAdapter
+import com.devstories.anipointcompany.android.Actions.CompanyAction
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.CustomProgressDialog
+import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.Utils
+import com.loopj.android.http.JsonHttpResponseHandler
+import com.loopj.android.http.RequestParams
+import cz.msebera.android.httpclient.Header
+import kotlinx.android.synthetic.main.activity_point.*
 import kotlinx.android.synthetic.main.activity_user_list.*
+import org.json.JSONException
+import org.json.JSONObject
+
 //업체 메인화면 액티비티
 class UserListActivity : FragmentActivity() {
 
@@ -75,7 +84,7 @@ class UserListActivity : FragmentActivity() {
         context.registerReceiver(MsgReceiver, filter)
 
 
-
+        company_info()
         userLL.setBackgroundResource(R.drawable.background_strock_707070)
         supportFragmentManager.beginTransaction().replace(R.id.userFL, User_List_Fragment).commit()
         userLL.setOnClickListener {
@@ -163,6 +172,88 @@ class UserListActivity : FragmentActivity() {
                 or View.SYSTEM_UI_FLAG_FULLSCREEN
                 or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
     }
+
+    //사업체 정보뽑기
+    fun company_info() {
+        var company_id = PrefUtils.getIntPreference(context,"company_id")
+        val params = RequestParams()
+        params.put("company_id", company_id)
+
+
+        CompanyAction.company_info(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    val result = response!!.getString("result")
+                    if ("ok" == result) {
+
+                        val company = response.getJSONObject("company")
+                        var reserve_yn = Utils.getString(company, "reserve_yn")
+                        Log.d("회사",company.toString())
+                        if (reserve_yn =="N"){
+                            reservationLL.visibility = View.GONE
+                        }else{
+                            reservationLL.visibility = View.GONE
+                        }
+
+                    } else {
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(context, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
+
 
     override fun onDestroy() {
             super.onDestroy()

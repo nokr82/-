@@ -162,6 +162,8 @@ class Message_Manage_Fragment : Fragment() {
 
     }
 
+
+
     override fun onDestroy() {
         super.onDestroy()
         if (progressDialog != null) {
