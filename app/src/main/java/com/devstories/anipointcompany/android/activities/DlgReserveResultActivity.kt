@@ -1,6 +1,7 @@
 package com.devstories.anipointcompany.android.activities
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
@@ -16,8 +17,10 @@ import org.json.JSONException
 import org.json.JSONObject
 import android.widget.Toast
 import android.app.TimePickerDialog
+import android.content.DialogInterface
 import android.util.Log
 import android.widget.AdapterView
+import android.widget.TextView
 import com.devstories.anipointcompany.android.base.*
 import org.json.JSONArray
 import java.text.SimpleDateFormat
@@ -38,7 +41,7 @@ class DlgReserveResultActivity : RootActivity() {
     var stack_type = -1
     var payment_type = -1
     var result_type = -1
-
+    var reserve_time = ""
     lateinit var ma_adapter: ArrayAdapter<String>
     var managers: ArrayList<String> = ArrayList()
     var managers_ids: ArrayList<Int> = ArrayList()
@@ -55,7 +58,7 @@ class DlgReserveResultActivity : RootActivity() {
 
 
         reserve_id = intent.getIntExtra("reserve_id", -1)
-
+        member_id = intent.getIntExtra("member_id", -1)
 
         managers.add("담당자를 선택해주세요.")
         managers_ids.add(-1)
@@ -304,7 +307,7 @@ class DlgReserveResultActivity : RootActivity() {
                         val reserve = reserve_s.getJSONObject("Reserve")
                         var basic_per = Utils.getString(reserve, "basic_per")
                         var option_per = Utils.getString(reserve, "option_per")
-                        var reserve_time = Utils.getString(reserve, "reserve_time")
+                        reserve_time = Utils.getString(reserve, "reserve_time")
                         var reserve_date = Utils.getString(reserve, "reserve_date")
                         var surgery_time = Utils.getString(reserve, "surgery_time")
                         var surgery_name = Utils.getString(reserve, "surgery_name")
@@ -487,7 +490,8 @@ class DlgReserveResultActivity : RootActivity() {
 
 
 
-        var time = Utils.getString(dateTV)
+
+        var time = reserve_time
         var times = time.split(":")
 
         var suger = Utils.getString(sugerTV)
@@ -503,17 +507,19 @@ class DlgReserveResultActivity : RootActivity() {
             hours = hours + 1
         }
 
+
         val params = RequestParams()
         params.put("member_id", member_id)
         params.put("company_id", company_id)
         params.put("customer_id", customer_id)
         params.put("id", reserve_id)
         params.put("surgery_name", Utils.getString(titleET))
-        params.put("reserve_time", Utils.getString(dateTV))
+        params.put("reserve_time", reserve_time)
         params.put("surgery_time", hours.toString() + " : " + min.toString())
         params.put("price", Utils.getString(priceET))
         params.put("pay", Utils.getString(r_priceET))
         params.put("use_point", Utils.getString(pointET))
+        params.put("result_type", result_type)
         params.put("payment_type", payment_type)
         params.put("stack_type", stack_type)
         params.put("memo", Utils.getString(memoET))
