@@ -10,12 +10,15 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.devstories.anipointcompany.android.R;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -35,11 +38,31 @@ public class CalendarGridView2 extends GridView {
     private int year;
     private int month;
 
+    private String seletedDate = "";
+
     private OnDateSelectedListener onDateSelectedListener;
 
     ArrayList<CalendarDate> data = new ArrayList<CalendarDate>();
     ArrayList<CalendarDate> reserved = new ArrayList<CalendarDate>();
     ArrayList<CalendarDate> my = new ArrayList<CalendarDate>();
+
+    private ArrayList<JSONObject> objectData = new ArrayList<JSONObject>();
+
+    public ArrayList<JSONObject> getObjectData() {
+        return objectData;
+    }
+
+    public void setObjectData(ArrayList<JSONObject> objectData) {
+        this.objectData = objectData;
+    }
+
+    public String getSeletedDate() {
+        return seletedDate;
+    }
+
+    public void setSeletedDate(String seletedDate) {
+        this.seletedDate = seletedDate;
+    }
 
     public int getYear() {
         return year;
@@ -159,6 +182,7 @@ public class CalendarGridView2 extends GridView {
         }
 
         Calendar today = Calendar.getInstance();
+        int todayYear = today.get(Calendar.YEAR);
         int todayMonth = today.get(Calendar.MONTH);
         int todayDate = today.get(Calendar.DATE);
 
@@ -166,6 +190,7 @@ public class CalendarGridView2 extends GridView {
         for(int i = 1; i <= max; i++) {
             cal.add(Calendar.DATE, 1);
 
+            int year = cal.get(Calendar.YEAR);
             int month = cal.get(Calendar.MONTH);
             int date = cal.get(Calendar.DATE);
 
@@ -179,8 +204,12 @@ public class CalendarGridView2 extends GridView {
             cd.setPrevMonth(false);
             cd.setNextMonth(false);
 
-            if(todayMonth == month && todayDate == date) {
+            if(todayYear == year && todayMonth == month && todayDate == date) {
                 cd.setToday(true);
+            }
+
+            if (cd.getFullDay().equals(seletedDate)) {
+                cd.setSeleted(true);
             }
 
             data.add(cd);
@@ -200,7 +229,6 @@ public class CalendarGridView2 extends GridView {
             cd.setYear(cal.get(Calendar.YEAR));
             cd.setPrevMonth(false);
             cd.setNextMonth(true);
-
 
             data.add(cd);
 
@@ -382,13 +410,13 @@ public class CalendarGridView2 extends GridView {
 
             final CalendarGridView2.CalendarDate cd = data.get(position);
             if (cd != null) {
+
                 item.dayTV.setText(cd.getDay());
 
                 if(cd.isSeleted()) {
-                    item.backIV.setBackgroundResource(R.drawable.circle_background_5775d5);
-                    item.dayTV.setTextColor(Color.parseColor("#FFFFFF"));
+                    item.dayLL.setBackgroundColor(Color.parseColor("#F2FFED"));
                 } else {
-                    item.backIV.setBackground(null);
+                    item.dayLL.setBackgroundColor(Color.parseColor("#FFFFFF"));
 
                     if (position % 7 == 0) {
                         item.dayTV.setTextColor(Color.parseColor("#ff6464"));
@@ -400,14 +428,12 @@ public class CalendarGridView2 extends GridView {
 
                 for(CalendarGridView2.CalendarDate cdd : reserved) {
                     if(cd.getFullDay().equals(cdd.getFullDay()) && cdd.getCount() >= 5) {
-//                        item.backIV.setBackgroundResource(R.drawable.calendar_gray2);
                         item.dayTV.setTextColor(Color.parseColor("#ff5c5c"));
                     }
                 }
 
                 for(CalendarGridView2.CalendarDate cdd : my) {
                     if(cd.getFullDay().equals(cdd.getFullDay()) && cdd.getCount() == 1) {
-//                        item.backIV.setBackgroundResource(R.drawable.calendar_gray2);
                         item.dayTV.setTextColor(Color.parseColor("#ff5c5c"));
                     }
                 }
@@ -416,39 +442,12 @@ public class CalendarGridView2 extends GridView {
                 item.dayTV.setTextSize(11);
                 if(position <= 6) {
                     item.dayTV.setTypeface(null, Typeface.BOLD);
-//                    item.canReserveTV.setVisibility(GONE);
                 } else {
-                    item.backIV.setOnClickListener(new OnClickListener() {
+                    item.dayLL.setOnClickListener(new OnClickListener() {
                         @Override
                         public void onClick(View v) {
 
                             if(cd.isPrevMonth || cd.isNextMonth) {
-                                return;
-                            }
-
-                            for(CalendarGridView2.CalendarDate cdd : reserved) {
-                                if(cd.getFullDay().equals(cdd.getFullDay())) {
-                                    int count = cdd.getCount();
-                                    if(count >= 5) {
-                                        return;
-                                    }
-                                }
-                            }
-//
-//                            for(CalendarGridView2.CalendarDate cdd : my) {
-//                                if(cd.getFullDay().equals(cdd.getFullDay()) && cdd.getCount() == 1) {
-//                                    return;
-//                                }
-//                            }
-                            Calendar cal = cd.getCalendar();
-//                            int week = cd.getWeek();
-//
-                            Date startDate = cal.getTime();
-//                            Date endDate = null;
-//
-
-                            if(startDate.compareTo(new Date()) == 1) {
-                                Toast.makeText(context, "이전 날짜만 선택 가능합니다", Toast.LENGTH_LONG).show();
                                 return;
                             }
 
@@ -459,40 +458,51 @@ public class CalendarGridView2 extends GridView {
                                 }
                             }
 
-//                            if(week == 1) {
-//                                endDate = cal.getTime();
-//                                cal.add(Calendar.DATE, -6);
-//                                startDate = cal.getTime();
-//                            } else {
-//                                cal.add(Calendar.DATE, (2 - week));
-//                                startDate = cal.getTime();
-//
-//                                cal.add(Calendar.DATE, 6);
-//                                endDate = cal.getTime();
-//                            }
-
-//
-//                            for(CalendarGridView2.CalendarDate cdddd : data) {
-//                                if((cdddd.getTime().compareTo(startDate) == 0
-//                                        || cdddd.getTime().compareTo(startDate) == 1)
-//                                        && (cdddd.getTime().compareTo(endDate) == 0
-//                                        || cdddd.getTime().compareTo(endDate) == -1)) {
-//                                    cdddd.setSeleted(!cdddd.isSeleted());
-//                                }
-//                            }
-                            cd.setSeleted(!cd.isSeleted());
+                            cd.setSeleted(true);
 
                             notifyDataSetChanged();
+
                         }
                     });
                 }
 
                 if(cd.isToday) {
                     // item.backIV.setBackgroundResource(R.drawable.calendar_rectangle);
-                } else if(cd.isPrevMonth || cd.isNextMonth) {
-                    item.dayTV.setTextSize(11);
-                    item.dayTV.setTextColor(Color.parseColor("#cccccc"));
+                    item.todayTV.setVisibility(View.VISIBLE);
+                } else {
+                    item.todayTV.setVisibility(View.INVISIBLE);
+                    if(cd.isPrevMonth || cd.isNextMonth) {
+                        item.dayTV.setTextSize(11);
+                        item.dayTV.setTextColor(Color.parseColor("#cccccc"));
+                    }
                 }
+
+                try {
+
+                    item.reservationCntTV.setVisibility(View.INVISIBLE);
+
+                    for (int i = 0; i < objectData.size(); i++) {
+                        JSONObject objData = objectData.get(i);
+                        JSONObject reserve = objData.getJSONObject("Reserve");
+                        String reserve_date = Utils.getString(reserve, "reserve_date");
+
+                        String reserve_date_str = new SimpleDateFormat("yyyy-MM-dd").format(new SimpleDateFormat("yyyy.M.d").parse(reserve_date));
+
+                        if (reserve_date_str.equals(cd.getFullDay())) {
+                            JSONObject data = objData.getJSONObject("0");
+                            int reservationCnt = Utils.getInt(data, "reservationCnt");
+                            item.reservationCntTV.setVisibility(View.VISIBLE);
+                            item.reservationCntTV.setText(String.valueOf(reservationCnt));
+                        }
+
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
             }
 
 
@@ -501,14 +511,16 @@ public class CalendarGridView2 extends GridView {
     }
 
     public static class ViewHolder {
+        public LinearLayout dayLL;
+        public TextView todayTV;
         public TextView dayTV;
-        public TextView canReserveTV;
-        public ImageView backIV;
+        public TextView reservationCntTV;
 
         public ViewHolder(View v) {
-            canReserveTV = (TextView) v.findViewById(R.id.canReserveTV);
+            dayLL = (LinearLayout) v.findViewById(R.id.dayLL);
+            todayTV = (TextView) v.findViewById(R.id.todayTV);
             dayTV = (TextView) v.findViewById(R.id.dayTV);
-            backIV = (ImageView) v.findViewById(R.id.backIV);
+            reservationCntTV = (TextView) v.findViewById(R.id.reservationCntTV);
         }
     }
 
@@ -577,7 +589,6 @@ public class CalendarGridView2 extends GridView {
 
         for (CalendarGridView2.CalendarDate cd : data) {
             if(cd.isSeleted()) {
-
                 selectedDay = cd.getFullDay();
             }
         }

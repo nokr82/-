@@ -13,6 +13,9 @@ object CompanyAction {
         HttpClient.post("/company/reserve_del.json", params, handler)
     }
 
+    fun reservation_days(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/company/reservation_days.json", params, handler)
+    }
     fun reserve_del(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/company/reserve_del.json", params, handler)
     }
