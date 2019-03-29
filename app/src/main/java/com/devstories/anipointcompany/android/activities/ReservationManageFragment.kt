@@ -32,7 +32,6 @@ class ReservationManageFragment : Fragment() {
     var adapterData: ArrayList<JSONObject> = ArrayList<JSONObject>()
 
 
-
     var page = 1
     var totalpage = 0
     var company_id = -1
@@ -50,15 +49,25 @@ class ReservationManageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        company_id = PrefUtils.getIntPreference(context,"company_id")
+        company_id = PrefUtils.getIntPreference(context, "company_id")
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
 
-        reserveListAdapter = ReserveListAdapter(myContext, R.layout.item_reserve_list, adapterData,this)
+        reserveListAdapter = ReserveListAdapter(myContext, R.layout.item_reserve_list, adapterData, this)
         reservationLV.adapter = reserveListAdapter
+
+        reservationLV.setOnItemClickListener { parent, view, position, id ->
+            var data = adapterData.get(position)
+            val reserve = data.getJSONObject("Reserve")
+            val reserve_id = Utils.getInt(reserve, "id")
+            val intent = Intent(myContext, DlgReserveResultActivity::class.java)
+            intent.putExtra("reserve_id", reserve_id)
+            startActivity(intent)
+        }
+
         var lastitemVisibleFlag = false
         reservationLV.setOnScrollListener(object : AbsListView.OnScrollListener {
             override fun onScroll(view: AbsListView, firstVisibleItem: Int, visibleItemCount: Int, totalItemCount: Int) {
@@ -84,7 +93,6 @@ class ReservationManageFragment : Fragment() {
         reserve_list()
 
 
-
     }
 
     override fun onResume() {
@@ -104,7 +112,7 @@ class ReservationManageFragment : Fragment() {
                     progressDialog!!.dismiss()
                 }
 
-                Log.d("걀거",response.toString())
+                Log.d("걀거", response.toString())
                 try {
                     val result = response!!.getString("result")
                     if ("ok" == result) {
@@ -175,8 +183,6 @@ class ReservationManageFragment : Fragment() {
             }
         })
     }
-
-
 
 
 }

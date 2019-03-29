@@ -41,6 +41,11 @@ class DlgReserveSaveActivity : FragmentActivity() {
         memberLL.setBackgroundResource(R.drawable.background_strock_707070)
         supportFragmentManager.beginTransaction().replace(R.id.reserveFL, ReserveMemberListFragment).commit()
 
+        backIV.setOnClickListener {
+            finish()
+        }
+
+
         newmemberLL.setOnClickListener {
             setmenu()
             newmemberTV.setTextColor(Color.parseColor("#000000"))
