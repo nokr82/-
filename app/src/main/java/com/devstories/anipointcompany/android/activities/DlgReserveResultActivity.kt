@@ -49,6 +49,7 @@ class DlgReserveResultActivity : RootActivity() {
     val cal = Calendar.getInstance()
     var reserve_date = ""
     var pay = ""
+    var modi_type = -1
 
     var price = -1
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -127,6 +128,7 @@ class DlgReserveResultActivity : RootActivity() {
         }
 
         sugerLL.setOnClickListener {
+            modi_type = 1
             val dialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { timePicker, hour, min ->
                 val msg = String.format("%d : %d ", hour, min)
                 Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
@@ -169,7 +171,7 @@ class DlgReserveResultActivity : RootActivity() {
                 Toast.makeText(context,"예약완료처리를 클릭해주세요.",Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-
+            reserve()
             val intent = Intent(context,CalActivity::class.java)
             //하
             intent.putExtra("reserve_type",1)
@@ -558,12 +560,18 @@ class DlgReserveResultActivity : RootActivity() {
 
         var min = sugers[1].trim().toInt() + times[1].trim().toInt()
         var m_min = 0
-        if (min > 59) {
-            m_min = min - 60
-            min = m_min
-            hours = hours + 1
+        if (modi_type==1){
+            if (min > 59) {
+                m_min = min - 60
+                min = m_min
+                hours = hours + 1
+            }
         }
 
+        if (hours >24){
+            Toast.makeText(context,"시술시간이 24시간을 지날수 없습니다.",Toast.LENGTH_SHORT).show()
+            return
+        }
 
         val params = RequestParams()
         params.put("member_id", member_id)

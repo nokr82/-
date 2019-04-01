@@ -285,10 +285,18 @@ class DlgReserveSave2Activity : RootActivity() {
 
         var min = sugers[1].trim().toInt() + times[1].trim().toInt()
         var m_min = 0
+
+
+
         if (min > 59) {
             m_min = min - 60
             min = m_min
             hours = hours + 1
+        }
+
+        if (hours >24){
+            Toast.makeText(context,"시술시간이 24시간을 지날수 없습니다.",Toast.LENGTH_SHORT).show()
+            return
         }
 
 
