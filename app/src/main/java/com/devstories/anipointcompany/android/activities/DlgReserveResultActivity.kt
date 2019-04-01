@@ -556,16 +556,23 @@ class DlgReserveResultActivity : RootActivity() {
         var suger = Utils.getString(sugerTV)
         var sugers = suger.split(":")
 
-        var hours = sugers[0].trim().toInt() + times[0].trim().toInt()
-
-        var min = sugers[1].trim().toInt() + times[1].trim().toInt()
+        var hours = 0
+        var min = 0
         var m_min = 0
         if (modi_type==1){
+             hours = sugers[0].trim().toInt() + times[0].trim().toInt()
+
+             min = sugers[1].trim().toInt() + times[1].trim().toInt()
+
             if (min > 59) {
                 m_min = min - 60
                 min = m_min
                 hours = hours + 1
             }
+        }else{
+            hours = sugers[0].trim().toInt()
+
+            min = sugers[1].trim().toInt()
         }
 
         if (hours >24){
