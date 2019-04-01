@@ -37,7 +37,7 @@ class DlgReserveSaveActivity : FragmentActivity() {
         progressDialog!!.setProgressStyle(android.R.style.Widget_DeviceDefault_Light_ProgressBar_Large)
 
 
-
+        memberV.visibility = View.VISIBLE
         memberLL.setBackgroundResource(R.drawable.background_strock_707070)
         supportFragmentManager.beginTransaction().replace(R.id.reserveFL, ReserveMemberListFragment).commit()
 
@@ -48,12 +48,14 @@ class DlgReserveSaveActivity : FragmentActivity() {
 
         newmemberLL.setOnClickListener {
             setmenu()
+            newmemberV.visibility = View.VISIBLE
             newmemberTV.setTextColor(Color.parseColor("#000000"))
             newmemberLL.setBackgroundResource(R.drawable.background_strock_707070)
             supportFragmentManager.beginTransaction().replace(R.id.reserveFL, ReserveNewMemberFragment).commit()
         }
         memberLL.setOnClickListener {
             setmenu()
+            memberV.visibility = View.VISIBLE
             memberTV.setTextColor(Color.parseColor("#000000"))
             memberLL.setBackgroundResource(R.drawable.background_strock_707070)
             supportFragmentManager.beginTransaction().replace(R.id.reserveFL, ReserveMemberListFragment).commit()
@@ -62,6 +64,8 @@ class DlgReserveSaveActivity : FragmentActivity() {
     }
 
     fun setmenu(){
+        newmemberV.visibility = View.GONE
+        memberV.visibility = View.GONE
         newmemberTV.setTextColor(Color.parseColor("#c9c9c9"))
         memberTV.setTextColor(Color.parseColor("#c9c9c9"))
     }

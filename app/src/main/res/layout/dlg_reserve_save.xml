@@ -60,12 +60,11 @@
                         android:textStyle="bold" />
 
                     <View
-                        android:id="@+id/phoneV"
-                        android:layout_width="match_parent"
+                        android:id="@+id/memberV"
+                        android:layout_width="100dp"
                         android:layout_height="3dp"
-                        android:layout_marginTop="3dp"
-                        android:background="#000000"
-                        android:visibility="gone" />
+                        android:background="@drawable/background_gradient"
+                        android:visibility="visible" />
 
 
                 </LinearLayout>
@@ -88,11 +87,10 @@
                         android:textStyle="bold" />
 
                     <View
-                        android:id="@+id/idV"
-                        android:layout_width="match_parent"
+                        android:id="@+id/newmemberV"
+                        android:layout_width="100dp"
                         android:layout_height="3dp"
-                        android:layout_marginTop="3dp"
-                        android:background="#000000"
+                        android:background="@drawable/background_gradient"
                         android:visibility="gone" />
 
 
