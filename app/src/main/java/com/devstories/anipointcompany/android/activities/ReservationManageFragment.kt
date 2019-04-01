@@ -45,6 +45,7 @@ class ReservationManageFragment : Fragment() {
 
     var year = 0
     var month = 0
+
     var reserve_date = ""
 
     var search_date = ""
