@@ -44,22 +44,25 @@ open class MemberListAdapter (context:Context, view:Int, data: ArrayList<JSONObj
         }
 
         var json = data.get(position)
+        Log.d("제이슨",json.toString())
         val member = json.getJSONObject("Member")
         var member_id = Utils.getInt(member, "id")
         var phone = Utils.getString(member, "phone")
         var name = Utils.getString(member, "name")
-        Log.d("제이슨",json.toString())
+        var customer_name = Utils.getString(member, "customer_name")
+        var noshow_cnt = Utils.getInt(member, "noshow_cnt")
 
+        Log.d("제이슨",json.toString())
+        Log.d("제이슨",customer_name.toString())
         if (fragment.member_id ==member_id){
             item.radioIV.setImageResource(R.drawable.radio_on)
         }else{
             item.radioIV.setImageResource(R.drawable.radio_off)
         }
-
-
+        item.m_nameTV.text = customer_name
         item.nameTV.text = name
         item.phoneTV.text = phone
-
+        item.cntTV.text = noshow_cnt.toString()
         val point_o = json.getJSONObject("Point")
         var point = Utils.getString(point_o, "point")
         var type = Utils.getInt(point_o, "type")
@@ -90,6 +93,8 @@ open class MemberListAdapter (context:Context, view:Int, data: ArrayList<JSONObj
         var radioIV = v.findViewById(R.id.radioIV) as ImageView
         var nameTV = v.findViewById(R.id.nameTV) as TextView
         var phoneTV = v.findViewById(R.id.phoneTV) as TextView
+        var m_nameTV = v.findViewById(R.id.m_nameTV) as TextView
+        var cntTV = v.findViewById(R.id.cntTV) as TextView
         init {
 
         }
