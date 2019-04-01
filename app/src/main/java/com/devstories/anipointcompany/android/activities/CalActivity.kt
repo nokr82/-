@@ -57,6 +57,7 @@ class CalActivity : RootActivity() {
     var use_point = -1
     var no_stack = -1
     var reserve_type = -1
+    var stack_type = -1
     var couponData: ArrayList<JSONObject> = ArrayList<JSONObject>()
     lateinit var couponListAdapter: CouponListAdapter
     var new_member_yn = ""
@@ -130,17 +131,12 @@ class CalActivity : RootActivity() {
         no_stack = intent.getIntExtra("no_stack", -1)
         reserve_type = intent.getIntExtra("reserve_type", -1)
         if (reserve_type == 1){
-            step = 2
+            step = 5
             member_id = intent.getIntExtra("member_id", -1)
             use_point = intent.getIntExtra("use_point",-1)
-            moneyTV.text = intent.getStringExtra("price")
+            price = intent.getIntExtra("price",-1)
             payment_type = intent.getIntExtra("payment_type",-1)
-            per_type = intent.getIntExtra("per_type", -1)
             new_member_yn = "N"
-            Log.d("완료",price.toString())
-            Log.d("완료",payment_type.toString())
-            Log.d("완료",per_type.toString())
-            Log.d("완료",use_point.toString())
         }
 
 
@@ -162,7 +158,7 @@ class CalActivity : RootActivity() {
                 stackLL.setBackgroundColor(Color.parseColor("#906e8a32"))
             }
 
-        } else {
+        }else{
             per_type = -1
             stackLL.setBackgroundColor(Color.parseColor("#FFFFFF"))
         }
@@ -448,6 +444,7 @@ class CalActivity : RootActivity() {
             val intent = Intent(this, UserListActivity::class.java)
             startActivity(intent)
         }
+
         oneLL.setOnClickListener {
             firstDigit()
             moneyTV.text = moneyTV.text.toString() + 1
@@ -578,6 +575,7 @@ class CalActivity : RootActivity() {
                 }
 
                 if (reserve_type != -1){
+                    p_type = 3
                     changeStep()
                     stack_point(member_id.toString())
                 }else{
@@ -989,71 +987,75 @@ class CalActivity : RootActivity() {
                                 pointTV.setText("적립포인트")
                             }
                         }
+
                         //여기가문제다
-
-
                         if (reserve_type == 1){
+                            timer!!.cancel()
+                            moneyTV.text = price.toString()
+                            usePointTV.text = use_point.toString()
+                            opTV.text = "결제"
+                            stack_type = intent.getIntExtra("per_type",-1)
+                            if (stack_type == 1){
+                                stackLL.callOnClick()
+                            }else if (stack_type == 2){
+                                stack2LL.callOnClick()
+                            }else{
+                                stackpoint = 0
+                            }
+                            if (payment_type==1){
+                                cardPayLL.callOnClick()
+                            }else if (payment_type ==2){
+                                cashPayLL.callOnClick()
+                            }
 
-                            if (step == 2) {
-                                // 적립 -> 회원 정보
-                                if (no_stack == 1){
-                                    opTV.text = "무적립결제"
-                                }else{
-                                    opTV.text = "적립"
-                                }
+
+                            Log.d("완료",price.toString())
+                            Log.d("완료",payment_type.toString())
+                            Log.d("완료",stack_type.toString())
+                            Log.d("완료",use_point.toString())
+                            if (step == 5) {
                                 var phone = Utils.getString(member, "phone")
-
-
-                                //신규 체크
-                                if (member_id == 0 || new_member_yn == "Y") {
-                                    joinLL.visibility = View.VISIBLE
-                                    phoneET.setText(phone)
-                                    message_op_LL.visibility = View.GONE
-                                    checkLL.visibility = View.VISIBLE
-                                } else {
-                                    message_op_LL.visibility = View.VISIBLE
-                                    joinLL.visibility = View.GONE
-                                    checkLL.visibility = View.GONE
-                                    var left_point: String? = null
-                                    var point = response.getJSONObject("Point")
-                                    left_point = Utils.getString(point, "balance")
-                                    stack_pointTV.text = Utils.comma(left_point)
-                                }
-
                                 var gender = Utils.getString(member, "gender")
                                 var age = Utils.getString(member, "age")
                                 var birth = Utils.getString(member, "birth")
                                 var coupon = Utils.getString(member, "coupon")
                                 var memo = Utils.getString(member, "memo")
                                 var name = Utils.getString(member, "name")
+                                var left_point: String? = null
+                                if (new_member_yn.equals("N")) {
+                                    var point = response.getJSONObject("Point")
+                                    left_point = Utils.getString(point, "balance")
+                                    message_op_LL.visibility = View.VISIBLE
+                                    joinLL.visibility = View.GONE
+                                    checkLL.visibility = View.GONE
+                                }
 
-
-                                getUserCouponList(phone)
-
-
+                                titleTV.text = name
+                                stack_pointTV.text = Utils.comma(left_point)
                                 titleTV.text = name
                                 if (gender.equals("M")) {
                                     setmenu()
                                     maleIV.setImageResource(R.drawable.radio_on)
-                                    femaleIV.setImageResource(R.drawable.radio_off)
                                 } else if (gender.equals("F")) {
                                     setmenu()
-                                    maleIV.setImageResource(R.drawable.radio_off)
                                     femaleIV.setImageResource(R.drawable.radio_on)
                                 }
-
                                 phoneTV.text = phone
                                 if (age != "") {
                                     ageTV.text = age + "대"
                                 } else {
                                     ageTV.text = "미입력"
                                 }
+
                                 birthTV.text = "생년월일: " + birth
                                 couponTV.text = coupon
                                 memoTV.text = "메모: " + memo
 
+                                getUserCouponList(phone)
+
                             }
-                        }else if (step != result_step) {
+                        }
+                        else if (step != result_step) {
 
 //                            if (timer != null) {
 //                                timer!!.cancel()

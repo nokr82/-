@@ -42,13 +42,15 @@ class DlgReserveResultActivity : RootActivity() {
     var payment_type = -1
     var result_type = -1
     var reserve_time = ""
-    var use_point = ""
+    var use_point = -1
     lateinit var ma_adapter: ArrayAdapter<String>
     var managers: ArrayList<String> = ArrayList()
     var managers_ids: ArrayList<Int> = ArrayList()
     val cal = Calendar.getInstance()
     var reserve_date = ""
     var pay = ""
+
+    var price = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         hideNavigations(this)
@@ -169,9 +171,11 @@ class DlgReserveResultActivity : RootActivity() {
             }
 
             val intent = Intent(context,CalActivity::class.java)
+            //하
             intent.putExtra("reserve_type",1)
             intent.putExtra("member_id",member_id)
             intent.putExtra("pay",pay)
+            intent.putExtra("price",price)
             intent.putExtra("use_point",use_point)
             intent.putExtra("per_type",stack_type)
             intent.putExtra("payment_type",payment_type)
@@ -341,12 +345,19 @@ class DlgReserveResultActivity : RootActivity() {
                         customer_id = Utils.getInt(reserve,"customer_id")
                         var surgery_time = Utils.getString(reserve, "surgery_time")
                         var surgery_name = Utils.getString(reserve, "surgery_name")
-                        var price = Utils.getString(reserve, "price")
+                        price = Utils.getInt(reserve, "price")
                         pay = Utils.getString(reserve, "pay")
-                        use_point = Utils.getString(reserve, "use_point")
-                        priceET.setText(price)
+                        use_point = Utils.getInt(reserve, "use_point")
+                        if (price == -1){
+                            price = 0
+                        }
+                        if (use_point == -1){
+                            use_point = 0
+                        }
+
+                        priceET.setText(price.toString())
                         r_priceET.setText(pay)
-                        pointET.setText(use_point)
+                        pointET.setText(use_point.toString())
 
                         result_type = Utils.getInt(reserve, "result_type")
 
@@ -354,6 +365,15 @@ class DlgReserveResultActivity : RootActivity() {
                             cardIV.setImageResource(R.drawable.radio_on)
                         }else if(payment_type ==2){
                             payIV.setImageResource(R.drawable.radio_on)
+                        }
+                        if (stack_type ==1){
+                            setmenu2()
+                            maleIV.setImageResource(R.drawable.radio_on)
+
+
+                        }else if (stack_type ==2) {
+                            setmenu2()
+                            femaleIV.setImageResource(R.drawable.radio_on)
                         }
 
                         if (result_type ==1){
