@@ -45,6 +45,7 @@ class ReservationManageFragment : Fragment() {
 
     var year = 0
     var month = 0
+    var reserve_date = ""
 
     var search_date = ""
 
@@ -189,6 +190,9 @@ class ReservationManageFragment : Fragment() {
 
         calendarGV.setOnDateSelectedListener { year, month, day ->
             println("year : $year, month : $month; day : $day")
+            Log.d("날짜",year.toString()+"."+month.toString()+"."+day.toString())
+            reserve_date = year.toString()+"."+month.toString()+"."+day.toString()
+            reserve_list()
         }
 
         reserve_list()
@@ -207,7 +211,7 @@ class ReservationManageFragment : Fragment() {
         val params = RequestParams()
         params.put("company_id", company_id)
         params.put("page", page)
-        params.put("search_date", search_date)
+        params.put("reserve_date", reserve_date)
 
         CompanyAction.reserve_list(params, object : JsonHttpResponseHandler() {
 
@@ -225,7 +229,10 @@ class ReservationManageFragment : Fragment() {
                         var data = response.getJSONArray("reserve")
                         totalpage = response.getInt("totalPage")
                         search_date = Utils.getString(response, "search_date")
-                        val seletedDate = SimpleDateFormat("yyyy-MM-dd").format(SimpleDateFormat("yyyy.M.d").parse(search_date))
+                        var seletedDate = ""
+                        if (search_date != ""){
+                           seletedDate = SimpleDateFormat("yyyy-MM-dd").format(SimpleDateFormat("yyyy.M.d").parse(search_date))
+                        }
 
                         if (page == 1) {
                             adapterData.clear()
@@ -309,7 +316,6 @@ class ReservationManageFragment : Fragment() {
                     progressDialog!!.dismiss()
                 }
 
-                Log.d("걀거", response.toString())
                 try {
                     val result = response!!.getString("result")
 
