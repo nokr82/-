@@ -990,7 +990,70 @@ class CalActivity : RootActivity() {
                             }
                         }
                         //여기가문제다
-                        if (step != result_step) {
+
+
+                        if (reserve_type == 1){
+
+                            if (step == 2) {
+                                // 적립 -> 회원 정보
+                                if (no_stack == 1){
+                                    opTV.text = "무적립결제"
+                                }else{
+                                    opTV.text = "적립"
+                                }
+                                var phone = Utils.getString(member, "phone")
+
+
+                                //신규 체크
+                                if (member_id == 0 || new_member_yn == "Y") {
+                                    joinLL.visibility = View.VISIBLE
+                                    phoneET.setText(phone)
+                                    message_op_LL.visibility = View.GONE
+                                    checkLL.visibility = View.VISIBLE
+                                } else {
+                                    message_op_LL.visibility = View.VISIBLE
+                                    joinLL.visibility = View.GONE
+                                    checkLL.visibility = View.GONE
+                                    var left_point: String? = null
+                                    var point = response.getJSONObject("Point")
+                                    left_point = Utils.getString(point, "balance")
+                                    stack_pointTV.text = Utils.comma(left_point)
+                                }
+
+                                var gender = Utils.getString(member, "gender")
+                                var age = Utils.getString(member, "age")
+                                var birth = Utils.getString(member, "birth")
+                                var coupon = Utils.getString(member, "coupon")
+                                var memo = Utils.getString(member, "memo")
+                                var name = Utils.getString(member, "name")
+
+
+                                getUserCouponList(phone)
+
+
+                                titleTV.text = name
+                                if (gender.equals("M")) {
+                                    setmenu()
+                                    maleIV.setImageResource(R.drawable.radio_on)
+                                    femaleIV.setImageResource(R.drawable.radio_off)
+                                } else if (gender.equals("F")) {
+                                    setmenu()
+                                    maleIV.setImageResource(R.drawable.radio_off)
+                                    femaleIV.setImageResource(R.drawable.radio_on)
+                                }
+
+                                phoneTV.text = phone
+                                if (age != "") {
+                                    ageTV.text = age + "대"
+                                } else {
+                                    ageTV.text = "미입력"
+                                }
+                                birthTV.text = "생년월일: " + birth
+                                couponTV.text = coupon
+                                memoTV.text = "메모: " + memo
+
+                            }
+                        }else if (step != result_step) {
 
 //                            if (timer != null) {
 //                                timer!!.cancel()
@@ -1056,7 +1119,8 @@ class CalActivity : RootActivity() {
                                 couponTV.text = coupon
                                 memoTV.text = "메모: " + memo
 
-                            } else if (step == 5) {
+                            }
+                            else if (step == 5) {
                                 var phone = Utils.getString(member, "phone")
                                 var gender = Utils.getString(member, "gender")
                                 var age = Utils.getString(member, "age")
@@ -1096,7 +1160,8 @@ class CalActivity : RootActivity() {
 
                                 getUserCouponList(phone)
 
-                            } else if (step == 7) {
+                            }
+                            else if (step == 7) {
 
                                 use_point = Utils.getInt(requestStep, "point")
 
