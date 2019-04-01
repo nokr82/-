@@ -37,7 +37,7 @@ class ReservationManageFragment : Fragment() {
     var adapterData: ArrayList<JSONObject> = ArrayList<JSONObject>()
 
     var years = ArrayList<String>()
-    var months = arrayOf("1월", "2월", "3월", "4월","5월","6월","7월","8월","9월", "10월", "11월", "12월")
+    var months = arrayOf("1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월")
     var calendarData: ArrayList<JSONObject> = ArrayList<JSONObject>()
 
     var page = 1
@@ -78,8 +78,8 @@ class ReservationManageFragment : Fragment() {
             val reserve_id = Utils.getInt(reserve, "id")
             val result_step = Utils.getInt(reserve, "result_step")
             val member_id = Utils.getInt(reserve, "member_id")
-            if (result_step ==2){
-                Toast.makeText(context,"예약이 완료된 항목입니다.",Toast.LENGTH_SHORT).show()
+            if (result_step == 2) {
+                Toast.makeText(context, "예약이 완료된 항목입니다.", Toast.LENGTH_SHORT).show()
                 return@setOnItemClickListener
             }
 
@@ -106,7 +106,20 @@ class ReservationManageFragment : Fragment() {
             }
 
         })
-
+        useLL.setOnClickListener {
+            val intent = Intent(myContext, CalActivity::class.java)
+            intent.putExtra("step", 4)
+            startActivity(intent)
+        }
+        accumulateLL.setOnClickListener {
+            val intent = Intent(myContext, CalActivity::class.java)
+            startActivity(intent)
+        }
+        noLL.setOnClickListener {
+            val intent = Intent(myContext, CalActivity::class.java)
+            intent.putExtra("no_stack", 1)
+            startActivity(intent)
+        }
         reservTV.setOnClickListener {
             val intent = Intent(context, DlgReserveSaveActivity::class.java)
             startActivity(intent)
@@ -117,9 +130,9 @@ class ReservationManageFragment : Fragment() {
         month = cal.get(Calendar.MONTH) + 1
         day = cal.get(Calendar.DAY_OF_MONTH)
 
-        reserve_date = year.toString()+"."+month.toString()+"."+day.toString()
+        reserve_date = year.toString() + "." + month.toString() + "." + day.toString()
 
-        for (i in (year - 20) .. year) {
+        for (i in (year - 20)..year) {
             years.add(i.toString() + "년")
         }
 
@@ -201,8 +214,8 @@ class ReservationManageFragment : Fragment() {
 
         calendarGV.setOnDateSelectedListener { year, month, day ->
             println("year : $year, month : $month; day : $day")
-            Log.d("날짜",year.toString()+"."+month.toString()+"."+day.toString())
-            reserve_date = year.toString()+"."+month.toString()+"."+day.toString()
+            Log.d("날짜", year.toString() + "." + month.toString() + "." + day.toString())
+            reserve_date = year.toString() + "." + month.toString() + "." + day.toString()
             reserve_list()
         }
 
@@ -241,8 +254,8 @@ class ReservationManageFragment : Fragment() {
                         totalpage = response.getInt("totalPage")
                         search_date = Utils.getString(response, "search_date")
                         var seletedDate = ""
-                        if (search_date != ""){
-                           seletedDate = SimpleDateFormat("yyyy-MM-dd").format(SimpleDateFormat("yyyy.M.d").parse(search_date))
+                        if (search_date != "") {
+                            seletedDate = SimpleDateFormat("yyyy-MM-dd").format(SimpleDateFormat("yyyy.M.d").parse(search_date))
                         }
 
                         if (page == 1) {
@@ -334,7 +347,7 @@ class ReservationManageFragment : Fragment() {
 
                         var reservation = response.getJSONArray("reservation")
 
-                        Log.d("아니",reservation.toString())
+                        Log.d("아니", reservation.toString())
                         for (i in 0 until reservation.length()) {
                             calendarData.add(reservation[i] as JSONObject)
                         }
