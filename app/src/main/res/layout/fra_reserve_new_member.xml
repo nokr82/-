@@ -75,8 +75,7 @@
 
 
     <TextView
-        android:layout_margin="20dp"
-        android:background="@drawable/background_gradient7"
+        android:background="@drawable/background_gradient"
         android:gravity="center"
         android:id="@+id/nextTV"
         android:layout_width="match_parent"
