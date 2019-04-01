@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.AbsListView
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.devstories.aninuriandroid.adapter.ReserveListAdapter
 import com.devstories.anipointcompany.android.Actions.CompanyAction
 import com.devstories.anipointcompany.android.R
@@ -45,7 +46,7 @@ class ReservationManageFragment : Fragment() {
 
     var year = 0
     var month = 0
-
+    var day = 0
     var reserve_date = ""
 
     var search_date = ""
@@ -75,7 +76,13 @@ class ReservationManageFragment : Fragment() {
             var data = adapterData.get(position)
             val reserve = data.getJSONObject("Reserve")
             val reserve_id = Utils.getInt(reserve, "id")
+            val result_step = Utils.getInt(reserve, "result_step")
             val member_id = Utils.getInt(reserve, "member_id")
+            if (result_step ==2){
+                Toast.makeText(context,"예약이 완료된 항목입니다.",Toast.LENGTH_SHORT).show()
+                return@setOnItemClickListener
+            }
+
             val intent = Intent(myContext, DlgReserveResultActivity::class.java)
             intent.putExtra("reserve_id", reserve_id)
             intent.putExtra("member_id", member_id)
@@ -108,6 +115,9 @@ class ReservationManageFragment : Fragment() {
         val cal: Calendar = Calendar.getInstance()
         year = cal.get(Calendar.YEAR)
         month = cal.get(Calendar.MONTH) + 1
+        day = cal.get(Calendar.DAY_OF_MONTH)
+
+        reserve_date = year.toString()+"."+month.toString()+"."+day.toString()
 
         for (i in (year - 20) .. year) {
             years.add(i.toString() + "년")
@@ -324,6 +334,7 @@ class ReservationManageFragment : Fragment() {
 
                         var reservation = response.getJSONArray("reservation")
 
+                        Log.d("아니",reservation.toString())
                         for (i in 0 until reservation.length()) {
                             calendarData.add(reservation[i] as JSONObject)
                         }
