@@ -54,7 +54,7 @@ class DlgReserveSave2Activity : RootActivity() {
         managers.add("담당자를 선택해주세요.")
         managers_ids.add(-1)
         member_id = intent.getIntExtra("member_id", -1)
-
+        customer_id = intent.getIntExtra("customer_id", -1)
         company_id = PrefUtils.getIntPreference(context, "company_id")
 
         setmenu()
@@ -188,6 +188,7 @@ class DlgReserveSave2Activity : RootActivity() {
 
 
                         val customers = response.getJSONArray("customer")
+                        var position = 0
                         for (i in 0..customers.length() - 1) {
                             //새로운뷰를 이미지의 길이만큼생성
                             var json = customers[i] as JSONObject
@@ -196,9 +197,12 @@ class DlgReserveSave2Activity : RootActivity() {
                             val managers_id = Utils.getInt(CompanyCustomer, "id")
                             managers.add(name)
                             managers_ids.add(managers_id)
+                            if ( customer_id == managers_id){
+                                position =  i+1
+                            }
                         }
                         manageSP.adapter = ma_adapter
-
+                        manageSP.setSelection(position)
                     } else {
 
                     }

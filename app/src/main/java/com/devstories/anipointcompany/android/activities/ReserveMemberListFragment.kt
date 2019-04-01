@@ -43,6 +43,7 @@ class ReserveMemberListFragment : Fragment() {
     var company_id = -1
     var adapterData: ArrayList<JSONObject> = ArrayList<JSONObject>()
     var member_id = -1
+    var customer_id = -1
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -98,6 +99,7 @@ class ReserveMemberListFragment : Fragment() {
             Log.d("리스트선택", data.toString())
             val member = data.getJSONObject("Member")
             member_id = Utils.getInt(member, "id")
+            customer_id= Utils.getInt(member, "customer_id")
             adapter.notifyDataSetChanged()
         }
 
@@ -108,6 +110,7 @@ class ReserveMemberListFragment : Fragment() {
             }
             val intent = Intent(myContext,DlgReserveSave2Activity::class.java)
             intent.putExtra("member_id",member_id)
+            intent.putExtra("customer_id",customer_id)
             startActivity(intent)
             activity!!.finish()
         }
