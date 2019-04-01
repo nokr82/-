@@ -9,10 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.devstories.anipointcompany.android.R;
 
@@ -462,6 +460,9 @@ public class CalendarGridView2 extends GridView {
 
                             notifyDataSetChanged();
 
+                            if(onDateSelectedListener != null) {
+                                onDateSelectedListener.dateSelected(cd.getYear(), cd.getMonth(), cd.getDate());
+                            }
                         }
                     });
                 }

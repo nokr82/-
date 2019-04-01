@@ -8,7 +8,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.AbsListView
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import com.devstories.aninuriandroid.adapter.ReserveListAdapter
 import com.devstories.anipointcompany.android.Actions.CompanyAction
 import com.devstories.anipointcompany.android.R
@@ -112,7 +114,7 @@ class ReservationManageFragment : Fragment() {
         adapter = ArrayAdapter<String>(context, R.layout.callender_spinner_item, years)
         yearsSP.adapter = adapter
         yearsSP.setSelection(years.size - 1)
-        yearsSP.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        yearsSP.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>, view: View, i: Int, l: Long) {
                 var year = years[i].substring(0, (years[i].length - 1))
                 calendarGV.year = year.toInt()
@@ -123,12 +125,12 @@ class ReservationManageFragment : Fragment() {
             override fun onNothingSelected(adapterView: AdapterView<*>) {
                 return
             }
-        })
+        }
 
         adapter = ArrayAdapter<String>(context, R.layout.callender_spinner_item, months)
         monthSP.adapter = adapter
         monthSP.setSelection(month - 1)
-        monthSP.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        monthSP.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>, view: View, i: Int, l: Long) {
                 var month = months[i].substring(0, (months[i].length - 1))
                 calendarGV.month = month.toInt() - 1
@@ -139,7 +141,7 @@ class ReservationManageFragment : Fragment() {
             override fun onNothingSelected(adapterView: AdapterView<*>) {
                 return
             }
-        })
+        }
 
         prevMonthLL.setOnClickListener {
 
@@ -185,8 +187,8 @@ class ReservationManageFragment : Fragment() {
             calendarGV.draw()
         }
 
-        calendarGV.setOnItemClickListener { parent, view, position, id ->
-            println("TEST:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+        calendarGV.setOnDateSelectedListener { year, month, day ->
+            println("year : $year, month : $month; day : $day")
         }
 
         reserve_list()
