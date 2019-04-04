@@ -87,6 +87,7 @@ class DlgEditPerActivity : RootActivity() {
             if (text.length > 0){
                 moneyTV.setText(text.substring(0, text.length - 1))
             }else{
+
             }
         }
 
@@ -99,7 +100,12 @@ class DlgEditPerActivity : RootActivity() {
 
 fun setpoint(){
 
-    var money = Utils.getString(moneyTV)
+    var money = Utils.getInt(moneyTV)
+    if (money==-1){
+        money=0
+    }
+
+
     val resultIntent = Intent()
     resultIntent.putExtra("point",money)
     setResult(RESULT_OK, resultIntent)

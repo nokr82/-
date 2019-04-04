@@ -34,6 +34,7 @@ import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
 import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.activity_only_point.*
+import kotlinx.android.synthetic.main.fra_reserve_member_list.*
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -44,7 +45,7 @@ class OnlyCalActivity : RootActivity() {
 
     lateinit var context: Context
     private var progressDialog: CustomProgressDialog? = null
-
+    var POINT_STACK = 1111
     var request_step_id = -1
     var company_id = -1
     var type = -1
@@ -139,6 +140,10 @@ class OnlyCalActivity : RootActivity() {
         }
         if (step == 4){
             typeTV.text = "사용"
+            usePointLL.setOnClickListener {
+                val Intent = Intent(context,DlgEditPerActivity::class.java)
+                startActivityForResult(Intent,POINT_STACK)
+            }
         }
 
 
@@ -178,6 +183,14 @@ class OnlyCalActivity : RootActivity() {
 
         couponListAdapter = CouponListAdapter(context, R.layout.item_member_coupon, couponData)
         couponLV.adapter = couponListAdapter
+        couponLV.setOnItemClickListener { parent, view, position, id ->
+            var data = couponData.get(position)
+            val coupon = data.getJSONObject("MemberCoupon")
+            member_coupon_id= Utils.getInt(coupon, "id")
+            step = 7
+            changeStep()
+        }
+
 
         setmenu()
         setmenu4()
@@ -599,13 +612,11 @@ class OnlyCalActivity : RootActivity() {
 
                 moneyTV.text = text.substring(0, text.length - 1)
                 //포인트 빼기
-
-
                 val money = moneyTV.text.toString()
                 if (money != null && money != "") {
                     setPoint()
-
                 }
+
             } else {
                 moneyTV.setText("0")
             }
@@ -959,11 +970,14 @@ class OnlyCalActivity : RootActivity() {
 
     // 프로세스
     fun changeStep() {
+
+
         val params = RequestParams()
         params.put("company_id", company_id)
         params.put("member_id", member_id)
         params.put("member_coupon_id", member_coupon_id)
         params.put("new_member_yn", new_member_yn)
+        params.put("point", use_point)
         if (reserve_type == 1) {
             params.put("new_member_yn", "N")
         }
@@ -1894,9 +1908,16 @@ class OnlyCalActivity : RootActivity() {
         when (requestCode) {
             EDIT_POINT -> {
                 if (resultCode == Activity.RESULT_OK) {
-                    val point = data!!.getStringExtra("point")
-                    Toast.makeText(context, point, Toast.LENGTH_SHORT).show()
-                    pointTV.text = Utils.comma(point)
+                    val point = data!!.getIntExtra("point",0)
+                    Toast.makeText(context, point.toString(), Toast.LENGTH_SHORT).show()
+                    pointTV.text = Utils.comma(point.toString())
+                }
+            }
+            POINT_STACK -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    use_point = data!!.getIntExtra("point",0)
+                    changeStep()
+                    usePointTV.text = Utils.comma(use_point.toString())
                 }
             }
         }
