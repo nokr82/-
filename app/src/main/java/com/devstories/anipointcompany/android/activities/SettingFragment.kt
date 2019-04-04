@@ -2,10 +2,8 @@ package com.devstories.anipointcompany.android.activities
 
 import android.content.Context
 import android.os.Bundle
-import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +11,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.CustomProgressDialog
-import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.Utils
 import kotlinx.android.synthetic.main.fragment_setting.*
 
@@ -72,7 +69,11 @@ class SettingFragment : android.support.v4.app.Fragment() {
 
 
 
-
+        noLL.setOnClickListener {
+            val intent = Intent(myContext, CalActivity::class.java)
+            intent.putExtra("no_stack", 1)
+            startActivity(intent)
+        }
 
         accumulateLL.setOnClickListener {
             var intent = Intent(myContext, CalActivity::class.java)

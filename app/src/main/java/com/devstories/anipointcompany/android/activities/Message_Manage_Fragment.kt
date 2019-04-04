@@ -1,10 +1,7 @@
 package com.devstories.anipointcompany.android.activities
 
-import android.app.ProgressDialog
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -17,6 +14,7 @@ import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.CustomProgressDialog
 import com.devstories.anipointcompany.android.base.PrefUtils
 import com.devstories.anipointcompany.android.base.Utils
+import kotlinx.android.synthetic.main.fra_message_manage.*
 
 //메시지관리  - 고객선택
 class Message_Manage_Fragment : Fragment() {
@@ -114,7 +112,11 @@ class Message_Manage_Fragment : Fragment() {
             }
             arguments = null
         }
-
+        noLL.setOnClickListener {
+            val intent = Intent(myContext, CalActivity::class.java)
+            intent.putExtra("no_stack", 1)
+            startActivity(intent)
+        }
         useLL.setOnClickListener {
             val intent = Intent(myContext, CalActivity::class.java)
             intent.putExtra("step",4)

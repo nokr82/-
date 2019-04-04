@@ -22,11 +22,10 @@ import android.content.Intent
 import android.graphics.Color
 import android.util.Log
 import android.widget.*
-import com.devstories.anipointcompany.android.Actions.CouponAction.send_message
 import com.devstories.anipointcompany.android.Actions.PointAction
 import com.devstories.anipointcompany.android.base.CustomProgressDialog
 import com.devstories.anipointcompany.android.base.PrefUtils
-import kotlinx.android.synthetic.main.fra_point_list.view.*
+import kotlinx.android.synthetic.main.fra_point_list.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -180,7 +179,11 @@ class Point_List_Fragment : Fragment() {
             loadmainData(company_id)
         }
 
-
+        noLL.setOnClickListener {
+            val intent = Intent(myContext, CalActivity::class.java)
+            intent.putExtra("no_stack", 1)
+            startActivity(intent)
+        }
         useLL.setOnClickListener {
             val intent = Intent(myContext, CalActivity::class.java)
             intent.putExtra("step", 4)
