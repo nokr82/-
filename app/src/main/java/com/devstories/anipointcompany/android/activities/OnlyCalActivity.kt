@@ -19,10 +19,8 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.CompanyAction
-import com.devstories.anipointcompany.android.Actions.CompanyAction.company_info
 import com.devstories.anipointcompany.android.Actions.CouponAction
 import com.devstories.anipointcompany.android.Actions.MemberAction
-import com.devstories.anipointcompany.android.Actions.MemberAction.member_join
 import com.devstories.anipointcompany.android.Actions.RequestStepAction
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.adapter.CouponListAdapter
@@ -34,7 +32,6 @@ import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
 import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.activity_only_point.*
-import kotlinx.android.synthetic.main.fra_reserve_member_list.*
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -139,6 +136,7 @@ class OnlyCalActivity : RootActivity() {
             typeTV.text = "조회"
         }
         if (step == 4){
+            desRL.visibility = View.VISIBLE
             typeTV.text = "사용"
             usePointLL.setOnClickListener {
                 val Intent = Intent(context,DlgEditPerActivity::class.java)

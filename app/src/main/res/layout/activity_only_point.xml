@@ -1519,7 +1519,42 @@
         android:orientation="vertical"
         android:layout_weight="0.5"
         android:layout_marginRight="20dp">
+        <RelativeLayout
+            android:id="@+id/desRL"
+            android:visibility="gone"
+            android:layout_marginLeft="9.5dp"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginBottom="10dp"
+            android:background="#90000000"
+            android:orientation="horizontal">
 
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:visibility="visible"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="시용포인트 입력을 원하시면 아래박스를 클릭해주세요."
+                android:textColor="#90ffffff"
+                android:textSize="12dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="25sp"
+                android:text="0"
+                android:textColor="#90ffffff"
+                android:textSize="20dp" />
+
+
+
+
+
+        </RelativeLayout>
         <LinearLayout
             android:id="@+id/usePointLL"
             android:visibility="visible"
