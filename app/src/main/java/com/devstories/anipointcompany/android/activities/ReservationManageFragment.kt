@@ -139,7 +139,7 @@ class ReservationManageFragment : Fragment() {
         adapter = ArrayAdapter<String>(context, R.layout.callender_spinner_item, years)
         yearsSP.adapter = adapter
         yearsSP.setSelection(years.size - 1)
-        yearsSP.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+      /*  yearsSP.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>, view: View, i: Int, l: Long) {
                 var year = years[i].substring(0, (years[i].length - 1))
                 calendarGV.year = year.toInt()
@@ -150,12 +150,12 @@ class ReservationManageFragment : Fragment() {
             override fun onNothingSelected(adapterView: AdapterView<*>) {
                 return
             }
-        }
+        }*/
 
         adapter = ArrayAdapter<String>(context, R.layout.callender_spinner_item, months)
         monthSP.adapter = adapter
         monthSP.setSelection(month - 1)
-        monthSP.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+      /*  monthSP.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>, view: View, i: Int, l: Long) {
                 var month = months[i].substring(0, (months[i].length - 1))
                 calendarGV.month = month.toInt() - 1
@@ -166,7 +166,7 @@ class ReservationManageFragment : Fragment() {
             override fun onNothingSelected(adapterView: AdapterView<*>) {
                 return
             }
-        }
+        }*/
 
         prevMonthLL.setOnClickListener {
 
