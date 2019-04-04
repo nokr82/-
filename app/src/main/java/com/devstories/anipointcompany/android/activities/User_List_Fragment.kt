@@ -145,10 +145,16 @@ class User_List_Fragment : Fragment() {
         useLL.setOnClickListener {
             if ( PrefUtils.getStringPreference(myContext, "only_yn")=="Y"){
                 val intent = Intent(myContext, OnlyCalActivity::class.java)
+                if (PrefUtils.getStringPreference(myContext, "self_yn")=="Y"){
+                    intent.putExtra("self_yn", 1)
+                }
                 intent.putExtra("step", 4)
                 startActivity(intent)
             }else{
                 val intent = Intent(myContext, CalActivity::class.java)
+                if (PrefUtils.getStringPreference(myContext, "self_yn")=="Y"){
+                    intent.putExtra("self_yn", 1)
+                }
                 intent.putExtra("step", 4)
                 startActivity(intent)
             }
@@ -156,9 +162,15 @@ class User_List_Fragment : Fragment() {
         accumulateLL.setOnClickListener {
             if ( PrefUtils.getStringPreference(myContext, "only_yn")=="Y"){
                 val intent = Intent(myContext, OnlyCalActivity::class.java)
+                if (PrefUtils.getStringPreference(myContext, "self_yn")=="Y"){
+                    intent.putExtra("self_yn", 1)
+                }
                 startActivity(intent)
             }else{
                 val intent = Intent(myContext, CalActivity::class.java)
+                if (PrefUtils.getStringPreference(myContext, "self_yn")=="Y"){
+                    intent.putExtra("self_yn", 1)
+                }
                 startActivity(intent)
             }
         }

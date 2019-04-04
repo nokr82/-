@@ -74,7 +74,7 @@ class CalActivity : RootActivity() {
     var coupon_id = -1
     var rand_code = ""
     var use_coupon = "N"
-
+    var self_yn =-1
 
     internal var checkHandler: Handler = object : Handler() {
         override fun handleMessage(msg: android.os.Message) {
@@ -130,6 +130,12 @@ class CalActivity : RootActivity() {
         step = intent.getIntExtra("step", 1)
         no_stack = intent.getIntExtra("no_stack", -1)
         reserve_type = intent.getIntExtra("reserve_type", -1)
+        self_yn = intent.getIntExtra("self_yn", -1)
+
+
+
+
+
         if (reserve_type == 1){
             step = 5
             member_id = intent.getIntExtra("member_id", -1)
@@ -242,7 +248,11 @@ class CalActivity : RootActivity() {
             new_femaleIV.setImageResource(R.drawable.radio_on)
             new_gender = "F"
         }
-
+        if (self_yn==1){
+            stackLL.visibility = View.GONE
+            stack2LL.visibility = View.GONE
+            op_accLL.callOnClick()
+        }
 
     }
 
@@ -1697,9 +1707,9 @@ class CalActivity : RootActivity() {
         when (requestCode) {
             EDIT_POINT -> {
                 if (resultCode == Activity.RESULT_OK) {
-                    val point = data!!.getStringExtra("point")
-                    Toast.makeText(context, point, Toast.LENGTH_SHORT).show()
-                    pointTV.text = Utils.comma(point)
+                    val point = data!!.getIntExtra("point",0)
+                    Toast.makeText(context, point.toString(), Toast.LENGTH_SHORT).show()
+                    pointTV.text = Utils.comma(point.toString())
                 }
             }
         }

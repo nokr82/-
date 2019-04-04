@@ -75,7 +75,7 @@ class OnlyCalActivity : RootActivity() {
     //멤버쉽추가적립
     var membership_per = -1
     var age = ""
-
+    var self_yn =-1
 
     var coupon_id = -1
     var rand_code = ""
@@ -134,7 +134,7 @@ class OnlyCalActivity : RootActivity() {
         step = intent.getIntExtra("step", 1)
         no_stack = intent.getIntExtra("no_stack", -1)
         reserve_type = intent.getIntExtra("reserve_type", -1)
-
+        self_yn = intent.getIntExtra("self_yn", -1)
         if (no_stack==1){
             typeTV.text = "조회"
         }
@@ -810,9 +810,15 @@ class OnlyCalActivity : RootActivity() {
                         new_member_yn = Utils.getString(response, "new_member_yn")
                         member_id = Utils.getInt(response, "member_id")
                       if (step ==1){
+
                           step = 2
                           phoneLL.visibility = View.GONE
                           o_calLL.visibility = View.VISIBLE
+                          if (self_yn==1){
+                              stackLL.visibility = View.GONE
+                              stack2LL.visibility = View.GONE
+                              op_accLL.callOnClick()
+                          }
                           changeStep()
                       }else if (step ==4){
                           step = 5
@@ -822,6 +828,11 @@ class OnlyCalActivity : RootActivity() {
                           }
                           phoneLL.visibility = View.GONE
                           o_calLL.visibility = View.VISIBLE
+                          if (self_yn==1){
+                              stackLL.visibility = View.GONE
+                              stack2LL.visibility = View.GONE
+                              op_accLL.callOnClick()
+                          }
                           changeStep()
                       }
 
