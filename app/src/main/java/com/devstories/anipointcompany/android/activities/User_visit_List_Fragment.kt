@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.*
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.CustomProgressDialog
+import kotlinx.android.synthetic.main.fra_user_visit_analysis.*
 
 //고객방문분석메인
 class User_visit_List_Fragment : Fragment() {
@@ -34,6 +35,8 @@ class User_visit_List_Fragment : Fragment() {
     val User_visit_Select2_Fragment : User_visit_Select2_Fragment = User_visit_Select2_Fragment()
     val User_visit_Select3_Fragment : User_visit_Select3_Fragment = User_visit_Select3_Fragment()
     val User_visit_Select4_Fragment : User_visit_Select4_Fragment = User_visit_Select4_Fragment()
+
+    val Sales_Analysis_List_Fragment : Sales_Analysis_List_Fragment = Sales_Analysis_List_Fragment()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
@@ -67,7 +70,10 @@ class User_visit_List_Fragment : Fragment() {
         click()
         allLL.callOnClick()
 
-
+        saleTV.setOnClickListener {
+            saleTV.setTextColor(Color.parseColor("#ffffff"))
+            childFragmentManager.beginTransaction().replace(R.id.visitFL, Sales_Analysis_List_Fragment).commit()
+        }
 
     }
 
@@ -75,7 +81,11 @@ class User_visit_List_Fragment : Fragment() {
 
     fun click(){
 
-
+        noLL.setOnClickListener {
+            val intent = Intent(myContext, CalActivity::class.java)
+            intent.putExtra("no_stack", 1)
+            startActivity(intent)
+        }
         useLL.setOnClickListener {
             val intent = Intent(myContext, CalActivity::class.java)
             intent.putExtra("step",4)
@@ -113,6 +123,7 @@ class User_visit_List_Fragment : Fragment() {
         allTV.setTextColor(Color.parseColor("#80FFFFFF"))
         ageTV.setTextColor(Color.parseColor("#80FFFFFF"))
         daysTV.setTextColor(Color.parseColor("#80FFFFFF"))
+        saleTV.setTextColor(Color.parseColor("#80ffffff"))
         timeTV.setTextColor(Color.parseColor("#80FFFFFF"))
     }
 

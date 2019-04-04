@@ -66,8 +66,6 @@ class User_List_Fragment : Fragment() {
     var EDIT_MEMBER_INFO = 101
 
 
-    val Sales_Analysis_List_Fragment : Sales_Analysis_List_Fragment = Sales_Analysis_List_Fragment()
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -143,13 +141,7 @@ class User_List_Fragment : Fragment() {
 
             mainData(1,"")
         }
-        saleTV.setOnClickListener {
-            userallLL.visibility = View.GONE
-            saleFL.visibility = View.VISIBLE
-            setLeftMenu()
-            saleTV.setTextColor(Color.parseColor("#ffffff"))
-            childFragmentManager.beginTransaction().replace(R.id.saleFL, Sales_Analysis_List_Fragment).commit()
-        }
+
         useLL.setOnClickListener {
             val intent = Intent(myContext, CalActivity::class.java)
             intent.putExtra("step", 4)
@@ -241,7 +233,6 @@ class User_List_Fragment : Fragment() {
     fun setLeftMenu() {
         entire_viewTV.setTextColor(Color.parseColor("#80ffffff"))
         new_userTV.setTextColor(Color.parseColor("#80ffffff"))
-        saleTV.setTextColor(Color.parseColor("#80ffffff"))
         most_freqTV.setTextColor(Color.parseColor("#80ffffff"))
         birthTV.setTextColor(Color.parseColor("#80ffffff"))
     }

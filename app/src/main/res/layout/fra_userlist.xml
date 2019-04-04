@@ -157,34 +157,7 @@
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:id="@+id/userList_birth_userLL"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
 
-                            android:orientation="vertical">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <me.grantland.widget.AutofitTextView
-                                    android:id="@+id/saleTV"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:lineSpacingExtra="1sp"
-                                    android:maxLines="1"
-                                    android:singleLine="true"
-                                    android:text="매출분석"
-                                    android:textColor="#80ffffff"
-                                    android:textSize="36dp" />
-
-
-                            </LinearLayout>
-
-                        </LinearLayout>
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
