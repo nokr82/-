@@ -327,6 +327,7 @@ class SettingMyInfoFragment : Fragment() {
                             userView.tag = Utils.getInt(CompanyCustomer, "id")
                             delLL.setOnClickListener {
                                 manageLL.removeView(userView)
+                                del_manage(Utils.getInt(CompanyCustomer, "id"))
                             }
                             manageLL.addView(userView)
 
@@ -386,7 +387,73 @@ class SettingMyInfoFragment : Fragment() {
         })
     }
 
+    //사업체 비밀번호변경
+    fun del_manage(customer_id:Int) {
+        val params = RequestParams()
+        params.put("customer_id", customer_id)
+        CompanyAction.del_manage(params, object : JsonHttpResponseHandler() {
 
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    val result = response!!.getString("result")
+                    if ("ok" == result) {
+                        Toast.makeText(myContext,"삭제되었습니다.", Toast.LENGTH_SHORT).show()
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(myContext, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
     //사업체 정보수정
     fun edit_info() {
         val company_name = Utils.getString(compNameTV)
