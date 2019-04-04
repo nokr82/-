@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.*
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.CustomProgressDialog
+import com.devstories.anipointcompany.android.base.PrefUtils
 import kotlinx.android.synthetic.main.fra_user_visit_analysis.*
 
 //고객방문분석메인
@@ -81,19 +82,48 @@ class User_visit_List_Fragment : Fragment() {
 
     fun click(){
 
-        noLL.setOnClickListener {
-            val intent = Intent(myContext, CalActivity::class.java)
-            intent.putExtra("no_stack", 1)
-            startActivity(intent)
-        }
         useLL.setOnClickListener {
-            val intent = Intent(myContext, CalActivity::class.java)
-            intent.putExtra("step",4)
-            startActivity(intent)
+            if ( PrefUtils.getStringPreference(myContext, "only_yn")=="Y"){
+                val intent = Intent(myContext, OnlyCalActivity::class.java)
+                if (PrefUtils.getStringPreference(myContext, "self_yn")=="Y"){
+                    intent.putExtra("self_yn", 1)
+                }
+                intent.putExtra("step", 4)
+                startActivity(intent)
+            }else{
+                val intent = Intent(myContext, CalActivity::class.java)
+                if (PrefUtils.getStringPreference(myContext, "self_yn")=="Y"){
+                    intent.putExtra("self_yn", 1)
+                }
+                intent.putExtra("step", 4)
+                startActivity(intent)
+            }
         }
         accumulateLL.setOnClickListener {
-            val intent = Intent(myContext, CalActivity::class.java)
-            startActivity(intent)
+            if ( PrefUtils.getStringPreference(myContext, "only_yn")=="Y"){
+                val intent = Intent(myContext, OnlyCalActivity::class.java)
+                if (PrefUtils.getStringPreference(myContext, "self_yn")=="Y"){
+                    intent.putExtra("self_yn", 1)
+                }
+                startActivity(intent)
+            }else{
+                val intent = Intent(myContext, CalActivity::class.java)
+                if (PrefUtils.getStringPreference(myContext, "self_yn")=="Y"){
+                    intent.putExtra("self_yn", 1)
+                }
+                startActivity(intent)
+            }
+        }
+        noLL.setOnClickListener {
+            if ( PrefUtils.getStringPreference(myContext, "only_yn")=="Y"){
+                val intent = Intent(myContext, OnlyCalActivity::class.java)
+                intent.putExtra("no_stack", 1)
+                startActivity(intent)
+            }else{
+                val intent = Intent(myContext, CalActivity::class.java)
+                intent.putExtra("no_stack", 1)
+                startActivity(intent)
+            }
         }
 
         allLL.setOnClickListener {

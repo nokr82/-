@@ -179,19 +179,48 @@ class Point_List_Fragment : Fragment() {
             loadmainData(company_id)
         }
 
-        noLL.setOnClickListener {
-            val intent = Intent(myContext, CalActivity::class.java)
-            intent.putExtra("no_stack", 1)
-            startActivity(intent)
-        }
         useLL.setOnClickListener {
-            val intent = Intent(myContext, CalActivity::class.java)
-            intent.putExtra("step", 4)
-            startActivity(intent)
+            if ( PrefUtils.getStringPreference(myContext, "only_yn")=="Y"){
+                val intent = Intent(myContext, OnlyCalActivity::class.java)
+                if (PrefUtils.getStringPreference(myContext, "self_yn")=="Y"){
+                    intent.putExtra("self_yn", 1)
+                }
+                intent.putExtra("step", 4)
+                startActivity(intent)
+            }else{
+                val intent = Intent(myContext, CalActivity::class.java)
+                if (PrefUtils.getStringPreference(myContext, "self_yn")=="Y"){
+                    intent.putExtra("self_yn", 1)
+                }
+                intent.putExtra("step", 4)
+                startActivity(intent)
+            }
         }
         accumulateLL.setOnClickListener {
-            val intent = Intent(myContext, CalActivity::class.java)
-            startActivity(intent)
+            if ( PrefUtils.getStringPreference(myContext, "only_yn")=="Y"){
+                val intent = Intent(myContext, OnlyCalActivity::class.java)
+                if (PrefUtils.getStringPreference(myContext, "self_yn")=="Y"){
+                    intent.putExtra("self_yn", 1)
+                }
+                startActivity(intent)
+            }else{
+                val intent = Intent(myContext, CalActivity::class.java)
+                if (PrefUtils.getStringPreference(myContext, "self_yn")=="Y"){
+                    intent.putExtra("self_yn", 1)
+                }
+                startActivity(intent)
+            }
+        }
+        noLL.setOnClickListener {
+            if ( PrefUtils.getStringPreference(myContext, "only_yn")=="Y"){
+                val intent = Intent(myContext, OnlyCalActivity::class.java)
+                intent.putExtra("no_stack", 1)
+                startActivity(intent)
+            }else{
+                val intent = Intent(myContext, CalActivity::class.java)
+                intent.putExtra("no_stack", 1)
+                startActivity(intent)
+            }
         }
         useradapter = UserListAdapter(myContext, R.layout.item_user_point_list, adapterData)
         userLV.adapter = useradapter
