@@ -151,6 +151,8 @@ class IntroActivity : RootActivity() {
 
                         PrefUtils.setPreference(context, "company_id", company_id)
                         PrefUtils.setPreference(context, "login_id", Utils.getString(company, "login_id"))
+                        PrefUtils.setPreference(context, "only_yn", Utils.getString(company, "only_yn"))
+                        PrefUtils.setPreference(context, "self_yn", Utils.getString(company, "self_yn"))
                         PrefUtils.setPreference(context, "passwd", Utils.getString(company, "passwd"))
                         PrefUtils.setPreference(context, "company_name", Utils.getString(company, "company_name"))
 

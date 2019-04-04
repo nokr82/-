@@ -1,0 +1,1584 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_weight="0.5">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="21dp"
+            android:layout_marginTop="37dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/titleTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:letterSpacing="-0.03"
+                android:text="박소윤 님"
+                android:textColor="#ffffff"
+                android:textSize="48dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:layout_marginTop="3dp"
+                android:background="#ffff" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/joinLL"
+            android:layout_width="254dp"
+            android:layout_height="360dp"
+            android:layout_marginTop="14dp"
+            android:background="#90424242"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="33dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/nameET"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="이름"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="1sp"
+                        android:minEms="5"
+                        android:textColor="#ffffff"
+                        android:textColorHint="#ffffff"
+                        android:textSize="18dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:layout_marginRight="6dp"
+                    android:background="#ffffff" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="33dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/phoneET"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="핸드폰번호"
+                        android:inputType="number"
+                        android:minEms="5"
+                        android:textColor="#ffffff"
+                        android:textColorHint="#ffffff"
+                        android:textSize="18dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:layout_marginRight="6dp"
+                    android:background="#ffffff" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:id="@+id/new_maleIV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="17dp"
+                                android:layout_marginLeft="3dp"
+                                android:src="@drawable/radio_on" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="1dp"
+                                android:gravity="center_horizontal"
+                                android:letterSpacing="-0.01"
+                                android:text="남"
+                                android:textColor="#ffffff"
+                                android:textSize="18dp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:id="@+id/new_femaleIV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="3dp"
+                                android:src="@drawable/radio_on" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="1dp"
+                                android:gravity="center_horizontal"
+                                android:letterSpacing="-0.01"
+                                android:text="여"
+                                android:textColor="#ffffff"
+                                android:textSize="18dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:layout_marginRight="6dp"
+                    android:background="#ffffff" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="33dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <RelativeLayout
+                        android:background="@null"
+                        android:layout_width="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_height="match_parent">
+
+                        <Spinner
+                            android:id="@+id/ageSP"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"/>
+                        <ImageView
+                            android:id="@+id/dropIV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginRight="25.5dp"
+                            android:src="@mipmap/profile_arrow_next"
+                            android:layout_alignParentRight="true" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:layout_marginRight="6dp"
+                    android:background="#ffffff" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="33dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/birthET"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="생일"
+                        android:inputType="number"
+                        android:minEms="5"
+                        android:textColor="#ffffff"
+                        android:textColorHint="#ffffff"
+                        android:textSize="18dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:layout_marginRight="6dp"
+                    android:background="#ffffff" />
+
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/memoET"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="메모"
+                        android:letterSpacing="-0.03"
+
+                        android:lineSpacingExtra="1sp"
+                        android:minEms="5"
+                        android:textColor="#ffffff"
+                        android:textColorHint="#ffffff"
+                        android:textSize="18dp" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:layout_marginRight="6dp"
+                    android:background="#ffffff" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/checkLL"
+            android:layout_width="130dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:background="#2b2b2b"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:letterSpacing="-0.03"
+                android:text="신규가입"
+                android:textColor="#ffffff"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/message_op_LL"
+            android:layout_width="254dp"
+            android:layout_height="360dp"
+            android:layout_marginTop="14dp"
+            android:background="#90424242"
+            android:orientation="vertical"
+            android:visibility="invisible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/phoneTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="1sp"
+                        android:text="010-***1-9767"
+                        android:textColor="#ffffff"
+                        android:textSize="18dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:layout_marginRight="6dp"
+                    android:background="#ffffff" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:id="@+id/maleIV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="3dp"
+                                android:src="@drawable/radio_on" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="1dp"
+                                android:gravity="center_horizontal"
+                                android:letterSpacing="-0.01"
+                                android:text="남"
+                                android:textColor="#ffffff"
+                                android:textSize="18dp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:id="@+id/femaleIV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="3dp"
+                                android:src="@drawable/radio_on" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="1dp"
+                                android:gravity="center_horizontal"
+                                android:letterSpacing="-0.01"
+                                android:text="여"
+                                android:textColor="#ffffff"
+                                android:textSize="18dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:layout_marginRight="6dp"
+                    android:background="#ffffff" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="33dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/ageTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="1sp"
+                        android:text="22세"
+                        android:textColor="#ffffff"
+                        android:textSize="18dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:layout_marginRight="6dp"
+                    android:background="#ffffff" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="33dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/birthTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="1sp"
+                        android:text="1996-04-02"
+                        android:textColor="#ffffff"
+                        android:textSize="18dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:layout_marginRight="6dp"
+                    android:background="#ffffff" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="33dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="1sp"
+                        android:text="사용가능:"
+                        android:textColor="#ffffff"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/stack_pointTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="1sp"
+                        android:text="0"
+                        android:textColor="#ffffff"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="1sp"
+                        android:text="P"
+                        android:textColor="#ffffff"
+                        android:textSize="18dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:layout_marginRight="6dp"
+                    android:background="#ffffff" />
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="33dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="1sp"
+                        android:text="보유쿠폰:"
+                        android:textColor="#ffffff"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/couponTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="1sp"
+                        android:text="4장"
+                        android:textColor="#ffffff"
+                        android:textSize="18dp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginRight="6dp"
+                    android:background="#ffffff" />
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/memoTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="-0.01"
+                        android:text="소형견, 말티스, 강아지 이름
+우측 최상단 톱니바퀴
+모양을 누르면
+설정으로 이동합니다."
+                        android:textColor="#ffffff"
+                        android:textSize="16dp" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_marginTop="2dp"
+                    android:background="#ffffff" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <!--확인버튼, 스피너, 라디오그룹-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="7dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/okTV"
+                    android:layout_width="130dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="12.5dp"
+                    android:background="#2b2b2b"
+                    android:gravity="center"
+                    android:text="확인"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp"
+                    android:visibility="invisible" />
+
+                <LinearLayout
+                    android:id="@+id/use_payLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/spinnerIV"
+                        android:layout_width="229dp"
+                        android:layout_height="36dp"
+                        android:layout_marginTop="40dp"
+                        android:background="#ffffff"
+                        android:orientation="horizontal">
+
+                        <Spinner
+                            android:id="@+id/cate_SP"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:paddingLeft="20dp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginRight="5dp"
+                            android:src="@mipmap/icon_down_arrow" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="260dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="20dp">
+
+                        <LinearLayout
+                            android:id="@+id/cardPayLL"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/cardPayIV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/radio_off" />
+
+                            <me.grantland.widget.AutofitTextView
+                                android:singleLine="true"
+                                android:maxLines="1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="11dp"
+                                android:text="카드결제"
+                                android:textColor="#ffffff"
+                                android:textSize="16dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/cashPayLL"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="19dp">
+
+                            <ImageView
+                                android:id="@+id/cashPayIV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/radio_off" />
+
+                            <me.grantland.widget.AutofitTextView
+                                android:singleLine="true"
+                                android:maxLines="1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5.5dp"
+                                android:text="현금결제"
+                                android:textColor="#ffffff"
+                                android:textSize="16dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/depositlessLL"
+                        android:layout_width="match_parent"
+                        android:visibility="gone"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5.5dp">
+
+                        <ImageView
+                            android:id="@+id/depositlessIV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/radio_off" />
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5.5dp"
+                            android:text="포인트 결제"
+                            android:textColor="#ffffff"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/couponLL"
+                        android:layout_width="match_parent"
+                        android:visibility="gone"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp">
+
+                        <ImageView
+                            android:id="@+id/couponIV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/radio_off" />
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5.5dp"
+                            android:text="쿠폰 사용"
+                            android:textColor="#ffffff"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/phoneLL"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:background="#ffffff"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_weight="0.2">
+            <TextView
+                android:id="@+id/o_phoneTV"
+                android:inputType="phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="50dp"
+                android:textColor="#6c6c6c"
+                android:text=""
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:onClick="onClick"
+                    android:id="@+id/o_oneLL"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="-0.05"
+                        android:lineSpacingExtra="-15sp"
+                        android:text="1"
+                        android:textColor="#666666"
+                        android:textSize="48sp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:onClick="onClick"
+                    android:id="@+id/o_twoLL"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="48sp"
+                        android:textColor="#666666"
+                        android:letterSpacing="-0.05"
+                        android:lineSpacingExtra="-15sp"
+                        android:text="2"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:onClick="onClick"
+                    android:id="@+id/o_threeLL"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="48sp"
+                        android:textColor="#666666"
+                        android:letterSpacing="-0.05"
+                        android:lineSpacingExtra="-15sp"
+                        android:text="3"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:onClick="onClick"
+                    android:id="@+id/o_fourLL"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="-0.05"
+                        android:lineSpacingExtra="-15sp"
+                        android:text="4"
+                        android:textColor="#666666"
+                        android:textSize="48sp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:onClick="onClick"
+                    android:id="@+id/o_fiveLL"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="48sp"
+                        android:textColor="#666666"
+                        android:letterSpacing="-0.05"
+                        android:lineSpacingExtra="-15sp"
+                        android:text="5"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:onClick="onClick"
+                    android:id="@+id/o_sixLL"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="-0.05"
+                        android:lineSpacingExtra="-15sp"
+                        android:text="6"
+                        android:textColor="#666666"
+                        android:textSize="48sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:onClick="onClick"
+                    android:id="@+id/o_sevenLL"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="48sp"
+                        android:textColor="#666666"
+                        android:letterSpacing="-0.05"
+                        android:lineSpacingExtra="-15sp"
+                        android:text="7"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:onClick="onClick"
+                    android:id="@+id/o_eightLL"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="48sp"
+                        android:textColor="#666666"
+                        android:letterSpacing="-0.05"
+                        android:lineSpacingExtra="-15sp"
+                        android:text="8"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:onClick="onClick"
+                    android:id="@+id/o_nineLL"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="48sp"
+                        android:textColor="#666666"
+                        android:letterSpacing="-0.05"
+                        android:lineSpacingExtra="-15sp"
+                        android:text="9"
+                        />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:id="@+id/o_backLL"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="55dp"
+                        android:src="@mipmap/btn_del"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:onClick="onClick"
+                    android:id="@+id/o_zeroLL"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="48sp"
+                        android:textColor="#666666"
+                        android:letterSpacing="-0.05"
+                        android:lineSpacingExtra="-15sp"
+                        android:text="0"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:onClick="onClick"
+                    android:id="@+id/o_useLL"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:background="#00d1ce"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/typeTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="42sp"
+                        android:textColor="#ffffff"
+                        android:letterSpacing="-0.05"
+                        android:lineSpacingExtra="-12sp"
+                        android:text="적립"
+                        />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/o_calLL"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="9.5dp"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        android:layout_weight="1">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:layout_marginLeft="23dp"
+            android:background="#90000000"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/pointTV"
+                android:layout_width="wrap_content"
+                android:visibility="visible"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="25sp"
+                android:text="적립 포인트"
+                android:textColor="#90ffffff"
+                android:textSize="20dp" />
+            <TextView
+                android:id="@+id/point_useTV"
+                android:layout_width="wrap_content"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="25sp"
+                android:text="0"
+                android:textColor="#90ffffff"
+                android:textSize="20dp" />
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_margin="20dp"
+                android:src="@mipmap/btn_close" />
+
+
+        </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/calLL"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="23dp"
+            android:layout_marginTop="9.5dp"
+            android:background="#ffffff"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginRight="11dp"
+                android:gravity="right"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/moneyTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="16dp"
+                        android:text=""
+                        android:textColor="#0066b0"
+                        android:textSize="54dp" />
+
+                    <TextView
+                        android:id="@+id/m_opTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="16dp"
+                        android:text="￦"
+                        android:textColor="#0066b0"
+                        android:textSize="54dp" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:id="@+id/oneLL"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:onClick="onClick">
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-15sp"
+                            android:text="1"
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/twoLL"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:onClick="onClick">
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-15sp"
+                            android:text="2"
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/threeLL"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:onClick="onClick">
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-15sp"
+                            android:text="3"
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:id="@+id/fourLL"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:onClick="onClick">
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-15sp"
+                            android:text="4"
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/fiveLL"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:onClick="onClick">
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-15sp"
+                            android:text="5"
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/sixLL"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:onClick="onClick">
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-15sp"
+                            android:text="6"
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:id="@+id/sevenLL"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:onClick="onClick">
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-15sp"
+                            android:text="7"
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/eightLL"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:onClick="onClick">
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-15sp"
+                            android:text="8"
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/nineLL"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:onClick="onClick">
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-15sp"
+                            android:text="9"
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:id="@+id/delLL"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#979797"
+                        android:gravity="center"
+                        android:onClick="onClick">
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-12sp"
+                            android:text="삭제"
+                            android:textColor="#ffffff"
+                            android:textSize="21sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/zeroLL"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:onClick="onClick">
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-15sp"
+                            android:text="0"
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/useLL"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#b894ff"
+                        android:gravity="center"
+                        android:onClick="onClick">
+
+                        <TextView
+                            android:id="@+id/opTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-12sp"
+                            android:text="적립"
+                            android:textColor="#ffffff"
+                            android:textSize="21sp" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+
+                    <LinearLayout
+                        android:id="@+id/stackLL"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/stackTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-15sp"
+                            android:text="3"
+                            android:textColor="#6e8a32"
+                            android:textSize="48dp" />
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-15sp"
+                            android:text="%"
+                            android:textColor="#6e8a32"
+                            android:textSize="48dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/stack2LL"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:onClick="onClick">
+
+                        <TextView
+                            android:id="@+id/stack2TV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-15sp"
+                            android:text="100"
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-15sp"
+                            android:text="%"
+                            android:textColor="#666666"
+                            android:textSize="48dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/op_accLL"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:onClick="onClick">
+
+                        <me.grantland.widget.AutofitTextView
+                            android:singleLine="true"
+                            android:maxLines="1"
+                            android:id="@+id/op_accTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="-15sp"
+                            android:text="포인트"
+                            android:textColor="#666666"
+                            android:textSize="24dp" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical"
+        android:layout_weight="0.5"
+        android:layout_marginRight="20dp">
+
+        <LinearLayout
+            android:id="@+id/usePointLL"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="9.5dp"
+            android:background="#ffff"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:letterSpacing="-0.05"
+                android:lineSpacingExtra="1sp"
+                android:text="사용 포인트"
+                android:textColor="#cbcbcb"
+                android:textSize="16dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/usePointTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:letterSpacing="-0.05"
+                    android:lineSpacingExtra="-9sp"
+                    android:text="0"
+                    android:textColor="#666666"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:letterSpacing="-0.05"
+                    android:lineSpacingExtra="-9sp"
+                    android:text="P"
+                    android:textColor="#666666"
+                    android:textSize="18dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/couponLV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+</LinearLayout>

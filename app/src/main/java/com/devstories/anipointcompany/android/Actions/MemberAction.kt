@@ -20,6 +20,13 @@ object MemberAction {
         HttpClient.post("/member/edit_info.json", params, handler)
     }
 
+    //멤버체크
+    fun is_member(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/member/is_member.json", params, handler)
+    }
+
+
+
     // 회원 목록뽑기
     fun user_list(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/member/user_list.json", params, handler)

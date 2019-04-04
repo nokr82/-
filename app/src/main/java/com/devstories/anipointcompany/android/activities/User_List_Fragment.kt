@@ -143,18 +143,35 @@ class User_List_Fragment : Fragment() {
         }
 
         useLL.setOnClickListener {
-            val intent = Intent(myContext, CalActivity::class.java)
-            intent.putExtra("step", 4)
-            startActivity(intent)
+            if ( PrefUtils.getStringPreference(myContext, "only_yn")=="Y"){
+                val intent = Intent(myContext, OnlyCalActivity::class.java)
+                intent.putExtra("step", 4)
+                startActivity(intent)
+            }else{
+                val intent = Intent(myContext, CalActivity::class.java)
+                intent.putExtra("step", 4)
+                startActivity(intent)
+            }
         }
         accumulateLL.setOnClickListener {
-            val intent = Intent(myContext, CalActivity::class.java)
-            startActivity(intent)
+            if ( PrefUtils.getStringPreference(myContext, "only_yn")=="Y"){
+                val intent = Intent(myContext, OnlyCalActivity::class.java)
+                startActivity(intent)
+            }else{
+                val intent = Intent(myContext, CalActivity::class.java)
+                startActivity(intent)
+            }
         }
         noLL.setOnClickListener {
-            val intent = Intent(myContext, CalActivity::class.java)
-            intent.putExtra("no_stack", 1)
-            startActivity(intent)
+            if ( PrefUtils.getStringPreference(myContext, "only_yn")=="Y"){
+                val intent = Intent(myContext, OnlyCalActivity::class.java)
+                intent.putExtra("no_stack", 1)
+                startActivity(intent)
+            }else{
+                val intent = Intent(myContext, CalActivity::class.java)
+                intent.putExtra("no_stack", 1)
+                startActivity(intent)
+            }
         }
 
         entire_viewTV.setOnClickListener {
