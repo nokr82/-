@@ -55,6 +55,7 @@ class SettingFragment : android.support.v4.app.Fragment() {
         super.onActivityCreated(savedInstanceState)
         val SettingMyInfoFragment: SettingMyInfoFragment = SettingMyInfoFragment()
         val OperPolicyFragment: OperPolicyFragment = OperPolicyFragment()
+        val ContractListFragment: ContractListFragment = ContractListFragment()
 
         Utils.getViewHeight(msLL,object : Utils.OnHeightSetListener {
             override fun sized(width: Int, height: Int) {
@@ -115,6 +116,14 @@ class SettingFragment : android.support.v4.app.Fragment() {
         }
 
 
+
+        contractLL.setOnClickListener {
+            setmenu()
+            contractTV.setTextColor(Color.parseColor("#ffffff"))
+            settingFL.setBackgroundColor(0)
+            childFragmentManager.beginTransaction().replace(R.id.settingFL, ContractListFragment).commit()
+        }
+
         myInfoTV.setOnClickListener {
             //프레그먼트에서 프래그먼트선언하기
             setmenu()
@@ -136,6 +145,7 @@ class SettingFragment : android.support.v4.app.Fragment() {
     fun setmenu() {
         myInfoTV.setTextColor(Color.parseColor("#80ffffff"))
         operPolicyTV.setTextColor(Color.parseColor("#80ffffff"))
+        contractTV.setTextColor(Color.parseColor("#80ffffff"))
     }
 
     override fun onDestroy() {

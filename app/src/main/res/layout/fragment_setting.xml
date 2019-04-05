@@ -99,11 +99,11 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/autoCouponLL"
+                                android:id="@+id/contractLL"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
                                 android:layout_weight="1"
-                                android:visibility="invisible"
+                                android:visibility="visible"
 
                                 android:orientation="vertical">
 
@@ -114,12 +114,12 @@
 
                                     <me.grantland.widget.AutofitTextView
                                         android:singleLine="true"
-                                        android:id="@+id/autoCouponTV"
+                                        android:id="@+id/contractTV"
                                         android:maxLines="1"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:lineSpacingExtra="1sp"
-                                        android:text="자동 쿠폰 관리"
+                                        android:text="계약서"
                                         android:textColor="#80ffffff"
                                         android:textSize="36dp" />
 

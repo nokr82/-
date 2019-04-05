@@ -12,6 +12,9 @@ object CompanyAction {
     fun del_manage(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/company/del_manage.json", params, handler)
     }
+    fun contract_list(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/company/contract_list.json", params, handler)
+    }
 
 
     fun reserve_confirm(params: RequestParams, handler: JsonHttpResponseHandler) {
