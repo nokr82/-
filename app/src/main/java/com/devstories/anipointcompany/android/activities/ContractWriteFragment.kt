@@ -83,11 +83,9 @@ class ContractWriteFragment : Fragment() {
 
         contractSP.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-
                 category_id = categoryIndex[position]
-                Log.d("카테",category_id.toString())
+                Log.d("카테", category_id.toString())
             }
-
             override fun onNothingSelected(p0: AdapterView<*>?) {
 
             }
@@ -106,19 +104,12 @@ class ContractWriteFragment : Fragment() {
             datedlg()
         }
 
-
     }
-
-    fun datedlg() {
-        DatePickerDialog(myContext, dateSetListener, year, month, day).show()
-    }
-
     private val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
         val msg = String.format("%d.%d.%d", year, monthOfYear + 1, dayOfMonth)
         dateTV.text = msg
         Toast.makeText(myContext, msg, Toast.LENGTH_SHORT).show()
     }
-
 
     private fun choosePhotoFromGallary() {
         val galleryIntent = Intent(Intent.ACTION_PICK,
@@ -155,6 +146,9 @@ class ContractWriteFragment : Fragment() {
 
     }
 
+    fun datedlg() {
+        DatePickerDialog(myContext, dateSetListener, year, month, day).show()
+    }
 
     fun contract_list() {
         val params = RequestParams()

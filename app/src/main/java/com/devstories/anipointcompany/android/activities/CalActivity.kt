@@ -238,12 +238,12 @@ class CalActivity : RootActivity() {
         }
 //        changeStep()
 
-        new_maleIV.setOnClickListener {
+        new_maleLL.setOnClickListener {
             setmenu4()
             new_maleIV.setImageResource(R.drawable.radio_on)
             new_gender = "M"
         }
-        new_femaleIV.setOnClickListener {
+        new_femaleLL.setOnClickListener {
             setmenu4()
             new_femaleIV.setImageResource(R.drawable.radio_on)
             new_gender = "F"
