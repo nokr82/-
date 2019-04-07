@@ -56,7 +56,7 @@ class SettingFragment : android.support.v4.app.Fragment() {
         val SettingMyInfoFragment: SettingMyInfoFragment = SettingMyInfoFragment()
         val OperPolicyFragment: OperPolicyFragment = OperPolicyFragment()
         val ContractListFragment: ContractListFragment = ContractListFragment()
-
+        val ContractWriteFragment: ContractWriteFragment = ContractWriteFragment()
         Utils.getViewHeight(msLL,object : Utils.OnHeightSetListener {
             override fun sized(width: Int, height: Int) {
                 val lps = msLL.getLayoutParams()
@@ -117,6 +117,12 @@ class SettingFragment : android.support.v4.app.Fragment() {
 
 
 
+        writeLL.setOnClickListener {
+            setmenu()
+            writeTV.setTextColor(Color.parseColor("#ffffff"))
+            childFragmentManager.beginTransaction().replace(R.id.settingFL, ContractWriteFragment).commit()
+        }
+
         contractLL.setOnClickListener {
             setmenu()
             contractTV.setTextColor(Color.parseColor("#ffffff"))
@@ -146,6 +152,7 @@ class SettingFragment : android.support.v4.app.Fragment() {
         myInfoTV.setTextColor(Color.parseColor("#80ffffff"))
         operPolicyTV.setTextColor(Color.parseColor("#80ffffff"))
         contractTV.setTextColor(Color.parseColor("#80ffffff"))
+        writeTV.setTextColor(Color.parseColor("#80ffffff"))
     }
 
     override fun onDestroy() {

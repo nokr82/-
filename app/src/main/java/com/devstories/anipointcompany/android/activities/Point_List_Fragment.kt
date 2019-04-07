@@ -318,10 +318,7 @@ class Point_List_Fragment : Fragment() {
     }
 
     private val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-        // TODO Auto-generated method stub
-
         val msg = String.format("%d.%d.%d", year, monthOfYear + 1, dayOfMonth)
-
         first_dateTV.text = msg
         startdateTV.text = msg
         nonameTV.visibility = View.VISIBLE
@@ -329,7 +326,6 @@ class Point_List_Fragment : Fragment() {
         loadmainData(company_id)
     }
     private val dateSetListener2 = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-        // TODO Auto-generated method stub
         val msg = String.format("%d.%d.%d", year, monthOfYear + 1, dayOfMonth)
         val end_msg = String.format("%d-%d-%d", year, monthOfYear + 1, dayOfMonth)
         end_date = end_msg

@@ -130,11 +130,11 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/monthLL"
+                                android:id="@+id/writeLL"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
                                 android:layout_weight="1"
-                                android:visibility="invisible"
+                                android:visibility="visible"
                                 android:orientation="vertical">
 
                                 <LinearLayout
@@ -143,11 +143,12 @@
                                     android:orientation="vertical">
 
                                     <me.grantland.widget.AutofitTextView
-                                        android:id="@+id/monthTV"
+                                        android:id="@+id/writeTV"
                                         android:layout_width="wrap_content"
                                         android:layout_height="match_parent"
                                         android:lineSpacingExtra="1sp"
                                         android:maxLines="1"
+                                        android:text="계약서 작성"
                                         android:singleLine="true"
                                         android:textColor="#80ffffff"
                                         android:textSize="36dp" />
