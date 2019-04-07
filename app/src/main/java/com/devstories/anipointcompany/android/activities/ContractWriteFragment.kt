@@ -10,6 +10,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.CompanyAction
 import com.devstories.anipointcompany.android.R
@@ -30,7 +32,9 @@ class ContractWriteFragment : Fragment() {
 
 
     private var progressDialog: CustomProgressDialog? = null
-
+    lateinit var adapter: ArrayAdapter<String>
+    var option_amount = ArrayList<String>()
+    var categoryIndex = ArrayList<Int>()
 
     private val GALLERY = 1
 
@@ -41,6 +45,9 @@ class ContractWriteFragment : Fragment() {
     var company_id = -1
     var page: Int = 1
     var totalpage: Int = 1
+
+    var category_id = -1
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
@@ -71,6 +78,20 @@ class ContractWriteFragment : Fragment() {
 
 
         contract_list()
+
+
+
+        contractSP.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+
+                category_id = categoryIndex[position]
+                Log.d("카테",category_id.toString())
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+        }
 
 
 
@@ -154,14 +175,22 @@ class ContractWriteFragment : Fragment() {
                     if ("ok" == result) {
 
                         var data = response.getJSONArray("contract")
-
+                        option_amount.clear()
+                        option_amount.add("종류선택")
+                        categoryIndex.add(-1)
                         for (i in 0 until data.length()) {
                             var json = data[i] as JSONObject
                             var type = json.getJSONObject("ContractType")
                             var name = Utils.getString(type, "name")
-
+                            option_amount.add(name)
+                            val category_id = Utils.getInt(type, "id")
+                            categoryIndex.add(category_id)
                         }
 
+                        adapter = ArrayAdapter(myContext, R.layout.spiner_item, option_amount)
+                        contractSP.adapter = adapter
+
+                        adapter.notifyDataSetChanged()
 
                     } else {
 

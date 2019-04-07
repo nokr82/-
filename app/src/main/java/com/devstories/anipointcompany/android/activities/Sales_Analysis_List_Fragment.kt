@@ -34,8 +34,9 @@ class Sales_Analysis_List_Fragment : Fragment() {
     lateinit var adapter: ArrayAdapter<String>
 
     var option_amount = ArrayList<String>()
-    var option_limit = arrayOf("5개씩보기", "10개씩보기")
     var categoryIndex = ArrayList<Int>()
+
+    var option_limit = arrayOf("5개씩보기", "10개씩보기")
 
     lateinit var pageSP: Spinner
     lateinit var amountSP: Spinner
@@ -245,13 +246,6 @@ class Sales_Analysis_List_Fragment : Fragment() {
 
         amountSP.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-                /*if (position==0){
-                    payment_type = 1
-                }else if (position==1){
-                    payment_type = 2
-                }else if (position==2){
-                    payment_type = 3
-                }*/
                 payment_type = position + 1
 
                 category_id = categoryIndex[position]
