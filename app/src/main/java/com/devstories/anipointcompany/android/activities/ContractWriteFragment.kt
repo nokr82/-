@@ -3,6 +3,7 @@ package com.devstories.anipointcompany.android.activities
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v4.app.Fragment
@@ -24,6 +25,7 @@ import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.fragment_contract_write.*
 import org.json.JSONException
 import org.json.JSONObject
+import java.io.ByteArrayInputStream
 import java.io.IOException
 import java.util.*
 
@@ -35,7 +37,7 @@ class ContractWriteFragment : Fragment() {
     lateinit var adapter: ArrayAdapter<String>
     var option_amount = ArrayList<String>()
     var categoryIndex = ArrayList<Int>()
-
+    var bitmap: BitmapDrawable? = null
     private val GALLERY = 1
 
     var year: Int = 1
@@ -121,15 +123,42 @@ class ContractWriteFragment : Fragment() {
         var memo = Utils.getString(memoET)
         var name = Utils.getString(nameET)
         var contract_date = Utils.getString(dateTV)
+        var confirm_num2 = Utils.getString(confirmET)
+        phone = Utils.getString(phoneET)
+        if (phone==""||phone.length != 11){
+            Toast.makeText(myContext,"연락처를 올바르게 입력해주세요.",Toast.LENGTH_SHORT).show()
+            return
+        }
 
+        if (name==""){
+            Toast.makeText(myContext,"성함을 입력해주세요.",Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (contract_date==""){
+            Toast.makeText(myContext,"날짜를 선택해주세요.",Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (confirm_num != confirm_num2){
+            Toast.makeText(myContext,"인증번호가 일치하지 않습니다.",Toast.LENGTH_SHORT).show()
+            return
+        }
 
         val params = RequestParams()
+
+        if (contractIV.drawable != null) {
+            bitmap = contractIV.drawable as BitmapDrawable
+            params.put("upload", ByteArrayInputStream(Utils.getByteArray(bitmap!!.bitmap)))
+        }else{
+            Toast.makeText(myContext,"계약서스캔본을 넣어주세요.",Toast.LENGTH_SHORT).show()
+            return
+        }
+
+
         params.put("company_id", company_id)
         params.put("phone", phone)
         params.put("name", name)
         params.put("memo", memo)
-        params.put("confirm_num", confirm_num)
-        params.put("confirm_num", confirm_num)
+        params.put("confirm_num", confirm_num2)
         params.put("contract_id", category_id)
         params.put("contract_date", contract_date)
 
@@ -181,7 +210,7 @@ class ContractWriteFragment : Fragment() {
                     progressDialog!!.dismiss()
                 }
 
-                // System.out.println(responseString);
+//                 System.out.println("오류!!!"+responseString);
 
                 throwable.printStackTrace()
                 error()
