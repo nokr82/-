@@ -129,6 +129,7 @@ class LoginActivity : RootActivity() {
                         PrefUtils.setPreference(context, "company_name", Utils.getString(company, "company_name"))
                         PrefUtils.setPreference(context, "only_yn", Utils.getString(company, "only_yn"))
                         PrefUtils.setPreference(context, "self_yn", Utils.getString(company, "self_yn"))
+                        PrefUtils.setPreference(context, "contract_yn", Utils.getString(company, "contract_yn"))
                         PrefUtils.setPreference(context, "autoLogin", true)
 
                         val intent = Intent(context, UserListActivity::class.java)

@@ -115,6 +115,12 @@ class SettingFragment : android.support.v4.app.Fragment() {
             }
         }
 
+        if (PrefUtils.getStringPreference(myContext,"contract_yn")=="N"){
+            writeLL.visibility = View.INVISIBLE
+            contractLL.visibility = View.INVISIBLE
+
+        }
+
 
 
         writeLL.setOnClickListener {
