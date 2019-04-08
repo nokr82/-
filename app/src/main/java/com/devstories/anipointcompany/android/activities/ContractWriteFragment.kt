@@ -379,7 +379,7 @@ class ContractWriteFragment : Fragment() {
 
                     if ("ok" == result) {
                     confirm_num = response!!.getString("confirm_num")
-
+                        Toast.makeText(myContext,confirm_num,Toast.LENGTH_SHORT).show()
 
                     } else {
 
