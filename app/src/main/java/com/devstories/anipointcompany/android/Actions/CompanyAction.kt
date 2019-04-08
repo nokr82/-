@@ -10,7 +10,9 @@ import com.loopj.android.http.RequestParams
 object CompanyAction {
 
 
-
+    fun contract_view_list(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/company/contract_view_list.json", params, handler)
+    }
     fun contract_write(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/company/contract_write.json", params, handler)
     }

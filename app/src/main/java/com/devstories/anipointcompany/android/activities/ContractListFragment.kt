@@ -7,7 +7,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AbsListView
 import android.widget.TextView
+import com.devstories.aninuriandroid.adapter.ContractListAdapter
+import com.devstories.aninuriandroid.adapter.UserListAdapter
 import com.devstories.anipointcompany.android.Actions.CompanyAction
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.CustomProgressDialog
@@ -28,13 +31,13 @@ class ContractListFragment : Fragment() {
 
 
     private var progressDialog: CustomProgressDialog? = null
+    lateinit var contractListAdapter: ContractListAdapter
 
-
-
+    var contract_id = -1
    var company_id = -1
     var page: Int = 1
     var totalpage: Int = 1
-
+    var adapterData: ArrayList<JSONObject> = ArrayList<JSONObject>()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
 
@@ -58,10 +61,33 @@ class ContractListFragment : Fragment() {
 
         contract_list()
 
-        addcontractTV.setOnClickListener {
+        contractListAdapter = ContractListAdapter(myContext, R.layout.item_contract_list, adapterData)
+        contractLV.adapter = contractListAdapter
 
+        var lastitemVisibleFlag = false
+        contractLV.setOnScrollListener(object : AbsListView.OnScrollListener {
+            override fun onScroll(view: AbsListView, firstVisibleItem: Int, visibleItemCount: Int, totalItemCount: Int) {
+                lastitemVisibleFlag = totalItemCount > 0 && firstVisibleItem + visibleItemCount >= totalItemCount
+            }
+
+            override fun onScrollStateChanged(view: AbsListView, scrollState: Int) {
+                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && lastitemVisibleFlag) {
+                    if (totalpage > page) {
+                        page++
+                        contract_view_list()
+                    }
+
+                }
+            }
+
+        })
+        btn_search.setOnClickListener {
+            page =1
+            contract_view_list()
         }
 
+
+        contract_view_list()
 
 
     }
@@ -70,6 +96,103 @@ class ContractListFragment : Fragment() {
 
 
 
+
+    fun contract_view_list() {
+
+        var keyword = Utils.getString(keywordET)
+
+        val params = RequestParams()
+        params.put("searchKeyword", keyword)
+        params.put("company_id", company_id)
+        params.put("contract_id", contract_id)
+        params.put("page", page)
+
+
+        CompanyAction.contract_view_list(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    Log.d("계약리스트",response.toString())
+
+                    val result = response!!.getString("result")
+
+                    if ("ok" == result) {
+                        totalpage = response!!.getInt("totalPage")
+                        val contract = response!!.getJSONArray("contract")
+
+                        keywordET.setText("")
+
+                        if (page==1){
+                            adapterData.clear()
+                            contractListAdapter.notifyDataSetChanged()
+                        }
+
+                        for (i in 0 until contract.length()) {
+
+                            Log.d("데이터",contract[i].toString())
+                            adapterData.add(contract[i] as JSONObject)
+
+                        }
+
+                        contractListAdapter.notifyDataSetChanged()
+
+                    } else {
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(myContext, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
 
     fun contract_list() {
         val params = RequestParams()
@@ -93,12 +216,25 @@ class ContractListFragment : Fragment() {
 
                         for (i in 0 until data.length()) {
                             var json = data[i] as JSONObject
+
                             var type =json.getJSONObject("ContractType")
                             var name =Utils.getString(type,"name")
+
                             val userView = View.inflate(myContext, R.layout.item_contract, null)
                             var itemTV: TextView = userView.findViewById(R.id.itemTV)
 
+
                             itemTV.text = name
+
+                            itemTV.setOnClickListener {
+                                contract_id =Utils.getInt(type,"id")
+                                if (contract_id == 0){
+                                    contract_id = -1
+                                }
+
+                                contract_view_list()
+                            }
+
                             contractLL.addView(userView)
                         }
 
@@ -160,8 +296,11 @@ class ContractListFragment : Fragment() {
     }
 
 
-    override fun onPause() {
-        super.onPause()
+    override fun onResume() {
+        super.onResume()
+        contract_id = -1
+        page = 1
+        contract_view_list()
     }
 
 
