@@ -178,6 +178,19 @@ class ContractWriteFragment : Fragment() {
                     val result = response!!.getString("result")
 
                     if ("ok" == result) {
+                        Toast.makeText(myContext,"작성이 완료되었습니다.",Toast.LENGTH_SHORT).show()
+
+                        nameET.setText("")
+                        dateTV.setText("날짜 선택")
+                        contractSP.setSelection(0)
+                        contractIV.setImageResource(0)
+                        phoneET.setText("")
+                        confirmET.setText("")
+                        confirm_num= ""
+                        phone=""
+                        emailET.setText("")
+                        memoET.setText("")
+
 
 
                     } else {
