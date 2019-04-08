@@ -56,6 +56,7 @@
                 <ImageView
                     android:id="@+id/contractIV"
                     android:layout_width="match_parent"
+                    android:scaleType="centerCrop"
                     android:layout_height="match_parent"
                     />
 
@@ -468,12 +469,12 @@
                 android:layout_height="1dp"
                 android:background="#e7e7e7" />
 
-
             <RelativeLayout
                 android:id="@+id/signRL"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_margin="10dp"
+                android:splitMotionEvents="false"
                 android:background="@drawable/background_strock_e7e7e7">
                 <TextView
                     android:id="@+id/hintSignTV"
@@ -482,10 +483,11 @@
                     android:text="서명해주세요"
                     android:gravity="center"/>
 
-                <!--<kr.co.hoit.android.base.DrawingView-->
-                <!--android:id="@+id/signDV"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent" />-->
+             <ImageView
+                 android:id="@+id/signIV"
+                 android:scaleType="centerCrop"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent" />
             </RelativeLayout>
 
 

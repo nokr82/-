@@ -1,8 +1,10 @@
 package com.devstories.anipointcompany.android.activities
 
 import android.app.DatePickerDialog
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
@@ -10,7 +12,6 @@ import android.provider.MediaStore
 import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
@@ -18,9 +19,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.CompanyAction
 import com.devstories.anipointcompany.android.R
-import com.devstories.anipointcompany.android.base.CustomProgressDialog
-import com.devstories.anipointcompany.android.base.PrefUtils
-import com.devstories.anipointcompany.android.base.Utils
+import com.devstories.anipointcompany.android.base.*
 import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
 import cz.msebera.android.httpclient.Header
@@ -33,30 +32,31 @@ import java.util.*
 
 class ContractWriteFragment : Fragment() {
     lateinit var myContext: Context
-
-
-    private var mBitmap: Bitmap? = null
-    private var mPaint: Paint? = null
-    private var signDV: DrawingView? = null
-    private var mNewBitmap: Bitmap? = null
-
     private var progressDialog: CustomProgressDialog? = null
     lateinit var adapter: ArrayAdapter<String>
     var option_amount = ArrayList<String>()
     var categoryIndex = ArrayList<Int>()
     var bitmap: BitmapDrawable? = null
     private val GALLERY = 1
-
     var year: Int = 1
     var month: Int = 1
     var day: Int = 1
-
     var company_id = -1
     var page: Int = 1
     var totalpage: Int = 1
     var confirm_num = ""
     var category_id = -1
     var phone = ""
+    var contract_id = -1
+    private val SIGN_UP = 1215
+    internal var reloadReciver: BroadcastReceiver? = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent?) {
+            if (intent != null) {
+                contract_id = intent.getIntExtra("contract_id",-1)
+                contract_detail()
+            }
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
@@ -76,7 +76,6 @@ class ContractWriteFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
         company_id = PrefUtils.getIntPreference(context, "company_id")
 
         //날짜갖고오기
@@ -85,18 +84,8 @@ class ContractWriteFragment : Fragment() {
         month = calendar.get(Calendar.MONTH)
         day = calendar.get(Calendar.DAY_OF_MONTH)
 
-        signDV = DrawingView(myContext)
-        signRL.addView(signDV)
-
-        mPaint = Paint()
-        mPaint!!.setAntiAlias(true)
-        mPaint!!.setDither(true)
-        mPaint!!.setColor(Color.BLACK)
-        mPaint!!.setStyle(Paint.Style.STROKE)
-        mPaint!!.setStrokeJoin(Paint.Join.ROUND)
-        mPaint!!.setStrokeCap(Paint.Cap.ROUND)
-        mPaint!!.setStrokeWidth(40f)
-
+        var filter1 = IntentFilter("SIGNUP")
+        myContext.registerReceiver(reloadReciver, filter1)
         contract_list()
 
 
@@ -115,9 +104,12 @@ class ContractWriteFragment : Fragment() {
             contract_confirm()
         }
 
+        signRL.setOnClickListener {
+            val intent = Intent(myContext,DlgSignActivity::class.java)
+            startActivityForResult(intent,SIGN_UP)
+        }
 
         imgRL.setOnClickListener {
-
             choosePhotoFromGallary()
         }
 
@@ -136,117 +128,86 @@ class ContractWriteFragment : Fragment() {
 
     }
 
-    inner class DrawingView(internal var context: Context) : View(context) {
 
-        private var mCanvas: Canvas? = null
-        private val mPath: Path
-        private val mBitmapPaint: Paint
-        private val circlePaint: Paint
-        private val circlePath: Path
+    fun contract_detail() {
 
-        private var mX: Float = 0.toFloat()
-        private var mY: Float = 0.toFloat()
+        val params = RequestParams()
+        params.put("contract_id", contract_id)
 
-        init {
-            mPath = Path()
+        CompanyAction.contract_detail(params, object : JsonHttpResponseHandler() {
 
-            mBitmapPaint = Paint()
-            // mBitmapPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_OUT));
-            // mBitmapPaint.setColor(Color.TRANSPARENT);
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
 
-            circlePaint = Paint()
-            circlePath = Path()
-            circlePaint.isAntiAlias = true
-            circlePaint.color = Color.BLUE
-            circlePaint.style = Paint.Style.STROKE
-            circlePaint.strokeJoin = Paint.Join.MITER
-            circlePaint.strokeWidth = 4f
-        }
+                try {
+                    Log.d("작성", response.toString())
 
-        override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-            super.onSizeChanged(w, h, oldw, oldh)
+                    val result = response!!.getString("result")
 
-            mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
-            // mBitmap.eraseColor(Color.WHITE);
-            // mBitmap.eraseColor(Color.TRANSPARENT);
+                    if ("ok" == result) {
+                        val contract_s = response!!.getJSONObject("contract")
+                        val contract = contract_s.getJSONObject("Contract")
+                        var sign_uri = Utils.getString(contract,"sign_uri")
+                        var image = Config.url + sign_uri
+                        com.nostra13.universalimageloader.core.ImageLoader.getInstance().displayImage(image,signIV, Utils.UILoptionsUserProfile)
 
-            mNewBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
-            mCanvas = Canvas(mBitmap)
-        }
 
-        override fun onDraw(canvas: Canvas) {
-            super.onDraw(canvas)
 
-            canvas.drawBitmap(mBitmap, 0f, 0f, mBitmapPaint)
-            canvas.drawPath(mPath, mPaint)
-            canvas.drawPath(circlePath, circlePaint)
-        }
+                    } else {
 
-        private fun touch_start(x: Float, y: Float) {
-            mPath.reset()
-            mPath.moveTo(x, y)
-            mX = x
-            mY = y
-        }
+                    }
 
-        private fun touch_move(x: Float, y: Float) {
-            val dx = Math.abs(x - mX)
-            val dy = Math.abs(y - mY)
-            if (dx >= TOUCH_TOLERANCE || dy >= TOUCH_TOLERANCE) {
-                mPath.quadTo(mX, mY, (x + mX) / 2, (y + mY) / 2)
-                mX = x
-                mY = y
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
 
-                circlePath.reset()
-                circlePath.addCircle(mX, mY, 30f, Path.Direction.CW)
             }
-        }
 
-        private fun touch_up() {
-            mPath.lineTo(mX, mY)
-            circlePath.reset()
-            // commit the path to our offscreen
-            mCanvas!!.drawPath(mPath, mPaint)
-            // kill this so we don't double draw
-            mPath.reset()
-        }
 
-        override fun onTouchEvent(event: MotionEvent): Boolean {
-            val x = event.x
-            val y = event.y
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
 
-            when (event.action) {
-                MotionEvent.ACTION_DOWN -> {
-                    touch_start(x, y)
-                    invalidate()
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(myContext, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
                 }
-                MotionEvent.ACTION_MOVE -> {
-                    hintSignTV.visibility = View.GONE
-                    touch_move(x, y)
-                    invalidate()
-                }
-                MotionEvent.ACTION_UP -> {
-                    touch_up()
-                    invalidate()
+
+//                 System.out.println("오류!!!"+responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
                 }
             }
-            return true
-        }
 
-        fun clearCanvas() {
-            mCanvas!!.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR)
-            mCanvas!!.drawBitmap(mBitmap, 0f, 0f, mBitmapPaint)
-            mCanvas!!.drawPath(mPath, mPaint)
-            mCanvas!!.drawPath(circlePath, circlePaint)
-
-            invalidate()
-            System.gc()
-        }
-        private val TOUCH_TOLERANCE = 4f
-
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
     }
-
-
 
     fun contract_write() {
 
@@ -283,7 +244,7 @@ class ContractWriteFragment : Fragment() {
             return
         }
 
-
+        params.put("id", contract_id)
         params.put("company_id", company_id)
         params.put("phone", phone)
         params.put("name", name)
@@ -376,6 +337,7 @@ class ContractWriteFragment : Fragment() {
             }
         })
     }
+
     fun contract_confirm() {
         phone = Utils.getString(phoneET)
 
