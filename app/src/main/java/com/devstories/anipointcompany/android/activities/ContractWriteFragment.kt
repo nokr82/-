@@ -215,6 +215,7 @@ class ContractWriteFragment : Fragment() {
         var name = Utils.getString(nameET)
         var contract_date = Utils.getString(dateTV)
         var confirm_num2 = Utils.getString(confirmET)
+        var email = Utils.getString(emailET)
         phone = Utils.getString(phoneET)
 
 
@@ -223,7 +224,10 @@ class ContractWriteFragment : Fragment() {
             Toast.makeText(myContext,"연락처를 올바르게 입력해주세요.",Toast.LENGTH_SHORT).show()
             return
         }
-
+        if (email==""){
+            Toast.makeText(myContext,"이메일을 입력해주세요.",Toast.LENGTH_SHORT).show()
+            return
+        }
         if (name==""){
             Toast.makeText(myContext,"성함을 입력해주세요.",Toast.LENGTH_SHORT).show()
             return
@@ -258,6 +262,8 @@ class ContractWriteFragment : Fragment() {
         params.put("phone", phone)
         params.put("name", name)
         params.put("memo", memo)
+        params.put("email", email)
+
         params.put("confirm_num", confirm_num2)
         params.put("contract_id", category_id)
         params.put("contract_date", contract_date)
