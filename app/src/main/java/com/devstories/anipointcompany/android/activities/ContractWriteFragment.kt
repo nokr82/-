@@ -216,6 +216,9 @@ class ContractWriteFragment : Fragment() {
         var contract_date = Utils.getString(dateTV)
         var confirm_num2 = Utils.getString(confirmET)
         phone = Utils.getString(phoneET)
+
+
+
         if (phone==""||phone.length != 11){
             Toast.makeText(myContext,"연락처를 올바르게 입력해주세요.",Toast.LENGTH_SHORT).show()
             return
@@ -233,6 +236,12 @@ class ContractWriteFragment : Fragment() {
             Toast.makeText(myContext,"인증번호가 일치하지 않습니다.",Toast.LENGTH_SHORT).show()
             return
         }
+
+        if (contract_id==-1){
+            Toast.makeText(myContext,"서명을 해주세요.",Toast.LENGTH_SHORT).show()
+            return
+        }
+
 
         val params = RequestParams()
 
@@ -281,7 +290,8 @@ class ContractWriteFragment : Fragment() {
                         phone=""
                         emailET.setText("")
                         memoET.setText("")
-
+                        contract_id = -1
+                        signIV.setImageResource(0)
 
 
                     } else {

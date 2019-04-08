@@ -219,6 +219,7 @@ class DlgSignActivity : RootActivity() {
     }
 
     fun screenshot(): File {
+
         val mPath = Environment.getExternalStorageDirectory().toString() + "/Pictures/sign.png"
         val imageFile = File(mPath)
         try {
@@ -233,7 +234,7 @@ class DlgSignActivity : RootActivity() {
             imageFile.createNewFile()
 
             val outputStream = FileOutputStream(imageFile)
-            Log.d("스크린",outputStream.toString())
+
             val quality = 100
             bitmap.compress(Bitmap.CompressFormat.PNG, quality, outputStream)
             outputStream.close()
