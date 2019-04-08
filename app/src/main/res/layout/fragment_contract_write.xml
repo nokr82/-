@@ -18,11 +18,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
-            android:letterSpacing="-0.03"
-            android:lineSpacingExtra="3sp"
             android:text="계약서 스캔본"
             android:textColor="#666666"
-            android:textSize="18sp"
+            android:textSize="18dp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -30,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/background_strock_e7e7e7"
             android:gravity="center"
@@ -77,10 +76,8 @@
                     android:layout_weight="0.5"
                     android:background="#efefef"
                     android:gravity="center"
-                    android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="4sp"
                     android:text="계약서종류"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     android:textStyle="bold" />
 
                 <View
@@ -144,10 +141,8 @@
                     android:layout_weight="0.5"
                     android:background="#efefef"
                     android:gravity="center"
-                    android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="4sp"
                     android:text="성함"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     android:textStyle="bold" />
 
                 <View
@@ -163,11 +158,12 @@
                     android:paddingLeft="19dp">
 
                     <EditText
+                        android:id="@+id/nameET"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@null"
                         android:gravity="center_vertical"
-                        android:textSize="16sp" />
+                        android:textSize="16dp" />
 
                     <View
                         android:layout_width="match_parent"
@@ -196,10 +192,8 @@
                     android:layout_weight="0.5"
                     android:background="#efefef"
                     android:gravity="center"
-                    android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="4sp"
                     android:text="날짜"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     android:textStyle="bold" />
 
                 <View
@@ -222,7 +216,7 @@
                         android:layout_height="match_parent"
                         android:background="@null"
                         android:gravity="center_vertical"
-                        android:textSize="16sp" />
+                        android:textSize="16dp" />
 
                     <View
                         android:layout_width="match_parent"
@@ -251,10 +245,8 @@
                     android:layout_weight="0.5"
                     android:background="#efefef"
                     android:gravity="center"
-                    android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="4sp"
                     android:text="연락처"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     android:textStyle="bold" />
 
                 <View
@@ -265,24 +257,45 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.7"
+                    android:layout_weight="1.2"
                     android:orientation="vertical"
                     android:paddingLeft="19dp">
 
                     <EditText
+                        android:id="@+id/phoneET"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@null"
                         android:inputType="number"
                         android:gravity="center_vertical"
-                        android:textSize="16sp" />
+                        android:textSize="16dp" />
+
+                  
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical"
+                    android:paddingLeft="19dp">
+
+                 <TextView
+                     android:id="@+id/confirmTV"
+                     android:gravity="center_vertical"
+                     android:paddingRight="10dp"
+                     android:paddingLeft="10dp"
+                     android:background="@drawable/background_gradient"
+                     android:layout_width="wrap_content"
+                     android:layout_height="match_parent"
+                     android:textColor="#ffffff"
+                     android:textSize="16dp"
+                     android:text="인증번호 발송"/>
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="#e7e7e7" />
                 </LinearLayout>
-
                 <View
                     android:layout_width="1dp"
                     android:layout_height="40dp"
@@ -304,10 +317,8 @@
                     android:layout_weight="0.5"
                     android:background="#efefef"
                     android:gravity="center"
-                    android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="4sp"
                     android:text="인증번호"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     android:textStyle="bold" />
 
                 <View
@@ -323,13 +334,14 @@
                     android:paddingLeft="19dp">
 
                     <EditText
+                        android:id="@+id/confirmET"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@null"
                         android:maxLength="4"
                         android:inputType="number"
                         android:gravity="center_vertical"
-                        android:textSize="16sp" />
+                        android:textSize="16dp" />
 
                     <View
                         android:layout_width="match_parent"
@@ -358,10 +370,8 @@
                     android:layout_weight="0.5"
                     android:background="#efefef"
                     android:gravity="center"
-                    android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="4sp"
                     android:text="이메일"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     android:textStyle="bold" />
 
                 <View
@@ -377,12 +387,12 @@
                     android:paddingLeft="19dp">
 
                     <EditText
+                        android:id="@+id/emailET"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@null"
-
                         android:gravity="center_vertical"
-                        android:textSize="16sp" />
+                        android:textSize="16dp" />
 
                     <View
                         android:layout_width="match_parent"
@@ -414,10 +424,8 @@
                     android:layout_weight="0.5"
                     android:background="#efefef"
                     android:gravity="center"
-                    android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="4sp"
                     android:text="메모"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     android:textStyle="bold" />
 
                 <View
@@ -433,11 +441,12 @@
                     android:paddingLeft="19dp">
 
                     <EditText
+                        android:id="@+id/memoET"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@null"
                         android:gravity="center_vertical"
-                        android:textSize="16sp" />
+                        android:textSize="16dp" />
 
                     <View
                         android:layout_width="match_parent"
@@ -459,7 +468,7 @@
                 android:layout_height="1dp"
                 android:background="#e7e7e7" />
             <TextView
-                android:id="@+id/imgcheckTV"
+                android:id="@+id/writeTV"
                 android:layout_width="150dp"
                 android:layout_height="51dp"
                 android:layout_gravity="center"

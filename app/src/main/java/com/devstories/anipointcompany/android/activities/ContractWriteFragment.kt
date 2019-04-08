@@ -45,9 +45,9 @@ class ContractWriteFragment : Fragment() {
     var company_id = -1
     var page: Int = 1
     var totalpage: Int = 1
-
+    var confirm_num = ""
     var category_id = -1
-
+    var phone = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.myContext = container!!.context
@@ -91,6 +91,9 @@ class ContractWriteFragment : Fragment() {
             }
         }
 
+        confirmTV.setOnClickListener {
+            contract_confirm()
+        }
 
 
         imgRL.setOnClickListener {
@@ -104,7 +107,187 @@ class ContractWriteFragment : Fragment() {
             datedlg()
         }
 
+        writeTV.setOnClickListener {
+            contract_write()
+        }
+
+
+
+
     }
+
+    fun contract_write() {
+
+        var memo = Utils.getString(memoET)
+        var name = Utils.getString(nameET)
+        var contract_date = Utils.getString(dateTV)
+
+
+        val params = RequestParams()
+        params.put("company_id", company_id)
+        params.put("phone", phone)
+        params.put("name", name)
+        params.put("memo", memo)
+        params.put("confirm_num", confirm_num)
+        params.put("confirm_num", confirm_num)
+        params.put("contract_id", category_id)
+        params.put("contract_date", contract_date)
+
+
+
+
+        CompanyAction.contract_write(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    Log.d("작성", response.toString())
+
+                    val result = response!!.getString("result")
+
+                    if ("ok" == result) {
+
+
+                    } else {
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(myContext, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
+    fun contract_confirm() {
+        phone = Utils.getString(phoneET)
+
+        if (phone==""||phone.length != 11){
+            Toast.makeText(myContext,"연락처를 올바르게 입력해주세요.",Toast.LENGTH_SHORT).show()
+            return
+        }
+        val params = RequestParams()
+        params.put("company_id", company_id)
+        params.put("phone", phone)
+
+        CompanyAction.contract_confirm(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    Log.d("인증", response.toString())
+
+                    val result = response!!.getString("result")
+
+                    if ("ok" == result) {
+                    confirm_num = response!!.getString("confirm_num")
+
+
+                    } else {
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(myContext, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
+
+
+
+
     private val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
         val msg = String.format("%d.%d.%d", year, monthOfYear + 1, dayOfMonth)
         dateTV.text = msg
