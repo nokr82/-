@@ -123,14 +123,6 @@ class ContractWriteActivity : RootActivity() {
         addimgTV.setOnClickListener {
             choosePhotoFromGallary()
         }
-
-
-        imgRL.setOnClickListener {
-            choosePhotoFromGallary()
-        }
-
-
-
         dateLL.setOnClickListener {
             datedlg()
         }

@@ -45,7 +45,7 @@ class DlgSignActivity : RootActivity() {
     private var mPaint: Paint? = null
     private var signDV: DrawingView? = null
     private var mNewBitmap: Bitmap? = null
-
+    private var bitmap:Bitmap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -218,46 +218,18 @@ class DlgSignActivity : RootActivity() {
 
     }
 
-    fun screenshot(): File {
-
-        val mPath = Environment.getExternalStorageDirectory().toString() + "/Pictures/sign.png"
-        val imageFile = File(mPath)
-        try {
-            signRL.setBackgroundColor(Color.TRANSPARENT)
-            signRL.drawingCacheBackgroundColor = Color.TRANSPARENT
-            signRL.isDrawingCacheEnabled = true
-            signRL.buildDrawingCache(true)
-
-            val bitmap = signRL.drawingCache
-            bitmap.setHasAlpha(true)
-
-            imageFile.createNewFile()
-
-            val outputStream = FileOutputStream(imageFile)
-
-            val quality = 100
-            bitmap.compress(Bitmap.CompressFormat.PNG, quality, outputStream)
-            outputStream.close()
-
-            signRL.isDrawingCacheEnabled = false
-        } catch (e: Throwable) {
-            e.printStackTrace()
-        }
-
-        return imageFile
-    }
     // 서명저장
     private fun save() {
+        signRL.setBackgroundColor(Color.TRANSPARENT)
+        signRL.drawingCacheBackgroundColor = Color.TRANSPARENT
+        signRL.isDrawingCacheEnabled = true
+        signRL.buildDrawingCache(true)
 
+        bitmap = signRL.drawingCache
+        bitmap!!.setHasAlpha(true)
         val params = RequestParams()
         params.put("company_id",PrefUtils.getIntPreference(context,"company_id"))
-        val f = screenshot()
-        var bitmap: Bitmap? = null
-        if (f != null && f.exists()) {
-            bitmap = BitmapFactory.decodeFile(f.getAbsolutePath())
-            bitmap = Utils.resize(bitmap, 300)
-            f.delete()
-        }
+
         Log.d("결과",bitmap.toString())
 
         if (bitmap != null) {
