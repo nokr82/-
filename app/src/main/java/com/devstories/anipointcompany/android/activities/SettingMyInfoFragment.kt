@@ -650,7 +650,6 @@ class SettingMyInfoFragment : Fragment() {
             val imagV = v.findViewById<ImageView>(R.id.c_imgIV)
             if (imagV is ImageView) {
                 val bitmap = imagV.drawable as BitmapDrawable
-
                 params.put("upload[$i]", ByteArrayInputStream(Utils.getByteArray(bitmap.bitmap)))
                 Log.d("넓이",bitmap.bitmap.width.toString())
                 Log.d("높이",bitmap.bitmap.height.toString())

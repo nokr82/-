@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Build
 import android.os.Bundle
@@ -15,6 +16,7 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.CompanyAction
 import com.devstories.anipointcompany.android.R
@@ -48,6 +50,9 @@ class ContractWriteActivity : RootActivity() {
     var category_id = -1
     var phone = ""
     var contract_id = -1
+    var addImages = ArrayList<Bitmap>()
+
+
     private val SIGN_UP = 1215
     internal var reloadReciver: BroadcastReceiver? = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent?) {
@@ -114,6 +119,11 @@ class ContractWriteActivity : RootActivity() {
             val intent = Intent(context,DlgSignActivity::class.java)
             startActivityForResult(intent,SIGN_UP)
         }
+
+        addimgTV.setOnClickListener {
+            choosePhotoFromGallary()
+        }
+
 
         imgRL.setOnClickListener {
             choosePhotoFromGallary()
@@ -253,14 +263,25 @@ class ContractWriteActivity : RootActivity() {
 
 
         val params = RequestParams()
+        var seq = 0;
 
-        if (contractIV.drawable != null) {
+        for (i in 0 until userLL.childCount) {
+            val v = userLL.getChildAt(i)
+            Log.d("브이",v.toString())
+            val imagV = v.findViewById<ImageView>(R.id.c_imgIV)
+            if (imagV is ImageView) {
+                val bitmap = imagV.drawable as BitmapDrawable
+                params.put("upload[$i]", ByteArrayInputStream(Utils.getByteArray(bitmap.bitmap)))
+                seq++
+            }
+        }
+      /*  if (contractIV.drawable != null) {
             bitmap = contractIV.drawable as BitmapDrawable
             params.put("upload", ByteArrayInputStream(Utils.getByteArray(bitmap!!.bitmap)))
         }else{
             Toast.makeText(context,"계약서스캔본을 넣어주세요.",Toast.LENGTH_SHORT).show()
             return
-        }
+        }*/
 
 
 
@@ -292,21 +313,7 @@ class ContractWriteActivity : RootActivity() {
 
                     if ("ok" == result) {
                         Toast.makeText(context,"작성이 완료되었습니다.",Toast.LENGTH_SHORT).show()
-
-                        nameET.setText("")
-                        dateTV.setText("날짜 선택")
-                        contractSP.setSelection(0)
-                        contractIV.setImageResource(0)
-                        phoneET.setText("")
-                        confirmET.setText("")
-                        confirm_num= ""
-                        phone=""
-                        emailET.setText("")
-                        memoET.setText("")
-                        contract_id = -1
-                        signIV.setImageResource(0)
-
-
+                        finish()
                     } else {
 
                     }
@@ -471,10 +478,19 @@ class ContractWriteActivity : RootActivity() {
                 try {
                     var thumbnail = MediaStore.Images.Media.getBitmap(context.contentResolver, contentURI)
                     thumbnail = Utils.rotate(context.contentResolver, thumbnail, contentURI)
+                    addImages.add(thumbnail)
+                    val userView = View.inflate(context, R.layout.item_contract_img, null)
+                    val c_imgIV : ImageView = userView.findViewById(R.id.c_imgIV)
+                    val delIV : ImageView = userView.findViewById(R.id.delIV)
+                    c_imgIV.setImageBitmap(thumbnail)
+                    userLL.addView(userView)
+                    //배열사이즈값 -해줘서
+                    userView.tag = addImages.size -1
 
-
-                    contractIV.setImageBitmap(thumbnail)
-
+                    delIV.setOnClickListener {
+                        Log.d("태그",userView.tag.toString())
+                        userLL.removeView(userView)
+                    }
                 } catch (e: IOException) {
                     e.printStackTrace()
                     Toast.makeText(context, "바꾸기실패", Toast.LENGTH_SHORT).show()
