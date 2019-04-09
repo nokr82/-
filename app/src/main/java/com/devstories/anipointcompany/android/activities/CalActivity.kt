@@ -74,7 +74,7 @@ class CalActivity : RootActivity() {
     var coupon_id = -1
     var rand_code = ""
     var use_coupon = "N"
-    var self_yn =-1
+    var self_yn = -1
 
     internal var checkHandler: Handler = object : Handler() {
         override fun handleMessage(msg: android.os.Message) {
@@ -136,35 +136,35 @@ class CalActivity : RootActivity() {
 
 
 
-        if (reserve_type == 1){
+        if (reserve_type == 1) {
             step = 5
             member_id = intent.getIntExtra("member_id", -1)
-            use_point = intent.getIntExtra("use_point",-1)
-            price = intent.getIntExtra("price",-1)
-            payment_type = intent.getIntExtra("payment_type",-1)
+            use_point = intent.getIntExtra("use_point", -1)
+            price = intent.getIntExtra("price", -1)
+            payment_type = intent.getIntExtra("payment_type", -1)
             new_member_yn = "N"
         }
 
 
         company_id = PrefUtils.getIntPreference(context, "company_id")
 
-        if (no_stack == 1){
-            couponLL.visibility= View.GONE
+        if (no_stack == 1) {
+            couponLL.visibility = View.GONE
             depositlessLL.visibility = View.GONE
         }
 
 
         if (step == 1) {
-            if (no_stack==1){
+            if (no_stack == 1) {
                 opTV.text = "무적립결제"
                 per_type = -1
                 stackLL.setBackgroundColor(Color.parseColor("#FFFFFF"))
-            }else{
+            } else {
                 per_type = 1
                 stackLL.setBackgroundColor(Color.parseColor("#906e8a32"))
             }
 
-        }else{
+        } else {
             per_type = -1
             stackLL.setBackgroundColor(Color.parseColor("#FFFFFF"))
         }
@@ -248,7 +248,7 @@ class CalActivity : RootActivity() {
             new_femaleIV.setImageResource(R.drawable.radio_on)
             new_gender = "F"
         }
-        if (self_yn==1){
+        if (self_yn == 1) {
             stackLL.visibility = View.GONE
             stack2LL.visibility = View.GONE
             op_accLL.callOnClick()
@@ -299,17 +299,17 @@ class CalActivity : RootActivity() {
         moneyTV.text = "0"
 
         op_accLL.setOnClickListener {
-            if (no_stack == 1){
-                Toast.makeText(context,"무적립 결제입니다.",Toast.LENGTH_SHORT).show()
+            if (no_stack == 1) {
+                Toast.makeText(context, "무적립 결제입니다.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             setmenu3()
-            if (per_type != 3){
+            if (per_type != 3) {
                 per_type = 3
                 op_accLL.setBackgroundColor(Color.parseColor("#906e8a32"))
                 val intent = Intent(context, DlgEditPerActivity::class.java)
                 startActivityForResult(intent, EDIT_POINT)
-            }else{
+            } else {
                 pointTV.setText("적립포인트")
                 per_type = -1
                 per = ""
@@ -319,8 +319,8 @@ class CalActivity : RootActivity() {
         }
 
         stackLL.setOnClickListener {
-            if (no_stack == 1){
-                Toast.makeText(context,"무적립 결제입니다.",Toast.LENGTH_SHORT).show()
+            if (no_stack == 1) {
+                Toast.makeText(context, "무적립 결제입니다.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -333,7 +333,7 @@ class CalActivity : RootActivity() {
 
             setmenu3()
 
-            if (per_type!=1){
+            if (per_type != 1) {
                 if (payment_type == 3) {
                     Toast.makeText(context, "포인트결제는 적립할 수 없습니다.", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
@@ -371,7 +371,7 @@ class CalActivity : RootActivity() {
                     pointTV.setText(point)
                 }
 
-            }else{
+            } else {
                 pointTV.setText("적립포인트")
                 per_type = -1
                 per = ""
@@ -381,8 +381,8 @@ class CalActivity : RootActivity() {
         }
 
         stack2LL.setOnClickListener {
-            if (no_stack == 1){
-                Toast.makeText(context,"무적립 결제입니다.",Toast.LENGTH_SHORT).show()
+            if (no_stack == 1) {
+                Toast.makeText(context, "무적립 결제입니다.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             if (usePointLL.visibility == View.VISIBLE) {
@@ -393,7 +393,7 @@ class CalActivity : RootActivity() {
             }
             setmenu3()
 
-            if (per_type!=2){
+            if (per_type != 2) {
                 if (payment_type == 3) {
                     Toast.makeText(context, "포인트결제는 적립할 수 없습니다.", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
@@ -429,7 +429,7 @@ class CalActivity : RootActivity() {
                     val point = splitPoint.get(0)
                     pointTV.setText(point)
                 }
-            }else{
+            } else {
                 pointTV.setText("적립포인트")
                 per_type = -1
                 per = ""
@@ -546,7 +546,7 @@ class CalActivity : RootActivity() {
                 Toast.makeText(context, "가격을 입력해주세요.", Toast.LENGTH_LONG).show()
 //                return@setOnClickListener
             }
-            if (no_stack !=1){
+            if (no_stack != 1) {
                 if (member_id < 1) {
                     Toast.makeText(context, "회원정보가 없습니다.", Toast.LENGTH_LONG).show()
                     return@setOnClickListener
@@ -576,7 +576,7 @@ class CalActivity : RootActivity() {
 
             }
 
-            if (opTV.text.equals("적립")||opTV.text.equals("무적립결제")) {
+            if (opTV.text.equals("적립") || opTV.text.equals("무적립결제")) {
 
                 p_type = 1
                 type = 1
@@ -587,62 +587,58 @@ class CalActivity : RootActivity() {
                     return@setOnClickListener
                 }
 
-                if (reserve_type != -1){
+                if (reserve_type != -1) {
                     p_type = 3
                     changeStep()
                     stack_point(member_id.toString())
-                }else{
+                } else {
 
-                if (per_type == 1) {
-                    val totalpoint = Integer.parseInt(moneyTV.text.toString())
-                    Log.d("포인트", totalpoint.toString())
+                    if (per_type == 1) {
+                        val totalpoint = Integer.parseInt(moneyTV.text.toString())
+                        Log.d("포인트", totalpoint.toString())
 
-                    per = stackTV.text.toString()
+                        per = stackTV.text.toString()
 
-                    if (membership_per != -1) {
-                        stackpoint = totalpoint * (membership_per + Integer.parseInt(stackTV.text.toString())) / 100
+                        if (membership_per != -1) {
+                            stackpoint = totalpoint * (membership_per + Integer.parseInt(stackTV.text.toString())) / 100
+                        } else {
+                            stackpoint = totalpoint * Integer.parseInt(stackTV.text.toString()) / 100
+                        }
+                        changeStep()
+
+                        stack_point(member_id.toString())
+                    } else if (per_type == 2) {
+                        val totalpoint = Integer.parseInt(moneyTV.text.toString())
+                        Log.d("포인트", totalpoint.toString())
+
+                        per = stack2TV.text.toString()
+
+                        if (membership_per != -1) {
+                            stackpoint = totalpoint * (membership_per + Integer.parseInt(stack2TV.text.toString())) / 100
+                            Log.d("멤버쉽포인트", membership_per.toString())
+                        } else {
+                            stackpoint = totalpoint * Integer.parseInt(stack2TV.text.toString()) / 100
+                        }
+                        changeStep()
+
+                        stack_point(member_id.toString())
+                    } else if (per_type == 3) {
+
+                        stackpoint = Integer.parseInt(Utils.getString(pointTV).replace(",", ""))
+                        Log.d("포인트", stackpoint.toString())
+                        changeStep()
+                        stack_point(member_id.toString())
                     } else {
-                        stackpoint = totalpoint * Integer.parseInt(stackTV.text.toString()) / 100
-                    }
-                    changeStep()
-
-                    stack_point(member_id.toString())
-                }
-                else if (per_type == 2) {
-                    val totalpoint = Integer.parseInt(moneyTV.text.toString())
-                    Log.d("포인트", totalpoint.toString())
-
-                    per = stack2TV.text.toString()
-
-                    if (membership_per != -1) {
-                        stackpoint = totalpoint * (membership_per + Integer.parseInt(stack2TV.text.toString())) / 100
-                        Log.d("멤버쉽포인트", membership_per.toString())
-                    } else {
-                        stackpoint = totalpoint * Integer.parseInt(stack2TV.text.toString()) / 100
-                    }
-                    changeStep()
-
-                    stack_point(member_id.toString())
-                }
-                else if (per_type == 3) {
-
-                    stackpoint = Integer.parseInt(Utils.getString(pointTV).replace(",", ""))
-                    Log.d("포인트", stackpoint.toString())
-                    changeStep()
-                    stack_point(member_id.toString())
-                }
-                else {
 //                    Toast.makeText(context, "적립퍼센트를 선택해주세요", Toast.LENGTH_SHORT).show()
-                    stackpoint = 0
-                    Log.d("포인트", stackpoint.toString())
-                    changeStep()
-                    stack_point(member_id.toString())
-                }
+                        stackpoint = 0
+                        Log.d("포인트", stackpoint.toString())
+                        changeStep()
+                        stack_point(member_id.toString())
+                    }
 
                 }
 
-            }
-            else if (opTV.text.equals("결제")) {
+            } else if (opTV.text.equals("결제")) {
 
                 if (payment_type == -1) {
                     Toast.makeText(context, "결제방식을 선택해주세요", Toast.LENGTH_SHORT).show()
@@ -771,7 +767,7 @@ class CalActivity : RootActivity() {
         params.put("company_id", company_id)
         params.put("member_id", member_id)
         params.put("member_coupon_id", member_coupon_id)
-        if (reserve_type ==1){
+        if (reserve_type == 1) {
             params.put("new_member_yn", "N")
         }
         params.put("step", step)
@@ -783,7 +779,7 @@ class CalActivity : RootActivity() {
                     progressDialog!!.dismiss()
                 }
 
-                Log.d("아휴",response.toString())
+                Log.d("아휴", response.toString())
                 try {
 
                     val result = response!!.getString("result")
@@ -992,6 +988,10 @@ class CalActivity : RootActivity() {
                         new_member_yn = Utils.getString(requestStep, "new_member_yn")
                         membership_per = Utils.getInt(member, "membership_per")
 
+                        if (result_step == -1) {
+                            finish()
+                        }
+
                         if (usePointLL.visibility == View.VISIBLE) {
                             if (use_point > Utils.getString(moneyTV).toInt()) {
                                 setmenu3()
@@ -1002,30 +1002,30 @@ class CalActivity : RootActivity() {
                         }
 
                         //여기가문제다
-                        if (reserve_type == 1){
+                        if (reserve_type == 1) {
                             timer!!.cancel()
                             moneyTV.text = price.toString()
                             usePointTV.text = use_point.toString()
                             opTV.text = "결제"
-                            stack_type = intent.getIntExtra("per_type",-1)
-                            if (stack_type == 1){
+                            stack_type = intent.getIntExtra("per_type", -1)
+                            if (stack_type == 1) {
                                 stackLL.callOnClick()
-                            }else if (stack_type == 2){
+                            } else if (stack_type == 2) {
                                 stack2LL.callOnClick()
-                            }else{
+                            } else {
                                 stackpoint = 0
                             }
-                            if (payment_type==1){
+                            if (payment_type == 1) {
                                 cardPayLL.callOnClick()
-                            }else if (payment_type ==2){
+                            } else if (payment_type == 2) {
                                 cashPayLL.callOnClick()
                             }
 
 
-                            Log.d("완료",price.toString())
-                            Log.d("완료",payment_type.toString())
-                            Log.d("완료",stack_type.toString())
-                            Log.d("완료",use_point.toString())
+                            Log.d("완료", price.toString())
+                            Log.d("완료", payment_type.toString())
+                            Log.d("완료", stack_type.toString())
+                            Log.d("완료", use_point.toString())
                             if (step == 5) {
                                 var phone = Utils.getString(member, "phone")
                                 var gender = Utils.getString(member, "gender")
@@ -1067,8 +1067,7 @@ class CalActivity : RootActivity() {
                                 getUserCouponList(phone)
 
                             }
-                        }
-                        else if (step != result_step) {
+                        } else if (step != result_step) {
 
 //                            if (timer != null) {
 //                                timer!!.cancel()
@@ -1078,9 +1077,9 @@ class CalActivity : RootActivity() {
 
                             if (step == 2) {
                                 // 적립 -> 회원 정보
-                                if (no_stack == 1){
+                                if (no_stack == 1) {
                                     opTV.text = "무적립결제"
-                                }else{
+                                } else {
                                     opTV.text = "적립"
                                 }
                                 var phone = Utils.getString(member, "phone")
@@ -1134,8 +1133,7 @@ class CalActivity : RootActivity() {
                                 couponTV.text = coupon
                                 memoTV.text = "메모: " + memo
 
-                            }
-                            else if (step == 5) {
+                            } else if (step == 5) {
                                 var phone = Utils.getString(member, "phone")
                                 var gender = Utils.getString(member, "gender")
                                 var age = Utils.getString(member, "age")
@@ -1175,8 +1173,7 @@ class CalActivity : RootActivity() {
 
                                 getUserCouponList(phone)
 
-                            }
-                            else if (step == 7) {
+                            } else if (step == 7) {
 
                                 use_point = Utils.getInt(requestStep, "point")
 
@@ -1265,7 +1262,7 @@ class CalActivity : RootActivity() {
         } else {
             price = price - use_point
         }
-        if (no_stack ==1){
+        if (no_stack == 1) {
             payment_type = 4
         }
         params.put("use_point", use_point)//사용 포인트
@@ -1710,7 +1707,7 @@ class CalActivity : RootActivity() {
         when (requestCode) {
             EDIT_POINT -> {
                 if (resultCode == Activity.RESULT_OK) {
-                    val point = data!!.getIntExtra("point",0)
+                    val point = data!!.getIntExtra("point", 0)
                     Toast.makeText(context, point.toString(), Toast.LENGTH_SHORT).show()
                     pointTV.text = Utils.comma(point.toString())
                 }
