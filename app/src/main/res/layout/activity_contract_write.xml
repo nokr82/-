@@ -45,6 +45,7 @@
                 android:layout_weight="1"
                 android:layout_height="1dp"/>
             <TextView
+                android:layout_marginRight="10dp"
                 android:id="@+id/comecontractTV"
                 android:padding="10dp"
                 android:layout_width="wrap_content"

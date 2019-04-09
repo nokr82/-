@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.CompanyAction
+import com.devstories.anipointcompany.android.Actions.RequestStepAction
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.*
 import com.loopj.android.http.JsonHttpResponseHandler
@@ -127,11 +128,108 @@ class ContractWriteActivity : RootActivity() {
             datedlg()
         }
 
+        comecontractTV.setOnClickListener {
+            contract_image()
+        }
+
+
         writeTV.setOnClickListener {
             contract_write()
         }
         
     }
+
+
+
+    fun contract_image() {
+        if (userLL.childCount<1){
+            Toast.makeText(context,"스캔본을 추가해주세요.",Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val params = RequestParams()
+        var seq = 0;
+        for (i in 0 until userLL.childCount) {
+            val v = userLL.getChildAt(i)
+            Log.d("브이",v.toString())
+            val imagV = v.findViewById<ImageView>(R.id.c_imgIV)
+            if (imagV is ImageView) {
+                val bitmap = imagV.drawable as BitmapDrawable
+                params.put("upload[$i]", ByteArrayInputStream(Utils.getByteArray(bitmap.bitmap)))
+                seq++
+            }
+        }
+        params.put("company_id", company_id)
+
+
+
+        CompanyAction.contract_image(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    val result = response!!.getString("result")
+
+                    if ("ok" == result) {
+                        contract_id = response!!.getInt("contract_id")
+                        changeStep()
+                    } else {
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(context, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+//                 System.out.println("오류!!!"+responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
+
 
     fun contract_detail() {
 
@@ -441,6 +539,66 @@ class ContractWriteActivity : RootActivity() {
         })
     }
 
+    fun changeStep() {
+        val params = RequestParams()
+        params.put("company_id", company_id)
+        params.put("step", "9")
+        params.put("contract_id", contract_id)
+        RequestStepAction.changeStep(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                Log.d("아휴", response.toString())
+                try {
+
+                    val result = response!!.getString("result")
+                    if ("ok" == result) {
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            private fun error() {
+                Utils.alert(context, "조회중 장애가 발생하였습니다.")
+            }
+
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    throwable: Throwable,
+                    errorResponse: JSONObject?
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+                throwable.printStackTrace()
+                error()
+            }
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
 
 
 
@@ -598,6 +756,7 @@ class ContractWriteActivity : RootActivity() {
         super.onResume()
         hideNavigations(this)
     }
+
     fun hideNavigations(context: Activity) {
         val decorView = context.window.decorView
         decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE

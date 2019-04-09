@@ -10,6 +10,9 @@ import com.loopj.android.http.RequestParams
 object CompanyAction {
 
 
+    fun contract_image(params: RequestParams, handler: JsonHttpResponseHandler) {
+        HttpClient.post("/company/contract_image.json", params, handler)
+    }
     fun contract_detail(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/company/contract_detail.json", params, handler)
     }
