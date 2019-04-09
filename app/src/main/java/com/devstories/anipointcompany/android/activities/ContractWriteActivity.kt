@@ -118,6 +118,7 @@ class ContractWriteActivity : RootActivity() {
 
         signRL.setOnClickListener {
             val intent = Intent(context,DlgSignActivity::class.java)
+            intent.putExtra("contract_id",contract_id)
             startActivityForResult(intent,SIGN_UP)
         }
 

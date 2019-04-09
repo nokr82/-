@@ -47,6 +47,7 @@ class DlgSignActivity : RootActivity() {
     private var mNewBitmap: Bitmap? = null
     private var bitmap:Bitmap? = null
 
+    var contract_id = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         hideNavigations(this)
@@ -56,6 +57,7 @@ class DlgSignActivity : RootActivity() {
         progressDialog = CustomProgressDialog(context, R.style.progressDialogTheme)
         progressDialog!!.setProgressStyle(android.R.style.Widget_DeviceDefault_Light_ProgressBar_Large)
 
+        contract_id = intent.getIntExtra("contract_id",-1)
 
 
         mPaint = Paint()
@@ -229,8 +231,7 @@ class DlgSignActivity : RootActivity() {
         bitmap!!.setHasAlpha(true)
         val params = RequestParams()
         params.put("company_id",PrefUtils.getIntPreference(context,"company_id"))
-
-        Log.d("결과",bitmap.toString())
+        params.put("contract_id",contract_id)
 
         if (bitmap != null) {
             params.put("upfile", ByteArrayInputStream(Utils.getByteArray(bitmap)))
