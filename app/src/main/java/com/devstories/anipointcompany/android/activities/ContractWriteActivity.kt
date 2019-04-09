@@ -221,7 +221,10 @@ class ContractWriteActivity : RootActivity() {
         phone = Utils.getString(phoneET)
 
 
-
+        if (category_id == -1){
+            Toast.makeText(context,"계약서종류를 선택해주세요.",Toast.LENGTH_SHORT).show()
+            return
+        }
         if (phone==""||phone.length != 11){
             Toast.makeText(context,"연락처를 올바르게 입력해주세요.",Toast.LENGTH_SHORT).show()
             return
@@ -234,7 +237,7 @@ class ContractWriteActivity : RootActivity() {
             Toast.makeText(context,"성함을 입력해주세요.",Toast.LENGTH_SHORT).show()
             return
         }
-        if (contract_date==""){
+        if (contract_date==""||contract_date=="날짜 선택"){
             Toast.makeText(context,"날짜를 선택해주세요.",Toast.LENGTH_SHORT).show()
             return
         }
@@ -258,6 +261,8 @@ class ContractWriteActivity : RootActivity() {
             Toast.makeText(context,"계약서스캔본을 넣어주세요.",Toast.LENGTH_SHORT).show()
             return
         }
+
+
 
         params.put("id", contract_id)
         params.put("company_id", company_id)
