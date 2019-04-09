@@ -381,7 +381,7 @@ class ContractWriteActivity : RootActivity() {
 
                     if ("ok" == result) {
                         confirm_num = response!!.getString("confirm_num")
-                        Toast.makeText(context,confirm_num,Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context,"발송완료",Toast.LENGTH_SHORT).show()
 
                     } else {
 
