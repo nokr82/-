@@ -1,6 +1,7 @@
 package com.devstories.anipointcompany.android.activities
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -81,11 +82,29 @@ class ContractListFragment : Fragment() {
             }
 
         })
+
+        contractLV.setOnItemClickListener { parent, view, position, id ->
+            var data = adapterData.get(position)
+            Log.d("리스트선택", data.toString())
+            val contract = data.getJSONObject("Contract")
+            val cont_id = Utils.getInt(contract, "id")
+            val intent  = Intent(context,ContractViewActivity::class.java)
+            intent.putExtra("cont_id",cont_id)
+            startActivity(intent)
+
+
+        }
+
         btn_search.setOnClickListener {
             page =1
             contract_view_list()
         }
 
+
+        addcontractTV.setOnClickListener {
+            val intent = Intent(myContext,ContractWriteActivity::class.java)
+            startActivity(intent)
+        }
 
         contract_view_list()
 

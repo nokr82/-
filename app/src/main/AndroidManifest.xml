@@ -34,6 +34,16 @@
             android:theme="@style/NoTitleDialog"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
+            android:name=".activities.ContractWriteActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/NoTitleDialog"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name=".activities.ContractViewActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/NoTitleDialog"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
             android:name=".activities.OnlyCalActivity"
             android:screenOrientation="landscape"
             android:theme="@style/NoTitleDialog"
