@@ -158,6 +158,8 @@ class OnlyCalActivity : RootActivity() {
         company_id = PrefUtils.getIntPreference(context, "company_id")
 
         if (no_stack == 1) {
+            phoneLL.visibility = View.GONE
+            o_calLL.visibility = View.VISIBLE
             couponLL.visibility = View.GONE
             depositlessLL.visibility = View.GONE
         }
@@ -633,9 +635,11 @@ class OnlyCalActivity : RootActivity() {
                 Toast.makeText(context, "가격을 입력해주세요.", Toast.LENGTH_LONG).show()
 //                return@setOnClickListener
             }
-            if (member_id < 1) {
-                Toast.makeText(context, "회원정보가 없습니다.", Toast.LENGTH_LONG).show()
-                return@setOnClickListener
+            if (no_stack !=1){
+                if (member_id < 1) {
+                    Toast.makeText(context, "회원정보가 없습니다.", Toast.LENGTH_LONG).show()
+                    return@setOnClickListener
+                }
             }
 
             if (payment_type == 3) {
