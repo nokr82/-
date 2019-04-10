@@ -71,6 +71,7 @@ class DlgSignActivity : RootActivity() {
 
 
         signDV = DrawingView(context)
+        signDV!!.setBackgroundColor(Color.WHITE)
         signRL.addView(signDV)
         resignTV.setOnClickListener(View.OnClickListener {
             signDV!!.clearCanvas()
@@ -232,6 +233,7 @@ class DlgSignActivity : RootActivity() {
         val params = RequestParams()
         params.put("company_id",PrefUtils.getIntPreference(context,"company_id"))
         params.put("contract_id",contract_id)
+
 
         if (bitmap != null) {
             params.put("upfile", ByteArrayInputStream(Utils.getByteArray(bitmap)))

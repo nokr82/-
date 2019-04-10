@@ -51,6 +51,8 @@
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent" />-->
     </RelativeLayout>
+
+
     <TextView
         android:id="@+id/resignTV"
         android:layout_width="150dp"
