@@ -19,7 +19,6 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.CompanyAction
-import com.devstories.anipointcompany.android.Actions.MemberAction
 import com.devstories.anipointcompany.android.Actions.RequestStepAction
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.*
@@ -319,7 +318,6 @@ class ContractWriteActivity : RootActivity() {
         var name = Utils.getString(nameET)
         var contract_date = Utils.getString(dateTV)
         var confirm_num2 = Utils.getString(confirmET)
-        var email = Utils.getString(emailET)
         phone = Utils.getString(phoneET)
 
 
@@ -331,10 +329,7 @@ class ContractWriteActivity : RootActivity() {
             Toast.makeText(context,"연락처를 올바르게 입력해주세요.",Toast.LENGTH_SHORT).show()
             return
         }
-        if (email==""){
-            Toast.makeText(context,"이메일을 입력해주세요.",Toast.LENGTH_SHORT).show()
-            return
-        }
+
         if (name==""){
             Toast.makeText(context,"성함을 입력해주세요.",Toast.LENGTH_SHORT).show()
             return
@@ -367,13 +362,6 @@ class ContractWriteActivity : RootActivity() {
                 seq++
             }
         }
-      /*  if (contractIV.drawable != null) {
-            bitmap = contractIV.drawable as BitmapDrawable
-            params.put("upload", ByteArrayInputStream(Utils.getByteArray(bitmap!!.bitmap)))
-        }else{
-            Toast.makeText(context,"계약서스캔본을 넣어주세요.",Toast.LENGTH_SHORT).show()
-            return
-        }*/
 
 
 
@@ -382,8 +370,6 @@ class ContractWriteActivity : RootActivity() {
         params.put("phone", phone)
         params.put("name", name)
         params.put("memo", memo)
-        params.put("email", email)
-
         params.put("confirm_num", confirm_num2)
         params.put("contract_id", category_id)
         params.put("contract_date", contract_date)
