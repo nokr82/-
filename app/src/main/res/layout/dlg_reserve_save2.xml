@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="600dp"
     android:layout_height="600dp"
     android:orientation="vertical">
@@ -91,6 +92,7 @@
 
                         <TextView
                             android:id="@+id/dateTV"
+                            android:paddingLeft="10dp"
                             android:gravity="center_vertical"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -209,6 +211,7 @@
                             android:gravity="center_vertical"/>
                         <TextView
                             android:id="@+id/timeTV"
+                            android:paddingLeft="10dp"
                             android:gravity="center_vertical"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -270,6 +273,7 @@
                             android:gravity="center_vertical">
 
                             <EditText
+                                android:paddingLeft="10dp"
                                 android:id="@+id/titleET"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -328,6 +332,7 @@
                                 android:background="@drawable/background_strock_e7e7e7"
                                 android:gravity="center_vertical"/>
                             <TextView
+                                android:paddingLeft="10dp"
                                 android:id="@+id/sugerTV"
                                 android:gravity="center_vertical"
                                 android:layout_width="match_parent"
@@ -386,6 +391,7 @@
                             android:layout_height="match_parent">
 
                             <EditText
+                                android:paddingLeft="10dp"
                                 android:id="@+id/priceET"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -453,6 +459,7 @@
                                 android:layout_height="match_parent">
 
                                 <EditText
+                                    android:paddingLeft="10dp"
                                     android:id="@+id/pointET"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
@@ -519,6 +526,7 @@
                                 android:layout_height="match_parent">
 
                                 <EditText
+                                    android:paddingLeft="10dp"
                                     android:id="@+id/r_priceET"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
