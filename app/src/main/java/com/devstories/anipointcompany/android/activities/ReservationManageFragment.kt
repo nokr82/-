@@ -378,7 +378,7 @@ class ReservationManageFragment : Fragment() {
                     if ("ok" == result) {
 
                         var reservation = response.getJSONArray("reservation")
-
+                        calendarData.clear()
                         Log.d("아니", reservation.toString())
                         for (i in 0 until reservation.length()) {
                             calendarData.add(reservation[i] as JSONObject)

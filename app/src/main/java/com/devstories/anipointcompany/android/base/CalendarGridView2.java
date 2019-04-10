@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -486,7 +487,6 @@ public class CalendarGridView2 extends GridView {
                         JSONObject objData = objectData.get(i);
                         JSONObject reserve = objData.getJSONObject("Reserve");
                         String reserve_date = Utils.getString(reserve, "reserve_date");
-
                         String reserve_date_str = new SimpleDateFormat("yyyy-MM-dd").format(new SimpleDateFormat("yyyy.M.d").parse(reserve_date));
 
                         if (reserve_date_str.equals(cd.getFullDay())) {
@@ -495,6 +495,7 @@ public class CalendarGridView2 extends GridView {
                             item.reservationCntTV.setVisibility(View.VISIBLE);
                             item.reservationCntTV.setText(String.valueOf(reservationCnt));
                         }
+
 
                     }
 
