@@ -350,6 +350,7 @@ class DlgReserveResultActivity : RootActivity() {
                         price = Utils.getInt(reserve, "price")
                         pay = Utils.getString(reserve, "pay")
                         use_point = Utils.getInt(reserve, "use_point")
+                        var memo = Utils.getString(reserve, "memo")
                         if (price == -1){
                             price = 0
                         }
@@ -360,7 +361,7 @@ class DlgReserveResultActivity : RootActivity() {
                         priceET.setText(price.toString())
                         r_priceET.setText(pay)
                         pointET.setText(use_point.toString())
-
+                        memoET.setText(memo)
                         result_type = Utils.getInt(reserve, "result_type")
 
                         if (payment_type ==1){

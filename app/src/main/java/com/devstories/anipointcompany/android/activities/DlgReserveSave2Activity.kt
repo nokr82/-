@@ -152,11 +152,11 @@ class DlgReserveSave2Activity : RootActivity() {
     fun datedlg() {
         var day = Utils.todayStr()
         var days = day.split("-")
-        DatePickerDialog(context, dateSetListener, days[0].toInt(), days[1].toInt(), days[2].toInt()).show()
+        DatePickerDialog(context, dateSetListener, days[0].toInt(), days[1].toInt()-1, days[2].toInt()).show()
     }
 
     private val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-        val msg = String.format("%d.%d.%d", year, monthOfYear, dayOfMonth)
+        val msg = String.format("%d.%d.%d", year, monthOfYear+1, dayOfMonth)
         dateTV.text = msg
     }
 
