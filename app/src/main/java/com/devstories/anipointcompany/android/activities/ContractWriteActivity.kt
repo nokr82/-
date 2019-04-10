@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Toast
 import com.devstories.anipointcompany.android.Actions.CompanyAction
+import com.devstories.anipointcompany.android.Actions.MemberAction
 import com.devstories.anipointcompany.android.Actions.RequestStepAction
 import com.devstories.anipointcompany.android.R
 import com.devstories.anipointcompany.android.base.*
@@ -622,26 +623,37 @@ class ContractWriteActivity : RootActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == GALLERY) {
             if (data != null) {
-                val contentURI = data!!.data
-                Log.d("uri", contentURI.toString())
-                //content://media/external/images/media/1200
+                val contentURI = data.data
+                //Log.d("uri", contentURI.toString())
 
                 try {
-                    var thumbnail = MediaStore.Images.Media.getBitmap(context.contentResolver, contentURI)
-                    thumbnail = Utils.rotate(context.contentResolver, thumbnail, contentURI)
-                    addImages.add(thumbnail)
-                    val userView = View.inflate(context, R.layout.item_contract_img, null)
-                    val c_imgIV : ImageView = userView.findViewById(R.id.c_imgIV)
-                    val delIV : ImageView = userView.findViewById(R.id.delIV)
-                    c_imgIV.setImageBitmap(thumbnail)
-                    userLL.addView(userView)
-                    //배열사이즈값 -해줘서
-                    userView.tag = addImages.size -1
+                    val selectedImageUri = data.data
+                    var bt: Bitmap? = null
 
-                    delIV.setOnClickListener {
-                        Log.d("태그",userView.tag.toString())
-                        userLL.removeView(userView)
+                    val filePathColumn = arrayOf(MediaStore.MediaColumns.DATA)
+
+                    val cursor = context!!.contentResolver.query(selectedImageUri!!, filePathColumn, null, null, null)
+                    if (cursor!!.moveToFirst()) {
+                        val columnIndex = cursor.getColumnIndex(filePathColumn[0])
+                        val picturePath = cursor.getString(columnIndex)
+                        bt = Utils.getImage(context!!.contentResolver, picturePath)
+//                        bt = Utils.rotate(context.contentResolver, bt, contentURI)
+                        cursor.close()
+                        addImages.add(bt)
+                        val userView = View.inflate(context, R.layout.item_contract_img, null)
+                        val c_imgIV : ImageView = userView.findViewById(R.id.c_imgIV)
+                        val delIV : ImageView = userView.findViewById(R.id.delIV)
+                        c_imgIV.setImageBitmap(bt)
+                        userLL.addView(userView)
+                        //배열사이즈값 -해줘서
+                        userView.tag = addImages.size -1
+
+                        delIV.setOnClickListener {
+                            Log.d("태그",userView.tag.toString())
+                            userLL.removeView(userView)
+                        }
                     }
+
                 } catch (e: IOException) {
                     e.printStackTrace()
                     Toast.makeText(context, "바꾸기실패", Toast.LENGTH_SHORT).show()
