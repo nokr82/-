@@ -104,9 +104,15 @@ class DlgReserveSave2Activity : RootActivity() {
         }
         timeLL.setOnClickListener {
             val dialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { timePicker, hour, min ->
-                val msg = String.format("%d : %d ", hour, min)
-
-
+                var hour_s = hour.toString()
+                var min_s = min.toString()
+                if (min_s.length!=2){
+                    min_s = "0"+min_s
+                }
+                if (hour_s.length!=2){
+                    hour_s = "0"+hour_s
+                }
+                val msg = String.format("%s : %s", hour_s, min_s)
                 Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
                 timeTV.text = msg
             }, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true)
@@ -115,7 +121,15 @@ class DlgReserveSave2Activity : RootActivity() {
 
         sugerLL.setOnClickListener {
             val dialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { timePicker, hour, min ->
-                val msg = String.format("%d : %d ", hour, min)
+                var hour_s = hour.toString()
+                var min_s = min.toString()
+                if (min_s.length!=2){
+                    min_s = "0"+min_s
+                }
+                if (hour_s.length!=2){
+                    hour_s = "0"+hour_s
+                }
+                val msg = String.format("%s : %s", hour_s, min_s)
                 Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
                 sugerTV.text = msg
             }, 0, 0, true)
@@ -303,14 +317,21 @@ class DlgReserveSave2Activity : RootActivity() {
             return
         }
 
-
+        var hour_s = hours.toString()
+        var min_s = min.toString()
+        if (min_s.length!=2){
+            min_s = "0"+min_s
+        }
+        if (hour_s.length!=2){
+            hour_s = "0"+hour_s
+        }
         val params = RequestParams()
         params.put("member_id", member_id)
         params.put("company_id", company_id)
         params.put("customer_id", customer_id)
         params.put("surgery_name", Utils.getString(titleET))
         params.put("reserve_time", Utils.getString(timeTV))
-        params.put("surgery_time", hours.toString() + " : " + min.toString())
+        params.put("surgery_time", hour_s + " : " + min_s)
         params.put("price", Utils.getString(priceET))
         params.put("pay", Utils.getString(r_priceET))
         params.put("use_point", Utils.getString(pointET))

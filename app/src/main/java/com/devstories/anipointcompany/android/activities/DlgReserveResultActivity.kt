@@ -118,7 +118,15 @@ class DlgReserveResultActivity : RootActivity() {
         }
         dateLL.setOnClickListener {
             val dialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { timePicker, hour, min ->
-                val msg = String.format("%d : %d ", hour, min)
+                var hour_s = hour.toString()
+                var min_s = min.toString()
+                if (min_s.length!=2){
+                    min_s = "0"+min_s
+                }
+                if (hour_s.length!=2){
+                    hour_s = "0"+hour_s
+                }
+                val msg = String.format("%s : %s", hour_s, min_s)
 
 
                 Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
@@ -130,7 +138,15 @@ class DlgReserveResultActivity : RootActivity() {
         sugerLL.setOnClickListener {
             modi_type = 1
             val dialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { timePicker, hour, min ->
-                val msg = String.format("%d : %d ", hour, min)
+                var hour_s = hour.toString()
+                var min_s = min.toString()
+                if (min_s.length!=2){
+                    min_s = "0"+min_s
+                }
+                if (hour_s.length!=2){
+                    hour_s = "0"+hour_s
+                }
+                val msg = String.format("%s : %s", hour_s, min_s)
                 Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
                 sugerTV.text = msg
             }, 0, 0, true)
@@ -580,6 +596,15 @@ class DlgReserveResultActivity : RootActivity() {
             Toast.makeText(context,"시술시간이 24시간을 지날수 없습니다.",Toast.LENGTH_SHORT).show()
             return
         }
+        var hour_s = hours.toString()
+        var min_s = min.toString()
+        if (min_s.length!=2){
+            min_s = "0"+min_s
+        }
+        if (hour_s.length!=2){
+            hour_s = "0"+hour_s
+        }
+
 
         val params = RequestParams()
         params.put("member_id", member_id)
@@ -588,7 +613,7 @@ class DlgReserveResultActivity : RootActivity() {
         params.put("id", reserve_id)
         params.put("surgery_name", Utils.getString(titleET))
         params.put("reserve_time", reserve_time)
-        params.put("surgery_time", hours.toString() + " : " + min.toString())
+        params.put("surgery_time", hour_s + " : " + min_s)
         params.put("price", Utils.getString(priceET))
         params.put("pay", Utils.getString(r_priceET))
         params.put("use_point", Utils.getString(pointET))

@@ -259,6 +259,7 @@ class ReservationManageFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         reserve_list()
+        reservationDays()
     }
 
     //예약 정보뽑기
