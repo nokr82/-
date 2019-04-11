@@ -637,7 +637,8 @@ class DlgReserveResultActivity : RootActivity() {
                     if ("ok" == result) {
                         Utils.hideKeyboard(context)
                         finish()
-
+                    }else if ("already"==result){
+                        Toast.makeText(context,"예약시간에 이미 예약이 있습니다.",Toast.LENGTH_SHORT).show()
                     }
 
                 } catch (e: JSONException) {
