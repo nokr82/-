@@ -232,14 +232,14 @@ class ContractListFragment : Fragment() {
                     if ("ok" == result) {
 
                         var data = response.getJSONArray("contract")
-                        val userView = View.inflate(myContext, R.layout.item_contract, null)
-                        var itemTV: TextView = userView.findViewById(R.id.itemTV)
-                        itemTV.text = "전체"
-                        itemTV.setOnClickListener {
+                        val userView2 = View.inflate(myContext, R.layout.item_contract, null)
+                        var itemTV2: TextView = userView2.findViewById(R.id.itemTV)
+                        itemTV2.text = "전체"
+                        itemTV2.setOnClickListener {
                             contract_id = -1
                             contract_view_list()
                         }
-                        contractLL.addView(userView)
+                        contractLL.addView(userView2)
 
                         for (i in 0 until data.length()) {
                             var json = data[i] as JSONObject
