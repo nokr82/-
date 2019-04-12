@@ -746,13 +746,22 @@
         android:background="#ffffff"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:gravity="center"
-            android:orientation="vertical"
             android:layout_weight="0.2">
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_centerInParent="true"
+             android:layout_alignParentTop="true"
+             android:layout_marginTop="20dp"
+             android:textSize="20dp"
+             android:textColor="#c9c9c9"
+             android:text="휴대폰 번호를 입력해주세요."/>
+
             <TextView
+                android:layout_centerInParent="true"
                 android:id="@+id/o_phoneTV"
                 android:inputType="phone"
                 android:layout_width="wrap_content"
@@ -762,7 +771,7 @@
                 android:text=""
                 />
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -186,9 +186,17 @@ class OnlyCalActivity : RootActivity() {
         couponLV.setOnItemClickListener { parent, view, position, id ->
             var data = couponData.get(position)
             val coupon = data.getJSONObject("MemberCoupon")
-            member_coupon_id= Utils.getInt(coupon, "id")
-            step = 7
-            changeStep()
+            var coupon_id = Utils.getInt(coupon, "id")
+            if (member_coupon_id != coupon_id){
+                member_coupon_id = coupon_id
+                step = 7
+                changeStep()
+            }else{
+                member_coupon_id = -1
+                step = 5
+                changeStep()
+            }
+
         }
 
 
