@@ -71,7 +71,8 @@ class User_visit_List_Fragment : Fragment() {
         click()
         allLL.callOnClick()
 
-        saleTV.setOnClickListener {
+        saleLL.setOnClickListener {
+            setView()
             saleTV.setTextColor(Color.parseColor("#ffffff"))
             childFragmentManager.beginTransaction().replace(R.id.visitFL, Sales_Analysis_List_Fragment).commit()
         }
@@ -153,7 +154,7 @@ class User_visit_List_Fragment : Fragment() {
         allTV.setTextColor(Color.parseColor("#80FFFFFF"))
         ageTV.setTextColor(Color.parseColor("#80FFFFFF"))
         daysTV.setTextColor(Color.parseColor("#80FFFFFF"))
-        saleTV.setTextColor(Color.parseColor("#80ffffff"))
+        saleTV.setTextColor(Color.parseColor("#80FFFFFF"))
         timeTV.setTextColor(Color.parseColor("#80FFFFFF"))
     }
 
