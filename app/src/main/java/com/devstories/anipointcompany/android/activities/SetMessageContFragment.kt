@@ -1,19 +1,22 @@
 package com.devstories.anipointcompany.android.activities
 
+import android.Manifest
+import android.app.Activity
 import android.app.AlertDialog
-import android.app.ProgressDialog
 import android.content.*
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.devstories.anipointcompany.android.R
 import android.text.Editable
 import android.text.TextWatcher
@@ -26,13 +29,10 @@ import com.devstories.anipointcompany.android.base.Utils
 import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
 import cz.msebera.android.httpclient.Header
-import cz.msebera.android.httpclient.entity.SerializableEntity
-import kotlinx.android.synthetic.main.fra_message_wirte_step1.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.ByteArrayInputStream
 import java.io.IOException
-import java.io.Serializable
 
 
 class SetMessageContFragment : Fragment() {
@@ -40,7 +40,7 @@ class SetMessageContFragment : Fragment() {
     lateinit var myContext: Context
 
     private var progressDialog: CustomProgressDialog? = null
-
+    private val REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE = 1
     lateinit var companyNameTV: TextView
     lateinit var memberNameTV: TextView
     lateinit var pointTV: TextView
@@ -413,32 +413,52 @@ class SetMessageContFragment : Fragment() {
     }
 
     private fun choosePhotoFromGallary() {
-        val galleryIntent = Intent(Intent.ACTION_PICK,
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-
-        startActivityForResult(galleryIntent, GALLERY)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            val perms = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            loadPermissions(perms, REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE)
+        } else {
+            val galleryIntent = Intent(Intent.ACTION_PICK,
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            startActivityForResult(galleryIntent, GALLERY)
+        }
 
     }
-
+    private fun loadPermissions(perms: Array<String>, requestCode: Int) {
+        if (ContextCompat.checkSelfPermission(myContext, perms[0]) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity as Activity, perms, requestCode)
+        } else {
+            val galleryIntent = Intent(Intent.ACTION_PICK,
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            startActivityForResult(galleryIntent, GALLERY)
+        }
+    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == GALLERY) {
-            if (data != null) {
-                contentURI = data!!.data
-                Log.d("uri", contentURI.toString())
-                //content://media/external/images/media/1200
+            if (data != null)
+            {
+                val contentURI = data.data
+                //Log.d("uri", contentURI.toString())
 
                 try {
-                    thumbnail = MediaStore.Images.Media.getBitmap(myContext.contentResolver, contentURI)
-                    thumbnail = Utils.rotate(myContext.contentResolver, thumbnail, contentURI)
-                    Log.d("thumbnail", thumbnail.toString())
-                    imgIV.visibility = View.VISIBLE
-                    imgIV.setImageBitmap(thumbnail)
+                    val selectedImageUri = data.data
+                    var bt: Bitmap? = null
+
+                    val filePathColumn = arrayOf(MediaStore.MediaColumns.DATA)
+
+                    val cursor = context!!.contentResolver.query(selectedImageUri!!, filePathColumn, null, null, null)
+                    if (cursor!!.moveToFirst()) {
+                        val columnIndex = cursor.getColumnIndex(filePathColumn[0])
+                        val picturePath = cursor.getString(columnIndex)
+                        bt = Utils.getImage(context!!.contentResolver, picturePath)
+                        cursor.close()
+                        imgIV.setImageBitmap(bt)
+                    }
 
                 } catch (e: IOException) {
                     e.printStackTrace()
-                    Toast.makeText(myContext, "바꾸기실패", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "바꾸기실패", Toast.LENGTH_SHORT).show()
                 }
 
             }
