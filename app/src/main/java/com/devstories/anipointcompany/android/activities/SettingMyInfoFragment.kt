@@ -204,37 +204,40 @@ class SettingMyInfoFragment : Fragment() {
         {
             if (data != null)
             {
-                val contentURI = data!!.data
-                Log.d("uri",contentURI.toString())
-                //content://media/external/images/media/1200
+                val contentURI = data.data
+                //Log.d("uri", contentURI.toString())
 
-                try
-                {
-                    var thumbnail = MediaStore.Images.Media.getBitmap(myContext.contentResolver, contentURI)
-                    thumbnail = Utils.rotate(myContext.contentResolver, thumbnail, contentURI)
-                    Log.d("넓이1",thumbnail.width.toString())
-                    Log.d("높이",thumbnail.height.toString())
-                    //비트맵배열에 비트맵추가
-                    addImages.add(thumbnail)
+                try {
+                    val selectedImageUri = data.data
+                    var bt: Bitmap? = null
 
-                    Log.d("이미지 추가",addImages.toString())
-                    val userView = View.inflate(myContext, R.layout.item_company_img, null)
-                    val c_imgIV :ImageView = userView.findViewById(R.id.c_imgIV)
-                    val delIV :ImageView = userView.findViewById(R.id.delIV)
-                    c_imgIV.setImageBitmap(thumbnail)
-                    userLL.addView(userView)
-                    //배열사이즈값 -해줘서
-                    userView.tag = addImages.size -1
+                    val filePathColumn = arrayOf(MediaStore.MediaColumns.DATA)
 
-                    delIV.setOnClickListener {
-                        Log.d("태그",userView.tag.toString())
+                    val cursor = context!!.contentResolver.query(selectedImageUri!!, filePathColumn, null, null, null)
+                    if (cursor!!.moveToFirst()) {
+                        val columnIndex = cursor.getColumnIndex(filePathColumn[0])
+                        val picturePath = cursor.getString(columnIndex)
+                        bt = Utils.getImage(context!!.contentResolver, picturePath)
+//                        bt = Utils.rotate(context.contentResolver, bt, contentURI)
+                        cursor.close()
+                        addImages.add(bt)
+                        val userView = View.inflate(context, R.layout.item_company_img, null)
+                        val c_imgIV : ImageView = userView.findViewById(R.id.c_imgIV)
+                        val delIV : ImageView = userView.findViewById(R.id.delIV)
+                        c_imgIV.setImageBitmap(bt)
+                        userLL.addView(userView)
+                        //배열사이즈값 -해줘서
+                        userView.tag = addImages.size -1
+
+                        delIV.setOnClickListener {
+                            Log.d("태그",userView.tag.toString())
                             userLL.removeView(userView)
+                        }
                     }
 
-                }
-                catch (e: IOException) {
+                } catch (e: IOException) {
                     e.printStackTrace()
-                    Toast.makeText(myContext, "바꾸기실패", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "바꾸기실패", Toast.LENGTH_SHORT).show()
                 }
 
             }

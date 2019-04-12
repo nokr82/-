@@ -624,7 +624,8 @@ class ContractWriteActivity : RootActivity() {
 
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == GALLERY) {
-            if (data != null) {
+            if (data != null)
+            {
                 val contentURI = data.data
                 //Log.d("uri", contentURI.toString())
 
