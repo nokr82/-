@@ -428,19 +428,43 @@
             </com.devstories.anipointcompany.android.base.RationalLinearLayout>
 
 
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp">
 
+
+                    <Spinner
+                        android:id="@+id/manageSP"
+                        android:layout_width="match_parent"
+                        android:textSize="12dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/background_strock_e7e7e7" />
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@mipmap/icon_down_arrow" />
+                </RelativeLayout>
                 <ListView
                     android:id="@+id/reservationLV"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="10dp"
                     android:orientation="vertical">
 
 
                 </ListView>
-
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 

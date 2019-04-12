@@ -40,6 +40,10 @@ class ReservationManageFragment : Fragment() {
     var months = arrayOf("1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월")
     var calendarData: ArrayList<JSONObject> = ArrayList<JSONObject>()
 
+    lateinit var ma_adapter: ArrayAdapter<String>
+    var managers: ArrayList<String> = ArrayList()
+    var managers_ids: ArrayList<Int> = ArrayList()
+    var customer_id = -1
     var page = 1
     var totalpage = 0
     var company_id = -1
@@ -71,6 +75,26 @@ class ReservationManageFragment : Fragment() {
 
         reserveListAdapter = ReserveListAdapter(myContext, R.layout.item_reserve_list, adapterData, this)
         reservationLV.adapter = reserveListAdapter
+
+        managers.add("전체")
+        managers_ids.add(-1)
+
+        ma_adapter = ArrayAdapter(myContext, R.layout.spiner_item, managers)
+
+        company_info()
+
+        manageSP.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                customer_id = managers_ids[position]
+                Log.d("아뒤", customer_id.toString())
+                reserve_list()
+            }
+        }
+
 
         reservationLV.setOnItemClickListener { parent, view, position, id ->
             var data = adapterData.get(position)
@@ -268,6 +292,7 @@ class ReservationManageFragment : Fragment() {
         params.put("company_id", company_id)
         params.put("page", page)
         params.put("reserve_date", reserve_date)
+        params.put("customer_id", customer_id)
 
         CompanyAction.reserve_list(params, object : JsonHttpResponseHandler() {
 
@@ -405,6 +430,90 @@ class ReservationManageFragment : Fragment() {
 
             private fun error() {
                 Utils.alert(myContext, "조회중 장애가 발생하였습니다.")
+            }
+
+            override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<Header>?,
+                    responseString: String?,
+                    throwable: Throwable
+            ) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                // System.out.println(responseString);
+
+                throwable.printStackTrace()
+                error()
+            }
+
+
+            override fun onStart() {
+                // show dialog
+                if (progressDialog != null) {
+
+
+                    progressDialog!!.show()
+                }
+            }
+
+            override fun onFinish() {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+            }
+        })
+    }
+
+    fun company_info() {
+        val params = RequestParams()
+        params.put("company_id", company_id)
+
+        CompanyAction.company_info(params, object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, response: JSONObject?) {
+                if (progressDialog != null) {
+                    progressDialog!!.dismiss()
+                }
+
+                try {
+                    val result = response!!.getString("result")
+                    if ("ok" == result) {
+                        val customers = response.getJSONArray("customer")
+                        var position = 0
+                        for (i in 0..customers.length() - 1) {
+                            //새로운뷰를 이미지의 길이만큼생성
+                            var json = customers[i] as JSONObject
+                            val CompanyCustomer = json.getJSONObject("CompanyCustomer")
+                            val name = Utils.getString(CompanyCustomer, "name")
+                            val managers_id = Utils.getInt(CompanyCustomer, "id")
+                            managers.add(name)
+                            managers_ids.add(managers_id)
+                            if (customer_id == managers_id){
+                                position =  i+1
+                            }
+                        }
+                        manageSP.adapter = ma_adapter
+                        manageSP.setSelection(position)
+                    } else {
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            override fun onSuccess(statusCode: Int, headers: Array<Header>?, responseString: String?) {
+
+                // System.out.println(responseString);
+            }
+
+            private fun error() {
+                Utils.alert(context, "조회중 장애가 발생하였습니다.")
             }
 
             override fun onFailure(
