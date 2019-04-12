@@ -735,7 +735,9 @@ class OnlyCalActivity : RootActivity() {
                     }
 
                 }
-                sendSMS()
+                if (no_stack != 1){
+                    sendSMS()
+                }
 
             } else if (opTV.text.equals("결제")) {
 
