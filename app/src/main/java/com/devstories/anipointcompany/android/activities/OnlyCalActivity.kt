@@ -35,6 +35,7 @@ import kotlinx.android.synthetic.main.activity_only_point.*
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -687,7 +688,8 @@ class OnlyCalActivity : RootActivity() {
                     p_type = 3
                     changeStep()
                     stack_point(member_id.toString())
-                } else {
+                }
+                else {
 
                     if (per_type == 1) {
                         val totalpoint = Integer.parseInt(moneyTV.text.toString())
@@ -733,6 +735,7 @@ class OnlyCalActivity : RootActivity() {
                     }
 
                 }
+                sendSMS()
 
             } else if (opTV.text.equals("결제")) {
 
@@ -779,7 +782,8 @@ class OnlyCalActivity : RootActivity() {
                     p_type = 3
                     type = 1
 
-                } else {
+                }
+                else {
                     stackpoint = use_point
 
                     p_type = 2
@@ -927,7 +931,6 @@ class OnlyCalActivity : RootActivity() {
         })
     }
 
-
     fun firstDigit() {
         if (moneyTV.text.length == 1 && moneyTV.text == "0") {
             moneyTV.text = ""
@@ -1070,7 +1073,12 @@ class OnlyCalActivity : RootActivity() {
         params.put("member_id", member_id)
         params.put("member_coupon_id", member_coupon_id)
 
-        if (p_type == 2) {
+        if (p_type == 1) {
+
+            params.put("add_point", stackpoint)
+            params.put("use_point", 0)
+
+        }else if (p_type == 2) {
 
             params.put("add_point", 0)
             params.put("use_point", stackpoint)
@@ -1099,7 +1107,12 @@ class OnlyCalActivity : RootActivity() {
 
                         if (type == "coupon") {
                             dlgSmsCode(code)
-                        } else {
+                        }else if (type == "stack"){
+                            if (p_type != 1){
+                                finish()
+                            }
+                        }
+                        else {
 
                             step = 6
 
@@ -1519,7 +1532,6 @@ class OnlyCalActivity : RootActivity() {
                         startActivity(intent)
 
                         if (p_type == 1) {
-
                             Toast.makeText(context, stackpoint.toString() + "적립됩니다", Toast.LENGTH_SHORT).show()
                         } else if (p_type == 2) {
 
@@ -1949,7 +1961,12 @@ class OnlyCalActivity : RootActivity() {
         if (progressDialog != null) {
             progressDialog!!.dismiss()
         }
-
+        if (step == 1 || step == 4) {
+            endStep()
+        }
+        if (timer != null) {
+            timer!!.cancel()
+        }
 
     }
 
