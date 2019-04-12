@@ -1,16 +1,20 @@
 package com.devstories.anipointcompany.android.activities
 
+import android.Manifest
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
@@ -52,7 +56,7 @@ class ContractWriteActivity : RootActivity() {
     var phone = ""
     var contract_id = -1
     var addImages = ArrayList<Bitmap>()
-
+    private val REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE = 1
 
     private val SIGN_UP = 1215
     internal var reloadReciver: BroadcastReceiver? = object : BroadcastReceiver() {
@@ -422,7 +426,6 @@ class ContractWriteActivity : RootActivity() {
                     progressDialog!!.dismiss()
                 }
 
-//                 System.out.println("오류!!!"+responseString);
 
                 throwable.printStackTrace()
                 error()
@@ -597,13 +600,26 @@ class ContractWriteActivity : RootActivity() {
     }
 
     private fun choosePhotoFromGallary() {
-        val galleryIntent = Intent(Intent.ACTION_PICK,
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            val perms = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            loadPermissions(perms, REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE)
+        } else {
+            val galleryIntent = Intent(Intent.ACTION_PICK,
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            startActivityForResult(galleryIntent, GALLERY)
+        }
 
-        startActivityForResult(galleryIntent, GALLERY)
 
     }
-
+    private fun loadPermissions(perms: Array<String>, requestCode: Int) {
+        if (ContextCompat.checkSelfPermission(this, perms[0]) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, perms, requestCode)
+        } else {
+            val galleryIntent = Intent(Intent.ACTION_PICK,
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            startActivityForResult(galleryIntent, GALLERY)
+        }
+    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
         super.onActivityResult(requestCode, resultCode, data)

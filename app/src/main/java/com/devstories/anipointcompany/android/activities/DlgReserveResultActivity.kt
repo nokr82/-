@@ -374,9 +374,9 @@ class DlgReserveResultActivity : RootActivity() {
                             use_point = 0
                         }
 
-                        priceET.setText(price.toString())
-                        r_priceET.setText(pay)
-                        pointET.setText(use_point.toString())
+                        priceET.setText(Utils.comma(price.toString()))
+                        r_priceET.setText(Utils.comma(pay))
+                        pointET.setText(Utils.comma(use_point.toString()))
                         memoET.setText(memo)
                         result_type = Utils.getInt(reserve, "result_type")
 
@@ -614,9 +614,9 @@ class DlgReserveResultActivity : RootActivity() {
         params.put("surgery_name", Utils.getString(titleET))
         params.put("reserve_time", reserve_time)
         params.put("surgery_time", hour_s + " : " + min_s)
-        params.put("price", Utils.getString(priceET))
-        params.put("pay", Utils.getString(r_priceET))
-        params.put("use_point", Utils.getString(pointET))
+        params.put("price", Utils.getString(priceET).replace(",",""))
+        params.put("pay", Utils.getString(r_priceET).replace(",",""))
+        params.put("use_point", Utils.getString(pointET).replace(",",""))
         params.put("result_type", result_type)
         params.put("payment_type", payment_type)
         params.put("stack_type", stack_type)

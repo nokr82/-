@@ -1,13 +1,19 @@
 package com.devstories.anipointcompany.android.activities
 
+import android.Manifest
+import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -57,7 +63,7 @@ class SettingMyInfoFragment : Fragment() {
     lateinit var termTV: TextView
     lateinit var userLL: LinearLayout
 
-
+    private val REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE = 1
     private val GALLERY = 1
 
 
@@ -171,13 +177,25 @@ class SettingMyInfoFragment : Fragment() {
     }
 
     private fun choosePhotoFromGallary() {
-        val galleryIntent = Intent(Intent.ACTION_PICK,
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-
-        startActivityForResult(galleryIntent, GALLERY)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            val perms = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            loadPermissions(perms, REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE)
+        } else {
+            val galleryIntent = Intent(Intent.ACTION_PICK,
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            startActivityForResult(galleryIntent, GALLERY)
+        }
 
     }
-
+    private fun loadPermissions(perms: Array<String>, requestCode: Int) {
+        if (ContextCompat.checkSelfPermission(myContext, perms[0]) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity as Activity, perms, requestCode)
+        } else {
+            val galleryIntent = Intent(Intent.ACTION_PICK,
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            startActivityForResult(galleryIntent, GALLERY)
+        }
+    }
 
     override fun onActivityResult(requestCode:Int, resultCode:Int, data: Intent?) {
 
@@ -198,7 +216,6 @@ class SettingMyInfoFragment : Fragment() {
                     Log.d("높이",thumbnail.height.toString())
                     //비트맵배열에 비트맵추가
                     addImages.add(thumbnail)
-
 
                     Log.d("이미지 추가",addImages.toString())
                     val userView = View.inflate(myContext, R.layout.item_company_img, null)
@@ -228,7 +245,7 @@ class SettingMyInfoFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        company_info(company_id)
+//        company_info(company_id)
     }
 
     //사업체 정보뽑기
