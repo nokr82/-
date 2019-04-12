@@ -1009,9 +1009,9 @@ class CalActivity : RootActivity() {
                             opTV.text = "결제"
                             stack_type = intent.getIntExtra("per_type", -1)
                             if (stack_type == 1) {
-                                stackLL.callOnClick()
-                            } else if (stack_type == 2) {
                                 stack2LL.callOnClick()
+                            } else if (stack_type == 2) {
+                                stackLL.callOnClick()
                             } else {
                                 stackpoint = 0
                             }
