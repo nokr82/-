@@ -472,15 +472,15 @@ class Point_List_Fragment : Fragment() {
                         val data2 = response.getJSONArray("member_list")
                         if (page==1){
                             adapterData.clear()
+                            useradapter.notifyDataSetChanged()
                         }
-                        useradapter.notifyDataSetChanged()
                         Log.d("멤버리스트", data2.toString())
                         for (i in 0..(data2.length() - 1)) {
 
                             adapterData.add(data2[i] as JSONObject)
 
                         }
-
+                        useradapter.notifyDataSetChanged()
 
                     } else {
                         Toast.makeText(myContext, "조회실패", Toast.LENGTH_SHORT).show()

@@ -2,6 +2,7 @@ package com.devstories.aninuriandroid.adapter
 
 import android.content.Context
 import android.graphics.Point
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -80,10 +81,15 @@ open class UserListAdapter (context:Context, view:Int, data: ArrayList<JSONObjec
                     item.pointTV.text = Utils.comma(point)+"P"
                 }
             }else{
-                item.typeTV.text = "쿠폰 사용"
                 val coupon = json.getJSONObject("MemberCoupon")
                 var coupon_name = Utils.getString(coupon, "coupon_name")
-                item.pointTV.text =coupon_name
+                if (point != "0"){
+                item.typeTV.text = "쿠폰 사용/포인트 사용"
+                    item.pointTV.text =coupon_name+"/"+Utils.comma(point)+"P"
+                }else{
+                    item.typeTV.text = "쿠폰 사용"
+                    item.pointTV.text =coupon_name
+                }
             }
             item.nameTV.text = phone
             item.updateTV.text =updated
