@@ -792,7 +792,7 @@ class OnlyCalActivity : RootActivity() {
 
                 }
                 else {
-                    stackpoint = use_point
+//                    stackpoint = use_point
 
                     p_type = 2
                     type = 2
@@ -1081,21 +1081,21 @@ class OnlyCalActivity : RootActivity() {
         params.put("member_id", member_id)
         params.put("member_coupon_id", member_coupon_id)
         params.put("only_yn", "Y")
+        if (stackpoint == -1){
+            stackpoint = 0
+        }
+        Log.d("피타입",p_type.toString())
         if (p_type == 1) {
-
             params.put("add_point", stackpoint)
             params.put("use_point", 0)
 
         }else if (p_type == 2) {
-
-            params.put("add_point", 0)
-            params.put("use_point", stackpoint)
-
-        } else if (p_type == 3) {
-
             params.put("add_point", stackpoint)
             params.put("use_point", use_point)
 
+        } else if (p_type == 3) {
+            params.put("add_point", stackpoint)
+            params.put("use_point", use_point)
         }
 
         RequestStepAction.send_sms(params, object : JsonHttpResponseHandler() {
@@ -1494,7 +1494,12 @@ class OnlyCalActivity : RootActivity() {
         val params = RequestParams()
         params.put("member_id", member_id)
         params.put("company_id", company_id)
-        params.put("point", stackpoint)//사용및적립포인트
+        if (p_type == 2){
+            params.put("point", use_point)//사용및적립포인트
+        }else{
+            params.put("point", stackpoint)//사용및적립포인트
+        }
+
         params.put("type", type)//1적립 2사용
         params.put("per", per)//적립률
         params.put("membership_per", membership_per)//적립률
@@ -1543,7 +1548,7 @@ class OnlyCalActivity : RootActivity() {
                             Toast.makeText(context, stackpoint.toString() + "적립됩니다", Toast.LENGTH_SHORT).show()
                         } else if (p_type == 2) {
 
-                            Toast.makeText(context, stackpoint.toString() + "사용됩니다", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, use_point.toString() + "사용됩니다", Toast.LENGTH_SHORT).show()
                         }
                     }
 
