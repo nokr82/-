@@ -273,7 +273,12 @@ class DlgReserveSave2Activity : RootActivity() {
 
 
     fun reserve() {
-        if (Utils.getString(titleET) == "") {
+
+        if (Utils.getString(dateTV) == "선택해주세요"){
+            Toast.makeText(context,"예약일을 선택해주세요",Toast.LENGTH_SHORT).show()
+            return
+        }
+       if (Utils.getString(titleET) == "") {
             Toast.makeText(context, "시술내용을 입력해주세요", Toast.LENGTH_SHORT).show()
             return
         }
