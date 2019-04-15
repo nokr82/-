@@ -80,6 +80,7 @@ class DlgAddManageActivity : RootActivity() {
                     if ("ok" == result) {
                         Toast.makeText(context,"추가 되었습니다.",Toast.LENGTH_SHORT).show()
                         Utils.hideKeyboard(context)
+                        setResult(Activity.RESULT_OK)
                         finish()
 
                     }

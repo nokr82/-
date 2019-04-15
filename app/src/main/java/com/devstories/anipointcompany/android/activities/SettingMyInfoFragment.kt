@@ -65,6 +65,7 @@ class SettingMyInfoFragment : Fragment() {
 
     private val REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE = 1
     private val GALLERY = 1
+    private val ADD_CUSTOM = 3
 
 
     //비트맵 이미지 배열
@@ -143,7 +144,7 @@ class SettingMyInfoFragment : Fragment() {
 
         addmanageTV.setOnClickListener {
             val intent = Intent(myContext,DlgAddManageActivity::class.java)
-            startActivity(intent)
+            startActivityForResult(intent,ADD_CUSTOM)
         }
 
 
@@ -242,7 +243,10 @@ class SettingMyInfoFragment : Fragment() {
 
             }
         }
-
+        if (requestCode == ADD_CUSTOM)
+        {
+            company_info(company_id)
+        }
 
     }
 

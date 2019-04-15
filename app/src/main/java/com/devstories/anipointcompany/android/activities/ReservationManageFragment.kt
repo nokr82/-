@@ -76,8 +76,6 @@ class ReservationManageFragment : Fragment() {
         reserveListAdapter = ReserveListAdapter(myContext, R.layout.item_reserve_list, adapterData, this)
         reservationLV.adapter = reserveListAdapter
 
-        managers.add("전체")
-        managers_ids.add(-1)
 
         ma_adapter = ArrayAdapter(myContext, R.layout.spiner_item, managers)
 
@@ -323,10 +321,9 @@ class ReservationManageFragment : Fragment() {
                         for (i in 0 until data.length()) {
                             adapterData.add(data[i] as JSONObject)
                         }
+//                        calendarGV.draw()
 
-                        calendarGV.seletedDate = seletedDate
-
-                        calendarGV.draw()
+//                        calendarGV.seletedDate = seletedDate
 
                         reserveListAdapter.notifyDataSetChanged()
 
@@ -482,6 +479,12 @@ class ReservationManageFragment : Fragment() {
                     if ("ok" == result) {
                         val customers = response.getJSONArray("customer")
                         var position = 0
+                        managers.clear()
+                        managers_ids.clear()
+
+                        managers.add("전체")
+                        managers_ids.add(-1)
+
                         for (i in 0..customers.length() - 1) {
                             //새로운뷰를 이미지의 길이만큼생성
                             var json = customers[i] as JSONObject
