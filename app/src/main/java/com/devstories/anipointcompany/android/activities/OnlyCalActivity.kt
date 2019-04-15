@@ -676,8 +676,14 @@ class OnlyCalActivity : RootActivity() {
             if (opTV.text.equals("적립") || opTV.text.equals("무적립결제")) {
 
                 p_type = 1
-                type = 1
-                step = 3
+                if (opTV.text.equals("무적립결제")){
+                    type = 3
+                    step = 8
+                }else{
+                    type = 1
+                    step = 3
+                }
+
 
                 if (payment_type == -1) {
                     Toast.makeText(context, "결제방식을 선택해주세요", Toast.LENGTH_SHORT).show()
@@ -1074,7 +1080,7 @@ class OnlyCalActivity : RootActivity() {
         params.put("company_id", company_id)
         params.put("member_id", member_id)
         params.put("member_coupon_id", member_coupon_id)
-
+        params.put("only_yn", "Y")
         if (p_type == 1) {
 
             params.put("add_point", stackpoint)

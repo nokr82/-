@@ -127,8 +127,11 @@ class CalActivity : RootActivity() {
 
         intent = getIntent()
         type = intent.getIntExtra("type", -1)
-        step = intent.getIntExtra("step", 1)
         no_stack = intent.getIntExtra("no_stack", -1)
+        step = 10
+        if (no_stack != 1){
+            step = intent.getIntExtra("step", 1)
+        }
         reserve_type = intent.getIntExtra("reserve_type", -1)
         self_yn = intent.getIntExtra("self_yn", -1)
 
@@ -155,15 +158,12 @@ class CalActivity : RootActivity() {
 
 
         if (step == 1) {
-            if (no_stack == 1) {
-                opTV.text = "무적립결제"
-                per_type = -1
-                stackLL.setBackgroundColor(Color.parseColor("#FFFFFF"))
-            } else {
                 per_type = 1
                 stackLL.setBackgroundColor(Color.parseColor("#906e8a32"))
-            }
-
+        }else if (step == 10){
+            opTV.text = "무적립결제"
+            per_type = -1
+            stackLL.setBackgroundColor(Color.parseColor("#FFFFFF"))
         } else {
             per_type = -1
             stackLL.setBackgroundColor(Color.parseColor("#FFFFFF"))
@@ -579,8 +579,13 @@ class CalActivity : RootActivity() {
             if (opTV.text.equals("적립") || opTV.text.equals("무적립결제")) {
 
                 p_type = 1
-                type = 1
-                step = 3
+                if (opTV.text.equals("무적립결제")){
+                    type = 3
+                    step = 8
+                }else{
+                    type = 1
+                    step = 3
+                }
 
                 if (payment_type == -1) {
                     Toast.makeText(context, "결제방식을 선택해주세요", Toast.LENGTH_SHORT).show()
