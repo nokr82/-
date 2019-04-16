@@ -260,7 +260,6 @@
                         android:background="@null"
                         android:hint="메모"
                         android:letterSpacing="-0.03"
-
                         android:lineSpacingExtra="1sp"
                         android:minEms="5"
                         android:textColor="#ffffff"

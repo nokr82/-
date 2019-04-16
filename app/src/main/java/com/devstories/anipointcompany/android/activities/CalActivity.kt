@@ -303,6 +303,11 @@ class CalActivity : RootActivity() {
                 Toast.makeText(context, "무적립 결제입니다.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+            if (payment_type == 3) {
+                Toast.makeText(context, "포인트결제는 적립할 수 없습니다.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             setmenu3()
             if (per_type != 3) {
                 per_type = 3
@@ -849,13 +854,16 @@ class CalActivity : RootActivity() {
         params.put("member_id", member_id)
         params.put("member_coupon_id", member_coupon_id)
 
+        Log.d("피타입",p_type.toString())
+        Log.d("피타입",stackpoint.toString())
+        Log.d("피타입",per_type.toString())
         if (p_type == 2) {
 
             params.put("add_point", 0)
             params.put("use_point", stackpoint)
 
         } else if (p_type == 3) {
-
+            stackpoint = Integer.parseInt(Utils.getString(pointTV).replace(",", ""))
             params.put("add_point", stackpoint)
             params.put("use_point", use_point)
 
@@ -998,12 +1006,15 @@ class CalActivity : RootActivity() {
                         }
 
                         if (usePointLL.visibility == View.VISIBLE) {
-                            if (use_point > Utils.getString(moneyTV).toInt()) {
-                                setmenu3()
-                                per_type = -1
-                                per = ""
-                                pointTV.setText("적립포인트")
+                            if (per_type != 3){
+                                if (use_point > Utils.getString(moneyTV).toInt()) {
+                                    setmenu3()
+                                    per_type = -1
+                                    per = ""
+                                    pointTV.setText("적립포인트")
+                                }
                             }
+
                         }
 
                         //여기가문제다

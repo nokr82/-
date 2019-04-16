@@ -25,16 +25,9 @@ object MemberAction {
         HttpClient.post("/member/is_member.json", params, handler)
     }
 
-
-
     // 회원 목록뽑기
     fun user_list(params: RequestParams, handler: JsonHttpResponseHandler) {
         HttpClient.post("/member/user_list.json", params, handler)
-    }
-
-    //방문 이력
-    fun visit_list(params: RequestParams, handler: JsonHttpResponseHandler) {
-        HttpClient.post("/member/visit_list.json", params, handler)
     }
 
     //사용자 쿠폰 조회
