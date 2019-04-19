@@ -666,7 +666,7 @@ class SettingMyInfoFragment : Fragment() {
 //            }
 //        }
 
-        var seq = 0;
+        var seq = 0
 
         for (i in 0 until userLL.childCount) {
             val v = userLL.getChildAt(i)
