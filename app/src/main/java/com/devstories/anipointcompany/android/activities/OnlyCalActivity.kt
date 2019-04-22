@@ -1129,7 +1129,9 @@ class OnlyCalActivity : RootActivity() {
 
                             step = 6
 
-                            stack_point(member_id.toString())
+                            if (p_type==2||p_type==3){
+                                stack_point(member_id.toString())
+                            }
 
                             changeStep()
                         }
